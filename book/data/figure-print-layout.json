@@ -11,8 +11,9 @@
       "placement": "centered"
     },
     "semantic-gap": {
-      "width_bp": 300,
-      "placement": "centered"
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
     },
     "positive-negative-obligation": {
       "width_bp": 300,

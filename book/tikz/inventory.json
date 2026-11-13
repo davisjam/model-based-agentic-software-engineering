@@ -519,15 +519,15 @@
   {
     "chapter": "3.2-models-and-the-semantic-gap",
     "source": "assets/semantic-gap-levels.svg",
-    "caption": "*The semantic gap.* A property that spans several events cannot be decided from any event alone. Move the mechanism to the earliest boundary where the evidence required by the obligation is assembled.",
+    "caption": "The semantic gap. Different obligations become decidable at different boundaries. Model–implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The semantic gap: move the mechanism to the boundary where the obligation is legible",
-    "svg_description": "A property that spans several events cannot be decided from any event alone. The bottom\n    row shows a sequence of small low-level events — commits, calls, a turn — under a line reading the\n    obligation is not decidable here. An upward arrow, labeled move mechanism, rises to a single wide box\n    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest\n    boundary where the evidence the obligation needs is assembled."
+    "svg_title": "The semantic gap: two obligations, two enforcement boundaries",
+    "svg_description": "Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",

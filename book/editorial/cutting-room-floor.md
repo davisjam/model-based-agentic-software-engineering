@@ -19950,3 +19950,42 @@ Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, pa
 ```latex
 Start with the distinction between guidance and enforcement. \textbf{Guidance influences behavior; enforcement determines what the environment will permit or accept.} A prompt, brief, example, or playbook can make one action more likely than another, and that influence can be strong. A permission boundary can forbid an action; a validator and gate can refuse a result. Feedback can then return the evidence or explanation to the reasoner---a failing test, an observed call, a measured latency, or a validator\textquotesingle s explanation---so that subsequent work can respond. MAGE uses all of these mechanisms, but counts an obligation as enforced only when the engineered environment constrains the relevant action or determines whether the resulting work is accepted rather than merely advising the reasoner.
 ```
+
+
+## Chapter 3 semantic-gap examples revised (13 November 2026)
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, §The Semantic Gap, revision `4349608fa`. Reason: the author requested two explicit independent obligations, ordered to match the replacement figure. The end-to-end argument note, glossary metadata, and general placement rule remain in the main text. Prior prose and caption follow for provenance.
+
+```latex
+A second problem is placement. \textbf{An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.} If the property exists only over a whole task, no single commit holds enough meaning to decide it. If data exfiltration appears only as a pattern across calls, no individual system call carries the whole property. A \textbf{semantic gap} occurs when an obligation requires meaning that the chosen boundary does not expose. \autoref{semantic-gap} shows the fix: lift the check to where the meaning is legible.
+
+% <!-- sidenote -->
+
+\begin{quote}
+\emph{A footnote on where the placement rule comes from.} It echoes the end-to-end argument in system design: a function that needs end-to-end knowledge cannot in general be implemented completely at a lower layer that lacks that knowledge~\citep{saltzerreedclark1984e2e}. Their setting was where to place \emph{functionality} in a distributed system; the setting here is where to place \emph{enforcement} over engineering work. The design instinct is the same --- put the deciding mechanism where the semantics needed to decide the property are available.
+\end{quote}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/semantic-gap-levels-bf0468495b.pdf}
+\caption{\emph{The semantic gap.} A property that spans several events cannot be decided from any event alone. Move the mechanism to the earliest boundary where the evidence required by the obligation is assembled.}
+\label{semantic-gap}
+\end{figure}
+
+% <!-- point: a-deployment-can-pass-every-check-and-still-serve-a-blank-page | Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering. | terms: semantic-gap, earliest-legible-boundary -->
+
+A deployment can pass twenty checks and still serve a blank page. Those checks may have examined source files, build outputs, and emitted data without testing how the deployed application combines them. If the obligation is that the served page displays the expected data, a smoke test should load that page in a browser and assert that the expected content appears. The check belongs at the earliest boundary where the relevant composition can be exercised, which may be a preview or staging deployment. A successful HTTP fetch alone does not establish that the page rendered correctly.
+
+% <!-- point: model-drift-at-the-commit-is-the-wrong-granularity | Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work. | terms: model-drift, semantic-gap -->
+
+% <!-- index-def: semantic-gap -->
+
+% <!-- index-example: model-drift -->
+
+The same gap appears inside a single task. Take a concrete obligation: \emph{if this task substantially changes the call graph, the corresponding architectural model must still agree when the task closes.} A task may pass through several intermediate commits in which temporary disagreement is legitimate. A pre-commit check would then act too early. At task return, the accumulated code changes and model updates can be assessed together against the completion obligation. The check belongs to the completed unit of work, rather than every intermediate commit.
+
+% <!-- gloss: Epic | A tracked unit of work larger than one commit: a feature or effort with its own file, plan, and definition of done, carried out over several agent dispatches. -->
+
+% <!-- gloss: Definition of done (DoD) | The explicit list of conditions a unit of work must meet to count as finished — tests present, docs updated, the model in sync — checked at the end rather than assumed. -->
+
+```

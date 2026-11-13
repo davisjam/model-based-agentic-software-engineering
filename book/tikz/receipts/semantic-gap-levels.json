@@ -1,246 +1,425 @@
 {
   "source": "book/assets/semantic-gap-levels.svg",
-  "chapter": "3.2-models-and-the-semantic-gap",
-  "claim": "*The semantic gap.* A property that spans several events cannot be decided from any event alone. Move the mechanism to the earliest boundary where the evidence required by the obligation is assembled.",
-  "topology": {
-    "description": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
-    "native_draw_commands": [
-      "\\draw[line width=.9pt] (-6.4,-3.9) -- (-6.4,-3.55) -- (6.4,-3.55) -- (6.4,-3.9);",
-      "\\draw[edge,line width=.9pt] (0,-3) -- node[lab,right] {Move mechanism} (unit.south);"
-    ]
-  },
+  "claim": "The semantic gap. Different obligations become decidable at different boundaries. Model–implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.",
+  "topology": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
   "required_terms": [
-    "Obligation legible",
-    "The completed unit of work",
-    "commit commit commit call call turn",
-    "Obligation not decidable here",
-    "Move mechanism",
-    "Move to the earliest boundary where the obligation’s evidence is assembled."
+    "X: Model–implementation",
+    "correspondence",
+    "Validate at task completion",
+    "Y: Rendered-page correctness",
+    "Validate in an integrated execution",
+    "(e.g., browser)",
+    "commit 1",
+    "commit 2",
+    "commit 3",
+    "build",
+    "deploy",
+    "run",
+    "(in browser)",
+    "Intermediate disagreement",
+    "with the model may be permitted",
+    "Earlier checks (source, build, API)",
+    "do not establish this obligation"
   ],
-  "bw_encoding": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white.",
-  "redesign": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "bw_encoding": "Light gray obligation boxes, white events, solid direct arrows and plain braces.",
+  "redesign": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
   "questions": [],
-  "alt": "A bracket groups six local events under the annotation that the obligation is not decidable there. An upward Move mechanism arrow leads to a completed work unit where the obligation becomes meaningful.",
-  "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
-    "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
-    ],
-    "outcome": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "native_dimensions_cm": [
-      13.0852,
-      6.6922
-    ]
+  "alt": "Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness.",
+  "historical_receipt": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/semantic-gap-levels.json",
+  "qa": {
+    "date": "2026-11-13",
+    "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+    "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+    "page": 1,
+    "width_bp": 449.62,
+    "height_bp": 209.272,
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+    "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+    "semantic_typography_checks": 17,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
   },
-  "fidelity_review": {
-    "stem": "semantic-gap-levels",
+  "reference_image_sha256": "e02d3b1bbe5f6001255f2430f12214dabf51408e47d660ebaad92e7d32d883c6",
+  "layout_review": {
     "source": "book/assets/semantic-gap-levels.svg",
-    "status": "corrected",
-    "evidence": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
-    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/semantic-gap-levels.png",
-    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/semantic-gap-levels.png",
-    "original_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
-    "native_sha256": "ad97633045ae9f55298d4a5cb50552ac1fc7602c2e44baa73603a9382576d9ed",
-    "page": 40,
-    "dimensions_cm": [
-      13.0852,
-      6.6922
-    ],
-    "diagnostics": [],
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
-  },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
-    "candidate_sha256": "c0779feeaa85badab3307d3076595061444edee34db3fad906c2771df0bd80c7",
-    "fill": "Only the completed unit, where the obligation is legible, uses 8%; local event peers white.",
-    "bold": "Source-derived emphasis includes OBLIGATION LEGIBLE. The obligation-legible level is a formal boundary; italic qualifiers remain distinct from local event examples.",
-    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
+    "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "obligations",
+          "labels": [
+            "X: Model",
+            "Y: Rendered-page correctness"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "development events",
+          "labels": [
+            "commit 1",
+            "commit 2",
+            "commit 3",
+            "build",
+            "deploy",
+            "run"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 42,
-      "width_bp": 370.918,
-      "height_bp": 189.586,
-      "minimum_prose_font_pt": 9.5,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+      "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+      "page": 1,
+      "width_bp": 449.62,
+      "height_bp": 209.272,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+      "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+      "semantic_typography_checks": 17,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     },
-    "book_references": []
+    "visual_review": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption."
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/semantic-gap-levels.svg",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
+    "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
     "decision": "refined",
-    "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
-    "candidate_sha256": "c0779feeaa85badab3307d3076595061444edee34db3fad906c2771df0bd80c7",
-    "reason": "The obligation-legible level is a formal boundary; italic qualifiers remain distinct from local event examples.",
-    "evidence": [
-      {
-        "source_text": "OBLIGATION LEGIBLE",
-        "source_style": "weight 700; normal; source size 23.04",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "OBLIGATION LEGIBLE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/semantic-gap-levels.svg",
-          "element_text_path": "/svg/text[1]/text()",
-          "text_element_context": "OBLIGATION LEGIBLE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "the completed unit of work",
-        "source_style": "weight normal; italic; source size 19.2",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "The completed unit of work",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/semantic-gap-levels.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "the completed unit of work",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "obligation not decidable here",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Obligation not decidable here",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/semantic-gap-levels.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "obligation not decidable here",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "move mechanism",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Move mechanism",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/semantic-gap-levels.svg",
-          "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "move mechanism",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
+    "reviewed_visually": true,
+    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/typography-review.json",
     "checks": [
       {
-        "text": "OBLIGATION LEGIBLE",
+        "text": "X: Model–implementation",
         "bold": true,
         "italic": false
       },
       {
-        "text": "The completed unit of work",
+        "text": "correspondence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Validate at task completion",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Obligation not decidable here",
+        "text": "Y: Rendered-page correctness",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Validate in an integrated execution",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Move mechanism",
+        "text": "(e.g., browser)",
         "bold": false,
         "italic": true
       },
       {
-        "text": "commit",
+        "text": "commit 1",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "commit 2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "commit 3",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "build",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "deploy",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "run",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(in browser)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Intermediate disagreement",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "with the model may be permitted",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Earlier checks (source, build, API)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "do not establish this obligation",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "X: Model–implementation",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "correspondence",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Validate at task completion",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Y: Rendered-page correctness",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Validate in an integrated execution",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "(e.g., browser)",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "commit 1",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "commit 2",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "commit 3",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "build",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "deploy",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "run",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "(in browser)",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Intermediate disagreement",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "with the model may be permitted",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Earlier checks (source, build, API)",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "do not establish this obligation",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 42,
-      "width_bp": 370.918,
-      "height_bp": 189.586,
-      "minimum_prose_font_pt": 9.5,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+      "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+      "page": 1,
+      "width_bp": 449.62,
+      "height_bp": 209.272,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+      "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+      "semantic_typography_checks": 17,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     }
   },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The local event nodes and move-mechanism arrow are intentionally different abstraction levels, with adequate separation.",
-    "candidate_sha256": "c0779feeaa85badab3307d3076595061444edee34db3fad906c2771df0bd80c7",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing semantic gap levels layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "c0779feeaa85badab3307d3076595061444edee34db3fad906c2771df0bd80c7",
-      "after_sha256": "c0779feeaa85badab3307d3076595061444edee34db3fad906c2771df0bd80c7",
-      "before_dimensions_bp": [
-        370.9179992675781,
-        189.58599853515625
-      ],
-      "after_dimensions_bp": [
-        370.9179992675781,
-        189.58599853515625
-      ],
-      "before_font_sizes_pt": [
-        9.5,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.5,
-        10.0
-      ],
-      "reviewed_visually": true
+  "style_review": {
+    "source": "book/assets/semantic-gap-levels.svg",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
+    "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/style-review.json",
+    "receipt": "book/tikz/receipts/semantic-gap-levels.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Light gray distinguishes obligations from white events.",
+    "bold": "Obligations bold11pt; timeline10pt; subtitles and annotations italic9pt.",
+    "routing": "Timeline arrows run right; obligation checks connect directly upward. The second brace excludes the browser run.",
+    "shape": "Rounded rectangles for events and obligations; plain braces annotate the scope of earlier checks.",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+      "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+      "page": 1,
+      "width_bp": 449.62,
+      "height_bp": 209.272,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+      "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+      "semantic_typography_checks": 17,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    },
+    "visual_review": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/semantic-gap-levels.svg",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
+    "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/fidelity-review.json",
+    "checks": {
+      "relationships": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption.",
+      "annotation_placement": "Braces sit below the event ranges they describe. Direct vertical arrows identify the two checking boundaries.",
+      "source_adaptations": "Removed the two intermediate boundary boxes and excluded the browser execution from the earlier-check brace."
     },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+      "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+      "page": 1,
+      "width_bp": 449.62,
+      "height_bp": 209.272,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+      "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+      "semantic_typography_checks": 17,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 42,
-      "width_bp": 370.918,
-      "height_bp": 189.586
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    },
+    "font_qa": {
+      "minimum": 9,
+      "rendered_prose_sizes_tex_pt": [
+        9,
+        10,
+        11
+      ],
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.62,
+    "height_bp": 209.272,
+    "monochrome": true,
+    "review": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption."
+  },
+  "grayscale_review": {
+    "source": "book/assets/semantic-gap-levels.svg",
+    "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+    "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
+    "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/grayscale-review.json",
+    "receipt": "book/tikz/receipts/semantic-gap-levels.json",
+    "reviewed": true,
+    "rationale": "Light gray marks obligations; other shapes remain white.",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+      "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+      "page": 1,
+      "width_bp": 449.62,
+      "height_bp": 209.272,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+      "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
+      "semantic_typography_checks": 17,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     }
   }
 }

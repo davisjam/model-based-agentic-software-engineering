@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact teaching geometry; print width is declared by stable figure label in book/data/figure-print-layout.json. Text remains at 9–10 pt in the PDF. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="figure-title">The semantic gap: move the mechanism to the boundary where the obligation is legible</title>
-<desc id="figure-description">A property that spans several events cannot be decided from any event alone. The bottom
-    row shows a sequence of small low-level events — commits, calls, a turn — under a line reading the
-    obligation is not decidable here. An upward arrow, labeled move mechanism, rises to a single wide box
-    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest
-    boundary where the evidence the obligation needs is assembled.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker></defs>
-<rect id="legible" x="55" y="12" width="490" height="64" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="300" y="39" text-anchor="middle" font-size="22" fill="#2f5169" font-weight="700">OBLIGATION LEGIBLE</text>
-<text x="300" y="64" text-anchor="middle" font-size="20" fill="#57534e">the completed unit of work</text>
-<line x1="300" y1="155" x2="300" y2="80" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
-<text x="320" y="119" text-anchor="start" font-size="20" fill="#2f5169">move mechanism</text>
-<text x="300" y="176" text-anchor="middle" font-size="20" fill="#b23b3b">obligation not decidable here</text>
-<path d="M12 195 V184 H592 V195" fill="none" stroke="#b23b3b" stroke-width="2"/>
-<rect x="12" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="57" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
-<rect x="110" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="155" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
-<rect x="208" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="253" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
-<rect x="306" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="351" y="225" text-anchor="middle" font-size="20" fill="#1c1917">call</text>
-<rect x="404" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="449" y="225" text-anchor="middle" font-size="20" fill="#1c1917">call</text>
-<rect x="502" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
-<text x="547" y="225" text-anchor="middle" font-size="20" fill="#1c1917">turn</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 212" width="450" height="212" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<title id="title">The semantic gap: two obligations, two enforcement boundaries</title>
+<desc id="desc">Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker></defs>
+<rect x="4" y="4" width="215" height="74" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".65"/>
+<rect x="231" y="4" width="215" height="74" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".65"/>
+<text x="111.5" y="23" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">X: Model–implementation</text>
+<text x="111.5" y="36" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">correspondence</text>
+<text x="111.5" y="58" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Validate at task completion</text>
+<text x="338.5" y="23" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Y: Rendered-page correctness</text>
+<text x="338.5" y="47" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Validate in an integrated execution</text>
+<text x="338.5" y="60" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">(e.g., browser)</text>
+<rect x="3.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="32" y="142" text-anchor="middle" font-size="10" fill="#1c1917">commit 1</text>
+<rect x="79.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="108" y="142" text-anchor="middle" font-size="10" fill="#1c1917">commit 2</text>
+<rect x="155.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="184" y="142" text-anchor="middle" font-size="10" fill="#1c1917">commit 3</text>
+<rect x="231.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="260" y="142" text-anchor="middle" font-size="10" fill="#1c1917">build</text>
+<rect x="307.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="336" y="142" text-anchor="middle" font-size="10" fill="#1c1917">deploy</text>
+<rect x="382.0" y="122" width="64" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="414" y="135" text-anchor="middle" font-size="10" fill="#1c1917">run</text>
+<text x="414" y="148" text-anchor="middle" font-size="9" fill="#1c1917">(in browser)</text>
+<path d="M61.0 138 L79.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M137.0 138 L155.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M213.0 138 L231.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M289.0 138 L307.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M365.0 138 L382.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M184 122 L184 78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M414 122 L414 78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M3 163 Q3 171 9 171 H102.0 Q108.0 171 108.0 178 Q108.0 171 114.0 171 H207 Q213 171 213 163" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<path d="M231 163 Q231 171 237 171 H292.0 Q298.0 171 298.0 178 Q298.0 171 304.0 171 H359 Q365 171 365 163" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<text x="108" y="193" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Intermediate disagreement</text>
+<text x="108" y="205" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">with the model may be permitted</text>
+<text x="303" y="193" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Earlier checks (source, build, API)</text>
+<text x="303" y="205" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">do not establish this obligation</text>
 </svg>

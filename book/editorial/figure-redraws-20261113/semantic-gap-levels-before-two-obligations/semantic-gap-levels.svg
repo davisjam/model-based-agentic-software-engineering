@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compact teaching geometry; print width is declared by stable figure label in book/data/figure-print-layout.json. Text remains at 9–10 pt in the PDF. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">The semantic gap: move the mechanism to the boundary where the obligation is legible</title>
+<desc id="figure-description">A property that spans several events cannot be decided from any event alone. The bottom
+    row shows a sequence of small low-level events — commits, calls, a turn — under a line reading the
+    obligation is not decidable here. An upward arrow, labeled move mechanism, rises to a single wide box
+    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest
+    boundary where the evidence the obligation needs is assembled.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker></defs>
+<rect id="legible" x="55" y="12" width="490" height="64" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="300" y="39" text-anchor="middle" font-size="22" fill="#2f5169" font-weight="700">OBLIGATION LEGIBLE</text>
+<text x="300" y="64" text-anchor="middle" font-size="20" fill="#57534e">the completed unit of work</text>
+<line x1="300" y1="155" x2="300" y2="80" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<text x="320" y="119" text-anchor="start" font-size="20" fill="#2f5169">move mechanism</text>
+<text x="300" y="176" text-anchor="middle" font-size="20" fill="#b23b3b">obligation not decidable here</text>
+<path d="M12 195 V184 H592 V195" fill="none" stroke="#b23b3b" stroke-width="2"/>
+<rect x="12" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="57" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
+<rect x="110" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="155" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
+<rect x="208" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="253" y="225" text-anchor="middle" font-size="20" fill="#1c1917">commit</text>
+<rect x="306" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="351" y="225" text-anchor="middle" font-size="20" fill="#1c1917">call</text>
+<rect x="404" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="449" y="225" text-anchor="middle" font-size="20" fill="#1c1917">call</text>
+<rect x="502" y="200" width="90" height="37" rx="7" fill="#ffffff" stroke="#1c1917" stroke-width="2"/>
+<text x="547" y="225" text-anchor="middle" font-size="20" fill="#1c1917">turn</text>
+</svg>

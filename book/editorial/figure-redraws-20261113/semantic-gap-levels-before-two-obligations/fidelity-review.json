@@ -1,0 +1,14 @@
+{
+  "source": "book/assets/semantic-gap-levels.svg",
+  "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+  "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+  "candidate_sha256": "ad97633045ae9f55298d4a5cb50552ac1fc7602c2e44baa73603a9382576d9ed",
+  "decision": "refined",
+  "review": "Restored the bracket over six local events and its Obligation not decidable here annotation, plus the upward Move mechanism relation to the completed work unit.",
+  "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+  "dimensions_cm": [
+    13.0852,
+    6.6922
+  ],
+  "strict_compile_diagnostics": []
+}

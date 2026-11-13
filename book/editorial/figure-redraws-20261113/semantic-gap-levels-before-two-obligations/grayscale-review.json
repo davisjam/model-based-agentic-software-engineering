@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/semantic-gap-levels.svg",
+  "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+  "receipt": "book/tikz/receipts/semantic-gap-levels.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Modeled completed-unit gray contrasts with low-level white event sequence; upward mechanism placement and undecidability statement retained.",
+  "source_sha256": "156c63edb85ad0e7f3e86332c7adf0587fbe994213a864226532f7e1fc2154d3",
+  "candidate_sha256": "bc0e5d8a0efa5054444d99e60426b041d565ced7de5754a469f8be57253c9c07"
+}

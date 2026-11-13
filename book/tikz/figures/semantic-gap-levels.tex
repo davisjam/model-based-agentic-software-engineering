@@ -1,14 +1,38 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
-edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
-
-\node[n,fill=black!8,text width=10cm,line width=.65pt] (unit) at (0,0) {\textbf{OBLIGATION LEGIBLE}\\\textit{The completed unit of work}};
-\foreach \i/\x/\txt in {0/-5.5/commit,1/-3.3/commit,2/-1.1/commit,3/1.1/call,4/3.3/call,5/5.5/turn} {\node[n,text width=1.5cm] (e\i) at (\x,-4.5) {\txt};}
-\draw[line width=.9pt] (-6.4,-3.9) -- (-6.4,-3.55) -- (6.4,-3.55) -- (6.4,-3.9);
-\node[note,fill=white] at (0,-3.55) {\textit{Obligation not decidable here}};
-\draw[edge,line width=.9pt] (0,-3) -- node[lab,right] {\textit{Move mechanism}} (unit.south);
-\node[note,text width=12cm] at (0,-5.7) {Move to the earliest boundary where the obligation’s evidence is assembled.};
-
+% Two independent obligations illustrated over one development sequence.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=black!5,line width=.65pt,rounded corners=3pt] (4,4) rectangle (219,78);
+\draw[draw=black,fill=black!5,line width=.65pt,rounded corners=3pt] (231,4) rectangle (446,78);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (111.5,23) {X: Model--implementation};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (111.5,36) {correspondence};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (111.5,58) {Validate at task completion};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (338.5,23) {Y: Rendered-page correctness};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (338.5,47) {Validate in an integrated execution};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (338.5,60) {(e.g., browser)};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (3.0,122) rectangle (61.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (32,142) {commit 1};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (79.0,122) rectangle (137.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (108,142) {commit 2};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (155.0,122) rectangle (213.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (184,142) {commit 3};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (231.0,122) rectangle (289.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (260,142) {build};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (307.0,122) rectangle (365.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (336,142) {deploy};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (382.0,122) rectangle (446.0,154);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (414,135) {run};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont] at (414,148) {(in browser)};
+\draw[->,line width=.65pt] (61.0,138) -- (79.0,138);
+\draw[->,line width=.65pt] (137.0,138) -- (155.0,138);
+\draw[->,line width=.65pt] (213.0,138) -- (231.0,138);
+\draw[->,line width=.65pt] (289.0,138) -- (307.0,138);
+\draw[->,line width=.65pt] (365.0,138) -- (382.0,138);
+\draw[->,line width=.65pt] (184,122) -- (184,78);
+\draw[->,line width=.65pt] (414,122) -- (414,78);
+\draw[line width=.65pt] (3,163) .. controls (3,170) and (3,171) .. (9,171) -- (102.0,171) .. controls (108.0,171) and (108.0,173) .. (108.0,178) .. controls (108.0,173) and (108.0,171) .. (114.0,171) -- (207,171) .. controls (213,171) and (213,170) .. (213,163);
+\draw[line width=.65pt] (231,163) .. controls (231,170) and (231,171) .. (237,171) -- (292.0,171) .. controls (298.0,171) and (298.0,173) .. (298.0,178) .. controls (298.0,173) and (298.0,171) .. (304.0,171) -- (359,171) .. controls (365,171) and (365,170) .. (365,163);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (108,193) {Intermediate disagreement};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (108,205) {with the model may be permitted};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (303,193) {Earlier checks (source, build, API)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (303,205) {do not establish this obligation};
 \end{tikzpicture}

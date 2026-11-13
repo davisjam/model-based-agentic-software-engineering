@@ -1410,14 +1410,14 @@
               "block_index": 48
             },
             {
-              "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
-              "text": "Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering.",
+              "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
+              "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
               "block_index": 53
             },
             {
-              "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
-              "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 55
+              "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
+              "text": "Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering.",
+              "block_index": 57
             }
           ]
         },
@@ -1425,7 +1425,7 @@
           "section_id": "the-earliest-decidable-boundary",
           "level": 2,
           "heading_text": "The Earliest Decidable Boundary",
-          "topic_sentence": "The agent-return check illustrates a general rule for placing enforcement:",
+          "topic_sentence": "Both examples illustrate the same rule for placing enforcement:",
           "id_source": "derived",
           "block_index": 61,
           "points": [
