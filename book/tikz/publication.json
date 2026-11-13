@@ -218,6 +218,11 @@
       "approved_date": "2026-11-12",
       "reason": "Author approved Figure 3.2 with three rows and the Git precommit gate before implementation, requiring an initial discovery commit.",
       "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3"
+    },
+    "book/assets/derive-generate-trace.svg": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the revised Figure 2.17 with three correspondence patterns, selective implementation bands, and separate trace/check curves.",
+      "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7"
     }
   }
 }
