@@ -4159,24 +4159,19 @@
     {
       "source": "book/assets/match-mechanism-to-property.svg",
       "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
-      "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
-      "baseline_candidate_sha256": "969a48940b1219735dbbc7c8ba0ce8f4670568dcb5118880cfba9a6748806553",
-      "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-      "decision": "refined",
-      "reason": "Equal-height property questions and descriptions; translated subsequent ranks to maintain clear arrow approaches.",
+      "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+      "decision": "author-reference redraw",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        382.2070007324219,
-        232.43800354003906
-      ],
+      "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+      "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/layout-review.json",
       "contracts": {
         "peer_groups": [
           {
-            "name": "property questions",
+            "name": "obligations",
             "labels": [
-              "Can exclude invalid state?",
-              "Reachable bad state / trace?",
-              "Eventuality / fairness?"
+              "Prevent duplicate claims",
+              "Preserve correct recovery"
             ],
             "align": [
               "top",
@@ -4186,11 +4181,10 @@
             "tolerance_pt": 1
           },
           {
-            "name": "mechanism descriptions",
+            "name": "mechanisms",
             "labels": [
-              "Structural prevention",
-              "State-space search",
-              "Temporal model checking"
+              "ATOMIC COMPARE-AND-SET",
+              "EXPLICIT-STATE CHECKER"
             ],
             "align": [
               "top",
@@ -4202,47 +4196,23 @@
         ]
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+        "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+        "page": 1,
+        "width_bp": 449.769,
+        "height_bp": 240.772,
+        "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+        "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+        "semantic_typography_checks": 18,
+        "monochrome_pixels": true,
         "status": "passed",
-        "page": 44,
-        "width_bp": 382.207,
-        "height_bp": 274.957
+        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
       },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing match mechanism to property layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-        "after_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-        "before_dimensions_bp": [
-          382.2070007324219,
-          274.9570007324219
-        ],
-        "after_dimensions_bp": [
-          382.2070007324219,
-          274.9570007324219
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
+      "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption."
     },
     {
       "source": "book/assets/cost-enforcement-gradient.svg",

@@ -7,7 +7,7 @@
     "derived_ids": 157,
     "missing_topic_sentence": 2,
     "sections_drained": 130,
-    "paragraph_points": 557
+    "paragraph_points": 556
   },
   "chapters": [
     {
@@ -1637,14 +1637,9 @@
               "block_index": 75
             },
             {
-              "slug": "mechanisms-match-properties-not-an-adoption-sequence",
-              "text": "Select and combine mechanisms according to the evidence or restriction they contribute and the cost of obtaining it.",
-              "block_index": 79
-            },
-            {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 81
+              "block_index": 79
             }
           ]
         },
@@ -1654,22 +1649,22 @@
           "heading_text": "One Measurement, Different Enforcement Decisions",
           "topic_sentence": "The reporting service’s usage measurements can support several responses, depending on the policy attached to them.",
           "id_source": "derived",
-          "block_index": 83,
+          "block_index": 81,
           "points": [
             {
               "slug": "one-model-several-enforcement-decisions",
               "text": "One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity.",
-              "block_index": 85
+              "block_index": 83
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 88
+              "block_index": 86
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 90
+              "block_index": 88
             }
           ]
         },
@@ -1679,12 +1674,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "The reporting-service rule forbids a particular access.",
           "id_source": "derived",
-          "block_index": 92,
+          "block_index": 90,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 94
+              "block_index": 92
             }
           ]
         },
@@ -1694,37 +1689,37 @@
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "The reporting-service example concerns which components may interact.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 95,
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
-              "block_index": 99
+              "block_index": 97
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 101
+              "block_index": 99
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 103
+              "block_index": 101
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 105
+              "block_index": 103
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 111
+              "block_index": 109
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 113
+              "block_index": 111
             }
           ]
         },
@@ -1734,27 +1729,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "Alignment should preserve the implementation freedom that Modeling deliberately leaves open.",
           "id_source": "derived",
-          "block_index": 116,
+          "block_index": 114,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 118
+              "block_index": 116
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 120
+              "block_index": 118
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 122
+              "block_index": 120
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 128
+              "block_index": 126
             }
           ]
         },
@@ -1764,27 +1759,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "**Policy**, **guidance**, and **governance mechanisms** contribute different things to engineering work.",
           "id_source": "derived",
-          "block_index": 130,
+          "block_index": 128,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 132
+              "block_index": 130
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions.",
-              "block_index": 134
+              "block_index": 132
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 136
+              "block_index": 134
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 141
+              "block_index": 139
             }
           ]
         }

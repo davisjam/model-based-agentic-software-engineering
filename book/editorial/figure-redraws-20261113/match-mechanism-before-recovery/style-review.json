@@ -1,0 +1,30 @@
+{
+  "source": "book/assets/match-mechanism-to-property.svg",
+  "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+  "receipt": "book/tikz/receipts/match-mechanism-to-property.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
+  "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
+  "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+  "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; Can exclude invalid state?; Reachable bad state / trace?; Eventuality / fairness?; CONSTRAINT; VALIDATOR; GATE. Restore emphasis to alternative property questions and mechanism roles; gate stays a distinct admission role within a regular condition.",
+  "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Three equal property-selected mechanisms feed separate gate; no invented rank.",
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 44,
+    "width_bp": 382.207,
+    "height_bp": 274.957,
+    "minimum_prose_font_pt": 9.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 8
+  },
+  "book_references": [],
+  "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+}

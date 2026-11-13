@@ -20001,3 +20001,31 @@ The same gap appears inside a single task. Take a concrete obligation: \emph{if 
 ```latex
 Migration should also establish how subsequent changes will be checked against the recovered model. Where practical, associate model elements with resolvable code references and runtime trace identities. Static checks can detect when an implementation element disappears or a model reference becomes stale. Runtime traces provide complementary evidence about which modeled operations execute and whether observed operations can be associated with the model. Deriving these relationships from the current implementation and model avoids maintaining separate inventories that can silently diverge. The result is not a guarantee of semantic correspondence, but a way to expose changes that would otherwise leave the model stale.
 ```
+
+
+## Job-recovery illustration revision — 13 November 2026
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, DocAble recovery inset, lines 236–252.
+- Source revision: `2b5c1f55b2f16f9f9e7a59aa2c7953bcfe29508b`.
+- Reason: Replace the taxonomy figure with two concrete protections and apply the author-supplied prose. TLA+/TLC stays in the main inset text.
+- Status: superseded, retained for reference.
+
+```latex
+As \autoref{match-mechanism-to-property} shows, the runtime claim, the interleaving search, and temporal checking respond to different properties. None substitutes for the others.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/match-mechanism-to-property-2c4d8f0003.pdf}
+\caption{\emph{Different obligations in one job protocol.} An atomic claim excludes competing winners for one transition. Bounded explicit-state exploration checks modeled interleavings. Temporal analysis addresses eventuality under stated assumptions. Tests provide separate evidence about the implementation, and a gate must be chosen separately when an analysis verdict should control whether work may proceed.}
+\label{match-mechanism-to-property}
+\end{figure}
+
+A separate durable compare-and-set supplies the claim for that effect. It updates the claim only while the stored state matches the required prior state, so competing claimants cannot both acquire the same transition. A repeated delivery or expired lease does not bypass this claim. This is a runtime constraint on a particular effect, rather than a general guarantee that every part of a job executes exactly once. Recovery and permission serve different obligations.
+
+Ownership also depends on the surrounding sequence. After a newer lease generation has been issued, a late release from the old holder must not clear the current claim. DocAble uses a small, purpose-built checker to enumerate reachable interleavings of its ownership model within explicit bounds and search for invariant violations.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The result concerns the represented protocol. Tests or other analysis must separately establish that the implementation follows it.
+
+A different analysis addresses eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification checked with TLC was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it.
+
+
+Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it.
+```

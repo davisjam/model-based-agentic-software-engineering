@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 425" width="760" height="425" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Match the mechanism to the property</title>
+<desc id="figure-description">An engineering obligation forks on what kind of property it is. If the invalid state can
+    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed
+    transition. If the risk is a reachable bad state or trace, a validator explores the state space through
+    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator
+    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the
+    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives
+    it consequence if the verdict should control admission.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<rect id="obligation" x="213" y="8" width="334" height="43" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="380" y="36" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">ENGINEERING OBLIGATION</text>
+<path d="M380 51 V86 H130 V99" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<path d="M380 86 L380 99" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<path d="M380 86 H630 V99" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="225" y="55" width="310" height="27" rx="7" fill="#ffffff" stroke="none" stroke-width="2"/>
+<text x="380" y="75" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">What kind of property is it?</text>
+<rect x="6" y="101" width="248" height="60" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="130" y="125" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CAN EXCLUDE IT?</text>
+<text x="130" y="149" text-anchor="middle" font-size="20" fill="#57534e">yes</text>
+<path d="M130 161 L130 181" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="6" y="183" width="248" height="102" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="130" y="207" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CONSTRAINT</text>
+<text x="130" y="230" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
+<text x="130" y="253" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
+<text x="130" y="276" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
+<path d="M130 285 V307 H380 V323" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="256" y="101" width="248" height="60" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="380" y="125" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">BAD STATE / TRACE?</text>
+<text x="380" y="149" text-anchor="middle" font-size="20" fill="#57534e">yes</text>
+<path d="M380 161 L380 181" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="256" y="183" width="248" height="102" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="380" y="207" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">VALIDATOR</text>
+<text x="380" y="230" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
+<text x="380" y="253" text-anchor="middle" font-size="20" fill="#57534e">bounded state-space</text>
+<text x="380" y="276" text-anchor="middle" font-size="20" fill="#57534e">checker</text>
+<path d="M380 285 V307 H380 V323" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="506" y="101" width="248" height="60" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="630" y="125" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">EVENTUALITY /</text>
+<text x="630" y="149" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">FAIRNESS?</text>
+<path d="M630 161 L630 181" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect x="506" y="183" width="248" height="102" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="630" y="207" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">VALIDATOR</text>
+<text x="630" y="230" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checker</text>
+<text x="630" y="253" text-anchor="middle" font-size="20" fill="#57534e">eventuality / fairness</text>
+<text x="630" y="276" text-anchor="middle" font-size="20" fill="#57534e">under assumptions</text>
+<path d="M630 285 V307 H380 V323" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect id="gate" x="150" y="325" width="460" height="57" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="380" y="350" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">GATE, IF THE VERDICT</text>
+<text x="380" y="374" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">SHOULD CONTROL ADMISSION</text>
+<text x="380" y="411" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">Alternatives selected by the property — not stages on a maturity ladder.</text>
+</svg>

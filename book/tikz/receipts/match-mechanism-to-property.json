@@ -1,271 +1,432 @@
 {
   "source": "book/assets/match-mechanism-to-property.svg",
-  "claim": "*Match the mechanism to the property.* An obligation may be held structurally by excluding the invalid state, evaluated by exploring reachable states, or checked as a temporal property over executions (for example with TLA+/TLC). These are alternatives selected by the engineering claim. A gate is a separate decision that enforces the resulting verdict.",
-  "topology": "Three parallel property-dependent mechanisms converge on an optional enforcement decision.",
+  "claim": "\\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.",
+  "topology": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
   "required_terms": [
-    "Engineering obligation",
-    "Can exclude invalid state?",
-    "CONSTRAINT",
-    "Structural prevention\\ compare-and-set; closed transition",
-    "Reachable bad state / trace?",
-    "VALIDATOR",
-    "State-space search\\ exploration",
-    "Eventuality / fairness?",
-    "VALIDATOR",
-    "Temporal model checking\\+ / TLC",
-    "Separate GATE, if the verdict should control admission",
-    "Alternatives selected by the property, not stages on a maturity ladder."
+    "DocAble: Job-Recovery Protocol",
+    "Two obligations and how DocAble addresses them",
+    "Prevent duplicate claims",
+    "Only one worker may acquire an effect claim.",
+    "Preserve correct recovery",
+    "A stale release must not clear a newer claim.",
+    "ATOMIC COMPARE-AND-SET",
+    "Acquire the claim only if the stored",
+    "state matches the expected state.",
+    "EXPLICIT-STATE CHECKER",
+    "Explore bounded interleavings",
+    "of claims and releases to verify",
+    "that a stale release cannot",
+    "invalidate ownership.",
+    "Runtime constraint",
+    "(excludes the invalid transition)",
+    "Model analysis",
+    "(checks the protocol's behavior)"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Engineering obligation and consequential gate separated from neutral property-selected alternatives.",
+  "bw_encoding": "White root, obligations, and mechanism panels; light-gray protection conclusions.",
+  "alt": "DocAble job-recovery protocol with two obligations and two protections. At left, only one worker may acquire an effect claim; atomic compare-and-set restricts acquisition to the required stored state. At right, a stale release must not clear a newer claim; an explicit-state checker explores bounded interleavings. The lower boxes distinguish runtime constraint from model analysis.",
+  "historical_receipt": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/match-mechanism-to-property.json",
   "questions": [],
-  "alt": "An engineering obligation forks on what kind of property it is. If the invalid state can\n    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed\n    transition. If the risk is a reachable bad state or trace, a validator explores the state space through\n    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator\n    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the\n    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives\n    it consequence if the verdict should control admission.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 382.207,
-    "height_pt": 233.211,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "date": "2026-11-13",
+    "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+    "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+    "page": 1,
+    "width_bp": 449.769,
+    "height_bp": 240.772,
+    "minimum_prose_font_pt": 9.5,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+    "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+    "semantic_typography_checks": 18,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
   },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
-    "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; Can exclude invalid state?; Reachable bad state / trace?; Eventuality / fairness?; CONSTRAINT; VALIDATOR; GATE. Restore emphasis to alternative property questions and mechanism roles; gate stays a distinct admission role within a regular condition.",
-    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Three equal property-selected mechanisms feed separate gate; no invented rank.",
+  "reference_image_sha256": "c75458b92900ccbf9cfec9c5b26990ccd022f8361d4f0c424329200c089fe456",
+  "layout_review": {
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "decision": "author-reference redraw",
+    "reviewed_visually": true,
+    "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+    "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "obligations",
+          "labels": [
+            "Prevent duplicate claims",
+            "Preserve correct recovery"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "mechanisms",
+          "labels": [
+            "ATOMIC COMPARE-AND-SET",
+            "EXPLICIT-STATE CHECKER"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 44,
-      "width_bp": 382.207,
-      "height_bp": 274.957,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+      "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+      "page": 1,
+      "width_bp": 449.769,
+      "height_bp": 240.772,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+      "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+      "semantic_typography_checks": 18,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption."
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "refined",
-    "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
-    "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-    "reason": "Restore emphasis to alternative property questions and mechanism roles; gate stays a distinct admission role within a regular condition.",
-    "evidence": [
-      {
-        "source_text": "ENGINEERING OBLIGATION",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "ENGINEERING OBLIGATION",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[1]/text()",
-          "text_element_context": "ENGINEERING OBLIGATION",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "CAN EXCLUDE IT?",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Can exclude invalid state?",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "CAN EXCLUDE IT?",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "BAD STATE / TRACE?",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Reachable bad state / trace?",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "BAD STATE / TRACE?",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "EVENTUALITY / FAIRNESS?",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Eventuality / fairness?",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "EVENTUALITY / FAIRNESS?",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "CONSTRAINT",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "CONSTRAINT",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[9]/text()",
-          "text_element_context": "CONSTRAINT",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "VALIDATOR",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "VALIDATOR",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[10]/text()",
-          "text_element_context": "VALIDATOR",
-          "matching_fragment_count": 2
-        }
-      },
-      {
-        "source_text": "GATE, IF THE VERDICT",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "GATE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/match-mechanism-to-property.svg",
-          "element_text_path": "/svg/text[18]/text()",
-          "text_element_context": "GATE, IF THE VERDICT",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "decision": "author-reference redraw",
+    "reviewed_visually": true,
+    "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+    "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/typography-review.json",
     "checks": [
       {
-        "text": "ENGINEERING OBLIGATION",
+        "text": "DocAble: Job-Recovery Protocol",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Can exclude invalid state?",
+        "text": "Two obligations and how DocAble addresses them",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Prevent duplicate claims",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Reachable bad state / trace?",
+        "text": "Only one worker may acquire an effect claim.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Preserve correct recovery",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Eventuality / fairness?",
+        "text": "A stale release must not clear a newer claim.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "ATOMIC COMPARE-AND-SET",
         "bold": true,
         "italic": false
       },
       {
-        "text": "CONSTRAINT",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "VALIDATOR",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "GATE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "bounded exploration",
+        "text": "Acquire the claim only if the stored",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "state matches the expected state.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "EXPLICIT-STATE CHECKER",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Explore bounded interleavings",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "of claims and releases to verify",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "that a stale release cannot",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "invalidate ownership.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Runtime constraint",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(excludes the invalid transition)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Model analysis",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(checks the protocol’s behavior)",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "DocAble: Job-Recovery Protocol",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Two obligations and how DocAble addresses them",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Prevent duplicate claims",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Only one worker may acquire an effect claim.",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Preserve correct recovery",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "A stale release must not clear a newer claim.",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "ATOMIC COMPARE-AND-SET",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Acquire the claim only if the stored",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "state matches the expected state.",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "EXPLICIT-STATE CHECKER",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Explore bounded interleavings",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "of claims and releases to verify",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "that a stale release cannot",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "invalidate ownership.",
+        "candidate_style": "regular",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Runtime constraint",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "(excludes the invalid transition)",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "Model analysis",
+        "candidate_style": "bold",
+        "semantic_role": "Named mechanism or its explanatory role"
+      },
+      {
+        "candidate_text": "(checks the protocol’s behavior)",
+        "candidate_style": "italic",
+        "semantic_role": "Named mechanism or its explanatory role"
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 44,
-      "width_bp": 382.207,
-      "height_bp": 274.957,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+      "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+      "page": 1,
+      "width_bp": 449.769,
+      "height_bp": 240.772,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+      "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+      "semantic_typography_checks": 18,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     }
   },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "refined",
-    "reason": "Equal-height property questions and descriptions; translated subsequent ranks to maintain clear arrow approaches.",
-    "candidate_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing match mechanism to property layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-      "after_sha256": "260b06750b609e7eecf96e1cb90a9ebe17399bfba152cd7973a927fd07aa7bed",
-      "before_dimensions_bp": [
-        382.2070007324219,
-        274.9570007324219
-      ],
-      "after_dimensions_bp": [
-        382.2070007324219,
-        274.9570007324219
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+  "style_review": {
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "decision": "author-reference redraw",
+    "reviewed_visually": true,
+    "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+    "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/style-review.json",
+    "receipt": "book/tikz/receipts/match-mechanism-to-property.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the two conclusion boxes use light gray, following the author reference.",
+    "bold": "Named root, obligations, mechanisms, and protection roles are bold; obligation statements and role explanations italic.",
+    "routing": "Orthogonal workflow with a shared branch; state-graph icon retains three directed edges.",
+    "shape": "Rounded reference boxes, two server blocks with padlock, and a three-state graph icon.",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+      "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+      "page": 1,
+      "width_bp": 449.769,
+      "height_bp": 240.772,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+      "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+      "semantic_typography_checks": 18,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    },
+    "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
+    "book_references": [],
+    "routing_exceptions": "The state-graph icon preserves the directed triangular arrangement in the reference; workflow edges are orthogonal."
+  },
+  "fidelity_review": {
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "decision": "author-reference redraw",
+    "reviewed_visually": true,
+    "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+    "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/fidelity-review.json",
+    "checks": {
+      "relationships": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
+      "annotation_placement": "Aligned parallel columns, icon/text dividers, and shaded protection conclusions match the supplied reference.",
+      "source_adaptations": "Changed only the overbroad whole-job claim wording as directed in the attachment. Kept the two icons, title/subtitle hierarchy, peer boxes, shading, and connectors."
     },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+      "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+      "page": 1,
+      "width_bp": 449.769,
+      "height_bp": 240.772,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+      "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+      "semantic_typography_checks": 18,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 44,
-      "width_bp": 382.207,
-      "height_bp": 274.957
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    },
+    "font_qa": {
+      "minimum": 9.5,
+      "rendered_prose_sizes_tex_pt": [
+        9.5,
+        10,
+        10.2,
+        12
+      ],
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.769,
+    "height_bp": 240.772,
+    "monochrome": true,
+    "review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption."
+  },
+  "grayscale_review": {
+    "source": "book/assets/match-mechanism-to-property.svg",
+    "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "decision": "author-reference redraw",
+    "reviewed_visually": true,
+    "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
+    "previous_review": "book/editorial/figure-redraws-20261113/match-mechanism-before-recovery/grayscale-review.json",
+    "receipt": "book/tikz/receipts/match-mechanism-to-property.json",
+    "reviewed": true,
+    "rationale": "Black outlines and light-gray conclusion boxes, matching the supplied monochrome drawing.",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/match-mechanism-to-property-20261113/candidates.pdf",
+      "proof_sha256": "9408abd8f99739826f0e87408e3348b4cd7e89ec276332bab078700c15fda6f5",
+      "page": 1,
+      "width_bp": 449.769,
+      "height_bp": 240.772,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "e0b5122dcab21aaf7212b4afb4e83925213c1a043f72252d93c718c5a9e2caff",
+      "typography_audit_sha256": "a6352487adf984de9fe00fb5e5d28b9389b6780ec5f24c82a1ab0c05b28dc8fe",
+      "semantic_typography_checks": 18,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
     }
   }
 }

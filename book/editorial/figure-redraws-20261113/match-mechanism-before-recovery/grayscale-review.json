@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/match-mechanism-to-property.svg",
+  "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
+  "receipt": "book/tikz/receipts/match-mechanism-to-property.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Engineering obligation and consequential gate separated from neutral property-selected alternatives.",
+  "source_sha256": "36df75814b72ac5168f0998bfcc3e797f7bbde7a7d9900461e3f94d24e482a56",
+  "candidate_sha256": "74456207a18ec427f6d502b84a5cde0dc357f2da11a0efb105c24f6d72f92c1b"
+}

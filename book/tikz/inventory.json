@@ -546,15 +546,15 @@
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
     "source": "assets/match-mechanism-to-property.svg",
-    "caption": "*Match the mechanism to the property.* An obligation may be held structurally by excluding the invalid state, evaluated by exploring reachable states, or checked as a temporal property over executions (for example with TLA+/TLC). These are alternatives selected by the engineering claim. A gate is a separate decision that enforces the resulting verdict.",
+    "caption": "\\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/match-mechanism-to-property.d2",
     "receipt": "book/d2-pilot/match-mechanism-to-property.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Match the mechanism to the property",
-    "svg_description": "An engineering obligation forks on what kind of property it is. If the invalid state can\n    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed\n    transition. If the risk is a reachable bad state or trace, a validator explores the state space through\n    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator\n    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the\n    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives\n    it consequence if the verdict should control admission."
+    "svg_title": "Two protections in DocAble’s job-recovery protocol",
+    "svg_description": "DocAble job-recovery protocol with two obligations and two protections. At left, only one worker may acquire an effect claim; atomic compare-and-set restricts acquisition to the required stored state. At right, a stale release must not clear a newer claim; an explicit-state checker explores bounded interleavings. The lower boxes distinguish runtime constraint from model analysis."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
