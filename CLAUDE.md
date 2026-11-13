@@ -697,6 +697,17 @@ re-deriving these, so they live here:**
   invents edits that never happened and hides real ones; diff PARAGRAPHS. The same caution applies to
   any claim about on-slide wording: extract per-`<a:p>`, join, then compare. (Sibling gotcha: a
   `slidenum` field's `<a:t>` is a stale RENDER CACHE, not the position — see above.)
+- **Writing OOXML: child ORDER is schema-constrained, and `append` silently violates it.** lxml will
+  attach an element wherever you put it and python-pptx will save the file without complaint, so the
+  deck looks fine until `pptx_validate` refuses it — or PowerPoint offers to repair. Measured 261112
+  widening a 6x3 table to 6x4: `a:tr` is `(tc+, extLst?)`, the rows already carried an `extLst`, and
+  appending the new `a:tc` put it AFTER that, producing seven `Sch_UnexpectedElementContentExpecting
+  Complex` findings naming "unexpected child element a:tc". Insert positionally against the schema's
+  sequence rather than appending — or append, then reorder the children by type before saving. The
+  repo-wide rule this is an instance of: **run `tools/pptx_validate.py` after ANY programmatic OOXML
+  surgery**, because the authoring library is not a schema checker and the next reader may be
+  PowerPoint. Same session, same class: a hand-built section id of `{00000000}` passed every local
+  check and failed the GUID pattern — section ids are full GUIDs (`uuid.uuid4()`), not short hex.
 - **An agent's state comes from a content probe, not a surface signal.** Silence, a terse closing
   line, a short tool count, a stale task-output file — none of these distinguish a dead unit from a
   working one, or an empty review from a dense one. **The task-output file's mtime is not a liveness
