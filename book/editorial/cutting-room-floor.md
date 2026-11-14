@@ -20366,3 +20366,13 @@ Interactions are only half of governing the control machinery. A catalogue tells
 The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. Ask whether consequential obligations have appropriate coverage and whether every surviving control can still explain why it exists. \autoref{census-trio} sets the three views side by side over the same control machinery.
 
 \caption{\emph{Three views of the control machinery.} The catalogue identifies controls; the interaction view relates controls through shared resources; the coverage view relates controls to the obligations that justify them. Stable identities connect the three views while letting each answer a different engineering question. A missing mechanism appears as a coverage gap; an untraced mechanism appears as a candidate orphan.}
+
+## §3.2 — Three distinct relations before the GEE redraw
+
+Drift checking therefore has a precise job: preserve a declared correspondence between model and implementation. If code and model diverge, surface the disagreement. Correctness requires another claim---the policy, invariant, requirement, or property that must hold. Once that obligation exists, a validator can compare evidence against it and a gate can decide what follows.
+
+\autoref{three-relations} distinguishes the three relations.
+
+\caption{\emph{Three distinct relations.} Correspondence tests agreement between representations; conformance tests an artifact against an independent obligation; acceptance asks whether the receiving environment will take the result. Evidence for one relation does not establish the others.}
+
+An interface offers a simple way to distinguish these relations. Two services' contract tests can establish that their represented message formats agree. A separate validator can compare an emitted message with an independently specified protocol. The receiving service can still reject a conforming message because the sender lacks permission to submit it. Agreement between representations, conformance to a requirement, and acceptance by a particular environment are different claims.

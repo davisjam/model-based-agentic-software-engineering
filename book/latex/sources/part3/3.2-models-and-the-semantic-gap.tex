@@ -85,7 +85,7 @@ The distinction is between description and independent obligation. A model extra
 
 % <!-- point: drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims | Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim. | terms: agreement-vs-correctness, independent-obligation -->
 
-Drift checking therefore has a precise job: preserve a declared correspondence between model and implementation. If code and model diverge, surface the disagreement. Correctness requires another claim---the policy, invariant, requirement, or property that must hold. Once that obligation exists, a validator can compare evidence against it and a gate can decide what follows.
+Drift checking therefore has a precise job: preserve a declared correspondence between model and implementation. If they diverge, surface the disagreement. Conformance asks whether the implementation satisfies an independent engineering obligation, which may be represented in that same model. Acceptance is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model.
 
 % <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement. | terms: agreement-vs-correctness, independent-obligation -->
 
@@ -97,12 +97,12 @@ For example, an engineer can require a queueing service to bring every accepted 
 
 % <!-- point: an-obligation-can-test-one-of-three-relations | Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable. | terms: independent-obligation, agreement-vs-correctness -->
 
-\autoref{three-relations} distinguishes the three relations.
+\autoref{three-relations} shows these three judgments over one implementation. The engineering model is one part of the GEE, whose admission decision may depend on additional obligations and evidence.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/three-relations-ac66d52458.pdf}
-\caption{\emph{Three distinct relations.} Correspondence tests agreement between representations; conformance tests an artifact against an independent obligation; acceptance asks whether the receiving environment will take the result. Evidence for one relation does not establish the others.}
+\caption{\emph{Model agreement, obligation satisfaction, and admission.} Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE\textquotesingle s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.}
 \label{three-relations}
 \end{figure}
 
@@ -113,8 +113,6 @@ For example, an engineer can require a queueing service to bring every accepted 
 The Siemens reconstruction describes models, implementation, and engineering analyses kept in correspondence across a digital thread without making every disagreement a build-blocking event. In that account, a human confirms the bill of materials while physics solvers carry parts of the evaluation. The example is useful precisely because correspondence and gating are separate design choices: the coupling can hold without a hard gate deciding the instant the two diverge.
 
 % <!-- worked-examples-end -->
-
-An interface offers a simple way to distinguish these relations. Two services' contract tests can establish that their represented message formats agree. A separate validator can compare an emitted message with an independently specified protocol. The receiving service can still reject a conforming message because the sender lacks permission to submit it. Agreement between representations, conformance to a requirement, and acceptance by a particular environment are different claims.
 
 % <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
 
