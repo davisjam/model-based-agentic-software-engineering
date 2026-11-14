@@ -158,22 +158,20 @@ For the present problem, the architecture therefore needs only a clean seam betw
 
 \section{Analyze Before You Build}\label{heading:analyze-before-you-build}
 
-Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor --- or a proposed architectural change --- is implemented. \autoref{interlude-analysis-before-build} shows three such analyses.
+Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor---or a proposed architectural change---is implemented. \autoref{interlude-analysis-before-build} illustrates how critical-path analysis can identify a bottleneck and suggest two kinds of redesign: decomposing expensive work or changing the dependencies among operations.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-analysis-before-build-1d6121ea6a.pdf}
-\caption{\emph{Analysis before implementation.} (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.}
+\caption{\emph{Analyzing dependency graphs to redesign execution.} (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.}
 \label{interlude-analysis-before-build}
 \end{figure}
 
-The weighted graph in panel (a) shows which operations can run concurrently and which must wait. Its heaviest chain from start to finish is the critical path. Adding workers cannot remove the ordering imposed by that chain. If one node dominates the path, the engineer can ask whether its work must remain one operation. Where the semantics permit decomposition, splitting the node may expose parallelism and shorten the path, as panel (b) shows. The model can reveal that candidate before the split is implemented. It cannot establish that the split will pay off: smaller operations may add coordination cost, lose batching efficiency, or contend for another resource. Those costs must also be estimated or measured.
+Panel (a) shows a weighted dependency graph. Its critical path, \(A \to B \to D \to F\), takes 12 seconds, compared with 6 seconds for the alternative path. Adding workers cannot shorten the critical path without changing the work or its dependencies. One possibility is to decompose the dominant operation. In panel (b), splitting B into three independent operations reduces the modeled critical path from 12 to 7 seconds.
 
-\subsection{Dependencies can be redesigned}\label{heading:dependencies-can-be-redesigned}
+Another possibility is to reconsider the dependencies themselves. In DocAble’s contextual image-description pipeline, each generated description was passed to the next image-description operation. The resulting chain had depth proportional to the number of images. For \(N\) images, with each GenAI call taking roughly \(t\), the serial latency floor approached \(N \cdot t\). Adding workers could not remove that dependency.
 
-The same analysis exposed a problem in contextual image description (panel c). If each image description consumed the description generated for the preceding image, the operations formed a serial chain. For N images, the dependency depth approaches N. If each GenAI call takes roughly t, the serial floor grows as about N·t; adding workers cannot remove that dependency.
-
-The analysis clarified the requirement: each image needed enough surrounding context for an adequate description. It did not need the preceding image\textquotesingle s generated alt text specifically. Rendering the surrounding pages up front supplied a shared visual intermediate representation. Each image could then consume bounded neighboring visual context independently. This increased the payload but removed the serial dependency, allowing the operations to run in parallel. The visual context could also be represented and reused, as textual document context already was. The model thus changed the proposed implementation before it was built.
+The model exposed a distinction between the existing implementation and the information the operations actually needed. Each image required adequate surrounding context, but not necessarily the preceding image’s generated description. Rendering the surrounding pages once supplied a shared visual representation that each image-description operation could consume independently. Panel (c) shows how changing the information dependencies removed the serial chain.
 
 \subsection{The second resource model}\label{heading:the-second-resource-model}
 
@@ -189,7 +187,7 @@ The model was also falsifiable. Its calibration procedure inverted observed exec
 
 \subsection{Predicting latency}\label{heading:predicting-latency}
 
-The same graph supports a first-order latency model. For the representative workload used during this analysis, the relevant GenAI chain had three dependent levels whose per-call times add to an irreducible floor (\autoref{interlude-latency-floor}).
+Critical-path analysis also supports quantitative latency predictions when operation costs are available. For the representative workload used during this analysis, the relevant GenAI chain had three dependent levels whose per-call times add to an irreducible floor (\autoref{interlude-latency-floor}).
 
 \begin{figure}[htbp]
 \centering

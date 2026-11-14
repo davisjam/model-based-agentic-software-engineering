@@ -237,7 +237,8 @@
     "book/assets/alignment-overview.svg": {
       "approved_date": "2026-11-13",
       "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
-      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b",
+      "max_print_height_bp": 288
     },
     "book/assets/match-mechanism-to-property.svg": {
       "approved_date": "2026-11-13",
@@ -282,7 +283,12 @@
     },
     "book/assets/three-relations.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved the revised Figure 3.4 showing model agreement, obligation satisfaction, and admission."
+      "reason": "Author approved the revised Figure 3.4 showing model agreement, obligation satisfaction, and admission.",
+      "max_print_height_bp": 222
+    },
+    "book/assets/mage-staircase.svg": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the three-stage delegation staircase for monochrome publication."
     }
   }
 }

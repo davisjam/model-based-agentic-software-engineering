@@ -1,98 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: interlude-analysis-before-build). Three panels showing what a dependency
-     model exposes before any code runs: (a) a critical path through a weighted graph; (b) decomposing the
-     dominant node to expose parallelism and shorten the path; (c) replacing a serial context dependency
-     among alt-text operations with a shared precomputed context. viewBox 920 for the figure font band.
-     Graph edges are deliberately angled (keep-angles). -->
-<!-- semantic-families: modeling, neutral -->
-<!-- edge-grammar: keep-angles -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 605" width="920" height="605" role="group" aria-labelledby="abTitle abDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
-  <desc id="abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
-    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant
-    node into parallel children shortens the critical path, discoverable from the model before the split is
-    built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for
-    the preceding image, a serial chain of image then alt text then image then alt text; after, every image
-    instead consumes one shared precomputed page context, so the alt-text operations run independently.</desc>
-<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
-<defs>
-<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
-<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
-<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
-<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
-<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
-</defs>
-<rect x="0" y="0" width="920" height="605" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
-<line x1="460" y1="44" x2="460" y2="289" stroke="#e7e2d6" stroke-width="1.5"/>
-<line x1="24" y1="306" x2="896" y2="306" stroke="#e7e2d6" stroke-width="1.5"/>
-<text x="24" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(a) Critical path</text>
-<text x="485" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) Node split</text>
-<line x1="181" y1="92" x2="125" y2="128" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
-<line x1="125" y1="180" x2="125" y2="210" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
-<line x1="125" y1="252" x2="181" y2="268" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
-<line x1="209" y1="92" x2="263" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
-<line x1="263" y1="170" x2="263" y2="210" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
-<line x1="263" y1="252" x2="209" y2="268" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
-<rect x="167" y="54" width="56" height="38" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="195.0" y="79.6" font-size="20" text-anchor="middle" fill="#1c1917">A</text>
-<rect x="68" y="128" width="114" height="52" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="125.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B (heavy)</text>
-<rect x="235" y="128" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="263.0" y="155.6" font-size="20" text-anchor="middle" fill="#1c1917">C</text>
-<rect x="97" y="210" width="56" height="42" rx="7" fill="#fff" stroke="#9a3f12" stroke-width="2"/>
-<text x="125.0" y="237.6" font-size="20" text-anchor="middle" fill="#1c1917">D</text>
-<rect x="235" y="210" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="263.0" y="237.6" font-size="20" text-anchor="middle" fill="#1c1917">E</text>
-<rect x="167" y="268" width="56" height="34" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="195.0" y="291.6" font-size="20" text-anchor="middle" fill="#1c1917">F</text>
-<line x1="662" y1="92" x2="580" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="680" y1="92" x2="680" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="698" y1="92" x2="780" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="580" y1="175" x2="665" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="680" y1="175" x2="680" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="780" y1="175" x2="695" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="680" y1="258" x2="680" y2="270" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<rect x="652" y="54" width="56" height="38" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="680.0" y="79.6" font-size="20" text-anchor="middle" fill="#1c1917">A</text>
-<rect x="548" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="580.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B1</text>
-<rect x="648" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="680.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B2</text>
-<rect x="748" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="780.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B3</text>
-<rect x="652" y="216" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="680.0" y="243.6" font-size="20" text-anchor="middle" fill="#1c1917">D</text>
-<rect x="652" y="270" width="56" height="32" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
-<text x="680.0" y="292.6" font-size="20" text-anchor="middle" fill="#1c1917">F</text>
-<text x="24" y="337" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(c) Information-dependency redesign</text>
-<text x="24" y="374" font-size="20" text-anchor="start" fill="#9a3f12">Before: serial context propagation</text>
-<text x="505" y="367" font-size="20" text-anchor="start" fill="#1f7a4d">After: shared contextual</text>
-<text x="505" y="391" font-size="20" text-anchor="start" fill="#1f7a4d">representation</text>
-<rect x="24" y="398" width="82" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="65.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">image 1</text>
-<rect x="139" y="398" width="82" height="46" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="180.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 1</text>
-<rect x="254" y="398" width="82" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="295.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">image 2</text>
-<rect x="369" y="398" width="82" height="46" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="410.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 2</text>
-<line x1="106" y1="421" x2="139" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
-<line x1="221" y1="421" x2="254" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
-<line x1="336" y1="421" x2="369" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
-<text x="463" y="428" font-size="22" text-anchor="start" fill="#9a3f12">…</text>
-<text x="25" y="484" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">each operation depends on a</text>
-<text x="25" y="508" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">previous generated result</text>
-<rect x="580" y="407" width="280" height="45" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="720.0" y="436.43" font-size="21" text-anchor="middle" fill="#1c1917">rendered page context</text>
-<line x1="625" y1="452" x2="610" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="720" y1="452" x2="720" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="815" y1="452" x2="830" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<rect x="568" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="610.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 1</text>
-<rect x="678" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="720.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 2</text>
-<rect x="788" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="830.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 3</text>
-<text x="705" y="565" font-size="20" text-anchor="middle" fill="#57534e" font-style="italic">all operations consume the same</text>
-<text x="705" y="589" font-size="20" text-anchor="middle" fill="#57534e" font-style="italic">precomputed context</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="688" viewBox="0 0 444 344" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<title id="title">Analyzing dependency graphs to redesign execution</title>
+<desc id="desc">A weighted graph branches after A. The path through B and D takes 12 seconds, while the path through C and E takes 6 seconds. Three concurrent 3-second parts of B shorten the critical path to 7 seconds before overhead. In DocAble, two image-description operations become independent when each receives its image and shared rendered page context.</desc>
+<defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0 0 L5 2.5 L0 5 Z" fill="#1c1917"/></marker></defs>
+<g fill="#1c1917" font-family="Source Sans 3, sans-serif">
+<text x="91" y="11" font-size="10" text-anchor="middle" font-weight="700">(a) Identify the critical path</text>
+<text x="91" y="23" font-size="9" text-anchor="middle" font-style="italic">Diagnosis</text>
+<rect x="75.0" y="29.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="91" y="41.0" font-size="9" text-anchor="middle">A (1 s)</text>
+<rect x="44.0" y="57.5" width="32" height="17" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="60" y="69.0" font-size="9" text-anchor="middle" font-weight="700">B (8 s)</text>
+<rect x="106.0" y="57.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="122" y="69.0" font-size="9" text-anchor="middle">C (2 s)</text>
+<rect x="44.0" y="86.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="60" y="98.0" font-size="9" text-anchor="middle">D (2 s)</text>
+<rect x="106.0" y="86.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="122" y="98.0" font-size="9" text-anchor="middle">E (2 s)</text>
+<rect x="75.0" y="115.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="91" y="127.0" font-size="9" text-anchor="middle">F (1 s)</text>
+<path d="M80,47 L65,57" fill="none" stroke="#1c1917" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M102,47 L117,57" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<path d="M60,75 L60,86" fill="none" stroke="#1c1917" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M122,75 L122,86" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<path d="M65,104 L80,115" fill="none" stroke="#1c1917" stroke-width="1" marker-end="url(#arrow)"/>
+<path d="M117,104 L102,115" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<path d="M42,52 Q22,84 43,114" stroke="#1c1917" fill="none" marker-end="url(#arrow)" stroke-width=".65"/>
+<path d="M139,52 Q159,84 139,114" stroke="#1c1917" fill="none" marker-end="url(#arrow)" stroke-width=".65"/>
+<text x="16" y="86" font-size="9" text-anchor="middle" font-weight="700">12 s</text>
+<text x="164" y="86" font-size="9" text-anchor="middle" font-weight="700">6 s</text>
+<text x="91" y="148" font-size="9" text-anchor="middle" font-weight="700">Critical path: A → B → D → F (12 s)</text>
+<path d="M185,18 L185,147" fill="none" stroke="#57534e" stroke-width="0.45"/>
+<text x="198" y="32" font-size="11" text-anchor="start" font-weight="700">Two modeling responses</text>
+<text x="198" y="48" font-size="9" text-anchor="start">Given this analysis, the engineer can explore</text>
+<text x="198" y="59" font-size="9" text-anchor="start">two redesigns.</text>
+<text x="198" y="80" font-size="9" text-anchor="start" font-weight="700">•  Decompose the dominant operation (b)</text>
+<text x="208" y="93" font-size="9" text-anchor="start">Reduce its cost while keeping the same</text>
+<text x="208" y="104" font-size="9" text-anchor="start">dependencies.</text>
+<text x="198" y="123" font-size="9" text-anchor="start" font-weight="700">•  Redesign the dependencies (c)</text>
+<text x="208" y="136" font-size="9" text-anchor="start">Remove an unnecessary serial constraint.</text>
+<path d="M1,156 L443,156" fill="none" stroke="#57534e" stroke-width="0.5"/>
+<path d="M180,163 L180,313" fill="none" stroke="#57534e" stroke-width="0.45"/>
+<text x="87" y="169" font-size="10" text-anchor="middle" font-weight="700">(b) Decompose an operation</text>
+<text x="87" y="181" font-size="9" text-anchor="middle" font-style="italic">Same dependencies</text>
+<rect x="31.5" y="183.5" width="33" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="48" y="195.0" font-size="9" text-anchor="middle">A (1 s)</text>
+<rect x="1.5" y="213.0" width="29" height="22" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="16" y="221.5" font-size="9" text-anchor="middle" font-weight="700">B₁</text>
+<text x="16" y="232.5" font-size="9" text-anchor="middle" font-weight="700">(3 s)</text>
+<rect x="34.5" y="213.0" width="29" height="22" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="49" y="221.5" font-size="9" text-anchor="middle" font-weight="700">B₂</text>
+<text x="49" y="232.5" font-size="9" text-anchor="middle" font-weight="700">(3 s)</text>
+<rect x="67.5" y="213.0" width="29" height="22" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="82" y="221.5" font-size="9" text-anchor="middle" font-weight="700">B₃</text>
+<text x="82" y="232.5" font-size="9" text-anchor="middle" font-weight="700">(3 s)</text>
+<rect x="33.0" y="246.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="49" y="258.0" font-size="9" text-anchor="middle">D (2 s)</text>
+<rect x="33.0" y="275.5" width="32" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="49" y="287.0" font-size="9" text-anchor="middle">F (1 s)</text>
+<path d="M49,201 L16,213" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M16,235 L49,246" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M49,201 L49,213" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M49,235 L49,246" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M49,201 L82,213" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M82,235 L49,246" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M49,264 L49,275" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<text x="101" y="213" font-size="9" text-anchor="start" font-weight="700">New critical</text>
+<text x="101" y="224" font-size="9" text-anchor="start" font-weight="700">path</text>
+<text x="101" y="242" font-size="9" text-anchor="start">A → Bᵢ → D → F</text>
+<text x="101" y="253" font-size="9" text-anchor="start">(7 s)</text>
+<text x="101" y="276" font-size="9" text-anchor="start" font-style="italic">Illustrative,</text>
+<text x="101" y="287" font-size="9" text-anchor="start" font-style="italic">ignoring</text>
+<text x="101" y="298" font-size="9" text-anchor="start" font-style="italic">overhead</text>
+<text x="311" y="169" font-size="10" text-anchor="middle" font-weight="700">(c) Remove an unnecessary dependency</text>
+<text x="311" y="181" font-size="9" text-anchor="middle" font-style="italic">Change the information structure</text>
+<rect x="181.0" y="216.0" width="38" height="18" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="200" y="228.0" font-size="9" text-anchor="middle">Image 1</text>
+<rect x="231.5" y="213.0" width="35" height="24" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="249" y="222.5" font-size="9" text-anchor="middle" font-weight="700">Gen</text>
+<text x="249" y="233.5" font-size="9" text-anchor="middle" font-weight="700">alt 1</text>
+<path d="M219,225 L231.5,225" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="181.0" y="251.0" width="38" height="18" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="200" y="263.0" font-size="9" text-anchor="middle">Image 2</text>
+<rect x="231.5" y="248.0" width="35" height="24" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="249" y="257.5" font-size="9" text-anchor="middle" font-weight="700">Gen</text>
+<text x="249" y="268.5" font-size="9" text-anchor="middle" font-weight="700">alt 2</text>
+<path d="M219,260 L231.5,260" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M249,237 L249,248" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<text x="271" y="232" font-size="12" text-anchor="middle" font-weight="700">⇒</text>
+<rect x="327.5" y="208.5" width="111" height="19" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="383" y="221.0" font-size="9" text-anchor="middle" font-weight="700">Shared rendered context</text>
+<rect x="325.0" y="238.5" width="32" height="25" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="341" y="248.5" font-size="9" text-anchor="middle" font-weight="700">Gen</text>
+<text x="341" y="259.5" font-size="9" text-anchor="middle" font-weight="700">alt 1</text>
+<path d="M341,228 L341,238.5" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="275.0" y="242.5" width="38" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="294" y="254.0" font-size="9" text-anchor="middle">Image 1</text>
+<path d="M313,251 L325,251" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="410.0" y="238.5" width="32" height="25" rx="2.5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="426" y="248.5" font-size="9" text-anchor="middle" font-weight="700">Gen</text>
+<text x="426" y="259.5" font-size="9" text-anchor="middle" font-weight="700">alt 2</text>
+<path d="M426,228 L426,238.5" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="360.0" y="242.5" width="38" height="17" rx="2.5" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="379" y="254.0" font-size="9" text-anchor="middle">Image 2</text>
+<path d="M398,251 L410,251" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<text x="225" y="297" font-size="9" text-anchor="middle" font-style="italic">Before: serial</text>
+<text x="225" y="308" font-size="9" text-anchor="middle" font-style="italic">dependency</text>
+<text x="362" y="297" font-size="9" text-anchor="middle" font-style="italic">After: independent operations</text>
+<text x="362" y="308" font-size="9" text-anchor="middle" font-style="italic">consume shared context</text>
+<path d="M3,317 L441,317" fill="none" stroke="#57534e" stroke-width="0.5"/>
+<text x="2" y="336" font-size="9" text-anchor="start" font-weight="700">Legend</text>
+<rect x="40" y="325" width="15" height="13" rx="2" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="59" y="331" font-size="9" text-anchor="start">Dominant or modified</text>
+<text x="59" y="342" font-size="9" text-anchor="start">operation</text>
+<rect x="179" y="325" width="15" height="13" rx="2" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="199" y="335" font-size="9" text-anchor="start">Other operation</text>
+<path d="M281,332 L301,332" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<text x="307" y="331" font-size="9" text-anchor="start">Dependency</text>
+<text x="307" y="342" font-size="9" text-anchor="start">(must complete before)</text>
+</g>
 </svg>

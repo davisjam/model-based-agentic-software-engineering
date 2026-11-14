@@ -20511,3 +20511,42 @@ Interactions are only half of governing the control machinery. A catalogue ident
 
 The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. \autoref{census-trio} shows three views of the same control machinery. The catalogue identifies controls, and the interaction graph examines their relationships through shared resources. The coverage view additionally draws on engineering obligations to identify missing or unjustified controls.
 ```
+
+## Analyze Before You Build — 14 November 2026
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, lines 161–178 at `a78cb80f1`. The revised passage introduces critical-path diagnosis and compares two alternative redesigns. Prior discussion and caption:
+
+```latex
+Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor --- or a proposed architectural change --- is implemented. \autoref{interlude-analysis-before-build} shows three such analyses.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-analysis-before-build-1d6121ea6a.pdf}
+\caption{\emph{Analysis before implementation.} (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.}
+\label{interlude-analysis-before-build}
+\end{figure}
+
+The weighted graph in panel (a) shows which operations can run concurrently and which must wait. Its heaviest chain from start to finish is the critical path. Adding workers cannot remove the ordering imposed by that chain. If one node dominates the path, the engineer can ask whether its work must remain one operation. Where the semantics permit decomposition, splitting the node may expose parallelism and shorten the path, as panel (b) shows. The model can reveal that candidate before the split is implemented. It cannot establish that the split will pay off: smaller operations may add coordination cost, lose batching efficiency, or contend for another resource. Those costs must also be estimated or measured.
+
+\subsection{Dependencies can be redesigned}\label{heading:dependencies-can-be-redesigned}
+
+The same analysis exposed a problem in contextual image description (panel c). If each image description consumed the description generated for the preceding image, the operations formed a serial chain. For N images, the dependency depth approaches N. If each GenAI call takes roughly t, the serial floor grows as about N·t; adding workers cannot remove that dependency.
+
+The analysis clarified the requirement: each image needed enough surrounding context for an adequate description. It did not need the preceding image\textquotesingle s generated alt text specifically. Rendering the surrounding pages up front supplied a shared visual intermediate representation. Each image could then consume bounded neighboring visual context independently. This increased the payload but removed the serial dependency, allowing the operations to run in parallel. The visual context could also be represented and reused, as textual document context already was. The model thus changed the proposed implementation before it was built.
+```
+
+## The Expanding Frontier of Explicit Engineering — 14 November 2026
+
+Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, lines 74–93 at `a78cb80f1`. The revised matrix distinguishes mechanizability from the broader concept of governability. Prior passages and caption:
+
+```latex
+The \textbf{value of explicit engineering} asks how much explicit structure the obligation warrants. Recurrence, consequence, and the reasoning or recovery it saves can all raise that value. \textbf{Feasible governability} asks what degree of evaluation and enforcement the available representation and evidence can support. Where both are high, formalization and enforcement may pay. Where value is high but governability is limited, investment can instead improve the models, evidence, procedures, and review through which judgment occurs. \autoref{return-governability} shows the two dimensions together.
+
+Commodity intelligence can change where work falls in this design space in two ways. First, it may lower the cost of constructing and maintaining explicit structure. Where it does, models, skills, specifications, validators, proofs, and other engineering assets can repay their cost at lower levels of recurrence or consequence, provided their quality and useful life are preserved. More obligations may then justify explicit engineering even though the obligations themselves have not changed.
+
+Second, better representation, instrumentation, and evaluation can increase governability. An obligation initially expressed only as expert judgment may yield narrower properties that can be evaluated reliably; a property reconstructed semantically from implementation may become a predicate once an appropriate model exposes it directly. \magevalue{chapter:one-problem-many-models} described the practical version: make obligations enforceable where feasible. The determinization frontier describes its strongest case: Modeling changes the representation until a previously reconstructed judgment becomes mechanically decidable, after which Alignment can carry the decision repeatably.
+
+These two changes need not end in the same place. Some questions resist enforcement because the necessary representation or evidence remains unavailable. Others admit probabilistic evaluation adequate for one consequence but not another. Still others are intrinsically plural or contextual: no amount of cheaper implementation turns good writing, scientific importance, or ``compatible with the historic character'' into a single definitive predicate. Explicit engineering still pays when it makes those judgments better represented, better informed, more repeatable, or easier to review.
+
+\caption{\emph{The economics of explicit engineering.} The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can become enforcement. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.}
+```

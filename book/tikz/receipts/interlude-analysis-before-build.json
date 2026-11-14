@@ -1,195 +1,254 @@
 {
   "source": "book/assets/interlude-analysis-before-build.svg",
-  "claim": "*Analysis before implementation.* (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.",
-  "topology": "Weighted critical chain, parallel decomposition, and serial-to-shared-context DAG redesign remain three distinct comparisons.",
+  "claim": "Analyzing dependency graphs to redesign execution. (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.",
+  "topology": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context.",
   "required_terms": [
-    "(a) Critical path",
-    "(b) Split dominant node",
-    "A",
-    "B (heavy)",
-    "C",
-    "D",
-    "E",
-    "F",
-    "A",
-    "D",
-    "F",
-    "B1",
-    "B2",
-    "B3",
-    "(c) Information-dependency redesign",
-    "Image 1",
-    "Alt 1",
-    "Image 2",
-    "Alt 2",
-    "Shared page context",
-    "Alt 1",
-    "Alt 2",
-    "Alt 3",
-    "Before: serial propagation",
-    "After: independent operations consume precomputed context"
+    "Diagnosis",
+    "Two modeling responses",
+    "Remove an unnecessary serial constraint.",
+    "Same dependencies",
+    "Change the information structure",
+    "Legend",
+    "Other operation"
   ],
-  "bw_encoding": "Only dominant B and its B1/B2/B3 split are 5%; critical edges retain heavy weight.",
-  "redesign": "Heavy black edges identify the critical path; no invented numeric weights. Before/after dependency layouts retain causal direction. Grayscale refinement: Heavy bottleneck and split children distinguished; image and alt-text operations retain different fills across before/after panels; heavy critical path retained.",
+  "bw_encoding": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order.",
+  "redesign": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
   "questions": [],
-  "alt": "Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from\n    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant\n    node into parallel children shortens the critical path, discoverable from the model before the split is\n    built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for\n    the preceding image, a serial chain of image then alt text then image then alt text; after, every image\n    instead consumes one shared precomputed page context, so the alt-text operations run independently.",
+  "alt": "A weighted graph branches after A. The path through B and D takes 12 seconds, while the path through C and E takes 6 seconds. Three concurrent 3-second parts of B shorten the critical path to 7 seconds before overhead. In DocAble, two image-description operations become independent when each receives its image and shared rendered page context.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 399.758,
-    "height_pt": 312.391,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "page": 1,
+    "width_bp": 449.972,
+    "height_bp": 349.974,
+    "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+    "minimum_prose_font_pt": 9,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 7,
+    "unapproved_compile_diagnostics": 0
   },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
-    "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
-    "fill": "Only dominant B and its B1/B2/B3 split are 5%; critical edges retain heavy weight.",
-    "bold": "Retained existing heading hierarchy and regular operation labels; no additional semantic emphasis lost. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "10 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Heavy critical-path edges and B splitting retained; shared context has independent vertical outputs.",
+  "reference_image_sha256": "3dff4a3ab374ada9ce45e4b02af4e54d23422db5192921f6b5a1338bf7d18fd9",
+  "layout_review": {
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 61,
-      "width_bp": 403.147,
-      "height_bp": 348.784,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 2
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
     },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "contracts": {
+      "peer_groups": [],
+      "terminal_exceptions": []
+    },
+    "visual_review": "Both paths total 12 and 6 seconds respectively. Splitting B reduces the modeled critical path to 7 seconds before overhead. Each independent image description has two inputs.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        449.972,
+        349.974
+      ],
+      "after_font_sizes_pt": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "reviewed_visually": true,
+      "decision": "recomposed",
+      "reason": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context."
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
     "decision": "refined",
-    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
-    "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
-    "reason": "Retained existing heading hierarchy and regular operation labels; no additional semantic emphasis lost. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "evidence": [
-      {
-        "source_text": "all operations consume the same precomputed context",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "14"
-        },
-        "semantic_role": "source label/description or feedback hierarchy",
-        "candidate_text": "independent operations consume precomputed context",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "all operations consume the same precomputed context",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "14"
-            },
-            "location": {
-              "x": "560",
-              "y": "514",
-              "text_element": 28
-            }
-          }
-        ]
-      }
-    ],
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
+    },
     "checks": [
       {
-        "text": "independent operations consume precomputed context",
+        "text": "Diagnosis",
+        "bold": false,
         "italic": true
       },
       {
-        "text": "B (heavy)",
+        "text": "Two modeling responses",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Remove an unnecessary serial constraint.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Same dependencies",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Change the information structure",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Legend",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Other operation",
         "bold": false,
         "italic": false
       }
     ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 61,
-      "width_bp": 403.147,
-      "height_bp": 348.784,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 2,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+    "evidence": [
+      {
+        "candidate_text": "Diagnosis",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Two modeling responses",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Remove an unnecessary serial constraint.",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Same dependencies",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Change the information structure",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Legend",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Other operation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
       }
-    }
+    ]
   },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
+  "style_review": {
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
     "decision": "refined",
-    "reason": "Expanded critical-path graph ranks, equalized B/C, separated serial steps, and raised the first fork to leave a full incoming shaft even with large Latex heads.",
-    "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing interlude analysis before build layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
-      "after_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
-      "before_dimensions_bp": [
-        403.1470031738281,
-        348.78399658203125
-      ],
-      "after_dimensions_bp": [
-        403.1470031738281,
-        348.78399658203125
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 61,
-      "width_bp": 403.147,
-      "height_bp": 348.784
-    }
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/interlude-analysis-before-build.json",
+    "status": "reviewed",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order.",
+    "bold": "Headings and redesigned operations use bold type.",
+    "routing": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context.",
+    "shape": "Rounded operation nodes and arrows.",
+    "visual_review": "Both paths total 12 and 6 seconds respectively. Splitting B reduces the modeled critical path to 7 seconds before overhead. Each independent image description has two inputs.",
+    "book_references": [],
+    "routing_exceptions": "None."
   },
-  "color_source_revision": {
-    "date": "2026-11-09",
-    "previous_source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
-    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
-    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-    "native_candidate_changed": false
+  "fidelity_review": {
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
+    },
+    "checks": {
+      "links_and_groups": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context.",
+      "annotation_placement": "Path times flank the weighted graph.",
+      "line_breaks": "Long annotations wrap within their respective panels.",
+      "icons_and_symbols": "Directed edges express precedence."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.972,
+    "height_bp": 349.974,
+    "monochrome": true,
+    "review": "Both paths total 12 and 6 seconds respectively. Splitting B reduces the modeled critical path to 7 seconds before overhead. Each independent image description has two inputs."
+  },
+  "grayscale_review": {
+    "source": "book/assets/interlude-analysis-before-build.svg",
+    "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/interlude-analysis-before-build.json",
+    "reviewed": true,
+    "rationale": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order."
   }
 }

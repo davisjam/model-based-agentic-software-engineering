@@ -1940,12 +1940,24 @@
   {
     "source": "book/assets/interlude-analysis-before-build.svg",
     "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+    "source_sha256": "63dac77a4688b4992d8980bb6e083f72d985db494aba74a918efe5a04e686a09",
+    "candidate_sha256": "7ede3742f6480d23c3b5e9eaa00cde5c1663d5941e7820613ec6c0c46f32a0cb",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 349.974,
+      "proof_sha256": "26c58a0a3c7fc8a7a144dfdb63751736c74b8e893d4c7746cde04018fb239272",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 7,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/interlude-analysis-before-build.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Heavy bottleneck and split children distinguished; image and alt-text operations retain different fills across before/after panels; heavy critical path retained.",
-    "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
-    "candidate_sha256": "b65fda2b2bcb466fca6e6eb375c9e8080e4c398c847b24b518f9fccdd14abe82"
+    "rationale": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order."
   },
   {
     "source": "book/assets/interlude-latency-floor.svg",
@@ -2557,40 +2569,24 @@
   {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
+    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
+    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 262.975,
+      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 13,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/return-governability.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Dark labels on white; no color-dependent distinction.",
-    "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
-    "candidate_sha256": "bd30a00b5205c8991acd5cd989592591795bbf8d2bcf7dc68881f266f6d4dd9f",
-    "revision_history": [
-      {
-        "date": "2026-11-11",
-        "candidate_sha256": "13b60eae3c043c107c6eef91096e685e0c56f85c6e918dcf2f39dffa8d80585c",
-        "change": "Enlarge quadrant prose and labels from 9pt to 10pt, and axis descriptions to 11pt. Preserve the four quadrants, recommendations, axes, and explanatory wording.",
-        "validation": {}
-      }
-    ],
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/bw-review-followups/return-governability.pdf",
-      "proof_sha256": "72948f63bc7c8ab007f4bba52067cb35241f3c5d9e5f50fb0a83fb3b1b1c865e",
-      "page": 1,
-      "width_bp": 388.581,
-      "height_bp": 351.73,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "3205f1e193af26623f6706aa668a413a8a3271404b6b818c34b59059d3cd650c",
-      "typography_audit_sha256": "301a15b10374262a18cb400223b4f96637a8a7cf3184d94d06f4de88c6a52506",
-      "semantic_typography_checks": 7,
-      "monochrome_pixels": true,
-      "status": "passed"
-    }
+    "rationale": "Light gray marks the axes and their labels. Each white cell carries an investment choice and an example."
   },
   {
     "source": "book/assets/where-effort-moves.svg",

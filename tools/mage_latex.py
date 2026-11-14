@@ -630,6 +630,10 @@ def _prepare_record(task):
             raw = raw[:principle.start()] + raw[principle.end():]
         orientation += '\n% mage-orientation-end\n'
     raw = bb.apply_token_passes(raw)
+    # Gallery source tags classify examples for the evidence audit. Print the display label.
+    raw = re.sub(r'^(#{3,4} +Example +[—–-] +[^\n]+?) +\{(?:other|counter-example)\}[ 	]*$',
+                 r'\1', raw, flags=re.MULTILINE)
+
     raw = re.sub(r'\[\[([^]|]+)(?:\|([^]]+))?\]\]', lambda m: '[' + (m[2] or m[1]) + '](../ABSTRACTIONS.html#' + m[1] + ')', raw)
     raw = re.sub(r'\[\+([^]]+)\+\]', r'*\1*', raw)
     md_source = directory / (slug + '.md')

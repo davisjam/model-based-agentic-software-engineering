@@ -35,7 +35,7 @@ Getting a lesson into subsequent work is harder. Dingsøyr and colleagues found 
 
 \begin{bookbox}{inset}{Failure Modes Before and After Failure}
 \label{inset-failure-modes}
-Engineers need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) can begin before operation: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted~\citep{landers1977fmea}. Known obligations can therefore produce durable engineering structure before experience forces the issue.
+Failure-mode analysis need not wait for a failure. The FMEA approach discussed in \magevalue{sec:constraints-sensors-validators-gates} can identify possible failures before operation and guide decisions about prevention, detection, and mitigation. Known obligations can therefore produce durable engineering structure before experience forces the issue.
 
 Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineers identify the failure mode behind the instance and ask what durable structure should address the class: a model, obligation, constraint, sensor, gate, or other durable structure.
 \end{bookbox}
@@ -64,44 +64,19 @@ The harder half begins when the system surprises you. \textbf{Do not assume ever
 
 The conversion can land in one of five places:
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
   \textbf{Missing representation / semantics → improve the model.} Make the fact or relation durable at the abstraction where the question becomes answerable.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
 \item
   \textbf{Missing obligation or tolerance → state the governing boundary.} A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
 \item
   \textbf{Missing evidence → add a sensor or trace.} Make the relevant state observable.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
 \item
   \textbf{Missing evaluation → strengthen the check.} Turn evidence into a repeatable judgment, whether advisory or enforced by a gate.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{4}
-\tightlist
 \item
   \textbf{Missing enforcement → add or strengthen a constraint or gate.} Make the verdict control the relevant action or admission.
-\end{enumerate}
+\end{itemize}
 
 These diagnoses are not mutually exclusive. In practice, one failure often exposes several missing pieces at once. A property that was never represented may also lack an explicit invariant and the sensor needed to observe it. The durable repair can therefore add a model, an obligation, and evidence together. The categories identify where engineering structure was missing; they do not require the repair to land in only one place.
 

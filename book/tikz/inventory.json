@@ -685,15 +685,15 @@
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-analysis-before-build.svg",
-    "caption": "*Analysis before implementation.* (a) In a weighted dependency graph the heaviest chain is the critical path, which sets the latency floor and names an optimization target. (b) Decomposing the dominant node exposes parallel children and can shorten the path, a possibility visible in the model before the split is built. (c) A serial information dependency can be removed by changing the representation supplied to each operation: instead of sibling-to-sibling context propagation, each image consumes one shared precomputed page context, so the alt-text operations run independently.",
+    "caption": "Analyzing dependency graphs to redesign execution. (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "An explicit dependency model exposes optimization opportunities before implementation",
-    "svg_description": "Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from\n    top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant\n    node into parallel children shortens the critical path, discoverable from the model before the split is\n    built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for\n    the preceding image, a serial chain of image then alt text then image then alt text; after, every image\n    instead consumes one shared precomputed page context, so the alt-text operations run independently."
+    "svg_title": "Analyzing dependency graphs to redesign execution",
+    "svg_description": "A weighted graph branches after A. The path through B and D takes 12 seconds, while the path through C and E takes 6 seconds. Three concurrent 3-second parts of B shorten the critical path to 7 seconds before overhead. In DocAble, two image-description operations become independent when each receives its image and shared rendered page context."
   },
   {
     "chapter": "4.2-one-problem-many-models",
@@ -1011,15 +1011,15 @@
   {
     "chapter": "6.3-scope-conditions",
     "source": "assets/return-governability.svg",
-    "caption": "*The economics of explicit engineering.* The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can become enforcement. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.",
+    "caption": "Choosing where to invest in explicit engineering. The value of making an obligation explicit and its mechanizability suggest four responses, illustrated by examples. Better models and evaluation can increase mechanizability, while cheaper engineering machinery can make investment economical at lower expected benefits. Neither change implies that every obligation should be mechanized.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Value of explicit engineering versus feasible governability: a 2x2 of engineering investment",
-    "svg_description": "A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the\n    bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —\n    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit\n    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more\n    explicit and repeatable. Upper right, high value and high feasible governability: invest in enforcement; the obligation\n    can be evaluated reliably enough to carry consequences, so build the machinery that enforces it. Lower left,\n    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor\n    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;\n    governability alone does not justify machinery."
+    "svg_title": "Choosing where to invest in explicit engineering",
+    "svg_description": "Columns run from limited to high mechanizability. Rows run from low to high value of making an obligation explicit. Low value suggests leaving judgment informal or mechanizing selectively. High value suggests investing in explicit judgment or in enforcement."
   },
   {
     "chapter": "7.1-reorganization-of-se",

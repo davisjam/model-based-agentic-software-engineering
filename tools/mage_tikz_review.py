@@ -325,6 +325,12 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             raise ValueError('Missing publication grayscale figure: ' + source)
         info = manifest[source]
         links = info.get('links', [])
+        height = approved.get(source, {}).get('max_print_height_bp')
+        size = ''
+        if height is not None:
+            if links or not isinstance(height, (int, float)) or not 0 < height <= info['height_pt']:
+                raise ValueError('Invalid print height for native figure: ' + source)
+            size = f'height={height}bp,'
         if excerpt:
             links = [link for link in links if link['target'] in available]
         receipt = json.loads((BASE / 'receipts' / f'{Path(source).stem}.json').read_text())
@@ -335,7 +341,7 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
         return (r'\leavevmode\hypertarget{' + anchor_prefix + stem + '}{}%\n' +
                 r'\magerecordfigureorigin{' + stem + '}%\n' +
                 mage_tikz_links.overlay(links, available) +
-                r'\includegraphics[page=' + str(info['page']) + ',alt={' + alt + '}]{' +
+                r'\includegraphics[page=' + str(info['page']) + ',' + size + 'alt={' + alt + '}]{' +
                 pool.relative_to(ROOT).as_posix() + '}')
 
     for chapter in chapters:

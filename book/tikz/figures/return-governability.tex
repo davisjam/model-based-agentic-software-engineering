@@ -1,17 +1,41 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\draw[edge] (-6,-5.5)--(6.5,-5.5);\draw[edge] (-6,-5.5)--(-6,5.5);\draw[black!40] (-5.7,0)--(6,0) (0,-5.2)--(0,5);
-\node[note,text width=4.5cm,fill=white] (hl) at (-3,2.6) {\textbf{Invest in explicit judgment}\\\textit{High value; low governability}\\[3pt]Improve models, knowledge, procedures, evidence, and evaluation.};
-\node[note,text width=4.5cm,fill=white] (hh) at (3,2.6) {\textbf{Invest in enforcement}\\\textit{High value; high governability}\\[3pt]Reliable evaluation can justify machinery with consequences.};
-\node[note,text width=4.5cm,fill=white] (ll) at (-3,-2.6) {\textbf{Leave judgment informal}\\\textit{Low value; low governability}\\[3pt]Ordinary situated judgment suffices; governance is uneconomical.};
-\node[note,text width=4.5cm,fill=white] (lh) at (3,-2.6) {\textbf{Mechanize selectively}\\\textit{Low value; high governability}\\[3pt]Governability alone does not justify machinery.};
-\node[note,font=\magefigurefont\fontsize{11}{13}\selectfont,rotate=90,text width=8cm] (y) at (-6.7,0) {\textbf{Value of explicit engineering}};
-\node[note,font=\magefigurefont\fontsize{11}{13}\selectfont,text width=11.5cm] (x) at (0,-6.4) {\textbf{Feasible governability}: representation, evidence, evaluation};
-\node[note,text width=1cm] (lo) at (-5.5,-5.9) {Low};
-\node[note,text width=1cm] (hi) at (5.5,-5.9) {High};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,257);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=2bp] (101,3) rectangle (441,65);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=2bp] (3,65) rectangle (441,251);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=2bp] (3,65) rectangle (101,251);
+\draw[line width=0.7bp,draw=black!85] (67,65) -- (67,251);
+\draw[line width=0.7bp,draw=black!85] (101,65) -- (101,251);
+\draw[line width=0.7bp,draw=black!85] (101,42) -- (441,42);
+\draw[line width=0.7bp,draw=black!85] (271,42) -- (271,251);
+\draw[line width=0.7bp,draw=black!85] (67,151) -- (441,151);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{12}{11}\selectfont\bfseries] at (271,14) {Mechanizability \(\to\)};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (271,26) {From judgment-intensive to reliably mechanized};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (271,37) {(e.g., constraints, validators, or automated checks)};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (186,54) {Limited};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (356,54) {High};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (34,88) {Value of};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (34,99) {making};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (34,110) {it explicit};
+\draw[-Stealth,line width=1.3bp,draw=black!85] (34,123) -- (34,143);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (34,159) {Higher value};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (34,170) {justifies more};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (34,181) {engineering};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (34,192) {machinery.};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (84,109) {Low};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (84,201) {High};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (109,81) {Leave judgment informal};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,103) {Example: a one-off internal};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,114) {naming choice.};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (279,81) {Mechanize selectively};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,103) {Example: prototype formatting—};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,114) {automate when it is cheap};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,125) {enough to maintain.};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (109,174) {Invest in explicit judgment};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,196) {Example: historic building};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,207) {compatibility—use standards,};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,218) {precedent, and documented review.};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (279,174) {Invest in enforcement};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,196) {Example: service dependency—};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,207) {use a model, validator, and};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (279,218) {admission gate to block violations.};
 \end{tikzpicture}
