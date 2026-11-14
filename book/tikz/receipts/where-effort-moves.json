@@ -1,202 +1,596 @@
 {
   "source": "book/assets/where-effort-moves.svg",
   "claim": "*Where Engineering Effort Moves.* As the fleet assumes work across the lifecycle, the engineer increasingly works through the surrounding engineering environment: specifying intent, choosing consequential abstractions, evaluating evidence, resolving tradeoffs, and adapting the environment itself.",
-  "topology": "Unchanged five-phase lifecycle above three cross-lifecycle work bands; implementation emphasis retained without adding a new phase.",
+  "topology": "Two horizontal comparisons connect pre-GenAI work to agentic engineering. Delegation and governance conversion each have their own right-pointing arrow.",
   "required_terms": [
-    "Requirements",
-    "Design",
+    "Pre-GenAI allocation",
+    "Agentic engineering",
+    "Implementation is a major claim on human effort.",
+    "More implementation is delegated, and more judgment is preserved in structure.",
+    "Human engineering work",
+    "Requirements and intent",
+    "Design and abstractions",
     "Implementation",
-    "Validation",
-    "Operation /\\",
-    "Human engineering judgment\\; abstractions; tradeoffs; acceptance; adaptation",
-    "Fleet\\; transformation; IMPLEMENTATION; routine remediation",
-    "Governed environment\\ and context; permissions and constraints; evidence and validators; admission; operational controls",
-    "Implementation shifts disproportionately toward the fleet. Human effort concentrates where consequential judgment and responsibility remain."
+    "Review and acceptance",
+    "Operation and adaptation",
+    "Human engineering judgment",
+    "Intent",
+    "Abstractions",
+    "Tradeoffs",
+    "Acceptance",
+    "Adaptation",
+    "Commodity intelligence",
+    "Implementation",
+    "Analysis",
+    "Transformation",
+    "Routine remediation",
+    "Delegation",
+    "Shifts more implementation and routine work to agents.",
+    "Engineering tools and processes",
+    "CI/CD and build automation",
+    "Tests and test infrastructure",
+    "Static analysis and quality checks",
+    "Repositories and code review",
+    "Coding standards and policies",
+    "Governed engineering environment",
+    "Models and context",
+    "Constraints and permissions",
+    "Evidence and validators",
+    "Admission",
+    "Operational controls",
+    "Governance conversion",
+    "Turns recurring judgment into durable, reusable structure."
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions. Fidelity pass: Restored within-band placement under lifecycle phases instead of collapsing responsibilities into centered prose lists; implementation receives bold emphasis in its own phase column.",
+  "bw_encoding": "Light gray distinguishes the two transfer arrows and commodity intelligence; the comparison columns use open headings and horizontal rules.",
+  "redesign": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
   "questions": [],
-  "alt": "Across the top, the five lifecycle phases in order — Requirements, Design, Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The human engineering judgment band carries intent, abstractions, tradeoffs, acceptance, and adaptation. The fleet band carries implementation, analysis, transformation, and routine remediation, with implementation emphasized in bold under its lifecycle phase. Responsibilities are placed under their corresponding phase columns. The governed environment band carries models and context, permissions and constraints, evidence and validators, admission, and operational controls across all phases. Implementation shifts disproportionately toward the fleet, and human effort concentrates where consequential judgment and responsibility remain.",
+  "alt": "Delegation shifts implementation and routine work to agents, while engineers retain judgment. Governance conversion turns recurring judgment into models, controls and evidence in the governed engineering environment.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 406.6340026855469,
-    "height_pt": 260.5950012207031,
-    "monochrome": true,
-    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+    "page": 1,
+    "width_bp": 449.972,
+    "height_bp": 270.975,
+    "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+    "minimum_prose_font_pt": 9,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 37,
+    "unapproved_compile_diagnostics": 0
   },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-    "candidate_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes Human effort concentrates where consequential judgment and responsibility remain.. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Band headings and single Implementation focus retain bold; responsibilities stay in phase columns.",
+  "reference_image_sha256": "1de9842425e9d17a8a9bdb155e53377c3d5dea72c79dae80658d5fc3ad5e5f0e",
+  "layout_review": {
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 87,
-      "width_bp": 418.749,
-      "height_bp": 261.299,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
     },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "contracts": {
+      "peer_groups": [],
+      "terminal_exceptions": []
+    },
+    "visual_review": "Both arrows connect the appropriate rows; the brace groups human judgments beside the delegated operations.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        449.972,
+        270.975
+      ],
+      "after_font_sizes_pt": [
+        9,
+        10,
+        10.5,
+        11,
+        11.2,
+        11.5,
+        12,
+        12.2,
+        13,
+        14
+      ],
+      "reviewed_visually": true,
+      "decision": "recomposed",
+      "reason": "Two horizontal comparisons connect pre-GenAI work to agentic engineering. Delegation and governance conversion each have their own right-pointing arrow."
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
     "decision": "refined",
-    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-    "candidate_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "evidence": [
-      {
-        "source_text": "Implementation shifts disproportionately toward the fleet.",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "20"
-        },
-        "semantic_role": "explanatory annotation or feedback relation",
-        "candidate_text": "Implementation shifts disproportionately toward the fleet.",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "Implementation shifts disproportionately toward the fleet.",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "502",
-              "text_element": 31
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Human effort concentrates where consequential judgment and responsibility remain.",
-        "source_style": {
-          "font-weight": "600",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Human effort concentrates where consequential judgment and responsibility remain.",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Human effort concentrates where consequential judgment and responsibility remain.",
-            "style": {
-              "font-weight": "600",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "530",
-              "text_element": 32
-            }
-          }
-        ]
-      }
-    ],
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
+    },
     "checks": [
       {
-        "text": "Implementation shifts disproportionately toward the fleet.",
+        "text": "Pre-GenAI allocation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Agentic engineering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation is a major claim on human effort.",
+        "bold": false,
         "italic": true
       },
       {
-        "text": "Human effort concentrates where consequential judgment and responsibility remain.",
-        "bold": true
+        "text": "More implementation is delegated, and more judgment is preserved in structure.",
+        "bold": false,
+        "italic": true
       },
       {
-        "text": "Requirements",
+        "text": "Human engineering work",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Requirements and intent",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Design and abstractions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Review and acceptance",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Operation and adaptation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Human engineering judgment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Intent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Abstractions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Tradeoffs",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Acceptance",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Adaptation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Commodity intelligence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Analysis",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Transformation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Routine remediation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Delegation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Shifts more implementation and routine work to agents.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Engineering tools and processes",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CI/CD and build automation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Tests and test infrastructure",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Static analysis and quality checks",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Repositories and code review",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Coding standards and policies",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Governed engineering environment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Models and context",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Constraints and permissions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Evidence and validators",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Admission",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Operational controls",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Governance conversion",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Turns recurring judgment into durable, reusable structure.",
+        "bold": false,
+        "italic": true
       }
     ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 87,
-      "width_bp": 418.749,
-      "height_bp": 261.299,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 3,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+    "evidence": [
+      {
+        "candidate_text": "Pre-GenAI allocation",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Agentic engineering",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Implementation is a major claim on human effort.",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "More implementation is delegated, and more judgment is preserved in structure.",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Human engineering work",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Requirements and intent",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Design and abstractions",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Implementation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Review and acceptance",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Operation and adaptation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Human engineering judgment",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Intent",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Abstractions",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Tradeoffs",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Acceptance",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Adaptation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Commodity intelligence",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Implementation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Analysis",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Transformation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Routine remediation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Delegation",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Shifts more implementation and routine work to agents.",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Engineering tools and processes",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "CI/CD and build automation",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Tests and test infrastructure",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Static analysis and quality checks",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Repositories and code review",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Coding standards and policies",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Governed engineering environment",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Models and context",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Constraints and permissions",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Evidence and validators",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Admission",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Operational controls",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Governance conversion",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Turns recurring judgment into durable, reusable structure.",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
       }
-    }
+    ]
   },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
+  "style_review": {
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
     "decision": "refined",
-    "reason": "Spread lifecycle nodes to 3cm pitch and harmonize their heights; arrows gain visible shafts instead of nearly touching borders.",
-    "candidate_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing where effort moves layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-      "after_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-      "before_dimensions_bp": [
-        418.7489929199219,
-        261.29901123046875
-      ],
-      "after_dimensions_bp": [
-        418.7489929199219,
-        261.29901123046875
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/where-effort-moves.json",
+    "status": "reviewed",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "Light gray distinguishes the two transfer arrows and commodity intelligence; the comparison columns use open headings and horizontal rules.",
+    "bold": "Headings and arrow labels use bold type.",
+    "routing": "Two horizontal comparisons connect pre-GenAI work to agentic engineering. Delegation and governance conversion each have their own right-pointing arrow.",
+    "shape": "Two aligned rows and paired transfer arrows.",
+    "visual_review": "Both arrows connect the appropriate rows; the brace groups human judgments beside the delegated operations.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
+    },
+    "checks": {
+      "links_and_groups": "Two horizontal comparisons connect pre-GenAI work to agentic engineering. Delegation and governance conversion each have their own right-pointing arrow.",
+      "annotation_placement": "Explanatory labels sit inside the two arrows.",
+      "line_breaks": "Line breaks follow the author reference.",
+      "icons_and_symbols": "Both arrows point from pre-GenAI to agentic engineering."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9,
+        10,
+        10.5,
+        11,
+        11.2,
+        11.5,
+        12,
+        12.2,
+        13,
+        14
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 87,
-      "width_bp": 418.749,
-      "height_bp": 261.299
-    }
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.972,
+    "height_bp": 270.975,
+    "monochrome": true,
+    "review": "Both arrows connect the appropriate rows; the brace groups human judgments beside the delegated operations."
+  },
+  "grayscale_review": {
+    "source": "book/assets/where-effort-moves.svg",
+    "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/where-effort-moves.json",
+    "reviewed": true,
+    "rationale": "Light gray distinguishes the two transfer arrows and commodity intelligence; the comparison columns use open headings and horizontal rules."
   }
 }

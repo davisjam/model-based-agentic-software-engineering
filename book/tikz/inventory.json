@@ -1031,8 +1031,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Where engineering effort moves across the lifecycle",
-    "svg_description": "Across the top, the five lifecycle phases in order — Requirements, Design,\n    Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its\n    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The\n    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and\n    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine\n    remediation, concentrated under the Implementation phase. The governed environment band, in green,\n    carries models and context, permissions and constraints, evidence and validators, admission, and\n    operational controls across all phases. Implementation shifts disproportionately toward the fleet, and\n    human effort concentrates where consequential judgment and responsibility remain."
+    "svg_title": "Where engineering effort moves",
+    "svg_description": "Delegation shifts implementation and routine work to agents, while engineers retain judgment. Governance conversion turns recurring judgment into models, controls and evidence in the governed engineering environment."
   },
   {
     "chapter": "7.2-software-rejoins-engineering",

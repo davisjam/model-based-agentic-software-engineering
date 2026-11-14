@@ -20736,91 +20736,395 @@
     {
       "source": "book/assets/where-effort-moves.svg",
       "candidate": "book/tikz/figures/where-effort-moves.tex",
+      "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+      "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
       "decision": "refined",
-      "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-      "candidate_sha256": "d8338d424265128008ed30ba203ce0d46908bc5546b8926c1119cc9c879acb9f",
-      "evidence": [
-        {
-          "source_text": "Implementation shifts disproportionately toward the fleet.",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Implementation shifts disproportionately toward the fleet.",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "Implementation shifts disproportionately toward the fleet.",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "502",
-                "text_element": 31
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "Human effort concentrates where consequential judgment and responsibility remain.",
-          "source_style": {
-            "font-weight": "600",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Human effort concentrates where consequential judgment and responsibility remain.",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "Human effort concentrates where consequential judgment and responsibility remain.",
-              "style": {
-                "font-weight": "600",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "530",
-                "text_element": 32
-              }
-            }
-          ]
-        }
-      ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reviewed_visually": true,
+      "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 270.975,
+        "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 37,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": [
         {
-          "text": "Implementation shifts disproportionately toward the fleet.",
+          "text": "Pre-GenAI allocation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Agentic engineering",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Implementation is a major claim on human effort.",
+          "bold": false,
           "italic": true
         },
         {
-          "text": "Human effort concentrates where consequential judgment and responsibility remain.",
-          "bold": true
+          "text": "More implementation is delegated, and more judgment is preserved in structure.",
+          "bold": false,
+          "italic": true
         },
         {
-          "text": "Requirements",
+          "text": "Human engineering work",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Requirements and intent",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Design and abstractions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Implementation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Review and acceptance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Operation and adaptation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Human engineering judgment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Intent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Abstractions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Tradeoffs",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Acceptance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Adaptation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Commodity intelligence",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Implementation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Analysis",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Transformation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Routine remediation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Delegation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Shifts more implementation and routine work to agents.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Engineering tools and processes",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "CI/CD and build automation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Tests and test infrastructure",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Static analysis and quality checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repositories and code review",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Coding standards and policies",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Governed engineering environment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Models and context",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Constraints and permissions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Evidence and validators",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Admission",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Operational controls",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Governance conversion",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Turns recurring judgment into durable, reusable structure.",
+          "bold": false,
+          "italic": true
         }
       ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 87,
-        "width_bp": 418.749,
-        "height_bp": 261.299,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 3
-      }
+      "evidence": [
+        {
+          "candidate_text": "Pre-GenAI allocation",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Agentic engineering",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Implementation is a major claim on human effort.",
+          "candidate_style": "italic",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "More implementation is delegated, and more judgment is preserved in structure.",
+          "candidate_style": "italic",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Human engineering work",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Requirements and intent",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Design and abstractions",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Implementation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Review and acceptance",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Operation and adaptation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Human engineering judgment",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Intent",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Abstractions",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Tradeoffs",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Acceptance",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Adaptation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Commodity intelligence",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Implementation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Analysis",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Transformation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Routine remediation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Delegation",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Shifts more implementation and routine work to agents.",
+          "candidate_style": "italic",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Engineering tools and processes",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "CI/CD and build automation",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Tests and test infrastructure",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Static analysis and quality checks",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Repositories and code review",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Coding standards and policies",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Governed engineering environment",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Models and context",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Constraints and permissions",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Evidence and validators",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Admission",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Operational controls",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Governance conversion",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Turns recurring judgment into durable, reusable structure.",
+          "candidate_style": "italic",
+          "semantic_role": "panel heading, annotation or legend"
+        }
+      ]
     },
     {
       "source": "book/assets/why-software-modeled.svg",

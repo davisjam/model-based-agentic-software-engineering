@@ -1,109 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: where-effort-moves). REPLACES sdlc-to-selc.svg. The old figure renamed the
-     lifecycle SDLC->SELC on the premise that "the D is delegated"; the SELC acronym and its argument are
-     deleted (development never meant merely typing implementation, and a new acronym this late buys little).
-     This figure keeps the salvageable content: the lifecycle does NOT acquire new phases; implementation
-     shifts disproportionately to the fleet, and human effort concentrates in intent, abstraction, evidence,
-     tradeoffs, and adaptation, while a governed environment carries repeatable structure across all phases.
-     Top row: the five lifecycle phases, unchanged. Below: three bands — Human engineering judgment (rust),
-     Fleet (blue), Governed environment (green) — each listing what it carries across the phases. No new
-     lifecycle name. The two closing lines do different jobs: the upper states the shift, the lower states
-     where human effort concentrates. The prose caption carries a third job — how the engineer now operates
-     through the surrounding environment — so the figure and its caption never restate one another.
-     Palette: Umber Monograph tokens (ink #1c1917 phase names, muted #57534e detail, accent #9a3f12 + tint
-     #faf1e6 the human-judgment band, blue #2f5169 + tint #e7edf3 the fleet band, governed green
-     #1f7a4d/#155c38 + tint #e3f0e7 the environment band, neutral #f6f4ef phase boxes, rule #e4e0d8, page
-     #fdfcf9). Fonts 13-26 band at 1000px reference. -->
-<!-- semantic-families: governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
-     role="group" aria-labelledby="wemTitle wemDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="wemTitle">Where engineering effort moves across the lifecycle</title>
-  <desc id="wemDesc">Across the top, the five lifecycle phases in order — Requirements, Design,
-    Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its
-    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The
-    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and
-    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine
-    remediation, concentrated under the Implementation phase. The governed environment band, in green,
-    carries models and context, permissions and constraints, evidence and validators, admission, and
-    operational controls across all phases. Implementation shifts disproportionately toward the fleet, and
-    human effort concentrates where consequential judgment and responsibility remain.</desc>
-
-  <defs>
-    <marker id="wem-ah" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where engineering effort moves</text>
-  <text x="500" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
-
-  <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
-  <!-- phase-chain edges (drawn under the boxes; source runs to node centre, directed head seats on target rim) -->
-  <g stroke="#57534e" stroke-width="1.5">
-    <!-- edge: requirements -> design -->
-    <line x1="208" y1="119" x2="226" y2="119" marker-end="url(#wem-ah)"/>
-    <!-- edge: design -> implementation -->
-    <line x1="396" y1="119" x2="414" y2="119" marker-end="url(#wem-ah)"/>
-    <!-- edge: implementation -> validation -->
-    <line x1="584" y1="119" x2="602" y2="119" marker-end="url(#wem-ah)"/>
-    <!-- edge: validation -> operation -->
-    <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#wem-ah)"/>
-  </g>
-  <g font-size="20" text-anchor="middle" fill="#1c1917">
-    <rect id="requirements" x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="124" y="124">Requirements</text>
-    <rect id="design" x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="312" y="124">Design</text>
-    <rect id="implementation" x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="500" y="124">Implementation</text>
-    <rect id="validation" x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="688" y="124">Validation</text>
-    <rect id="operation" x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="876" y="118">Operation /</text>
-    <text x="876" y="136">maintenance</text>
-  </g>
-
-  <!-- ===== band 1: Human engineering judgment (rust) ===== -->
-  <rect x="40" y="168" width="920" height="86" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="60" y="196" font-size="20" font-weight="700" fill="#9a3f12">Human engineering judgment</text>
-  <g font-size="20" fill="#1c1917">
-    <text x="60" y="228">intent</text>
-    <text x="230" y="228">abstractions</text>
-    <text x="440" y="228">tradeoffs</text>
-    <text x="620" y="228">acceptance</text>
-    <text x="820" y="228">adaptation</text>
-  </g>
-
-  <!-- ===== band 2: Fleet (blue), weighted under Implementation ===== -->
-  <rect x="40" y="266" width="920" height="86" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="60" y="294" font-size="20" font-weight="700" fill="#2f5169">Fleet</text>
-  <!-- emphasis block under the Implementation phase column -->
-  <rect x="408.85" y="304" width="182.31" height="34" rx="6" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.6"/>
-  <text x="500" y="326" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">implementation</text>
-  <g font-size="20" fill="#1c1917">
-    <text x="60" y="326">analysis</text>
-    <text x="230" y="326">transformation</text>
-    <text x="620" y="326">routine</text>
-    <text x="620" y="344" font-size="20" fill="#57534e">remediation</text>
-  </g>
-
-  <!-- ===== band 3: Governed environment (green), spans all phases ===== -->
-  <rect x="40" y="364" width="920" height="98" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="60" y="392" font-size="20" font-weight="700" fill="#155c38">Governed environment</text>
-  <text x="470" y="392" font-size="20" font-style="italic" fill="#57534e">carries repeatable structure across every phase</text>
-  <g font-size="20" fill="#1c1917">
-    <text x="60" y="426">models / context</text>
-    <text x="270" y="426">permissions /</text>
-    <text x="270" y="444" font-size="20" fill="#57534e">constraints</text>
-    <text x="470" y="426">evidence /</text>
-    <text x="470" y="444" font-size="20" fill="#57534e">validators</text>
-    <text x="650" y="426">admission</text>
-    <text x="800" y="426">operational</text>
-    <text x="800" y="444" font-size="20" fill="#57534e">controls</text>
-  </g>
-
-  <text x="500" y="502" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Implementation shifts disproportionately toward the fleet.</text>
-  <text x="500" y="530" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Human effort concentrates where consequential judgment and responsibility remain.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="530" viewBox="0 0 444 265" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<title id="title">Where engineering effort moves</title>
+<desc id="desc">Delegation shifts implementation and routine work to agents, while engineers retain judgment. Governance conversion turns recurring judgment into models, controls and evidence in the governed engineering environment.</desc>
+<defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0 0 L5 2.5 L0 5 Z" fill="#1c1917"/></marker></defs>
+<g fill="#1c1917" font-family="Source Sans 3, sans-serif">
+<text x="79" y="15.0" font-size="14" text-anchor="middle" font-weight="700">Pre-GenAI allocation</text>
+<text x="348" y="15.0" font-size="14" text-anchor="middle" font-weight="700">Agentic engineering</text>
+<text x="79" y="31.0" font-size="11" text-anchor="middle" font-style="italic">Implementation is a major</text>
+<text x="79" y="43.5" font-size="11" text-anchor="middle" font-style="italic">claim on human effort.</text>
+<text x="348" y="31.0" font-size="11" text-anchor="middle" font-style="italic">More implementation is delegated, and</text>
+<text x="348" y="43.5" font-size="11" text-anchor="middle" font-style="italic">more judgment is preserved in structure.</text>
+<path d="M1,57 L154,57" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M247,57 L443,57" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M1,162 L154,162" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M247,162 L443,162" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<text x="2" y="77.0" font-size="13" text-anchor="start" font-weight="700">Human engineering work</text>
+<text x="10" y="95.0" font-size="10.5" text-anchor="start">Requirements and intent</text>
+<text x="10" y="108.0" font-size="10.5" text-anchor="start">Design and abstractions</text>
+<text x="10" y="121.0" font-size="10.5" text-anchor="start">Implementation</text>
+<text x="10" y="134.0" font-size="10.5" text-anchor="start">Review and acceptance</text>
+<text x="10" y="147.0" font-size="10.5" text-anchor="start">Operation and adaptation</text>
+<text x="247" y="77.0" font-size="13" text-anchor="start" font-weight="700">Human engineering judgment</text>
+<circle cx="250" cy="91" r="1"/>
+<text x="256" y="94.0" font-size="10.5" text-anchor="start">Intent</text>
+<circle cx="250" cy="104" r="1"/>
+<text x="256" y="107.0" font-size="10.5" text-anchor="start">Abstractions</text>
+<circle cx="250" cy="117" r="1"/>
+<text x="256" y="120.0" font-size="10.5" text-anchor="start">Tradeoffs</text>
+<circle cx="250" cy="130" r="1"/>
+<text x="256" y="133.0" font-size="10.5" text-anchor="start">Acceptance</text>
+<circle cx="250" cy="143" r="1"/>
+<text x="256" y="146.0" font-size="10.5" text-anchor="start">Adaptation</text>
+<rect x="342" y="83" width="100" height="71" rx="5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="348" y="95.0" font-size="11.5" text-anchor="start" font-weight="700">Commodity</text>
+<text x="348" y="108.0" font-size="11.5" text-anchor="start" font-weight="700">intelligence</text>
+<circle cx="349" cy="117" r="1"/>
+<text x="355" y="120.0" font-size="9" text-anchor="start">Implementation</text>
+<circle cx="349" cy="127" r="1"/>
+<text x="355" y="130.0" font-size="9" text-anchor="start">Analysis</text>
+<circle cx="349" cy="137" r="1"/>
+<text x="355" y="140.0" font-size="9" text-anchor="start">Transformation</text>
+<circle cx="349" cy="147" r="1"/>
+<text x="355" y="150.0" font-size="9" text-anchor="start">Routine remediation</text>
+<path d="M339 86 Q335 86 335 91 L335 114 Q335 118 331 118 Q335 118 335 122 L335 145 Q335 150 339 150" fill="none" stroke="#222" stroke-width=".85"/>
+<polygon points="155,86 222,86 222,77 244,120 222,162 222,153 155,153" fill="#ededed" stroke="none"/>
+<polyline points="155,86 222,86 222,77 244,120 222,162 222,153 155,153" fill="none" stroke="#222" stroke-width=".8"/>
+<text x="162" y="100.0" font-size="12" text-anchor="start" font-weight="700">Delegation</text>
+<text x="162" y="113.0" font-size="9" text-anchor="start" font-style="italic">Shifts more</text>
+<text x="162" y="123.5" font-size="9" text-anchor="start" font-style="italic">implementation</text>
+<text x="162" y="134.0" font-size="9" text-anchor="start" font-style="italic">and routine work</text>
+<text x="162" y="144.5" font-size="9" text-anchor="start" font-style="italic">to agents.</text>
+<text x="2" y="182.0" font-size="11.2" text-anchor="start" font-weight="700">Engineering tools and processes</text>
+<text x="10" y="198.0" font-size="10" text-anchor="start">CI/CD and build automation</text>
+<text x="10" y="211.0" font-size="10" text-anchor="start">Tests and test infrastructure</text>
+<text x="10" y="224.0" font-size="10" text-anchor="start">Static analysis and quality checks</text>
+<text x="10" y="237.0" font-size="10" text-anchor="start">Repositories and code review</text>
+<text x="10" y="250.0" font-size="10" text-anchor="start">Coding standards and policies</text>
+<text x="247" y="182.0" font-size="12.2" text-anchor="start" font-weight="700">Governed engineering environment</text>
+<circle cx="251" cy="195" r="1"/>
+<text x="257" y="198.0" font-size="10.5" text-anchor="start">Models and context</text>
+<circle cx="251" cy="208" r="1"/>
+<text x="257" y="211.0" font-size="10.5" text-anchor="start">Constraints and permissions</text>
+<circle cx="251" cy="221" r="1"/>
+<text x="257" y="224.0" font-size="10.5" text-anchor="start">Evidence and validators</text>
+<circle cx="251" cy="234" r="1"/>
+<text x="257" y="237.0" font-size="10.5" text-anchor="start">Admission</text>
+<circle cx="251" cy="247" r="1"/>
+<text x="257" y="250.0" font-size="10.5" text-anchor="start">Operational controls</text>
+<polygon points="161,185 224,185 224,176 244,221 224,266 224,257 161,257" fill="#ededed" stroke="none"/>
+<polyline points="161,185 224,185 224,176 244,221 224,266 224,257 161,257" fill="none" stroke="#222" stroke-width=".8"/>
+<text x="166" y="197.0" font-size="11.5" text-anchor="start" font-weight="700">Governance</text>
+<text x="166" y="210.0" font-size="11.5" text-anchor="start" font-weight="700">conversion</text>
+<text x="166" y="220.0" font-size="9" text-anchor="start" font-style="italic">Turns recurring</text>
+<text x="166" y="230.5" font-size="9" text-anchor="start" font-style="italic">judgment into</text>
+<text x="166" y="241.0" font-size="9" text-anchor="start" font-style="italic">durable, reusable</text>
+<text x="166" y="251.5" font-size="9" text-anchor="start" font-style="italic">structure.</text>
+</g>
 </svg>

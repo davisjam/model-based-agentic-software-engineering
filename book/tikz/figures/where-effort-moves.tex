@@ -1,40 +1,74 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
-\node[box,text width=2.4cm,inner sep=2pt,minimum height=1.1cm] (p0) at (-6,0) {Requirements};
-\node[box,text width=2.4cm,inner sep=2pt,minimum height=1.1cm] (p1) at (-3,0) {Design};
-\node[box,text width=2.4cm,inner sep=2pt,minimum height=1.1cm] (p2) at (0,0) {Implementation};
-\node[box,text width=2.4cm,inner sep=2pt,minimum height=1.1cm] (p3) at (3,0) {Validation};
-\node[box,text width=2.4cm,inner sep=2pt,minimum height=1.1cm] (p4) at (6,0) {Operation /\\maintenance};
-\draw[edge,] (p0) -- (p1);
-\draw[edge,] (p1) -- (p2);
-\draw[edge,] (p2) -- (p3);
-\draw[edge,] (p3) -- (p4);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-1.55) {Human engineering judgment};
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-3.65) {Fleet};
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] at (-6.7,-5.75) {Governed environment};
-\node[align=center,text width=2.7cm] at (-5.6,-2.35) {Intent};
-\node[align=center,text width=2.7cm] at (-2.8,-2.35) {Abstractions};
-\node[align=center,text width=2.7cm] at (0,-2.35) {Tradeoffs};
-\node[align=center,text width=2.7cm] at (2.8,-2.35) {Acceptance};
-\node[align=center,text width=2.7cm] at (5.6,-2.35) {Adaptation};
-\node[align=center,text width=2.7cm] at (-5.6,-4.45) {Analysis};
-\node[align=center,text width=2.7cm] at (-2.8,-4.45) {Transformation};
-\node[align=center,text width=2.7cm] at (0,-4.45) {\textbf{Implementation}};
-\node[align=center,text width=2.7cm] at (2.8,-4.45) {Routine\\remediation};
-\node[align=center,text width=2.7cm] at (-5.6,-6.65) {Models / context};
-\node[align=center,text width=2.7cm] at (-2.8,-6.65) {Permissions / constraints};
-\node[align=center,text width=2.7cm] at (0,-6.65) {Evidence / validators};
-\node[align=center,text width=2.7cm] at (2.8,-6.65) {Admission};
-\node[align=center,text width=2.7cm] at (5.6,-6.65) {Operational controls};
-\node[note,text width=12cm] at (0,-8) {\textit{Implementation shifts disproportionately toward the fleet.} \textbf{Human effort concentrates where consequential judgment and responsibility remain.}};
-\begin{scope}[on background layer]
-\draw[fill=white] (-7,-1.2) rectangle (7,-3);
-\draw[fill=white] (-7,-3.3) rectangle (7,-5.1);
-\draw[fill=white] (-7,-5.4) rectangle (7,-7.3);
-\end{scope}
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,265);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{14}{11}\selectfont\bfseries] at (79,12.0) {Pre-GenAI allocation};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{14}{11}\selectfont\bfseries] at (348,12.0) {Agentic engineering};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\itshape] at (79,28.0) {Implementation is a major};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\itshape] at (79,40.5) {claim on human effort.};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\itshape] at (348,28.0) {More implementation is delegated, and};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\itshape] at (348,40.5) {more judgment is preserved in structure.};
+\draw[line width=0.7bp,draw=black!85] (1,57) -- (154,57);
+\draw[line width=0.7bp,draw=black!85] (247,57) -- (443,57);
+\draw[line width=0.7bp,draw=black!85] (1,162) -- (154,162);
+\draw[line width=0.7bp,draw=black!85] (247,162) -- (443,162);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{13}{11}\selectfont\bfseries] at (2,74.0) {Human engineering work};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (10,92.0) {Requirements and intent};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (10,105.0) {Design and abstractions};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (10,118.0) {Implementation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (10,131.0) {Review and acceptance};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (10,144.0) {Operation and adaptation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{13}{11}\selectfont\bfseries] at (247,74.0) {Human engineering judgment};
+\fill (250,91) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (256,91.0) {Intent};
+\fill (250,104) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (256,104.0) {Abstractions};
+\fill (250,117) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (256,117.0) {Tradeoffs};
+\fill (250,130) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (256,130.0) {Acceptance};
+\fill (250,143) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (256,143.0) {Adaptation};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=5bp] (342,83) rectangle (442,154);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11.5}{11}\selectfont\bfseries] at (348,92.0) {Commodity};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11.5}{11}\selectfont\bfseries] at (348,105.0) {intelligence};
+\fill (349,117) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (355,117.0) {Implementation};
+\fill (349,127) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (355,127.0) {Analysis};
+\fill (349,137) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (355,137.0) {Transformation};
+\fill (349,147) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (355,147.0) {Routine remediation};
+\draw[line width=.85bp] (339,86) .. controls (335,86) and (335,88) .. (335,91) -- (335,114) .. controls (335,117) and (334,118) .. (331,118) .. controls (334,118) and (335,119) .. (335,122) -- (335,145) .. controls (335,148) and (335,150) .. (339,150);
+\fill[black!8] (155,86) -- (222,86) -- (222,77) -- (244,120) -- (222,162) -- (222,153) -- (155,153) -- cycle;
+\draw[line width=.8bp] (155,86) -- (222,86) -- (222,77) -- (244,120) -- (222,162) -- (222,153) -- (155,153);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{12}{11}\selectfont\bfseries] at (162,97.0) {Delegation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (162,110.0) {Shifts more};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (162,120.5) {implementation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (162,131.0) {and routine work};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (162,141.5) {to agents.};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11.2}{11}\selectfont\bfseries] at (2,179.0) {Engineering tools and processes};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (10,195.0) {CI/CD and build automation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (10,208.0) {Tests and test infrastructure};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (10,221.0) {Static analysis and quality checks};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (10,234.0) {Repositories and code review};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (10,247.0) {Coding standards and policies};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{12.2}{11}\selectfont\bfseries] at (247,179.0) {Governed engineering environment};
+\fill (251,195) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (257,195.0) {Models and context};
+\fill (251,208) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (257,208.0) {Constraints and permissions};
+\fill (251,221) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (257,221.0) {Evidence and validators};
+\fill (251,234) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (257,234.0) {Admission};
+\fill (251,247) circle (1bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont] at (257,247.0) {Operational controls};
+\fill[black!8] (161,185) -- (224,185) -- (224,176) -- (244,221) -- (224,266) -- (224,257) -- (161,257) -- cycle;
+\draw[line width=.8bp] (161,185) -- (224,185) -- (224,176) -- (244,221) -- (224,266) -- (224,257) -- (161,257);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11.5}{11}\selectfont\bfseries] at (166,194.0) {Governance};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11.5}{11}\selectfont\bfseries] at (166,207.0) {conversion};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (166,217.0) {Turns recurring};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (166,227.5) {judgment into};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (166,238.0) {durable, reusable};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (166,248.5) {structure.};
 \end{tikzpicture}

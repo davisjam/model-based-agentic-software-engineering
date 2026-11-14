@@ -3443,29 +3443,49 @@
     {
       "source": "book/assets/where-effort-moves.svg",
       "candidate": "book/tikz/figures/where-effort-moves.tex",
+      "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+      "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 270.975,
+        "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 37,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": {
-        "icons_and_symbols": "Bold implementation emphasis restored at its own phase position.",
-        "links_and_groups": "Phase arrows unchanged; responsibilities now aligned under phase columns within three bands.",
-        "annotation_placement": "Band headings separated from entries; lifecycle-shift explanation external.",
-        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+        "links_and_groups": "Two horizontal comparisons connect pre-GenAI work to agentic engineering. Delegation and governance conversion each have their own right-pointing arrow.",
+        "annotation_placement": "Explanatory labels sit inside the two arrows.",
+        "line_breaks": "Line breaks follow the author reference.",
+        "icons_and_symbols": "Both arrows point from pre-GenAI to agentic engineering."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          10.5,
+          11,
+          11.2,
+          11.5,
+          12,
+          12.2,
+          13,
+          14
         ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 406.6340026855469,
-      "height_bp": 260.5950012207031,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
       "monochrome": true,
-      "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-      "candidate_sha256": "212ae8145be70b82875b724f58d8849d5452f0a8b0e3cde6657edede4ab8759a",
-      "review": "Restored within-band placement under lifecycle phases instead of collapsing responsibilities into centered prose lists; implementation receives bold emphasis in its own phase column.",
-      "decision": "refined"
+      "review": "Both arrows connect the appropriate rows; the brace groups human judgments beside the delegated operations."
     },
     {
       "source": "book/assets/why-software-modeled.svg",

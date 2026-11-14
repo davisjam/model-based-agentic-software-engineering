@@ -2591,12 +2591,24 @@
   {
     "source": "book/assets/where-effort-moves.svg",
     "candidate": "book/tikz/figures/where-effort-moves.tex",
+    "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
+    "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 270.975,
+      "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 37,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/where-effort-moves.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Human judgment, fleet execution, and durable environment regain separate bands; text preserves allocation distinctions.",
-    "source_sha256": "a8a7f940b195814275d3bc4f9565b8890b8b91c020c097b10ec8cec207d534a4",
-    "candidate_sha256": "b3ca2746975215cec67330163045099c4fb1b0b0c7e87a9c2ac554dcc109bbc7"
+    "rationale": "Light gray distinguishes the two transfer arrows and commodity intelligence; the comparison columns use open headings and horizontal rules."
   },
   {
     "source": "book/assets/why-software-modeled.svg",
