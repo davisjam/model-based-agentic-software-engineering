@@ -4642,58 +4642,39 @@
     {
       "source": "book/assets/census-trio.svg",
       "candidate": "book/tikz/figures/census-trio.tex",
-      "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-      "baseline_candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-      "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-      "decision": "retained",
-      "reason": "Catalogue, interaction, and coverage are three distinct views. Coverage-gap/orphan markings intentionally differ from populated entries; their roles should not be flattened to a single record form.",
+      "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+      "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+      "decision": "refined",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        424.72698974609375,
-        204.5659942626953
-      ],
-      "contracts": {},
+      "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 221.975,
+        "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+        "minimum_prose_font_pt": 9,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 54,
-        "width_bp": 424.727,
-        "height_bp": 204.566
+        "semantic_typography_checks": 24,
+        "unapproved_compile_diagnostics": 0
       },
+      "contracts": {
+        "peer_groups": [],
+        "terminal_exceptions": []
+      },
+      "visual_review": "Rendered SVG and native TikZ at book width. The three panels align, both inputs to coverage are distinct, and the shared-resource brace identifies potential incompatibility.",
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing census trio layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-        "after_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-        "before_dimensions_bp": [
-          424.72698974609375,
-          204.5659942626953
-        ],
         "after_dimensions_bp": [
-          424.72698974609375,
-          204.5659942626953
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          449.972,
+          221.975
         ],
         "after_font_sizes_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          11
         ],
-        "reviewed_visually": true
+        "reviewed_visually": true,
+        "decision": "recomposed",
+        "reason": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge."
       }
     },
     {

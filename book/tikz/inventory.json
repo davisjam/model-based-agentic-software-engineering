@@ -650,15 +650,15 @@
   {
     "chapter": "3.5-when-guardrails-collide",
     "source": "assets/census-trio.svg",
-    "caption": "*Three views of the control machinery.* The catalogue identifies controls; the interaction view relates controls through shared resources; the coverage view relates controls to the obligations that justify them. Stable identities connect the three views while letting each answer a different engineering question. A missing mechanism appears as a coverage gap; an untraced mechanism appears as a candidate orphan.",
+    "caption": "Three views of the control machinery. A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Three views of one system of controls: catalogue, interaction graph, and coverage of\n    obligations against mechanisms — the same three controls seen through three relations",
-    "svg_description": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs."
+    "svg_title": "Three views of the control machinery",
+    "svg_description": "Control machinery supplies the catalogue, interaction graph, and coverage view. Independently identified obligations also feed coverage. The squash rule and diff-size guard share the commit set. Atomic delivery traces to the squash rule, bounded change scope to the diff-size guard. A cost ceiling lacks coverage, and a legacy export check lacks a recorded justification."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",

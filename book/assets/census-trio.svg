@@ -1,65 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 385" width="1000" height="385" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="figure-title">Three views of one system of controls: catalogue, interaction graph, and coverage of
-    obligations against mechanisms — the same three controls seen through three relations</title>
-<desc id="figure-description">Three panels over the same three controls, carried by stable identities: [A] squash rule,
-    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle
-    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they
-    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that
-    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation
-    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the
-    relations its engineering question needs.</desc>
-<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
-<path d="M323 5 L323 305" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
-<path d="M655 5 L655 305" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="160" y="27" text-anchor="middle" font-size="22" fill="#1c1917" font-weight="700">Catalogue</text>
-<text x="160" y="53" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">what exists</text>
-<text x="489" y="27" text-anchor="middle" font-size="22" fill="#1c1917" font-weight="700">Interaction graph</text>
-<text x="489" y="53" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">what collides</text>
-<text x="832" y="27" text-anchor="middle" font-size="22" fill="#1c1917" font-weight="700">Coverage</text>
-<text x="832" y="53" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">obligations → controls</text>
-<rect x="50" y="82" width="220" height="46" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="160" y="112" text-anchor="middle" font-size="20" fill="#1c1917">[A] squash rule</text>
-<rect x="50" y="147" width="220" height="46" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="160" y="177" text-anchor="middle" font-size="20" fill="#1c1917">[B] brief guard</text>
-<rect x="50" y="212" width="220" height="46" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="160" y="242" text-anchor="middle" font-size="20" fill="#1c1917">[C] lint gate</text>
-<rect id="squash-rule" x="342" y="80" width="132" height="58" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="408" y="103" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">[A]</text>
-<text x="408" y="128" text-anchor="middle" font-size="20" fill="#1c1917">squash rule</text>
-<rect id="brief-guard" x="506" y="80" width="132" height="58" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="572" y="103" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">[B]</text>
-<text x="572" y="128" text-anchor="middle" font-size="20" fill="#1c1917">brief guard</text>
-<path d="M474 108 L504 108" fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="489" y="166" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">collision</text>
-<path d="M408 138 L432 191" fill="none" stroke="#1c1917" stroke-width="2"/>
-<path d="M572 138 L548 191" fill="none" stroke="#1c1917" stroke-width="2"/>
-<rect id="commit-set" x="401" y="193" width="176" height="42" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="489" y="221" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">commit set</text>
-<rect x="420" y="256" width="138" height="46" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="489" y="286" text-anchor="middle" font-size="20" fill="#1c1917">[C] lint gate</text>
-<text x="742" y="79" text-anchor="middle" font-size="20" fill="#57534e" font-weight="700">obligation</text>
-<text x="928" y="79" text-anchor="middle" font-size="20" fill="#57534e" font-weight="700">control</text>
-<rect x="668" y="92" width="168" height="54" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<rect x="861" y="92" width="132" height="54" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="752" y="125" text-anchor="middle" font-size="20" fill="#1c1917">scope-bounded</text>
-<text x="927" y="115" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">[A]</text>
-<text x="927" y="139" text-anchor="middle" font-size="20" fill="#1c1917">squash rule</text>
-<path d="M836 119 L859 119" fill="none" stroke="#2f5169" stroke-width="2"/>
-<rect x="668" y="161" width="168" height="54" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<rect x="861" y="161" width="132" height="54" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="752" y="194" text-anchor="middle" font-size="20" fill="#1c1917">brief-followed</text>
-<text x="927" y="184" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">[B]</text>
-<text x="927" y="208" text-anchor="middle" font-size="20" fill="#1c1917">brief guard</text>
-<path d="M836 188 L859 188" fill="none" stroke="#2f5169" stroke-width="2"/>
-<rect x="668" y="230" width="168" height="54" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="2" stroke-dasharray="7 5"/>
-<rect x="861" y="230" width="132" height="54" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="2" stroke-dasharray="7 5"/>
-<text x="752" y="263" text-anchor="middle" font-size="20" fill="#b23b3b">cost-ceiling</text>
-<text x="927" y="253" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">[C]</text>
-<text x="927" y="277" text-anchor="middle" font-size="20" fill="#1c1917">lint gate</text>
-<text x="752" y="309" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">COVERAGE GAP</text>
-<text x="927" y="309" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">ORPHAN</text>
-<text x="500" y="344" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">One system of controls, three questions</text>
-<text x="500" y="369" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">Same control identities, different relations.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="288" viewBox="0 0 444 216" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<title id="title">Three views of the control machinery</title>
+<desc id="desc">Control machinery supplies the catalogue, interaction graph, and coverage view. Independently identified obligations also feed coverage. The squash rule and diff-size guard share the commit set. Atomic delivery traces to the squash rule, bounded change scope to the diff-size guard. A cost ceiling lacks coverage, and a legacy export check lacks a recorded justification.</desc>
+<defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0 0 L5 2.5 L0 5 Z" fill="#1c1917"/></marker></defs>
+<g fill="#1c1917" font-family="Source Sans 3, sans-serif">
+<rect x="101" y="3" width="166" height="33" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="184" y="16" font-size="11" text-anchor="middle" font-weight="700">Control machinery</text>
+<text x="184" y="29" font-size="9" text-anchor="middle" font-style="italic">Controls · Resources</text>
+<rect x="341" y="3" width="96" height="33" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="389" y="16" font-size="10" text-anchor="middle" font-weight="700">Engineering</text>
+<text x="389" y="28" font-size="10" text-anchor="middle" font-weight="700">obligations</text>
+<path d="M184,36 L184,49" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M59,49 L337,49" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M59,49 L59,63" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M198,49 L198,63" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M337,49 L337,63" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M389,36 L389,49" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M389,49 L373,49" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M373,49 L373,63" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="1" y="64" width="116" height="150" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="1.8" y="95" width="114.4" height="118.2" rx="0" fill="white" stroke="white" stroke-width="0"/>
+<rect x="1" y="64" width="116" height="150" rx="4" fill="none" stroke="#1c1917" stroke-width=".7"/>
+<text x="59.0" y="77" font-size="10" text-anchor="middle" font-weight="700">Catalogue</text>
+<text x="59.0" y="89" font-size="9" text-anchor="middle" font-style="italic">What exists?</text>
+<rect x="121" y="64" width="155" height="150" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="121.8" y="95" width="153.4" height="118.2" rx="0" fill="white" stroke="white" stroke-width="0"/>
+<rect x="121" y="64" width="155" height="150" rx="4" fill="none" stroke="#1c1917" stroke-width=".7"/>
+<text x="198.5" y="77" font-size="10" text-anchor="middle" font-weight="700">Interaction graph</text>
+<text x="198.5" y="89" font-size="9" text-anchor="middle" font-style="italic">What collides?</text>
+<rect x="280" y="64" width="163" height="150" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="280.8" y="95" width="161.4" height="118.2" rx="0" fill="white" stroke="white" stroke-width="0"/>
+<rect x="280" y="64" width="163" height="150" rx="4" fill="none" stroke="#1c1917" stroke-width=".7"/>
+<text x="361.5" y="77" font-size="10" text-anchor="middle" font-weight="700">Coverage</text>
+<text x="361.5" y="89" font-size="9" text-anchor="middle" font-style="italic">What is governed?</text>
+<rect x="5" y="105" width="108" height="21" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="59.0" y="118.5" font-size="9" text-anchor="middle">[A] Squash rule</text>
+<rect x="5" y="141" width="108" height="21" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="59.0" y="154.5" font-size="9" text-anchor="middle">[B] Diff-size guard</text>
+<rect x="5" y="177" width="108" height="21" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="59.0" y="190.5" font-size="9" text-anchor="middle">[C] Legacy export check</text>
+<rect x="126" y="100" width="83" height="28" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="167.5" y="111" font-size="9" text-anchor="middle">[A] Squash rule</text>
+<text x="167.5" y="123" font-size="9" text-anchor="middle" font-style="italic">One atomic commit</text>
+<rect x="135" y="145" width="68" height="20" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="169.0" y="158.0" font-size="9" text-anchor="middle">Commit set</text>
+<rect x="126" y="182" width="83" height="28" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="167.5" y="193" font-size="9" text-anchor="middle">[B] Diff-size guard</text>
+<text x="167.5" y="205" font-size="9" text-anchor="middle" font-style="italic">Maximum diff size</text>
+<path d="M169,128 L169,144" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M169,182 L169,166" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M211,130 Q214,130 214,133 V151 Q214,155 217,155 Q214,155 214,159 V177 Q214,180 211,180" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<text x="246" y="145" font-size="9" text-anchor="middle" font-style="italic">Potentially</text>
+<text x="246" y="156" font-size="9" text-anchor="middle" font-style="italic">incompatible</text>
+<text x="246" y="167" font-size="9" text-anchor="middle" font-style="italic">obligations</text>
+<rect x="283" y="103" width="96" height="22" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="331" y="117.0" font-size="9" text-anchor="middle">Atomic delivery</text>
+<path d="M379,114 L397,114" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="398" y="103" width="39" height="22" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="417.5" y="117" font-size="9" text-anchor="middle" font-weight="700">[A]</text>
+<rect x="283" y="140" width="96" height="22" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="331" y="154.0" font-size="9" text-anchor="middle">Bounded change scope</text>
+<path d="M379,151 L397,151" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="398" y="140" width="39" height="22" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="417.5" y="154" font-size="9" text-anchor="middle" font-weight="700">[B]</text>
+<rect x="283" y="178" width="96" height="21" rx="4" fill="white" stroke="#1c1917" stroke-dasharray="3 2" stroke-width="0.7"/>
+<text x="331" y="192" font-size="9" text-anchor="middle">Cost ceiling</text>
+<rect x="398" y="178" width="39" height="21" rx="4" fill="white" stroke="#1c1917" stroke-dasharray="3 2" stroke-width="0.7"/>
+<text x="417.5" y="192" font-size="9" text-anchor="middle" font-weight="700">[C]</text>
+<text x="328" y="210" font-size="9" text-anchor="middle" font-weight="700">Coverage gap</text>
+<text x="403" y="210" font-size="9" text-anchor="middle" font-weight="700">Candidate orphan</text>
+</g>
 </svg>

@@ -2143,29 +2143,42 @@
     {
       "source": "book/assets/census-trio.svg",
       "candidate": "book/tikz/figures/census-trio.tex",
+      "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+      "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 221.975,
+        "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 24,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": {
-        "icons_and_symbols": "Stable A/B/C identifiers preserved across all views.",
-        "links_and_groups": "Dashed bidirectional conflict edge routed above controls to expose dashes; gap/orphan dashed boxes retained.",
-        "annotation_placement": "Conflict label outside nodes; three panel headings and coverage-gap label separate.",
-        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+        "links_and_groups": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge.",
+        "annotation_placement": "The brace labels potential incompatibility. Diagnostic labels sit below independent dashed boxes.",
+        "line_breaks": "The obligations input and brace annotation wrap inside their allotted widths.",
+        "icons_and_symbols": "A, B and C identify controls across panels."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          11
         ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 424.72698974609375,
-      "height_bp": 204.90899658203125,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
       "monochrome": true,
-      "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-      "candidate_sha256": "6550ecf21f4f9852bf727b2511039343f010cdbab437e6085e227a6c059b657f",
-      "review": "Routed dashed bidirectional conflict edge above controls so the dash pattern is visible instead of collapsing into two touching arrowheads.",
-      "decision": "refined"
+      "review": "Rendered SVG and native TikZ at book width. The three panels align, both inputs to coverage are distinct, and the shared-resource brace identifies potential incompatibility."
     },
     {
       "source": "book/assets/engineer-agent-interaction.svg",

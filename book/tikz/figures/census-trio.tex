@@ -1,31 +1,68 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
-\node[head,text width=3cm] (h0) at (0,0) {Catalogue};
-\node[head,text width=4cm] (h1) at (4.8,0) {Interaction graph};
-\node[head,text width=4.6cm] (h2) at (10,0) {Coverage};
-\node[box,text width=2.9cm,fill=white] (cat0) at (0,-1.3) {\textbf{[A]} squash rule};
-\node[box,text width=2.9cm,fill=white] (cat1) at (0,-2.7) {\textbf{[B]} brief guard};
-\node[box,text width=2.9cm,fill=white] (cat2) at (0,-4.1) {\textbf{[C]} lint gate};
-\node[box,text width=1.8cm,fill=white] (a) at (3.5,-2) {\textbf{[A]}\\squash rule};
-\node[box,text width=1.8cm,fill=white] (b) at (6,-2) {\textbf{[B]}\\brief guard};
-\node[box,text width=2.7cm] (r) at (4.75,-3.6) {Commit set};
-\draw[edge,] (a.south) -- (3.500,-2.800) -- (4.750,-2.800) -- (r.north);
-\draw[edge,] (b.south) -- (6.000,-2.800) -- (4.750,-2.800) -- (r.north);
-\draw[<->,dashed] (a.north)--(3.5,-1.05)--(6,-1.05)--(b.north);\node[note] at (4.75,-.7) {conflict};
-\node[box,text width=2.7cm,fill=white] (cc) at (4.75,-5.2) {\textbf{[C]} lint gate};
-\node[box,text width=2.2cm] (ob0) at (9,-1.3) {Scope-bounded};
-\node[box,text width=1.8cm,fill=white] (co0) at (12,-1.3) {\textbf{[A]}};
-\node[box,text width=2.2cm] (ob1) at (9,-2.8) {Brief-followed};
-\node[box,text width=1.8cm,fill=white] (co1) at (12,-2.8) {\textbf{[B]}};
-\node[box,dashed,text width=2.2cm,fill=white] (ob2) at (9,-4.3) {Cost-ceiling};
-\node[box,dashed,text width=1.8cm,fill=white] (co2) at (12,-4.3) {\textbf{[C]} \textbf{ORPHAN}};
-\draw[edge] (ob0)--(co0);
-\draw[edge] (ob1)--(co1);
-\node[note,text width=2.5cm] (gap) at (9,-5.5) {\textbf{COVERAGE GAP}};
-\node[note,text width=12cm] (nt) at (5.5,-6.4) {Stable identities join three views; each answers a different engineering question.};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,216);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (101,3) rectangle (267,36);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (184,13) {Control machinery};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (184,26) {Controls · Resources};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (341,3) rectangle (437,36);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (389,13) {Engineering};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (389,25) {obligations};
+\draw[line width=0.7bp,draw=black!85] (184,36) -- (184,49);
+\draw[line width=0.7bp,draw=black!85] (59,49) -- (337,49);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (59,49) -- (59,63);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (198,49) -- (198,63);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (337,49) -- (337,63);
+\draw[line width=0.7bp,draw=black!85] (389,36) -- (389,49);
+\draw[line width=0.7bp,draw=black!85] (389,49) -- (373,49);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (373,49) -- (373,63);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (1,64) rectangle (117,214);
+\draw[fill=white,draw=black!85,line width=0bp,rounded corners=0bp] (1.8,95) rectangle (116.2,213.2);
+\draw[draw=black!85,line width=.7bp,rounded corners=4bp] (1,64) rectangle (117,214);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (59.0,74) {Catalogue};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (59.0,86) {What exists?};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (121,64) rectangle (276,214);
+\draw[fill=white,draw=black!85,line width=0bp,rounded corners=0bp] (121.8,95) rectangle (275.2,213.2);
+\draw[draw=black!85,line width=.7bp,rounded corners=4bp] (121,64) rectangle (276,214);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (198.5,74) {Interaction graph};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (198.5,86) {What collides?};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (280,64) rectangle (443,214);
+\draw[fill=white,draw=black!85,line width=0bp,rounded corners=0bp] (280.8,95) rectangle (442.20000000000005,213.2);
+\draw[draw=black!85,line width=.7bp,rounded corners=4bp] (280,64) rectangle (443,214);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (361.5,74) {Coverage};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (361.5,86) {What is governed?};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (5,105) rectangle (113,126);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (59.0,115.5) {[A] Squash rule};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (5,141) rectangle (113,162);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (59.0,151.5) {[B] Diff-size guard};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (5,177) rectangle (113,198);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (59.0,187.5) {[C] Legacy export check};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (126,100) rectangle (209,128);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (167.5,108) {[A] Squash rule};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (167.5,120) {One atomic commit};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (135,145) rectangle (203,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (169.0,155.0) {Commit set};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (126,182) rectangle (209,210);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (167.5,190) {[B] Diff-size guard};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (167.5,202) {Maximum diff size};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (169,128) -- (169,144);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (169,182) -- (169,166);
+\draw[line width=.65bp] (211,130) .. controls (214,130) and (214,131) .. (214,133) -- (214,151) .. controls (214,154) and (215,155) .. (217,155) .. controls (215,155) and (214,156) .. (214,159) -- (214,177) .. controls (214,179) and (214,180) .. (211,180);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (246,142) {Potentially};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (246,153) {incompatible};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (246,164) {obligations};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (285,103) rectangle (376,125);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (330.5,114.0) {Atomic delivery};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (376,114) -- (397,114);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (398,103) rectangle (437,125);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (417.5,114) {[A]};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (285,140) rectangle (376,162);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (330.5,151.0) {Bounded change scope};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (376,151) -- (397,151);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (398,140) rectangle (437,162);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (417.5,151) {[B]};
+\draw[fill=white,dashed,draw=black!85,line width=0.7bp,rounded corners=4bp] (285,178) rectangle (376,199);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (330.5,189) {Cost ceiling};
+\draw[fill=white,dashed,draw=black!85,line width=0.7bp,rounded corners=4bp] (398,178) rectangle (437,199);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (417.5,189) {[C]};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (328,207) {Coverage gap};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (403,207) {Candidate orphan};
 \end{tikzpicture}

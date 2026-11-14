@@ -1708,12 +1708,24 @@
   {
     "source": "book/assets/census-trio.svg",
     "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/census-trio.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional.",
-    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-    "candidate_sha256": "6aa92b875f77403a41c7847883e757ba5c997d27a77dc054ed78096a0d6b7b4f"
+    "rationale": "Gray headers identify the three views. Dashed outlines mark the unmatched cost ceiling and legacy export check."
   },
   {
     "source": "book/assets/engineer-agent-interaction.svg",

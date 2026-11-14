@@ -20355,3 +20355,14 @@ The governance model therefore requires recurring failure to run before stranded
 \label{turn-end-ordering}
 \end{figure}
 ```
+
+
+## Three views of the control machinery
+
+Chapter 3, §3.5, lines 109–119 of `book/latex/sources/part3/3.5-when-guardrails-collide.tex` at `b971e472d`. The revised passage makes the independent obligations input to coverage explicit. Superseded opening, introduction and caption follow.
+
+Interactions are only half of governing the control machinery. A catalogue tells you what controls exist; an interaction graph tells you where controls may collide. Neither tells you what \emph{should} be governed but is not. For that, join the mechanisms to the obligations or failure classes that justify them.
+
+The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. Ask whether consequential obligations have appropriate coverage and whether every surviving control can still explain why it exists. \autoref{census-trio} sets the three views side by side over the same control machinery.
+
+\caption{\emph{Three views of the control machinery.} The catalogue identifies controls; the interaction view relates controls through shared resources; the coverage view relates controls to the obligations that justify them. Stable identities connect the three views while letting each answer a different engineering question. A missing mechanism appears as a coverage gap; an untraced mechanism appears as a candidate orphan.}

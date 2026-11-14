@@ -1,241 +1,439 @@
 {
   "source": "book/assets/census-trio.svg",
-  "claim": "*Three views of the control machinery.* The catalogue identifies controls; the interaction view relates controls through shared resources; the coverage view relates controls to the obligations that justify them. Stable identities connect the three views while letting each answer a different engineering question. A missing mechanism appears as a coverage gap; an untraced mechanism appears as a candidate orphan.",
-  "topology": "Three panels retain common A/B/C identities; interaction A/B collide, C isolated; coverage gap and orphan are unlinked.",
+  "claim": "Three views of the control machinery. A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).",
+  "topology": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge.",
   "required_terms": [
+    "Control machinery",
+    "Controls · Resources",
+    "Engineering",
+    "obligations",
     "Catalogue",
+    "What exists?",
     "Interaction graph",
+    "What collides?",
     "Coverage",
-    "[A] squash rule",
-    "[B] brief guard",
-    "[C] lint gate",
-    "[A]\\ rule",
-    "[B]\\ guard",
+    "What is governed?",
+    "[A] Squash rule",
+    "[B] Diff-size guard",
+    "[C] Legacy export check",
+    "[A] Squash rule",
+    "One atomic commit",
     "Commit set",
-    "[C] lint gate",
-    "Scope-bounded",
-    "[A]",
-    "Brief-followed",
-    "[B]",
-    "Cost-ceiling",
-    "[C] orphan",
+    "[B] Diff-size guard",
+    "Maximum diff size",
+    "Potentially incompatible obligations",
+    "Atomic delivery",
+    "Bounded change scope",
+    "Cost ceiling",
     "Coverage gap",
-    "Stable identities join three views; each answers a different engineering question."
+    "Candidate orphan"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Stable control identities share shading across all views; dashed missing coverage and orphan controls remain visibly exceptional. Fidelity pass: Routed dashed bidirectional conflict edge above controls so the dash pattern is visible instead of collapsing into two touching arrowheads.",
+  "bw_encoding": "Gray headers identify the three views. Dashed outlines mark the unmatched cost ceiling and legacy export check.",
+  "redesign": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
   "questions": [],
-  "alt": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs.",
+  "alt": "Control machinery supplies the catalogue, interaction graph, and coverage view. Independently identified obligations also feed coverage. The squash rule and diff-size guard share the commit set. Atomic delivery traces to the squash rule, bounded change scope to the diff-size guard. A cost ceiling lacks coverage, and a legacy export check lacks a recorded justification.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 424.72698974609375,
-    "height_pt": 204.90899658203125,
-    "monochrome": true,
-    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+    "page": 1,
+    "width_bp": 449.972,
+    "height_bp": 221.975,
+    "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+    "minimum_prose_font_pt": 9,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 24,
+    "unapproved_compile_diagnostics": 0
   },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-    "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes [A]; [B]; [C]; ORPHAN; COVERAGE GAP. Shared identity tokens regain bold across views; coverage-gap and orphan statuses stand out from ordinary mechanism names.",
-    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "A/B/C stable identities, dashed conflict, gap and orphan survive across three views.",
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 54,
-      "width_bp": 424.727,
-      "height_bp": 204.566,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 6
-    },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
-  },
-  "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "refined",
-    "source_sha256": "6b8271a947953c12f305391099c63e7c9aaedee7ee36ceb56fca7804b7c8d8ee",
-    "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-    "reason": "Shared identity tokens regain bold across views; coverage-gap and orphan statuses stand out from ordinary mechanism names.",
-    "evidence": [
-      {
-        "source_text": "[A]",
-        "source_style": "weight 800; normal; source size 25.6",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "[A]",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/census-trio.svg",
-          "element_text_path": "/svg/g[2]/text[1]/tspan[1]/text()",
-          "text_element_context": "[A] squash rule",
-          "matching_fragment_count": 3
-        }
-      },
-      {
-        "source_text": "[B]",
-        "source_style": "weight 800; normal; source size 25.6",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "[B]",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/census-trio.svg",
-          "element_text_path": "/svg/g[2]/text[2]/tspan[1]/text()",
-          "text_element_context": "[B] brief guard",
-          "matching_fragment_count": 3
-        }
-      },
-      {
-        "source_text": "[C]",
-        "source_style": "weight 800; normal; source size 25.6",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "[C]",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/census-trio.svg",
-          "element_text_path": "/svg/g[2]/text[3]/tspan[1]/text()",
-          "text_element_context": "[C] lint gate",
-          "matching_fragment_count": 3
-        }
-      },
-      {
-        "source_text": "ORPHAN",
-        "source_style": "weight 700; normal; source size 25.6",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "ORPHAN",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/census-trio.svg",
-          "element_text_path": "/svg/g[12]/text[2]/text()",
-          "text_element_context": "ORPHAN",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "COVERAGE GAP",
-        "source_style": "weight 700; normal; source size 25.6",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "COVERAGE GAP",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/census-trio.svg",
-          "element_text_path": "/svg/g[12]/text[1]/text()",
-          "text_element_context": "COVERAGE GAP",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
-    "checks": [
-      {
-        "text": "[A]",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "[B]",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "[C]",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "ORPHAN",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "COVERAGE GAP",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "squash rule",
-        "bold": false,
-        "italic": false
-      }
-    ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 54,
-      "width_bp": 424.727,
-      "height_bp": 204.566,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 6,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
+  "reference_image_sha256": "e4218c1a83acbb96ff63733c5819a212c70a6dd1c0cfa784b9b20efb959a3d97",
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Catalogue, interaction, and coverage are three distinct views. Coverage-gap/orphan markings intentionally differ from populated entries; their roles should not be flattened to a single record form.",
-    "candidate_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
+    "contracts": {
+      "peer_groups": [],
+      "terminal_exceptions": []
+    },
+    "visual_review": "Rendered SVG and native TikZ at book width. The three panels align, both inputs to coverage are distinct, and the shared-resource brace identifies potential incompatibility.",
     "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing census trio layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-      "after_sha256": "22ec6979d000ccd7c509784ac05f722c099bb4d093c607ca2ad6176e34f86dc7",
-      "before_dimensions_bp": [
-        424.72698974609375,
-        204.5659942626953
-      ],
       "after_dimensions_bp": [
-        424.72698974609375,
-        204.5659942626953
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
+        449.972,
+        221.975
       ],
       "after_font_sizes_pt": [
-        9.0,
-        10.0
+        9,
+        10,
+        11
       ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 54,
-      "width_bp": 424.727,
-      "height_bp": 204.566
+      "reviewed_visually": true,
+      "decision": "recomposed",
+      "reason": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge."
     }
+  },
+  "typography_review": {
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
+    "checks": [
+      {
+        "text": "Control machinery",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Controls · Resources",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Engineering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "obligations",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Catalogue",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "What exists?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Interaction graph",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "What collides?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Coverage",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "What is governed?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "[A] Squash rule",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "[B] Diff-size guard",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "[C] Legacy export check",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "[A] Squash rule",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "One atomic commit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Commit set",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "[B] Diff-size guard",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Maximum diff size",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Potentially incompatible obligations",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Atomic delivery",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Bounded change scope",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Cost ceiling",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Coverage gap",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Candidate orphan",
+        "bold": true,
+        "italic": false
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "Control machinery",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Controls · Resources",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Engineering",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "obligations",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Catalogue",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "What exists?",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Interaction graph",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "What collides?",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Coverage",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "What is governed?",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "[A] Squash rule",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "[B] Diff-size guard",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "[C] Legacy export check",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "[A] Squash rule",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "One atomic commit",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Commit set",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "[B] Diff-size guard",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Maximum diff size",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Potentially incompatible obligations",
+        "candidate_style": "italic",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Atomic delivery",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Bounded change scope",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Cost ceiling",
+        "candidate_style": "regular",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Coverage gap",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      },
+      {
+        "candidate_text": "Candidate orphan",
+        "candidate_style": "bold",
+        "semantic_role": "view label, control, obligation, resource, or diagnostic"
+      }
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/census-trio.json",
+    "status": "reviewed",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "Gray headers identify the three views. Dashed outlines mark the unmatched cost ceiling and legacy export check.",
+    "bold": "Inputs, view names, coverage IDs and diagnostic labels are bold.",
+    "routing": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge.",
+    "shape": "Rounded input, view, and item boxes.",
+    "visual_review": "Rendered SVG and native TikZ at book width. The three panels align, both inputs to coverage are distinct, and the shared-resource brace identifies potential incompatibility.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
+    "checks": {
+      "links_and_groups": "Control machinery feeds all three views. Engineering obligations feed only coverage. In the interaction graph the squash rule and diff-size guard point to the same commit set. Coverage connects atomic delivery to A and bounded change scope to B. Neither unmatched example has an edge.",
+      "annotation_placement": "The brace labels potential incompatibility. Diagnostic labels sit below independent dashed boxes.",
+      "line_breaks": "The obligations input and brace annotation wrap inside their allotted widths.",
+      "icons_and_symbols": "A, B and C identify controls across panels."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9,
+        10,
+        11
+      ],
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.972,
+    "height_bp": 221.975,
+    "monochrome": true,
+    "review": "Rendered SVG and native TikZ at book width. The three panels align, both inputs to coverage are distinct, and the shared-resource brace identifies potential incompatibility."
+  },
+  "grayscale_review": {
+    "source": "book/assets/census-trio.svg",
+    "candidate": "book/tikz/figures/census-trio.tex",
+    "source_sha256": "521379edf101d4bb368526a58582accce42c69b743449bf9facc32f0bed9ac2e",
+    "candidate_sha256": "6ffbda924706c73261c2e9d1f5df8c94df4f927dd866a635e0f667e9f4537b4b",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Compare the machinery with independently identified obligations to find missing coverage and controls needing justification. Shared access to a resource identifies potential interactions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 221.975,
+      "proof_sha256": "47cca6abfa5072645858a6526fc6f30ce37950d9300bc582de7a17ec34c78960",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 24,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/census-trio.json",
+    "reviewed": true,
+    "rationale": "Gray headers identify the three views. Dashed outlines mark the unmatched cost ceiling and legacy export check."
   }
 }
