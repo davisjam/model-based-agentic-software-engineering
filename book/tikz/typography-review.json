@@ -20736,8 +20736,8 @@
     {
       "source": "book/assets/where-effort-moves.svg",
       "candidate": "book/tikz/figures/where-effort-moves.tex",
-      "source_sha256": "907cf18282eb8e76062d4b8c6e93557b978001550aef2aab349370c178ec6eea",
-      "candidate_sha256": "0a2e2d31b3c1a90c4b4b577ef6edd14b6532a7deafa7db0b009f9479f52c2afe",
+      "source_sha256": "7413d8e772b4751781d869d333835b6ccdd3fc09a8b578043b5af055f08b3386",
+      "candidate_sha256": "7b7876093e17ede526c9a997ad64f28cce0cb65894bc4616c2b24ce69ca2b72f",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Show where human engineering effort moves and distinguish delegation from governance conversion.",
@@ -20745,10 +20745,10 @@
         "page": 1,
         "width_bp": 449.972,
         "height_bp": 270.975,
-        "proof_sha256": "966576645de12a55d576eaf46c94a2bd5ebeb0011f7e0fcddb5bbd6d131cde61",
+        "proof_sha256": "e7bd26ad025649a33cacee77522147c9f5fbc3309256027a82b4e03cdfded2b1",
         "minimum_prose_font_pt": 9,
         "geometry_findings": 0,
-        "semantic_typography_checks": 37,
+        "semantic_typography_checks": 41,
         "unapproved_compile_diagnostics": 0
       },
       "checks": [
@@ -20808,22 +20808,42 @@
           "italic": false
         },
         {
-          "text": "Intent",
+          "text": "Intent and abstractions",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Abstractions",
+          "text": "Modeling:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "consequential",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Tradeoffs",
+          "text": "knowledge and obligations",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Acceptance",
+          "text": "Alignment:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "evidence,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "constraints, and controls",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Tradeoffs and acceptance",
           "bold": false,
           "italic": false
         },
@@ -20995,22 +21015,42 @@
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Intent",
+          "candidate_text": "Intent and abstractions",
           "candidate_style": "regular",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Abstractions",
+          "candidate_text": "Modeling:",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "consequential",
           "candidate_style": "regular",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Tradeoffs",
+          "candidate_text": "knowledge and obligations",
           "candidate_style": "regular",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Acceptance",
+          "candidate_text": "Alignment:",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "evidence,",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "constraints, and controls",
+          "candidate_style": "regular",
+          "semantic_role": "panel heading, annotation or legend"
+        },
+        {
+          "candidate_text": "Tradeoffs and acceptance",
           "candidate_style": "regular",
           "semantic_role": "panel heading, annotation or legend"
         },

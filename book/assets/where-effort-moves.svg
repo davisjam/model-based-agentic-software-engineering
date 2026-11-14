@@ -10,52 +10,68 @@
 <text x="348" y="31.0" font-size="11" text-anchor="middle" font-style="italic">More implementation is delegated, and</text>
 <text x="348" y="43.5" font-size="11" text-anchor="middle" font-style="italic">more judgment is preserved in structure.</text>
 <path d="M1,57 L154,57" fill="none" stroke="#1c1917" stroke-width="0.7"/>
-<path d="M247,57 L443,57" fill="none" stroke="#1c1917" stroke-width="0.7"/>
-<path d="M1,162 L154,162" fill="none" stroke="#1c1917" stroke-width="0.7"/>
-<path d="M247,162 L443,162" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M234,57 L443,57" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M1,167 L154,167" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M234,167 L443,167" fill="none" stroke="#1c1917" stroke-width="0.7"/>
 <text x="2" y="77.0" font-size="13" text-anchor="start" font-weight="700">Human engineering work</text>
-<text x="10" y="95.0" font-size="10.5" text-anchor="start">Requirements and intent</text>
-<text x="10" y="108.0" font-size="10.5" text-anchor="start">Design and abstractions</text>
-<text x="10" y="121.0" font-size="10.5" text-anchor="start">Implementation</text>
-<text x="10" y="134.0" font-size="10.5" text-anchor="start">Review and acceptance</text>
-<text x="10" y="147.0" font-size="10.5" text-anchor="start">Operation and adaptation</text>
-<text x="247" y="77.0" font-size="13" text-anchor="start" font-weight="700">Human engineering judgment</text>
-<circle cx="250" cy="91" r="1"/>
-<text x="256" y="94.0" font-size="10.5" text-anchor="start">Intent</text>
-<circle cx="250" cy="104" r="1"/>
-<text x="256" y="107.0" font-size="10.5" text-anchor="start">Abstractions</text>
-<circle cx="250" cy="117" r="1"/>
-<text x="256" y="120.0" font-size="10.5" text-anchor="start">Tradeoffs</text>
-<circle cx="250" cy="130" r="1"/>
-<text x="256" y="133.0" font-size="10.5" text-anchor="start">Acceptance</text>
-<circle cx="250" cy="143" r="1"/>
-<text x="256" y="146.0" font-size="10.5" text-anchor="start">Adaptation</text>
-<rect x="342" y="83" width="100" height="71" rx="5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
-<text x="348" y="95.0" font-size="11.5" text-anchor="start" font-weight="700">Commodity</text>
-<text x="348" y="108.0" font-size="11.5" text-anchor="start" font-weight="700">intelligence</text>
-<circle cx="349" cy="117" r="1"/>
-<text x="355" y="120.0" font-size="9" text-anchor="start">Implementation</text>
-<circle cx="349" cy="127" r="1"/>
-<text x="355" y="130.0" font-size="9" text-anchor="start">Analysis</text>
-<circle cx="349" cy="137" r="1"/>
-<text x="355" y="140.0" font-size="9" text-anchor="start">Transformation</text>
-<circle cx="349" cy="147" r="1"/>
-<text x="355" y="150.0" font-size="9" text-anchor="start">Routine remediation</text>
+<circle cx="5" cy="92" r="1"/>
+<text x="11" y="95.0" font-size="10.5" text-anchor="start">Requirements and intent</text>
+<circle cx="5" cy="105" r="1"/>
+<text x="11" y="108.0" font-size="10.5" text-anchor="start">Design and abstractions</text>
+<circle cx="5" cy="118" r="1"/>
+<text x="11" y="121.0" font-size="10.5" text-anchor="start">Implementation</text>
+<circle cx="5" cy="131" r="1"/>
+<text x="11" y="134.0" font-size="10.5" text-anchor="start">Review and acceptance</text>
+<circle cx="5" cy="144" r="1"/>
+<text x="11" y="147.0" font-size="10.5" text-anchor="start">Operation and adaptation</text>
+<text x="234" y="77.0" font-size="13" text-anchor="start" font-weight="700">Human engineering judgment</text>
+<circle cx="236" cy="87" r="1"/>
+<circle cx="236" cy="100" r="1"/>
+<circle cx="236" cy="123" r="1"/>
+<circle cx="236" cy="145" r="1"/>
+<circle cx="236" cy="156" r="1"/>
+<text x="239" y="90.0" font-size="9.25" text-anchor="start">Intent and abstractions</text>
+<text x="239" y="103.0" font-size="9.25" text-anchor="start" font-weight="700">Modeling:</text>
+<text x="281" y="103.0" font-size="9.25" text-anchor="start">consequential</text>
+<text x="239" y="114.0" font-size="9.25" text-anchor="start">knowledge and obligations</text>
+<text x="239" y="126.0" font-size="9.25" text-anchor="start" font-weight="700">Alignment:</text>
+<text x="286" y="126.0" font-size="9.25" text-anchor="start">evidence,</text>
+<text x="239" y="137.0" font-size="9.25" text-anchor="start">constraints, and controls</text>
+<text x="239" y="148.0" font-size="9.25" text-anchor="start">Tradeoffs and acceptance</text>
+<text x="239" y="159.0" font-size="9.25" text-anchor="start">Adaptation</text>
+<rect x="352" y="83" width="90" height="71" rx="5" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="355" y="95.0" font-size="11.5" text-anchor="start" font-weight="700">Commodity</text>
+<text x="355" y="108.0" font-size="11.5" text-anchor="start" font-weight="700">intelligence</text>
+<circle cx="355" cy="117" r="1"/>
+<text x="361" y="120.0" font-size="9" text-anchor="start">Implementation</text>
+<circle cx="355" cy="127" r="1"/>
+<text x="361" y="130.0" font-size="9" text-anchor="start">Analysis</text>
+<circle cx="355" cy="137" r="1"/>
+<text x="361" y="140.0" font-size="9" text-anchor="start">Transformation</text>
+<circle cx="355" cy="147" r="1"/>
+<text x="361" y="150.0" font-size="9" text-anchor="start">Routine remediation</text>
+<g transform="translate(10 0)">
 <path d="M339 86 Q335 86 335 91 L335 114 Q335 118 331 118 Q335 118 335 122 L335 145 Q335 150 339 150" fill="none" stroke="#222" stroke-width=".85"/>
-<polygon points="155,86 222,86 222,77 244,120 222,162 222,153 155,153" fill="#ededed" stroke="none"/>
-<polyline points="155,86 222,86 222,77 244,120 222,162 222,153 155,153" fill="none" stroke="#222" stroke-width=".8"/>
-<text x="162" y="100.0" font-size="12" text-anchor="start" font-weight="700">Delegation</text>
-<text x="162" y="113.0" font-size="9" text-anchor="start" font-style="italic">Shifts more</text>
-<text x="162" y="123.5" font-size="9" text-anchor="start" font-style="italic">implementation</text>
-<text x="162" y="134.0" font-size="9" text-anchor="start" font-style="italic">and routine work</text>
-<text x="162" y="144.5" font-size="9" text-anchor="start" font-style="italic">to agents.</text>
+</g>
+<polygon points="155,86 217,86 217,77 231,122 217,167 217,158 155,158" fill="#ededed" stroke="none"/>
+<polyline points="155,86 217,86 217,77 231,122 217,167 217,158 155,158" fill="none" stroke="#222" stroke-width=".8"/>
+<text x="161" y="103.0" font-size="11.5" text-anchor="start" font-weight="700">Delegation</text>
+<text x="161" y="117.0" font-size="9" text-anchor="start" font-style="italic">Shifts more</text>
+<text x="161" y="127.5" font-size="9" text-anchor="start" font-style="italic">implementation</text>
+<text x="161" y="138.0" font-size="9" text-anchor="start" font-style="italic">and routine work</text>
+<text x="161" y="148.5" font-size="9" text-anchor="start" font-style="italic">to agents.</text>
 <text x="2" y="182.0" font-size="11.2" text-anchor="start" font-weight="700">Engineering tools and processes</text>
-<text x="10" y="198.0" font-size="10" text-anchor="start">CI/CD and build automation</text>
-<text x="10" y="211.0" font-size="10" text-anchor="start">Tests and test infrastructure</text>
-<text x="10" y="224.0" font-size="10" text-anchor="start">Static analysis and quality checks</text>
-<text x="10" y="237.0" font-size="10" text-anchor="start">Repositories and code review</text>
-<text x="10" y="250.0" font-size="10" text-anchor="start">Coding standards and policies</text>
-<text x="247" y="182.0" font-size="12.2" text-anchor="start" font-weight="700">Governed engineering environment</text>
+<circle cx="5" cy="195" r="1"/>
+<text x="11" y="198.0" font-size="10" text-anchor="start">CI/CD and build automation</text>
+<circle cx="5" cy="208" r="1"/>
+<text x="11" y="211.0" font-size="10" text-anchor="start">Tests and test infrastructure</text>
+<circle cx="5" cy="221" r="1"/>
+<text x="11" y="224.0" font-size="10" text-anchor="start">Static analysis and quality checks</text>
+<circle cx="5" cy="234" r="1"/>
+<text x="11" y="237.0" font-size="10" text-anchor="start">Repositories and code review</text>
+<circle cx="5" cy="247" r="1"/>
+<text x="11" y="250.0" font-size="10" text-anchor="start">Coding standards and policies</text>
+<text x="234" y="182.0" font-size="12.2" text-anchor="start" font-weight="700">Governed engineering environment</text>
 <circle cx="251" cy="195" r="1"/>
 <text x="257" y="198.0" font-size="10.5" text-anchor="start">Models and context</text>
 <circle cx="251" cy="208" r="1"/>
@@ -66,13 +82,13 @@
 <text x="257" y="237.0" font-size="10.5" text-anchor="start">Admission</text>
 <circle cx="251" cy="247" r="1"/>
 <text x="257" y="250.0" font-size="10.5" text-anchor="start">Operational controls</text>
-<polygon points="161,185 224,185 224,176 244,221 224,266 224,257 161,257" fill="#ededed" stroke="none"/>
-<polyline points="161,185 224,185 224,176 244,221 224,266 224,257 161,257" fill="none" stroke="#222" stroke-width=".8"/>
-<text x="166" y="197.0" font-size="11.5" text-anchor="start" font-weight="700">Governance</text>
-<text x="166" y="210.0" font-size="11.5" text-anchor="start" font-weight="700">conversion</text>
-<text x="166" y="220.0" font-size="9" text-anchor="start" font-style="italic">Turns recurring</text>
-<text x="166" y="230.5" font-size="9" text-anchor="start" font-style="italic">judgment into</text>
-<text x="166" y="241.0" font-size="9" text-anchor="start" font-style="italic">durable, reusable</text>
-<text x="166" y="251.5" font-size="9" text-anchor="start" font-style="italic">structure.</text>
+<polygon points="155,185 217,185 217,176 231,221 217,266 217,257 155,257" fill="#ededed" stroke="none"/>
+<polyline points="155,185 217,185 217,176 231,221 217,266 217,257 155,257" fill="none" stroke="#222" stroke-width=".8"/>
+<text x="161" y="197.0" font-size="11.5" text-anchor="start" font-weight="700">Governance</text>
+<text x="161" y="210.0" font-size="11.5" text-anchor="start" font-weight="700">conversion</text>
+<text x="161" y="220.0" font-size="9" text-anchor="start" font-style="italic">Turns recurring</text>
+<text x="161" y="230.5" font-size="9" text-anchor="start" font-style="italic">judgment into</text>
+<text x="161" y="241.0" font-size="9" text-anchor="start" font-style="italic">durable, reusable</text>
+<text x="161" y="251.5" font-size="9" text-anchor="start" font-style="italic">structure.</text>
 </g>
 </svg>
