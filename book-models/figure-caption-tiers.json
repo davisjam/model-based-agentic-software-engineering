@@ -1159,12 +1159,6 @@
       "location": "part3",
       "rationale": "Alignment companion to the part-2 realization-space Venn: the acceptable region (obligations) against the permitted region (controls), naming the two mismatches — underconstraint and overconstraint — and the preserved freedom in their overlap"
     },
-    "assets/turn-end-ordering.svg": {
-      "tier": "B",
-      "kind": "conceptual-illustration",
-      "location": "part3",
-      "rationale": "Two turn-end hooks require an explicit order: recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed by reflection."
-    },
     "inside-docables-software-factory::Agent and service remediation comparison": {
       "tier": "B",
       "kind": "data",
@@ -1442,6 +1436,12 @@
       "kind": "navigation",
       "location": "part3",
       "rationale": "Part-III opener nav arc — five chapters as five questions on one descending arc"
+    },
+    "assets/turn-end-ordering.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "Two turn-end hooks require an explicit order: recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed by reflection."
     }
   }
 }

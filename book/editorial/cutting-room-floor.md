@@ -20340,3 +20340,18 @@ Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, Figure 1.4 cap
 Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, caption for `model-sync-two-layer-net` at `320c3b18a`. Author-requested caption replacement; drawing and surrounding prose retained.
 
 > Coverage of model correspondence. The modeled surface contains claims that can be checked mechanically and claims that require semantic judgment. Properties outside it have no model-based coverage. Engineering experience can move this boundary in either direction as newly important properties are represented or unnecessary distinctions are removed.
+
+## 2026-11-13 — Ordering interacting hooks
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, §3.5, lines 94–101 at `4c30297c2`. The single-edge illustration repeated the hook order given in the incident.
+
+The governance model therefore requires recurring failure to run before stranded work. \autoref{turn-end-ordering} shows the resulting order.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/turn-end-ordering-8b921a2d5a.pdf}
+\caption{\emph{Ordering interacting hooks.} Recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed to identify failures. The governance model records the ordering constraint and detects cycles.}
+\label{turn-end-ordering}
+\end{figure}
+```

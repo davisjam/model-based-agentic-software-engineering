@@ -91,14 +91,7 @@ An audit mechanism recognized the danger of automatically resolving conflicts in
 \label{judgment-without-consequence}
 \end{figure}
 
-A different problem arose between two hooks that run when an agent finishes a turn. In Claude Code (as of 2026), lifecycle hooks run configured checks at defined events and can prompt an agent to continue working when it tries to stop~\citep{anthropic2026claudecodehooks}. The first, \emph{recurring failure}, prompts Claude to reflect on notable failures or repeated issues in its recent history that might warrant conversion into durable governance mechanisms (\{\{sec:governance-conversion\}\}), either through human review or autonomous follow-up. The other, \emph{stranded work}, prompts the orchestrator to compare the subagent's completed and landed work against its original brief to identify work that may have been lost. Both consume context, and the stranded-work inspection may exhaust the remaining context window before recurring-failure reflection can complete its analysis. Each hook is useful independently, but their order matters. The governance model therefore requires recurring failure to run before stranded work. \autoref{turn-end-ordering} shows the resulting order.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/turn-end-ordering-8b921a2d5a.pdf}
-\caption{\emph{Ordering interacting hooks.} Recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed to identify failures. The governance model records the ordering constraint and detects cycles.}
-\label{turn-end-ordering}
-\end{figure}
+A different problem arose between two hooks that run when an agent finishes a turn. In Claude Code (as of 2026), lifecycle hooks run configured checks at defined events and can prompt an agent to continue working when it tries to stop~\citep{anthropic2026claudecodehooks}. The first, \emph{recurring failure}, prompts Claude to reflect on notable failures or repeated issues in its recent history that might warrant conversion into durable governance mechanisms (\{\{sec:governance-conversion\}\}), either through human review or autonomous follow-up. The other, \emph{stranded work}, prompts the orchestrator to compare the subagent's completed and landed work against its original brief to identify work that may have been lost. Both consume context, and the stranded-work inspection may exhaust the remaining context window before recurring-failure reflection can complete its analysis. Each hook is useful independently, but their order matters. The governance model therefore requires the recurring-failure hook to run before the stranded-work hook.
 
 The governance graph records conflicts and their resolutions, including ordering, merging mechanisms, separating execution points, or accepting an interaction. Topological sorting computes a sequence from the declared ordering constraints and reports cycles; a separate check compares the governance model with the configured mechanisms.
 

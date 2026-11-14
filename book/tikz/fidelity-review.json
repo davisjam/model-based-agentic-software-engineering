@@ -2141,32 +2141,6 @@
       "review": "SVG and native proof compared at actual print width and 2×. All type is at least 10 pt. No visible overlap, clipping, crossed labels, automatic conflict inference, or hidden direction. Native geometry and typography checks have zero findings."
     },
     {
-      "source": "book/assets/turn-end-ordering.svg",
-      "candidate": "book/tikz/figures/turn-end-ordering.tex",
-      "checks": {
-        "icons_and_symbols": "No special icons.",
-        "links_and_groups": "Modeled-order arrows heavier than writes; all hooks share closing-message slot.",
-        "annotation_placement": "Ordering labels above hooks; runtime caveat remains below."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 376.5379943847656,
-      "height_bp": 181.0749969482422,
-      "monochrome": true,
-      "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
-      "candidate_sha256": "b9fe26f57a31a422a8aa3fffc6119559b3fbde99109a5290b3e0b8d272ddb992",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
-    },
-    {
       "source": "book/assets/census-trio.svg",
       "candidate": "book/tikz/figures/census-trio.tex",
       "checks": {

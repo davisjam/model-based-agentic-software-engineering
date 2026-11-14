@@ -649,19 +649,6 @@
   },
   {
     "chapter": "3.5-when-guardrails-collide",
-    "source": "assets/turn-end-ordering.svg",
-    "caption": "*Ordering interacting hooks.* Recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed to identify failures. The governance model records the ordering constraint and detects cycles.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Ordering interacting hooks",
-    "svg_description": "At turn end, recurring-failure reflection precedes stranded-work inspection. Reflection identifies recent failures for governance conversion; work inspection compares delivered work with its brief and may exhaust the context needed for reflection. The arrow denotes the required order."
-  },
-  {
-    "chapter": "3.5-when-guardrails-collide",
     "source": "assets/census-trio.svg",
     "caption": "*Three views of the control machinery.* The catalogue identifies controls; the interaction view relates controls through shared resources; the coverage view relates controls to the obligations that justify them. Stable identities connect the three views while letting each answer a different engineering question. A missing mechanism appears as a coverage gap; an untraced mechanism appears as a candidate orphan.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

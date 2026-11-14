@@ -1706,16 +1706,6 @@
     "rationale": "White interiors throughout; position, typed labels and named relations carry the distinctions. OBLIGATION, CONTROL and RESOURCE name the abstract types in bold capitals. Concrete examples are regular; precedes is an italic relation label."
   },
   {
-    "source": "book/assets/turn-end-ordering.svg",
-    "candidate": "book/tikz/figures/turn-end-ordering.tex",
-    "receipt": "book/tikz/receipts/turn-end-ordering.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Hooks paired by fill; modeled-order arrows strengthened separately from resource writes.",
-    "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
-    "candidate_sha256": "b9fe26f57a31a422a8aa3fffc6119559b3fbde99109a5290b3e0b8d272ddb992"
-  },
-  {
     "source": "book/assets/census-trio.svg",
     "candidate": "book/tikz/figures/census-trio.tex",
     "receipt": "book/tikz/receipts/census-trio.json",
