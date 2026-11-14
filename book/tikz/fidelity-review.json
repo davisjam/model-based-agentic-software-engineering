@@ -3259,41 +3259,42 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+      "source_sha256": "fb8c16fdf402bcd1bc9ab3cc49f1ab5ac8c1f07e8765abdd925da42697554107",
+      "candidate_sha256": "7a4cb0cde777f952e1f838532fff0a190c7a720027fb2065b542495f4cce0dff",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Organize the dynamic model around an engineering episode and the environment later work inherits.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 303.974,
+        "proof_sha256": "f8b804a1292b2f9b307e30289dfa72485b20385bfeeaf1d9ee99f52bb170fbe2",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 27,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": {
-        "icons_and_symbols": "Numbered dynamics and B/R labels retained.",
-        "links_and_groups": "Bootstrap input, balancing adaptation return and reinforcing amplification return remain separate.",
-        "annotation_placement": "Mismatch/gap and dynamics annotations outside nodes; scope limitation below."
+        "links_and_groups": "Work orders and capacity enter attempted work from opposite sides. Prior knowledge seeds the GEE. Performance supplies evidence, and governance adaptation returns to the inherited GEE.",
+        "annotation_placement": "The frontier labels the forward path, and corrective feedback labels the return.",
+        "line_breaks": "Line breaks follow the author reference.",
+        "icons_and_symbols": "Arrows distinguish forward production and feedback into the inherited GEE."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          11
         ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 426.5150146484375,
-      "height_bp": 400.68701171875,
+      "width_bp": 449.972,
+      "height_bp": 303.974,
       "monochrome": true,
-      "source_sha256": "9534e885129c883a3bff09861a320f70c7cb302b408516bc20da2a95083e0015",
-      "candidate_sha256": "213da73827675ab474244b56f01190b6ef437cedaf7268ac4b1f87a3ff939c51",
-      "review": "Reviewed and retained.",
-      "decision": "retained",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
-        "page": 84,
-        "width_bp": 426.5150146484375,
-        "height_bp": 489.06298828125,
-        "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
-        "geometry_findings": 0,
-        "semantic_typography_pool_checks": 1034,
-        "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true,
-        "reviewed_on": "2026-11-10"
-      }
+      "review": "Corrective feedback returns to the GEE. The expanding task frontier labels the forward path to attempted work."
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",

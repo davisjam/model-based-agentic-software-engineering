@@ -1,28 +1,65 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{11}{13}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{11}{13}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=6cm,fill=white] (prior) at (-2,1.488) {\textbf{Prior engineering knowledge}\\\textit{standards; requirements; brownfield assets; lessons}};
-\node[box,text width=4cm,fill=white,minimum height=1.8cm] (cap) at (-4,-3.1) {\textbf{Agentic capacity}\\\textit{capability; concurrency; velocity}};
-\node[head,text width=5cm,fill=black!5,minimum height=1.8cm] (env) at (3.5,-3.1) {\textbf{Governed environment} $\mathcal{G}$\\\textit{representation; coverage; coherence; economy}};
-\draw[edge,line width=1.1pt] (prior.east)--(6.3,1.488)--node[note,right,fill=white] {1 Bootstrap}(6.3,-1.488)-|(env.north);
-\draw[edge,] (cap) -- node[midway,note,fill=white] {\textit{exercises}} (env);
-\node[box,text width=4cm,fill=white,minimum height=1.8cm] (work) at (-4,-5.58) {\textbf{Agentic work}\\\textit{attempted change; task frontier}};
-\node[box,text width=5cm,minimum height=1.8cm] (perf) at (3.5,-5.58) {\textbf{Realized performance}\\\textit{throughput; defect escape; human attention}};
-\draw[edge,] (cap) -- (work);
-\draw[edge,] (work) -- (perf);
-\draw[edge,] (env) -- node[midway,right,note,xshift=.4cm] {\textit{shapes}} (perf);
-\node[box,text width=10.5cm,fill=white,inner ysep=5pt] (press) at (0,-7.936) {\textbf{Governance pressure}\\\textit{churn; recurring failures; escaped defects; intervention; control friction}};
-\draw[edge,] (work.south) -- node[midway,left,note] {\textit{mismatch}} (press.north -| work.south);
-\draw[edge,] (perf.south) -- node[midway,right,note] {gap} (press.north -| perf.south);
-\node[box,text width=10.5cm,inner ysep=5pt] (diag) at (0,-10.168) {\textbf{2 Pressure / discovery: structural diagnosis}\\\textit{local defect? missing representation? weak enforcement? stale mechanism?}};
-\draw[edge,line width=1.3pt] (press) --  (diag);
-\node[box,text width=9cm,fill=white] (adapt) at (0,-12.648) {\textbf{3 Governance adaptation}\\\textit{represent; constrain; validate; strengthen; reconcile; retire}};
-\draw[edge,line width=1.1pt] (diag) --  (adapt);
-\draw[edge,line width=1.1pt] (adapt.east)--(7,-12.648)--node[note,right,text width=1cm] {B}(7,-3.1)--(env.east);
-\draw[edge,line width=1.3pt] (env.north)--(3.5,-.9)--(-4,-.9)--(cap.north);\node[note,text width=7cm] at (-.25,-.1) {4 \textbf{\textit{Expanding task frontier}} (R): bigger tasks, more concurrency};
-\node[note,text width=13cm] (nt) at (0,-14.26) {B: diagnosis and adaptation seek fit. R: stronger environments reopen the frontier. Bootstrap is an input, not feedback. Directional model, not a fitted law.};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,298);
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (88.3,3.74) rectangle (301.4,33.38);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (194.84,12.6) {Prior engineering knowledge};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (194.84,23.21) {standards, requirements, existing assets, prior lessons};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (190.01,33.38) -- (190.01,51.48);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (198.74,40.37) {seeds};
+\draw[fill=black!8,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (68.33,51.48) rectangle (316.06,84.24);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (192.19,61.900000000000006) {Governed engineering environment \(\mathcal{G}\)};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (192.19,73.13) {representation · coverage · coherence · economy};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (190.01,84.24) -- (190.01,117.94);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{11}\selectfont\bfseries\itshape] at (197.81,92.47) {Expanding task frontier};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (197.81,102.77) {may enable larger tasks and greater concurrency};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (3.12,117.94) rectangle (91.10000000000001,159.12);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (47.11,126.78999999999999) {Work orders};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (47.11,138.96) {task, intent,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (47.11,149.46) {acceptance criteria};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (136.34,117.94) rectangle (240.55,157.88);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (188.45,127.1) {Attempted work};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (188.45,139.27) {changes undertaken,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (188.45,149.77) {task frontier};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (283.3,117.94) rectangle (374.72,161.0);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (329.0,125.22999999999999) {Agentic capacity};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (329.0,134.28) {model capability,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (329.0,144.78) {concurrency,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (329.0,155.28) {implementation speed};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (91.1,140.71) -- (136.34,140.71);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (113.57,112.13) {specify};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (113.57,122.63) {intended};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (113.57,133.13) {work};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (283.3,140.71) -- (240.55,140.71);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (261.46,121.18) {enables};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (261.46,131.68) {execution};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (190.01,157.87) -- (190.01,174.1);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (197.81,165.17) {produces};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (109.51,174.1) rectangle (272.06,208.10999999999999);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (190.79,182.33) {Realized performance};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (190.79,192.62) {durable throughput, defect escape,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (190.79,203.12) {human attention};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (190.01,208.1) -- (190.01,225.26);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (196.87,214.78) {provides evidence};
+\draw[fill=black!8,draw=black!85,line width=0.8bp,rounded corners=6bp] (2.81,225.26) rectangle (366.29,294.21);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11.5}{11}\selectfont\bfseries] at (184.39,235.06) {Experience and adaptation};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (9.98,244.92) rectangle (119.8,285.48);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (64.9,253.14999999999998) {Observed problems};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (64.9,264.07) {churn, recurring failures,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (64.9,274.57) {interventions, control friction};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (136.97,244.92) rectangle (234.31,285.48);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (185.64,251.9) {Diagnosis};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (185.64,260.64) {local defect?};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (185.64,271.14) {structural gap?};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (185.64,281.64) {inadequate enforcement?};
+\draw[fill=white,draw=black!85,line width=0.9bp,rounded corners=0.12bp] (248.35,244.92) rectangle (365.03999999999996,285.48);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (306.7,253.14999999999998) {Governance adaptation};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (306.7,264.38) {convert, reconcile,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (306.7,274.88) {retire};
+\draw[-Stealth,line width=1.08bp,draw=black!85] (119.81,264.58) -- (136.97,264.58);
+\draw[-Stealth,line width=1.08bp,draw=black!85] (234.31,264.58) -- (248.35,264.58);
+\draw[-{Stealth[length=5.5bp,width=5.2bp]},rounded corners=12bp,line width=2.2bp] (365.04,265.2) -- (380.95,265.2) -- (380.95,67.7) -- (316.06,67.7);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries\itshape] at (386.26,124.61) {Corrective};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries\itshape] at (386.26,137.11) {feedback};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (391.56,147.38) {revises};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (391.56,158.38) {inherited};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (391.56,169.38) {structure};
 \end{tikzpicture}

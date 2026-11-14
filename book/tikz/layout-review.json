@@ -6140,111 +6140,40 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "source_sha256": "9534e885129c883a3bff09861a320f70c7cb302b408516bc20da2a95083e0015",
-      "baseline_candidate_sha256": "368587e1d62db3d011b8d01d7390a25326a781110511c2de61f788818eda115d",
-      "candidate_sha256": "213da73827675ab474244b56f01190b6ef437cedaf7268ac4b1f87a3ff939c51",
+      "source_sha256": "fb8c16fdf402bcd1bc9ab3cc49f1ab5ac8c1f07e8765abdd925da42697554107",
+      "candidate_sha256": "7a4cb0cde777f952e1f838532fff0a190c7a720027fb2065b542495f4cce0dff",
       "decision": "refined",
-      "reason": "Equalize capacity/environment and work/performance peers; widen pressure/diagnosis descriptions to remove a wrapped line and reveal sequential arrow shafts. Removed a redundant text-width option without changing the layout. Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        426.5150146484375,
-        400.2640075683594
-      ],
+      "reason": "Organize the dynamic model around an engineering episode and the environment later work inherits.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 303.974,
+        "proof_sha256": "f8b804a1292b2f9b307e30289dfa72485b20385bfeeaf1d9ee99f52bb170fbe2",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 27,
+        "unapproved_compile_diagnostics": 0
+      },
       "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel rank 1",
-            "labels": [
-              "Agentic capacity capability; concurrency; velocity",
-              "Governed environment G representation; coverage; coherence; economy"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          },
-          {
-            "name": "parallel rank 2",
-            "labels": [
-              "Agentic work attempted change; task frontier",
-              "Realized performance throughput; defect escape; human attention"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ],
+        "peer_groups": [],
         "terminal_exceptions": []
       },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
-        "page": 84,
-        "width_bp": 426.5150146484375,
-        "height_bp": 489.06298828125,
-        "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
-        "geometry_findings": 0,
-        "semantic_typography_pool_checks": 1034,
-        "unapproved_compile_diagnostics": 0,
+      "visual_review": "Corrective feedback returns to the GEE. The expanding task frontier labels the forward path to attempted work.",
+      "page_layout": {
+        "after_dimensions_bp": [
+          449.972,
+          303.974
+        ],
+        "after_font_sizes_pt": [
+          9,
+          10,
+          11
+        ],
         "reviewed_visually": true,
-        "reviewed_on": "2026-11-10"
-      },
-      "superseded_reviews": [
-        {
-          "superseded_on": "2026-11-09",
-          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
-          "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-          "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
-          "reviewed_visually": true,
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 83,
-            "width_bp": 426.515,
-            "height_bp": 489.063
-          },
-          "page_layout": {
-            "decision": "refined",
-            "reason": "Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
-            "before_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
-            "after_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
-            "before_dimensions_bp": [
-              426.5150146484375,
-              400.2640075683594
-            ],
-            "after_dimensions_bp": [
-              426.5150146484375,
-              489.06298828125
-            ],
-            "before_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "after_font_sizes_pt": [
-              10.0,
-              11.0
-            ],
-            "reviewed_visually": true
-          }
-        }
-      ]
+        "decision": "recomposed",
+        "reason": "Work orders and capacity enter attempted work from opposite sides. Prior knowledge seeds the GEE. Performance supplies evidence, and governance adaptation returns to the inherited GEE."
+      }
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",

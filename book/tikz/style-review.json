@@ -3832,62 +3832,32 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "receipt": "book/tikz/receipts/mage-dynamic-model.json",
+      "source_sha256": "fb8c16fdf402bcd1bc9ab3cc49f1ab5ac8c1f07e8765abdd925da42697554107",
+      "candidate_sha256": "7a4cb0cde777f952e1f838532fff0a190c7a720027fb2065b542495f4cce0dff",
       "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "9534e885129c883a3bff09861a320f70c7cb302b408516bc20da2a95083e0015",
-      "candidate_sha256": "213da73827675ab474244b56f01190b6ef437cedaf7268ac4b1f87a3ff939c51",
-      "fill": "Only governed environment state G is 5%; feedback labels identify other roles.",
-      "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "The inherited governed environment uses G consistently. Both feedback loops, labels and arrow routes remain legible without clipping or overlap.",
+      "reviewed_visually": true,
+      "reason": "Organize the dynamic model around an engineering episode and the environment later work inherits.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
-        "page": 84,
-        "width_bp": 426.5150146484375,
-        "height_bp": 489.06298828125,
-        "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 303.974,
+        "proof_sha256": "f8b804a1292b2f9b307e30289dfa72485b20385bfeeaf1d9ee99f52bb170fbe2",
+        "minimum_prose_font_pt": 9,
         "geometry_findings": 0,
-        "semantic_typography_pool_checks": 1034,
-        "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true,
-        "reviewed_on": "2026-11-10"
+        "semantic_typography_checks": 27,
+        "unapproved_compile_diagnostics": 0
       },
+      "receipt": "book/tikz/receipts/mage-dynamic-model.json",
+      "status": "reviewed",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "fill": "Shading identifies the GEE and groups experience and adaptation. A heavier return arrow marks corrective feedback.",
+      "bold": "Headings and arrow labels use bold type.",
+      "routing": "Work orders and capacity enter attempted work from opposite sides. Prior knowledge seeds the GEE. Performance supplies evidence, and governance adaptation returns to the inherited GEE.",
+      "shape": "Central production sequence with two side inputs and an adaptation group.",
+      "visual_review": "Corrective feedback returns to the GEE. The expanding task frontier labels the forward path to attempted work.",
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
-      "superseded_reviews": [
-        {
-          "superseded_on": "2026-11-09",
-          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
-          "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-          "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
-          "status": "reviewed",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 83,
-            "width_bp": 426.515,
-            "height_bp": 489.063,
-            "minimum_prose_font_pt": 10.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 21
-          },
-          "visual_review": "Bootstrap, pressure, adaptation and amplification stay numbered; B/R loops retain outside routes."
-        }
-      ],
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
-        "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
+      "routing_exceptions": "None."
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
