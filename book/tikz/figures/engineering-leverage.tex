@@ -12,7 +12,7 @@ edge/.style={-Stealth,line width=.65pt}]
 \node[n,text width=2.5cm,fill=white] (product) at (10.7,0) {Product};
 \draw[edge] (engineer) -- (implementation);
 \draw[edge] (implementation) -- (product);
-\node[annotation,below=3pt of implementation,font=\bfseries] {Primary engineered object};
+\node[annotation,below=3pt of implementation,font=\bfseries] {Primary point of engineering control};
 \draw[dashed,black!30] (-1.1,-1)--(12.8,-1);
 \node[anchor=west,font=\bfseries] at (-1.1,-1.6) {AGENTIC};
 \node[anchor=west,font=\itshape] at (1.9,-1.6) {agents write the implementation};
@@ -31,5 +31,5 @@ edge/.style={-Stealth,line width=.65pt}]
  Models · obligations · evidence · controls · infrastructure};
 \draw[densely dotted,line width=.7pt,black!60] (environment.south west)--(detail.north west);
 \draw[densely dotted,line width=.7pt,black!60] (environment.south east)--(detail.north east);
-\node[annotation,fill=white,inner sep=2pt,font=\bfseries] at (2.85,-3.5) {Primary engineered lever};
+\node[annotation,fill=white,inner sep=2pt,font=\bfseries] at (2.85,-3.5) {Primary point of engineering control};
 \end{tikzpicture}

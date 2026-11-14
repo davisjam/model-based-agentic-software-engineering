@@ -49,15 +49,14 @@
     "Product",
     "Engineered Environment",
     "Agents",
-    "Primary engineered object",
-    "Primary engineered lever",
+    "Primary point of engineering control",
     "Governed Engineering Environment",
     "Models · obligations · evidence · controls · infrastructure"
   ],
   "bw_encoding": "White ordinary nodes and expanded environment; strong outline locates the engineered lever without shading.",
-  "redesign": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
+  "redesign": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
   "questions": [],
-  "alt": "Two production chains are stacked. Classical engineering runs from engineer to implementation to product. Agentic engineering inserts an engineered environment and agents before implementation. Separate text identifies implementation as the classical engineered object and the environment as the agentic lever. Models, obligations, evidence, controls and infrastructure describe that environment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Two dotted, arrowless guides expand the environment node into the framed detail box below; primary-role annotations sit outside the nodes.",
+  "alt": "Two production chains are stacked. Classical engineering runs from engineer to implementation to product. Agentic engineering inserts an engineered environment and agents before implementation. Separate text identifies implementation as the classical point of engineering control and the environment as the agentic point of engineering control. Models, obligations, evidence, controls and infrastructure describe that environment. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Two dotted, arrowless guides expand the environment node into the framed detail box below; primary-role annotations sit outside the nodes.",
   "visual_fidelity_review": {
     "reason": "User identified missing expansion guides, pictograms and external annotations after the grayscale pass.",
     "changes": "Restored the two dotted corner-to-corner expansion guides and framed environment detail box. Primary-object and primary-lever annotations sit outside the nodes. Restored the explanatory footer line and strengthened primary-node borders. Labels and annotations use 11 pt, heading 12 pt.",
@@ -68,36 +67,44 @@
     ]
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
-    "candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
+    "source_sha256": "60d9ec11d1a5dcf66099790538d6f831ee67a071d4b440164babac98a94679a3",
+    "candidate_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
     "fill": "White ordinary nodes and expanded environment; strong outline locates the engineered lever without shading.",
     "bold": "Source-derived emphasis includes CLASSICAL; AGENTIC. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Horizontal flows; dotted diagonal corner-to-corner guides deliberately denote expansion, not process edges.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "visual_review": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 7,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/engineering-leverage-20261113/candidates.pdf",
+      "proof_sha256": "2d7bc5fc880ea8dcbed496b2336b3010e362e0ea729e09a829dae5022dcf6cbf",
+      "page": 1,
       "width_bp": 401.85,
       "height_bp": 222.454,
-      "minimum_prose_font_pt": 10.0,
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "semantic_typography_checks": 3,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "status": "passed"
     },
-    "book_references": []
+    "book_references": [],
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
+        "previous_candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a"
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
-    "candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "60d9ec11d1a5dcf66099790538d6f831ee67a071d4b440164babac98a94679a3",
+    "candidate_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
     "evidence": [
       {
         "source_text": "CLASSICAL",
@@ -132,6 +139,7 @@
         ]
       }
     ],
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "checks": [
       {
         "text": "CLASSICAL",
@@ -147,78 +155,85 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 7,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/engineering-leverage-20261113/candidates.pdf",
+      "proof_sha256": "2d7bc5fc880ea8dcbed496b2336b3010e362e0ea729e09a829dae5022dcf6cbf",
+      "page": 1,
       "width_bp": 401.85,
       "height_bp": 222.454,
-      "minimum_prose_font_pt": 10.0,
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 3,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
+        "previous_candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a"
       }
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source_sha256": "60d9ec11d1a5dcf66099790538d6f831ee67a071d4b440164babac98a94679a3",
+    "baseline_candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
+    "candidate_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
     "decision": "retained",
     "reason": "The engineered environment is the emphasized primary engineered object, while other agentic nodes are a causal chain, not interchangeable alternatives. Preserve its deliberate two-line prominence and dotted expansion frustum.",
-    "candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      401.8500061035156,
+      222.45399475097656
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/engineering-leverage-20261113/candidates.pdf",
+      "proof_sha256": "2d7bc5fc880ea8dcbed496b2336b3010e362e0ea729e09a829dae5022dcf6cbf",
+      "page": 1,
+      "width_bp": 401.85,
+      "height_bp": 222.454,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 3,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
     "page_layout": {
       "decision": "retained",
-      "reason": "Retain existing engineering leverage layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
-      "after_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a",
-      "before_dimensions_bp": [
-        401.8500061035156,
-        222.45399475097656
-      ],
+      "reason": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
+      "after_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
       "after_dimensions_bp": [
-        401.8500061035156,
-        222.45399475097656
-      ],
-      "before_font_sizes_pt": [
-        10.0,
-        11.0,
-        12.0
-      ],
-      "after_font_sizes_pt": [
-        10.0,
-        11.0,
-        12.0
+        401.85,
+        222.454
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 7,
-      "width_bp": 401.85,
-      "height_bp": 222.454
-    }
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
+        "previous_candidate_sha256": "f39fcd9342ae5e75db27c3ac55b9f1605112c5d6f46f090f6f0917cab5eefd2a"
+      }
+    ]
+  },
+  "source_sha256": "60d9ec11d1a5dcf66099790538d6f831ee67a071d4b440164babac98a94679a3",
+  "candidate_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
+  "validation": {
+    "date": "2026-11-13",
+    "proof": "latex/build/tikz/engineering-leverage-20261113/candidates.pdf",
+    "proof_sha256": "2d7bc5fc880ea8dcbed496b2336b3010e362e0ea729e09a829dae5022dcf6cbf",
+    "page": 1,
+    "width_bp": 401.85,
+    "height_bp": 222.454,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 3,
+    "monochrome_pixels": true,
+    "status": "passed"
   }
 }

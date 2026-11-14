@@ -93,8 +93,29 @@
     "reviewed": true,
     "decision": "refined",
     "rationale": "Gray distinguishes engineer/agents, implementation and product/environment. Heavy outlines preserve primary engineered object/lever; two pipelines retained.",
-    "source_sha256": "9448735fa2c9e834c16f47ce8c526b2c2f37c1136bfbf9b8c7d7f840ec048919",
-    "candidate_sha256": "fb451220ced3f2881dad87b6dd50274bc6439b2d3972b8cc96e6d2eb2629958d"
+    "source_sha256": "60d9ec11d1a5dcf66099790538d6f831ee67a071d4b440164babac98a94679a3",
+    "candidate_sha256": "e2594569c63c433d5f57ec59701e93e615c6268903916654d88e9530ca3517af",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/engineering-leverage-20261113/candidates.pdf",
+      "proof_sha256": "2d7bc5fc880ea8dcbed496b2336b3010e362e0ea729e09a829dae5022dcf6cbf",
+      "page": 1,
+      "width_bp": 401.85,
+      "height_bp": 222.454,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 3,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Author requested symmetric labels: Primary point of engineering control under Implementation and Engineered Environment. Structure, arrow paths, caption and surrounding prose unchanged. Native and color proofs visually checked.",
+        "previous_candidate_sha256": "fb451220ced3f2881dad87b6dd50274bc6439b2d3972b8cc96e6d2eb2629958d"
+      }
+    ]
   },
   {
     "source": "book/assets/docable-glimpse.svg",

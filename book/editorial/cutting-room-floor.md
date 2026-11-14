@@ -20326,3 +20326,10 @@ These episodes also reflect a recurring experience I had with coding agents. The
 Source: `191bff8b5`, Chapter 5 closing paragraph of What Escalated Failures Became. Author-directed subject correction: explicitly name Claude's suggestions rather than describing the failures as prompting repairs.
 
 A lost PDF tag tree prompted a replacement library call, not a controlled mutation boundary. Fabricated descriptions prompted revisions to a prompt, not a model of which instructions were appropriate to different semantic tasks. A broken merge prompted repairs to the integration script, not a reconsideration of which conflicts the factory should resolve automatically.
+
+
+## 2026-11-13 — Figure 1.4 caption: reconstruction cost and feasible tasks
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, Figure 1.4 caption, line 178 at `0520126c5`. Replaced at the author’s request to distinguish reduced recovery work from its possible consequences.
+
+> Representation and the reasoning horizon. When relevant system knowledge exceeds a reasoner’s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.

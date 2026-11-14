@@ -90,7 +90,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where engineering leverage acts",
-    "svg_description": "Two pipelines are stacked for contrast. In the classical pipeline the engineer builds\n    the implementation directly, so the implementation is the primary engineered object: Engineer, then\n    Implementation, then Product. In the agentic pipeline agents build the implementation inside an\n    engineered environment the engineer constructs, so the environment becomes the primary engineered\n    lever: Engineer, then Engineered Environment, then Agents, then Implementation, then Product. A rust\n    badge marks the primary node in each row; it moves upstream from the implementation to the environment.\n    A footer strip unpacks the environment into models, obligations, evidence, controls, and\n    infrastructure."
+    "svg_description": "Two production chains compare primary points of engineering control: Implementation in classical engineering and Engineered Environment in agentic engineering. Dotted guides expand the environment into models, obligations, evidence, controls, and infrastructure."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
