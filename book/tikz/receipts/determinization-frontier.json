@@ -1,7 +1,7 @@
 {
   "source": "book/assets/determinization-frontier.svg",
   "claim": "*The Determinization Frontier.* Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.",
-  "topology": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Test/validator, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
+  "topology": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
   "required_terms": [
     "REPEATED JUDGMENT",
     "property requires reconstruction",
@@ -11,20 +11,20 @@
     "Decidable property (predicate over model)",
     "ALIGNMENT",
     "Encode and evaluate the predicate",
-    "Test / validator",
+    "Sensors and Validators",
     "Gate",
     "REPEATABLE DECISION",
     "The determinization frontier: change what is decidable (Modeling), then bind the decision (Alignment)."
   ],
-  "bw_encoding": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the test/validator and gate remain white. No ornamental enclosing region or additional gray role is used.",
-  "redesign": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+  "bw_encoding": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the Sensors and Validators and gate remain white. No ornamental enclosing region or additional gray role is used.",
+  "redesign": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
   "questions": [],
-  "alt": "Repeated judgment takes one of two routes. If a property requires reconstruction, Modeling changes the representation to expose a decidable property, a predicate over the model. If the property is already decidable, it bypasses that modeling step. Both paths join before Alignment, which encodes and evaluates the predicate. The sequence then proceeds through a test or validator, a gate, and a repeatable decision. A side annotation states that the determinization frontier changes what is decidable through Modeling, then binds the decision through Alignment.",
+  "alt": "Repeated judgment follows either an already-decidable route or a route through Modeling to change the representation and expose a decidable property. Both join before Alignment, where sensors provide evidence and validators evaluate it before a gate applies the result.",
   "qa": {
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-    "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-    "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+    "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+    "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
     "page": 1,
     "width_bp": 409.973,
     "height_bp": 352.974,
@@ -39,8 +39,8 @@
     "reviewed_peer_groups": 1,
     "monochrome_pixels": true,
     "semantic_typography_checks": 12,
-    "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-    "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+    "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+    "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
     "status": "passed"
   },
   "svg_qa": {
@@ -57,16 +57,16 @@
   "layout_review": {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
-    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+    "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
     "validation": {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+      "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
       "page": 1,
       "width_bp": 409.973,
       "height_bp": 352.974,
@@ -81,8 +81,8 @@
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+      "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
       "status": "passed"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/layout-review.json",
@@ -91,7 +91,7 @@
         {
           "name": "Check and gate stages",
           "labels": [
-            "Test / validator",
+            "Sensors and Validators",
             "Gate"
           ],
           "align": [
@@ -105,7 +105,7 @@
       ],
       "terminal_exceptions": []
     },
-    "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Test/validator and Gate. No clipped or overlapping text.",
+    "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text.",
     "page_layout": {
       "after_dimensions_bp": [
         409.973,
@@ -124,16 +124,16 @@
   "typography_review": {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
-    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+    "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
+    "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
     "validation": {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+      "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
       "page": 1,
       "width_bp": 409.973,
       "height_bp": 352.974,
@@ -148,8 +148,8 @@
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+      "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
       "status": "passed"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/typography-review.json",
@@ -195,7 +195,7 @@
         "italic": true
       },
       {
-        "text": "Test / validator",
+        "text": "Sensors and Validators",
         "bold": true,
         "italic": false
       },
@@ -257,7 +257,7 @@
         "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
       },
       {
-        "candidate_text": "Test / validator",
+        "candidate_text": "Sensors and Validators",
         "candidate_style": "bold",
         "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
       },
@@ -281,16 +281,16 @@
   "style_review": {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
-    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+    "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
     "validation": {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+      "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
       "page": 1,
       "width_bp": 409.973,
       "height_bp": 352.974,
@@ -305,8 +305,8 @@
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+      "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
       "status": "passed"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/style-review.json",
@@ -314,27 +314,27 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
-    "fill": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the test/validator and gate remain white. No ornamental enclosing region or additional gray role is used.",
-    "bold": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
-    "routing": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Test/validator, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
+    "fill": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the Sensors and Validators and gate remain white. No ornamental enclosing region or additional gray role is used.",
+    "bold": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
+    "routing": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
     "shape": "Modestly rounded rectangles denote named activities, check/gate stages, and their property/result artifacts. A simple split-and-join path expresses the two premises, with no unrelated enclosing region.",
-    "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Test/validator and Gate. No clipped or overlapping text.",
+    "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text.",
     "book_references": [],
     "routing_exceptions": "None; all relations are horizontal or vertical."
   },
   "fidelity_review": {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
-    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+    "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
     "validation": {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+      "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
       "page": 1,
       "width_bp": 409.973,
       "height_bp": 352.974,
@@ -349,16 +349,16 @@
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+      "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
       "status": "passed"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/fidelity-review.json",
     "checks": {
-      "icons_and_symbols": "The key distinction is topological: the already-decidable bypass joins the Modeling route before Alignment. Gate follows Test/validator and never produces the predicate.",
-      "links_and_groups": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Test/validator, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
+      "icons_and_symbols": "The key distinction is topological: the already-decidable bypass joins the Modeling route before Alignment. Gate follows Sensors and Validators and never produces the predicate.",
+      "links_and_groups": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
       "annotation_placement": "Italic route-premise labels sit above their corresponding branches. Modeling/Alignment explanations sit inside those activity boxes; the frontier explanation is a side annotation without connectors.",
-      "line_breaks": "Route premises and decidable-property explanation use two short lines. Activity names, test/validator, gate, and repeated/repeatable labels remain on one line."
+      "line_breaks": "Route premises and decidable-property explanation use two short lines. Activity names, Sensors and Validators, gate, and repeated/repeatable labels remain on one line."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
@@ -374,21 +374,21 @@
     "width_bp": 409.973,
     "height_bp": 352.974,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Test/validator and Gate. No clipped or overlapping text."
+    "review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text."
   },
   "grayscale_review": {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
-    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+    "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
     "validation": {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+      "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
       "page": 1,
       "width_bp": 409.973,
       "height_bp": 352.974,
@@ -403,13 +403,13 @@
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+      "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
       "status": "passed"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/determinization-frontier.json",
     "reviewed": true,
-    "rationale": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the test/validator and gate remain white. No ornamental enclosing region or additional gray role is used. Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling."
+    "rationale": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the Sensors and Validators and gate remain white. No ornamental enclosing region or additional gray role is used. Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling."
   }
 }

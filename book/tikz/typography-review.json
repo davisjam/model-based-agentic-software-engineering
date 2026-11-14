@@ -20416,16 +20416,16 @@
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
-      "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
-      "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+      "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
+      "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
+      "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
       "validation": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-        "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
-        "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+        "proof": "latex/build/tikz/determinization-frontier-20261114/candidates.pdf",
+        "proof_sha256": "6b287138b72276305bb20324ef8c388d8190f81fd9d87c1342f3f80508650a77",
         "page": 1,
         "width_bp": 409.973,
         "height_bp": 352.974,
@@ -20440,8 +20440,8 @@
         "reviewed_peer_groups": 1,
         "monochrome_pixels": true,
         "semantic_typography_checks": 12,
-        "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
-        "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+        "audit_sha256": "48b5bad587f49128e7efc7117feeb666b3bd3643982c8b69f3b06aec78089057",
+        "typography_audit_sha256": "6f4076410d00c35f8f90f3193c20d4e015b68a3d18d4b96ef251e805096f95ff",
         "status": "passed"
       },
       "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/typography-review.json",
@@ -20487,7 +20487,7 @@
           "italic": true
         },
         {
-          "text": "Test / validator",
+          "text": "Sensors and Validators",
           "bold": true,
           "italic": false
         },
@@ -20549,7 +20549,7 @@
           "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
         },
         {
-          "candidate_text": "Test / validator",
+          "candidate_text": "Sensors and Validators",
           "candidate_style": "bold",
           "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
         },
@@ -20573,29 +20573,34 @@
     {
       "source": "book/assets/return-governability.svg",
       "candidate": "book/tikz/figures/return-governability.tex",
-      "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-      "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+      "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+      "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
       "validation": {
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 262.975,
-        "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-        "minimum_prose_font_pt": 9,
+        "height_bp": 209.975,
+        "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+        "minimum_prose_font_pt": 10,
         "geometry_findings": 0,
-        "semantic_typography_checks": 13,
+        "semantic_typography_checks": 14,
         "unapproved_compile_diagnostics": 0
       },
       "checks": [
+        {
+          "text": "Mechanizability",
+          "bold": true,
+          "italic": false
+        },
         {
           "text": "From judgment-intensive to reliably mechanized (e.g., constraints, validators, or automated checks)",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Limited",
+          "text": "Low",
           "bold": true,
           "italic": false
         },
@@ -20620,9 +20625,9 @@
           "italic": false
         },
         {
-          "text": "Example: a one-off internal naming choice.",
+          "text": "Example: A one-off internal naming choice.",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
           "text": "Mechanize selectively",
@@ -20630,9 +20635,9 @@
           "italic": false
         },
         {
-          "text": "Example: prototype formatting— automate when it is cheap enough to maintain.",
+          "text": "Example: Prototype formatting— automate when it is cheap enough to maintain.",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
           "text": "Invest in explicit judgment",
@@ -20640,9 +20645,9 @@
           "italic": false
         },
         {
-          "text": "Example: historic building compatibility—use standards, precedent, and documented review.",
+          "text": "Example: Historic building design— document its fit with standards and precedent.",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
           "text": "Invest in enforcement",
@@ -20650,19 +20655,24 @@
           "italic": false
         },
         {
-          "text": "Example: service dependency— use a model, validator, and admission gate to block violations.",
+          "text": "Example: Service dependency— block changes that violate the modeled dependency rule.",
           "bold": false,
-          "italic": false
+          "italic": true
         }
       ],
       "evidence": [
+        {
+          "candidate_text": "Mechanizability",
+          "candidate_style": "bold",
+          "semantic_role": "panel heading, annotation or legend"
+        },
         {
           "candidate_text": "From judgment-intensive to reliably mechanized (e.g., constraints, validators, or automated checks)",
           "candidate_style": "italic",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Limited",
+          "candidate_text": "Low",
           "candidate_style": "bold",
           "semantic_role": "panel heading, annotation or legend"
         },
@@ -20687,8 +20697,8 @@
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Example: a one-off internal naming choice.",
-          "candidate_style": "regular",
+          "candidate_text": "Example: A one-off internal naming choice.",
+          "candidate_style": "italic",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
@@ -20697,8 +20707,8 @@
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Example: prototype formatting— automate when it is cheap enough to maintain.",
-          "candidate_style": "regular",
+          "candidate_text": "Example: Prototype formatting— automate when it is cheap enough to maintain.",
+          "candidate_style": "italic",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
@@ -20707,8 +20717,8 @@
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Example: historic building compatibility—use standards, precedent, and documented review.",
-          "candidate_style": "regular",
+          "candidate_text": "Example: Historic building design— document its fit with standards and precedent.",
+          "candidate_style": "italic",
           "semantic_role": "panel heading, annotation or legend"
         },
         {
@@ -20717,8 +20727,8 @@
           "semantic_role": "panel heading, annotation or legend"
         },
         {
-          "candidate_text": "Example: service dependency— use a model, validator, and admission gate to block violations.",
-          "candidate_style": "regular",
+          "candidate_text": "Example: Service dependency— block changes that violate the modeled dependency rule.",
+          "candidate_style": "italic",
           "semantic_role": "panel heading, annotation or legend"
         }
       ]

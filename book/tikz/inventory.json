@@ -1006,7 +1006,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The Determinization Frontier",
-    "svg_description": "Repeated judgment takes one of two routes. If a property requires reconstruction, Modeling changes the representation to expose a decidable property, a predicate over the model. If the property is already decidable, it bypasses that modeling step. Both paths join before Alignment, which encodes and evaluates the predicate. The sequence then proceeds through a test or validator, a gate, and a repeatable decision. A side annotation states that the determinization frontier changes what is decidable through Modeling, then binds the decision through Alignment."
+    "svg_description": "Repeated judgment follows either an already-decidable route or a route through Modeling to change the representation and expose a decidable property. Both join before Alignment, where sensors provide evidence and validators evaluate it before a gate applies the result."
   },
   {
     "chapter": "6.3-scope-conditions",
@@ -1019,7 +1019,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Choosing where to invest in explicit engineering",
-    "svg_description": "Columns run from limited to high mechanizability. Rows run from low to high value of making an obligation explicit. Low value suggests leaving judgment informal or mechanizing selectively. High value suggests investing in explicit judgment or in enforcement."
+    "svg_description": "Columns run from low to high mechanizability. Rows run from low to high value of making an obligation explicit. Low value suggests leaving judgment informal or mechanizing selectively. High value suggests investing in explicit judgment or in enforcement."
   },
   {
     "chapter": "7.1-reorganization-of-se",

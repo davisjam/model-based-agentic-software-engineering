@@ -1,53 +1,54 @@
 {
   "source": "book/assets/return-governability.svg",
   "claim": "Choosing where to invest in explicit engineering. The value of making an obligation explicit and its mechanizability suggest four responses, illustrated by examples. Better models and evaluation can increase mechanizability, while cheaper engineering machinery can make investment economical at lower expected benefits. Neither change implies that every obligation should be mechanized.",
-  "topology": "Two columns correspond to limited and high mechanizability. The low and high value rows are read top to bottom.",
+  "topology": "Two columns correspond to low and high mechanizability. The low and high value rows are read top to bottom.",
   "required_terms": [
+    "Mechanizability",
     "From judgment-intensive to reliably mechanized (e.g., constraints, validators, or automated checks)",
-    "Limited",
+    "Low",
     "Value of making it explicit",
     "Higher value justifies more engineering machinery.",
     "Low",
     "Leave judgment informal",
-    "Example: a one-off internal naming choice.",
+    "Example: A one-off internal naming choice.",
     "Mechanize selectively",
-    "Example: prototype formatting— automate when it is cheap enough to maintain.",
+    "Example: Prototype formatting— automate when it is cheap enough to maintain.",
     "Invest in explicit judgment",
-    "Example: historic building compatibility—use standards, precedent, and documented review.",
+    "Example: Historic building design— document its fit with standards and precedent.",
     "Invest in enforcement",
-    "Example: service dependency— use a model, validator, and admission gate to block violations."
+    "Example: Service dependency— block changes that violate the modeled dependency rule."
   ],
   "bw_encoding": "Light gray marks the axes and their labels. Each white cell carries an investment choice and an example.",
   "redesign": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
   "questions": [],
-  "alt": "Columns run from limited to high mechanizability. Rows run from low to high value of making an obligation explicit. Low value suggests leaving judgment informal or mechanizing selectively. High value suggests investing in explicit judgment or in enforcement.",
+  "alt": "Columns run from low to high mechanizability. Rows run from low to high value of making an obligation explicit. Low value suggests leaving judgment informal or mechanizing selectively. High value suggests investing in explicit judgment or in enforcement.",
   "qa": {
     "page": 1,
     "width_bp": 449.972,
-    "height_bp": 262.975,
-    "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-    "minimum_prose_font_pt": 9,
+    "height_bp": 209.975,
+    "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+    "minimum_prose_font_pt": 10,
     "geometry_findings": 0,
-    "semantic_typography_checks": 13,
+    "semantic_typography_checks": 14,
     "unapproved_compile_diagnostics": 0
   },
   "reference_image_sha256": "b101a20631eb86030fbfdd43f796bd2c109370577bce480b212223855814c2b8",
   "layout_review": {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
-    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+    "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 262.975,
-      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-      "minimum_prose_font_pt": 9,
+      "height_bp": 209.975,
+      "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+      "minimum_prose_font_pt": 10,
       "geometry_findings": 0,
-      "semantic_typography_checks": 13,
+      "semantic_typography_checks": 14,
       "unapproved_compile_diagnostics": 0
     },
     "contracts": {
@@ -58,45 +59,52 @@
     "page_layout": {
       "after_dimensions_bp": [
         449.972,
-        262.975
+        209.975
       ],
       "after_font_sizes_pt": [
-        9,
         10,
+        10.5,
         11,
-        12
+        12,
+        13,
+        14
       ],
       "reviewed_visually": true,
       "decision": "recomposed",
-      "reason": "Two columns correspond to limited and high mechanizability. The low and high value rows are read top to bottom."
+      "reason": "Two columns correspond to low and high mechanizability. The low and high value rows are read top to bottom."
     }
   },
   "typography_review": {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
-    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+    "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 262.975,
-      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-      "minimum_prose_font_pt": 9,
+      "height_bp": 209.975,
+      "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+      "minimum_prose_font_pt": 10,
       "geometry_findings": 0,
-      "semantic_typography_checks": 13,
+      "semantic_typography_checks": 14,
       "unapproved_compile_diagnostics": 0
     },
     "checks": [
+      {
+        "text": "Mechanizability",
+        "bold": true,
+        "italic": false
+      },
       {
         "text": "From judgment-intensive to reliably mechanized (e.g., constraints, validators, or automated checks)",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Limited",
+        "text": "Low",
         "bold": true,
         "italic": false
       },
@@ -121,9 +129,9 @@
         "italic": false
       },
       {
-        "text": "Example: a one-off internal naming choice.",
+        "text": "Example: A one-off internal naming choice.",
         "bold": false,
-        "italic": false
+        "italic": true
       },
       {
         "text": "Mechanize selectively",
@@ -131,9 +139,9 @@
         "italic": false
       },
       {
-        "text": "Example: prototype formatting— automate when it is cheap enough to maintain.",
+        "text": "Example: Prototype formatting— automate when it is cheap enough to maintain.",
         "bold": false,
-        "italic": false
+        "italic": true
       },
       {
         "text": "Invest in explicit judgment",
@@ -141,9 +149,9 @@
         "italic": false
       },
       {
-        "text": "Example: historic building compatibility—use standards, precedent, and documented review.",
+        "text": "Example: Historic building design— document its fit with standards and precedent.",
         "bold": false,
-        "italic": false
+        "italic": true
       },
       {
         "text": "Invest in enforcement",
@@ -151,19 +159,24 @@
         "italic": false
       },
       {
-        "text": "Example: service dependency— use a model, validator, and admission gate to block violations.",
+        "text": "Example: Service dependency— block changes that violate the modeled dependency rule.",
         "bold": false,
-        "italic": false
+        "italic": true
       }
     ],
     "evidence": [
+      {
+        "candidate_text": "Mechanizability",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
       {
         "candidate_text": "From judgment-intensive to reliably mechanized (e.g., constraints, validators, or automated checks)",
         "candidate_style": "italic",
         "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Limited",
+        "candidate_text": "Low",
         "candidate_style": "bold",
         "semantic_role": "panel heading, annotation or legend"
       },
@@ -188,8 +201,8 @@
         "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Example: a one-off internal naming choice.",
-        "candidate_style": "regular",
+        "candidate_text": "Example: A one-off internal naming choice.",
+        "candidate_style": "italic",
         "semantic_role": "panel heading, annotation or legend"
       },
       {
@@ -198,8 +211,8 @@
         "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Example: prototype formatting— automate when it is cheap enough to maintain.",
-        "candidate_style": "regular",
+        "candidate_text": "Example: Prototype formatting— automate when it is cheap enough to maintain.",
+        "candidate_style": "italic",
         "semantic_role": "panel heading, annotation or legend"
       },
       {
@@ -208,8 +221,8 @@
         "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Example: historic building compatibility—use standards, precedent, and documented review.",
-        "candidate_style": "regular",
+        "candidate_text": "Example: Historic building design— document its fit with standards and precedent.",
+        "candidate_style": "italic",
         "semantic_role": "panel heading, annotation or legend"
       },
       {
@@ -218,8 +231,8 @@
         "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Example: service dependency— use a model, validator, and admission gate to block violations.",
-        "candidate_style": "regular",
+        "candidate_text": "Example: Service dependency— block changes that violate the modeled dependency rule.",
+        "candidate_style": "italic",
         "semantic_role": "panel heading, annotation or legend"
       }
     ]
@@ -227,19 +240,19 @@
   "style_review": {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
-    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+    "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 262.975,
-      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-      "minimum_prose_font_pt": 9,
+      "height_bp": 209.975,
+      "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+      "minimum_prose_font_pt": 10,
       "geometry_findings": 0,
-      "semantic_typography_checks": 13,
+      "semantic_typography_checks": 14,
       "unapproved_compile_diagnostics": 0
     },
     "receipt": "book/tikz/receipts/return-governability.json",
@@ -248,7 +261,7 @@
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "fill": "Light gray marks the axes and their labels. Each white cell carries an investment choice and an example.",
     "bold": "Axes, levels, and cell headings use bold type.",
-    "routing": "Two columns correspond to limited and high mechanizability. The low and high value rows are read top to bottom.",
+    "routing": "Two columns correspond to low and high mechanizability. The low and high value rows are read top to bottom.",
     "shape": "Matrix with shared row and column headings.",
     "visual_review": "An expensive-to-mechanize obligation can justify explicit judgment. Cheap mechanization can be warranted at low value. The horizontal arrow points to high mechanizability; the vertical arrow points to the high-value row.",
     "book_references": [],
@@ -257,60 +270,62 @@
   "fidelity_review": {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
-    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+    "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 262.975,
-      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-      "minimum_prose_font_pt": 9,
+      "height_bp": 209.975,
+      "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+      "minimum_prose_font_pt": 10,
       "geometry_findings": 0,
-      "semantic_typography_checks": 13,
+      "semantic_typography_checks": 14,
       "unapproved_compile_diagnostics": 0
     },
     "checks": {
-      "links_and_groups": "Two columns correspond to limited and high mechanizability. The low and high value rows are read top to bottom.",
+      "links_and_groups": "Two columns correspond to low and high mechanizability. The low and high value rows are read top to bottom.",
       "annotation_placement": "Examples sit below investment choices.",
       "line_breaks": "Long examples wrap inside their cells.",
       "icons_and_symbols": "Arrows point toward increasing axis values."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
-        9,
         10,
+        10.5,
         11,
-        12
+        12,
+        13,
+        14
       ],
-      "minimum": 9,
+      "minimum": 10,
       "final_size_no_scaling": true
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
     "width_bp": 449.972,
-    "height_bp": 262.975,
+    "height_bp": 209.975,
     "monochrome": true,
     "review": "An expensive-to-mechanize obligation can justify explicit judgment. Cheap mechanization can be warranted at low value. The horizontal arrow points to high mechanizability; the vertical arrow points to the high-value row."
   },
   "grayscale_review": {
     "source": "book/assets/return-governability.svg",
     "candidate": "book/tikz/figures/return-governability.tex",
-    "source_sha256": "9d5245f37ac346e3154382b332bd4a86d94f376e6c539c6373b6928400aeae2e",
-    "candidate_sha256": "2882b9bd975a833e7fcd20d865d66b9a2ba8f901c5a04b7b11c61f36664fffd3",
+    "source_sha256": "cbc9ab1d8befec2d39f63fbff42331780f19f73422ce21ba246b44b7e4600d72",
+    "candidate_sha256": "43bf9ed096364d7dd4f0d168fd2db8843299b29cc3019ec7666a4dc118f14f66",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Separate the value of explicit engineering from how much of an obligation can be transferred to reliable machinery.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 262.975,
-      "proof_sha256": "491d1136df4232ec56a412e154fed3e7015ac73787ba7890006cb9b1e28dec88",
-      "minimum_prose_font_pt": 9,
+      "height_bp": 209.975,
+      "proof_sha256": "34f5c24f1d98dcea3c711bc6a9622125971c0170ef79f0d737ca6cb07d90520d",
+      "minimum_prose_font_pt": 10,
       "geometry_findings": 0,
-      "semantic_typography_checks": 13,
+      "semantic_typography_checks": 14,
       "unapproved_compile_diagnostics": 0
     },
     "receipt": "book/tikz/receipts/return-governability.json",
