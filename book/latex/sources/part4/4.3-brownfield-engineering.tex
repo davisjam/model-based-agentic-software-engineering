@@ -93,6 +93,12 @@ Recovering a model also creates an obligation to maintain its correspondence wit
 During the June 8--10 recovery work, findings were repeatedly reclassified as engineers resolved them. Some needed annotations or mechanical cleanup; others belonged to protocol boundaries or test fixtures and warranted exemptions. A smaller group exposed shared concepts worth modeling or design decisions that needed further judgment. The dispositions included annotate, exempt, extract a model, redesign, retire, and defer for judgment. The same weak signal thus led to several remedies; a declining finding count cannot be read as a count of recovered models.
 \end{quote}
 
+A recovered model need not immediately govern execution or require previously separate implementations to be combined.
+
+DocAble's four document-processing pipelines use different engines for good reasons. PDF processing often requires inferring structure that an Office document already records. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
+
+As a preliminary step, we introduced a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let us compare policies, explain legitimate differences, and identify choices worth reconsidering. We did not merge the engines or make the model execute their policies. As we evaluate those differences, we can revise the model to reflect our engineering decisions and determine which correspondences warrant enforcement.
+
 \section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}
 
 Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.

@@ -214,6 +214,10 @@ A stronger reasoner does not settle an unknown requirement; another validator do
 
 As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate. Keeping this engineering capital useful requires maintenance. A model may drift from the implementation, while a gate continues to enforce an obsolete policy. Noisy controls and broken evidence pipelines can make their verdicts difficult to trust; skills can preserve procedures whose assumptions have expired. Engineers therefore need to observe, reconcile, repair, and sometimes retire these structures, just as they do for the system those structures govern.
 
+An audit of DocAble's models found that ten providers appeared to have the required uniqueness checks. Every test passed. Closer inspection showed that all ten checks examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to each provider. Duplicate source records could therefore overwrite one another without triggering a failure. The checks established a true property of the wrong collection.
+
+The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This suggests a general maintenance practice: \textbf{construct a violation of an obligation, run the actual check, and establish that it detects the violation.} Where enforcement is intended, also test whether the resulting verdict prevents the work from proceeding. A passing control should have evidence that it can fail for the right reason.
+
 Audit models, mechanisms, procedures, and evidence pipelines together:
 
 \begin{itemize}
