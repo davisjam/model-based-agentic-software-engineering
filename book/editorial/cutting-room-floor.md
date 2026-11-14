@@ -20333,3 +20333,10 @@ A lost PDF tag tree prompted a replacement library call, not a controlled mutati
 Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, Figure 1.4 caption, line 178 at `0520126c5`. Replaced at the author’s request to distinguish reduced recovery work from its possible consequences.
 
 > Representation and the reasoning horizon. When relevant system knowledge exceeds a reasoner’s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.
+
+
+## 2026-11-13 — Figure 2.20 caption: the modeled surface and its limits
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, caption for `model-sync-two-layer-net` at `320c3b18a`. Author-requested caption replacement; drawing and surrounding prose retained.
+
+> Coverage of model correspondence. The modeled surface contains claims that can be checked mechanically and claims that require semantic judgment. Properties outside it have no model-based coverage. Engineering experience can move this boundary in either direction as newly important properties are represented or unnecessary distinctions are removed.
