@@ -20376,3 +20376,82 @@ Drift checking therefore has a precise job: preserve a declared correspondence b
 \caption{\emph{Three distinct relations.} Correspondence tests agreement between representations; conformance tests an artifact against an independent obligation; acceptance asks whether the receiving environment will take the result. Evidence for one relation does not establish the others.}
 
 An interface offers a simple way to distinguish these relations. Two services' contract tests can establish that their represented message formats agree. A separate validator can compare an emitted message with an independently specified protocol. The receiving service can still reject a conforming message because the sender lacks permission to submit it. Agreement between representations, conformance to a requirement, and acceptance by a particular environment are different claims.
+
+
+## DocAble analytical graph and scheduler — Chapter 3
+
+The author retired the separate illustration and applied the three judgments to the incident in prose.
+
+```latex
+The view helps engineers inspect the pipeline, but the scheduler does not use that view to run it. \autoref{fidelity-vs-authority} separates these two uses of the system knowledge.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/fidelity-vs-authority-d07be6cf80.pdf}
+\caption{\emph{Governing role and correspondence.} Execution consumes the computation model. The analytical view projects the structure and is checked against its sources. Improving the view's correspondence makes it more dependable for analysis; it does not make the view direct execution.}
+\label{fidelity-vs-authority}
+\end{figure}
+
+This case separates three engineering decisions. The computation model determines composition because the scheduler reads it. Parity checks evaluate agreement between selected representations. A gate can make that agreement a condition of admission, but cannot enlarge the evidence the check supplies. Keeping those decisions separate lets engineers strengthen each relation without mistaking one for another.
+```
+
+
+## Positive and negative constraints — Chapter 3
+
+The concise discussion retains the evidence requirement and its limits. The extended payment example, equation, and two illustrations are archived here.
+
+```latex
+The reporting-service rule forbids a particular access. Constraints can also require an accompanying action, such as recording who performed a mutation. A document-editing interface, for example, might prohibit callers from using the raw format library directly. It might also require each permitted mutation to emit an attribution record. A source-time rule can check that the recording call appears in each known mutation path. \autoref{positive-negative-obligation} sets these two obligations side by side: restrict the prohibited access, and require the evidence-producing behavior. Checking that the call is present still leaves the correctness of the emitted evidence to its own checks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/positive-negative-obligation-59f450f724.pdf}
+\caption{\emph{Negative and positive constraints.} A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.}
+\label{positive-negative-obligation}
+\end{figure}
+
+\section{Provenance-Carried Admission}\label{heading:provenance-carried-admission}
+
+% <!-- section-terms: constraint, governance-mechanism -->
+
+% <!-- point: provenance-carried-admission-is-the-derivation-path-case-of-conformance | Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact. | terms: constraint -->
+
+The reporting-service example concerns which components may interact. Some architectural obligations also concern the path through which an operation was derived. They require evidence that a necessary step occurred before the protected effect.
+
+% <!-- point: restrict-a-recognizable-primitive-surface-directly | Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature. | terms: constraint -->
+
+The reporting boundary can be enforced by controlling a recognizable primitive: the connection to the billing database. More generally, when the environment can identify the APIs that perform a consequential effect and designate the components permitted to use them, it can check known source-level callers and restrict access at runtime. The mechanism must cover the routes through which the protected effect can actually occur.
+
+% <!-- point: some-obligations-have-no-single-forbidden-call | Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path. | terms: constraint -->
+
+Other architectural obligations do not have such a convenient boundary. Suppose a payment must be approved before it reaches the transfer operation. A future implementation may combine otherwise legitimate account queries, calculations, and service calls into a new route to that operation. Every individual call can be permitted while the route omits approval. A rule looking only for previously identified bypasses may therefore miss the new path.
+
+% <!-- point: provenance-reverses-the-enforcement-problem | Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction. | terms: constraint, governance-mechanism -->
+
+Provenance can make admission depend on evidence that the protected operation passed through the sanctioned abstraction. In the payment example, the approval service can issue a digitally signed token that cryptographically binds its approval to the proposed transfer: its source account, destination, and amount. Callers without the signing key cannot forge an approval or change those fields while retaining a valid signature. The transfer boundary verifies the signature and checks that the approved details match the requested operation before admitting it. The boundary must also atomically consume a single-use approval so concurrent requests cannot reuse it for a duplicate transfer~\citep{owasp-transaction-authorization}. The general admission condition is:
+
+\[
+\operatorname{admit}(x) \iff \operatorname{valid}(x) \land \operatorname{sanctionedProvenance}(x)
+\]
+
+\autoref{provenance-carried-admission} traces the single sanctioned path: an operation reaches the protected boundary only by deriving through the sanctioned abstraction, which supplies the provenance the boundary demands.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/provenance-carried-admission-835241521f.pdf}
+\caption{\emph{Provenance-carried admission.} A protected operation must derive through the sanctioned abstraction, which attaches provenance to the resulting operation. The receiving boundary requires that provenance before admitting the operation. The mechanism removes the degree of freedom to obtain the operation through some other implementation path, without requiring the environment to enumerate those alternative paths.}
+\label{provenance-carried-admission}
+\end{figure}
+
+An agent remains free to invent new internal implementations, but invention does not create a new route around the obligation. A newly synthesized path that bypasses the sanctioned abstraction arrives at the boundary without valid provenance and is refused. Enforcement therefore depends on recognizing the allowed derivation, not enumerating all possible forbidden derivations.
+
+% <!-- point: choose-provenance-when-derivation-paths-are-numerous-or-compositional | Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional. | terms: constraint -->
+
+If the protected effect passes through a small, recognizable set of operations, restricting those operations may be sufficient. Provenance becomes useful when the obligation concerns how an operation was prepared and the alternative routes are too numerous or difficult to check directly. The engineer can then require evidence of the approved preparation at the point where the effect occurs.
+
+% <!-- point: provenance-makes-a-derivation-path-sanctioned | Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes. | terms: constraint, governance-mechanism -->
+
+In the payment example, provenance establishes that the required approval occurred before the transfer. A source-time rule can check that known implementations attach the approval token. The receiving boundary can require a valid token for every transfer, including requests from implementations the source rule did not inspect. One check examines known producers; the other protects the receiving operation.
+
+The control restricts a derivation path through the interaction graph: the protected operation must pass through the node that issues its provenance. Other implementation choices remain open.
+```

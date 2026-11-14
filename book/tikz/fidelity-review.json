@@ -1678,30 +1678,42 @@
     {
       "source": "book/assets/three-relations.svg",
       "candidate": "book/tikz/figures/three-relations.tex",
-      "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
-      "candidate_sha256": "d9ee2c1fea7af9d595c6e27d05d5229042450572245d59b332e242ee0bbdbd2a",
-      "decision": "retained",
-      "review": "Compared three stacked relation bands and arrow directions. Correspondence, governing and causal roles remain separate. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        12.3515,
-        8.123
-      ],
-      "strict_compile_diagnostics": []
-    },
-    {
-      "source": "book/assets/fidelity-vs-authority.svg",
-      "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
-      "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-      "candidate_sha256": "41c0500c23df3332474cb22ae385ad192806d489d7fadb0eb6089ddfd11b401b",
+      "source_sha256": "a523e326404ee0f09bb883972adfca358b797c7302b4fc888bfec8d7c1bcd8a4",
+      "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
       "decision": "refined",
-      "review": "Moved Analysis/governance outside the view node and restored its downward annotation arrow. Restored explicit governing/correspondence mappings and kept consequence relations distinct.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        12.9515,
-        7.4874
-      ],
-      "strict_compile_diagnostics": []
+      "reviewed_visually": true,
+      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 264.975,
+        "proof_sha256": "89463778cee19b49c0e0d77fb9560b4334cc13ec63981183e564f084e18f6b05",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 18,
+        "unapproved_compile_diagnostics": 0
+      },
+      "checks": {
+        "links_and_groups": "The engineering model is inside the GEE. Correspondence and conformance compare the model and its independently established obligation with the same external implementation. Three plain vertical lines connect the same implementation to the model, the obligation and the admission conditions.",
+        "annotation_placement": "Relation questions appear beneath their headings.",
+        "line_breaks": "Each question occupies two lines.",
+        "icons_and_symbols": "Layer, tree and code glyphs identify the environment, model and implementation."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9,
+          10,
+          11
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 449.972,
+      "height_bp": 264.975,
+      "monochrome": true,
+      "review": "The GEE frame separates the model and its admission decision from the implementation being judged. The Acceptance question links the implementation to required evidence, authorization, and other admission conditions."
     },
     {
       "source": "book/assets/semantic-gap-levels.svg",
@@ -1883,60 +1895,6 @@
       "height_bp": 316.771,
       "monochrome": true,
       "review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
-    },
-    {
-      "source": "book/assets/positive-negative-obligation.svg",
-      "candidate": "book/tikz/figures/positive-negative-obligation.tex",
-      "checks": {
-        "icons_and_symbols": "Cross restored on forbidden edge; not merely a multiplication sign in label.",
-        "links_and_groups": "Dashed forbidden path and raw-library outline remain distinct from mandatory arrow.",
-        "annotation_placement": "Must-call/must-not-call annotations sit beside edges.",
-        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 356.69500732421875,
-      "height_bp": 159.46499633789062,
-      "monochrome": true,
-      "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
-      "candidate_sha256": "746e4f61d6d5dcef0413a3e980c09214aa1f419500c0db8021a012fbc048486e",
-      "review": "Restored a crossed-out forbidden path rather than an X embedded in prose; kept prohibition annotation beside edge.",
-      "decision": "refined"
-    },
-    {
-      "source": "book/assets/provenance-carried-admission.svg",
-      "candidate": "book/tikz/figures/provenance-carried-admission.tex",
-      "checks": {
-        "icons_and_symbols": "Double-bar admission symbol restored.",
-        "links_and_groups": "Single sanctioned operation path crosses boundary; no invented bypass paths.",
-        "annotation_placement": "Boundary title above, requirement below; provenance-issuance annotation outside abstraction.",
-        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 423.3089904785156,
-      "height_bp": 119.74700164794922,
-      "monochrome": true,
-      "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
-      "candidate_sha256": "21923831bbf2dd4f9f302d07ebe375bcbd683e0196539180c44efbe8f33cb91f",
-      "review": "Restored admission as a double vertical boundary, with its name above and evidence requirement below; stopped treating boundary as another process box.",
-      "decision": "refined"
     },
     {
       "source": "book/assets/governance-conversion.svg",

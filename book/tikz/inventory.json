@@ -493,28 +493,15 @@
   {
     "chapter": "3.2-models-and-the-semantic-gap",
     "source": "assets/three-relations.svg",
-    "caption": "*Three distinct relations.* Correspondence tests agreement between representations; conformance tests an artifact against an independent obligation; acceptance asks whether the receiving environment will take the result. Evidence for one relation does not establish the others.",
+    "caption": "Model agreement, obligation satisfaction, and admission. Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE’s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/three-relations.d2",
     "receipt": "book/d2-pilot/three-relations.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Three relations an obligation can test: correspondence, conformance, acceptance",
-    "svg_description": "Three stacked bands. Correspondence asks whether two representations of one thing agree — a\n    bidirectional relation between an implementation and a representation, both of them internal. Conformance\n    asks whether the artifact satisfies an independent obligation. Acceptance asks whether the receiving\n    environment will take the artifact. Agreement, conformance, and acceptance are distinct kinds of evidence\n    and are not interchangeable."
-  },
-  {
-    "chapter": "3.2-models-and-the-semantic-gap",
-    "source": "assets/fidelity-vs-authority.svg",
-    "caption": "*Correspondence strength and governing role are independent.* DocAble's execution machinery consumes an explicit computation model to determine remediation composition. A separate analytical graph view projects that structure and is held in correspondence with its upstream declarations. Stronger correspondence makes the view more trustworthy as a representation; it does not make the view govern execution.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Governing role and correspondence are different relations",
-    "svg_description": "One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it."
+    "svg_title": "Model agreement, obligation satisfaction, and admission",
+    "svg_description": "The governed engineering environment contains an engineering model, its no-direct-database-access obligation, and an acceptance decision. Correspondence compares the proposed implementation with the model. Conformance compares the same implementation with the obligation. The implementation sits outside the environment and is submitted for acceptance under its controls and evidence requirements."
   },
   {
     "chapter": "3.2-models-and-the-semantic-gap",
@@ -568,32 +555,6 @@
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Margin and engineering freedom",
     "svg_description": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee."
-  },
-  {
-    "chapter": "3.3-constraints-sensors-validators-gates",
-    "source": "assets/positive-negative-obligation.svg",
-    "caption": "*Negative and positive constraints.* A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/positive-negative-obligation.d2",
-    "receipt": "book/d2-pilot/positive-negative-obligation.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior",
-    "svg_description": "Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge\n    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that\n    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,\n    from opposite directions."
-  },
-  {
-    "chapter": "3.3-constraints-sensors-validators-gates",
-    "source": "assets/provenance-carried-admission.svg",
-    "caption": "*Provenance-carried admission.* A protected operation must derive through the sanctioned abstraction, which attaches provenance to the resulting operation. The receiving boundary requires that provenance before admitting the operation. The mechanism removes the degree of freedom to obtain the operation through some other implementation path, without requiring the environment to enumerate those alternative paths.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Provenance-carried admission: a protected operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires",
-    "svg_description": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance."
   },
   {
     "chapter": "3.4-governance-conversion",

@@ -15,21 +15,12 @@
       "placement": "centered",
       "float_placement": "!htb"
     },
-    "positive-negative-obligation": {
-      "width_bp": 300,
-      "placement": "centered"
-    },
     "permitted-vs-acceptable": {
       "width_bp": 300,
       "placement": "centered"
     },
     "docable-context-selection": {
       "width_bp": 450,
-      "placement": "centered",
-      "inset_placement": "inline"
-    },
-    "fidelity-vs-authority": {
-      "width_bp": 270,
       "placement": "centered",
       "inset_placement": "inline"
     },

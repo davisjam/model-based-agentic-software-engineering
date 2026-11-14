@@ -1,86 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Chapter 3 3.2.1 figure — three-relations.svg (draft; folds to book/assets/).
-     Three relations an obligation can test, stacked as distinct bands so the "distinct evidence"
-     claim reads on sight. CORRESPONDENCE asks whether two representations of one thing AGREE
-     (both sides are implementations/representations -> gray boxes; the relation is bidirectional).
-     CONFORMANCE asks whether the artifact satisfies an INDEPENDENT OBLIGATION (the obligation is
-     the target -> rust). ACCEPTANCE asks whether the RECEIVING ENVIRONMENT will TAKE it (an
-     accept/yes outcome -> green). Grammar: gray = territory/implementation; rust #9a3f12 = declared
-     obligation; green = acceptance outcome; blue #2f5169 = the agreement relation of representations.
-     v7 (part3-v7-260814): band 2 heading INDEPENDENT EVALUATION -> CONFORMANCE; target box now
-     "independent obligation" (dropped "outside oracle"); band 3 target "receiving environment"
-     (dropped "chosen oracle"); excess explanatory microtext stripped. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560"
-     role="img" aria-labelledby="trTitle trDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="trTitle">Three relations an obligation can test: correspondence, conformance, acceptance</title>
-  <desc id="trDesc">Three stacked bands. Correspondence asks whether two representations of one thing agree — a
-    bidirectional relation between an implementation and a representation, both of them internal. Conformance
-    asks whether the artifact satisfies an independent obligation. Acceptance asks whether the receiving
-    environment will take the artifact. Agreement, conformance, and acceptance are distinct kinds of evidence
-    and are not interchangeable.</desc>
-
-  <defs>
-    <marker id="tr-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="tr-b0" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M10 0 L0 5 L10 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="tr-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="tr-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
-    </marker>
-  </defs>
-
-  <!-- ============ BAND 1 — CORRESPONDENCE ============ -->
-  <rect x="40" y="40" width="6" height="150" rx="3" fill="#2f5169"/>
-  <text x="66" y="72" font-size="21" font-weight="700" fill="#2f5169" letter-spacing="0.5">CORRESPONDENCE</text>
-  <text x="66" y="96" font-size="19.2" font-style="italic" fill="#57534e">agreement between two representations</text>
-
-  <rect id="tr-implementation" x="220" y="112" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="326" y="145" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">implementation</text>
-  <rect id="tr-representation" x="560" y="112" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="666" y="145" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">representation</text>
-  <!-- edge: tr-implementation -> tr-representation -->
-  <line x1="434" y1="139" x2="558" y2="139" stroke="#2f5169" stroke-width="2.4" marker-start="url(#tr-b0)" marker-end="url(#tr-b)"/>
-  <text x="496" y="128" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">&#8220;Do they agree?&#8221;</text>
-  <text x="822" y="145" font-size="19.2" font-weight="700" fill="#2f5169">agreement</text>
-
-  <line x1="40" y1="200" x2="920" y2="200" stroke="#e7e2da" stroke-width="1.4"/>
-
-  <!-- ============ BAND 2 — CONFORMANCE ============ -->
-  <rect x="40" y="212" width="6" height="150" rx="3" fill="#9a3f12"/>
-  <text x="66" y="244" font-size="21" font-weight="700" fill="#9a3f12" letter-spacing="0.5">CONFORMANCE</text>
-  <text x="66" y="268" font-size="19.2" font-style="italic" fill="#57534e">the artifact against an independent obligation</text>
-
-  <rect id="tr-artifact-conf" x="220" y="284" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="326" y="317" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">artifact</text>
-  <rect id="tr-obligation" x="541.99" y="284" width="248.02" height="54" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="666" y="317" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">independent obligation</text>
-  <!-- edge: tr-artifact-conf -> tr-obligation -->
-  <line x1="432" y1="311" x2="558" y2="311" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#tr-r)"/>
-  <text x="496" y="300" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">&#8220;Does it satisfy?&#8221;</text>
-  <text x="822" y="317" font-size="19.2" font-weight="700" fill="#9a3f12">conformance</text>
-
-  <line x1="40" y1="372" x2="920" y2="372" stroke="#e7e2da" stroke-width="1.4"/>
-
-  <!-- ============ BAND 3 — ACCEPTANCE ============ -->
-  <rect x="40" y="384" width="6" height="150" rx="3" fill="#155c38"/>
-  <text x="66" y="416" font-size="21" font-weight="700" fill="#155c38" letter-spacing="0.5">ACCEPTANCE</text>
-  <text x="66" y="440" font-size="19.2" font-style="italic" fill="#57534e">the receiving environment takes the result</text>
-
-  <rect id="tr-artifact-acc" x="220" y="456" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="326" y="489" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">artifact</text>
-  <rect id="tr-receiving" x="546.05" y="456" width="239.91" height="54" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
-  <text x="666" y="489" text-anchor="middle" font-size="19.2" font-weight="700" fill="#155c38">receiving environment</text>
-  <!-- edge: tr-artifact-acc -> tr-receiving -->
-  <line x1="432" y1="483" x2="558" y2="483" stroke="#155c38" stroke-width="2.4" marker-end="url(#tr-g)"/>
-  <text x="496" y="472" text-anchor="middle" font-size="19.2" font-style="italic" fill="#155c38">&#8220;Will it accept?&#8221;</text>
-  <text x="822" y="489" font-size="19.2" font-weight="700" fill="#155c38">acceptance</text>
-
-  <!-- footer: protect the distinction -->
-  <text x="480" y="548" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Evidence of agreement, conformance, and acceptance is not interchangeable.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="346" viewBox="0 0 444 259" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<title id="title">Model agreement, obligation satisfaction, and admission</title>
+<desc id="desc">The governed engineering environment contains an engineering model, its no-direct-database-access obligation, and an acceptance decision. Correspondence compares the proposed implementation with the model. Conformance compares the same implementation with the obligation. The implementation sits outside the environment and is submitted for acceptance under its controls and evidence requirements.</desc>
+<defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0 0 L5 2.5 L0 5 Z" fill="#1c1917"/></marker></defs>
+<g fill="#1c1917" font-family="Source Sans 3, sans-serif">
+<rect x="2" y="2" width="440" height="135" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="3" y="3" width="438" height="34" rx="3" fill="#f6f4ef" stroke="white" stroke-width="0"/>
+<polygon points="13,22 23,17 33,22 23,27" fill="white" stroke="#1c1917" stroke-width=".9"/>
+<polygon points="13,18 23,13 33,18 23,23" fill="white" stroke="#1c1917" stroke-width=".9"/>
+<polygon points="13,14 23,9 33,14 23,19" fill="white" stroke="#1c1917" stroke-width=".9"/>
+<text x="43" y="17" font-size="12" text-anchor="start" font-weight="700">GEE (Governed Engineering Environment)</text>
+<text x="43" y="30" font-size="9" text-anchor="start" font-style="italic">Models, controls, evidence, and admission</text>
+<rect x="13" y="45" width="252" height="82" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.7"/>
+<text x="23" y="58" font-size="10" text-anchor="start" font-weight="700" font-style="italic">One engineering model</text>
+<rect x="23" y="64" width="232" height="54" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="51" y="70" width="5" height="5" rx="0.4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="40" y="88" width="5" height="5" rx="0.4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="51" y="88" width="5" height="5" rx="0.4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="62" y="88" width="5" height="5" rx="0.4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M53.5,75 L53.5,88" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M42.5,81 L64.5,81" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M42.5,81 L42.5,88" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M64.5,81 L64.5,88" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<text x="83" y="79" font-size="11" text-anchor="start" font-weight="700">Engineering model</text>
+<text x="83" y="92" font-size="9" text-anchor="start" font-style="italic">Representation of the system</text>
+<rect x="29" y="98" width="220" height="16" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="139" y="109" font-size="9" text-anchor="middle">One obligation: no direct database access</text>
+<rect x="278" y="49" width="150" height="70" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="353" y="64" font-size="11" text-anchor="middle" font-weight="700">Admission</text>
+<rect x="284" y="70" width="138" height="43" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0"/>
+<circle cx="291" cy="78" r="1.4"/>
+<text x="296" y="81" font-size="9" text-anchor="start">Required evidence</text>
+<circle cx="291" cy="91" r="1.4"/>
+<text x="296" y="94" font-size="9" text-anchor="start">Authorization</text>
+<circle cx="291" cy="104" r="1.4"/>
+<text x="296" y="107" font-size="9" text-anchor="start">Other admission conditions</text>
+<path d="M78.0,118 L78.0,157" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="12" y="157" width="132" height="42" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="78.0" y="171" font-size="11" text-anchor="middle" font-weight="700">Correspondence</text>
+<text x="78.0" y="184" font-size="9" text-anchor="middle" font-style="italic">Does the implementation</text>
+<text x="78.0" y="195" font-size="9" text-anchor="middle" font-style="italic">agree with the model?</text>
+<path d="M78.0,199 L78.0,222" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M220.5,118 L220.5,157" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="155" y="157" width="131" height="42" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="220.5" y="171" font-size="11" text-anchor="middle" font-weight="700">Conformance</text>
+<text x="220.5" y="184" font-size="9" text-anchor="middle" font-style="italic">Does the implementation</text>
+<text x="220.5" y="195" font-size="9" text-anchor="middle" font-style="italic">satisfy the obligation?</text>
+<path d="M220.5,199 L220.5,222" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M364.5,119 L364.5,157" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="297" y="157" width="135" height="42" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="364.5" y="171" font-size="11" text-anchor="middle" font-weight="700">Acceptance</text>
+<text x="364.5" y="184" font-size="9" text-anchor="middle" font-style="italic">Will the GEE permit the</text>
+<text x="364.5" y="195" font-size="9" text-anchor="middle" font-style="italic">implementation to proceed?</text>
+<path d="M364.5,199 L364.5,222" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<rect x="40" y="222" width="364" height="35" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M69,231 L62,239" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+<path d="M62,239 L69,246" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+<path d="M76,246 L82,230" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+<path d="M90,231 L97,239" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+<path d="M97,239 L90,246" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+<text x="114" y="236" font-size="11" text-anchor="start" font-weight="700">Implementation</text>
+<text x="114" y="250" font-size="9" text-anchor="start" font-style="italic">The realized system (code, configuration, etc.)</text>
+</g>
 </svg>

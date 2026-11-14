@@ -11823,258 +11823,205 @@
     {
       "source": "book/assets/three-relations.svg",
       "candidate": "book/tikz/figures/three-relations.tex",
+      "source_sha256": "a523e326404ee0f09bb883972adfca358b797c7302b4fc888bfec8d7c1bcd8a4",
+      "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
       "decision": "refined",
-      "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
-      "candidate_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
-      "evidence": [
-        {
-          "source_text": "CORRESPONDENCE",
-          "source_style": "weight 700; normal; source size 21",
-          "semantic_role": "relation class",
-          "candidate_text": "CORRESPONDENCE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "CORRESPONDENCE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "“Do they agree?”",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "class question",
-          "candidate_text": "Do they agree?",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "“Do they agree?”",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "CONFORMANCE",
-          "source_style": "weight 700; normal; source size 21",
-          "semantic_role": "relation class",
-          "candidate_text": "CONFORMANCE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "CONFORMANCE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "“Does it satisfy?”",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "class question",
-          "candidate_text": "Does it satisfy?",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "“Does it satisfy?”",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "ACCEPTANCE",
-          "source_style": "weight 700; normal; source size 21",
-          "semantic_role": "relation class",
-          "candidate_text": "ACCEPTANCE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[13]/text()",
-            "text_element_context": "ACCEPTANCE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "“Will it accept?”",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "class question",
-          "candidate_text": "Will it accept?",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/three-relations.svg",
-            "element_text_path": "/svg/text[17]/text()",
-            "text_element_context": "“Will it accept?”",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Uppercase relation categories are bold; their explanatory questions are italic regular weight instead of uniformly bold.",
+      "reviewed_visually": true,
+      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 264.975,
+        "proof_sha256": "89463778cee19b49c0e0d77fb9560b4334cc13ec63981183e564f084e18f6b05",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 18,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": [
         {
-          "text": "CORRESPONDENCE",
+          "text": "GEE (Governed Engineering Environment)",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Do they agree?",
+          "text": "Models, controls, evidence, and admission",
           "bold": false,
           "italic": true
         },
         {
-          "text": "CONFORMANCE",
+          "text": "One engineering model",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "Engineering model",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Does it satisfy?",
+          "text": "Representation of the system",
           "bold": false,
           "italic": true
         },
         {
-          "text": "ACCEPTANCE",
+          "text": "One obligation: no direct database access",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Admission",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Will it accept?",
+          "text": "Required evidence",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Authorization",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Other admission conditions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Correspondence",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Does the implementation agree with the model?",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Artifact",
-          "bold": false,
+          "text": "Conformance",
+          "bold": true,
           "italic": false
+        },
+        {
+          "text": "Does the implementation satisfy the obligation?",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Acceptance",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Will the GEE permit the implementation to proceed?",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Implementation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "The realized system (code, configuration, etc.)",
+          "bold": false,
+          "italic": true
         }
       ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 40,
-        "width_bp": 350.12,
-        "height_bp": 230.503,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 7
-      }
-    },
-    {
-      "source": "book/assets/fidelity-vs-authority.svg",
-      "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
-      "decision": "refined",
-      "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-      "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
       "evidence": [
         {
-          "source_text": "GOVERNING COMPUTATION MODEL",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "GOVERNING COMPUTATION MODEL",
+          "candidate_text": "GEE (Governed Engineering Environment)",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/fidelity-vs-authority.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "GOVERNING COMPUTATION MODEL",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "entity, relation, obligation or explanatory text"
         },
         {
-          "source_text": "EXECUTION",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "EXECUTION",
+          "candidate_text": "Models, controls, evidence, and admission",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "One engineering model",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/fidelity-vs-authority.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "EXECUTION",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "entity, relation, obligation or explanatory text"
         },
         {
-          "source_text": "ANALYTICAL GRAPH VIEW",
-          "source_style": "weight 700; normal; source size 19",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "ANALYTICAL GRAPH VIEW",
+          "candidate_text": "Engineering model",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/fidelity-vs-authority.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "ANALYTICAL GRAPH VIEW",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "entity, relation, obligation or explanatory text"
         },
         {
-          "source_text": "consumed by scheduler",
-          "source_style": "weight 600; italic; source size 15",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "consumed by scheduler",
-          "candidate_style": "bold italic",
-          "source_locator": {
-            "svg": "book/assets/fidelity-vs-authority.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "consumed by scheduler",
-            "matching_fragment_count": 1
-          }
+          "candidate_text": "Representation of the system",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
         },
         {
-          "source_text": "projected / checked",
-          "source_style": "weight 600; italic; source size 15",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "projected / checked",
-          "candidate_style": "bold italic",
-          "source_locator": {
-            "svg": "book/assets/fidelity-vs-authority.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "projected / checked",
-            "matching_fragment_count": 1
-          }
+          "candidate_text": "One obligation: no direct database access",
+          "candidate_style": "regular",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Admission",
+          "candidate_style": "bold",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Required evidence",
+          "candidate_style": "regular",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Authorization",
+          "candidate_style": "regular",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Other admission conditions",
+          "candidate_style": "regular",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Correspondence",
+          "candidate_style": "bold",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Does the implementation agree with the model?",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Conformance",
+          "candidate_style": "bold",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Does the implementation satisfy the obligation?",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Acceptance",
+          "candidate_style": "bold",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Will the GEE permit the implementation to proceed?",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "Implementation",
+          "candidate_style": "bold",
+          "semantic_role": "entity, relation, obligation or explanatory text"
+        },
+        {
+          "candidate_text": "The realized system (code, configuration, etc.)",
+          "candidate_style": "italic",
+          "semantic_role": "entity, relation, obligation or explanatory text"
         }
-      ],
-      "reason": "Governing model, execution, and analytical view regain role-name hierarchy; italic relation verbs distinguish authority from projection. Two-line edge labels keep restored bold italic clear of the branch junction.",
-      "checks": [
-        {
-          "text": "GOVERNING COMPUTATION MODEL",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "EXECUTION",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "ANALYTICAL GRAPH VIEW",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "consumed by scheduler",
-          "bold": true,
-          "italic": true
-        },
-        {
-          "text": "projected / checked",
-          "bold": true,
-          "italic": true
-        },
-        {
-          "text": "Analysis · governance",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 41,
-        "width_bp": 367.128,
-        "height_bp": 226.203,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 6
-      }
+      ]
     },
     {
       "source": "book/assets/semantic-gap-levels.svg",
@@ -13089,280 +13036,6 @@
         "monochrome_pixels": true,
         "status": "passed",
         "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
-      }
-    },
-    {
-      "source": "book/assets/positive-negative-obligation.svg",
-      "candidate": "book/tikz/figures/positive-negative-obligation.tex",
-      "decision": "refined",
-      "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
-      "candidate_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
-      "evidence": [
-        {
-          "source_text": "NEGATIVE CONSTRAINT",
-          "source_style": "weight 700; normal; source size 22",
-          "semantic_role": "constraint family",
-          "candidate_text": "NEGATIVE CONSTRAINT",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "NEGATIVE CONSTRAINT",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "POSITIVE CONSTRAINT",
-          "source_style": "weight 700; normal; source size 22",
-          "semantic_role": "constraint family",
-          "candidate_text": "POSITIVE CONSTRAINT",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "POSITIVE CONSTRAINT",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "must not call",
-          "source_style": "weight 700; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "must not call",
-          "candidate_style": "bold italic",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "must not call",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "must call",
-          "source_style": "weight 700; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "must call",
-          "candidate_style": "bold italic",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "must call",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "MUST stamp",
-          "source_style": "weight 700; normal; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "MUST stamp",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "MUST stamp",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "emit attribution evidence",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "emit attribution evidence",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/positive-negative-obligation.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "emit attribution evidence",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Retain uppercase constraint families and restore bold italic modal requirements; evidence description remains separate from MUST stamp.",
-      "checks": [
-        {
-          "text": "NEGATIVE CONSTRAINT",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "POSITIVE CONSTRAINT",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "must not call",
-          "bold": true,
-          "italic": true
-        },
-        {
-          "text": "must call",
-          "bold": true,
-          "italic": true
-        },
-        {
-          "text": "MUST stamp",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "emit attribution evidence",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Ordinary code",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 46,
-        "width_bp": 356.695,
-        "height_bp": 158.652,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 7
-      }
-    },
-    {
-      "source": "book/assets/provenance-carried-admission.svg",
-      "candidate": "book/tikz/figures/provenance-carried-admission.tex",
-      "decision": "refined",
-      "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
-      "candidate_sha256": "2755ef32758113f53e7703b0eb2c3e401f7ee9bf25af025dd6cce8f40cd05edd",
-      "evidence": [
-        {
-          "source_text": "SANCTIONED ABSTRACTION",
-          "source_style": "weight 700; normal; source size 16",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "SANCTIONED ABSTRACTION",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/g[1]/text[2]/text()",
-            "text_element_context": "SANCTIONED ABSTRACTION",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "ADMISSION BOUNDARY",
-          "source_style": "weight 700; normal; source size 16",
-          "semantic_role": "admission role",
-          "candidate_text": "ADMISSION BOUNDARY",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/g[1]/text[3]/text()",
-            "text_element_context": "ADMISSION BOUNDARY",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "ADMITTED",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "ADMITTED OPERATION",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "ADMITTED",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "operation + provenance",
-          "source_style": "weight normal; italic; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "operation + provenance",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "operation + provenance",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "requires provenance",
-          "source_style": "weight normal; italic; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Requires valid provenance",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "requires provenance",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "issues provenance",
-          "source_style": "weight normal; italic; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Issues provenance",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/provenance-carried-admission.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "issues provenance",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Restore named abstraction and admission-role hierarchy while retaining regular implementation logic and italic provenance annotations.",
-      "checks": [
-        {
-          "text": "SANCTIONED ABSTRACTION",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "ADMISSION BOUNDARY",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "ADMITTED OPERATION",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "operation + provenance",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Requires valid provenance",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Issues provenance",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Implementation logic",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 47,
-        "width_bp": 428.979,
-        "height_bp": 118.138,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 7
       }
     },
     {

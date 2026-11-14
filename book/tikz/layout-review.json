@@ -3913,115 +3913,39 @@
     {
       "source": "book/assets/three-relations.svg",
       "candidate": "book/tikz/figures/three-relations.tex",
-      "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
-      "baseline_candidate_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
-      "candidate_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
-      "decision": "retained",
-      "reason": "Three evidence relations are separate examples. Their paired boxes and arrow runs are clear; no cross-example height normalization is needed.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        350.1199951171875,
-        230.5030059814453
-      ],
-      "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 40,
-        "width_bp": 350.12,
-        "height_bp": 230.503
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing three relations layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
-        "after_sha256": "1a7483c4eca41788e186b5ce300b6e2d754d70d8142c32457e9e0f6dce2e8b35",
-        "before_dimensions_bp": [
-          350.1199951171875,
-          230.5030059814453
-        ],
-        "after_dimensions_bp": [
-          350.1199951171875,
-          230.5030059814453
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/fidelity-vs-authority.svg",
-      "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
-      "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-      "baseline_candidate_sha256": "a0a14bc0309ebb536df5c411f2fba8c509d332eba1b87e45b978cac99bc54a1e",
-      "candidate_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
+      "source_sha256": "a523e326404ee0f09bb883972adfca358b797c7302b4fc888bfec8d7c1bcd8a4",
+      "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
       "decision": "refined",
-      "reason": "Lengthened the small analytical-output arrow and translated the explanatory rank to preserve separation.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        367.12799072265625,
-        212.02999877929688
-      ],
-      "contracts": {},
+      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 264.975,
+        "proof_sha256": "89463778cee19b49c0e0d77fb9560b4334cc13ec63981183e564f084e18f6b05",
+        "minimum_prose_font_pt": 9,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 41,
-        "width_bp": 367.128,
-        "height_bp": 226.203
+        "semantic_typography_checks": 18,
+        "unapproved_compile_diagnostics": 0
       },
+      "contracts": {
+        "peer_groups": [],
+        "terminal_exceptions": []
+      },
+      "visual_review": "The GEE frame separates the model and its admission decision from the implementation being judged. The Acceptance question links the implementation to required evidence, authorization, and other admission conditions.",
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing fidelity vs authority layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
-        "after_sha256": "a172ed207102b885bd28f73cef10efc9f255ef83002140f2d039bf94fff7be84",
-        "before_dimensions_bp": [
-          367.12799072265625,
-          226.2030029296875
-        ],
         "after_dimensions_bp": [
-          367.12799072265625,
-          226.2030029296875
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          449.972,
+          264.975
         ],
         "after_font_sizes_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          11
         ],
-        "reviewed_visually": true
+        "reviewed_visually": true,
+        "decision": "recomposed",
+        "reason": "The engineering model is inside the GEE. Correspondence and conformance compare the model and its independently established obligation with the same external implementation. Three plain vertical lines connect the same implementation to the model, the obligation and the admission conditions."
       }
     },
     {
@@ -4234,120 +4158,6 @@
         "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
       },
       "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
-    },
-    {
-      "source": "book/assets/positive-negative-obligation.svg",
-      "candidate": "book/tikz/figures/positive-negative-obligation.tex",
-      "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
-      "baseline_candidate_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
-      "candidate_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
-      "decision": "retained",
-      "reason": "Ordinary code/mutation verb are matched peers. Raw library and mandatory provenance stamp have different semantics and intentionally unequal information density; preserve the prohibition and requirement cues.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        356.69500732421875,
-        158.65199279785156
-      ],
-      "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 46,
-        "width_bp": 356.695,
-        "height_bp": 158.652
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing positive negative obligation layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
-        "after_sha256": "bc371288e07948f3b06fea5b9515fdb60c60d875778026d60e4c4548455601e4",
-        "before_dimensions_bp": [
-          356.69500732421875,
-          158.65199279785156
-        ],
-        "after_dimensions_bp": [
-          356.69500732421875,
-          158.65199279785156
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/provenance-carried-admission.svg",
-      "candidate": "book/tikz/figures/provenance-carried-admission.tex",
-      "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
-      "baseline_candidate_sha256": "a7b5b123c5fb9795fc89f0bd07f64e90273fbdbbeafea13d53580edb25617497",
-      "candidate_sha256": "2755ef32758113f53e7703b0eb2c3e401f7ee9bf25af025dd6cce8f40cd05edd",
-      "decision": "refined",
-      "reason": "Added horizontal clearance before the abstracted representation without changing the evidence chain.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        423.3089904785156,
-        118.13800048828125
-      ],
-      "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 47,
-        "width_bp": 428.979,
-        "height_bp": 118.138
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing provenance carried admission layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "2755ef32758113f53e7703b0eb2c3e401f7ee9bf25af025dd6cce8f40cd05edd",
-        "after_sha256": "2755ef32758113f53e7703b0eb2c3e401f7ee9bf25af025dd6cce8f40cd05edd",
-        "before_dimensions_bp": [
-          428.97900390625,
-          118.13800048828125
-        ],
-        "after_dimensions_bp": [
-          428.97900390625,
-          118.13800048828125
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
     },
     {
       "source": "book/assets/governance-conversion.svg",

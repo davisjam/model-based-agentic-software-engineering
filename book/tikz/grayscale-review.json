@@ -1416,22 +1416,24 @@
   {
     "source": "book/assets/three-relations.svg",
     "candidate": "book/tikz/figures/three-relations.tex",
+    "source_sha256": "a523e326404ee0f09bb883972adfca358b797c7302b4fc888bfec8d7c1bcd8a4",
+    "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 264.975,
+      "proof_sha256": "89463778cee19b49c0e0d77fb9560b4334cc13ec63981183e564f084e18f6b05",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 18,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/three-relations.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Gray distinguishes representation, independent obligation and receiving environment; bidirectional correspondence and directed conformance/acceptance retained.",
-    "source_sha256": "58146dbbdc13389725cb7f2dc3089c53e429e13bf7a1b514a57144efc3abe1bf",
-    "candidate_sha256": "d9ee2c1fea7af9d595c6e27d05d5229042450572245d59b332e242ee0bbdbd2a"
-  },
-  {
-    "source": "book/assets/fidelity-vs-authority.svg",
-    "candidate": "book/tikz/figures/fidelity-vs-authority.tex",
-    "receipt": "book/tikz/receipts/fidelity-vs-authority.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Governing model and analytical view have distinct gray roles; governing and correspondence labels retain separate meanings and targets.",
-    "source_sha256": "e362c786a532dbdb3c2400309bc5b8a16c69d837061baba0b25d466461b7e7dd",
-    "candidate_sha256": "1f655418b3bf790346d472cde8a10e9d0176a90a6fa995b4f9d0f242906b9e3a"
+    "rationale": "Gray identifies the environment header, its represented obligation, and the three relation labels."
   },
   {
     "source": "book/assets/semantic-gap-levels.svg",
@@ -1542,26 +1544,6 @@
       "status": "passed",
       "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
     }
-  },
-  {
-    "source": "book/assets/positive-negative-obligation.svg",
-    "candidate": "book/tikz/figures/positive-negative-obligation.tex",
-    "receipt": "book/tikz/receipts/positive-negative-obligation.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Required evidence-producing action emphasized; existing forbidden dashed edge and cross retained.",
-    "source_sha256": "29422dc3fc8fc68c5ce5f2b4540fb811ede4cc8b1b6f0c2cf43c2c7ab9fa3ff8",
-    "candidate_sha256": "fca9d56e1e17efa17ef56299bc29f3f46cbc1e2b89ee3120d5821b1949894827"
-  },
-  {
-    "source": "book/assets/provenance-carried-admission.svg",
-    "candidate": "book/tikz/figures/provenance-carried-admission.tex",
-    "receipt": "book/tikz/receipts/provenance-carried-admission.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Sanctioned source and consequential admission boundary distinguished from neutral implementation and operation.",
-    "source_sha256": "b542d380bcef2b95bd52559dbabf1e94955905db5e0433eccf7f8f4f524a530f",
-    "candidate_sha256": "4e7f546daf1109495a2de03468f0ea6703ccfcb7dd905997d937e393b9c604f6"
   },
   {
     "source": "book/assets/governance-conversion.svg",

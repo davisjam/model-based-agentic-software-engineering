@@ -31,12 +31,6 @@
       "location": "part2",
       "rationale": "static computation structure beside one run's realized edit record; supporting caption on the two reductions being unjoined today and the join added when a question needs it"
     },
-    "assets/fidelity-vs-authority.svg": {
-      "tier": "B",
-      "kind": "conceptual-axis",
-      "location": "part3",
-      "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
-    },
     "assets/process-design-and-tolerance.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
@@ -240,18 +234,6 @@
       "kind": "framework",
       "location": "part3",
       "rationale": "Anchor for the revised margin argument: quantitative tolerances, measured headroom, and feedback from Alignment into subsequent Modeling and engineering decisions."
-    },
-    "assets/positive-negative-obligation.svg": {
-      "tier": "B",
-      "kind": "comparison",
-      "location": "part3",
-      "rationale": "two shapes of constraint — a negative prohibition vs a positive must-call obligation; supporting figure for 3.3.4"
-    },
-    "assets/provenance-carried-admission.svg": {
-      "tier": "B",
-      "kind": "flow",
-      "location": "part3",
-      "rationale": "the single sanctioned derivation path carries provenance to the consequence boundary, which requires it; supporting figure for 3.3.6"
     },
     "assets/judgment-without-consequence.svg": {
       "tier": "A",
@@ -1442,6 +1424,24 @@
       "kind": "conceptual-illustration",
       "location": "part3",
       "rationale": "Two turn-end hooks require an explicit order: recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed by reflection."
+    },
+    "assets/fidelity-vs-authority.svg": {
+      "tier": "B",
+      "kind": "conceptual-axis",
+      "location": "part3",
+      "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
+    },
+    "assets/positive-negative-obligation.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part3",
+      "rationale": "two shapes of constraint — a negative prohibition vs a positive must-call obligation; supporting figure for 3.3.4"
+    },
+    "assets/provenance-carried-admission.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "part3",
+      "rationale": "the single sanctioned derivation path carries provenance to the consequence boundary, which requires it; supporting figure for 3.3.6"
     }
   }
 }

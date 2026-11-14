@@ -1,21 +1,60 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[head,text width=11cm] (h0) at (0,1.0) {CORRESPONDENCE · \textnormal{\textit{Do they agree?}}};
-\node[n,text width=4cm] (a0) at (-3.5,0.0) {Implementation};
-\node[n,text width=4cm,fill=white] (b0) at (3.5,0.0) {Representation};
-\draw[edge,<->] (a0) -- node[lab,above] {\textbf{agreement}} (b0);
-\node[head,text width=11cm] (h1) at (0,-1.5) {CONFORMANCE · \textnormal{\textit{Does it satisfy?}}};
-\node[n,text width=4cm] (a1) at (-3.5,-2.5) {Artifact};
-\node[n,text width=4cm,fill=white] (b1) at (3.5,-2.5) {Independent obligation};
-\draw[edge] (a1) -- node[lab,above] {\textbf{conformance}} (b1);
-\node[head,text width=11cm] (h2) at (0,-4.0) {ACCEPTANCE · \textnormal{\textit{Will it accept?}}};
-\node[n,text width=4cm] (a2) at (-3.5,-5.0) {Artifact};
-\node[n,text width=4cm,fill=white] (b2) at (3.5,-5.0) {Receiving environment};
-\draw[edge] (a2) -- node[lab,above] {\textbf{acceptance}} (b2);
-\node[note,text width=12cm] (n) at (0,-6.5) {Evidence for one relation does not establish the others.};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,259);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (2,2) rectangle (442,137);
+\draw[fill=black!8,draw=black!85,line width=0bp,rounded corners=3bp] (3,3) rectangle (441,37);
+\draw[fill=white,line width=.9bp] (13,22) -- (23,17) -- (33,22) -- (23,27) -- cycle;
+\draw[fill=white,line width=.9bp] (13,18) -- (23,13) -- (33,18) -- (23,23) -- cycle;
+\draw[fill=white,line width=.9bp] (13,14) -- (23,9) -- (33,14) -- (23,19) -- cycle;
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{12}{11}\selectfont\bfseries] at (43,14) {GEE (Governed Engineering Environment)};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (43,27) {Models, controls, evidence, and admission};
+\draw[fill=black!8,draw=black!45,line width=0.7bp,rounded corners=4bp] (13,45) rectangle (265,127);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries\itshape] at (23,55) {One engineering model};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (23,64) rectangle (255,118);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=0.4bp] (51,70) rectangle (56,75);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=0.4bp] (40,88) rectangle (45,93);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=0.4bp] (51,88) rectangle (56,93);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=0.4bp] (62,88) rectangle (67,93);
+\draw[line width=0.7bp,draw=black!85] (53.5,75) -- (53.5,88);
+\draw[line width=0.7bp,draw=black!85] (42.5,81) -- (64.5,81);
+\draw[line width=0.7bp,draw=black!85] (42.5,81) -- (42.5,88);
+\draw[line width=0.7bp,draw=black!85] (64.5,81) -- (64.5,88);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (83,76) {Engineering model};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (83,89) {Representation of the system};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (29,98) rectangle (249,114);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (139,106) {One obligation: no direct database access};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (278,49) rectangle (428,119);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (353,61) {Admission};
+\draw[fill=black!8,draw=black!85,line width=0bp,rounded corners=4bp] (284,70) rectangle (422,113);
+\fill (291,78) circle (1.4bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (296,78) {Required evidence};
+\fill (291,91) circle (1.4bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (296,91) {Authorization};
+\fill (291,104) circle (1.4bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (296,104) {Other admission conditions};
+\draw[line width=0.7bp,draw=black!85] (78.0,118) -- (78.0,157);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (12,157) rectangle (144,199);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (78.0,168) {Correspondence};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (78.0,181) {Does the implementation};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (78.0,192) {agree with the model?};
+\draw[line width=0.7bp,draw=black!85] (78.0,199) -- (78.0,222);
+\draw[line width=0.7bp,draw=black!85] (220.5,118) -- (220.5,157);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (155,157) rectangle (286,199);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (220.5,168) {Conformance};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (220.5,181) {Does the implementation};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (220.5,192) {satisfy the obligation?};
+\draw[line width=0.7bp,draw=black!85] (220.5,199) -- (220.5,222);
+\draw[line width=0.7bp,draw=black!85] (364.5,119) -- (364.5,157);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (297,157) rectangle (432,199);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (364.5,168) {Acceptance};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (364.5,181) {Will the GEE permit the};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (364.5,192) {implementation to proceed?};
+\draw[line width=0.7bp,draw=black!85] (364.5,199) -- (364.5,222);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (40,222) rectangle (404,257);
+\draw[line width=1.4bp,draw=black!85] (69,231) -- (62,239);
+\draw[line width=1.4bp,draw=black!85] (62,239) -- (69,246);
+\draw[line width=1.4bp,draw=black!85] (76,246) -- (82,230);
+\draw[line width=1.4bp,draw=black!85] (90,231) -- (97,239);
+\draw[line width=1.4bp,draw=black!85] (97,239) -- (90,246);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (114,233) {Implementation};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (114,247) {The realized system (code, configuration, etc.)};
 \end{tikzpicture}
