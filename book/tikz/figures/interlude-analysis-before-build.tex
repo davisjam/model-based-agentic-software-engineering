@@ -38,6 +38,7 @@
 \draw[line width=0.45bp,draw=black!45] (180,163) -- (180,313);
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (87,166) {(b) Decompose an operation};
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (87,178) {Same dependencies};
+\begin{scope}[shift={(0,4)}]
 \draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=2.5bp] (31.5,183.5) rectangle (64.5,200.5);
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (48,192.0) {A (1 s)};
 \draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=2.5bp] (1.5,213.0) rectangle (30.5,235.0);
@@ -67,8 +68,10 @@
 \node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (101,273) {Illustrative,};
 \node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (101,284) {ignoring};
 \node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (101,295) {overhead};
+\end{scope}
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (311,166) {(c) Remove an unnecessary dependency};
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (311,178) {Change the information structure};
+\begin{scope}[shift={(0,-21)}]
 \draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=2.5bp] (181.0,216.0) rectangle (219.0,234.0);
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (200,225.0) {Image 1};
 \draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=2.5bp] (231.5,213.0) rectangle (266.5,237.0);
@@ -103,6 +106,7 @@
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (225,305) {dependency};
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (362,294) {After: independent operations};
 \node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (362,305) {consume shared context};
+\end{scope}
 \draw[line width=0.5bp,draw=black!45] (3,317) -- (441,317);
 \node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (2,333) {Legend};
 \draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=2bp] (40,325) rectangle (55,338);
