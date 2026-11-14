@@ -27,5 +27,10 @@
     "reason": "Author selected the original monochrome Matplotlib design, with vertical legends matching top-to-bottom stack order.",
     "generator": "book/figures/docable-case-261109/generate.py",
     "provenance": "book/data/docable-case-261109/provenance.json"
+  },
+  "book/assets/docable-human-evaluation-261109.svg": {
+    "reason": "Author selected the original monochrome human-reference comparison with hatching, solid fills and signed labels.",
+    "generator": "book/figures/docable-case-261109/generate.py",
+    "provenance": "book/data/docable-case-261109/provenance.json"
   }
 }

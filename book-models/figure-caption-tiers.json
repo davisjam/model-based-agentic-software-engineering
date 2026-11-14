@@ -337,12 +337,6 @@
       "location": "part5",
       "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
     },
-    "assets/why-software-modeled.svg": {
-      "tier": "A",
-      "kind": "conceptual-framework",
-      "location": "part5",
-      "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
-    },
     "assets/model-induction-general.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
@@ -1442,6 +1436,12 @@
       "kind": "conceptual-illustration",
       "location": "part3",
       "rationale": "Two examples explain the obligation/control/resource schema and distinguish incompatible requirements from declared execution order."
+    },
+    "assets/why-software-modeled.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part5",
+      "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
     }
   }
 }

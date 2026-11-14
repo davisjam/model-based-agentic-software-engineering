@@ -1036,19 +1036,6 @@
   },
   {
     "chapter": "7.2-software-rejoins-engineering",
-    "source": "assets/why-software-modeled.svg",
-    "caption": "*Why software modeled differently.* Software was never model-free. Compilation and reproduction were cheap, but producing and revising the detailed implementation required skilled labor, and code itself served as an executable engineering representation. Additional models therefore carried a standing correspondence cost. Commodity intelligence lowers both realization labor and parts of the cost of maintaining secondary representations, expanding the surfaces on which live models can repay their upkeep.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Why software modeled differently: three economic states, and the change that shifts\n    the price ratio between a model and its implementation",
-    "svg_description": "A comparison across three columns. Older physical engineering: physical realization is\n    expensive and slow, a design representation is necessary before realization, and model maintenance is\n    amortized over expensive build and test cycles. Software historically: compilation and reproduction are\n    cheap, detailed implementation and change labor are expensive, the code is itself an executable and\n    precise representation, and maintaining a secondary model is a standing correspondence cost. Commodity\n    intelligence: implementation labor falls, model derivation and reconciliation labor falls, and more live\n    representations become economical. Software was never model-free; the economics simply favored thin\n    models. A downward arrow resolves the three columns to a single claim: the model-to-implementation price\n    ratio changes."
-  },
-  {
-    "chapter": "7.2-software-rejoins-engineering",
     "source": "assets/established-traditions-new-composition.svg",
     "caption": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

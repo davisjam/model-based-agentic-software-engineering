@@ -6436,93 +6436,6 @@
       }
     },
     {
-      "source": "book/assets/why-software-modeled.svg",
-      "candidate": "book/tikz/figures/why-software-modeled.tex",
-      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-      "baseline_candidate_sha256": "454a8f6c136b18a4d3fe41dd324632e821f5e76c538000b14e473ba7cdaf9a40",
-      "candidate_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
-      "decision": "refined",
-      "reason": "Align comparison column heading tops and bottoms; body panels already equal. Raised the shared fan-in rail so each curved-outline arrowhead has a clear terminal approach.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        407.718994140625,
-        244.41900634765625
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel rank 1",
-            "labels": [
-              "Older physical engineering",
-              "Software historically",
-              "Commodity intelligence"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          },
-          {
-            "name": "parallel rank 2",
-            "labels": [
-              "Physical realization: expensive and slow Design representation: needed before realization Model maintenance amortized over expensive build / test cycles",
-              "Compilation / reproduction: cheap Implementation / change labor: expensive Code is executable and precise; secondary models carry standing correspondence cost",
-              "Implementation labor falls Model derivation and reconciliation labor falls More live representations become economical"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ],
-        "terminal_exceptions": []
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 88,
-        "width_bp": 407.719,
-        "height_bp": 245.107
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing why software modeled layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
-        "after_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
-        "before_dimensions_bp": [
-          407.718994140625,
-          245.10699462890625
-        ],
-        "after_dimensions_bp": [
-          407.718994140625,
-          245.10699462890625
-        ],
-        "before_font_sizes_pt": [
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
       "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
@@ -12398,6 +12311,93 @@
           ],
           "reviewed_visually": true
         }
+      }
+    },
+    {
+      "source": "book/assets/why-software-modeled.svg",
+      "candidate": "book/tikz/figures/why-software-modeled.tex",
+      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+      "baseline_candidate_sha256": "454a8f6c136b18a4d3fe41dd324632e821f5e76c538000b14e473ba7cdaf9a40",
+      "candidate_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
+      "decision": "refined",
+      "reason": "Align comparison column heading tops and bottoms; body panels already equal. Raised the shared fan-in rail so each curved-outline arrowhead has a clear terminal approach.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        407.718994140625,
+        244.41900634765625
+      ],
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "parallel rank 1",
+            "labels": [
+              "Older physical engineering",
+              "Software historically",
+              "Commodity intelligence"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          },
+          {
+            "name": "parallel rank 2",
+            "labels": [
+              "Physical realization: expensive and slow Design representation: needed before realization Model maintenance amortized over expensive build / test cycles",
+              "Compilation / reproduction: cheap Implementation / change labor: expensive Code is executable and precise; secondary models carry standing correspondence cost",
+              "Implementation labor falls Model derivation and reconciliation labor falls More live representations become economical"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ],
+        "terminal_exceptions": []
+      },
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 88,
+        "width_bp": 407.719,
+        "height_bp": 245.107
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing why software modeled layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
+        "after_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
+        "before_dimensions_bp": [
+          407.718994140625,
+          245.10699462890625
+        ],
+        "after_dimensions_bp": [
+          407.718994140625,
+          245.10699462890625
+        ],
+        "before_font_sizes_pt": [
+          10.0
+        ],
+        "after_font_sizes_pt": [
+          10.0
+        ],
+        "reviewed_visually": true
       }
     }
   ],

@@ -47,14 +47,7 @@ That blurred a distinction the older disciplines could make more cleanly. A stru
 
 Code\textquotesingle s malleability then works against the engineer as a system evolves. Architecture, intent, constraints, and operational knowledge can stay implicit in an artifact whose structure keeps changing, and the system stays executable long after the knowledge needed to govern it has become hard to recover. The disciplines named in the previous section exist partly to hold that knowledge where continual change cannot quietly erase it.
 
-Those secondary models faced an unusual economic test. The implementation was already precise, executable, and immediately available, while an architectural, behavioral, or process model imposed an additional correspondence burden. A model could be useful when authored and misleading after the implementation moved beyond the relation it claimed. Many projects therefore kept such representations thin unless their communication, reasoning, or assurance value repaid that standing synchronization cost. \autoref{why-software-modeled} shows the three economic variables and what moves them.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/why-software-modeled-bd8f036a48.pdf}
-\caption{\emph{Why software modeled differently.} Software was never model-free. Compilation and reproduction were cheap, but producing and revising the detailed implementation required skilled labor, and code itself served as an executable engineering representation. Additional models therefore carried a standing correspondence cost. Commodity intelligence lowers both realization labor and parts of the cost of maintaining secondary representations, expanding the surfaces on which live models can repay their upkeep.}
-\label{why-software-modeled}
-\end{figure}
+Those secondary models faced an unusual economic test. The implementation was already precise, executable, and immediately available, while an architectural, behavioral, or process model imposed an additional correspondence burden. A model could be useful when authored and misleading after the implementation moved beyond the relation it claimed. Many projects therefore kept such representations thin unless their communication, reasoning, or assurance value repaid that standing synchronization cost.
 
 % <!-- point: commodity-intelligence-moves-the-price-ratio | Commodity intelligence lowers the labor of realizing software and parts of the labor of deriving, updating, reconciling, and checking additional representations, so implementation and live modeling become cheaper together and model-mediated software engineering reaches surfaces the synchronization tax once excluded. -->
 

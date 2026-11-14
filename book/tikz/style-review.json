@@ -4038,36 +4038,6 @@
       "routing_exceptions": "None."
     },
     {
-      "source": "book/assets/why-software-modeled.svg",
-      "candidate": "book/tikz/figures/why-software-modeled.tex",
-      "receipt": "book/tikz/receipts/why-software-modeled.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-      "candidate_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
-      "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes amortized over expensive build / test cycles; standing correspondence cost; needed before realization; executable and precise; expensive and slow; become economical; expensive; cheap. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Column headings and concluding economic claim retain bold; ordinary comparison prose regular.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 88,
-        "width_bp": 407.719,
-        "height_bp": 245.107,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 10
-      },
-      "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
-    },
-    {
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
       "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
@@ -6548,6 +6518,36 @@
         "book_references": [],
         "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
       }
+    },
+    {
+      "source": "book/assets/why-software-modeled.svg",
+      "candidate": "book/tikz/figures/why-software-modeled.tex",
+      "receipt": "book/tikz/receipts/why-software-modeled.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
+      "candidate_sha256": "b4948c55ee00a340a8467f55a3e99515a4d8918a8ccbc253d88054c9faafcd93",
+      "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+      "bold": "Source-derived emphasis includes amortized over expensive build / test cycles; standing correspondence cost; needed before realization; executable and precise; expensive and slow; become economical; expensive; cheap. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Column headings and concluding economic claim retain bold; ordinary comparison prose regular.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 88,
+        "width_bp": 407.719,
+        "height_bp": 245.107,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10
+      },
+      "book_references": [],
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
     }
   ],
   "last_revised_date": "2026-11-10"

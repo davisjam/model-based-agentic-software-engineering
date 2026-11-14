@@ -2611,16 +2611,6 @@
     "rationale": "Light gray distinguishes the two transfer arrows and commodity intelligence; the comparison columns use open headings and horizontal rules."
   },
   {
-    "source": "book/assets/why-software-modeled.svg",
-    "candidate": "book/tikz/figures/why-software-modeled.tex",
-    "receipt": "book/tikz/receipts/why-software-modeled.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Commodity intelligence singled out from historical comparison; resulting economic claim strengthened.",
-    "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-    "candidate_sha256": "1bb66cd58c94562341a7bbf1c35a7df338324997d752edb75ba1c0a2c1c7dc4d"
-  },
-  {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
     "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",

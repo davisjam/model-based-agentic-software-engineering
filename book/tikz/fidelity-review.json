@@ -3489,31 +3489,6 @@
       "review": "Both arrows connect the appropriate rows; the brace groups human judgments beside the delegated operations."
     },
     {
-      "source": "book/assets/why-software-modeled.svg",
-      "candidate": "book/tikz/figures/why-software-modeled.tex",
-      "checks": {
-        "icons_and_symbols": "No special symbols.",
-        "links_and_groups": "Three comparison columns converge on economic-ratio claim.",
-        "annotation_placement": "Comparative details remain inside columns as in source; claim below."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          10.0
-        ],
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 407.718994140625,
-      "height_bp": 244.63800048828125,
-      "monochrome": true,
-      "source_sha256": "8d13fe01598d23bd699eddbafb73f5e06784ce125cf8ec9a6ef467dc36c88b77",
-      "candidate_sha256": "1bb66cd58c94562341a7bbf1c35a7df338324997d752edb75ba1c0a2c1c7dc4d",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
-    },
-    {
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
       "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
