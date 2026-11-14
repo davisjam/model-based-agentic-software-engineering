@@ -235,12 +235,6 @@
       "location": "part3",
       "rationale": "Anchor for the revised margin argument: quantitative tolerances, measured headroom, and feedback from Alignment into subsequent Modeling and engineering decisions."
     },
-    "assets/judgment-without-consequence.svg": {
-      "tier": "A",
-      "kind": "framework",
-      "location": "part3",
-      "rationale": "Caption explains the evidence, warning-only control, observed failure, durable repair, and the limits of the reconstructed sequence."
-    },
     "assets/field-guide-cloudflare.svg": {
       "tier": "B",
       "kind": "team-card",
@@ -492,12 +486,6 @@
       "kind": "data-chart",
       "location": "part2",
       "rationale": "the orphan-rate drain"
-    },
-    "assets/collision-edge.svg": {
-      "tier": "B",
-      "kind": "conceptual-illustration",
-      "location": "part3",
-      "rationale": "Two examples explain the obligation/control/resource schema and distinguish incompatible requirements from declared execution order."
     },
     "assets/census-trio.svg": {
       "tier": "B",
@@ -1442,6 +1430,18 @@
       "kind": "flow",
       "location": "part3",
       "rationale": "the single sanctioned derivation path carries provenance to the consequence boundary, which requires it; supporting figure for 3.3.6"
+    },
+    "assets/judgment-without-consequence.svg": {
+      "tier": "A",
+      "kind": "framework",
+      "location": "part3",
+      "rationale": "Caption explains the evidence, warning-only control, observed failure, durable repair, and the limits of the reconstructed sequence."
+    },
+    "assets/collision-edge.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "Two examples explain the obligation/control/resource schema and distinguish incompatible requirements from declared execution order."
     }
   }
 }

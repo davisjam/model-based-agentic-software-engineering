@@ -1,5 +1,4 @@
 % mage-auto-heading: preserve-engineering-freedom
-% mage-auto-heading: catalogue-the-controls
 % mage-auto-heading: model-interactions-between-controls
 % mage-auto-heading: trace-obligations-to-mechanisms
 % mage-auto-heading: add-reconcile-and-retire-controls
@@ -15,25 +14,22 @@
 
 % <!-- point: every-control-reasonable-alone-the-system-of-controls-still-wrong | Every control can be reasonable in isolation while the control machinery as a whole remains inconsistent, incomplete, or obsolete. | terms: governance-graph, constraint -->
 
-As governance mechanisms accumulate, they become control machinery: the constraints, sensors, and gates through which the environment governs agentic work. The machinery can fail even when every individual control is reasonable. Two controls can impose incompatible demands; their execution order can be ambiguous; an obsolete control can survive after its purpose disappears; an important obligation can remain uncovered. None of these failures is visible by reading one mechanism\textquotesingle s code.
+As governance mechanisms accumulate, they become control machinery: the constraints, sensors, and gates through which the environment governs agentic work. The machinery can fail even when every individual control is reasonable. Controls may impose incompatible demands, interfere with one another, outlive their purpose, or leave important obligations uncovered.
 
 % <!-- point: successful-environments-accumulate-machinery-so-the-estate-is-a-portfolio-to-manage | Governance conversion and up-front design accumulate control machinery; that machinery becomes an engineering object to maintain, reconcile, and sometimes retire. | terms: governance-graph, engineering-capital -->
 
 % <!-- point: alignment-turned-on-itself-a-model-of-the-controls-made-binding-on-the-controls | Alignment turned on itself: a model of the controls, enforced on the controls. | terms: governance-graph -->
 
-These interactions require engineers to maintain the controls as a system. MAGE asks three questions: \textbf{What controls exist? How do they interact? Which obligations do they cover?} These questions produce three useful views: a catalogue, an interaction graph, and a coverage relation. Represent that machinery explicitly, so engineers and tools can reason about how its controls compose and what obligations they cover---and, once the machinery materially affects engineering work, hold it to obligations of its own.
-
-\section{Catalogue the Controls}\label{heading:catalogue-the-controls}
-
-% <!-- section-terms: governance-graph -->
-
 % <!-- point: the-catalogue-gives-each-control-a-stable-identity | Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its governance role. | terms: governance-graph, shared-resource -->
 
-Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its governance role or roles. The catalogue supplies stable identities for the interaction and coverage views, so engineers and tools need not rediscover controls from scripts, hooks, CI files, and institutional memory.
+\autoref{census-trio} shows three ways to examine this machinery. A catalogue identifies the controls and their purposes; an interaction graph relates controls through the resources they access; and a coverage view compares the controls with independently established engineering obligations. The views share control identities but answer different questions. Maintaining them requires recording where each control acts, which resources it accesses, and what justifies its existence.
 
-% <!-- point: a-catalogue-alone-cannot-show-conflict-or-a-missing-control | A catalogue can describe each control individually, but it cannot reveal conflicts between them; conflicts appear in the relationships among controls. | terms: governance-graph, shared-resource -->
-
-A catalogue can describe each control individually, but it cannot reveal conflicts between them. Those conflicts appear in the relationships among controls.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/census-trio-ab9995bb33.pdf}
+\caption{\emph{Three views of the control machinery.} A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
+\label{census-trio}
+\end{figure}
 
 \section{Model Interactions Between Controls}\label{heading:model-interactions-between-controls}
 
@@ -41,14 +37,7 @@ A catalogue can describe each control individually, but it cannot reveal conflic
 
 % <!-- point: each-collision-lives-in-the-space-between-two-controls-drawn-nowhere | A collision lives between two controls, drawn nowhere until the graph draws it. | terms: shared-resource, governance-graph -->
 
-Suppose one repository check requires a task's changes to be squashed into one commit, while another rejects a commit whose diff exceeds a prescribed scope. A task may satisfy the first rule only by violating the second. Inspecting either check alone will not reveal how their requirements interact. \autoref{collision-edge} places these checks beside a formatter and lint check in a conceptual governance graph. It relates controls to the obligations that justify them and the resources they access, without treating shared access as proof of a conflict.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/collision-edge-fe5071601b.pdf}
-\caption{\emph{Structure of a governance graph.} Controls are connected to the obligations that justify them and the resources they access. Shared resources expose potential interactions; declared ordering constraints record how selected interactions are resolved. The examples illustrate two distinct problems: incompatible obligations and mechanisms that require a particular execution order.}
-\label{collision-edge}
-\end{figure}
+The squash rule and diff-size guard in \autoref{census-trio} both act on the commit set. If a task's changes exceed the size limit for a single commit, neither order of execution can satisfy both requirements.
 
 % <!-- point: the-interaction-graph-joins-controls-by-shared-resource | The interaction graph uses controls as nodes and shared resources as the principal join key; controls need not call one another to collide. | terms: governance-graph, shared-resource -->
 
@@ -66,9 +55,9 @@ Some candidate conflicts can be evaluated mechanically, such as a cycle in decla
 
 % <!-- point: governance-interaction-graph-candidate-conflict-condition | DocAble adapts a classical read/write conflict test to identify potential access conflicts at a shared event; the governance model records resolutions and must also account for incompatible obligations. | terms: governance-graph, shared-resource, semantic-gap -->
 
-DocAble's implemented interaction analysis is narrower than the conceptual graph in \autoref{collision-edge}. I adopted an interaction model borrowed from concurrency control's read/write conflict test~\citep{bernstein1981concurrency}. For each governance mechanism, the model records when it executes and which resources it reads or writes. Two mechanisms running at the same event have a potential conflict if they access the same resource and at least one writes it. For example, a post-commit code-style formatter writes a file that a subsequent checker reads. If the checker must inspect the formatted result, it must run afterward. The conflict graph identifies such interactions; the governance model records their resolutions.
+DocAble's implemented interaction analysis covers one class of interaction: potentially conflicting access to a shared resource. I adopted an interaction model borrowed from concurrency control's read/write conflict test~\citep{bernstein1981concurrency}. For each governance mechanism, the model records when it executes and which resources it reads or writes. Two mechanisms running at the same event have a potential conflict if they access the same resource and at least one writes it. For example, a post-commit code-style formatter writes a file that a subsequent checker reads. If the checker must inspect the formatted result, it must run afterward. The conflict graph identifies such interactions; the governance model records their resolutions.
 
-% <!-- point: three-turn-end-hooks-one-shared-slot | DocAble's worked control-system case contrasts an unenforced merge warning with a recorded order between two hooks; their context-consumption dependency lies beyond the simple read/write model. | terms: governance-graph, shared-resource -->
+% <!-- point: three-turn-end-hooks-one-shared-slot | Two turn-end hooks compete for a finite context budget. Their required order is recorded in the governance model, although the read/write conflict test does not discover it. | terms: governance-graph, shared-resource -->
 
 % <!-- box-family: inset -->
 
@@ -76,29 +65,16 @@ DocAble's implemented interaction analysis is narrower than the conceptual graph
 
 % mage-box-prefix:
 
-\begin{bookbox}{inset}{Worked inset --- DocAble: Governing Development Automation}
+\begin{bookbox}{inset}{Worked inset --- DocAble: When Controls Compete for Context}
 \label{inset-docable-control-system}
-Controls become software that must itself be understood and maintained. DocAble's development environment assigns work to agents in separate Git worktrees, merges their changes, and runs checks around the agents' work. That automation creates obligations of its own: preserve contributions during integration, recognize unfinished work, and avoid having one automation prevent another from doing its job. Two episodes show why evaluating each script in isolation was insufficient.
-
-In the first episode, DocAble's merge automation integrated changes produced concurrently in separate Git worktrees. When an ordinary rebase encountered a conflict, the automation could retry using Git's \texttt{-X theirs} option, favoring one side of each conflicting hunk. This operation could combine incompatible portions of two changes without establishing that the result preserved their intended effects. In June 2026, concurrent modifications to the integration machinery itself produced such a hybrid. The resulting Python code failed to load, disabling scheduled integration.
-
-An audit mechanism recognized the danger of automatically resolving conflicts involving the engineering environment, but its warning did not prevent the unsafe fallback from remaining available. The repair removed that fallback. The integration procedure could still accept clean rebases and narrowly defined safe resolutions, but other conflicts required escalation rather than an automatic choice between competing edits. \autoref{judgment-without-consequence} distinguishes the audit's finding from the mechanism that ultimately restricted what integration could do.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.70\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
-\caption{\emph{A warning did not prevent unsafe integration.} DocAble's merge automation retained a fallback that resolved conflicting hunks by favoring one side. An audit recognized this class of operation as unsafe, but did not prevent its use. Concurrent changes subsequently produced an incompatible hybrid that disabled the integration machinery. The durable repair removed the unsafe fallback and required escalation when no sanctioned automatic resolution was available. The sequence reconstructs the control gap; it is not a verified execution trace.}
-\label{judgment-without-consequence}
-\end{figure}
-
-A different problem arose between two hooks that run when an agent finishes a turn. In Claude Code (as of 2026), lifecycle hooks run configured checks at defined events and can prompt an agent to continue working when it tries to stop~\citep{anthropic2026claudecodehooks}. The first, \emph{recurring failure}, prompts Claude to reflect on notable failures or repeated issues in its recent history that might warrant conversion into durable governance mechanisms (\{\{sec:governance-conversion\}\}), either through human review or autonomous follow-up. The other, \emph{stranded work}, prompts the orchestrator to compare the subagent's completed and landed work against its original brief to identify work that may have been lost. Both consume context, and the stranded-work inspection may exhaust the remaining context window before recurring-failure reflection can complete its analysis. Each hook is useful independently, but their order matters. The governance model therefore requires the recurring-failure hook to run before the stranded-work hook.
+Two DocAble hooks share a finite context budget at the end of an agent turn. In Claude Code (as of 2026), lifecycle hooks run configured checks at defined events and can prompt an agent to continue working when it tries to stop~\citep{anthropic2026claudecodehooks}. The first, \emph{recurring failure}, prompts Claude to reflect on notable failures or repeated issues in its recent history that might warrant conversion into durable governance mechanisms (\{\{sec:governance-conversion\}\}), either through human review or autonomous follow-up. The other, \emph{stranded work}, prompts the orchestrator to compare the subagent's completed and landed work against its original brief to identify work that may have been lost. Both consume context, and the stranded-work inspection may exhaust the remaining context window before recurring-failure reflection can complete its analysis. Each hook is useful independently, but their order matters. The governance model therefore requires the recurring-failure hook to run before the stranded-work hook.
 
 The governance graph records conflicts and their resolutions, including ordering, merging mechanisms, separating execution points, or accepting an interaction. Topological sorting computes a sequence from the declared ordering constraints and reports cycles; a separate check compares the governance model with the configured mechanisms.
 
 The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Read/write conflicts are one way to discover interactions, not a complete account of them. The broader engineering question is whether one mechanism can interfere with another's ability to fulfill its obligation. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
 \end{bookbox}
 
-Not every conflict can be resolved by changing how mechanisms interact. Consider the squash requirement and the diff-size limit for a change that must be delivered atomically in one squashed commit. Both checks may only read the commit set, so the read/write test finds no access conflict. Yet a change that exceeds the diff-size limit when squashed cannot satisfy both requirements. Changing the order of the checks will not help; the engineer must reconsider the obligations themselves. The governance model must therefore account for incompatible obligations as well as interactions among their enforcing mechanisms.
+The squash rule and diff-size guard expose a different limit of read/write analysis. Both checks may only read the commit set, so the conflict test can miss incompatible obligations. Resolving that conflict requires revisiting what the checks demand.
 
 \section{Trace Obligations to Mechanisms}\label{heading:trace-obligations-to-mechanisms}
 
@@ -106,22 +82,13 @@ Not every conflict can be resolved by changing how mechanisms interact. Consider
 
 % <!-- point: a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not | A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not. | terms: governance-graph, governance-conversion -->
 
-Interactions are only half of governing the control machinery. A catalogue identifies existing controls, and an interaction graph identifies potential conflicts among them. Neither can reveal an obligation for which no control exists. That requires comparing the machinery with an independent account of engineering obligations.
+To find an uncovered obligation, start from the obligations engineers expect the environment to govern. An inventory assembled from existing controls alone would omit any obligation for which no control was built.
 
 % <!-- point: coverage-is-a-requirements-traceability-problem-gap-vs-orphan | Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan. | terms: governance-graph, governance-conversion -->
 
-The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. \autoref{census-trio} shows three views of the same control machinery. The catalogue identifies controls, and the interaction graph examines their relationships through shared resources. The coverage view additionally draws on engineering obligations to identify missing or unjustified controls.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/census-trio-ab9995bb33.pdf}
-\caption{\emph{Three views of the control machinery.} A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
-\label{census-trio}
-\end{figure}
-
 % <!-- point: gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad | A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete. | terms: governance-graph -->
 
-Two findings do the diagnostic work, and neither verdict is automatic.
+Tracing in both directions yields two findings:
 
 \begin{itemize}
 \tightlist

@@ -2474,54 +2474,6 @@
       "reviewed_visually": true
     },
     {
-      "source": "book/assets/judgment-without-consequence.svg",
-      "candidate": "book/tikz/figures/judgment-without-consequence.tex",
-      "receipt": "book/tikz/receipts/judgment-without-consequence.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
-      "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
-      "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-        "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
-        "page": 1,
-        "width_bp": 330.671,
-        "height_bp": 287.672,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
-        "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
-        "semantic_typography_checks": 14,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs inspected."
-      },
-      "book_references": [],
-      "routing_exceptions": "Vertical control-gap reconstruction; caption disclaims execution chronology.",
-      "reviewed_visually": true,
-      "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
-      "revision_date": "2026-11-13",
-      "revision_history": [
-        {
-          "date": "2026-11-13",
-          "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
-        },
-        {
-          "date": "2026-11-13",
-          "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
-        }
-      ],
-      "visual_review": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
-      "fill": "White boxes; dashed warning boundary distinguishes evaluation without enforcement.",
-      "bold": "Seven stage headings.",
-      "shape": "Seven compact boxes, dashed only for WARNING ONLY.",
-      "routing": "One vertical spine with downward arrows."
-    },
-    {
       "source": "book/assets/residual-decision-tree.svg",
       "candidate": "book/tikz/figures/residual-decision-tree.tex",
       "receipt": "book/tikz/receipts/residual-decision-tree.json",
@@ -2556,46 +2508,6 @@
       "book_references": [],
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
       "reviewed_visually": true
-    },
-    {
-      "source": "book/assets/collision-edge.svg",
-      "candidate": "book/tikz/figures/collision-edge.tex",
-      "source_sha256": "e65ea309cadb374b348403fb1c107a5ba0b7a001ef8c3035ed34f0630aa7b084",
-      "candidate_sha256": "f9759253eb9d1ffbb5af6521f109f10121e322125b91946bd1602900e35b557f",
-      "decision": "refined",
-      "reviewed_visually": true,
-      "reason": "Author-requested replacement of the collision-only picture with two conceptual governance-graph examples. Obligations, controls, resource access and declared order are separate relations; the figure does not claim to be a literal rendering of DocAble's implemented conflict graph.",
-      "validation": {
-        "date": "2026-11-11",
-        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
-        "proof": "latex/build/tikz/collision-edge-20261111/candidates.pdf",
-        "proof_sha256": "2bf5714435c48fc0f80cf0fb794033487e6739fd19b922eed64f90d6f4bda07f",
-        "page": 1,
-        "width_bp": 442.571,
-        "height_bp": 230.573,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 9,
-        "reviewed_peer_groups": 3,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 17,
-        "audit_sha256": "1e946eac428206c0d84a19c8485f7887a8a92ba57ef713d5c82dd4af93606e3b",
-        "typography_audit_sha256": "e01975928fb46939176787578070c3dd8beae769344cd8a0a77d9f4b94525add",
-        "status": "passed"
-      },
-      "previous_review": "book/editorial/figure-redraws-20261111/collision-edge-before/style-review.json",
-      "receipt": "book/tikz/receipts/collision-edge.json",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-      "status": "reviewed",
-      "fill": "White interiors throughout; position, typed labels and named relations carry the distinctions.",
-      "bold": "OBLIGATION, CONTROL and RESOURCE name the abstract types in bold capitals. Concrete examples are regular; precedes is an italic relation label.",
-      "routing": "Four upward solid control-to-obligation arrows are labeled justified by. Two left controls separately read the commit set without an automatic conflict edge. Formatter writes source files; lint reads them; a separate dashed formatter-to-lint arrow declares precedes. Resource approaches are orthogonal with separate ports.",
-      "shape": "Two three-level graphs. Peer obligation, control and resource boxes share row edges and heights; no internal title.",
-      "visual_review": "SVG and native proof compared at actual print width and 2×. All type is at least 10 pt. No visible overlap, clipping, crossed labels, automatic conflict inference, or hidden direction. Native geometry and typography checks have zero findings.",
-      "book_references": [],
-      "routing_exceptions": "None."
     },
     {
       "source": "book/assets/census-trio.svg",

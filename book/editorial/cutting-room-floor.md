@@ -20455,3 +20455,59 @@ In the payment example, provenance establishes that the required approval occurr
 
 The control restricts a derivation path through the interaction graph: the protected operation must pass through the node that issues its provenance. Other implementation choices remain open.
 ```
+
+
+## Unsafe merge fallback — §3.5
+
+The context-budget incident remains as the worked inset. The earlier merge episode and its illustration are archived here.
+
+```latex
+Controls become software that must itself be understood and maintained. DocAble's development environment assigns work to agents in separate Git worktrees, merges their changes, and runs checks around the agents' work. That automation creates obligations of its own: preserve contributions during integration, recognize unfinished work, and avoid having one automation prevent another from doing its job. Two episodes show why evaluating each script in isolation was insufficient.
+
+In the first episode, DocAble's merge automation integrated changes produced concurrently in separate Git worktrees. When an ordinary rebase encountered a conflict, the automation could retry using Git's \texttt{-X theirs} option, favoring one side of each conflicting hunk. This operation could combine incompatible portions of two changes without establishing that the result preserved their intended effects. In June 2026, concurrent modifications to the integration machinery itself produced such a hybrid. The resulting Python code failed to load, disabling scheduled integration.
+
+An audit mechanism recognized the danger of automatically resolving conflicts involving the engineering environment, but its warning did not prevent the unsafe fallback from remaining available. The repair removed that fallback. The integration procedure could still accept clean rebases and narrowly defined safe resolutions, but other conflicts required escalation rather than an automatic choice between competing edits. \autoref{judgment-without-consequence} distinguishes the audit's finding from the mechanism that ultimately restricted what integration could do.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.70\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
+\caption{\emph{A warning did not prevent unsafe integration.} DocAble's merge automation retained a fallback that resolved conflicting hunks by favoring one side. An audit recognized this class of operation as unsafe, but did not prevent its use. Concurrent changes subsequently produced an incompatible hybrid that disabled the integration machinery. The durable repair removed the unsafe fallback and required escalation when no sanctioned automatic resolution was available. The sequence reconstructs the control gap; it is not a verified execution trace.}
+\label{judgment-without-consequence}
+\end{figure}
+```
+
+
+## Three views of the control machinery — §3.5
+
+The three-view figure now introduces the section. Earlier exposition and the separate governance-graph illustration are preserved here.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/collision-edge-fe5071601b.pdf}
+\caption{\emph{Structure of a governance graph.} Controls are connected to the obligations that justify them and the resources they access. Shared resources expose potential interactions; declared ordering constraints record how selected interactions are resolved. The examples illustrate two distinct problems: incompatible obligations and mechanisms that require a particular execution order.}
+\label{collision-edge}
+\end{figure}
+
+As governance mechanisms accumulate, they become control machinery: the constraints, sensors, and gates through which the environment governs agentic work. The machinery can fail even when every individual control is reasonable. Two controls can impose incompatible demands; their execution order can be ambiguous; an obsolete control can survive after its purpose disappears; an important obligation can remain uncovered. None of these failures is visible by reading one mechanism\textquotesingle s code.
+
+These interactions require engineers to maintain the controls as a system. MAGE asks three questions: \textbf{What controls exist? How do they interact? Which obligations do they cover?} These questions produce three useful views: a catalogue, an interaction graph, and a coverage relation. Represent that machinery explicitly, so engineers and tools can reason about how its controls compose and what obligations they cover---and, once the machinery materially affects engineering work, hold it to obligations of its own.
+
+\section{Catalogue the Controls}\label{heading:catalogue-the-controls}
+
+% <!-- section-terms: governance-graph -->
+
+% <!-- point: the-catalogue-gives-each-control-a-stable-identity | Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its governance role. | terms: governance-graph, shared-resource -->
+
+Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its governance role or roles. The catalogue supplies stable identities for the interaction and coverage views, so engineers and tools need not rediscover controls from scripts, hooks, CI files, and institutional memory.
+
+% <!-- point: a-catalogue-alone-cannot-show-conflict-or-a-missing-control | A catalogue can describe each control individually, but it cannot reveal conflicts between them; conflicts appear in the relationships among controls. | terms: governance-graph, shared-resource -->
+
+A catalogue can describe each control individually, but it cannot reveal conflicts between them. Those conflicts appear in the relationships among controls.
+
+Suppose one repository check requires a task's changes to be squashed into one commit, while another rejects a commit whose diff exceeds a prescribed scope. A task may satisfy the first rule only by violating the second. Inspecting either check alone will not reveal how their requirements interact. \autoref{collision-edge} places these checks beside a formatter and lint check in a conceptual governance graph. It relates controls to the obligations that justify them and the resources they access, without treating shared access as proof of a conflict.
+
+Interactions are only half of governing the control machinery. A catalogue identifies existing controls, and an interaction graph identifies potential conflicts among them. Neither can reveal an obligation for which no control exists. That requires comparing the machinery with an independent account of engineering obligations.
+
+The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. \autoref{census-trio} shows three views of the same control machinery. The catalogue identifies controls, and the interaction graph examines their relationships through shared resources. The coverage view additionally draws on engineering obligations to identify missing or unjustified controls.
+```

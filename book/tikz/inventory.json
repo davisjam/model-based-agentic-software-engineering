@@ -571,19 +571,6 @@
   },
   {
     "chapter": "3.4-governance-conversion",
-    "source": "assets/judgment-without-consequence.svg",
-    "caption": "*A warning did not prevent unsafe integration.* DocAble's merge automation retained a fallback that resolved conflicting hunks by favoring one side. An audit recognized this class of operation as unsafe, but did not prevent its use. Concurrent changes subsequently produced an incompatible hybrid that disabled the integration machinery. The durable repair removed the unsafe fallback and required escalation when no sanctioned automatic resolution was available. The sequence reconstructs the control gap; it is not a verified execution trace.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/judgment-without-consequence.d2",
-    "receipt": "book/d2-pilot/judgment-without-consequence.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Correct judgment without enforcement: the audit detected the danger and judged it unsafe, but the link from verdict to enforcement was severed, so the operation proceeded and content was lost",
-    "svg_description": "Control-gap reconstruction, not an execution trace. The integration fallback retries a rebase conflict with -X theirs. An audit detects the dangerous automatic resolution and evaluates it as unsafe, but only warns and leaves the fallback available. Observed incompatible edits made merge automation fail to load. The durable repair removed the retry and requires escalation for conflicts without a sanctioned resolution."
-  },
-  {
-    "chapter": "3.4-governance-conversion",
     "source": "assets/residual-decision-tree.svg",
     "caption": "\\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -594,19 +581,6 @@
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where enforcement stops: three questions place any obligation in one of four states —\n    residual, judgment required, evaluated only, or governed",
     "svg_description": "Three questions classify an obligation as unrepresented, requiring judgment, evaluated without enforcement, or governed. These describe current dispositions rather than equally desirable design choices."
-  },
-  {
-    "chapter": "3.5-when-guardrails-collide",
-    "source": "assets/collision-edge.svg",
-    "caption": "*Structure of a governance graph.* Controls are connected to the obligations that justify them and the resources they access. Shared resources expose potential interactions; declared ordering constraints record how selected interactions are resolved. The examples illustrate two distinct problems: incompatible obligations and mechanisms that require a particular execution order.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/collision-edge.d2",
-    "receipt": "book/d2-pilot/collision-edge.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Structure of a governance graph",
-    "svg_description": "Two governance-graph examples have obligations above controls and a shared resource below. The squash rule is justified by atomic delivery and the diff-size guard by bounded change scope; both read the commit set, with no automatic conflict edge between them. The formatter is justified by formatting consistency and writes source files; the lint check is justified by code quality and reads those files. A dashed arrow declares that the formatter precedes the lint check."
   },
   {
     "chapter": "3.5-when-guardrails-collide",
