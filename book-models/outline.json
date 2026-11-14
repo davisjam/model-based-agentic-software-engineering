@@ -4135,7 +4135,7 @@
           "heading_text": "What Must Transfer",
           "topic_sentence": "The first requirement is representability: a purposeful reduction must preserve the distinctions relevant to a consequential decision.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 7,
           "points": []
         },
         {
@@ -4144,7 +4144,7 @@
           "heading_text": "Model-Based Engineering",
           "topic_sentence": "Conventional engineering is the nearest transfer because the shape of the outcome changes least.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 17,
           "points": []
         },
         {
@@ -4153,22 +4153,22 @@
           "heading_text": "Professional Knowledge Work",
           "topic_sentence": "Consider an ordinary recurring business decision: how much inventory to carry, which market to enter, how to price a product, whether to approve an investment, or how to respond to a change in demand.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 28,
           "points": [
             {
               "slug": "accounting-environment-already-engineered",
               "text": "Accounting supplies established representations and controls: double-entry makes balancing checkable, while reconciliation, review, and allocated authority address obligations that arithmetic alone cannot establish.",
-              "block_index": 36
+              "block_index": 33
             },
             {
               "slug": "law-representation-without-determinization",
               "text": "Legal analysis can have rich representations while important interpretations remain contested; making an argument explicit does not make its merits mechanically decidable.",
-              "block_index": 40
+              "block_index": 37
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
               "text": "The unit of transfer is the engineering surface rather than the profession: a reconciliation or filing deadline may be mechanized while materiality and interpretation remain matters of judgment.",
-              "block_index": 42
+              "block_index": 39
             }
           ]
         },
@@ -4178,12 +4178,12 @@
           "heading_text": "Science as the Harder Case",
           "topic_sentence": "Scientific work tests the distinction between governing a process and establishing what its results warrant.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 41,
           "points": [
             {
               "slug": "science-tests-the-theory",
               "text": "Science tests the distinction between enforcing conditions on inquiry and establishing what its results warrant; reproducible conduct alone does not settle explanatory merit.",
-              "block_index": 45
+              "block_index": 42
             }
           ]
         },
@@ -4193,12 +4193,12 @@
           "heading_text": "Where the Generalization Fails",
           "topic_sentence": "The transfer conditions identify several ways strong governance can fail.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 46,
           "points": [
             {
               "slug": "failure-traits-named",
               "text": "Transfer becomes difficult where relevant knowledge cannot be represented adequately, evidence or correspondence is weak, recurrence is low, or a mechanized proxy would lose the context that gives an obligation its meaning.",
-              "block_index": 50
+              "block_index": 47
             }
           ]
         },
@@ -4208,7 +4208,7 @@
           "heading_text": "A Research Prediction",
           "topic_sentence": "The broader interpretation produces a testable prediction.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 54,
           "points": []
         }
       ],

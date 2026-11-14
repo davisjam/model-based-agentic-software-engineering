@@ -2623,42 +2623,24 @@
   {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
+    },
     "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
-    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-    "revision_date": "2026-11-10",
-    "validation": {
-      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
-      "page": 1,
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "minimum_prose_font_pt": 9.0,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 14,
-      "reviewed_peer_groups": 0,
-      "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
-    }
-  },
-  {
-    "source": "book/assets/governing-consequential-work.png",
-    "candidate": "book/tikz/figures/governing-consequential-work.tex",
-    "receipt": "book/tikz/receipts/governing-consequential-work.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Responsibility, governed-environment container and outcome container regain separate shades; two outcome forms remain equal alternatives.",
-    "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-    "candidate_sha256": "81aa84c665a633b3df82fd467585250187abebfa2918cc443e1fd4c855648aab"
+    "rationale": "The MAGE enclosure is shaded. A dashed outline identifies the intended outcome."
   },
   {
     "source": "book/assets/appendix-a-capability-map.svg",

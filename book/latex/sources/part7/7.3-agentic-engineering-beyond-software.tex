@@ -12,28 +12,17 @@
 
 \chapter{Agentic Engineering Beyond Software}
 
-MAGE was developed through software engineering because that is where my engineering expertise lies. Its evidence is correspondingly concentrated: the originating case, reconstructions of other software systems and organizations, and a theory developed to explain those observations. The subtitle of this book is deliberate. Software engineering is the first worked domain of Model-Based Agentic Engineering.
+MAGE grew out of software engineering, where my expertise lies. The evidence in this book comes primarily from software: the DocAble case, accounts of other software factories, and a theory developed from those observations. The subtitle is deliberate. Software engineering is the first worked domain of Model-Based Agentic Engineering.
 
-Software is not fundamental to the theory. The same control problem can arise when agents perform consequential work that produces something other than source code.
+But software is not essential to the problem MAGE addresses. Agents can perform consequential work in other engineering disciplines, and the result need not be an autonomous system. A civil engineer may direct an agent to develop a structural design; an accountant may use one to prepare an analysis; a lawyer may use one to evaluate a claim. In each case, someone remains responsible for judging whether the result is acceptable.
 
-Nor does the work have to produce an autonomous system. Conventional engineering makes the theory particularly easy to see because engineering work often produces an artifact or system that can subsequently be inspected, tested, operated, and observed. But the more general object is a consequential outcome. In knowledge work, that outcome may instead be a decision or action: a recommendation, approval, plan, transaction, diagnosis, or other commitment whose consequences become observable through subsequent events.
+The difference lies partly in what the work produces. A bridge design can be analyzed before construction, and the resulting structure can be inspected, tested, and monitored. A recommendation, approval, or business decision instead produces consequences that may become apparent only after someone acts on it. Both require representations of what matters, evidence appropriate to the claims being made, and controls over what an agent may do. Both can also produce lessons that improve subsequent work.
 
-In either case, the work forms a loop. People remain responsible for consequential outcomes while delegating portions of the work that produces them. The environment carries representations, evidence requirements, constraints, and enforcement. The resulting artifact can be inspected and observed; the resulting decision can be evaluated against what subsequently happens. Evidence from either kind of outcome informs later judgment and can change the environment inherited by the next round of work.
+The available machinery differs by domain. Software offers types, tests, dependency models, permissions, and admission gates. Conventional engineering offers physical models, simulations, measurements, inspections, and certification. Professional knowledge work may instead rely on represented assumptions, documented evidence, approval rules, and review by accountable experts. The question is which of these mechanisms can support responsible delegation, not whether every profession should adopt software engineering\textquotesingle s methods.
 
-The particulars therefore change dramatically across domains without changing the control problem. Software offers requirements, architectures, dependency graphs, types, tests, permissions, telemetry, and executable admission gates. Conventional engineering offers geometry, tolerances, physical models, simulations, inspections, and certification. Knowledge work may instead represent alternatives, assumptions, objectives, evidence, uncertainty, authority, and expected consequences. The general question is not whether every profession can be made to resemble software engineering. It is what environment would let capable agents perform consequential work while people retain informed control of its outcomes?
+Throughout this book, \emph{engineering} has meant exercising informed control over consequential systems and accepting responsibility for their outcomes (see the Glossary). This is a functional definition, not a professional designation. An accountant, lawyer, manager, or scientist may perform engineering work in this sense. That does not make all knowledge work engineering. The question is whether the work admits sufficient representation, evidence, and control to support responsible delegation.
 
-\autoref{governing-consequential-work} holds the shape of that question. The governing loop remains constant even when what the work produces does not.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/assets/governing-consequential-work.png}
-\caption{\emph{Governing consequential work.} The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome\textquotesingle s form varies --- an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.}
-\label{governing-consequential-work}
-\end{figure}
-
-The definition of engineering used throughout this book emphasizes informed control over consequential systems and responsibility for their outcomes (see the Glossary). It is functional rather than institutional: an accountant, lawyer, manager, or scientist may perform engineering work in this sense without belonging to a conventionally named engineering discipline.
-
-This does not make all knowledge work engineering. The question is whether the work admits sufficient representation, evidence, and control to support responsible delegation. Where it does, how much of MAGE can transfer?
+The following discussion examines what must transfer from software for MAGE to apply elsewhere, and where that transfer may fail.
 
 \section{What Must Transfer}\label{heading:what-must-transfer}
 

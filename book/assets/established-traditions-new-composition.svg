@@ -1,132 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: established-traditions-new-composition). Figure 6.5-2. TWO long-running
-     traditions converge in MAGE's new composition. LEFT — engineering traditions (MBSE/MDE explicit models;
-     PL/compilers types + constrained IRs; formal methods specs + verification; systems/safety boundaries +
-     control). RIGHT — AI traditions (knowledge representation; memory + planning state; structured reasoning;
-     tools + interfaces). BOTH feed the MAGE boundary (not engineering→Modeling, AI→GEE — both feed the
-     composition). Inside MAGE: Modeling (make knowledge explicit) + Alignment (enforce selected obligations)
-     meet in the Governed Engineering Environment. Governance conversion preserves recurring judgment as
-     ENGINEERING CAPITAL inside that environment, inherited by subsequent work toward TRUSTWORTHY AUTONOMY
-     (outside the boundary — the intended
-     outcome). Novelty is the composition + economics, not either tradition; commodity intelligence changes
-     the price list. NOT labelled "older" — AI's representational traditions are themselves decades old.
-     Palette: Umber tokens (ink #1c1917, muted #57534e, rule #e4e0d8, page #fdfcf9; engineering green #155c38
-     + tint #e9f2ec; AI slate-blue #2f5c8f + tint #eaf1f8; MAGE rust #9a3f12 + tint #faf1e6). -->
-<!-- semantic-families: modeling, governance, neutral -->
-<!-- Connect-grammar: Modeling/Alignment feed the GEE; governance conversion accumulates capital inside it.
-     The environment is inherited by subsequent work toward trustworthy autonomy. The two column->MAGE
-     convergence connectors have a COLUMN of four traditions as their source; each column carries a
-     transparent-rect anchor (eng-traditions / ai-traditions) so the group-region source is a lint-legible
-     node and the router routes the convergence out the column's flow border into the MAGE boundary top. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 980" width="1000" height="980"
-     role="group" aria-labelledby="etTitle etDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="etTitle">Established traditions, new composition: engineering and AI traditions converge in MAGE</title>
-  <desc id="etDesc">Two columns of established traditions feed a central MAGE boundary. On the left,
-    engineering traditions: model-based and model-driven engineering (explicit models); programming languages
-    and compilers (types and constrained intermediate representations); formal methods (specifications and
-    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:
-    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both
-    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces
-    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries
-    recurring judgment into engineering capital inside that environment. The inherited environment supports
-    subsequent work toward trustworthy autonomy, the intended outcome outside the boundary. New
-    economics under commodity intelligence drive the new composition; the provenance of the parts is old.</desc>
-
-  <defs>
-    <marker id="etA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="etAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="980" fill="#fdfcf9"/>
-  <text x="500" y="40" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="1.2" fill="#1c1917">ESTABLISHED TRADITIONS, NEW COMPOSITION</text>
-
-  <!-- both columns converge into the MAGE boundary. Each column of four traditions carries a transparent-rect
-       anchor (fill/stroke none) spanning its boxes, so the group-region source is a lint-legible node and the
-       router can route the convergence out the column's bottom (flow border) into the MAGE boundary top. -->
-  <rect id="eng-traditions" x="48" y="94" width="438" height="148" fill="none" stroke="none"/>
-  <rect id="ai-traditions" x="524" y="94" width="438" height="148" fill="none" stroke="none"/>
-  <!-- edge: eng-traditions -> mage -->
-  <line x1="304" y1="242" x2="304" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-  <!-- edge: ai-traditions -> mage -->
-  <line x1="696" y1="242" x2="696" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-
-  <!-- ── ENGINEERING TRADITIONS (left) ── -->
-  <text x="267" y="80" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1" fill="#155c38">ENGINEERING TRADITIONS</text>
-  <g font-size="20" fill="#1c1917">
-    <rect x="48"  y="94" width="216" height="70" rx="8" fill="#e9f2ec" stroke="#8fbda3" stroke-width="1.4"/>
-    <text x="60" y="123" font-weight="700">MBSE / MDE</text><text x="60" y="146" font-size="20" fill="#57534e">explicit models</text>
-    <rect x="270" y="94" width="216" height="70" rx="8" fill="#e9f2ec" stroke="#8fbda3" stroke-width="1.4"/>
-    <text x="282" y="115" font-weight="700">PL / compilers</text><text x="282" y="136" font-size="20" fill="#57534e">types ·</text><text x="282" y="157" font-size="20" fill="#57534e">constrained IRs</text>
-    <rect x="48"  y="172" width="216" height="70" rx="8" fill="#e9f2ec" stroke="#8fbda3" stroke-width="1.4"/>
-    <text x="60" y="201" font-weight="700">Formal methods</text><text x="60" y="224" font-size="20" fill="#57534e">specs · verification</text>
-    <rect x="270" y="172" width="216" height="70" rx="8" fill="#e9f2ec" stroke="#8fbda3" stroke-width="1.4"/>
-    <text x="282" y="201" font-weight="700">Systems / safety</text><text x="282" y="224" font-size="20" fill="#57534e">boundaries · control</text>
-  </g>
-
-  <!-- ── AI TRADITIONS (right) ── -->
-  <text x="743" y="80" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1" fill="#2f5c8f">AI TRADITIONS</text>
-  <g font-size="20" fill="#1c1917">
-    <rect x="524" y="94" width="216" height="70" rx="8" fill="#eaf1f8" stroke="#9db8d4" stroke-width="1.4"/>
-    <text x="536" y="117" font-weight="700">Knowledge</text><text x="536" y="138" font-weight="700">representation</text><text x="536" y="158" font-size="20" fill="#57534e">explicit knowledge</text>
-    <rect x="746" y="94" width="216" height="70" rx="8" fill="#eaf1f8" stroke="#9db8d4" stroke-width="1.4"/>
-    <text x="758" y="117" font-weight="700">Memory ·</text><text x="758" y="138" font-weight="700">planning state</text><text x="758" y="158" font-size="20" fill="#57534e">external state</text>
-    <rect x="524" y="172" width="216" height="70" rx="8" fill="#eaf1f8" stroke="#9db8d4" stroke-width="1.4"/>
-    <text x="536" y="193" font-weight="700">Structured</text><text x="536" y="214" font-weight="700">reasoning</text><text x="536" y="235" font-size="20" fill="#57534e">intermediate structure</text>
-    <rect x="746" y="172" width="216" height="70" rx="8" fill="#eaf1f8" stroke="#9db8d4" stroke-width="1.4"/>
-    <text x="758" y="201" font-weight="700">Tools · interfaces</text><text x="758" y="224" font-size="20" fill="#57534e">reasoner support</text>
-  </g>
-
-  <!-- ── MAGE boundary (background; interior edges + nodes drawn on top) ── -->
-  <rect id="mage" x="132" y="266" width="736" height="534" rx="14" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <rect x="452" y="256" width="96" height="26" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6"/>
-  <text x="500" y="274" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1.4" fill="#9a3f12">MAGE</text>
-
-  <!-- interior edges: Modeling / Alignment -> Governed Engineering Environment -->
-  <!-- edge: modeling -> gee -->
-  <path d="M334,370 L334,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-  <!-- edge: alignment -> gee -->
-  <path d="M666,370 L666,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-
-  <rect id="modeling" x="176" y="304" width="292" height="66" rx="9" fill="#fff" stroke="#c4a894" stroke-width="1.6"/>
-  <text x="322" y="332" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Modeling</text>
-  <text x="322" y="353" text-anchor="middle" font-size="20" fill="#57534e">make knowledge explicit</text>
-  <rect id="alignment" x="532" y="304" width="292" height="66" rx="9" fill="#fff" stroke="#c4a894" stroke-width="1.6"/>
-  <text x="678" y="332" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Alignment</text>
-  <text x="678" y="353" text-anchor="middle" font-size="20" fill="#57534e">enforce selected obligations</text>
-
-  <rect id="gee" x="200" y="456" width="600" height="306" rx="11" fill="#e9f2ec" stroke="#155c38" stroke-width="2.2"/>
-  <rect id="gee-knowledge" x="216" y="474" width="568" height="114" fill="none" stroke="none"/>
-  <text x="500" y="492" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Governed Engineering Environment</text>
-  <text x="500" y="526" text-anchor="middle" font-size="20" fill="#44403c">representations · tools · procedures</text>
-  <text x="500" y="550" text-anchor="middle" font-size="20" fill="#44403c">evidence · constraints · controls</text>
-  <text x="500" y="578" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">where both traditions meet</text>
-
-  <!-- governance conversion accumulates engineering capital WITHIN the GEE -->
-  <!-- edge: gee-knowledge -> capital -->
-  <path d="M500,590 L500,676" fill="none" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#etAr)"/>
-
-  <!-- ENGINEERING CAPITAL — reusable structure within the GEE -->
-  <rect id="capital" x="300" y="678" width="400" height="66" rx="10" fill="#eef7f0" stroke="#155c38" stroke-width="2"/>
-  <text x="500" y="706" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Engineering capital</text>
-  <text x="500" y="727" text-anchor="middle" font-size="20" fill="#57534e">recurring judgment, made durable</text>
-
-  <!-- edge: gee -> autonomy -->
-  <path d="M500,764 L500,830" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-
-  <!-- TRUSTWORTHY AUTONOMY — the intended outcome, outside the boundary -->
-  <rect id="autonomy" x="340" y="832" width="320" height="58" rx="10" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="500" y="858" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Trustworthy autonomy</text>
-  <text x="500" y="877" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the intended outcome</text>
-
-  <!-- edge labels -->
-  <text x="516" y="636" font-size="20" font-style="italic" fill="#9a3f12">governance conversion</text>
-  <text x="516" y="820" font-size="20" font-style="italic" fill="#57534e">inherited by subsequent work</text>
-
-  <text x="500" y="930" text-anchor="middle" font-size="20" font-weight="700" letter-spacing=".6" fill="#9a3f12">NEW ECONOMICS → NEW COMPOSITION</text>
-  <text x="500" y="954" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">commodity intelligence changes the price list, not the provenance of the parts</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="599" viewBox="0 0 444 299.5" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<title id="title">Established traditions, new composition</title>
+<desc id="desc">Engineering and AI traditions feed MAGE. Modeling makes knowledge explicit and Alignment enforces selected obligations. Both contribute to a governed engineering environment that contains engineering capital. Subsequent work inherits that capital, with trustworthy autonomy as the intended outcome.</desc>
+<defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0 0 L5 2.5 L0 5 Z" fill="#1c1917"/></marker></defs>
+<g fill="#1c1917" font-family="Source Sans 3, sans-serif">
+<text x="105" y="13.0" font-size="12" text-anchor="middle" font-weight="700">ENGINEERING TRADITIONS</text>
+<text x="337" y="13.0" font-size="12" text-anchor="middle" font-weight="700">AI TRADITIONS</text>
+<rect x="2" y="20" width="108" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="56.0" y="33.0" font-size="10" text-anchor="middle" font-weight="700">MBSE / MDE</text>
+<text x="56.0" y="45.0" font-size="9" text-anchor="middle">explicit models</text>
+<rect x="114" y="20" width="101" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="164.5" y="33.0" font-size="10" text-anchor="middle" font-weight="700">PL / compilers</text>
+<text x="164.5" y="45.0" font-size="9" text-anchor="middle">Types · DSLs</text>
+<rect x="230" y="20" width="108" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="284.0" y="30.0" font-size="10" text-anchor="middle" font-weight="700">Knowledge</text>
+<text x="284.0" y="41.5" font-size="10" text-anchor="middle" font-weight="700">representation</text>
+<text x="284.0" y="49.0" font-size="9" text-anchor="middle">explicit knowledge</text>
+<rect x="342" y="20" width="100" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="392.0" y="30.0" font-size="10" text-anchor="middle" font-weight="700">Memory ·</text>
+<text x="392.0" y="41.5" font-size="10" text-anchor="middle" font-weight="700">planning state</text>
+<text x="392.0" y="49.0" font-size="9" text-anchor="middle">external state</text>
+<rect x="2" y="56" width="108" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="56.0" y="69.0" font-size="10" text-anchor="middle" font-weight="700">Formal methods</text>
+<text x="56.0" y="81.0" font-size="9" text-anchor="middle">specs; verification</text>
+<rect x="114" y="56" width="101" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="164.5" y="69.0" font-size="10" text-anchor="middle" font-weight="700">Systems / safety</text>
+<text x="164.5" y="81.0" font-size="9" text-anchor="middle">boundaries; control</text>
+<rect x="230" y="56" width="108" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="284.0" y="66.0" font-size="10" text-anchor="middle" font-weight="700">Structured</text>
+<text x="284.0" y="77.5" font-size="10" text-anchor="middle" font-weight="700">reasoning</text>
+<text x="284.0" y="85.0" font-size="9" text-anchor="middle">intermediate structure</text>
+<rect x="342" y="56" width="100" height="32" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="392.0" y="69.0" font-size="10" text-anchor="middle" font-weight="700">Tools · interfaces</text>
+<text x="392.0" y="81.0" font-size="9" text-anchor="middle">reasoner support</text>
+<path d="M77,88 L77,99" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M77,99 L143,99" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M143,99 L143,111" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<path d="M377,88 L377,99" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M377,99 L302,99" fill="none" stroke="#1c1917" stroke-width="0.7"/>
+<path d="M302,99 L302,111" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="52" y="112" width="341" height="141" rx="5" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.15"/>
+<rect x="190" y="102" width="64" height="19" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="222" y="116.0" font-size="13" text-anchor="middle" font-weight="700">MAGE</text>
+<text x="222" y="131.0" font-size="10" text-anchor="middle" font-style="italic">New economics → new composition</text>
+<rect x="66" y="139" width="149" height="26" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="140.5" y="150.0" font-size="11" text-anchor="middle" font-weight="700">Modeling</text>
+<text x="140.5" y="161.0" font-size="9.5" text-anchor="middle" font-style="italic">make knowledge explicit</text>
+<path d="M140.5,165 L140.5,178" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="232" y="139" width="149" height="26" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="306.5" y="150.0" font-size="11" text-anchor="middle" font-weight="700">Alignment</text>
+<text x="306.5" y="161.0" font-size="9.5" text-anchor="middle" font-style="italic">enforce selected obligations</text>
+<path d="M306.5,165 L306.5,178" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="74" y="179" width="296" height="66" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="222" y="191.0" font-size="11" text-anchor="middle" font-weight="700">Governed engineering environment</text>
+<text x="222" y="202.0" font-size="9" text-anchor="middle" font-style="italic">representations · tools · procedures · evidence · constraints · controls</text>
+<text x="222" y="212.0" font-size="9" text-anchor="middle" font-style="italic">where both traditions meet</text>
+<rect x="97" y="216" width="250" height="25" rx="3" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="222" y="226.0" font-size="11" text-anchor="middle" font-weight="700">Engineering capital</text>
+<text x="222" y="237.0" font-size="9.5" text-anchor="middle" font-style="italic">recurring judgment, made durable</text>
+<path d="M222,253 L222,272" fill="none" stroke="#1c1917" stroke-width="0.7" marker-end="url(#arrow)"/>
+<text x="230" y="264.0" font-size="9" text-anchor="start" font-style="italic">inherited by subsequent work</text>
+<rect x="141" y="273" width="162" height="26" rx="5" fill="white" stroke="#1c1917" stroke-dasharray="3 2" stroke-width="0.85"/>
+<text x="222" y="284.0" font-size="11" text-anchor="middle" font-weight="700">Trustworthy autonomy</text>
+<text x="222" y="295.0" font-size="9.5" text-anchor="middle" font-style="italic">intended outcome</text>
+</g>
 </svg>

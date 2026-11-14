@@ -1,652 +1,522 @@
 {
   "source": "book/assets/established-traditions-new-composition.svg",
-  "claim": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.",
-  "topology": "Engineering and AI traditions feed Modeling and Alignment, which meet in a GEE containing accumulated engineering capital; the inherited GEE supports subsequent work toward trustworthy autonomy.",
+  "claim": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.",
+  "topology": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome.",
   "required_terms": [
-    "Governed engineering environment",
-    "Knowledge representation",
-    "Memory; planning state",
-    "Structured reasoning",
-    "Tools and interfaces",
-    "Trustworthy autonomy",
-    "Engineering capital",
-    "Systems / safety",
-    "PL / compilers",
-    "Formal methods",
+    "ENGINEERING TRADITIONS",
+    "AI TRADITIONS",
     "MBSE / MDE",
-    "Alignment",
+    "explicit models",
+    "PL / compilers",
+    "Types · DSLs",
+    "Knowledge representation",
+    "explicit knowledge",
+    "Memory · planning state",
+    "external state",
+    "Formal methods",
+    "specs; verification",
+    "Systems / safety",
+    "boundaries; control",
+    "Structured reasoning",
+    "intermediate structure",
+    "Tools · interfaces",
+    "reasoner support",
+    "MAGE",
     "Modeling",
-    "explicit models"
+    "make knowledge explicit",
+    "Alignment",
+    "enforce selected obligations",
+    "Governed engineering environment",
+    "representations · tools · procedures · evidence · constraints · controls",
+    "where both traditions meet",
+    "Engineering capital",
+    "recurring judgment, made durable",
+    "inherited by subsequent work",
+    "Trustworthy autonomy",
+    "intended outcome"
   ],
-  "bw_encoding": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
-  "redesign": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+  "bw_encoding": "The MAGE enclosure is shaded. A dashed outline identifies the intended outcome.",
+  "redesign": "Match the author reference for the composition of established engineering and AI traditions.",
   "questions": [],
-  "alt": "Two columns of established traditions feed a central MAGE boundary. On the left, engineering traditions: model-based and model-driven engineering (explicit models); programming languages and compilers (types and constrained intermediate representations); formal methods (specifications and verification); systems and safety engineering (boundaries and control). On the right, AI traditions: knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into engineering capital inside that environment. The inherited environment supports subsequent work toward trustworthy autonomy, the intended outcome outside the boundary. New economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+  "alt": "Engineering and AI traditions feed MAGE. Modeling makes knowledge explicit and Alignment enforces selected obligations. Both contribute to a governed engineering environment that contains engineering capital. Subsequent work inherits that capital, with trustworthy autonomy as the intended outcome.",
   "qa": {
-    "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-    "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-    "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
     "page": 1,
-    "width_bp": 399.9570007324219,
-    "height_bp": 351.4620056152344,
-    "font_sizes_pt": [
-      9.0,
-      10.0
-    ],
-    "minimum_prose_font_pt": 9.0,
-    "monochrome_pixels": true,
+    "width_bp": 449.972,
+    "height_bp": 305.474,
+    "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+    "minimum_prose_font_pt": 9,
     "geometry_findings": 0,
-    "semantic_typography_checks": 14,
-    "reviewed_peer_groups": 0,
-    "unapproved_compile_diagnostics": 0,
-    "reviewed_visually": true
+    "semantic_typography_checks": 31,
+    "unapproved_compile_diagnostics": 0
   },
-  "style_review": {
+  "reference_image_sha256": "4a4acdcb57b797cff96f7dd3104b3faa9d24458143e11384f701fc31449f2c09",
+  "layout_review": {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
-    "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
     "decision": "refined",
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-    "fill": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
-    "bold": "Source-derived emphasis includes Governed engineering environment; Knowledge representation; Memory; planning state; Structured reasoning; Tools and interfaces; Trustworthy autonomy; Engineering capital; Systems / safety. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "Governance conversion runs within the GEE; the inheritance arrow leaves its lower boundary.",
-    "shape": "Engineering capital is a child box within the GEE; both are inside the MAGE boundary. Trustworthy autonomy remains outside as the intended outcome.",
-    "visual_review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+    "reviewed_visually": true,
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
     "validation": {
-      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
       "page": 1,
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "minimum_prose_font_pt": 9.0,
-      "monochrome_pixels": true,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "semantic_typography_checks": 14,
-      "reviewed_peer_groups": 0,
-      "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
     },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
-    "revision_date": "2026-11-10"
+    "contracts": {
+      "peer_groups": [],
+      "terminal_exceptions": []
+    },
+    "visual_review": "Both groups enter MAGE, both principles enter the governed environment, and engineering capital is nested within that environment.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        449.972,
+        305.474
+      ],
+      "after_font_sizes_pt": [
+        9,
+        9.5,
+        10,
+        11,
+        12,
+        13
+      ],
+      "reviewed_visually": true,
+      "decision": "recomposed",
+      "reason": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome."
+    }
   },
   "typography_review": {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
     "decision": "refined",
-    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-    "evidence": [
-      {
-        "source_text": "Governed Engineering Environment",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Governed engineering environment",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Governed Engineering Environment",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "492",
-              "text_element": 27
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Knowledge\nrepresentation",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Knowledge representation",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Knowledge",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "536",
-              "y": "117",
-              "text_element": 12
-            }
-          },
-          {
-            "text": "representation",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "536",
-              "y": "138",
-              "text_element": 13
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Memory ·\nplanning state",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Memory; planning state",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Memory ·",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "758",
-              "y": "117",
-              "text_element": 15
-            }
-          },
-          {
-            "text": "planning state",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "758",
-              "y": "138",
-              "text_element": 16
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Structured reasoning",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Structured reasoning",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Structured reasoning",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "536",
-              "y": "201",
-              "text_element": 18
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Tools · interfaces",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Tools and interfaces",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Tools · interfaces",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "758",
-              "y": "201",
-              "text_element": 20
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Trustworthy autonomy",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Trustworthy autonomy",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Trustworthy autonomy",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "814",
-              "text_element": 32
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Engineering capital",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Engineering capital",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Engineering capital",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "706",
-              "text_element": 30
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Systems / safety",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Systems / safety",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Systems / safety",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "282",
-              "y": "201",
-              "text_element": 9
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "PL / compilers",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "PL / compilers",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "PL / compilers",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "282",
-              "y": "123",
-              "text_element": 5
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Formal methods",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Formal methods",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Formal methods",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "60",
-              "y": "201",
-              "text_element": 7
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "MBSE / MDE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "MBSE / MDE",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "MBSE / MDE",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "60",
-              "y": "123",
-              "text_element": 3
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Alignment",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Alignment",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Alignment",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "678",
-              "y": "332",
-              "text_element": 25
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "Modeling",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Modeling",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "Modeling",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "322",
-              "y": "332",
-              "text_element": 23
-            }
-          }
-        ]
-      }
-    ],
-    "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+    "reviewed_visually": true,
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
+    },
     "checks": [
       {
-        "text": "Governed engineering environment",
-        "bold": true
+        "text": "ENGINEERING TRADITIONS",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "Knowledge representation",
-        "bold": true
-      },
-      {
-        "text": "Memory; planning state",
-        "bold": true
-      },
-      {
-        "text": "Structured reasoning",
-        "bold": true
-      },
-      {
-        "text": "Tools and interfaces",
-        "bold": true
-      },
-      {
-        "text": "Trustworthy autonomy",
-        "bold": true
-      },
-      {
-        "text": "Engineering capital",
-        "bold": true
-      },
-      {
-        "text": "Systems / safety",
-        "bold": true
-      },
-      {
-        "text": "PL / compilers",
-        "bold": true
-      },
-      {
-        "text": "Formal methods",
-        "bold": true
+        "text": "AI TRADITIONS",
+        "bold": true,
+        "italic": false
       },
       {
         "text": "MBSE / MDE",
-        "bold": true
-      },
-      {
-        "text": "Alignment",
-        "bold": true
-      },
-      {
-        "text": "Modeling",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "explicit models",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "PL / compilers",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Types · DSLs",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Knowledge representation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "explicit knowledge",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Memory · planning state",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "external state",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Formal methods",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "specs; verification",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Systems / safety",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "boundaries; control",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Structured reasoning",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "intermediate structure",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Tools · interfaces",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "reasoner support",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "MAGE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Modeling",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "make knowledge explicit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "enforce selected obligations",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Governed engineering environment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "representations · tools · procedures · evidence · constraints · controls",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "where both traditions meet",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Engineering capital",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "recurring judgment, made durable",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "inherited by subsequent work",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Trustworthy autonomy",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "intended outcome",
+        "bold": false,
+        "italic": true
       }
     ],
-    "validation": {
-      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
-      "page": 1,
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "minimum_prose_font_pt": 9.0,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 14,
-      "reviewed_peer_groups": 0,
-      "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
-    },
-    "revision_date": "2026-11-10"
+    "evidence": [
+      {
+        "candidate_text": "ENGINEERING TRADITIONS",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "AI TRADITIONS",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "MBSE / MDE",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "explicit models",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "PL / compilers",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Types · DSLs",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Knowledge representation",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "explicit knowledge",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Memory · planning state",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "external state",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Formal methods",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "specs; verification",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Systems / safety",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "boundaries; control",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Structured reasoning",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "intermediate structure",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Tools · interfaces",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "reasoner support",
+        "candidate_style": "regular",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "MAGE",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Modeling",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "make knowledge explicit",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Alignment",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "enforce selected obligations",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Governed engineering environment",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "representations · tools · procedures · evidence · constraints · controls",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "where both traditions meet",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Engineering capital",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "recurring judgment, made durable",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "inherited by subsequent work",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "Trustworthy autonomy",
+        "candidate_style": "bold",
+        "semantic_role": "panel heading, annotation or legend"
+      },
+      {
+        "candidate_text": "intended outcome",
+        "candidate_style": "italic",
+        "semantic_role": "panel heading, annotation or legend"
+      }
+    ]
   },
-  "layout_review": {
+  "style_review": {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
-    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-    "baseline_candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
-    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
     "decision": "refined",
-    "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
     "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      399.9570007324219,
-      351.4620056152344
-    ],
-    "contracts": {
-      "peer_groups": [],
-      "terminal_exceptions": []
-    },
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
     "validation": {
-      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
       "page": 1,
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "minimum_prose_font_pt": 9.0,
-      "monochrome_pixels": true,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "semantic_typography_checks": 14,
-      "reviewed_peer_groups": 0,
-      "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
     },
-    "page_layout": {
-      "decision": "refined",
-      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
-      "after_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-      "after_dimensions_bp": [
-        399.9570007324219,
-        351.4620056152344
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "revision_date": "2026-11-10"
-  },
-  "validation": {
-    "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-    "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-    "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
-    "page": 1,
-    "width_bp": 399.9570007324219,
-    "height_bp": 351.4620056152344,
-    "font_sizes_pt": [
-      9.0,
-      10.0
-    ],
-    "minimum_prose_font_pt": 9.0,
-    "monochrome_pixels": true,
-    "geometry_findings": 0,
-    "semantic_typography_checks": 14,
-    "reviewed_peer_groups": 0,
-    "unapproved_compile_diagnostics": 0,
-    "reviewed_visually": true
+    "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
+    "status": "reviewed",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "The MAGE enclosure is shaded. A dashed outline identifies the intended outcome.",
+    "bold": "Headings and arrow labels use bold type.",
+    "routing": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome.",
+    "shape": "Two grids above nested MAGE, GEE and engineering capital boxes.",
+    "visual_review": "Both groups enter MAGE, both principles enter the governed environment, and engineering capital is nested within that environment.",
+    "book_references": [],
+    "routing_exceptions": "None."
   },
   "fidelity_review": {
     "source": "book/assets/established-traditions-new-composition.svg",
     "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
+    "validation": {
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
+    },
     "checks": {
-      "icons_and_symbols": "No status icons; individual source tradition boxes consolidated but bold tradition labels retained.",
-      "links_and_groups": "Engineering/AI families remain separate; MAGE boundary, durable capital, dashed intended outcome preserved.",
-      "annotation_placement": "Conversion/inheritance annotations outside nodes and economics caveat below."
+      "links_and_groups": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome.",
+      "annotation_placement": "Inheritance is labeled at the final arrow.",
+      "line_breaks": "Line breaks follow the author reference.",
+      "icons_and_symbols": "Arrows connect each tradition group and principle to the relevant enclosure."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
-        9.0,
-        10.0
+        9,
+        9.5,
+        10,
+        11,
+        12,
+        13
       ],
-      "minimum": 9.0,
+      "minimum": 9,
       "final_size_no_scaling": true
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 399.9570007324219,
-    "height_bp": 351.4620056152344,
+    "width_bp": 449.972,
+    "height_bp": 305.474,
     "monochrome": true,
-    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-    "review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+    "review": "Both groups enter MAGE, both principles enter the governed environment, and engineering capital is nested within that environment."
+  },
+  "grayscale_review": {
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+    "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
     "decision": "refined",
-    "revision_date": "2026-11-10",
+    "reviewed_visually": true,
+    "reason": "Match the author reference for the composition of established engineering and AI traditions.",
     "validation": {
-      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
       "page": 1,
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "minimum_prose_font_pt": 9.0,
-      "monochrome_pixels": true,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
+      "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+      "minimum_prose_font_pt": 9,
       "geometry_findings": 0,
-      "semantic_typography_checks": 14,
-      "reviewed_peer_groups": 0,
-      "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
-    }
+      "semantic_typography_checks": 31,
+      "unapproved_compile_diagnostics": 0
+    },
+    "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
+    "reviewed": true,
+    "rationale": "The MAGE enclosure is shaded. A dashed outline identifies the intended outcome."
   }
 }

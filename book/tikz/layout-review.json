@@ -6525,142 +6525,42 @@
     {
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
-      "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-      "baseline_candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
-      "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
+      "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+      "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
       "decision": "refined",
-      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        399.9570007324219,
-        351.4620056152344
-      ],
+      "reason": "Match the author reference for the composition of established engineering and AI traditions.",
+      "validation": {
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 305.474,
+        "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+        "minimum_prose_font_pt": 9,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 31,
+        "unapproved_compile_diagnostics": 0
+      },
       "contracts": {
         "peer_groups": [],
         "terminal_exceptions": []
       },
-      "validation": {
-        "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-        "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-        "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
-        "page": 1,
-        "width_bp": 399.9570007324219,
-        "height_bp": 351.4620056152344,
-        "font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum_prose_font_pt": 9.0,
-        "monochrome_pixels": true,
-        "geometry_findings": 0,
-        "semantic_typography_checks": 14,
-        "reviewed_peer_groups": 0,
-        "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true
-      },
+      "visual_review": "Both groups enter MAGE, both principles enter the governed environment, and engineering capital is nested within that environment.",
       "page_layout": {
-        "decision": "refined",
-        "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
-        "after_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
         "after_dimensions_bp": [
-          399.9570007324219,
-          351.4620056152344
+          449.972,
+          305.474
         ],
         "after_font_sizes_pt": [
-          9.0,
-          10.0
+          9,
+          9.5,
+          10,
+          11,
+          12,
+          13
         ],
-        "reviewed_visually": true
-      },
-      "revision_date": "2026-11-10"
-    },
-    {
-      "source": "book/assets/governing-consequential-work.png",
-      "candidate": "book/tikz/figures/governing-consequential-work.tex",
-      "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-      "baseline_candidate_sha256": "bacf74007f13436e5589d6aa57c450e75021db4da207b01fe2689e545695b4b8",
-      "candidate_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
-      "decision": "refined",
-      "reason": "Equalize environment components and alternative outcome panels; extend containing boundary so larger panels retain breathing room. Raised the outcome-container border so it no longer crowds the two incoming arrowheads. Raised the governed-environment frame boundary and moved the incoming annotation clear of it.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        429.1709899902344,
-        357.7659912109375
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel rank 1",
-            "labels": [
-              "Representations what matters made explicit",
-              "Evidence what must be shown",
-              "Constraints what agents may do",
-              "Enforcement how rules apply"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          },
-          {
-            "name": "parallel rank 2",
-            "labels": [
-              "Artifact / system Bridge; circuit; software; process Inspected, tested, operated, observed directly",
-              "Decision / action Recommendation; approval; plan; transaction Consequences become observable through subsequent events"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ],
-        "terminal_exceptions": []
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 90,
-        "width_bp": 429.171,
-        "height_bp": 374.775
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing governing consequential work layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
-        "after_sha256": "2eb1ee81506ff80ddb4673d3bfb84fa7c3636a8bdb1600a798388d7e7d1a612a",
-        "before_dimensions_bp": [
-          429.1709899902344,
-          374.7749938964844
-        ],
-        "after_dimensions_bp": [
-          429.1709899902344,
-          374.7749938964844
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "reviewed_visually": true,
+        "decision": "recomposed",
+        "reason": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome."
       }
     },
     {

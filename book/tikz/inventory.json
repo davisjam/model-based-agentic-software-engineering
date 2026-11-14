@@ -1057,8 +1057,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Established traditions, new composition: engineering and AI traditions converge in MAGE",
-    "svg_description": "Two columns of established traditions feed a central MAGE boundary. On the left, engineering traditions: model-based and model-driven engineering (explicit models); programming languages and compilers (types and constrained intermediate representations); formal methods (specifications and verification); systems and safety engineering (boundaries and control). On the right, AI traditions: knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into engineering capital inside that environment. The inherited environment supports subsequent work toward trustworthy autonomy, the intended outcome outside the boundary. New economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+    "svg_title": "Established traditions, new composition",
+    "svg_description": "Engineering and AI traditions feed MAGE. Modeling makes knowledge explicit and Alignment enforces selected obligations. Both contribute to a governed engineering environment that contains engineering capital. Subsequent work inherits that capital, with trustworthy autonomy as the intended outcome.",
     "native_dimensions_bp": [
       399.9570007324219,
       351.4620056152344
@@ -1067,17 +1067,6 @@
       9.0,
       10.0
     ]
-  },
-  {
-    "chapter": "7.3-agentic-engineering-beyond-software",
-    "source": "assets/governing-consequential-work.png",
-    "caption": "*Governing consequential work.* The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome's form varies — an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "Redraw PNG conceptual diagram as TikZ after visual inventory"
   },
   {
     "chapter": "appendix-stacks",

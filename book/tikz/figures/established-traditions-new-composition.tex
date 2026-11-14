@@ -1,30 +1,62 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=6cm,fill=white,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (eh) at (-3.7,0) {ENGINEERING TRADITIONS};
-\node[head,text width=6cm,fill=white,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (ah) at (3.7,0) {AI TRADITIONS};
-\node[note,draw,fill=white,text width=6.4cm,fill=white] (e) at (-3.7,-2) {\textbf{MBSE / MDE}: explicit models\\\textbf{PL / compilers}: types; constrained IRs\\\textbf{Formal methods}: specifications; verification\\\textbf{Systems / safety}: boundaries; control};
-\node[box,text width=6cm,fill=white] (a) at (3.7,-2) {\textbf{Knowledge representation}\\\textbf{Memory; planning state}\\\textbf{Structured reasoning}\\\textbf{Tools and interfaces}};
-\node[box,text width=4.6cm] (m) at (-3,-4.5) {\textbf{Modeling}\\make knowledge explicit};
-\node[box,text width=4.6cm] (al) at (3,-4.5) {\textbf{Alignment}\\enforce selected obligations};
-\draw[edge,] (e.south -| m.north) -- (m.north);
-\draw[edge,] (a.south -| al.north) -- (al.north);
-\node[box,text width=9cm,minimum height=3.2cm,anchor=north] (g) at (0,-5.65) {};
-\node[note,text width=8.7cm] (knowledge) at (0,-6.25) {\textbf{Governed engineering environment}\\Representations; tools; procedures; evidence; constraints; controls};
-\draw[edge,] (m.south) -- (g.north -| m.south);
-\draw[edge,] (al.south) -- (g.north -| al.south);
-\draw[black,line width=.8pt] (-6,-3.45) rectangle (6,-9.1);
-\node[head,text width=1.4cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (tag) at (0,-3.45) {MAGE};
-\node[box,text width=8cm,fill=white] (cap) at (0,-8) {\textbf{Engineering capital}\\recurring judgment made durable};
-\draw[edge,] (knowledge.south) -- node[midway,right,note,fill=white] {governance conversion} (cap.north);
-\node[box,dashed,text width=6cm] (t) at (0,-10.1) {\textbf{Trustworthy autonomy}\\intended outcome};
-\draw[edge,] (g.south) -- node[midway,right,note,fill=white] {inherited by subsequent work} (t.north);
-\node[note,text width=13cm] (nt) at (0,-11.6) {New economics drive a new composition; the provenance of the parts is old.};
-\begin{scope}[on background layer]
-\fill[black!5] (-6,-3.45) rectangle (6,-9.1);
-\end{scope}
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\magefigurefont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,299.5);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{12}{11}\selectfont\bfseries] at (105,10.0) {ENGINEERING TRADITIONS};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{12}{11}\selectfont\bfseries] at (337,10.0) {AI TRADITIONS};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (2,20) rectangle (110,52);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (56.0,30.0) {MBSE / MDE};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (56.0,42.0) {explicit models};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (114,20) rectangle (215,52);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (164.5,30.0) {PL / compilers};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (164.5,42.0) {Types · DSLs};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (230,20) rectangle (338,52);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (284.0,27.0) {Knowledge};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (284.0,38.5) {representation};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (284.0,46.0) {explicit knowledge};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (342,20) rectangle (442,52);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (392.0,27.0) {Memory ·};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (392.0,38.5) {planning state};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (392.0,46.0) {external state};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (2,56) rectangle (110,88);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (56.0,66.0) {Formal methods};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (56.0,78.0) {specs; verification};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (114,56) rectangle (215,88);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (164.5,66.0) {Systems / safety};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (164.5,78.0) {boundaries; control};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (230,56) rectangle (338,88);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (284.0,63.0) {Structured};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (284.0,74.5) {reasoning};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (284.0,82.0) {intermediate structure};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (342,56) rectangle (442,88);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (392.0,66.0) {Tools · interfaces};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (392.0,78.0) {reasoner support};
+\draw[line width=0.7bp,draw=black!85] (77,88) -- (77,99);
+\draw[line width=0.7bp,draw=black!85] (77,99) -- (143,99);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (143,99) -- (143,111);
+\draw[line width=0.7bp,draw=black!85] (377,88) -- (377,99);
+\draw[line width=0.7bp,draw=black!85] (377,99) -- (302,99);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (302,99) -- (302,111);
+\draw[fill=black!8,draw=black!85,line width=1.15bp,rounded corners=5bp] (52,112) rectangle (393,253);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (190,102) rectangle (254,121);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{13}{11}\selectfont\bfseries] at (222,113.0) {MAGE};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\itshape] at (222,128.0) {New economics \(\to\) new composition};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (66,139) rectangle (215,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (140.5,147.0) {Modeling};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (140.5,158.0) {make knowledge explicit};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (140.5,165) -- (140.5,178);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (232,139) rectangle (381,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (306.5,147.0) {Alignment};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (306.5,158.0) {enforce selected obligations};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (306.5,165) -- (306.5,178);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (74,179) rectangle (370,245);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (222,188.0) {Governed engineering environment};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (222,199.0) {representations · tools · procedures · evidence · constraints · controls};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (222,209.0) {where both traditions meet};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=3bp] (97,216) rectangle (347,241);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (222,223.0) {Engineering capital};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (222,234.0) {recurring judgment, made durable};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (222,253) -- (222,272);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (230,261.0) {inherited by subsequent work};
+\draw[fill=white,dashed,draw=black!85,line width=0.85bp,rounded corners=5bp] (141,273) rectangle (303,299);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (222,281.0) {Trustworthy autonomy};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\itshape] at (222,292.0) {intended outcome};
 \end{tikzpicture}

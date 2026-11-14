@@ -3516,75 +3516,45 @@
     {
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
-      "checks": {
-        "icons_and_symbols": "No status icons; individual source tradition boxes consolidated but bold tradition labels retained.",
-        "links_and_groups": "Engineering/AI families remain separate; MAGE boundary, durable capital, dashed intended outcome preserved.",
-        "annotation_placement": "Conversion/inheritance annotations outside nodes and economics caveat below."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum": 9.0,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 399.9570007324219,
-      "height_bp": 351.4620056152344,
-      "monochrome": true,
-      "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
-      "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
-      "review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+      "source_sha256": "b10da3d486c12462b11966180cccf8a316d029fba51384912c72395b037fbf89",
+      "candidate_sha256": "9a80e18ba57a14326e6fbc4f1b338aef9f0b3d5fc7eb152e4ad51488ffe2bcd0",
       "decision": "refined",
-      "revision_date": "2026-11-10",
+      "reviewed_visually": true,
+      "reason": "Match the author reference for the composition of established engineering and AI traditions.",
       "validation": {
-        "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
-        "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
-        "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
         "page": 1,
-        "width_bp": 399.9570007324219,
-        "height_bp": 351.4620056152344,
-        "font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum_prose_font_pt": 9.0,
-        "monochrome_pixels": true,
+        "width_bp": 449.972,
+        "height_bp": 305.474,
+        "proof_sha256": "a731b2b201d36586656b972b5437a27ebb69408faa948e97891bcd1637fce43a",
+        "minimum_prose_font_pt": 9,
         "geometry_findings": 0,
-        "semantic_typography_checks": 14,
-        "reviewed_peer_groups": 0,
-        "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/governing-consequential-work.png",
-      "candidate": "book/tikz/figures/governing-consequential-work.tex",
+        "semantic_typography_checks": 31,
+        "unapproved_compile_diagnostics": 0
+      },
       "checks": {
-        "icons_and_symbols": "People and document pictograms restored as native vector marks.",
-        "links_and_groups": "Responsibility, governed environment and outcome containers retain distinct gray groups and evidence feedback.",
-        "annotation_placement": "Delegated-work explanation between groups; environment examples outside containers.",
-        "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+        "links_and_groups": "Two groups of four traditions feed MAGE. Modeling and Alignment each lead into the GEE. Engineering capital sits within the GEE, with an inheritance arrow to the intended outcome.",
+        "annotation_placement": "Inheritance is labeled at the final arrow.",
+        "line_breaks": "Line breaks follow the author reference.",
+        "icons_and_symbols": "Arrows connect each tradition group and principle to the relevant enclosure."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
+          9,
+          9.5,
+          10,
+          11,
+          12,
+          13
         ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 429.1709899902344,
-      "height_bp": 358.0580139160156,
+      "width_bp": 449.972,
+      "height_bp": 305.474,
       "monochrome": true,
-      "source_sha256": "57c26f84bd8412c78d31da7ce40ec662962d9964b76d8808303e422b40df3fb4",
-      "candidate_sha256": "f3f72d256a145b061d82cef7248acfe04d446875d4dba274df5897640ce9ba6a",
-      "review": "Restored native vector people and document pictograms beside responsibility and governed-environment headings, with readable labels retained.",
-      "decision": "refined"
+      "review": "Both groups enter MAGE, both principles enter the governed environment, and engineering capital is nested within that environment."
     },
     {
       "source": "book/assets/appendix-a-capability-map.svg",

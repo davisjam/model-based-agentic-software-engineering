@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 632,
+    "total_sites": 631,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 296,
+      "book-web": 295,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -141,7 +141,7 @@
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
-            "occ": 17
+            "occ": 19
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
@@ -1041,11 +1041,11 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 73
+            "occ": 66
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
-            "occ": 66
+            "occ": 63
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
@@ -1117,7 +1117,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 187
+            "occ": 179
           },
           {
             "file": "book/web/docs/index.md",
@@ -1199,7 +1199,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 78
+            "occ": 79
           },
           {
             "file": "catalogue-figure.html",
@@ -1323,7 +1323,7 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
@@ -1343,7 +1343,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -2507,7 +2507,7 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
@@ -2535,7 +2535,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/web/docs/part-2-intro.md",
@@ -2783,21 +2783,17 @@
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
-          },
-          {
-            "file": "book/web/docs/figures.md",
-            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 5
+            "occ": 4
           }
         ]
       },
