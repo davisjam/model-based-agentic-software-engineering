@@ -718,6 +718,7 @@ def _prepare_record(task):
         # Keep a definition's first and last lines with its explanation. Scope
         # the penalties to the lookup reference; longer entries may still split.
         latex = (r'\begingroup\clubpenalties 1 10000\widowpenalties 1 10000' + '\n' +
+                 r'\makeatletter\let\@afterindentfalse\@afterindenttrue\@afterindenttrue\makeatother' + '\n' +
                  latex + '\n' + r'\par\endgroup' + '\n')
     tex_source.write_text(latex)
     print('Prepared native print chapter', slug, flush=True)

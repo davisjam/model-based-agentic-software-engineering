@@ -278,6 +278,8 @@ def claims_spread(latex: str) -> str:
     alt = ('The six claims connect commodity intelligence and scale to Modeling, '
            'Alignment and governance conversion. The conversion loop adapts both '
            'models and controls. Reorganization of engineering work is a prediction.')
+    # Fit the native diagram, its caption, and the introductory paragraph on the recto.
+    artwork = artwork.replace(r'\includegraphics[', r'\includegraphics[scale=.94,', 1)
     right = right.replace(figure, r'\begin{bookinlinefigure}{' + alt + '}' + artwork + r'\end{bookinlinefigure}')
     # After clearpage the counter names the next page. Insert only the parity leaf
     # needed to start on a left-hand page, in both complete and excerpt editions.
