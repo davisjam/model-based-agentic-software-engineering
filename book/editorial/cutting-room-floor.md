@@ -20550,3 +20550,13 @@ These two changes need not end in the same place. Some questions resist enforcem
 
 \caption{\emph{The economics of explicit engineering.} The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can become enforcement. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.}
 ```
+
+## 2026-11-16 — Glossary: Modeling repertoire
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, MAGE, working copy based on `764384e00`, lines 87–89. Removed at the author’s request. Chapter 2 covers the repertoire.
+
+```tex
+% <!-- index-def: model-classes -->
+
+\textbf{Modeling repertoire.} The established representations and analyses engineers can draw on for recurring questions. See \emph{The Engineering Modeling Repertoire} in \magevalue{chapter:modeling}.
+```

@@ -29,7 +29,7 @@
           "heading_text": "Software Agents",
           "topic_sentence": "**Agent.** An AI system that pursues an open-ended or underspecified task through multiple steps, exercising judgment about what to do next and using tools in response to intermediate results.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 14,
           "points": []
         },
         {
@@ -38,7 +38,7 @@
           "heading_text": "MAGE",
           "topic_sentence": "**Agentic engineering.** The engineering of systems and environments in which autonomous agents perform consequential work.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 24,
           "points": []
         }
       ],
@@ -826,17 +826,17 @@
             {
               "slug": "read-the-repertoire-as-available-moves-not-a-taxonomy",
               "text": "What matters is not a representation's graphical shape but the engineering question its entities and relations preserve.",
-              "block_index": 190
+              "block_index": 191
             },
             {
               "slug": "recognize-the-question-select-the-representation",
               "text": "The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; MAGE prescribes no new notation.",
-              "block_index": 193
+              "block_index": 194
             },
             {
               "slug": "reuse-the-established-repertoire-choosing-is-judgment",
               "text": "This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment.",
-              "block_index": 195
+              "block_index": 196
             }
           ]
         }

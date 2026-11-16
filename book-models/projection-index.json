@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 631,
+    "total_sites": 632,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 295,
+      "book-web": 296,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -799,7 +799,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/web/docs/1.2-the-engineering-object.md",
@@ -1453,7 +1453,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 14
+            "occ": 19
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -2183,7 +2183,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
@@ -2466,6 +2466,10 @@
       "book": {
         "book-web": [
           {
+            "file": "book/web/docs/0.4-the-books-language.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
             "occ": 9
           },
@@ -2545,7 +2549,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 20
           }
         ]
       },
