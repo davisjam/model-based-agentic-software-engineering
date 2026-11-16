@@ -1009,7 +1009,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-8",
+          "element": "1.1-the-printer::block-7",
           "role": "paragraph-point"
         }
       ]
@@ -1849,7 +1849,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-10",
+          "element": "1.1-the-printer::block-9",
           "role": "paragraph-point"
         }
       ]
@@ -3519,7 +3519,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-6",
+          "element": "1.1-the-printer::block-5",
           "role": "paragraph-point"
         }
       ]
@@ -4749,7 +4749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-5",
+          "element": "1.1-the-printer::block-4",
           "role": "paragraph-point"
         }
       ]
@@ -8319,12 +8319,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-6",
+          "element": "1.1-the-printer::block-5",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-8",
+          "element": "1.1-the-printer::block-7",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10564,17 +10564,17 @@
       "dependents": [
         {
           "view": "outline",
+          "element": "1.1-the-printer::block-4",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
           "element": "1.1-the-printer::block-5",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-6",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.1-the-printer::block-8",
+          "element": "1.1-the-printer::block-7",
           "role": "paragraph-term[tier-2]"
         },
         {
