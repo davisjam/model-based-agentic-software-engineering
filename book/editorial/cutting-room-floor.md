@@ -20560,3 +20560,13 @@ Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, MAGE, worki
 
 \textbf{Modeling repertoire.} The established representations and analyses engineers can draw on for recurring questions. See \emph{The Engineering Modeling Repertoire} in \magevalue{chapter:modeling}.
 ```
+
+## 2026-11-16 — §1.3, interaction of document obligations
+
+Source: `book/latex/sources/part1/1.3-mage-by-example.tex`, working copy based on `4dbfc7229`, lines 62–64. Cut at the author’s request after the table of obligations.
+
+```tex
+% <!-- point: two-tensions-make-it-an-engineering-problem | Accessibility, preservation, accountability, and economical operation must be satisfied together. | terms: document-accessibility, governance-target-product -->
+
+These obligations interact. Remediation must improve accessibility without damaging the original document, and it must interpret content accurately while remaining economical enough for institutional use. The resulting system therefore needs both semantic judgment and reliable document processing.
+```

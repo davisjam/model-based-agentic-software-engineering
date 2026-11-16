@@ -7,7 +7,7 @@
     "derived_ids": 154,
     "missing_topic_sentence": 2,
     "sections_drained": 128,
-    "paragraph_points": 537
+    "paragraph_points": 536
   },
   "chapters": [
     {
@@ -151,7 +151,7 @@
           "section_id": "engineering-the-environment",
           "level": 2,
           "heading_text": "Engineering the Environment",
-          "topic_sentence": "Engineers increasingly exercise those decisions through the environment in which agents work.",
+          "topic_sentence": "Engineers can externalize those decisions by shaping the environment in which agents work.",
           "id_source": "derived",
           "block_index": 8,
           "points": [
@@ -171,7 +171,7 @@
           "section_id": "whose-fault-is-it",
           "level": 2,
           "heading_text": "When Agents Produce the Wrong Result",
-          "topic_sentence": "“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked.",
+          "topic_sentence": "“’Tis a poor craftsman who blames his tools.” A 3D-printed bracket may fail because the printer lacks the required accuracy, but also because its design or fabrication instructions were unsuitable.",
           "id_source": "explicit",
           "block_index": 15,
           "points": [
@@ -183,17 +183,17 @@
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs.",
-              "block_index": 19
+              "block_index": 18
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit.",
-              "block_index": 21
+              "block_index": 20
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 23
+              "block_index": 22
             }
           ]
         }
@@ -221,11 +221,6 @@
               "slug": "four-kinds-of-obligation-state-the-case",
               "text": "DocAble's requirements include genuine accessibility, preservation, accountability, and practical operation at scale.",
               "block_index": 9
-            },
-            {
-              "slug": "two-tensions-make-it-an-engineering-problem",
-              "text": "Accessibility, preservation, accountability, and economical operation must be satisfied together.",
-              "block_index": 11
             }
           ]
         },
@@ -235,12 +230,12 @@
           "heading_text": "The Engineering Experiment",
           "topic_sentence": "While I was developing DocAble, the DOJ extended its original April 2026 compliance deadline for larger public entities by one year, to April 2027.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 11,
           "points": [
             {
               "slug": "two-birds-one-stone-motive",
               "text": "One project answered both problems: build the accessibility system, and use the engineering work to discover what sustained agentic development demanded.",
-              "block_index": 17
+              "block_index": 15
             }
           ]
         },
@@ -250,22 +245,22 @@
           "heading_text": "The Challenge of Accessibility",
           "topic_sentence": "From the user’s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and a changelog.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 17,
           "points": [
             {
               "slug": "upload-in-remediated-file-plus-evidence-out",
               "text": "The user supplies an inaccessible document and receives a remediated document and a changelog.",
-              "block_index": 21
+              "block_index": 19
             },
             {
               "slug": "accessibility-depends-on-educational-context",
               "text": "Art, language instruction, and handwritten mathematics illustrate why accessible output depends on the document's educational purpose.",
-              "block_index": 24
+              "block_index": 22
             },
             {
               "slug": "semantic-interpretation-and-evidence-serve-different-obligations",
               "text": "Semantic interpretation helps propose changes; reliable document processing and suitable evidence are needed to establish whether the result satisfies the obligations.",
-              "block_index": 26
+              "block_index": 24
             }
           ]
         }
