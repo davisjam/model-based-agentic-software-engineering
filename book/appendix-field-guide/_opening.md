@@ -18,8 +18,6 @@ Every recto uses a simplified Figure 0.1-1: an observed engineering pressure ent
 
 The overlay uses exactly three epistemic states:
 
-<!-- label:  -->
-<!-- table:  -->
 | Mark          | Meaning                                          |
 |--------------|-------------------------------------------------|
 | ████ solid    | directly supported by the public account         |

@@ -19,8 +19,6 @@ Reach for it when:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **STANDING** | Supply compact policy that applies broadly. |

@@ -19,8 +19,6 @@ Reach for it when:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **WATCH** | Read runtime state against the operating model, so divergence surfaces as a signal. |

@@ -346,7 +346,12 @@ def compatibility(source: Path, output: Path):
             block = flatten(block)
             table_md = pandoc(json.dumps(dict(ast, blocks=[block])), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables', '--markdown-headings=atx')
             table_md = re.sub(r'(?<=\|):(-+)(?=\|)', r'\1', table_md)
-            text_marker = '<!-- label: ' + table_id + ' -->\n<!-- table: ' + caption + ' -->\n' + table_md
+            markers = []
+            if table_id:
+                markers.append('<!-- label: ' + table_id + ' -->')
+            if caption or table_id:
+                markers.append('<!-- table: ' + caption + ' -->')
+            text_marker = '\n'.join([*markers, table_md])
             ast['blocks'][i] = {'t':'Para', 'c':[{'t':'Str', 'c':token(text_marker)}]}
     def md(value):
         # A generated table may be locally typeset at a smaller font size.

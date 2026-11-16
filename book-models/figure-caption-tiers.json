@@ -679,12 +679,6 @@
       "location": "part5",
       "rationale": "the churn-vs-compounding duality table — negative dynamics against their positive duals"
     },
-    "assets/author-headshot.jpg": {
-      "tier": "C",
-      "kind": "author-photo",
-      "location": "backmatter",
-      "rationale": "identify the author; one sentence"
-    },
     "how-to-read-this-book::Where to look — surfaces, jobs, and the questions they answer": {
       "tier": "C",
       "kind": "reference-nav",
@@ -804,12 +798,6 @@
       "kind": "reference-key",
       "location": "part5",
       "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
-    },
-    "backmatter/colophon.md::Modeling and Alignment in the production of this book.": {
-      "tier": "C",
-      "kind": "reference-colophon",
-      "location": "backmatter",
-      "rationale": "per-model lookup; the synthetic back matter carries no chapter-identity row, so its caption id keys on the file path"
     },
     "the-executable-zoo::Token savings from working through a model": {
       "tier": "B",
@@ -1302,6 +1290,12 @@
       "kind": "overview",
       "location": "part3",
       "rationale": "Chapter opening mechanism map connects selected obligations to constraints, evidence, evaluation rules, and admission."
+    },
+    "interlude-one-problem-many-models::Models for large-file remediation": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part4",
+      "rationale": "Pairs each model used for large files with its engineering question."
     }
   },
   "historical_tiers": {

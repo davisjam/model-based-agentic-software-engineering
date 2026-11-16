@@ -21,8 +21,6 @@ Production and support-apparatus source were counted at five dated repository st
 
 The first four rows are historical states and are recorded as measured. The last row uses the earlier series’ declared endpoint and token registry. Its endpoint and categories differ from the frozen 31-week reconstruction in G.9; it must be read within this historical series.
 
-<!-- label:  -->
-<!-- table:  -->
 | Window                      | Production LoC | Support LoC    | Support ratio   |
 |----------------------------|---------------|---------------|----------------|
 | Prototype — Apr. 9          | 26,956 | 22,908 | 0.85× |
@@ -44,8 +42,6 @@ Lines added and deleted were counted over four windows for the two principal pro
 
 Source: `git numstat` over the dated commit windows.
 
-<!-- label:  -->
-<!-- table:  -->
 | Window | web/ added | web/ deleted | backend/ added | backend/ deleted |
 |---|---|---|---|---|
 | Prototype | 22,539 | 7,717 | 48,636 | 10,166 |
@@ -64,8 +60,6 @@ These counts are a repository-motion proxy, not the theoretical concept of churn
 
 Project-specific lint files and gate scripts were counted at four repository states, using `git ls-tree` at the corresponding window SHA.
 
-<!-- label:  -->
-<!-- table:  -->
 | Window        |      Lint files |    Gate scripts |
 |--------------|----------------:|----------------:|
 | Prototype     | 0 | 0 |
@@ -94,8 +88,6 @@ The underlying question is narrow. After explicit models became reasoning surfac
 
 ### G.3.1–G.3.4 Correspondence Results {#model-sync-evidence}
 
-<!-- label:  -->
-<!-- table:  -->
 | Claim | Measurement | Result | Limitation |
 |---|---|---|---|
 | Model↔code drift existed before the derived floor | Re-run each closed Epic's own lints against its closed state; classify findings by hand | Approximately 27 genuine model↔code drifts, including a production-blocking pointer drift and a fully typed function with zero consumers | Manual classification; no independently specified oracle |
@@ -113,8 +105,6 @@ Taken together, these observations establish a bounded within-case sequence: mod
 
 Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted separately because folding them into the correspondence measurements would inflate the model-sync evidence.
 
-<!-- label:  -->
-<!-- table:  -->
 | Documentation drift | Refresh-window count | Detected by | Resolution |
 |---|---|---|---|
 | Status header frozen at a pre-close phase | 11 | Reading by a person or capable model | Close tooling rewrites the status atomically |
@@ -136,8 +126,6 @@ The results are therefore field observations about one governed surface, not a g
 
 The traceability tracer measures the fraction of exercised code with no corresponding model claim. Repeated runs identified portions of the exercised surface that stayed outside the explicit model structure. Across the recorded sequence, the unmodeled fraction fell from {{missing_model_pilot_percent}} on the first run to 7.89% on the ninth.
 
-<!-- label:  -->
-<!-- table:  -->
 | Run | Unmodeled exercised surface | Note |
 |---|---|---|
 | First | {{missing_model_pilot_percent}} | Majority of exercised code traced to no model claim |
@@ -158,8 +146,6 @@ A small exploratory pilot tested whether a model-derived navigation surface redu
 
 Across four tasks, model-guided navigation reduced reconstruction-token cost by a median of roughly 35% relative to the from-scratch condition, with no observed loss of task-level correctness.
 
-<!-- label:  -->
-<!-- table:  -->
 | Measure | Baseline | Model-guided | Interpretation |
 |---|---|---|---|
 | Tasks | 4 | 4 | N too small for generalization |
@@ -176,8 +162,6 @@ These are earlier, differently scoped estimates. In particular, the approximatel
 
 These quantities establish orders of magnitude relevant to the {{chapter:software-factories}} discussion. Their units, scopes, and cost categories differ; they are not entries in a comparative cost model.
 
-<!-- label:  -->
-<!-- table:  -->
 | Quantity | Observed or estimated value | Basis |
 |---|---|---|
 | Accessibility-checker findings in a representative deck | 42 | One graduate instructional deck evaluated with the built-in accessibility checker |
@@ -271,7 +255,6 @@ The current size series uses ten week-end snapshots and one fixed category mappi
 
 Production comprises remediation, web processing, frontend, and shared services. Apparatus comprises tests, lints, tools, agent infrastructure, infrastructure-as-code, model metadata, and indexed documentation. The ratio is apparatus divided by production. Lines drawn between sampled revisions interpolate observations rather than adding measurements.
 
-<!-- label:  -->
 <!-- table: Consistently categorized production and apparatus counts from the current reconstruction. The support ratio describes source investment rather than its value or a recommended target. [short: Current-window support ratio] -->
 | Snapshot | Production lines | Apparatus lines | Apparatus / production |
 |---------|-----------------|----------------|-----------------------|
@@ -294,7 +277,6 @@ Format and matching eligibility yielded {{seip_eval_eligible}} pairs. A randomiz
 
 Syntactic percentages use 100 × (original findings − output findings) / original findings, calculated separately per document and summarized by the median. Originals with no findings are excluded from percentages but retained when counting documents whose findings increased. Negative reductions remain negative. These are net count changes, not identity-matched newly introduced or resolved defects. Office counts include manual-review advisories and may flag the same object under several rules.
 
-<!-- label:  -->
 <!-- table: Median per-document reduction in checker findings; the human and DocAble conditions use the same completed triples within each format. [short: Human-reference checker reductions] -->
 | Format | Positive-baseline triples | Human reduction | DocAble reduction | Triples with increased findings, human / DocAble |
 |---|---|---|---|---|

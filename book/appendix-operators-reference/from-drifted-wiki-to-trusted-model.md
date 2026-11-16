@@ -8,7 +8,6 @@ When a wiki carries important system knowledge, link its claims to the implement
 
 Four additions can make a wiki a more trustworthy engineering entry point. Add them only where future use justifies the added maintenance burden.
 
-<!-- label:  -->
 <!-- table: Joining wiki knowledge to implementation. Four additions and the behavior each must provide. [short: Joining the wiki to the code] -->
 | Element | Required behavior |
 |---|---|
@@ -23,7 +22,6 @@ Add metadata only when a defined consumer uses it. Tags, backlinks, ownership fi
 
 The migration has four stages—Audit, Synchronize, Govern, and Extend—and each has an exit criterion. Advance when the criterion is met, not when enough time has passed.
 
-<!-- label:  -->
 <!-- table: The brownfield migration path. Each stage names its work and exit criterion. [short: Audit, synchronize, govern, extend] -->
 | Stage | Work | Exit criterion |
 |---|---|---|

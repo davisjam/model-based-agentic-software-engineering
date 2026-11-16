@@ -4,7 +4,6 @@ Modeling and Alignment are distinct activities. A model may reduce reconstructio
 
 Table C.7-1 maps each representation to the obligation it exposes, a correspondence mechanism that can evaluate it, and the enforcement that may attach.
 
-<!-- label:  -->
 <!-- table: From representation to possible enforcement. Each row identifies a represented obligation, a correspondence mechanism that can evaluate it, and the enforcement that may attach. [short: Representation to enforcement receipt] -->
 | Representation | Obligation exposed | Correspondence mechanism | Possible enforcing mechanism |
 |---|---|---|---|

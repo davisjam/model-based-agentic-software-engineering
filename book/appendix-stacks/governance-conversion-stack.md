@@ -19,8 +19,6 @@ Reach for it when:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MODEL** | Make the control machinery explicit — rules, gates, models, sensors. |

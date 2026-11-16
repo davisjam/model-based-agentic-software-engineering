@@ -27,8 +27,6 @@ That shift arrives whenever a property has to hold across a whole class of thing
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **SPEC** | State the obligation. |

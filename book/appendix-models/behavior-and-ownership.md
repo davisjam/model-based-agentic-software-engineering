@@ -10,7 +10,6 @@ Behavioral models represent state, transition, and time. Ownership models repres
 
 **Property.** The invariants sort into safety and liveness:
 
-<!-- label:  -->
 <!-- table: Representative lifecycle invariants, by kind. [short: Lifecycle invariants] -->
 | Invariant | Kind |
 |---|---|

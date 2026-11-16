@@ -19,8 +19,6 @@ Reach for it when:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **DECLARE** | State which resource is scarce and what capacity is acceptable. |

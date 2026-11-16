@@ -20,8 +20,6 @@ Reach for it where:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MARK** | Attach identity and context to the mutation. |

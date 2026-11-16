@@ -618,7 +618,7 @@ _assert_chapter_label_parity()
 _PART_OPENER_QUESTION_LABEL = "Question this Chapter answers"
 _PART_OPENER_IDEAS_LABEL = "Key Ideas"
 _PART_OPENER_QUESTIONS = {
-    1: "What becomes the engineering problem when implementation becomes abundant?",
+    1: "What is software engineering when implementation is free?",
     2: "How do I identify useful models?",
     3: "How do I make engineering obligations enforceable in my environment?",
     4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",

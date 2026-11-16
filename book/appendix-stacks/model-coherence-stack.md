@@ -20,8 +20,6 @@ Reach for it when:
 
 ## Constituent Moves
 
-<!-- label:  -->
-<!-- table:  -->
 | Move | Role |
 |---|---|
 | **MODEL** | Put the engineering fact in an explicit representation. |

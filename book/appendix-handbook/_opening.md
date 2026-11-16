@@ -10,8 +10,6 @@ Not every engineering decision belongs in a model. Local implementation details 
 
 Each example identifies an actual representation, its consumers, and the correspondence or enforcement machinery around it. The excerpts omit unrelated declarations. They are intended to show what the engineer made explicit, rather than provide a complete implementation to copy.
 
-<!-- label:  -->
-<!-- table:  -->
 | Model | Engineering question | Worked composition |
 |------------------|----------------------------|------------------|
 | Component and zone catalogue | Which implementation belongs to a component, and which knowledge applies there? | Model Coherence |

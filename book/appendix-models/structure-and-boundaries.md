@@ -34,7 +34,6 @@ Seam
 
 **Property.** Representative properties, each with the source that decides it:
 
-<!-- label:  -->
 <!-- table: Representative properties of the component-and-zone model, and the fact source each draws on. [short: Component-zone properties] -->
 | Property | Fact source |
 |---|---|

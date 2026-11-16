@@ -34,8 +34,6 @@ Those failures determine what the composition must cover.
 
 Map each way the claim can break to the guarantee that closes it.
 
-<!-- label:  -->
-<!-- table:  -->
 | Failure            | Guarantee              |
 |-------------------|-----------------------|
 | actor unknown      | attribution            |

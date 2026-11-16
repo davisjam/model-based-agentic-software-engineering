@@ -28,8 +28,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
       "projection": "book/frontmatter/0.5-preface.md",
-      "source_hash": "55a101ae6c4ffb80ca741e677b1b213ffdfe7a0df27f35ea498a0d16682e3e8e",
-      "projection_hash": "33060a5b0fefea3cd504db3127722da84ae2d2992537b58f0bdb5c842bc2006a"
+      "source_hash": "bb1f7a0e63d88992a86f2f1d1eeb966094a2214e82da6ac363cfefd638a0a954",
+      "projection_hash": "367d186b70957bef1f594b924101a5650428b37fac7730883f7b99a985fe0f1c"
     },
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
@@ -174,8 +174,8 @@
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
       "projection": "book/part4/4.2-one-problem-many-models.md",
-      "source_hash": "312d7a2b894895e5089ca0e54a87f0e94cca435e795af4f7cfe8bb82cea85643",
-      "projection_hash": "c671108f05f58f3129e822c38916e33de8d4c5f8e024670d4349b1dc56ce122b"
+      "source_hash": "9960ce59b55d8d72df4dbc97a50d07227f608e2b07a5d74917433455062d058d",
+      "projection_hash": "eb17c653ec1defea20bf6cfaa9c7c7095018000665664c39e60864b48508023b"
     },
     {
       "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
@@ -198,8 +198,8 @@
     {
       "source": "book/latex/sources/part5/5.1-software-factory.tex",
       "projection": "book/part5/5.1-software-factory.md",
-      "source_hash": "1bdf99643963f5474664941c067573476522fd290c39e7529b0c1c20461dd430",
-      "projection_hash": "efe27145eede3c79c2bdedfe63a78dffeed5e11371dbb5614874ec4025a62b00"
+      "source_hash": "9985dd87b9abecf6fe0e294de4c3b0058696233fa129caba673938b355e29c18",
+      "projection_hash": "ece56d7e68f0db71504ad8201807c03734eafb37e95ecd9d68c8bb1630abdcaa"
     },
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
@@ -306,14 +306,14 @@
     {
       "source": "book/latex/sources/backmatter/about-the-author.tex",
       "projection": "book/backmatter/about-the-author.md",
-      "source_hash": "2ab6eb3e170adc3fee134f6d8bf7e98f99f7e9909d81f748670a72b93bf153ad",
-      "projection_hash": "21da6bdc9f441acbf76631af3ec39dcc8236cbc043b5998025067796de616ec0"
+      "source_hash": "6e13f1de9cfa0a4a93940b93c57f3c016b3dc63e2f7b96f170a09c29f361d6f4",
+      "projection_hash": "b9b172e9645135b28d8e2c302ca40a6bea45dd1106a5472f98e5f2ccf6e459d2"
     },
     {
       "source": "book/latex/sources/backmatter/colophon.tex",
       "projection": "book/backmatter/colophon.md",
-      "source_hash": "965ffe999cf1d5536135c8dda6cfce48e5ebbca8fb23c51af4ee4d72006e9154",
-      "projection_hash": "143c0620eb08c3ccd4570033f3bed8f7a2da03d3191e83a0352949917c869c76"
+      "source_hash": "7f0572dc243c3d09a34ac9a1ee4d78d9e98dc2b5a58a5a6e6f3e414b94fc089e",
+      "projection_hash": "6839ca7a2d44884c339e41e9e03d0abb5bdf25e29524ffb4b8fc315c182415e5"
     },
     {
       "source": "book/latex/sources/appendix-stacks/_opening.tex",
@@ -335,7 +335,7 @@
       "source": "book/latex/sources/appendix-stacks/assurance-stack.tex",
       "projection": "book/appendix-stacks/assurance-stack.md",
       "source_hash": "daf589812b0d12f1f187d0cdd880a8fd21f5222c9cad05a61de39a8aca6d325f",
-      "projection_hash": "18560bd0fceaab3d16797ee28d6b0e4a2db43e3f030a8f4357daec81c8f7819b",
+      "projection_hash": "28ee384458c0448d84b180837745b02beadaff68e2a8b1e7f556e00f2bcb2f3e",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -343,7 +343,7 @@
       "source": "book/latex/sources/appendix-stacks/auditable-transformation-stack.tex",
       "projection": "book/appendix-stacks/auditable-transformation-stack.md",
       "source_hash": "07cec9da4ad452ad0d80468b6790fc135c277e3a80bfba1725507b2d248e03b8",
-      "projection_hash": "62f8e85fb7110ecadfdc170b824f67cd4b93c512c8fbb8b724c8423832e22abb",
+      "projection_hash": "35cd6a4d4717c0d28a3510482e37b8d074f97ba755c0d557ddc272eb08c75416",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -351,7 +351,7 @@
       "source": "book/latex/sources/appendix-stacks/composing-a-stack.tex",
       "projection": "book/appendix-stacks/composing-a-stack.md",
       "source_hash": "c05b27972d25e2b4dd23763a9eadbe9e6004a2f82db8763a3420604749e19878",
-      "projection_hash": "7ea1ee58a55eda4e4f84d9780155bdf35168c5c7c32512066c9f1f815f448bc8",
+      "projection_hash": "23078a6842ad69e160850cc85c7a5ed90d7f3ff028e5fe7f6d7835bdd19332c7",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -359,7 +359,7 @@
       "source": "book/latex/sources/appendix-stacks/context-delivery-stack.tex",
       "projection": "book/appendix-stacks/context-delivery-stack.md",
       "source_hash": "ebb4584d77c262fe0331808dae9dd9e73ca2f2d9ae9e26dd0c8c6dc0860ac07c",
-      "projection_hash": "df147ba08077b768a7e8f0e64ca852d18cdc16f62623507a9eb42242d1ea5b6d",
+      "projection_hash": "ad28f97fa9c87bf51496e39e687dab3cb683d046ef38ce2995fa2bc06108d51c",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -367,7 +367,7 @@
       "source": "book/latex/sources/appendix-stacks/governance-conversion-stack.tex",
       "projection": "book/appendix-stacks/governance-conversion-stack.md",
       "source_hash": "56137285b9cba05e0e6b6d06217ce04d316572218bed5ef4c9fc72508f8c81a3",
-      "projection_hash": "89799734c39f6327e1882d91c150fd26d9be9d2a5d1796bbb46a81b5608bc308",
+      "projection_hash": "f8f2b6860ddfae5cd8975c68959b30b9097339067a9f58e4c0dbc6cdc5b64a11",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -375,7 +375,7 @@
       "source": "book/latex/sources/appendix-stacks/model-coherence-stack.tex",
       "projection": "book/appendix-stacks/model-coherence-stack.md",
       "source_hash": "d4919d694097f559626c8e57a76e2f12a920efef8f097b170961ac21e02dd0fa",
-      "projection_hash": "eb6598b162fdaf40c32eaecc13cda98c9786db1d6ad9aac847fef93f17627a26",
+      "projection_hash": "e1cad82e0b69f6673c3adc50f175407ccfa293d2ffbb8a6a4d0f7c23fb065d84",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -383,7 +383,7 @@
       "source": "book/latex/sources/appendix-stacks/observe-react-stack.tex",
       "projection": "book/appendix-stacks/observe-react-stack.md",
       "source_hash": "464b1c79ce794f421903dd6d3ade44065d9a77bc61c4a1f4c638b5776e32a88d",
-      "projection_hash": "20889b26d9cc68df661763aa3e29bfefcd3e9a589b907e544f2b557a656f3b94",
+      "projection_hash": "3b006fedcc95d8633b66c557518814db6d749a80db46e73ce63bd15c74bff689",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -391,7 +391,7 @@
       "source": "book/latex/sources/appendix-stacks/resource-mediation-stack.tex",
       "projection": "book/appendix-stacks/resource-mediation-stack.md",
       "source_hash": "dc0563f7f880b1853ba4d4e341db23791306f84bf3d9dc55a4d2e596a35dc0eb",
-      "projection_hash": "2da31a57cb823ddd7de749c22a5bdc0f5503698be64a04b9b2d16be84f353c40",
+      "projection_hash": "25d8f6a4f345aa1cbdcb640f52458b42a68c55cfae53355fb8b5d568752f3ec3",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -423,7 +423,7 @@
       "source": "book/latex/sources/appendix-field-guide/_opening.tex",
       "projection": "book/appendix-field-guide/_opening.md",
       "source_hash": "cac022c544ba09c2b19600a9494d9f706f4b758ee822ccd67d3131a374c3ddca",
-      "projection_hash": "3dc967ca7e03f0e7e1366f5545094ce5ac29c7cc5db6fd4c5665b69e9fc630a7",
+      "projection_hash": "36bba4c97335838da368eaf11add2e42776513b1b57e3af4cad615a8855accdc",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -479,7 +479,7 @@
       "source": "book/latex/sources/appendix-models/behavior-and-ownership.tex",
       "projection": "book/appendix-models/behavior-and-ownership.md",
       "source_hash": "b0d5c663ba1c883e613cf4be7f40a79d4a25cb8767cddaf719bdaadbb8fcdd9d",
-      "projection_hash": "69802e5619e73d4d2d996438a977fc14eadf0af986e0b06efa77161cae29e540",
+      "projection_hash": "3a2c25717ed74d960015ad98b9a95fd9b71fbe82818426281bc2347edc10c109",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -519,7 +519,7 @@
       "source": "book/latex/sources/appendix-models/representation-to-authority.tex",
       "projection": "book/appendix-models/representation-to-authority.md",
       "source_hash": "b952e5f39b8d517066574bafbdcd0e79feb8cbe0e30c9959630322f5f52af67b",
-      "projection_hash": "9ba1c81619aaa2838affccb367f78a02f5b4233d6e044ad82fbd1c49af2ef721",
+      "projection_hash": "cceda6f7d72e56a350b4704ac85ea06fe1cc357201933dbd699bda006f8d5a25",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -527,7 +527,7 @@
       "source": "book/latex/sources/appendix-models/structure-and-boundaries.tex",
       "projection": "book/appendix-models/structure-and-boundaries.md",
       "source_hash": "a601bcece36c4382ebe448b1db2ec0176b1cb05376c360f3df971ee8cba0ad37",
-      "projection_hash": "06d88029c4a6850099150f5ee7948451084ddcf203fd02eaacde0adbc258fee5",
+      "projection_hash": "b4a95ac3a5d1656596c5a632a599a9eb382557a10170220af2f51aaba0edd8a3",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -543,7 +543,7 @@
       "source": "book/latex/sources/appendix-evidence-ledger/evidence-tables.tex",
       "projection": "book/appendix-evidence-ledger/evidence-tables.md",
       "source_hash": "2286c02d1ec74461b6093e9d41860c1092a86489d1064c959df8a06789f0d93b",
-      "projection_hash": "c95cac2a669c3cb0ee894656249df9d73735600fd2d240c2d02bf2234e0e61fb",
+      "projection_hash": "94f649570d0c16e6a0eeb4a85037691e987b0652cd1971082142400b0dd695b6",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -847,7 +847,7 @@
       "source": "book/latex/sources/appendix-operators-reference/from-drifted-wiki-to-trusted-model.tex",
       "projection": "book/appendix-operators-reference/from-drifted-wiki-to-trusted-model.md",
       "source_hash": "8d26debdff1dcf6bcbf6ea23dd28667104175b960d6500865d1e9a4b1ccd5d16",
-      "projection_hash": "c5982ceafb638c4c2c83730c1d27cf6b8868115e5fa87431d35b4c0c29ac54f3",
+      "projection_hash": "7d2f3b764ed181550ec49b6a90e94e7cb70a268246c54d941f426c596b182b66",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -935,7 +935,7 @@
       "source": "book/latex/sources/appendix-handbook/_opening.tex",
       "projection": "book/appendix-handbook/_opening.md",
       "source_hash": "1f6bf4a4dc96da79c76e5cc2d4439c79f51882638f3c75087d06f199163fb3f3",
-      "projection_hash": "d7788fb9cc24bcfc4920d2d0c2627736280cb8de140830b67f8a7d9ac4376291"
+      "projection_hash": "e75d416c41d5e5646478bdf10b77447bdb3e7375412c4a448b6f1bfd3828a8d4"
     },
     {
       "source": "book/latex/sources/appendix-handbook/engineering-moves.tex",
@@ -992,6 +992,6 @@
       "projection_hash": "e411608cf1d772db442badfed42134c61e17eb3d9b03d23cb80ab9b11ab0fe47"
     }
   ],
-  "engine_hash": "e0bc5a60b5d2d84523e8f4c4fdbfb3ec833d4107bdc28d4683f853b7252720a0",
+  "engine_hash": "d4456ea5d47f78b1f0c91427ecc338c88550f6c23df9b4bb456ede3573170ea8",
   "renderer_version": "pandoc 3.9.0.2"
 }

@@ -8,10 +8,8 @@
 
 In a traditional colophon, I am supposed to tell you about the font. This book uses LuaLaTeX and the `book` class, with Source Serif 4 for body text and headings, Source Sans 3 for figure labels, and IBM Plex Mono for code. A custom `house` package handles the page layout, captions, and breakable insets. There, tradition satisfied.
 
-Perhaps of greater interest, this book was also developed using MAGE. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. What Modeling and Alignment did I apply? Important properties of the manuscript—its argument, claims, terminology, evidence relationships, and structure—were represented explicitly rather than left entirely in prose or editorial memory. Generated projections and consistency checks helped maintain correspondence as the manuscript changed. [ref:manuscript-models] shows the models and the failures they were intended to prevent.
+Perhaps of greater interest, this book was also developed using MAGE. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. What Modeling and Alignment did I apply? Important properties of the manuscript—its argument, claims, terminology, evidence relationships, and structure—were represented explicitly rather than left entirely in prose or editorial memory. Generated projections and consistency checks helped maintain correspondence as the manuscript changed. The inventory below pairs each model with the failure it was intended to prevent.
 
-<!-- label: manuscript-models -->
-<!-- table: Modeling and Alignment in the production of this book. [short: Modeling and Alignment in the production of this book.] -->
 | Model | Purpose | Prevented failure |
 |---|---|---|
 | Argument-spine model | The book's numbered claims, their order, and the sections that advance them | A claim advanced nowhere, duplicated across sections, or spread thinner than it is taught |
