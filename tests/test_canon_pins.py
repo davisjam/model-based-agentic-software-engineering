@@ -30,6 +30,10 @@ class CanonPinTests(unittest.TestCase):
     def test_legacy_name_and_punctuation(self):
         self.assertTrue(self.present(self.marker + "\n\n" + self.statement.replace("Principle:", "Thesis.")))
 
+    def test_named_principle_without_definite_article(self):
+        statement = self.statement.replace("The Modeling Principle:", "Modeling Principle.")
+        self.assertTrue(self.present(self.marker + "\n\n" + statement))
+
     def test_missing_anchor_or_wrong_principle(self):
         self.assertFalse(self.present(self.statement))
         self.assertFalse(self.present(self.marker + "\n\n" + self.statement.replace("Modeling", "Alignment")))

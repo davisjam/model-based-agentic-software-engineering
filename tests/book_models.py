@@ -1012,7 +1012,7 @@ def _principle_stated_in_body(part_dir: str, name: str, point_slug: str) -> bool
 
     ir = bs.book_ir
     # Retain compatibility with the retired Thesis name and both house punctuation forms.
-    lead = re.compile(rf"\*\*\s*The\s+{re.escape(name)}\s+(?:Thesis|Principle)\s*[.:]\s*\*\*", re.I)
+    lead = re.compile(rf"\*\*\s*(?:The\s+)?{re.escape(name)}\s+(?:Thesis|Principle)\s*[.:]\s*\*\*", re.I)
     d = os.path.join(ROOT, "book", part_dir)
     if not os.path.isdir(d):
         return False
