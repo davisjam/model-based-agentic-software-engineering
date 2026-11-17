@@ -92,7 +92,8 @@
     "book/assets/modeling-repertoire.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the revised black-and-white Figure 2.6, including the final serif errors/requests quantity fraction.",
-      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31"
+      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
+      "max_print_height_bp": 510
     },
     "book/assets/from-nodes-to-composition.svg": {
       "approved_date": "2026-11-11",
