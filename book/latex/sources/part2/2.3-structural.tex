@@ -10,6 +10,8 @@ A structural model shows which parts of a system exist and how they relate to on
 
 \section{Entities, Relationships, and Graph Analysis}\label{heading:entities-relationships-and-graph-analysis}
 
+\subsection{Constructing a Structural Model}\label{heading:constructing-a-structural-model}
+
 \autoref{canonical-structural} shows the intended architecture of a web application with an API, a cache, and a database. Suppose we want to allow the cache to read from the database while requiring the web component to go through the API. How can we tell whether the architecture permits a bypass?
 
 \begin{figure}[htbp]
@@ -27,14 +29,13 @@ A structural model shows which parts of a system exist and how they relate to on
 
 % <!-- point: once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations | Removing API and searching for a remaining Web-to-Database path tests whether the declared architecture permits a bypass. -->
 
-\textbf{Analysis.} Our architectural requirement is stronger than prohibiting a direct Web-to-Database dependency: every path from Web to Database must pass through API. Remove API and the arrows touching it from a copy of the graph. Start at Web and follow the remaining arrows. In this example Web has no outgoing arrow, so Database is unreachable. Now imagine adding a permitted dependency from Web to Cache. Removing API would leave the path Web~\(\to\)~Cache~\(\to\)~Database, showing exactly how the revised architecture would permit a bypass. Other questions call for different traversals of the same graph:
+\textbf{Analysis.} Our architectural requirement is stronger than prohibiting a direct Web-to-Database dependency: every path from Web to Database must pass through API. Remove API and the arrows touching it from a copy of the graph. Start at Web and follow the remaining arrows. In this example Web has no outgoing arrow, so Database is unreachable. Now imagine adding a permitted dependency from Web to Cache. Removing API would leave the path Web~\(\to\)~Cache~\(\to\)~Database, showing exactly how the revised architecture would permit a bypass.
 
-\begin{itemize}
-\tightlist
-\item \textbf{Reachability.} Starting at Web, follow the arrows. Which components can Web reach?
-\item \textbf{Cycle detection.} Can you follow a nonempty sequence of arrows back to the component where you started?
-\item \textbf{Impact analysis.} Starting at Database, follow the arrows backward. Which components might a change to Database affect?
-\end{itemize}
+\subsection{Properties and Analyses}\label{heading:structural-properties-and-analyses}
+
+\textbf{Reachability} asks whether a path connects one entity to another. \textbf{Separation} can require that no path connect two entities, or that they become disconnected when a designated boundary is removed. In \autoref{canonical-structural}, Web is allowed to reach Database, but every route must pass through API. These properties help engineers identify who can reach a protected resource and whether a proposed architecture permits a bypass. \textbf{Acyclicity} requires a dependency graph to contain no directed cycles. In a finite, acyclic build graph, the tasks can be ordered so that every prerequisite finishes before its dependent begins. If two compilation tasks each require the other's output, neither can go first. The dependencies must change before such an order is possible. \textbf{Containment} describes how entities are grouped, for example which modules belong to a service. \textbf{Cardinality} constrains how many relationships an entity may have, as when every service must have exactly one designated owner.
+
+The corresponding analyses are graph operations. Follow dependency arrows forward to establish reachability or backward to identify which components a change might affect. Remove a boundary node and search for a remaining path to test mandatory traversal. A cycle check determines whether a prerequisite order exists, and counting the ownership links of each service identifies any with missing or multiple owners. Each analysis depends on the meaning of the relationships: the dependency graph in \autoref{canonical-structural} can answer the bypass question, but checking ownership requires ownership links.
 
 The general procedure is to identify the entities and relationships relevant to a question, define what those relationships mean, and analyze the resulting graph. The same approach applies to a system's environment, where we might trace communication pathways or dependencies between organizations, and to its internal structure. DocAble uses two such models of the same software: one to locate architectural boundaries and one to trace dependencies between computations.
 
