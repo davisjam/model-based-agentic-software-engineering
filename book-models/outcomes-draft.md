@@ -65,6 +65,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.6-system-knowledge
 
 
+### Lesson 2.7-modeling-summary
+
+
 ## Module 3 — Alignment
 
 - **[DECLARED]** (create) After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, separate up-front obligations from what the work teaches, write lifecycles and runbooks, and measure one level deeper. — _anchor: Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (up-front / governance conversion) -> lifecycles/runbooks -> metrics -> when-guardrails-collide._
