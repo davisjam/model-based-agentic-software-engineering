@@ -1031,9 +1031,19 @@ def _principle_stated_in_body(part_dir: str, name: str, point_slug: str) -> bool
             while (j < len(blocks) and blocks[j].kind is ir.BlockKind.DIRECTIVE
                    and blocks[j].directive != "point"):
                 j += 1
-            if j == len(blocks) or blocks[j].kind is not ir.BlockKind.PARA:
+            if j == len(blocks):
                 continue
             visible = re.sub(r"<!--.*?-->", "", blocks[j].raw, flags=re.S).strip()
+            if blocks[j].kind is ir.BlockKind.BLOCKQUOTE and any(
+                    directive.directive == "principlebox" for directive in blocks[i + 1:j]):
+                # The chapter-end restatement has a named heading and ordinary
+                # body text inside the explicitly marked principle box.
+                lines = re.sub(r"^> ?", "", visible, flags=re.M).splitlines()
+                if (lines and lines[0] == f"### {name} Principle"
+                        and any(re.match(r"^\w", line.strip()) for line in lines[1:])):
+                    return True
+            if blocks[j].kind is not ir.BlockKind.PARA:
+                continue
             match = lead.match(visible)
             if match and re.search(r"\w", visible[match.end():]):
                 return True

@@ -27,6 +27,12 @@ class CanonPinTests(unittest.TestCase):
                 text = self.statement.replace("In practice,", transition)
                 self.assertTrue(self.present(self.marker + "\n\n<!-- index-def: modeling-principle -->\n\n" + text))
 
+    def test_named_box_is_a_statement_only_with_visible_body_text(self):
+        start = self.marker + "\n\n<!-- principlebox -->\n\n> ### Modeling Principle\n>\n"
+        self.assertTrue(self.present(start + "> Externalize knowledge and intent."))
+        self.assertFalse(self.present(start + "> <!-- prose removed -->"))
+        self.assertFalse(self.present(start.replace("### Modeling", "### Alignment") + "> Externalize knowledge."))
+
     def test_legacy_name_and_punctuation(self):
         self.assertTrue(self.present(self.marker + "\n\n" + self.statement.replace("Principle:", "Thesis.")))
 

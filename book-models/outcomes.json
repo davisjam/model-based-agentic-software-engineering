@@ -33,7 +33,7 @@
     "sections_total": 174,
     "sections_primary_of_an_outcome": 6,
     "modules": 8,
-    "lessons": 35
+    "lessons": 36
   },
   "taxonomy": {
     "know": [
@@ -186,6 +186,11 @@
           },
           {
             "lesson": "2.6-system-knowledge",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "2.7-modeling-summary",
             "own_outcomes": [],
             "section_outcomes": []
           }
