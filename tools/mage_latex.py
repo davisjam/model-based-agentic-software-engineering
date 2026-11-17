@@ -709,37 +709,30 @@ def _prepare_record(task):
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
-    # Each record retains its explicit chapter title and a unique chapter anchor.
-    latex = latex.replace('\\chapter{', '\\chapter*{', 1)
-    chapter_heading = '\\chapter*{' + inline(record['chapter_title']) + '}'
-    # A chapter opener already carries its title and navigation destination.
-    # Continue directly into its prose, without a second title or page break.
-    replacement = '' if record.get('is_part_page') else chapter_heading + '\n\\phantomsection\\label{chapter:' + slug + '}\n\\addcontentsline{toc}{chapter}{' + inline(record['chapter_title']) + '}'
-    latex = latex.replace(chapter_heading, replacement, 1)
-    if not record.get('is_part_page') and not record.get('is_matter') and not record.get('_group_start'):
+    title = inline(record['chapter_title'])
+    source_heading = r'\chapter{' + title + '}'
+    section_number = record.get('chapter', 0)
+    part_page = record.get('is_part_page')
+    section_page = not (part_page or record.get('is_matter') or record.get('_group_start'))
+    if section_page:
         latex = re.sub(r'\\(sub)*section(?=[{*])', lambda m: r'\subsubsection' if m[1] else r'\subsection', latex)
-        prefix = f"{record['part']}.{record['chapter']} " if 0 < record['part'] < 9 and record.get('chapter',0) else ''
-        latex = latex.replace(r'\chapter*{', r'\section*{' + prefix, 1)
+    if part_page:
+        heading = ''  # The chapter opener already provides its title and anchor.
+    elif section_page and 1 <= record['part'] <= 7 and bb._chap_ref(record):
+        # Native sectioning numbers the heading and nests the bookmark under its chapter.
+        heading = (r'\setcounter{secnumdepth}{1}\section{' + title + '}'
+                   + r'\label{chapter:' + slug + r'}\setcounter{secnumdepth}{0}')
+        section_number -= 1
+    else:
+        prefix = f"{record['part']}.{section_number} " if section_page and 0 < record['part'] < 9 and section_number else ''
+        command = r'\section*{' if section_page else r'\chapter*{'
+        heading = (command + prefix + title + '}\n' + r'\phantomsection\label{chapter:' + slug
+                   + '}\n' + r'\addcontentsline{toc}{chapter}{' + title + '}')
+    latex = latex.replace(source_heading, heading, 1)
     counters = r'\setcounter{chapter}{' + str(record['part'] if isinstance(record['part'], int) else 0) + '}\n'
     chapter_letter = re.match(r'Appendix ([A-Z]) [—–-]', record['part_title'])
     counters += r'\renewcommand{\thechapter}{' + (chapter_letter[1] if chapter_letter else r'\arabic{chapter}') + '}\n'
-    counters += r'\setcounter{section}{' + str(record.get('chapter',0)) + '}\n' + r'\setcounter{subsection}{0}' + '\n'
-    # Ordinary book sections use the native section counter and destination.
-    # Keep the established lower-level heading style throughout each section.
-    if (bb._chap_ref(record) and 1 <= record['part'] <= 7
-            and not record.get('_group_start')):
-        title = inline(record['chapter_title'])
-        number = record['chapter']
-        old = (r'\section*{' + f"{record['part']}.{number} " + title + '}\n'
-               + r'\phantomsection\label{chapter:' + slug + '}\n'
-               + r'\addcontentsline{toc}{chapter}{' + title + '}')
-        new = (r'\setcounter{secnumdepth}{1}\section{' + title + '}'
-               + r'\label{chapter:' + slug + r'}\setcounter{secnumdepth}{0}')
-        if old not in latex:
-            raise ValueError(f"Missing section heading for {slug}")
-        latex = latex.replace(old, new, 1)
-        counters = counters.replace(r'\setcounter{section}{' + str(number) + '}',
-                                    r'\setcounter{section}{' + str(number - 1) + '}')
+    counters += r'\setcounter{section}{' + str(section_number) + '}\n' + r'\setcounter{subsection}{0}' + '\n'
     if '_figure_start' in record:
         counters += r'\setcounter{figure}{' + str(record['_figure_start']) + r'}\setcounter{table}{' + str(record['_table_start']) + '}' + '\n'
     elif record.get('_group_start'):
