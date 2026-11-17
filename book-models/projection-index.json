@@ -602,14 +602,6 @@
             "occ": 6
           }
         ]
-      },
-      "website": {
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          }
-        ]
       }
     },
     "churn": {
@@ -850,6 +842,12 @@
         ]
       },
       "website": {
+        "website-misc": [
+          {
+            "file": "book-models/models-view.html",
+            "occ": 1
+          }
+        ],
         "website-theory": [
           {
             "file": "theory.html",
@@ -1207,7 +1205,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 80
+            "occ": 76
           },
           {
             "file": "catalogue-figure.html",
@@ -2188,6 +2186,14 @@
             "occ": 8
           }
         ]
+      },
+      "website": {
+        "website-misc": [
+          {
+            "file": "book-models/models-view.html",
+            "occ": 1
+          }
+        ]
       }
     },
     "reasoning-horizon": {
@@ -2237,12 +2243,6 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 1
-          }
-        ],
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
             "occ": 1
           }
         ],

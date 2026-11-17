@@ -390,6 +390,7 @@ MARKER_KEYWORDS = (
     # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote (large centered
     #   emphasis, no fill/border box). [INFRA-1], part6-apply-SPEC-260807.md §C-1/§F.
     "pullquote",
+    "frontmatter-order",
     "letter-signature",
     # `<!-- coda-rule -->` — EMITS one centered hairline at half the text measure: the typographic pause
     #   before a closing sentence, which then sets in ORDINARY BODY TYPE. Its sibling `pullquote` ARMS the
