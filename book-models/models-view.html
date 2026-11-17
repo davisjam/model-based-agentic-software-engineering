@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>38</b> chapters · <b>177</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>175</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -262,41 +262,33 @@
 </div>
 <div class="chapter">
 <h3 id="ch-2-6-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.6-system-knowledge.html" class="ch-link">2.6-system-knowledge</a> <span class="ch-slug">2.6-system-knowledge</span></h3>
-<div class="section s2" id="sec-2-6-system-knowledge--a-heterogeneous-modeling-substrate">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">A Heterogeneous Modeling Substrate</a></div>
-<p class="topic">A **modeling substrate** is the collection of representations through which engineers and agents can recover and relate system knowledge.</p>
+<div class="section s2" id="sec-2-6-system-knowledge--connecting-models-to-answer-engineering-questions">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Connecting Models to Answer Engineering Questions</a></div>
+<p class="topic">Models can be connected across different concerns or across levels of abstraction.</p>
 </div>
-<div class="section s3" id="sec-2-6-system-knowledge--execution-history-and-provenance">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Execution History and Provenance</a></div>
-<p class="topic">A static model and a history answer different questions.</p>
+<div class="section s2" id="sec-2-6-system-knowledge--maintaining-correspondence">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Maintaining Correspondence</a></div>
+<p class="topic">Prefer shared identity and derivation over independently maintained copies of the same fact.</p>
 </div>
-<div class="section s3" id="sec-2-6-system-knowledge--questions-that-span-models">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Questions that span models</a></div>
-<p class="topic">Some answers require a join.</p>
+<div class="section s2" id="sec-2-6-system-knowledge--docable-connecting-engineering-models">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">DocAble: Connecting Engineering Models</a></div>
+<p class="topic">DocAble improves document accessibility through passes that analyze or change a document.</p>
 </div>
-<div class="section s2" id="sec-2-6-system-knowledge--maintain-explicit-correspondence">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Maintain Explicit Correspondence</a></div>
-<p class="topic">Models and implementations can fall out of correspondence as a system changes.</p>
+<div class="section s3" id="sec-2-6-system-knowledge--one-dependency-for-execution-and-analysis">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">One Dependency for Execution and Analysis</a></div>
+<p class="topic">DocAble&#x27;s remediation subsystem illustrates how one set of declarations can support both execution and analysis.</p>
 </div>
-<div class="section s3" id="sec-2-6-system-knowledge--derive-when-implementation-owns-the-truth">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Derive when implementation owns the truth</a></div>
-<p class="topic">The model is a projection of the implementation.</p>
+<div class="section s3" id="sec-2-6-system-knowledge--what-one-document-run-changed">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">What One Document Run Changed</a></div>
+<p class="topic">A static computation graph does not record the mutations performed during a particular run.</p>
 </div>
-<div class="section s3" id="sec-2-6-system-knowledge--when-the-model-is-the-source-of-truth">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">When the model is the source of truth</a></div>
-<p class="topic">Software makes the relationship between model and implementation unusually fluid because both are made of information.</p>
+<div class="section s3" id="sec-2-6-system-knowledge--joining-a-call-to-its-deployment-permission">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Joining a Call to Its Deployment Permission</a></div>
+<p class="topic">A permitted interservice call requires several models to agree.</p>
 </div>
-<div class="section s3" id="sec-2-6-system-knowledge--trace-and-check-where-neither-owns-the-truth">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Trace and check where neither owns the truth</a></div>
-<p class="topic">Where neither side can be fully derived from the other, **traceability** records their relationship explicitly.</p>
-</div>
-<div class="section s3" id="sec-2-6-system-knowledge--the-limits-of-model-coverage">
+<div class="section s2" id="sec-2-6-system-knowledge--the-limits-of-model-coverage">
 <div class="sec-h"><a href="../book/2.6-system-knowledge.html">The Limits of Model Coverage</a></div>
 <p class="topic">The boundary of what engineers choose to model can change with experience.</p>
-</div>
-<div class="section s2" id="sec-2-6-system-knowledge--modeling-makes-properties-available-to-engineering">
-<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Modeling Makes Properties Available to Engineering</a></div>
-<p class="topic">Modeling makes a property explicit; engineers decide how to use it.</p>
 </div>
 </div>
 <div class="chapter">

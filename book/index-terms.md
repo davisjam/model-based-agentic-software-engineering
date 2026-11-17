@@ -160,7 +160,6 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: degrees-of-freedom | Degrees of freedom
 - concept: tolerance | Tolerance
 - concept: system-knowledge | System knowledge
-- concept: modeling-substrate | Modeling substrate
 - concept: representation-form | Representation form
 - concept: churn | Churn
 - concept: fleet | The fleet

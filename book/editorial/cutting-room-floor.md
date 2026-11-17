@@ -21253,3 +21253,152 @@ A \textbf{structured} model can live in ordinary project files. A service regist
 Choosing the tooling resembles deciding whether to keep data in flat files, embed SQLite, or operate a database server. A specialized modeling environment may offer graphical editing, consistency checks, simulation, and traceability across models. A Model Context Protocol (MCP) interface can give an agent access to those operations. The engineer still has to weigh the analyses the team needs against its familiarity with the tools and the time required to learn, integrate, and maintain them.
 
 What can an engineer or agent do with that access? Before changing a shared service, an agent might look up its owner and retrieve its documentation. Spotify makes both available to agents through its service catalog~\citep{spotify2026constraint}. Other models support operations beyond lookup. A schema can validate a document or supply the types for a generated interface. A transition model can drive a simulation or direct a running system. Each operation relies on the meaning the model assigns to the elements it uses.
+
+## Chapter 2, connecting the models — 17 November 2026
+
+Source: `book/latex/sources/part2/2.6-system-knowledge.tex` at `636bab5283cd949814027f058e35dfde7a7479a3`. The four-part §2.6 now develops correspondence and the DocAble case. The source ranges below preserve omitted passages and earlier versions of condensed examples.
+
+**Terminology and earlier service example** (lines 28–38)
+
+```latex
+\section{A Heterogeneous Modeling Substrate}\label{heading:a-heterogeneous-modeling-substrate}
+
+% <!-- section-terms: system-knowledge, modeling-substrate -->
+
+% <!-- index-def: modeling-substrate -->
+
+A \textbf{modeling substrate} is the collection of representations through which engineers and agents can recover and relate system knowledge. Its models can differ in shape: a registry, a state machine, a decision table, and a measurement record each preserve what their questions need. A shared service identifier can connect a catalog entry to a deployment and its measurements without requiring those records to share a file format. SysML provides one formal account of views: a viewpoint identifies stakeholder concerns, and a view selects and presents model content to address them~\citep{omg2025sysml}.
+
+% <!-- point: the-unity-that-matters-is-semantic-not-syntactic | Shared identities let different representations refer to the same service, work item, or operation without requiring a common file format or metamodel. | terms: modeling-substrate, join-key -->
+
+Suppose an agent is investigating a slow report service. The catalog supplies the service\textquotesingle s owner, the deployment model supplies its resource allocation, and the measurement record supplies recent response times. Each record uses the same service identity. The agent can follow those connections to obtain the relevant facts; it does not have to reconstruct from names and directory locations whether the three records describe the same component.
+```
+
+**Standalone provenance discussion, replaced by the service example** (lines 46–56)
+
+```latex
+\subsection{Execution History and Provenance}\label{heading:execution-history-and-provenance}
+
+% <!-- point: join-static-and-runtime-only-when-a-question-pays | A static model and a history answer different questions; stable task identity permits a join when observations help answer a structural question. | terms: derive-and-join, join-key -->
+
+A static model and a history answer different questions. A workflow model says which tasks depend on which; an execution record says which tasks ran on a particular occasion. Joining duration measurements to task identities can reveal an expensive part of the workflow without turning the dependency graph into a log. The history still needs its own model because the useful events and their grain depend on the question.
+
+% <!-- point: observable-history-is-not-automatically-useful-a-provenance-model-selects-it | A provenance model selects the history needed to answer an engineering question rather than recording every observable event. -->
+
+For example, a text editor\textquotesingle s provenance record might name an insertion or deletion, its target, the resulting change, and the actor or operation responsible. ``Document changed'' would be too coarse to explain an edit; a trace of every memory access would bury the edit in irrelevant detail. The provenance model selects the events that support explanation. If those edits have defined replay semantics and the original document is available, replay can apply the recorded sequence again. That does not reconstruct the reasoning that led to the edits.
+
+\subsection{Questions that span models}\label{heading:questions-that-span-models}
+```
+
+**Earlier explanations of the three patterns** (lines 87–89)
+
+```latex
+\item \textbf{Derive from implementation.} When implementation is authoritative, derive models from it. A dependency graph extracted from code, for example, describes relationships in the current implementation. Such models can support understanding, queries, and analysis, but do not independently prescribe how the system should behave. The derivation represents selected properties rather than reproducing the implementation in full.
+\item \textbf{Generate from models.} When models are authoritative, generate the corresponding implementation artifacts from them. A service-flow model can generate deployment configuration, for example. The model determines the generated portion of the implementation, while other decisions remain open. A generator maintains this relationship by producing artifacts from the model rather than requiring engineers to update both independently.
+\item \textbf{Trace and check correspondence.} When neither representation fully determines the other, maintain explicit relationships between models and implementation, checking the correspondences that can be decided mechanically. A behavioral model might specify required state transitions without determining the algorithms that implement them. An agent can choose those algorithms, while traceability connects the modeled transitions to the relevant implementation and supports checking their correspondence.
+```
+
+**Repeated correspondence explanations, consolidated around Figure 2.17** (lines 92–106)
+
+```latex
+An authoritative model can also be interpreted directly during execution, as the build-runner example below illustrates.
+
+The third arrangement is particularly useful when agents implement systems whose models specify only selected properties. The models preserve engineering decisions while leaving other implementation choices open. The three arrangements can coexist within one system, and their coverage can change as engineers learn which properties need explicit representation. These correspondence patterns apply between models at different abstraction levels as well as between models and implementation; a refinement relationship identifies which higher-level properties a more detailed representation must preserve.
+
+% <!-- index-def: model-from-code -->
+
+% <!-- index-def: model-to-code -->
+
+\subsection{Derive when implementation owns the truth}\label{heading:derive-when-implementation-owns-the-truth}
+
+The model is a projection of the implementation. A component registry can read the directory tree; an observed dependency list can be induced from call sites. A drift check re-derives the selected facts and reports divergence from the maintained view. The correspondence covers what that derivation observes, not every property of the program.
+
+\subsection{When the model is the source of truth}\label{heading:when-the-model-is-the-source-of-truth}
+
+Software makes the relationship between model and implementation unusually fluid because both are made of information. In \textbf{generation}, a tool reads selected engineering decisions from a model and produces an artifact such as code or configuration. For example, a schema can generate the types used by interface clients. A freshness check compares the checked-in artifact with current generator output; provenance identifies the model and generation step that produced it. The generator preserves that declared correspondence while leaving open whether the schema expresses the right contract.
+```
+
+**Longer build-runner illustration** (lines 116–119)
+
+```latex
+\textbf{Interpretation} uses the model directly during execution, without generating a separate artifact. Return to the build with two independent compilation tasks and one link task. The build declaration names each task and states that linking requires both object files. A runner reads those declarations to decide which tasks are ready: it may start the independent compilations, but it must wait for both results before linking. The compiler and linker still perform the individual operations. Their dependency order comes from the build declaration.
+
+The same declaration can answer a question without running the build. To find what a changed object file could affect, project the declared dependencies into a graph and follow its outgoing edges. In this example, the path reaches the link task. The runner uses the relationships to schedule work; the analytical view exposes them for queries and checks. DocAble\textquotesingle s connected-models inset develops these two uses and shows how the correspondence differs across document formats.
+```
+
+**Repeated evidence discussion** (lines 203–207)
+
+```latex
+\textbf{Connecting a property to its checker}
+
+% <!-- point: a-declared-property-can-determine-what-evidence-must-exist | Models can identify the evidence required to evaluate their properties; Chapter 3 develops verification policies and enforcement mechanisms. | terms: derive-and-join, drift-gate -->
+
+Models can also identify the evidence required to evaluate their properties. \magevalue{chapter:alignment} examines how those requirements become verification policies and enforcement mechanisms.
+```
+
+**Additional derivation and traceability discussion** (lines 212–222)
+
+```latex
+% <!-- point: derivation-solves-correspondence-not-architecture-quality | A derived analytical graph still omits implementation detail, and derivation preserves only its declared correspondence rather than establishing architecture quality. | terms: map-and-territory, alignment-principle -->
+
+An analytical graph remains a view even when its edges are derived. It can suppress method bodies, internal algorithms, runtime history, timing, and most application state while keeping the relationships needed for a structural question. Deriving an edge avoids maintaining that edge independently. It does not show that the declared dependency is desirable, or that the graph includes every relationship a different question might need.
+
+% <!-- point: where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates | Where neither model nor implementation fully determines the other, traceability records a defined relationship between model elements and current implementation targets so engineers and agents can inspect correspondence and assess the impact of changes. | terms: map-and-territory, traceability, drift-gate -->
+
+% <!-- index-def: traceability -->
+
+\subsection{Trace and check where neither owns the truth}\label{heading:trace-and-check-where-neither-owns-the-truth}
+
+Where neither side can be fully derived from the other, \textbf{traceability} records their relationship explicitly. A behavioral model might link a transition to the functions that implement it while leaving their algorithms unspecified. The relation lets an engineer or agent find the relevant implementation from the model and identify which model elements may need review after a code change. Each link needs a defined meaning and a target that can be identified in the current system. These links make the claimed correspondence available for inspection and checking.
+```
+
+**Schema mechanism and earlier coverage qualification** (lines 237–243)
+
+```latex
+% <!-- point: an-executable-model-is-its-schema-plus-its-checked-predicates | A structured schema plus checked predicates is one executable-model pattern; generation, simulation, transformation, and analysis are others, and correspondence to a changing system still requires checks or derivations. | terms: drift-gate, modeling-principle -->
+
+For invariant-bearing models, one useful executable pattern is a structured schema plus checked predicates over that schema. The schema defines entities, relations, fields, or states; the predicates state properties that a checker evaluates over the declared domain. Other executable models may instead drive generation, simulation, transformation, or analysis. A schema alone does not establish correspondence to a changing system; checks or derivations are needed where that correspondence matters.
+
+% <!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
+
+A synchronized model may still be incorrect, express a poor architecture, or omit a relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
+```
+
+**Repeated taxonomy and worker-pool example** (lines 249–263)
+
+```latex
+% <!-- point: the-narrow-guarantee-is-the-boundary-part-iii-begins-at | Correspondence follows the source of truth: derive an implementation view, generate an artifact or interpret an authoritative model, and trace and check where neither representation fully determines the other. | terms: modeling-principle, alignment-principle, map-and-territory -->
+
+Derive views from the implementation when it supplies the facts. When the model supplies them, generate artifacts from it or let execution read it directly. Where neither fully determines the other, maintain traceability and check the declared correspondence.
+
+\section{Modeling Makes Properties Available to Engineering}\label{heading:modeling-makes-properties-available-to-engineering}
+
+% <!-- point: a-model-does-not-govern-by-existing-it-makes-a-property-explicit | A worker-pool model makes quantities and capacity comparisons explicit; engineers still choose whether to use them for planning, admission tuning, or a hard refusal. | terms: modeling-principle, alignment-principle -->
+
+Modeling makes a property explicit; engineers decide how to use it. To illustrate this, let's return to the eight-worker pool from earlier in the chapter. Suppose its model records the number of running jobs and the capacity available to execute them. The comparison may help an operator plan a larger pool, help the system tune admission, or supply a hard rule that refuses work above the bound. Those uses require different mechanisms. The quantities and their units make the comparison meaningful; they do not decide what crossing the bound should do.
+
+% <!-- point: measurement-boundary-modeling-and-enforcement-are-separate | A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms, and model analysis also guides design. -->
+
+A measurement can supply evidence without being a hard limit. Engineers must decide how the quantity is collected, who sets its reference value, and whether the result should merely inform decisions or constrain subsequent work. \magevalue{chapter:alignment} examines how selected obligations become enforceable.
+
+Model analysis can guide design decisions before implementation. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
+```
+
+**Original three-paragraph deep dive, abridged in §2.1** (lines 275–282)
+
+```latex
+\begin{bookbox}{inset}{Deep dive --- Beneath commodity intelligence: why structure helps}
+\label{inset-beneath-commodity-intelligence}
+Research on context engineering and agent architectures treats the organization of work as part of the reasoning system. Across this literature, external memory, selective retrieval, tool interaction, and task decomposition determine what information a reasoning step receives and what it must do with that information~\citep{mei2025contextengineering}~\citep{wang2024autonomousagents}. Access to state remains different from reasoning over it. Keeping a record available does not ensure that the agent will recover the relationships needed for a particular decision. Organizing the information and dividing the work can reduce what each step must search, reconstruct, or infer. Anthropic\textquotesingle s agentic coding guidance separates exploration and planning from implementation and recommends explicit tests~\citep{cherny2025agenticcoding}.
+
+Engineering models supply a further kind of structure: a representation of the system that gives those reasoning steps shared meaning. A harness may divide a change into tasks. Kiro, for example, organizes the work in requirements, design, and task documents that developers can review~\citep{swaminathan2025kiro}. An architecture model can identify the components and permitted calls those tasks must respect. A behavioral model can expose an ordering that spans several tasks. Links between models and implementation let an agent move from a modeled relationship to the affected code and follow connections into other parts of the system. Engineers can therefore shape both how the agent performs the work and the system knowledge through which it reasons.
+
+Explicit models also make delegated implementation easier for engineers to direct. This follows the MBSE practice of making system specifications, design decisions, and their verification explicit and traceable~\citep{madni2018mbse}. Engineers can inspect the relationships a proposed change must preserve and decide which failed checks should block acceptance. Agents can use those representations to plan work and choose how to implement it within the declared bounds. Because the decisions are recorded in project artifacts, engineers can carry them forward when they change the foundation model or harness. They can also revise the models and checks when the requirements change. The same structure that reduces reconstruction for agents keeps the decisions governing their work available for human inspection and revision.
+\end{bookbox}
+```
+
+**Longer DocAble inventory and traversal recap** (line 135). The case now introduces the traversal in Figure 2.18 after the slow-service example in §2.6.1.
+
+```latex
+DocAble uses different representations for different engineering questions. Registries describe components and their relations; state machines describe transitions; other models encode contracts, decisions, quantitative relationships, or recorded history. Roughly 130 structured model records plus several data dialects represent component identity and metadata, deployment topology, inter-service edges, data flow, required environment, state machines, and the governance graph itself. They share identities, derivations, query surfaces, and traceability where engineers need to connect them, while retaining the form suited to each question. \autoref{modeling-substrate} illustrates how an engineering question determines which models to traverse. To investigate a slow service, for example, one might identify the service in the registry, use its identity to find the corresponding deployment, and retrieve measurements for that deployment. Other questions would traverse different relationships among the same models.
+```

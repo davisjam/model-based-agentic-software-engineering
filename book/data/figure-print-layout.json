@@ -92,7 +92,7 @@
     "modeling-substrate": {
       "width_bp": 450,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "entitlement-domain": {
       "width_bp": 270.0,
@@ -150,7 +150,7 @@
     "two-reductions-static-realized": {
       "width_bp": 337.5,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "model-sync-two-layer-net": {
       "width_bp": 450.0,
