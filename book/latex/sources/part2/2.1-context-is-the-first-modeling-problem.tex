@@ -30,13 +30,9 @@ The knowledge an agent needs about a particular system is distributed across sou
 
 % mage-box-prefix: Inset —
 
-\begin{bookbox}{inset}{Skills and Project Instructions}
+\begin{bookbox}{inset}{Skills and Project Instructions Can Be Engineering Models}
 \label{inset-skills-and-project-instructions}
-MAGE\textquotesingle s emphasis on externalizing engineering knowledge appears in today\textquotesingle s agent harnesses as project instructions and skills. Project instructions keep small amounts of cross-cutting, repository-specific guidance persistently available; skills package larger procedures and resources for a recurring class of work and load them when that work arises. Both reduce what a person must supply or an agent must reconstruct in each new reasoning episode.
-
-The progression continues past prose. Retrieval can select knowledge from a larger external store, and models can represent it in structures that support queries, transformations, validation, or deterministic execution. As the representation becomes more structured, the environment can do more with the knowledge than simply show it to the agent.
-
-Skills and instruction files are contemporary carriers. The engineering requirement survives changes in harness design: consequential knowledge that would otherwise be tacit or repeatedly reconstructed should be externalized in a form suited to how it will be used.
+For a familiar example of externalizing engineering knowledge, consider project instructions and agent skills. Project instructions record repository-specific conventions, architectural decisions, and obligations that should persist across tasks. Skills package procedures and resources for recurring work. Both preserve knowledge, but not everything they preserve constitutes an engineering model. Sometimes, however, they do. Consider a project instruction such as ``all database access must go through the service layer.'' It expresses an architectural constraint, albeit imprecisely: the permitted dependencies remain open to interpretation, and violations cannot necessarily be detected mechanically. Now consider a skill specifying how an agent should commit changes and publish them to a remote repository. Its sequence of steps, preconditions, and failure-handling rules may encode a behavioral model of the publishing process, even if expressed entirely in natural language. In both cases, the representation preserves engineering decisions across tasks, but its informal semantics limit the precision with which those decisions can be analyzed or enforced.
 \end{bookbox}
 
 % <!-- point: the-first-purpose-of-a-model-is-better-context | The first modeling move is simple: externalize engineering knowledge that should not have to be rediscovered. | terms: modeling-principle, reasoning-horizon, context-window -->

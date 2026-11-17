@@ -20941,3 +20941,15 @@ An engineer who needs to sort data does not ordinarily invent a sorting algorith
 
 For example, UML offers structural and behavioral diagrams; SysML supports broader systems engineering concerns, including requirements, architecture, and verification. A state machine may expose illegal transitions, while a queueing model may reveal whether a service has sufficient capacity. These representations support different questions and analyses, and they need not share a modeling language or toolchain. The engineer chooses a representation according to the question it must answer and the analyses it should support. The notation is a means to that end, not the method itself.
 ```
+
+## 2026-11-16 — §2.1, Skills and Project Instructions
+
+Previous inset at `d5ef91366`, replaced with the database-access and publishing examples.
+
+```tex
+MAGE\textquotesingle s emphasis on externalizing engineering knowledge appears in today\textquotesingle s agent harnesses as project instructions and skills. Project instructions keep small amounts of cross-cutting, repository-specific guidance persistently available; skills package larger procedures and resources for a recurring class of work and load them when that work arises. Both reduce what a person must supply or an agent must reconstruct in each new reasoning episode.
+
+The progression continues past prose. Retrieval can select knowledge from a larger external store, and models can represent it in structures that support queries, transformations, validation, or deterministic execution. As the representation becomes more structured, the environment can do more with the knowledge than simply show it to the agent.
+
+Skills and instruction files are contemporary carriers. The engineering requirement survives changes in harness design: consequential knowledge that would otherwise be tacit or repeatedly reconstructed should be externalized in a form suited to how it will be used.
+```
