@@ -21084,3 +21084,49 @@ A choice omitted from a model is not necessarily a genuine degree of freedom. If
 
 A useful model must therefore be judged both by what it preserves and by what it leaves open. To test adequacy, start with the question and ask whether the model distinguishes the cases that require different answers. To test parsimony, start with the model and ask whether any distinction could be removed without impairing that purpose. New evidence can change either judgment, and the work a model saves must justify the effort of constructing and maintaining it.
 ```
+
+## Chapter 2, §2.2 opening, 2026-11-17
+
+Source: `book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex`, revision `e5ddc2644`, lines 12–50. The opening now follows model origins, uses, and revision. The extended boundary example and adequacy/parsimony discussion repeat §2.1.
+
+```tex
+How do engineers construct, revise, and put models to work? A service boundary can originate as a requirement or emerge from a prototype. Before an agent uses it to guide the next change, the engineer must decide what the boundary means and what evidence would show that a change respects it.
+
+\section{Constructing and Revising Models}\label{heading:constructing-and-revising-models}
+
+% <!-- section-terms: modeling-principle, degrees-of-freedom -->
+
+% <!-- point: the-direction-also-runs-in-reverse | An exploratory implementation can expose constraints, tradeoffs, state distinctions, dependencies, and bounds that were not evident in the initial design. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: human-authority-is-not-human-invention | The agent may supply a design insight; the engineer takes responsibility for adopting it by evaluating it against the system's requirements. | terms: modeling-principle -->
+
+Useful models can originate in requirements, existing systems, or exploratory implementation. A requirement can supply an obligation before any code exists. An existing system and the people who maintain it can supply observed dependencies and the reasons for preserving some of them. An agent building a prototype may discover a state distinction that nobody thought to specify. The engineer can start from any of the sources in \autoref{multiple-routes-to-engineering-models} and judge what each establishes about the system, including which properties later implementations must preserve.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/multiple-routes-to-engineering-models-abe57356fe.pdf}
+\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it can support three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; engineers judge whether its design is desirable and which discovered properties should become obligations. Further engineering discoveries may motivate new or revised models.}
+\label{multiple-routes-to-engineering-models}
+\end{figure}
+
+% <!-- point: model-origins-and-uses | Models support engineering design, direct agent work, and supply properties against which results can be checked. | terms: modeling-principle -->
+
+However a model originates, its value depends on what engineers can do with it. Consider the three uses beneath the model in \autoref{multiple-routes-to-engineering-models}. An engineer can reason through a proposed service boundary by asking which clients would need to change if the database schema changed. The engineer can direct an agent adding a client to use the interface named in the model. A reviewer can then compare the client's actual dependencies with the permitted ones. Detecting an unexpected dependency gives the reviewer evidence. Enforcing the boundary requires some means of acting on that finding, such as rejecting a change that introduces the dependency.\magefootnote{agent-studio-models}{Siemens' Agent Studio research illustrates another design use. Agents work with formal engineering models, including SysML v2 representations, and simulations evaluate candidate electric-vehicle architectures using Simcenter Amesim. An engineer decides how to proceed at critical points. The research account describes an exploration of candidate designs~\citep{liu2024agentstudio}.}
+
+% <!-- point: a-prototype-preserves-a-realization-not-the-knowledge | A prototype retains an implementation but may not explain what engineers learned from it; record the useful relationships explicitly so later work can use the lesson without repeating the experiment. | terms: modeling-principle, externalized-knowledge -->
+% <!-- point: agents-import-patterns-but-design-is-contextual | An agent can introduce useful design choices through exploratory implementation, but the engineer must judge whether they suit the present system. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: model-extraction-turns-transfer-into-local-law | Engineers record accepted design choices so later implementations can preserve the relevant relationships without reproducing incidental details. | terms: modeling-principle, governance-conversion -->
+% <!-- point: not-every-extraction-becomes-law | Models can preserve both accepted obligations and descriptive observations; the representation should distinguish what later implementations must preserve from what engineers learned about the current one. | terms: modeling-principle, externalized-knowledge -->
+
+Models recovered from implementation require particular care because a prototype records one realization, including incidental choices alongside those that mattered to the design. Suppose an agent routes database access through a service that the user interface calls. After evaluating the design, the engineer decides that the user-interface layer should never call the database directly. An authoritative model of allowed calls between layers records that decision. Loading a particular screen also happens to require three database queries. A descriptive model may retain that observation for a performance investigation. A later implementation that needs fewer queries can improve performance while preserving the boundary.
+
+% <!-- point: the-most-important-evidence-comes-from-realization | Implementing and trying a design can reveal distinctions that were not evident in the initial model. | terms: modeling-principle -->
+% <!-- point: revise-the-model-when-evidence-changes-the-judgment | Neither direction guarantees the boundary is right; analysis, implementation, measurement, or failure may reveal that an omitted distinction mattered or an included one did not, and the model is revised when the evidence changes the engineering judgment. | terms: degrees-of-freedom, model-as-map -->
+
+New evidence can change what the model needs to represent. If measurements show that loading the screen violates a latency requirement, the count of three queries tells us little about where the time went. A performance model may then need to distinguish time spent waiting for the database from time spent rendering the result. Conversely, if two screens issue different queries through the same service and the question concerns only the layer boundary, the architecture can represent their common dependency once. The measured times can refine a descriptive performance model without changing an accepted latency requirement.
+
+% <!-- point: purposeful-reduction-is-judgment-not-algorithm | Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: reason-top-down-from-the-question | Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining implementation choices stay free. | terms: degrees-of-freedom, tolerance -->
+% <!-- point: reason-bottom-up-from-the-proposed-model | Reasoning bottom-up from the proposed model asks, for each represented distinction, what engineering question or obligation requires it; a distinction no consequential purpose justifies carrying is removed. | terms: degrees-of-freedom -->
+
+Engineers can evaluate a proposed model from either direction. Reasoning top-down from the question tests adequacy. Can the architecture distinguish a screen that calls the database directly from one that reaches it through the service? Reasoning bottom-up from the representation tests parsimony. For each distinction in the model, what question or obligation requires it? If removing query counts leaves the architectural question answerable, the architecture can dispense with them. Both tests can identify revisions, and either judgment can change as engineers learn more about the system.
+```

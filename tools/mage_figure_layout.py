@@ -161,7 +161,7 @@ def theory_perspectives_columns(latex: str) -> str:
     return before + columns + after
 
 
-def keep_opening_figure(latex: str, label: str, alt: str) -> str:
+def keep_opening_figure(latex: str, label: str, alt: str, *, reserve_heading_space: bool = True) -> str:
     """Keep a section's orienting diagram in reading order, with its lead-in."""
     from mage_cover import _text
     heading = re.search(r'\\section\*?\{', latex)
@@ -172,7 +172,8 @@ def keep_opening_figure(latex: str, label: str, alt: str) -> str:
     body = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0]).removesuffix(r'\end{figure}')
     block = (r'\par\smallskip\begin{bookinlinefigure}{' + _text(alt) + '}' +
              body + r'\end{bookinlinefigure}')
-    return (latex[:heading.start()] + r'\Needspace{.58\textheight}' + '\n' +
+    space = r'\Needspace{.58\textheight}' + '\n' if reserve_heading_space else ''
+    return (latex[:heading.start()] + space +
             latex[heading.start():figure.start()] + block + latex[figure.end():])
 
 
