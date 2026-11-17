@@ -16,7 +16,7 @@ Suppose a service processes jobs that may be waiting, running, completed, or fai
 
 % <!-- point: the-reduction-is-what-makes-behavior-checkable | Reducing a service to states and transitions turns "can it reach a state it should never occupy?" from a reconstruction over scattered handlers into a question a person or tool can answer. -->
 
-For this question, four states and three events suffice. Let \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\) be the states, with each job starting in \(\mathrm{IDLE}\). The events are \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\). We still need to say which events are permitted in each state and where they take the job.
+Four states and three events suffice. Let \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\) be the states, with each job starting in \(\mathrm{IDLE}\). The events are \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\). We still need to say which events are permitted in each state and where they take the job.
 
 % <!-- point: transition-semantics-can-construct-intended-behavior | A partial transition function defines the effects of start, finish, and fail in a four-state job lifecycle. Undefined pairs admit no transition, and the same function can guide implementation, interpretation, or test generation. | terms: semantic-commitment, modeling-principle -->
 
@@ -116,12 +116,12 @@ The three-state recovery model is a reduction for checking publication order. Do
 
 % <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
 
-DocAble leases each in-flight job to one worker. When a worker stops responding, its lease may expire and the job may be reassigned. If the first worker returns with a delayed release, the service must be able to tell which assignment that release concerns. \autoref{ownership-constructs} distinguishes four ways to represent access and ownership. Here we combine two of them: a claim records the assignment and a lease limits its lifetime.
+DocAble leases each in-flight job to one worker. If its lease expires, a second worker can acquire the job. Which assignment does a delayed release from the first worker concern? \autoref{ownership-constructs} distinguishes four ways to represent access and ownership. Here we combine two of them: a claim records the assignment and a lease limits its lifetime.
 
 {\footnotesize
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2400}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7600}}@{}}
 \caption[Constructs for access and ownership]{\emph{Constructs for access and ownership.} Locks, leases, capabilities, and claims express different aspects of a worker\textquotesingle s right to act.}\label{ownership-constructs}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
