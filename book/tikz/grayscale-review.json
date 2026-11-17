@@ -465,9 +465,9 @@
     "receipt": "book/tikz/receipts/canonical-structural.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
-    "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-    "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
+    "rationale": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in §2.3.1.",
+    "source_sha256": "1b393b4f8e94cc4313f6c8629d3f86474593359e483306428f62d18ce9e3a2a9",
+    "candidate_sha256": "b204e0b403bb2accff2bb8bc752a3636bcb81a1386a0a2385a48d6a229cf7a17",
     "revision_history": [
       {
         "date": "2026-11-11",
@@ -515,19 +515,19 @@
       }
     ],
     "validation": {
-      "date": "2026-11-11",
+      "date": "2026-11-17",
       "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
+      "proof_sha256": "42ec6dba618408afc981e186eaac8302f1833d393fe11f991276a729c11db3c1",
       "page": 1,
       "width_bp": 289.522,
-      "height_bp": 211.743,
+      "height_bp": 225.691,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 14,
-      "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
-      "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+      "audit_sha256": "df0580405c4e5274516825bcd1345589b1d1e0c81aa7492500710cfb827c9c48",
+      "typography_audit_sha256": "f34f4ab6b814f2d7c85b2a7a4f07419293ed7dc24f54e944c9d73454d3834f21",
       "status": "passed"
     }
   },

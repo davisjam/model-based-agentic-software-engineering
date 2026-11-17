@@ -6,13 +6,11 @@
 
 \chapter{Structural Models: What Is Connected to What?}
 
-Structural models hold a system still. They suppress most behavior and keep the entities, boundaries, containment, dependency, and flow --- what parts exist and which rest on which. This is the most familiar reduction in engineering, and the natural place to begin.
+A structural model shows which parts of a system exist and how they relate to one another. We can ask, for example, which components depend on a service or where a document may be changed. To answer either question, we can set aside most of what happens inside the components.
 
 \section{Entities, Relationships, and Graph Analysis}\label{heading:entities-relationships-and-graph-analysis}
 
-% <!-- point: structure-has-a-long-repertoire-of-graphs-that-keep-entities-and-relations | Component and dependency graphs, call graphs, data-flow diagrams, and deployment topologies all name the entities a question needs and the declared relations between them, and drop the behavior. -->
-
-A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations. The graphical forms differ, but the reduction is the same: keep the entities and the declared relations, discard the behavior (\autoref{canonical-structural}).
+\autoref{canonical-structural} shows the intended architecture of a web application with an API, a cache, and a database. Suppose we want to allow the cache to read from the database while requiring the web component to go through the API. How can we tell whether the architecture permits a bypass?
 
 \begin{figure}[htbp]
 \centering
@@ -21,28 +19,24 @@ A component diagram names which services exist; a dependency graph names which m
 \label{canonical-structural}
 \end{figure}
 
-% <!-- point: a-structural-model-selects-both-entities-and-relations-and-the-edge-label-carries-the-meaning | A structural model selects the entities a question needs and the relations between them; the edge label specifies the relationship being modeled, so a generic "related-to" edge discards the distinction the model exists to preserve. -->
+% <!-- point: a-structural-model-selects-both-entities-and-relations-and-the-edge-label-carries-the-meaning | The architectural question selects components and their permitted direct dependencies. -->
 
-The model selects both the entities and the relations. A graph of service boundaries should not carry every helper function; if the question is about architecture, that detail only makes the model worse. The edge label specifies the relationship being modeled. "A depends on B," "A calls B," and "a record is stored in a database" are different relations; collapsing them into a generic "related-to" edge throws away exactly the distinction the model was built to preserve.
+\textbf{Question.} Can Web reach Database without passing through API? To answer, draw the four components and the dependencies between them. We can leave out the cache's eviction policy and the database schema. Neither changes which components Web can reach in this model.
 
-% <!-- point: once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations | Explicit structure turns the claims an engineer wants into graph properties — local, path, or whole-graph — and the analyses into ordinary graph operations: reachability, reverse traversal, cycle detection, impact and conformance. -->
+\textbf{Semantics.} In \autoref{canonical-structural}, each solid arrow denotes a permitted direct dependency between two components. A path is a sequence of components connected by those arrows. The crossed arrow marks a forbidden direct dependency and is excluded when tracing paths. Web therefore has an indirect route to Database through API and Cache.
 
-Once structure is explicit, the claims an engineer wants become graph properties. Some are local: component A may not depend directly on component C. Some concern paths: every route from ordinary logic to a format-specific library must cross a sanctioned seam. Some concern the whole graph: the dependency relation must be acyclic. The analyses follow --- reachability, reverse traversal to find what depends on a node, cycle detection, impact analysis over a proposed change, and conformance of an observed graph against a declared one. A question that would otherwise mean reading imports, configuration, and deployment manifests becomes an operation over a declared graph.
+% <!-- point: once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations | Removing API and searching for a remaining Web-to-Database path tests whether the declared architecture permits a bypass. -->
 
-% <!-- point: derived-structure-and-declared-structure-are-different-claims | Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Chapter 3 treats the difference. -->
+\textbf{Analysis.} Our architectural requirement is stronger than prohibiting a direct Web-to-Database dependency: every path from Web to Database must pass through API. Remove API and the arrows touching it from a copy of the graph. Start at Web and follow the remaining arrows. In this example Web has no outgoing arrow, so Database is unreachable. Now imagine adding a permitted dependency from Web to Cache. Removing API would leave the path Web~\(\to\)~Cache~\(\to\)~Database, showing exactly how the revised architecture would permit a bypass. Other questions call for different traversals of the same graph:
 
-Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims: one describes what the system appears to do, the other what it is supposed to do. \magevalue{chapter:alignment} treats the distinction carefully.
+\begin{itemize}
+\tightlist
+\item \textbf{Reachability.} Starting at Web, follow the arrows. Which components can Web reach?
+\item \textbf{Cycle detection.} Can you follow a nonempty sequence of arrows back to the component where you started?
+\item \textbf{Impact analysis.} Starting at Database, follow the arrows backward. Which components might a change to Database affect?
+\end{itemize}
 
-The billing boundary illustrates how the choice of relation changes the property we check. Suppose Reporting may obtain billing data only through BillingAPI. Let \(\operatorname{Calls}\) contain all permitted direct calls among the components in scope. Excluding the pair \((\mathrm{Reporting},\mathrm{BillingDB})\) rules out a direct call, but a route through a helper could still bypass the API. A path is a sequence of components whose successive pairs belong to \(\operatorname{Calls}\). The architectural obligation applies to every such path from the reporting service to the billing database, as expressed by
-\[
-\forall p\in\operatorname{Paths}_{\operatorname{Calls}}(\mathrm{Reporting},\mathrm{BillingDB}),
-\qquad \mathrm{BillingAPI}\in p.
-\]
-To check the obligation, remove BillingAPI and its incident edges from a copy of the graph and ask whether BillingDB remains reachable from Reporting. If it does, a path such as Reporting~\(\to\)~Helper~\(\to\)~BillingDB supplies a counterexample. If it does not, every permitted route between the two endpoints in the original graph passes through BillingAPI. Whether any such route exists at all is a separate reachability question on the original graph. This analysis establishes a property of the declared architecture. Establishing that the running system respects the boundary requires evidence about which calls the implementation can make.
-
-A build dependency graph answers a different question. Suppose two independent source files are compiled and their object files are then linked into one executable. Model the compilation tasks and the link task as nodes, with an edge from each compilation to linking. The two edges express what linking needs. A change to one compilation result affects the link task, but the graph gives no reason to rerun the other compilation. This is a dependency question, so the useful entities are tasks and their products rather than architectural layers.
-
-The relation\textquotesingle s meaning also matters within one workflow. A task may consume an earlier result as data, or inspect a condition solely to decide whether it should run. Both create dependencies, but they support different questions about how information contributes to the output. A model that records only an undifferentiated arrow cannot answer those questions. DocAble\textquotesingle s document-processing pipeline provides a worked example of both architectural boundaries and typed computation dependencies.
+The general procedure is to identify the entities and relationships relevant to a question, define what those relationships mean, and analyze the resulting graph. The same approach applies to a system's environment, where we might trace communication pathways or dependencies between organizations, and to its internal structure. DocAble uses two such models of the same software: one to locate architectural boundaries and one to trace dependencies between computations.
 
 \section{DocAble: Architecture and Computation Dependencies}\label{heading:docable-architecture-and-computation-dependencies}
 

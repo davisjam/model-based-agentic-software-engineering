@@ -21429,3 +21429,43 @@ A synchronized model may still express a poor architecture or omit a relationshi
 \textbf{For the surface the model claims, check the correspondence that can actually be decided.}
 \end{quote}
 ```
+
+
+## 2026-11-17 — Structural models and graph analysis (§2.3.1)
+
+Source: `book/latex/sources/part2/2.3-structural.tex`, revision `370cd98ed`, lines 9–47. Replaced the inventory and separate billing and build examples with a worked traversal of Figure 2.7. Original prose and annotations follow.
+
+```tex
+Structural models hold a system still. They suppress most behavior and keep the entities, boundaries, containment, dependency, and flow --- what parts exist and which rest on which. This is the most familiar reduction in engineering, and the natural place to begin.
+
+\section{Entities, Relationships, and Graph Analysis}\label{heading:entities-relationships-and-graph-analysis}
+
+% <!-- point: structure-has-a-long-repertoire-of-graphs-that-keep-entities-and-relations | Component and dependency graphs, call graphs, data-flow diagrams, and deployment topologies all name the entities a question needs and the declared relations between them, and drop the behavior. -->
+
+A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations. The graphical forms differ, but the reduction is the same: keep the entities and the declared relations, discard the behavior (\autoref{canonical-structural}).
+
+[Figure 2.7 retained.]
+
+% <!-- point: a-structural-model-selects-both-entities-and-relations-and-the-edge-label-carries-the-meaning | A structural model selects the entities a question needs and the relations between them; the edge label specifies the relationship being modeled, so a generic "related-to" edge discards the distinction the model exists to preserve. -->
+
+The model selects both the entities and the relations. A graph of service boundaries should not carry every helper function; if the question is about architecture, that detail only makes the model worse. The edge label specifies the relationship being modeled. "A depends on B," "A calls B," and "a record is stored in a database" are different relations; collapsing them into a generic "related-to" edge throws away exactly the distinction the model was built to preserve.
+
+% <!-- point: once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations | Explicit structure turns the claims an engineer wants into graph properties — local, path, or whole-graph — and the analyses into ordinary graph operations: reachability, reverse traversal, cycle detection, impact and conformance. -->
+
+Once structure is explicit, the claims an engineer wants become graph properties. Some are local: component A may not depend directly on component C. Some concern paths: every route from ordinary logic to a format-specific library must cross a sanctioned seam. Some concern the whole graph: the dependency relation must be acyclic. The analyses follow --- reachability, reverse traversal to find what depends on a node, cycle detection, impact analysis over a proposed change, and conformance of an observed graph against a declared one. A question that would otherwise mean reading imports, configuration, and deployment manifests becomes an operation over a declared graph.
+
+% <!-- point: derived-structure-and-declared-structure-are-different-claims | Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Chapter 3 treats the difference. -->
+
+Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims: one describes what the system appears to do, the other what it is supposed to do. \magevalue{chapter:alignment} treats the distinction carefully.
+
+The billing boundary illustrates how the choice of relation changes the property we check. Suppose Reporting may obtain billing data only through BillingAPI. Let \(\operatorname{Calls}\) contain all permitted direct calls among the components in scope. Excluding the pair \((\mathrm{Reporting},\mathrm{BillingDB})\) rules out a direct call, but a route through a helper could still bypass the API. A path is a sequence of components whose successive pairs belong to \(\operatorname{Calls}\). The architectural obligation applies to every such path from the reporting service to the billing database, as expressed by
+\[
+\forall p\in\operatorname{Paths}_{\operatorname{Calls}}(\mathrm{Reporting},\mathrm{BillingDB}),
+\qquad \mathrm{BillingAPI}\in p.
+\]
+To check the obligation, remove BillingAPI and its incident edges from a copy of the graph and ask whether BillingDB remains reachable from Reporting. If it does, a path such as Reporting~\(\to\)~Helper~\(\to\)~BillingDB supplies a counterexample. If it does not, every permitted route between the two endpoints in the original graph passes through BillingAPI. Whether any such route exists at all is a separate reachability question on the original graph. This analysis establishes a property of the declared architecture. Establishing that the running system respects the boundary requires evidence about which calls the implementation can make.
+
+A build dependency graph answers a different question. Suppose two independent source files are compiled and their object files are then linked into one executable. Model the compilation tasks and the link task as nodes, with an edge from each compilation to linking. The two edges express what linking needs. A change to one compilation result affects the link task, but the graph gives no reason to rerun the other compilation. This is a dependency question, so the useful entities are tasks and their products rather than architectural layers.
+
+The relation\textquotesingle s meaning also matters within one workflow. A task may consume an earlier result as data, or inspect a condition solely to decide whether it should run. Both create dependencies, but they support different questions about how information contributes to the output. A model that records only an undifferentiated arrow cannot answer those questions. DocAble\textquotesingle s document-processing pipeline provides a worked example of both architectural boundaries and typed computation dependencies.
+```

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292.5 183" width="292.5" height="183" role="img" aria-labelledby="canonical-structuralT canonical-structuralD" font-family="&quot;Source Sans 3&quot;, sans-serif"><title id="canonical-structuralT">Canonical structural model: a read-through cache architecture</title>
-  <desc id="canonical-structuralD">A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles.</desc>
+  <desc id="canonical-structuralD">A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: Can Web reach Database without passing through API? Semantics: components and direct dependencies. Analysis: Remove API. Is Database still reachable from Web?</desc>
 <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169" /></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e" /></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438" /></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917" /></marker></defs>
 <text x="146.25" y="14.0" text-anchor="middle" font-size="12" fill="#1c1917" font-weight="700">Structural model</text>
 <text x="146.25" y="29.0" text-anchor="middle" font-size="9" fill="#57534e">Read-through cache example</text>
@@ -21,7 +21,7 @@
 <path d="M35.5,91 L35.5,113 L257.5,113 L257.5,91" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)" />
 <path d="M141 108L151 118M151 108L141 118" stroke="#bc3a33" stroke-width="1.2" />
 <text x="146.25" y="130.0" text-anchor="middle" font-size="9" fill="#57534e">forbidden bypass</text>
-<text x="5" y="152.0" text-anchor="start" font-size="9" fill="#1c1917">Question: What exists, and what is connected to what?</text>
-<text x="5" y="162.8" text-anchor="start" font-size="9" fill="#1c1917">Semantics: Entities and declared structural relations</text>
-<text x="5" y="173.6" text-anchor="start" font-size="9" fill="#1c1917">Analysis: Reachability, paths/cuts and cycles.</text>
+<text x="5" y="152.0" text-anchor="start" font-size="9" fill="#1c1917">Question: Can Web reach Database without passing through API?</text>
+<text x="5" y="162.8" text-anchor="start" font-size="9" fill="#1c1917">Semantics: Components and direct dependencies.</text>
+<text x="5" y="173.6" text-anchor="start" font-size="9" fill="#1c1917">Analysis: Remove API. Is Database still reachable from Web?</text>
 </svg>

@@ -7,7 +7,7 @@
     "derived_ids": 135,
     "missing_topic_sentence": 3,
     "sections_drained": 123,
-    "paragraph_points": 532
+    "paragraph_points": 530
   },
   "chapters": [
     {
@@ -690,29 +690,19 @@
           "section_id": "entities-relationships-and-graph-analysis",
           "level": 2,
           "heading_text": "Entities, Relationships, and Graph Analysis",
-          "topic_sentence": "A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations.",
+          "topic_sentence": "[ref:canonical-structural] shows the intended architecture of a web application with an API, a cache, and a database.",
           "id_source": "explicit",
           "block_index": 2,
           "points": [
             {
-              "slug": "structure-has-a-long-repertoire-of-graphs-that-keep-entities-and-relations",
-              "text": "Component and dependency graphs, call graphs, data-flow diagrams, and deployment topologies all name the entities a question needs and the declared relations between them, and drop the behavior.",
-              "block_index": 3
-            },
-            {
               "slug": "a-structural-model-selects-both-entities-and-relations-and-the-edge-label-carries-the-meaning",
-              "text": "A structural model selects the entities a question needs and the relations between them; the edge label specifies the relationship being modeled, so a generic \"related-to\" edge discards the distinction the model exists to preserve.",
-              "block_index": 6
+              "text": "The architectural question selects components and their permitted direct dependencies.",
+              "block_index": 5
             },
             {
               "slug": "once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations",
-              "text": "Explicit structure turns the claims an engineer wants into graph properties — local, path, or whole-graph — and the analyses into ordinary graph operations: reachability, reverse traversal, cycle detection, impact and conformance.",
+              "text": "Removing API and searching for a remaining Web-to-Database path tests whether the declared architecture permits a bypass.",
               "block_index": 8
-            },
-            {
-              "slug": "derived-structure-and-declared-structure-are-different-claims",
-              "text": "Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Chapter 3 treats the difference.",
-              "block_index": 10
             }
           ]
         },
@@ -722,52 +712,52 @@
           "heading_text": "DocAble: Architecture and Computation Dependencies",
           "topic_sentence": "DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order.",
           "id_source": "explicit",
-          "block_index": 17,
+          "block_index": 12,
           "points": [
             {
               "slug": "a-structural-model-names-the-sanctioned-seam-for-document-mutation",
               "text": "The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, implemented per format — and leaves queues, retries, sessions, and repair mechanics out.",
-              "block_index": 29
+              "block_index": 24
             },
             {
               "slug": "a-model-precedes-the-constraint-that-protects-it",
               "text": "The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble’s static analyses enforce it by rejecting direct access to raw format libraries.",
-              "block_index": 32
+              "block_index": 27
             },
             {
               "slug": "a-structural-model-can-drift-from-the-system-it-describes",
               "text": "A structural model carries the opposite risk — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing.",
-              "block_index": 34
+              "block_index": 29
             },
             {
               "slug": "a-second-structural-question-reaches-inside-the-pipeline",
               "text": "A second structural question reaches inside remediation: which computations make up the pipeline, and how do they depend on one another; the first reduction treats each registered pass as a node.",
-              "block_index": 38
+              "block_index": 33
             },
             {
               "slug": "the-computation-model-distinguishes-data-flow-from-control-composition",
               "text": "DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run).",
-              "block_index": 48
+              "block_index": 43
             },
             {
               "slug": "the-contrast-between-the-two-structural-models",
               "text": "The first model preserves one architectural relation; the second preserves a family of typed compositional relations over the same system.",
-              "block_index": 51
+              "block_index": 46
             },
             {
               "slug": "the-model-also-records-how-bounded-each-effect-is",
               "text": "The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly.",
-              "block_index": 53
+              "block_index": 48
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
               "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
-              "block_index": 55
+              "block_index": 50
             },
             {
               "slug": "the-identity-spine-supports-added-views-without-enlarging-the-schema",
               "text": "Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero.",
-              "block_index": 57
+              "block_index": 52
             }
           ]
         }
