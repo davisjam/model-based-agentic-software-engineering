@@ -80,34 +80,31 @@ def derive_outline(include_appendices: bool = False) -> Outline:
     decorators (via `book_symbols`); an un-drained section keeps its empty points list and its topic
     sentence, so Parts not yet drained are unaffected."""
     by_chapter: dict[str, OutlineChapter] = {}
-    order: list[str] = []
+    chapters = bs.book_ir.parse_book(include_appendices=include_appendices).chapters
+    # Part landing pages are apparatus, even when their reading guide has a heading.
+    part_pages = {c.slug for c in chapters if c.is_part_page}
     for r in bs.heading_rows(include_appendices=include_appendices):
+        if r.chapter_slug in part_pages:
+            continue
         if r.chapter_slug not in by_chapter:
             by_chapter[r.chapter_slug] = OutlineChapter(slug=r.chapter_slug, part=r.part)
-            order.append(r.chapter_slug)
         by_chapter[r.chapter_slug].sections.append(Section(
             section_id=r.section_id, level=r.level, heading_text=r.heading_text,
             topic_sentence=r.topic_sentence, id_source=r.id_source, block_index=r.block_index,
             points=[ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in r.points],
         ))
     # Attach chapter-opener points (a decorator before the chapter's first heading) at chapter scope.
-    chapters = None
     for slug, pts in bs.chapter_preamble_points(include_appendices=include_appendices).items():
+        if slug in part_pages:
+            continue
         if slug not in by_chapter:
             # A developed synthesis can have no subheadings. Its authored points
             # still belong to the outline and must remain available to claims.
-            if chapters is None:
-                chapters = bs.book_ir.parse_book(include_appendices=include_appendices).chapters
             chapter = next(c for c in chapters if c.slug == slug)
-            # A Part landing page can carry opener points too, but it is synthetic apparatus,
-            # not a chapter-identity unit. Preserve the existing outline domain.
-            if chapter.is_part_page:
-                continue
             by_chapter[slug] = OutlineChapter(slug=slug, part=chapter.part)
         by_chapter[slug].preamble_points = [
             ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in pts]
-    if chapters is not None:
-        order = [c.slug for c in chapters if c.slug in by_chapter]
+    order = [c.slug for c in chapters if c.slug in by_chapter]
     return Outline(chapters=[by_chapter[s] for s in order])
 
 
