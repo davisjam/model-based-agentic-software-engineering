@@ -667,6 +667,11 @@ def _prepare_record(task):
         return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
+    # Keep the signed closing together and center it in the right half of the text.
+    latex = re.sub(r'(?m)^% <!-- letter-signature -->\n+(\S[^\n]*(?:\n[^\n]+)*)',
+                   lambda m: (r'\par\addvspace{1.25\baselineskip}\noindent\hfill'
+                              r'\begin{minipage}{.5\linewidth}\centering' + '\n' +
+                              m[1] + '\n' + r'\end{minipage}\par'), latex)
     latex = apply_print_keep_with_next(latex)
 
     # Original artwork can be compact without shrinking native review labels.
@@ -817,6 +822,39 @@ def resolve_external_references(chapters):
         path.write_text(re.sub(r'\\autoref\{([^}]+)\}', reference, path.read_text()))
 
 
+def print_contents(records, selected, external_pages=None, end_entries=()):
+    """Build linked, chapter-and-section contents using the printed heading destinations."""
+    rows = [r'\chapter*{Contents}', r'{\normalsize\hypersetup{linkcolor=bookink}\setlength{\parindent}{0pt}\setlength{\parskip}{1.6pt}']
+    entries = []
+    for record in records:
+        title = record.get('chapter_title', record['part_title'])
+        opener = record.get('is_part_page')
+        number = bb._chap_ref(record).lstrip('§') if 1 <= record['part'] <= 7 else ''
+        if opener:
+            title = f"Chapter {record['part']}: {record['part_title']}"
+        elif number:
+            title = f"{number} {title}"
+        section = bool(number or re.match(r'^[AB]\.\d', title))
+        group = opener or record['slug'] in ('appendix-handbook', 'appendix-practicing-mage')
+        entries.append((title, 'chapter:' + record['slug'], section, group))
+    for title, label, indent, grouped in entries + list(end_entries):
+        if label == 'chapter:part-5-intro' and any(r.get('is_part_page') and r['part'] == 1 for r in records):
+            rows.append(r'\clearpage\chapter*{Contents (continued)}')
+        if label == 'chapter:colophon':
+            rows.append(r'\Needspace{3\baselineskip}\smallskip\textbf{Back Matter}\par')
+        caption = inline(title)
+        if grouped:
+            rows.append(r'\Needspace{3\baselineskip}\smallskip')
+            caption = r'\textbf{' + caption + '}'
+        if label in selected:
+            entry = r'\hyperref[' + label + ']{' + caption + r'\dotfill\pageref*{' + label + '}}'
+        else:
+            entry = caption + r'\dotfill ' + external_pages[label]
+        rows.append((r'\hspace*{1.35em}' if indent else '') + entry + r'\par')
+    rows.extend(['}', r'\clearpage'])
+    return '\n'.join(rows)
+
+
 def prepare_pdf(slugs=None, name="mage-book"):
     """Compile a resolved native manuscript assembled from canonical TeX sources.
 
@@ -832,6 +870,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
     if name != 'mage-book': directory = directory / name
     directory.mkdir(parents=True, exist_ok=True)
     records = book_ir.book_records(include_appendices=True, for_print=True)
+    all_records = records
     index_registry, index_maps = bb._harvest_concept_tags(records)
     index_entries = bb.build_index_entries(records, index_registry)
     # Web/EPUB chapters use URLs; the assembled PDF uses chapter-qualified labels.
@@ -877,7 +916,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
     # This pass also supplies stable labels for captions without authored labels.
     # Excerpts need those anchors before resolving references and replacing artwork,
     # even though they do not print the whole book's figure and table lists.
-    float_lists = native_float_lists(chapters)
+    native_float_lists(chapters)
     if slugs is not None: resolve_external_references(chapters)
     from mage_assets import pool_figures
     pool_figures(chapters, directory)
@@ -887,6 +926,43 @@ def prepare_pdf(slugs=None, name="mage-book"):
     manifest = json.loads((ROOT / 'book/book-manifest.json').read_text())
     if not re.fullmatch(r'[A-Za-z0-9_-]+', name): raise ValueError('Invalid PDF basename')
     driver = directory / (name + '.tex')
+    from mage_cover import cover_tex
+    has_bibliography = any(re.search(r'\\cite[pt]\{', (ROOT / chapter).read_text()) for chapter in chapters)
+    only_front = name == 'mage-book-00-FrontMatter' and all(record['part'] == 0 for record in records)
+    toc_records = all_records if only_front else records
+    local_labels = {'chapter:' + record['slug'] for record in records}
+    end_entries = []
+    external_pages = {}
+    if only_front:
+        # The standalone front matter reproduces the book's roadmap. Page
+        # numbers outside this excerpt come from the completed full edition.
+        for line in (ROOT / 'book/latex/build/mage-book.aux').read_text().splitlines():
+            match = re.match(r'\\newlabel\{([^}]+)\}\{\{[^}]*\}\{([a-z0-9]+)\}', line)
+            if match:
+                external_pages[match[1]] = match[2]
+    if slugs is None or only_front:
+        end_entries.append(('Index', 'mage-index', False, False))
+        if slugs is None:
+            local_labels.add('mage-index')
+    if has_bibliography or only_front:
+        end_entries.append(('Bibliography', 'mage-bibliography', False, False))
+        if has_bibliography and not only_front:
+            local_labels.add('mage-bibliography')
+    contents = print_contents(toc_records, local_labels, external_pages, end_entries)
+    body = []
+    if records[0]['slug'] != '0.0-acknowledgments':
+        body.append(contents)
+    for idx, (record, chapter) in enumerate(zip(records, chapters)):
+        if record['part'] != 0 and (idx == 0 or records[idx-1]['part'] == 0):
+            body.append(r'\clearpage\pagenumbering{arabic}')
+        body.append(r'\input{' + chapter + '}')
+        if record['slug'] == '0.0-acknowledgments':
+            body.append(contents)
+    if slugs is None:
+        body.append(native_index(index_entries, chapters))
+    if has_bibliography:
+        body.extend([r'\bibliographystyle{book/latex/mageplainnat}',
+                     r'\bibliography{' + str(directory.relative_to(ROOT)) + '/references}'])
     driver.write_text(r'''\DocumentMetadata{lang=en-US,pdfversion=2.0,testphase={phase-III,table,math}}
 \documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
@@ -898,53 +974,8 @@ def prepare_pdf(slugs=None, name="mage-book"):
 \newcommand{\magefootnote}[2]{\footnote{#2}}
 \newcommand{\magerule}[1]{\begin{center}\rule{0.5\linewidth}{0.4pt}\end{center}}
 \begin{document}
-\begin{titlepage}
-\centering\vspace*{1in}
-{\bookserif\fontsize{54}{60}\selectfont MAGE\par}
-\vspace{0.4in}
-{\booksans\Large ''' + inline(manifest['title']) + r'''\par}
-\vspace{0.2in}
-{\large ''' + inline(manifest['subtitle']) + r'''\par}
-\vfill
-{\Large ''' + inline(manifest['author']) + r'''\par}
-\end{titlepage}
-\tableofcontents
-''' + '\n'.join(r'\input{' + chapter + '}' for chapter in chapters) + r'''
-\bibliographystyle{book/latex/mageplainnat}
-\bibliography{book/latex/build/references}
-\end{document}
-''')
-    groups = {}
-    for record in records: groups.setdefault(record['part'], record)
-    contents = [r'\chapter*{Contents}', r'{\small\setlength{\parskip}{3pt}', r'\textbf{THE BOOK}\par']
-    appendix_started = False
-    for part, record in groups.items():
-        is_appendix = record['slug'].startswith('appendix')
-        if is_appendix and not appendix_started:
-            contents.append(r'\medskip\textbf{APPENDICES}\par')
-            appendix_started = True
-        title = (f'Chapter {part}: ' if isinstance(part,int) and 0 < part < 9 else '') + record['part_title']
-        contents.append(inline(title) + r'\dotfill\pageref{chapter:' + record['slug'] + '}\\par')
-    contents.extend([r'Bibliography\dotfill\pageref{mage-bibliography}\par', '}', r'\clearpage'])
-    driver.write_text(driver.read_text().replace(r'\tableofcontents', '\n'.join(contents)).replace(r'\bibliographystyle{book/latex/mageplainnat}', r'\phantomsection\label{mage-bibliography}' + '\n' + r'\bibliographystyle{book/latex/mageplainnat}'))
-    if slugs is None:
-        text = driver.read_text()
-        preface = next((chapter for chapter in chapters if Path(chapter).stem.endswith('preface')), None)
-        if preface:
-            text = text.replace(r'\input{' + preface + '}', r'\input{' + preface + '}' + '\n' + float_lists)
-        index = native_index(index_entries, chapters)
-        text = text.replace(r'\phantomsection\label{mage-bibliography}', index + '\n' + r'\phantomsection\label{mage-bibliography}')
-        text = text.replace(r'Bibliography\dotfill', r'Index\dotfill\pageref{mage-index}\par' + '\n' + r'Bibliography\dotfill')
-        driver.write_text(text)
-    driver.write_text(driver.read_text().replace(r'\bibliography{book/latex/build/references}', r'\bibliography{' + str(directory.relative_to(ROOT)) + '/references}'))
-    driver.write_text(driver.read_text().replace(r'\phantomsection\label{mage-bibliography}', ''))
-    if not any(re.search(r'\\cite[pt]\{', (ROOT / chapter).read_text()) for chapter in chapters):
-        text = driver.read_text()
-        text = re.sub(r'^\\bibliograph(?:y|ystyle)\{[^}]*\}\n?', '', text, flags=re.M)
-        text = re.sub(r'^Bibliography\\dotfill[^\n]*\n?', '', text, flags=re.M)
-        driver.write_text(text)
-    from mage_cover import cover_tex
-    driver.write_text(re.sub(r'\\begin\{titlepage\}.*?\\end\{titlepage\}', lambda m: cover_tex(), driver.read_text(), flags=re.S))
+\pagenumbering{roman}
+''' + cover_tex() + '\n'.join(body) + '\n' + r'\end{document}' + '\n')
     return driver
 
 

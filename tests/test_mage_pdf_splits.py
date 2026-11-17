@@ -169,7 +169,7 @@ class ExcerptPreparationTests(unittest.TestCase):
             (root / 'book/book-manifest.json').write_text(json.dumps(
                 {'title': 'Book', 'subtitle': 'A subtitle', 'author': 'An author'}))
             slug = '0.6-preface'
-            record = {'slug': slug, 'part': 0, 'part_title': 'Orientation', 'body_md': ''}
+            record = {'slug': slug, 'part': 0, 'part_title': 'Orientation', 'chapter_title': 'Preface', 'body_md': ''}
             original = (r'\chapter*{Preface}\label{chapter:' + slug + '}\n'
                         r'\autoref{mage-list-figure-0}' + '\n'
                         r'\begin{figure}\includegraphics{book/assets/example.svg}' + '\n'
@@ -204,7 +204,9 @@ class ExcerptPreparationTests(unittest.TestCase):
 
             full = mage_latex.prepare_pdf()
             self.assertEqual(labels.call_count, 1)
-            self.assertIn(r'\chapter*{List of Figures}', full.read_text())
+            self.assertNotIn(r'\chapter*{List of Figures}', full.read_text())
+            self.assertIn(r'\chapter*{Contents}', full.read_text())
+            self.assertIn(r'\hyperref[chapter:0.6-preface]{Preface', full.read_text())
             excerpt = mage_latex.prepare_pdf(slugs=[slug], name='excerpt')
             self.assertEqual(labels.call_count, 2, 'each preparation supplies labels exactly once')
             self.assertNotIn(r'\chapter*{List of Figures}', excerpt.read_text())

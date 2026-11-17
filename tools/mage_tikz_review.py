@@ -437,7 +437,9 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             from mage_figure_layout import observation_policy_columns
             text = observation_policy_columns(text)
         if chapter.stem == '1.4-the-agentic-substrate':
-            from mage_figure_layout import reasoning_horizon_columns
+            from mage_figure_layout import keep_opening_figure, reasoning_horizon_columns
+            alt = json.loads((BASE / 'receipts/agentic-substrate.json').read_text())['alt']
+            text = keep_opening_figure(text, 'agentic-substrate', alt)
             text = reasoning_horizon_columns(text)
         if chapter.stem == '0.1-how-to-read-this-book':
             from mage_figure_layout import reading_guide_columns

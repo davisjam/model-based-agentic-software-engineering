@@ -2956,36 +2956,11 @@
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
-      "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
+      "source_sha256": "9af4a79426995e50b80b0825759e2cd8f321a5594a4d9a2f9198a6c1c34b70f9",
+      "candidate_sha256": "e55008c299aba6c3cf0a15f9ed41bb6e01a25ceee0c9435aa66112598ae65039",
+      "reason": "Compact opening overview for §1.4. The model-property table is explained later in the section; this drawing keeps the three components and their exchanges at readable type sizes.",
+      "previous_review": "book/editorial/figure-redraws-20261116/agentic-substrate-before/typography-review.json",
       "decision": "refined",
-      "reviewed_visually": true,
-      "reason": "Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt. Native fonts are authored at these sizes; no post-render scaling.",
-      "validation": {
-        "date": "2026-11-12",
-        "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-        "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
-        "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
-        "page": 1,
-        "width_bp": 442.52,
-        "height_bp": 284.522,
-        "minimum_prose_font_pt": 9.0,
-        "authored_type_sizes_pt": [
-          9.0,
-          9.5,
-          10.0
-        ],
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 7,
-        "reviewed_peer_groups": 1,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 59,
-        "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
-        "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
-        "status": "passed"
-      },
-      "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/typography-review.json",
       "checks": [
         {
           "text": "Model development",
@@ -2993,28 +2968,18 @@
           "italic": false
         },
         {
-          "text": "General-purpose capabilities",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Training data",
+          "text": "Training data and training",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Training",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Foundation model",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Agentic engineering system",
+          "text": "Engineer",
           "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Develops and maintains GEE",
+          "bold": false,
           "italic": false
         },
         {
@@ -3023,12 +2988,12 @@
           "italic": false
         },
         {
-          "text": "Properties and",
+          "text": "General-purpose",
           "bold": false,
           "italic": true
         },
         {
-          "text": "engineering implications",
+          "text": "reasoning",
           "bold": false,
           "italic": true
         },
@@ -3038,14 +3003,19 @@
           "italic": false
         },
         {
-          "text": "Outputs become",
+          "text": "Context management",
           "bold": false,
-          "italic": true
+          "italic": false
         },
         {
-          "text": "actions",
+          "text": "Tools and hooks",
           "bold": false,
-          "italic": true
+          "italic": false
+        },
+        {
+          "text": "Action execution",
+          "bold": false,
+          "italic": false
         },
         {
           "text": "Governed engineering",
@@ -3058,528 +3028,66 @@
           "italic": false
         },
         {
-          "text": "Broad",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "reasoning",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Delegated",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "implementation",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Probabilistic",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "output",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Independent",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "assurance",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Finite working",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "state",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "External",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "representations",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "and retrieval",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Inexpensive",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "inference",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Repeated",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "exploration",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "and revision",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Tools and integrations",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Context management",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "retrieval · workspace",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Interposition / hooks",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Parallel and staged",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "execution",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Existing system",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Code · architecture",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Configuration · tests",
+          "text": "Project knowledge",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Operational state",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Engineering structure",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Models · obligations",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Instructions · procedures",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Tools · permissions",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Evidence · controls",
+          "text": "and controls",
           "bold": false,
           "italic": false
         },
         {
           "text": "Outputs",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
           "text": "Context",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
           "text": "Actions",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
-          "text": "Tool results",
+          "text": "Evidence",
           "bold": false,
-          "italic": false
+          "italic": true
         },
         {
-          "text": "/ evidence",
+          "text": "Project guidance informs reasoning; controls govern actions.",
           "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Governance",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Constrains actions;",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "controls acceptance",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Guidance",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Supplies knowledge; influences reasoning",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Engineer",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "— Develops and maintains the GEE",
-          "bold": false,
-          "italic": false
+          "italic": true
         }
       ],
-      "evidence": [
-        {
-          "candidate_text": "Model development",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "General-purpose capabilities",
-          "candidate_style": "italic",
-          "semantic_role": "explanatory subtitle"
-        },
-        {
-          "candidate_text": "Training data",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Training",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Foundation model",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Agentic engineering system",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Foundation model",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Properties and",
-          "candidate_style": "italic",
-          "semantic_role": "explanatory subtitle"
-        },
-        {
-          "candidate_text": "engineering implications",
-          "candidate_style": "italic",
-          "semantic_role": "explanatory subtitle"
-        },
-        {
-          "candidate_text": "Agentic harness",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Outputs become",
-          "candidate_style": "italic",
-          "semantic_role": "explanatory subtitle"
-        },
-        {
-          "candidate_text": "actions",
-          "candidate_style": "italic",
-          "semantic_role": "explanatory subtitle"
-        },
-        {
-          "candidate_text": "Governed engineering",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "environment (GEE)",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Broad",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "reasoning",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Delegated",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "implementation",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Probabilistic",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "output",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Independent",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "assurance",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Finite working",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "state",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "External",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "representations",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "and retrieval",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Inexpensive",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "inference",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Repeated",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "exploration",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "and revision",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Tools and integrations",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Context management",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "retrieval · workspace",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Interposition / hooks",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Parallel and staged",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "execution",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Existing system",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Code · architecture",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Configuration · tests",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Operational state",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Engineering structure",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Models · obligations",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Instructions · procedures",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Tools · permissions",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Evidence · controls",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Outputs",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Context",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Actions",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Tool results",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "/ evidence",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Governance",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Constrains actions;",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "controls acceptance",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Guidance",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "Supplies knowledge; influences reasoning",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        },
-        {
-          "candidate_text": "Engineer",
-          "candidate_style": "bold",
-          "semantic_role": "region/component/property or control relation"
-        },
-        {
-          "candidate_text": "— Develops and maintains the GEE",
-          "candidate_style": "regular",
-          "semantic_role": "facility, implication, example or exchange label"
-        }
-      ]
+      "reviewed_visually": true,
+      "validation": {
+        "date": "2026-11-16",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "page": 11,
+        "width_bp": 436.62,
+        "height_bp": 159.648,
+        "minimum_prose_font_pt": 9,
+        "authored_type_sizes_pt": [
+          9,
+          9.5,
+          10,
+          10.5,
+          11
+        ],
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "proof_sha256": "324fde5a102aa111e28143a4c3c4bf0b4cc039c8f4ce862c13a555f6ed068cf6",
+        "typography_audit_sha256": "9ae85eb13fd4e4c1f57120a4dbf320dd7377901edcf460757bb83bb1354b78bc"
+      }
     },
     {
       "source": "book/assets/reasoning-horizon.svg",

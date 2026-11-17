@@ -142,18 +142,17 @@
     "data": [],
     "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
     "svg_title": "Commodity intelligence in a governed engineering environment",
-    "svg_description": "Model development transforms training data through training into a trained foundation model, which supplies the foundation model within the agentic engineering system. The foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and tool results or evidence with the governed engineering environment. Four model properties have engineering implications: broad reasoning enables delegated implementation; probabilistic output requires independent assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated exploration and revision. Harness facilities are tools and integrations, context management, interposition or hooks, and parallel or staged execution. The GEE contains the existing system and engineering structure. Guidance originates in the GEE and supplies knowledge to influence reasoning; governance originates in the GEE and constrains actions and controls acceptance. The engineer develops and maintains the GEE.",
+    "svg_description": "Training supplies the foundation model. The model sends outputs to the harness and receives context. The harness acts on the governed engineering environment and receives evidence. Engineers maintain the environment, which supplies project knowledge and controls which actions are permitted.",
     "native_dimensions_bp": [
-      446.843994140625,
-      557.6439819335938
+      436.62,
+      159.648
     ],
     "authored_font_sizes_pt": [
+      9,
       9.5,
       10,
-      10.2,
       10.5,
-      10.8,
-      11.5
+      11
     ],
     "draft_generation_provenance": {
       "scene": "book/editorial/retired-agentic-machinery-20261110/draft-figure-scene.json",
@@ -161,16 +160,15 @@
       "role": "Archived drafting provenance; not a new build dependency."
     },
     "web_dimensions_css_px": [
-      1003.5,
-      1253.25
+      990,
+      369
     ],
     "web_authored_font_sizes_css_px": [
+      20.25,
       21.375,
       22.5,
-      22.95,
       23.625,
-      24.3,
-      25.875
+      24.75
     ]
   },
   {

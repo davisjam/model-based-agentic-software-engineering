@@ -4,20 +4,26 @@
     {
       "source": "book/latex/sources/frontmatter/0.0-acknowledgments.tex",
       "projection": "book/frontmatter/0.0-acknowledgments.md",
-      "source_hash": "c8f2687a528ca48a172f8f3a4e8e5590a44c43085505b55067f525460531a40f",
-      "projection_hash": "9527ef841f60b99aa224286e9de1ee5d4a8d5bce61f1f0053a251e8be4c12dd4"
+      "source_hash": "338e4925894330db6d4665314eef0ac12b2bca6990b7e1988f10979fac4e7ed8",
+      "projection_hash": "3520420069470ae37db7b6bb1f10f3d21d6d81ca005b7ae09d783df12a8c4728"
     },
     {
       "source": "book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex",
       "projection": "book/frontmatter/0.1-how-to-read-this-book.md",
-      "source_hash": "d283aaeac394735f0f295ed6ac776a38f21398ffb42aa948376b53caac491c81",
-      "projection_hash": "0a06b5d6544d7da89e745f3dff7fd5b1e8607f1945b73fc404a260f7715e4d7d"
+      "source_hash": "e1b18fe5c25741446d0da73c4fb347380a0ecdf6285777c0108c9b5281744ba4",
+      "projection_hash": "5101780d565b240141ec8338265541829316f624cc4e026d733db88a63b8a248"
     },
     {
       "source": "book/latex/sources/frontmatter/0.2-what-this-book-argues.tex",
       "projection": "book/frontmatter/0.2-what-this-book-argues.md",
       "source_hash": "179b5e8732c5ece7a47b12aaa84c4af287c815543c123bf5cf420acac62a8c90",
       "projection_hash": "3d4fc9676f8b2b1eb71ffab6779a8720e604f38966fb5ac0d99c2a843dd2c335"
+    },
+    {
+      "source": "book/latex/sources/frontmatter/0.3-authors-note.tex",
+      "projection": "book/frontmatter/0.3-authors-note.md",
+      "source_hash": "7f5818b0daf663b6ac407926307328b40bc791b4a60547f754e363783497f879",
+      "projection_hash": "4a8567b0b3b916da050926fb8c2fe8296dd370bab486bfe9a0455319ca6bac62"
     },
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
@@ -28,8 +34,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
       "projection": "book/frontmatter/0.5-preface.md",
-      "source_hash": "bb1f7a0e63d88992a86f2f1d1eeb966094a2214e82da6ac363cfefd638a0a954",
-      "projection_hash": "367d186b70957bef1f594b924101a5650428b37fac7730883f7b99a985fe0f1c"
+      "source_hash": "afd9eac649688d070824be91fee08975ccb713c8720a949536fba28ec35b8306",
+      "projection_hash": "919a51c39ba9df36b50e0fdbda4de77822f9e45fbfeb7502863493c4072a9688"
     },
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
@@ -40,8 +46,8 @@
     {
       "source": "book/latex/sources/part1/1.1-the-printer.tex",
       "projection": "book/part1/1.1-the-printer.md",
-      "source_hash": "c043ce7c8f57c68028bb958b06c0919fa83c2211f2a1ee0036bb29f4eab3650c",
-      "projection_hash": "7cb747d03d46b8e945c8b985cbdbbb5ad93b003a9cb91f3aa554a724dd2ee355"
+      "source_hash": "4336ca542f48385dea1ec4883b10754b1dd4f49fcadbfcb23b3468e785ed4d0e",
+      "projection_hash": "7ff52328fa2e5cdbd8d68e0b1d408e3702f018f949f0a194ad736ebf89eeea90"
     },
     {
       "source": "book/latex/sources/part1/1.2-the-engineering-object.tex",
@@ -52,20 +58,20 @@
     {
       "source": "book/latex/sources/part1/1.3-mage-by-example.tex",
       "projection": "book/part1/1.3-mage-by-example.md",
-      "source_hash": "a7506d21071b497adb33db2c20a1163771cbaed934f2947c2e6a78a69d744e0f",
-      "projection_hash": "5a34ae9dc31f008c683cb3d1a0db97febf00ca855cc55f8fd7ef4b6bdbe3faab"
+      "source_hash": "226f53451d3c31fb59d6538896722208a84b8710ba29ace3fc66df8807bf3ffe",
+      "projection_hash": "47b55cd33c1e89cc0f417e034225f4c380c2d7103d144d8454fa50e2f8fba9ac"
     },
     {
       "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
       "projection": "book/part1/1.4-the-agentic-substrate.md",
-      "source_hash": "c9b9f59ea66fe18d276ef41cbf359d598857d6b9a5c5928712da73c730264a14",
-      "projection_hash": "610870e1f253514942a3bdb745cafce95d15824f5bafb1633b3c42e1b8353431"
+      "source_hash": "86a6d71e91e11b9614e394c305ef60389da91357cdd5d0a7291930d3a3089cd0",
+      "projection_hash": "918291be279d5f7b7138c3ca8f18a20a4ed5362f2f6b57c7517068a78a3c4807"
     },
     {
       "source": "book/latex/sources/part1/1.5-the-new-engineering-problem.tex",
       "projection": "book/part1/1.5-the-new-engineering-problem.md",
-      "source_hash": "f78abaca03192d34deb4e9d26cc16754da67d312809bd76741be03bb3bb0b7ee",
-      "projection_hash": "824278c03217d2b44191561649364ee87a3bfe3c5693599882b8264b1ba4e4fc"
+      "source_hash": "41facdaccba257f6e62764e17ccb4901902832a39704f9e09af1e684d06572dd",
+      "projection_hash": "caa03924621c82d611757a542646c237692762371445d8ae29782e5871993a23"
     },
     {
       "source": "book/editorial/chapter-one-synthesis-20261110/1.6-problem-summary.tex",

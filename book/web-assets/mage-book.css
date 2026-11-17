@@ -473,3 +473,6 @@ div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
     width: 12.5rem; margin-right: -14rem;
   }
 }
+
+/* Signed closing in the Author’s Note. */
+p.letter-signature { width: 50%; margin: 1.25em 0 0 auto; text-align: center; text-indent: 0; break-inside: avoid; }

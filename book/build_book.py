@@ -253,7 +253,7 @@ def _mermaid_env() -> dict[str, str]:
 # pattern here would delete those from `body_md` before the renderer ever saw them. `coda: true` marks an
 # in-part UNNUMBERED closing (the Part-IV portable-moves coda): it sorts by filename like a real chapter but
 # every number-suppression site skips it, exactly like `is_part_page` — but without the part-opener render.
-META_RE = re.compile(r"<!--\s*(part-title|chapter-title|coda):\s*(.*?)\s*-->")
+META_RE = re.compile(r"<!--\s*(part-title|chapter-title|coda|frontmatter-order):\s*(.*?)\s*-->")
 
 # Curated-index annotation tags (book/BUILD.md §6). Placed on their own line at (or just before) the
 # concept's defining / exemplifying block. The renderer turns each into a stable anchor on the FOLLOWING
@@ -390,6 +390,7 @@ MARKER_KEYWORDS = (
     # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote (large centered
     #   emphasis, no fill/border box). [INFRA-1], part6-apply-SPEC-260807.md §C-1/§F.
     "pullquote",
+    "letter-signature",
     # `<!-- coda-rule -->` — EMITS one centered hairline at half the text measure: the typographic pause
     #   before a closing sentence, which then sets in ORDINARY BODY TYPE. Its sibling `pullquote` ARMS the
     #   next block and enlarges it; this marker arms nothing and touches the sentence not at all — the rule
@@ -1293,6 +1294,8 @@ def parse_chapter(path: pathlib.Path, part: int, chapter: int, metrics: dict[str
         "part": part,
         "part_title": meta.get("part-title", _PART_TITLES.get(part, "")),
         "chapter": chapter,
+        # An inserted front-matter page need not change any published chapter URL.
+        "reading_order": float(meta.get("frontmatter-order", chapter)) if part == 0 else chapter,
         "chapter_title": meta.get("chapter-title", path.stem),
         # Redirect any authored link to a now-dropped (non-flagship) appendix page to the live web entry, so
         # a main-narrative cross-reference to a mechanism the print appendix omits stays resolvable.
@@ -1349,7 +1352,7 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
                 raise SystemExit(
                     f"chapter {p} names part {file_part} but sits in {subdir} (part {part})")
             found.append(parse_chapter(p, part, chapter, metrics))
-    found.sort(key=lambda c: (c["part"], c["chapter"]))
+    found.sort(key=lambda c: (c["part"], c["reading_order"]))
     # Derive the sequential chapter number — single source of truth is the filesystem order over the
     # numbered body Parts (1-8). Front/back matter (is_matter) is unnumbered and skipped. This replaces
     # the old hand-typed "# Chapter N ·" H1 (which the build drops anyway), so a chapter number can never
@@ -1702,6 +1705,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_def: list[str] = []             # a core-term `index-def` armed for the next block (→ def-box)
     pending_pullquote: list[bool] = []      # a `<!-- pullquote -->` marker armed for the next blockquote
     pending_epigraph: list[bool] = []       # an `<!-- epigraph -->` marker armed for the next blockquote (inline chapter epigraph)
+    pending_signature = False
     pending_inlinequote: list[bool] = []    # an `<!-- inline-quote -->` marker armed for the next blockquote (main-column quote)
     pending_sidenote: list[bool] = []       # a `<!-- sidenote -->` marker armed for the next blockquote (declared right-rail aside)
     pending_principlebox: list[bool] = []      # a `<!-- principlebox -->` marker armed for the next blockquote (part-opener box)
@@ -1768,7 +1772,11 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         its first-reference sidenote, `figure`/`figure-iframe`/`eq` render their display element, `gloss-only`
         / `glossary-auto` harvest/render — then is peeled. This covers the WHOLE argument-taking vocabulary
         uniformly (part-title/chapter-title are stripped earlier by META_RE, before block splitting)."""
+        nonlocal pending_signature
         s = line.strip()
+        if s == "<!-- letter-signature -->":
+            pending_signature = True
+            return True
         if _consume_index_tag(s):
             return True
         _gm = _GLOSS_RE.match(s)
@@ -2127,7 +2135,11 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
             _emit(_render_ordered_list(block))
             continue
         # Paragraph (the IR's PARA fall-through).
-        _emit(_render_paragraph(block))
+        paragraph = _render_paragraph(block)
+        if pending_signature:
+            paragraph = paragraph.replace("<p>", '<p class="letter-signature">', 1)
+            pending_signature = False
+        _emit(paragraph)
     return "\n".join(out)
 
 
@@ -2462,8 +2474,9 @@ def _render_ordered_list(block: str) -> str:
 
 
 def _render_paragraph(block: str) -> str:
-    """A paragraph — wrapped source lines joined into one <p>."""
-    return f"<p>{inline(' '.join(ln.strip() for ln in block.splitlines()))}</p>"
+    """Join soft wraps; keep explicit Markdown line breaks (e.g., a signature)."""
+    runs = re.split(r"(?<!\\)\\\n", block)
+    return "<p>" + "<br>".join(inline(" ".join(ln.strip() for ln in run.splitlines())) for run in runs) + "</p>"
 
 
 # ── Web stylesheet ───────────────────────────────────────────────────────────────────────────────
@@ -5695,21 +5708,26 @@ def _list_of_floats_chapter(entries: list[dict], for_print: bool) -> dict:
 # Pages the build writes BEYOND chapter/appendix discovery. Declared once so the two build paths that
 # insert them and the tracked-HTML test that expects them share ONE source of truth (an ad-hoc insertion
 # that the test's discovery never saw is exactly the orphan this centralization prevents).
-_GENERATED_PAGE_SLUGS = ("list-of-figures",)
+_GENERATED_PAGE_SLUGS = ("list-of-figures", "contents")
 
 
-def _insert_list_of_floats(chapters: list[dict], page_anchor_maps: dict,
-                           for_print: bool) -> "tuple[list[dict], dict[str, dict], list[dict]]":
-    """Insert the generated List of Figures and Tables just after the preface, and return the label→float
-    map for `[ref:]` cross-reference resolution PLUS the raw collected float entries (so a caller building
-    a further projection — e.g. the figures gallery — reuses the SAME reading-order render instead of
-    walking the chapters a second time). Shared by the print and per-chapter builds so the two cannot
-    drift; its float numbers come from the same reading-order pass the inline numbering uses, so the list
-    number, the printed 'Figure N.', and every `[ref:]` to it all agree."""
-    entries, ref_map = _collect_floats(chapters, page_anchor_maps)
-    lof = _list_of_floats_chapter(entries, for_print)
-    pi = next((k for k, c in enumerate(chapters) if c["slug"].endswith("preface")), -1)
-    return chapters[: pi + 1] + [lof] + chapters[pi + 1:], ref_map, entries
+def _with_contents(chapters):
+    chapters = list(chapters)
+    # Use the book's reading order for both the Contents page and its links.
+    contents_rows = []
+    for record in chapters:
+        label = _pager_label(record)
+        if record.get("is_part_page"):
+            label = f'Chapter {record["part"]}: {record["part_title"]}'
+        contents_rows.append(f'- [{label}]({record["slug"]}.html)')
+    contents_rows.extend([f'- [Index]({BOOK_INDEX_SLUG}.html)', f'- [Bibliography]({_BIBLIOGRAPHY_SLUG}.html)'])
+    ack_index = next(i for i, record in enumerate(chapters) if record["slug"] == "0.0-acknowledgments")
+    chapters.insert(ack_index + 1, {
+        "slug": "contents", "part": 0, "part_title": chapters[ack_index]["part_title"],
+        "chapter": 0, "chapter_title": "Contents", "is_matter": True,
+        "body_md": "\n".join(contents_rows), "mermaid": False,
+    })
+    return chapters
 
 
 _SVG_ID_RE = re.compile(r'\bid="([A-Za-z][\w:.-]*)"')
@@ -6183,7 +6201,7 @@ _BODY_PAGE_H_PT = 11.0 * _PT_PER_IN            # 792 — us-letter portrait heig
 _BODY_BOTTOM_MARGIN_PT = 1.0 * _PT_PER_IN      # 72 — 1in bottom y-margin (matches #set page)
 _BODY_SAFE_BOTTOM_PT = _BODY_PAGE_H_PT - _BODY_BOTTOM_MARGIN_PT   # 720 — a word's yMax must not cross this
 _BOTTOM_BLEED_TOL_PT = 6.0                     # same clean-gap tolerance as the horizontal sensor
-_PAGENUM_RE = re.compile(r"^\d+$")
+_PAGENUM_RE = re.compile(r"^(?:\d+|[ivxlcdm]+)$")
 
 
 def _pdf_bottom_margin_bleed(pdf_path: pathlib.Path) -> list[tuple[int, str, float, float]]:
@@ -6480,24 +6498,19 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         print(f"PDF CHAPTER-OPENER SPREAD SENSOR: BLOCKING PASS — all 7 chapter opener spreads clean"
               f"{' (incl. facing parity)' if _facing else ''}.")
 
-    # CONTENTS ONE-PAGE sensor — the in-document Contents (table of contents) MUST fit ONE page (author
-    # guarantee, 260821). The custom outline (book_typst) is tuned to one page via a tighter Contents-page
-    # margin + calibrated entry spacing; a later chapter/spacing change that overflows must fail the build, not
-    # silently push the Contents to a second page. Identify the Contents page by its two division headers
-    # ("THE BOOK" + "APPENDICES", uppercase, unique to the TOC) and assert the LAST entry ("Bibliography") lands
-    # on that SAME page — if the TOC spilled, the last entry falls on the next page. BLOCKING. Skips a
-    # section-split / front-matter-less build (no Contents). pdftotext extracts these tokens cleanly (verified).
-    _toc_pages = _pdf_per_page_text(pdf_path)
-    _toc_idx = next((i for i, t in enumerate(_toc_pages, 1) if "THE BOOK" in t and "APPENDICES" in t), None)
-    if _toc_idx is None:
-        problems.append("full book has no identifiable Contents page (THE BOOK / APPENDICES)")
-    elif "Bibliography" in _toc_pages[_toc_idx - 1]:
-        print(f"PDF CONTENTS ONE-PAGE SENSOR: BLOCKING PASS — Contents fits one page (p{_toc_idx}).")
+    # Detailed contents span the pages between Acknowledgments and the Author's Note.
+    toc_pages = [_norm(page) for page in _pdf_per_page_text(pdf_path)]
+    note = next((i for i, page in enumerate(toc_pages) if page.startswith("Author's Note")), None)
+    if len(toc_pages) < 4 or not toc_pages[1].startswith("Acknowledgments") or not toc_pages[2].startswith("Contents") or note is None:
+        problems.append("Front matter must open with the title, Acknowledgments, Contents, and Author's Note")
     else:
-        print("PDF CONTENTS ONE-PAGE SENSOR: BLOCKING FAIL — the Contents spilled past one page "
-              f"(the last entry is not on the Contents page p{_toc_idx}). Tighten entry spacing or the "
-              "Contents-page margin in book_typst so it fits one page.", file=sys.stderr)
-        problems.append("Contents table of contents spilled past one page")
+        contents = " ".join(toc_pages[2:note])
+        for record in full:
+            title = _norm(record["chapter_title"])
+            if title not in contents and not record.get("is_part_page"):
+                problems.append(f"Missing Contents entry for {title!r}")
+        if "Bibliography" not in contents:
+            problems.append("Contents is missing its Bibliography entry")
 
     # Native insets occupy the full text measure in normal flow. Preserve inset
     # presence and the one-authored-opening-per-page rule; margin and blank
@@ -7093,7 +7106,8 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # Harvest the glossary annotations (single source of truth for the inline glosses + the back-Glossary).
     _collect_glossary(chapters)
 
-    chapters, ref_map, float_entries = _insert_list_of_floats(chapters, page_anchor_maps, for_print=False)
+    float_entries, ref_map = _collect_floats(chapters, page_anchor_maps)
+    chapters = _with_contents(chapters)
 
     # Per-chapter pages. Float numbers are CHAPTER-RELATIVE ("Figure 1.3-1"): the counters reset to 1 at
     # each chapter, keyed to the chapter's <part>.<chapter> id, matching the label map _collect_floats built.
@@ -7301,6 +7315,12 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
          "page_title": f"Bibliography · {_BOOK_TITLE}", "main": bib_main},
     ]
 
+    # The web gallery also uses this standalone reference to number its artwork.
+    # It is separate from the book's reading sequence.
+    float_reference = _list_of_floats_chapter(float_entries, for_print=False)
+    extras.append({"slug": float_reference["slug"], "nav_title": float_reference["chapter_title"],
+                   "main_cls": "wrap", "head_meta": "", "page_title": float_reference["chapter_title"],
+                   "main": "<h1>List of Figures and Tables</h1>" + md_to_html(float_reference["body_md"])})
     print(f"rendered {len(chapters)} chapter page bodies + {len(extras)} generated pages "
           f"({fig_count} figures)")
     return chapters, extras

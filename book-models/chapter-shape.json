@@ -53,34 +53,6 @@
   },
   "chapters": [
     {
-      "slug": "the-books-language",
-      "opening": {
-        "failure_question": "absent",
-        "answer": "absent",
-        "thesis_link": "absent",
-        "thesis_target": "none"
-      },
-      "closing": {
-        "kind": "apparatus"
-      },
-      "note": "Exempt (apparatus). Front-of-book glossary — the book's vocabulary gathered in one place so later chapters reference rather than re-explain; no argumentative shape expected.",
-      "opening_anchor": "Agentic software engineering is a fast-evolving topic, and it seems that many",
-      "closing_anchor": "from model provenance, which tracks what a derived model was generated from.)",
-      "delivers": {
-        "concepts": [
-          "tolerance",
-          "degrees-of-freedom",
-          "churn",
-          "commodity-intelligence",
-          "compounding"
-        ],
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "exempt": "apparatus",
-      "spine_advances": []
-    },
-    {
       "slug": "preface",
       "opening": {
         "failure_question": "explicit",
@@ -112,6 +84,34 @@
         "mage-becomes-practical",
         "grounded-in-one-case"
       ]
+    },
+    {
+      "slug": "the-books-language",
+      "opening": {
+        "failure_question": "absent",
+        "answer": "absent",
+        "thesis_link": "absent",
+        "thesis_target": "none"
+      },
+      "closing": {
+        "kind": "apparatus"
+      },
+      "note": "Exempt (apparatus). Front-of-book glossary — the book's vocabulary gathered in one place so later chapters reference rather than re-explain; no argumentative shape expected.",
+      "opening_anchor": "Agentic software engineering is a fast-evolving topic, and it seems that many",
+      "closing_anchor": "from model provenance, which tracks what a derived model was generated from.)",
+      "delivers": {
+        "concepts": [
+          "tolerance",
+          "degrees-of-freedom",
+          "churn",
+          "commodity-intelligence",
+          "compounding"
+        ],
+        "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": "apparatus",
+      "spine_advances": []
     },
     {
       "slug": "the-printer",
@@ -191,13 +191,11 @@
       "delivers": {
         "concepts": [
           "engineering-substrate",
-          "agentic-harness",
-          "engineered-environment",
           "long-horizon-task",
           "reasoning-horizon",
-          "representation-problem",
-          "probabilistic-surface",
-          "enforcement-problem"
+          "agentic-harness",
+          "engineered-environment",
+          "probabilistic-surface"
         ],
         "artifacts": [
           {
@@ -234,7 +232,10 @@
       "opening_anchor": "The preceding discussion suggests a different unit of analysis for agentic software",
       "closing_anchor": "develops the theoretical argument, while Chapter 7 considers its implications beyond software.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "representation-problem",
+          "enforcement-problem"
+        ],
         "artifacts": [
           {
             "type": "framework",

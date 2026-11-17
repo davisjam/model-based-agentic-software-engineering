@@ -48,8 +48,7 @@ def book_word_counts() -> "bb.WordCounts":
     Mirrors the assembly in `build_book.build_pages` up to its own `compute_word_counts` call, minus
     every step that only matters to rendering or to writing files. Each step below changes the count, so
     none can be dropped: the appendix and back-matter builders add pages, the appendix-reference pass
-    rewrites `[appendix: …]` markers into links, and the List-of-Figures insertion adds a front-matter
-    page worth ~1,270 words."""
+    rewrites `[appendix: …]` markers into links, and the generated Contents page lists the front matter, chapters, and sections."""
     metrics = bb._load_metrics()
     bb._load_citations()
     chapters = bb._discover_chapters(metrics)
@@ -69,7 +68,7 @@ def book_word_counts() -> "bb.WordCounts":
 
     _registry, page_anchor_maps = bb._harvest_concept_tags(chapters)
     bb._collect_glossary(chapters)
-    chapters, _ref_map, _floats = bb._insert_list_of_floats(chapters, page_anchor_maps, for_print=False)
+    chapters = bb._with_contents(chapters)
 
     # `compute_word_counts` renders each page through the shared renderer, and the renderer's citation
     # state is module-global: a cite key whose note has already been emitted renders as a bare superscript

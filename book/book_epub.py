@@ -142,6 +142,8 @@ def _rewrite_url(url: str, slugset: "set[str]") -> str:
         # Bodies are rendered for the book's own directory, one level below the site root (the
         # same fact book_mkdocs' depth bump encodes) — absolute at the published site root.
         return f"{_PAGES_URL}/{url[3:]}"
+    if url == "contents.html":
+        return "nav.xhtml"
     if url == "index.html" or url.startswith("index.html#"):
         # The web landing's ePub role is carried by the nav document (see module docstring).
         return "nav.xhtml" + url[len("index.html"):]
@@ -259,7 +261,7 @@ def _content_opf(spine_recs: "list[dict]", page_docs: "dict[str, str]",
         '<item id="cover-img" href="cover.jpg" media-type="image/jpeg" properties="cover-image"/>',
         '<item id="css" href="epub.css" media-type="text/css"/>',
     ]
-    spine: list[str] = ['<itemref idref="cover-page"/>', '<itemref idref="nav" linear="no"/>']
+    spine: list[str] = ['<itemref idref="cover-page"/>']
     for rec in spine_recs:
         slug = rec["slug"]
         props = [p for p, tok in (("svg", "<svg"), ("mathml", "<math")) if tok in page_docs[slug]]
@@ -267,6 +269,8 @@ def _content_opf(spine_recs: "list[dict]", page_docs: "dict[str, str]",
         items.append(f'<item id="pg-{slug}" href="{slug}.xhtml" '
                      f'media-type="application/xhtml+xml"{prop_attr}/>')
         spine.append(f'<itemref idref="pg-{slug}"/>')
+        if slug == "0.0-acknowledgments":
+            spine.append('<itemref idref="nav"/>')
     _MEDIA = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
               ".gif": "image/gif", ".svg": "image/svg+xml", ".webp": "image/webp"}
     for i, rel in enumerate(asset_names):
@@ -334,6 +338,8 @@ def emit(chapters: "list[dict]", extras: "list[dict]",
     # Reading order = the build's own order: chapters (front matter -> parts -> appendices -> back
     # matter), then the generated back-matter pages. The web landing is web chrome — excluded (its
     # ePub jobs are the cover + nav.xhtml; see module docstring).
+    chapters = [c for c in chapters if c["slug"] != "contents"]
+    extras = [e for e in extras if e["slug"] != "list-of-figures"]
     spine_recs = chapters + [e for e in extras if e["slug"] != "index"]
     slugset = {r["slug"] for r in spine_recs}
 

@@ -52,7 +52,7 @@ def cover_tex() -> str:
 {\bookserif\fontsize{11.5}{14}\selectfont\addfontfeatures{LetterSpace=18}\color{coverink}''' + author + r'''\par}
 \end{center}
 \vfill
-\noindent\hspace{.1in}{\bookserif\fontsize{8}{10}\selectfont\addfontfeatures{LetterSpace=18}\color{coverink}FIRST EDITION}\par
+\noindent\hspace{.1in}{\bookserif\fontsize{8}{10}\selectfont\addfontfeatures{LetterSpace=18}\color{coverink}FIRST EDITION}\quad{\bookserif\fontsize{8}{10}\selectfont\color{coverink}''' + _text(f"© {manifest['author']}, {manifest['copyright_years']}") + r'''}\par
 \clearpage
 \restoregeometry
 \pagecolor{bookpaper}

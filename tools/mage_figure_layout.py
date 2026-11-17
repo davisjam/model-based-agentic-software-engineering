@@ -161,6 +161,21 @@ def theory_perspectives_columns(latex: str) -> str:
     return before + columns + after
 
 
+def keep_opening_figure(latex: str, label: str, alt: str) -> str:
+    """Keep a section's orienting diagram in reading order, with its lead-in."""
+    from mage_cover import _text
+    heading = re.search(r'\\section\*\{', latex)
+    figure = next((m for m in re.finditer(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}', latex, re.S)
+                   if r'\label{' + label + '}' in m[0]), None)
+    if not heading or not figure or heading.start() >= figure.start():
+        raise ValueError('Missing opening heading or figure: ' + label)
+    body = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0]).removesuffix(r'\end{figure}')
+    block = (r'\par\smallskip\begin{bookinlinefigure}{' + _text(alt) + '}' +
+             body + r'\end{bookinlinefigure}')
+    return (latex[:heading.start()] + r'\Needspace{.58\textheight}' + '\n' +
+            latex[heading.start():figure.start()] + block + latex[figure.end():])
+
+
 def reasoning_horizon_columns(latex: str) -> str:
     """Place the compact comparison beside its ordinary closing prose.
 

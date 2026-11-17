@@ -188,57 +188,31 @@
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
-      "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
+      "source_sha256": "9af4a79426995e50b80b0825759e2cd8f321a5594a4d9a2f9198a6c1c34b70f9",
+      "candidate_sha256": "e55008c299aba6c3cf0a15f9ed41bb6e01a25ceee0c9435aa66112598ae65039",
+      "reason": "Compact opening overview for §1.4. The model-property table is explained later in the section; this drawing keeps the three components and their exchanges at readable type sizes.",
+      "previous_review": "book/editorial/figure-redraws-20261116/agentic-substrate-before/fidelity-review.json",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
       "validation": {
-        "date": "2026-11-12",
-        "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-        "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
-        "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
-        "page": 1,
-        "width_bp": 442.52,
-        "height_bp": 284.522,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-16",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "page": 11,
+        "width_bp": 436.62,
+        "height_bp": 159.648,
+        "minimum_prose_font_pt": 9,
         "authored_type_sizes_pt": [
-          9.0,
+          9,
           9.5,
-          10.0
+          10,
+          10.5,
+          11
         ],
-        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 7,
-        "reviewed_peer_groups": 1,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 59,
-        "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
-        "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
-        "status": "passed"
-      },
-      "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/fidelity-review.json",
-      "checks": {
-        "icons_and_symbols": "The trained-model destination is corrected. The governance boundary marker actually intersects the Actions shaft. Optional training is removed; guidance and governance originate in GEE rather than the engineer.",
-        "links_and_groups": "The trained foundation model feeds the model inside the engineering system. Outputs/context connect the model and harness; actions/tool-results-or-evidence connect harness and GEE. Guidance originates at GEE, runs below the columns, and enters the foundation model. Governance originates at GEE, follows a separate top route, and terminates at a boundary marker crossing the Actions shaft. The sole engineer arrow enters GEE. No engineer-to-model, engineer-to-harness or training/fine-tuning route remains.",
-        "annotation_placement": "Exchange labels occupy dedicated channels. The full guidance label sits above the lower GEE-to-model route; the full governance label sits above its upper GEE-to-action-boundary route. Engineer maintenance is a separate arrow and is not labeled guidance or governance.",
-        "line_breaks": "Properties and engineering implications spans two italic lines. Repeated exploration and revision spans three body lines. Harness interposition/hooks carries no project-policy or checking examples. The existing-system inventory is limited to the author’s specified code, architecture, configuration, tests and operational state."
-      },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          9.5,
-          10.0
-        ],
-        "minimum": 9.0,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 442.52,
-      "height_bp": 284.522,
-      "monochrome": true,
-      "review": "Native and live-text SVG proofs inspected at print size and 2×. The northern model route clears the enclosure heading; the governance boundary marker intersects the action edge; table rules have room around the text. All words remain legible at authored 9–10 pt sizes without scaling. This conceptually corrected candidate measures 442.52 × 284.522 bp, a modest height increase over the superseded 262.523 bp compact draft and 49.0% shorter than the original 557.644 bp artwork. No embedded figure number or caption."
+        "proof_sha256": "324fde5a102aa111e28143a4c3c4bf0b4cc039c8f4ce862c13a555f6ed068cf6",
+        "typography_audit_sha256": "9ae85eb13fd4e4c1f57120a4dbf320dd7377901edcf460757bb83bb1354b78bc"
+      }
     },
     {
       "source": "book/assets/reasoning-horizon.svg",
