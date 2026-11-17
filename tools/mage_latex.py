@@ -694,20 +694,18 @@ def _prepare_record(task):
     latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels(),
                                   inline_labels=inset_inline_labels())
 
-    from latex_build import (bold_table_headers, layout_selected_table, single_page_tables,
+    from latex_build import (bold_table_headers, layout_selected_table,
                              namespace_heading_links, restore_chapter_heading_links)
     latex = bold_table_headers(latex)
     from mage_figure_layout import theory_perspectives_columns
     latex = theory_perspectives_columns(latex)
+    latex = layout_selected_table(latex, 'engineering-questions-and-candidate-models',
+                                  (.18, .54, .28), row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
-    # This five-column comparison fits at its normal table size on one page.
-    # Float it intact near its introduction, before the worked interpretation,
-    # rather than delaying it to a dedicated page amid the following example.
-    latex = single_page_tables(latex, {'semantic-commitment-spectrum'}, placement='htbp')
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

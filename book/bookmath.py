@@ -49,6 +49,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "lnot": ("¬", "not"),
     "neg": ("¬", "not"),
     "forall": ("∀", "forall"),
+    "exists": ("∃", "exists"),
+    "Longrightarrow": ("⟹", "arrow.r.double.long"),
     "iff": ("⇔", "arrow.l.r.double"),
     "rightarrow": ("→", "arrow.r"),
     "longrightarrow": ("⟶", "arrow.r.long"),
