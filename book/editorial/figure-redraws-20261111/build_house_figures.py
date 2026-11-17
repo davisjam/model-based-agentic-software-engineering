@@ -130,10 +130,10 @@ class HouseFigure(reference.Figure):
         root.insert(4,canvas)
         if is_state:
             root.append(ET.Element('{'+NS+'}path',{'d':'M48,536 H738','stroke':'#777','stroke-width':'.8','fill':'none'}))
-            root.append(text(48,563,'Key properties (examples)',22,True))
+            root.append(text(48,563,'Properties to investigate',22,True))
             root.append(text(48,590,'• At most N retry attempts (e.g., N = 3).',20))
-            root.append(text(48,617,'• A job eventually reaches Succeeded or Failed.',20))
-            root.append(text(48,644,'• Only one worker actively executes the job at a time.',20))
+            root.append(text(48,617,'• Every started job eventually reaches Succeeded or Failed.',20))
+            root.append(text(48,644,'• Succeeded is reachable only after Running.',20))
         if not is_state:correct_mutation_categories(root,self.bw)
         p=OUT/f'figure-{number}-house-{"bw" if self.bw else "color"}.svg'
         p.write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
