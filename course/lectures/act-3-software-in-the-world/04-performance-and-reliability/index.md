@@ -24,11 +24,15 @@ readings:
       items:
         - cite: ousterhout2018
           annotation: 'Ousterhout, "Always Measure One Level Deeper" (2018). Recommended rather than required. An aggregate performance measurement is often insufficient to identify the mechanism worth changing: end-to-end latency says something is slow, a trace says where the time is spent, and a deeper investigation explains why that operation is expensive. In DocAble, peak memory was the observed problem and media residency was the mechanism.'
-    - heading: What a service should do when asked for more than it can deliver
+    - heading: Reliability engineering
       items:
         - cite: beyer2016sre
-          locator: 'chapter 21, Handling Overload'
-          annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering: How Google Runs Production Systems* (O''Reilly, 2016), [chapter 21, "Handling Overload"](https://sre.google/sre-book/handling-overload/). Read the whole chapter. It treats overload as a condition the service must be designed to survive rather than as an operational surprise, and it covers per-client throttling, request criticality, graceful degradation, and retry budgets. The retry budget is the idea to carry away: a retry policy that looks correct from one client can multiply the load arriving at a service that is already failing, which is the mechanism connecting this unit''s two lectures. [Chapter 22, "Addressing Cascading Failures"](https://sre.google/sre-book/addressing-cascading-failures/), is optional and extends the same argument. The book''s distributed-consensus chapters are out of scope here.'
+          locator: 'chapters 21 and 22'
+          annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering: How Google Runs Production Systems* (O''Reilly, 2016), [chapter 21, "Handling Overload"](https://sre.google/sre-book/handling-overload/) and [chapter 22, "Addressing Cascading Failures"](https://sre.google/sre-book/addressing-cascading-failures/). Read both. Chapter 21 treats overload as a condition the service must be designed to survive rather than an operational surprise, and covers per-client throttling, request criticality, graceful degradation, and retry budgets. Chapter 22 follows the same argument into propagation: how one saturated resource takes down its neighbours, and why retries and health checks can accelerate a collapse they were installed to prevent. The retry budget is the idea to carry across both lectures, because a retry policy that looks correct from one client can multiply the load arriving at a service that is already failing. The book''s distributed-consensus chapters are out of scope here.'
+        - cite: bhuiyan2025sokredos
+          annotation: 'Bhuiyan, Çakar, Burmane, Davis and Staicu, "SoK: A Literature and Engineering Review of Regular Expression Denial of Service (ReDoS)" (ASIA CCS 2025). Read it for the component-selection case study rather than for regex internals. The question to hold is not whether ReDoS exists but what a component''s documentation does and does not tell you: the review examines engines in nine widely used languages and records where defenses and limitations go undocumented, and where maintainers regard super-linear matching as an accepted consequence of the features they support rather than a defect to fix. Carry away the general rule, which applies to every dependency: the absence of a documented limitation is not evidence that the limitation is absent.'
+        - cite: cristian1991faulttolerant
+          annotation: 'Cristian, "Understanding Fault-Tolerant Distributed Systems" (1991). Recommended rather than required, and read it for the framing rather than the protocols. It is the clearest statement of why a fault-tolerance claim is meaningless without a failure model: what a component is assumed to do when it fails, which classes of failure a mechanism is designed to survive, and how those assumptions bound what any amount of redundancy can deliver. That distinction underlies the whole of Lecture 2, where every mechanism is paired with the assumption it rests on.'
 exercises:
   - title: Improving reservation performance
     slug: improve-reservation-performance
@@ -45,38 +49,42 @@ exercises:
       Three interventions are on the table — add application replicas, add database capacity, or
       shorten the connection hold — and you choose one and name what would prove you wrong. The
       intervention is justified by the measurement, not by the symptom.
-  - title: The gate decides what must go wrong together
-    slug: fault-tree-gates
+  - title: Analyze a component failure
+    slug: analyze-component-failure
     about: |
-      Four minutes in pairs, and you state your failure assumptions first. One outcome is given — a
-      student receives confirmation, but the reservation is absent afterward — and it names two facts
-      that must hold together: a false confirmation, confirmed without evidence, and no durable
-      reservation, absent when the student looks. Decide each gate, then place every event where it
-      belongs: confirmation sent before the commit, the write result never checked, the reservation
-      never written, the write rolled back or lost. An event that is not sufficient on its own belongs
-      under an AND, which is what makes gate selection a claim rather than a drawing.
+      A document-processing service accepts uploaded documents through an API, places work on a
+      message queue, processes it with a pool of workers, and writes results to an object store. The
+      queue provides at-least-once delivery.
 
-      The exercise resumes later in the lecture, after the mitigation mechanisms, as step 3. Prioritize
-      one of durability and recovery settings, a confirmation protocol tied to committed state,
-      rehearsed backup restoration, or monitoring that finds missing records — then say whether your
-      choice prevents the top event or only detects it afterward, and what evidence would justify
-      accepting it. A mitigation you cannot justify with evidence is a preference, not a decision.
-  - title: A reservation that may already exist
-    slug: reservation-may-already-exist
+      A worker finishes processing and writes its output, then crashes before acknowledging the
+      message. The queue, having heard no acknowledgement, delivers the message again.
+
+      Identify the failure modes and their effects, and explain why the retry that recovers
+      interrupted work is the same action that repeats work already completed. Propose a mitigation,
+      and say what evidence would establish that repeated delivery does not produce an inconsistent
+      result.
+
+      The distinction to hold onto is between executing an operation once and producing one logical
+      result. Only the second is achievable here, and only by design.
+  - title: Design a reliable document-processing service
+    slug: design-reliable-document-service
     about: |
-      Three minutes in pairs, then the room compares answers to question 3. The database commits the
-      reservation, the HTTP response is lost, and the client times out and submits the same request
-      again. Four questions:
+      Four minutes in pairs. The same service: an upload API, a message queue, a worker pool, and an
+      object store. It has four obligations.
 
-      1. What does the client know after the timeout?
-      2. Which property of the system must remain invariant?
-      3. What information would let the server recognize a retry?
-      4. What evidence would establish that concurrent duplicate requests are handled correctly?
+      1. Accepted documents must not disappear.
+      2. A worker crash must not permanently prevent processing.
+      3. Duplicate messages must not produce inconsistent results.
+      4. One pathological document must not exhaust the service.
 
-      The intended solution separates the identity of the requested operation from that of the
-      resulting reservation. A persistent idempotency record, coordinated atomically with the
-      reservation outcome, lets a repeated request return the original result instead of creating a
-      second booking.
+      Select components and reliability mechanisms that could satisfy them, and state the failure
+      assumptions your design depends on.
+
+      Then compare three candidates: a durable queue alone; a durable queue with idempotent
+      processing; and a durable queue with idempotent processing and worker isolation. Say what each
+      one improves, which failures remain, and what evidence would justify accepting the design you
+      choose. A durable queue does not by itself guarantee that every accepted job survives, which
+      makes the acknowledgement and persistence semantics part of the answer rather than a detail.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -100,21 +108,21 @@ labs:
       model whose assumptions require stability.
 ---
 
-**Premise.** *Functional correctness does not establish that a system will behave acceptably under load or preserve its obligations when components fail. Engineers must model the workloads and failures the system will meet, decide what behavior is acceptable, and obtain evidence that the implementation delivers it.*
+**Premise.** *Functional correctness does not establish that a system will behave acceptably under load, or that it will continue to satisfy its obligations when components fail. Engineers must understand the workloads and failure modes their systems will encounter, select appropriate designs and mechanisms, and obtain evidence that the result meets its requirements.*
 
-Our campus reservation service runs in a suitable environment, stores reservations durably, and has an architecture we can examine and change. Its API passes its functional tests. None of that establishes whether it can serve hundreds of students at once, or what it does when its database becomes unavailable.
+Software systems are assembled from components that execute work, preserve state, communicate, and coordinate activity. Each component provides capabilities, consumes resources, and carries characteristic failure modes. A database may lose a write, a message broker may deliver a message twice, and a worker may exhaust its memory. Failures also arise from interactions among components that are individually behaving as specified.
 
-Those are two different problems. Performance concerns the relationship between workload, resource consumption, and observable behavior. Reliability concerns whether the system keeps providing its required behavior over time, including when parts of it fail.
+Performance and reliability ask different questions about such a system. Performance engineering examines the relationship between workload, resource consumption, and observable behavior. Reliability engineering examines what can fail, how a failure affects the system, and which mechanisms can prevent, contain, or recover from it.
 
-In both, the engineer decides which workloads and failures matter, what behavior is acceptable, and what evidence would settle whether the system provides it.
+Both require engineering judgment. The engineer decides which workloads and which failures matter, what behavior is acceptable, and what evidence would establish that the system provides it.
 
 ## Structure of this unit
 
-**Lecture 1, Performance Engineering.** We model how requests move through queues and processors, characterize the workload, and use measurements to identify bottlenecks. We then compare configuration changes and architectural optimizations, considering their costs and constraints, before establishing whether an improvement worked. To practice this, see {exercise:improve-reservation-performance}.
+**Lecture 1, Performance Engineering.** We model how requests move through queues and processors, characterize workloads, and use measurements to find the resource that limits useful work. We compare configuration changes, architectural optimizations, and additional capacity against their costs and constraints, then ask what evidence would establish that an improvement worked. To practise the reasoning, see {exercise:improve-reservation-performance} and the {lab:performance-lab}.
 
-**Lecture 2, Reliability Engineering.** We analyze what can fail using failure mode and effects analysis, decompose one unacceptable outcome with a fault tree, specify recovery behavior as a state machine, and only then select mitigations and the evidence justifying them. To practice this, see {exercise:fault-tree-gates} and {exercise:reservation-may-already-exist}.
+**Lecture 2, Reliability Engineering.** We begin with a catalog of software components and their characteristic failure modes, including failures shared across component families and failures that arise only from their interactions. We use failure mode and effects analysis and fault trees to analyze how systems fail, then examine mechanisms for isolation, detection, recovery, redundancy, and containment. We close on the decisions that matter most: how to select a component, how to combine mechanisms whose assumptions interact, and what evidence establishes that the result meets its obligations. See {exercise:analyze-component-failure} and {exercise:design-reliable-document-service}.
 
-Both follow the Act III method: identify the problem, model what matters, exercise judgment about realization, and obtain evidence.
+Both lectures follow the Act III method: identify the problem, model what matters, exercise judgment about realization, and obtain evidence.
 
 ## Performance engineering
 
@@ -224,94 +232,144 @@ Performance and reliability meet at overload. Bounded queues, admission control,
 
 ## Reliability engineering
 
-Reliability is a claim about a time horizon and a set of failure assumptions, which is why an availability figure quoted without them says so little. Under a simple time-based definition, 99.9% availability over thirty days permits 43.2 minutes of unavailable time. That figure still does not say where the service boundary falls or what counts as a successful request.
+Software engineers rarely build a system entirely from scratch. They assemble components that provide execution, storage, communication, coordination, and other capabilities. A service might use an HTTP server, a message queue, a worker pool, a database, a cache, and a load balancer. Each component solves a problem, and each introduces a dependency and a set of possible failures.
 
-The better question is what the service promises while a component is unavailable. Four obligations are specific enough to engineer against.
+Reliability engineering asks whether the assembled system continues to satisfy its obligations under specified failures. A claim that a system is reliable is incomplete without three things: the behavior required, the failures considered, and the conditions under which the claim holds.
 
-- **Do not falsely report success.** A confirmation must name a reservation that exists.
-- **Do not lose a confirmed reservation.** A booking must survive the failures we tolerate.
-- **Do not duplicate an operation.** A retry must not produce a second reservation.
-- **Bound the damage.** A failure must not consume resources without limit, nor spread to working parts.
+## The software hardware store
 
-Deciding which failures to tolerate, and at what cost, requires analysis before mechanisms. Three models do three different jobs here.
+Components can be organized by the capabilities they provide, much as a hardware store organizes tools and materials by what they are for.
 
-| Technique | Engineering question | Representation |
+| Capability | Representative components | Engineering question |
 |---|---|---|
-| Failure mode and effects analysis (FMEA) | What can fail, what happens, and what should we address? | Component failure table |
-| Fault-tree analysis | How could one unacceptable outcome occur? | Boolean AND/OR decomposition |
-| State machine | What behavior is permitted as the system responds? | States and transitions |
+| Execute work | Processes, containers, serverless functions | How is execution isolated? |
+| Preserve state | Filesystems, databases, object stores | What durability is guaranteed? |
+| Exchange information | RPC, message brokers, event streams | Can messages be lost or duplicated? |
+| Coordinate activity | Locks, schedulers, consensus services | What happens when a participant fails? |
+| Accelerate access | Caches, CDNs, connection pools | How stale may the result be? |
+| Direct work | Load balancers, orchestrators, service discovery | How are unhealthy components handled? |
 
-FMEA and fault trees analyze how the system *can* fail. A state machine specifies how it *should* behave. Knowing that timeouts, retries, and circuit breakers exist is not yet engineering; deciding which failures matter and which controls are justified is.
+These categories are not mutually exclusive. A message broker may also provide durable storage, and a database may provide coordination through transactions and locks. The catalog is a way to recognize the capabilities available and, more usefully, to identify the question each one raises when a component is selected.
 
-## Identifying failures with FMEA
+Components share some failure modes. Processes, databases, communication services, and coordination mechanisms can all become unavailable, exhaust resources, behave incorrectly, or be misconfigured. Many can also be compromised through an exploitable vulnerability. The causes and consequences differ by component, but the broad classes recur.
 
-FMEA works from the bottom up: the engineer walks the components and operations, naming each failure mode, its effect, its detection, and its mitigation.
+Other failures are characteristic of a family. Caches return stale values and suffer stampedes. Message brokers lose, duplicate, or reorder messages, depending on the delivery guarantee they offer. Databases suffer corruption, lost writes, and transaction anomalies. Schedulers miss work or run it more than once.
 
-| Component | Failure mode | Effect | Detection | Mitigation |
+Failures also arise from interactions. A client retries when a service slows down, adding to the load that caused the slowdown. Two replicated services share a database whose failure disables both. A cache returns an old value while the database correctly holds a newer one. In each case the components behave according to their specifications and the system fails to provide what its users require.
+
+The engineer therefore has to understand both component behavior and the consequences of assembling components into a system.
+
+## Analyzing failures
+
+Knowing that components can fail is not enough. We need to identify which failures matter for a particular system, and how they could produce an unacceptable outcome. Two established techniques approach the problem from opposite directions.
+
+**Failure mode and effects analysis** works from the bottom up. Starting with a component, the engineer asks how it can fail, what effects follow, how the failure could be detected, and what mitigation might be appropriate.
+
+Consider the document-processing service: an upload API, a message queue, a pool of workers, and an object store for results.
+
+| Component | Failure mode | Effect | Detection | Candidate mitigation |
 |---|---|---|---|---|
-| Database | Unavailable | Cannot confirm reservations | Connection errors | Fail closed; recover the service |
-| Network | Response lost | Client uncertain whether the booking succeeded | Client timeout | Idempotency key |
-| Application | Process crashes | In-flight request interrupted | Health check | Restart; recover the outcome |
-| Connection pool | Exhausted | Requests wait or fail | Pool metrics | Admission limits; capacity |
-| Retry logic | Excessive retries | Load amplification | Retry-rate metrics | Backoff; retry budget |
+| Message queue | Duplicate delivery | Work executes twice | Repeated job identifier | Idempotent consumer |
+| Worker | Crash during processing | Work remains incomplete | Missing completion | Restart and retry |
+| Object store | Write failure | Output unavailable | Write error | Retry or fail the job |
 
-Five rows do more engineering work than a list of reliability mechanisms, because every mitigation now answers to a named failure. The last two rows join the lectures: pool exhaustion and retry amplification have capacity-related causes, both visible in Lecture 1 as queueing.
+The table connects each proposed mitigation to a specific failure, which is its first value. Its second is that it exposes the interactions between failures and the mechanisms meant to recover from them.
 
-Qualitative severity and likelihood judgments are a reasonable way to decide which rows to investigate first. Multiplying ordinal severity, occurrence, and detectability ranks into a risk priority number is not: the product invites more confidence than the judgments behind it can carry.
+Suppose a worker writes its output successfully and crashes before acknowledging the message. A queue providing at-least-once delivery will deliver that message again. Retrying is what allows the system to recover from interrupted processing, and it is also what repeats work that already completed. The engineer must decide whether repetition is acceptable and, if it is not, how the application will prevent duplicate effects.
 
-## Explaining unacceptable outcomes with fault trees
+**Fault-tree analysis** begins with an unacceptable outcome and works backward to the events that could produce it. Suppose the top event is that a completed document becomes permanently unrecoverable. One explanation requires two conditions together: the primary copy is unavailable, and no usable recovery copy exists.
 
-FMEA starts at components and asks what their failure causes. Fault-tree analysis runs the other way, from an outcome the system must not produce to the combinations of events that would produce it.
+A fault tree represents these relationships with logical gates. An OR gate means any one input event is sufficient to produce the event above it. An AND gate means every input event is required.
 
-![The tree reads downward from a top event banner, A CONFIRMED RESERVATION IS LOST, drawn in the failure color and labeled the outcome we refuse to accept. Below it an OR gate, drawn with the conventional curved bottom edge, feeds two intermediate events side by side: on the left, COMMITTED DATA LOST, the record no longer exists anywhere; on the right, NOT RECOVERABLE, the record exists but cannot be restored. Each intermediate event carries its own gate. Beneath COMMITTED DATA LOST is an AND gate, drawn with a flat bottom and a rounded top, taking two basic events: primary storage fails, and the backup is unavailable. Beneath NOT RECOVERABLE is a second OR gate taking two basic events: the recovery procedure fails, and the recovery data is corrupted. A legend states that OR occurs when any one input occurs, while AND occurs only when every input occurs together, so the left branch names two defenses that must fail at the same time. A closing italic note reads that the tree is illustrative rather than complete: whether a primary-storage failure loses committed data depends on the replication and durability guarantees in force, so the assumptions must be stated before the tree means anything.](figures/fault-tree-confirmed-reservation-lost.svg)
+The gates express logical relationships, not statistical independence. Two replicas may fail together because they share a power supply, a configuration, a software defect, or an upstream dependency. An AND gate does not license multiplying two failure probabilities unless the independence assumption has been established separately.
 
-The gates carry the argument. Each branch under an OR gate is an independent path to the top event and needs a control of its own. A branch under an AND gate names two defenses that must fail together, a far less likely proposition.
+The two techniques are complementary. Failure mode and effects analysis asks what a component's failure can cause. Fault-tree analysis asks what events or combinations could produce a particular unacceptable outcome. Used together, they identify the failures that deserve engineering attention.
 
-The tree is illustrative rather than complete, and the gap is the teaching opportunity. Whether a primary-storage failure actually loses committed data depends on the replication topology, the durability settings in force at commit, and whether the backup is a live replica or a snapshot someone must restore. Students must define those events and state the assumptions before the tree means anything at all. A second top event, *two conflicting reservations are confirmed*, reaches back to the previous unit's database invariant.
+## Engineering for reliability
 
-## Specifying recovery behavior
+Once the relevant failures are understood, mechanisms can be selected to prevent them, detect them, contain their effects, or restore acceptable operation. The mechanisms are usefully organized by purpose.
 
-Neither analysis says what the application should do. Take the failure mode FMEA already named. A student submits a reservation, the database commits it, and the connection fails before the response returns. The student sees a timeout.
+| Purpose | Representative mechanisms |
+|---|---|
+| Isolation | Containers, bulkheads, resource limits |
+| Detection | Health checks, heartbeats, watchdogs |
+| Recovery | Restart, retry, failover |
+| Redundancy | Replication, diverse implementations, N-version programming |
+| Containment | Circuit breakers, admission control, backpressure |
+| State protection | Transactions, idempotency, durable logging, backups |
 
-Did the reservation succeed? The timeout cannot answer. Repeating the request may create a second reservation unless the service can recognize that the new request represents the same intended action.
+**Isolation, detection, and recovery** work as a chain. A container provides an execution boundary, a watchdog detects a failed or unresponsive process, and a restart policy attempts to restore operation. None of them guarantees recovery on its own. Restarting a process does not restore corrupted state, and restarting a process that keeps meeting the same defect produces a restart loop rather than a recovery.
 
-![The figure is divided into two horizontal bands. The upper band, labeled RESERVATION STATE and held by the server and database, begins with REQUEST RECEIVED, which transitions to PENDING. PENDING forks into two terminal reservation states: COMMITTED, the room is booked, on the left, and REJECTED, no booking was made, on the right. An arrow descends from COMMITTED across the band boundary into the lower band, labeled RESPONSE DELIVERY AND CLIENT KNOWLEDGE, reaching RESPONSE ATTEMPTED. RESPONSE ATTEMPTED forks two ways: DELIVERED, where the client knows the outcome, and LOST, drawn in the failure color, where no response arrives. LOST transitions to CLIENT UNCERTAIN, also in the failure color, which may retry the request. A dashed leader points from CLIENT UNCERTAIN to a note reading that the reservation is still COMMITTED in the band above and that a lost response undoes nothing. A footer reads that only the upper band records what happened, that every transition below leaves it unchanged, and that the server must therefore recognize a retry of an operation it has already committed.](figures/reservation-request-state-model.svg)
+**Redundancy and diversity** are not the same thing. Replication preserves service when a machine or instance fails, provided the replicas and their dependencies are sufficiently independent. Identical replicas remain vulnerable to a defect in the implementation they share. N-version programming attempts to tolerate implementation faults by running independently developed versions and comparing their results; its effectiveness depends on achieving meaningful diversity and on a suitable decision procedure, neither of which is guaranteed by the arrangement itself.
 
-A state machine suits this question because it concerns permitted transitions rather than causes, and because it separates the reservation's state from the client's knowledge of it. **An idempotent operation** can be repeated without effects beyond those of the first successful execution. Here the application ties a stable request identifier to the intended operation and uses persistent state to recognize a repeat.
+**Containing failures** limits consequences rather than removing causes. A circuit breaker stops repeated calls into an unhealthy dependency, letting callers fail promptly or take an alternative path. A bulkhead partitions resources so one workload cannot exhaust what another depends on. Neither repairs the failing dependency.
 
-That is not yet a design. The engineer must specify how the identifier is assigned, how long it stays valid, and what happens when two requests carrying it arrive at once. Checking whether the identifier exists and then inserting the reservation is insufficient if the check and the insertion can race, because both requests can observe it absent. Two transitions also need specifying: a committed result must stay discoverable after a restart, and a reused identifier carrying different parameters must not return an unrelated result.
+**Recovering from transient failures** depends on a judgment about what the failure was. A timeout bounds how long a caller waits; a retry attempts recovery where another execution may succeed; exponential backoff spaces repeated attempts; and jitter reduces synchronization across clients. Retrying is not automatically safe. A timed-out operation may already have completed, and repeated requests can amplify the overload that produced the timeout.
 
-## Selecting mitigations
+**Protecting state** addresses obligations the other categories do not. Transactions prevent selected partial updates, idempotency controls the effects of repeated operations, durable logging supports recovery of committed changes under stated assumptions, and backups provide recovery points. These are not interchangeable. Replication does not substitute for a backup, because it copies a mistake as faithfully as it copies a write; and an idempotent operation need not execute exactly once, it need only produce one logical result.
 
-Mechanisms arrive last, as answers to failures the models have already identified.
+The engineering task is not to install every available mechanism. It is to select mechanisms whose guarantees address the failures the system must actually tolerate.
 
-| Mechanism | Purpose | Important limitation |
+## Selecting and integrating components
+
+Component selection is itself a reliability decision. The behavior of a component becomes part of the system's assumptions, so it has to be investigated before it is depended upon.
+
+The relevant questions concern the component's documented semantics, resource bounds, concurrency behavior, failure modes, and recovery guarantees. They also concern the maintainer's policies: how defects are reported, whether security vulnerabilities receive coordinated disclosure, which versions receive fixes, and what compatibility commitments accompany an update.
+
+A component's documentation may simply omit the behavior that matters to the application. The absence of a documented limitation is not evidence that the limitation does not exist.
+
+## Case study: regular expression denial of service
+
+Regular expression engines illustrate the problem. Applications use them to recognize patterns in text, often treating a match as a simple operation returning success or failure. The engine also consumes time and memory, and its matching semantics determine which strings it accepts.
+
+Three questions matter when selecting one. Can a pattern and input cause excessive execution time? Can matching consume excessive memory? Does the engine produce the intended match or mismatch? Available controls include selecting an engine with appropriate complexity guarantees, restricting the pattern features supported, bounding input and pattern sizes, isolating execution, enforcing resource limits, and testing behavior against the intended semantics.
+
+A systematic review of regular expression denial of service examined engines in nine widely used programming languages. Backtracking engines can exhibit super-linear worst-case behavior, and relevant defenses and limitations were often undocumented. Maintainers have sometimes regarded such behavior as an accepted consequence of supporting extended regular-expression features rather than a defect requiring correction.
+
+The lesson generalizes past regular expressions. Selecting a component requires investigating the behavior relevant to the intended application, including behavior its maintainers may consider the user's responsibility.
+
+## Selecting reliability mechanisms
+
+The same scrutiny applies to the mechanisms themselves.
+
+| Failure | Candidate mechanism | Required assumption |
 |---|---|---|
-| Timeout | Bound how long an operation waits | Establishes nothing about whether it succeeded |
-| Retry | Recover from a transient failure | Can duplicate work or deepen an overload |
-| Idempotency | Make a repeated operation safe | Needs persistent coordination for consequential writes |
-| Backpressure | Limit incoming or outstanding work | Rejects or delays requests by design |
-| Circuit breaker | Stop calling a failing dependency | Does not repair the dependency |
-| Recovery procedure | Restore acceptable operation | Requires evidence that invariants still hold |
+| Process crash | Restart | State can be recovered |
+| Transient network failure | Retry | Repetition is safe |
+| Persistent dependency failure | Circuit breaker | The caller can fail or degrade |
+| Machine failure | Replication | Failures are sufficiently independent |
+| Duplicate message | Idempotency | Operation identity is stable |
+| Data loss | Backup and recovery | The recovery point is acceptable |
 
-A retry suits a network request that failed transiently; the same retry offered to a saturated service adds load to the condition that caused the failures. A timeout bounds waiting and leaves the outcome uncertain, which is what the state machine exists to resolve. Each choice improves one measurement and worsens another, which is why this table is of little use without the FMEA table in front of it.
+The rightmost column decides whether the mechanism is appropriate. A retry policy cannot safely recover an operation whose repeated effects violate an invariant. Replication cannot tolerate a shared failure that disables every replica. A mechanism whose assumption does not hold provides the appearance of protection without its substance.
 
-## Obtaining evidence
+Mechanisms also interact. A client may retry an operation that already committed. Retries may increase the load presented to admission control, which is placed to reduce it. A circuit breaker may reject a request the dependency could have served successfully. Placement and configuration therefore matter as much as the behavior of any mechanism in isolation.
 
-A model is worth only the evidence that it holds, and each of the three produces a different claim.
+Consider the document-processing service again. A durable message queue lets work survive a worker crash, and duplicate delivery then requires an idempotency policy. Resource limits and worker isolation keep a pathological document from exhausting the service. The design must also account for the queue's acknowledgement semantics, the persistence of job state, and what happens after processing is interrupted partway.
 
-| Model | Claim | Evidence |
+The engineer has to establish which combination of components and mechanisms satisfies the system's obligations, rather than assuming that adding reliability features improves reliability.
+
+## Establishing evidence
+
+A reliability design is not finished when its mechanisms have been selected. The engineer must establish that the assembled system behaves acceptably under the failures it claims to tolerate. Fault injection introduces those failures deliberately, under controlled conditions, and observes what the system does.
+
+| Reliability claim | Failure injected | Evidence sought |
 |---|---|---|
-| FMEA | The relevant failure modes are identified and addressed | Review, incident history, fault injection at named modes |
-| Fault tree | The identified causal paths are controlled | Tests of basic events and of AND-gate combinations |
-| State machine | Recovery transitions preserve the invariants | Transition tests, concurrent retries, crash and restart |
+| Worker crashes are recoverable | Kill a worker during processing | The job eventually completes |
+| Duplicate delivery is safe | Deliver the same message twice | One logical result |
+| Resource exhaustion is contained | Submit a pathological document | Other jobs remain serviceable |
+| Stored outputs survive failure | Remove a storage instance | Recovery meets the stated objective |
 
-Fault injection makes a failure model testable: the engineer removes the database, drops the response, kills the process mid-transaction, and saturates the pool, then checks whether the behavior the model permits is the behavior that occurs. Functional tests establish behavior only under the conditions they exercise, which is why a system can pass its whole suite and still lose a confirmed reservation the first time a disk fails.
+Each test is evaluated against an explicit requirement. A job that eventually completes may still violate a recovery-time objective. A system that survives one worker crash may fail when several workers share a dependency that has become unavailable.
+
+Recovery paths are the least exercised code in most systems and the code most needed when something goes wrong, which is why they have to be tested deliberately rather than observed in production. Passing a fault-injection test establishes behavior under the conditions tested. It does not establish reliability in general.
 
 ## Engineering judgment
 
-Both lectures do the same thing with different models. Workload and capacity models support predictions about resource demand and response time. FMEA, fault trees, and state machines support reasoning about what can fail and what the system owes its users when it does.
+Performance and reliability engineering use different models and share a method. Performance models explain resource consumption, waiting, and capacity. Failure models explain how components and their interactions produce unacceptable outcomes. Both support decisions about what to change, and about what evidence would justify the change.
 
-They also interact in both directions. Additional capacity reduces overload-induced failures. Retries improve recovery from transient faults and increase offered load. Backpressure protects a service from collapse and accepts fewer requests immediately. A mechanism that improves one measurement often worsens another, so the two must be evaluated together rather than in sequence.
+The two concerns interact in both directions. Additional capacity reduces overload-induced failures. Retries recover transient faults and increase offered load. Admission control preserves service for accepted work by rejecting other requests immediately. A design that improves one property often weakens another, so the two are evaluated together rather than in sequence.
 
-The next unit introduces a third source of behavior outside the specification: an adversary deliberately attempting to violate the system's obligations.
+Reliability engineering therefore asks for more than a list of failures or a familiarity with reliability patterns. The engineer must understand the components selected, the assumptions behind the mechanisms chosen, and the behavior of the system they compose.
+
+The next unit, Security Engineering, examines failures produced deliberately, by an adversary reading the same architecture you are.
