@@ -1,46 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="896" height="620" viewBox="0 0 448 310" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="402" viewBox="0 0 335 201" role="img" aria-labelledby="title desc">
 <title id="title">Heterogeneous models over shared identities</title>
 <desc id="desc">A service performance question follows the service registry into the shared-identity hub, out to deployment topology, back through the hub, then out to measurements. Four other representations have thin connections to the same hub.</desc>
 <defs><marker id="arrow" markerWidth="7" markerHeight="6" refX="6.8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L7,3 L0,6 Z" fill="black"/></marker></defs>
-<rect width="448" height="310" fill="white"/>
-<path d="M111,103 L135,133" fill="none" stroke="black" stroke-width=".55"/>
-<path d="M111,222 L137,198" fill="none" stroke="black" stroke-width=".55"/>
-<path d="M207,268 L207,218" fill="none" stroke="black" stroke-width=".55"/>
-<path d="M330,74 L265,125" fill="none" stroke="black" stroke-width=".55"/>
-<path d="M202,56 C202,81 188,88 192,113" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
-<path d="M290,148 C308,141 315,141 330,143" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
-<path d="M330,181 C315,193 306,192 290,181" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
-<path d="M269,203 C287,227 305,267 330,278" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
-<ellipse cx="207" cy="165" rx="88" ry="53" fill="#eeeeee" stroke="black" stroke-width=".7"/>
-<text x="207" y="144.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Traverse via</text>
-<text x="207" y="156.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">shared identities</text>
-<text x="207" y="176.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">e.g., investigate a</text>
-<text x="207" y="188.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">service’s performance</text>
-<rect x="140.0" y="8.0" width="124" height="48" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="202" y="27.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Service registry</text>
-<text x="202" y="48.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(identify service)</text>
-<rect x="5.0" y="82.0" width="106" height="42" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="58" y="100.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Provenance</text>
-<text x="58" y="112.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">records</text>
-<rect x="5.0" y="201.0" width="106" height="42" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="58" y="219.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Computation</text>
-<text x="58" y="231.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">graph</text>
-<rect x="149.0" y="268.0" width="116" height="38" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="207" y="284.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Entitlement</text>
-<text x="207" y="296.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">policy</text>
-<rect x="330.0" y="54.0" width="112" height="40" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="386" y="77.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">State machines</text>
-<rect x="330.0" y="130.0" width="112" height="66" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="386" y="152.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Deployment</text>
-<text x="386" y="164.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">topology</text>
-<text x="386" y="179.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(where it runs)</text>
-<rect x="330.0" y="254.0" width="112" height="48" rx="3" fill="white" stroke="black" stroke-width=".65"/>
-<text x="386" y="273.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Measurements</text>
-<text x="386" y="294.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(how it performs)</text>
-<circle cx="179" cy="84" r="8" fill="white" stroke="black" stroke-width=".7"/>
-<text x="179" y="87.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">1</text>
-<circle cx="312" cy="123" r="8" fill="white" stroke="black" stroke-width=".7"/>
-<text x="312" y="126.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">2</text>
-<circle cx="319" cy="229" r="8" fill="white" stroke="black" stroke-width=".7"/>
-<text x="319" y="232.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">3</text>
+<rect width="335" height="201" fill="white"/>
+<path d="M75,68 L101,85" fill="none" stroke="black" stroke-width=".55"/>
+<path d="M75,140 L101,123" fill="none" stroke="black" stroke-width=".55"/>
+<path d="M155,168 L155,138" fill="none" stroke="black" stroke-width=".55"/>
+<path d="M243,48 L201,80" fill="none" stroke="black" stroke-width=".55"/>
+<path d="M151,32 C151,47 144,56 145,70" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
+<path d="M217,94 C227,89 233,89 244,92" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
+<path d="M244,119 C234,126 224,125 215,117" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
+<path d="M199,129 C213,147 227,169 243,177" fill="none" stroke="black" stroke-width="1.9" marker-end="url(#arrow)"/>
+<ellipse cx="155" cy="104" rx="65" ry="34" fill="#eeeeee" stroke="black" stroke-width=".7"/>
+<text x="155" y="88.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Traverse via</text>
+<text x="155" y="100.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">shared identities</text>
+<text x="155" y="114.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">e.g., investigate a</text>
+<text x="155" y="126.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">service’s performance</text>
+<rect x="105.5" y="4.0" width="91" height="28" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="151" y="15.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Service registry</text>
+<text x="151" y="27.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(identify service)</text>
+<rect x="5.0" y="53.5" width="70" height="29" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="40" y="65.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Provenance</text>
+<text x="40" y="77.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">records</text>
+<rect x="5.0" y="125.5" width="70" height="29" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="40" y="137.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Computation</text>
+<text x="40" y="149.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">graph</text>
+<rect x="118.0" y="168.0" width="74" height="28" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="155" y="179.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Entitlement</text>
+<text x="155" y="191.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">policy</text>
+<rect x="243.0" y="38.0" width="86" height="20" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="286" y="51.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">State machines</text>
+<rect x="244.0" y="84.0" width="86" height="42" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="287" y="96.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Deployment</text>
+<text x="287" y="108.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">topology</text>
+<text x="287" y="120.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(where it runs)</text>
+<rect x="243.0" y="162.0" width="88" height="30" rx="3" fill="white" stroke="black" stroke-width=".65"/>
+<text x="287" y="174.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Measurements</text>
+<text x="287" y="186.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(how it performs)</text>
+<circle cx="132" cy="49" r="8" fill="white" stroke="black" stroke-width=".7"/>
+<text x="132" y="52.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">1</text>
+<circle cx="232" cy="76" r="8" fill="white" stroke="black" stroke-width=".7"/>
+<text x="232" y="79.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">2</text>
+<circle cx="234" cy="148" r="8" fill="white" stroke="black" stroke-width=".7"/>
+<text x="234" y="151.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">3</text>
 </svg>
