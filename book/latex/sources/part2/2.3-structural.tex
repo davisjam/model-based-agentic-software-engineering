@@ -88,17 +88,19 @@ The necessary model is small. \autoref{document-mutation-model} draws it: remedi
 
 The principal property is the mandatory-traversal constraint introduced in \autoref{canonical-structural}: every ordinary route to format-specific mutation must cross a sanctioned seam. In a sufficiently detailed dependency graph, we could remove that seam and ask whether remediation logic can still reach a raw mutation facility. Any remaining path would identify a bypass. DocAble instead uses format-specific static restrictions and runtime write-authority checks to protect these boundaries. \magevalue{chapter:alignment} examines those controls.
 
-% <!-- point: a-structural-model-can-drift-from-the-system-it-describes | A structural model carries the opposite risk — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing. -->
+% <!-- point: a-structural-model-can-drift-from-the-system-it-describes | A structural model can become stale as implementation changes — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing. -->
 
 % <!-- index-def: model-drift -->
 
-A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is \textbf{model drift}. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.
+A structural model can become stale as the implementation changes. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is \textbf{model drift}. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.
 
 \textbf{What computations depend on one another?}
 
 % <!-- point: a-second-structural-question-reaches-inside-the-pipeline | A second structural question reaches inside remediation: which computations make up the pipeline, and how do they depend on one another; the first reduction treats each registered pass as a node. -->
 
 The document-mutation model identifies where changes belong. A second structural question concerns how remediation computations depend on one another. If we change one computation, which others might be affected? DocAble runs documents through registered remediation passes that detect conditions, produce information for later passes, decide whether work should proceed, or modify document state. A \emph{registered computation} is a named remediation pass that DocAble knows how to invoke, such as a pass that classifies document content or repairs alternative text. The registry identifies the pass and records selected properties of its role in the pipeline. The graph represents the pass as a node, leaving its internal statements, library calls, and loops out of the graph.
+
+A repair pass may change a document directly or produce a typed patch: a structured description of a proposed change, such as assigning alternative text to a figure. A separate applier interprets the patch and performs the change. Recording these alternatives lets the computation model distinguish passes that modify document state from those that only propose modifications.
 
 \textbf{Remediation-computation model · Structural}
 
@@ -117,7 +119,7 @@ The document-mutation model identifies where changes belong. A second structural
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Property} --- declared data dependencies and control dependencies are distinguishable and consistent with pipeline ordering; each modeled computation also states its mutation behavior --- read-only, a typed, comparable patch for all or a declared subset of its edits, or a direct in-place edit --- and, on a separate axis, which apply seam a patch producer uses.
+  \textbf{Property} --- Declared data and control dependencies are distinguishable and consistent with pipeline ordering. Each computation declares its mutation behavior: read-only, direct editing, typed patch production, or a combination of patch production and direct editing. Patch producers also identify where their patches are applied.
 \end{itemize}
 
 \begin{itemize}
@@ -147,7 +149,7 @@ The model also declares each computation\textquotesingle s mutation behavior. So
 
 % <!-- point: the-static-graph-is-not-one-execution-of-it | The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log. -->
 
-The computation model remains static with respect to any one run: it records no per-job invocation history, retries, or model fingerprint. Other views can nevertheless attach observations to its stable computation identities. DocAble joins staged-run telemetry to those identities, so measured latency and cost can be queried alongside the structural model without turning the structural graph into an execution log. The per-session mutation record remains separate: it records what happened to one artifact, not the execution history of the computation graph.
+The computation model describes the declared computations and dependencies. Per-job invocations and retries belong to execution records. Other views can nevertheless attach observations to its stable computation identities. DocAble joins staged-run telemetry to those identities, so measured latency and cost can be queried alongside the structural model without turning the structural graph into an execution log. The per-session mutation record remains separate: it records what happened to one artifact, not the execution history of the computation graph.
 
 % <!-- point: the-identity-spine-supports-added-views-without-enlarging-the-schema | Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero. -->
 

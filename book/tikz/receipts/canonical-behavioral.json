@@ -1,9 +1,9 @@
 {
   "source": "book/assets/canonical-behavioral.svg",
   "chapter": "2.4-behavioral",
-  "claim": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties to investigate include bounded retries, eventual success or failure for every started job, and reaching Succeeded only after Running.",
+  "claim": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
   "topology": {
-    "description": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties to investigate include bounded retries, eventual success or failure for every started job, and reaching Succeeded only after Running.",
+    "description": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
     "native_draw_commands": [
       "\\path[fill=white] (0,70) rectangle (782,656);",
       "\\path[fill=black!84,draw=black!93,line width=0.566bp] (56,249) circle[radius=5.094bp];",
@@ -13,16 +13,13 @@
       "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (300,222) rectangle (435,274);",
       "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (435,248) -- (522,249);",
       "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (523,223) rectangle (673,277);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (367.5,274) -- (367.5,337);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (442,374) .. controls (482,354) and (466,303) .. (433,273);",
       "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,339) rectangle (442,403);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (368.5,403) -- (368.5,450);",
-      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,452) rectangle (442,505);",
       "\\path[draw=black!80,line width=0.4528bp] (361,178) -- (366,216);",
       "\\path[draw=black!80,line width=0.4528bp] (619,164) .. controls (607.66667,176.66667) and (599.66667,194) .. (595,216);",
-      "\\path[draw=black!80,line width=0.4528bp] (517,344) -- (463,363);",
-      "\\path[draw=black!80,line width=0.4528bp] (517,457) -- (449,478);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (367.5,274) -- (367.5,337);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (400,274) -- (400,285) -- (722,285) -- (722,478) -- (675,478);",
+      "\\path[fill=white,draw=black!80,line width=.6792bp,rounded corners=2.264bp] (523,452) rectangle (673,505);",
       "\\path[draw=black!53,line width=0.4528bp] (48,536) -- (738,536);"
     ]
   },
@@ -32,28 +29,30 @@
     "Running",
     "Succeeded",
     "Retrying",
-    "(attempt = n)",
     "Failed",
     "A worker executes the",
     "next computation for the job.",
     "Job completes",
     "with a corrected",
     "document.",
-    "On a repairable failure,",
-    "retry (up to a limit,",
-    "If retries are exhausted",
-    "or the error is not repairable,",
-    "the job fails.",
-    "e.g., n ≤3).",
     "Properties to investigate",
-    "• At most N retry attempts (e.g., N = 3).",
+    "• At most N retries (e.g., N = 3).",
     "• Every started job eventually reaches Succeeded or Failed.",
-    "• Succeeded is reachable only after Running."
+    "• Succeeded is reachable only after Running.",
+    "(not yet started)",
+    "Start another attempt;",
+    "increment",
+    "Repairable failure,",
+    "Nonrepairable failure, or",
+    "repairable failure with",
+    "initially",
+    "start",
+    "success"
   ],
   "bw_encoding": "All five states are white with modest rounded corners and black directed transitions. The initial black disk is a state-machine marker, not an annotation leader. All annotation leaders are thin and have no endpoint disks. The property list needs no color legend.",
   "redesign": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
   "questions": [],
-  "alt": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties to investigate include bounded retries, eventual success or failure for every started job, and reaching Succeeded only after Running.",
+  "alt": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -842,6 +841,50 @@
           }
         }
       }
+    },
+    {
+      "date": "2026-11-17",
+      "reason": "Author-approved figure/prose semantic corrections; placement recommendations deferred.",
+      "previous_alt": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties to investigate include bounded retries, eventual success or failure for every started job, and reaching Succeeded only after Running.",
+      "previous_topology": {
+        "description": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties to investigate include bounded retries, eventual success or failure for every started job, and reaching Succeeded only after Running.",
+        "native_draw_commands": [
+          "\\path[fill=white] (0,70) rectangle (782,656);",
+          "\\path[fill=black!84,draw=black!93,line width=0.566bp] (56,249) circle[radius=5.094bp];",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (65,249) -- (104,249);",
+          "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (105,223) rectangle (232,275);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (232,249) -- (299,248);",
+          "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (300,222) rectangle (435,274);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (435,248) -- (522,249);",
+          "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (523,223) rectangle (673,277);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (367.5,274) -- (367.5,337);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (442,374) .. controls (482,354) and (466,303) .. (433,273);",
+          "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,339) rectangle (442,403);",
+          "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (368.5,403) -- (368.5,450);",
+          "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,452) rectangle (442,505);",
+          "\\path[draw=black!80,line width=0.4528bp] (361,178) -- (366,216);",
+          "\\path[draw=black!80,line width=0.4528bp] (619,164) .. controls (607.66667,176.66667) and (599.66667,194) .. (595,216);",
+          "\\path[draw=black!80,line width=0.4528bp] (517,344) -- (463,363);",
+          "\\path[draw=black!80,line width=0.4528bp] (517,457) -- (449,478);",
+          "\\path[draw=black!53,line width=0.4528bp] (48,536) -- (738,536);"
+        ]
+      }
     }
-  ]
+  ],
+  "source_sha256": "284d4aa048b6c9a1409d82f77a3f499bde4abc4977784beaae3b487393d37842",
+  "candidate_sha256": "da0b0d9f1bd4890628b949b777b7a356dccdd0b0e2da32e0b5fb598b5598e020",
+  "semantic_revision_20261117": {
+    "description": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
+    "proof": "book/latex/build/style-figure-proof.pdf",
+    "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+    "page": 2,
+    "dimensions_bp": [
+      448.5840148925781,
+      337.64898681640625
+    ],
+    "visual_review": "Labels, transitions and annotations inspected in rendered proof.",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
+  }
 }

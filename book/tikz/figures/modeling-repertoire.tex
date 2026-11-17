@@ -118,16 +118,16 @@
 \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{10.5}{12}\selectfont] at (71,13) {Control flow};
 \node[txt,anchor=base] at (71,27) {Which path executes?};
 
-% A binary illustrative classification: the adjacent policy table retains uncertainty.
+% Only clearly decorative images omit descriptions; uncertainty takes the no branch.
 \node[box,minimum width=54bp,minimum height=28bp] at (29,54) {Analyze\\figure};
-\draw[fill=white,line width=.6pt] (104,34) -- (141,54) -- (104,74) -- (67,54) -- cycle;
-\node[txt] at (104,54) {Informative?};
-\node[box,minimum width=66bp,minimum height=28bp] at (35,110) {Query LLM\\for description};
-\node[box,minimum width=66bp,minimum height=28bp] at (110,110) {Mark\\decorative};
-\draw[edge] (56,54) -- (67,54);
+\draw[fill=white,line width=.6pt] (102.5,34) -- (145,54) -- (102.5,80) -- (60,54) -- cycle;
+\node[txt,align=center] at (102.5,54) {Clearly\\decorative?};
+\node[box,minimum width=66bp,minimum height=28bp] at (35,110) {Mark\\decorative};
+\node[box,minimum width=66bp,minimum height=28bp] at (110,110) {Query LLM\\for description};
+\draw[edge] (56,54) -- (60,54);
 % Both branches turn at the same lower rank, midway between the decision and actions.
-\draw[edge] (104,74) -- (104,85) -- (35,85) -- (35,96);
-\draw[edge] (104,74) -- (104,85) -- (110,85) -- (110,96);
+\draw[edge] (102.5,80) -- (102.5,85) -- (35,85) -- (35,96);
+\draw[edge] (102.5,80) -- (102.5,85) -- (110,85) -- (110,96);
 \node[txt,anchor=base] at (65,82) {yes};
 \node[txt,anchor=base west] at (116,91) {no};
 \node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,136) {Properties};

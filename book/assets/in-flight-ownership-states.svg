@@ -20,9 +20,9 @@
 <path d="M214,80 Q216,91 214,102" fill="none" stroke="#222222" stroke-width="0.65"/>
 <text x="337" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">claim(B, 8)</text>
 <path d="M337,80 Q339,91 337,102" fill="none" stroke="#222222" stroke-width="0.65"/>
-<path d="M157,128 C174,155 207,156 272,156 C327,156 358,149 375,129" fill="none" stroke="#a92020" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
-<path d="M184,147 L192,155 M184,155 L192,147" stroke="#a92020" stroke-width="2.3"/>
-<text x="258" y="174" text-anchor="middle" style="font-size:10.5px;fill:#a92020">release(A, 7) (rejected: stale generation)</text>
+<path d="M375,128 L350,145" fill="none" stroke="#222222" stroke-width=".65"/>
+<text x="355" y="160" text-anchor="end" style="font-size:10.5px;fill:#222222">release(A, 7): rejected</text>
+<text x="355" y="175" text-anchor="end" style="font-size:10.5px;fill:#222222">current claim remains (B, 8)</text>
 <path d="M397,128 C397,242 49.5,242 49.5,129" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
 <text x="226" y="230" text-anchor="middle" style="font-size:11px;fill:#222222">release(B, 8)</text>
 <text x="222" y="260" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">Release clears ownership only when worker and generation match the current claim.</text></g></svg>

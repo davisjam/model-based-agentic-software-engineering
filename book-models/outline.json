@@ -744,7 +744,7 @@
             },
             {
               "slug": "a-structural-model-can-drift-from-the-system-it-describes",
-              "text": "A structural model carries the opposite risk — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing.",
+              "text": "A structural model can become stale as implementation changes — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing.",
               "block_index": 32
             },
             {
@@ -755,27 +755,27 @@
             {
               "slug": "the-computation-model-distinguishes-data-flow-from-control-composition",
               "text": "DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run).",
-              "block_index": 46
+              "block_index": 47
             },
             {
               "slug": "the-contrast-between-the-two-structural-models",
               "text": "The first model preserves one architectural relation; the second preserves a family of typed compositional relations over the same system.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "the-model-also-records-how-bounded-each-effect-is",
               "text": "The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
               "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "the-identity-spine-supports-added-views-without-enlarging-the-schema",
               "text": "Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero.",
-              "block_index": 55
+              "block_index": 56
             }
           ]
         }

@@ -12,15 +12,8 @@
 \path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (435,248) -- (522,249);
 \path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (523,223) rectangle (673,277);
 \node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (598,255) {Succeeded};
-\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (367.5,274) -- (367.5,337);
-\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);
-\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (442,374) .. controls (482,354) and (466,303) .. (433,273);
 \path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,339) rectangle (442,403);
 \node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (368.5,366) {Retrying};
-\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (368.5,387) {(attempt = \textit{n})};
-\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (368.5,403) -- (368.5,450);
-\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,452) rectangle (442,505);
-\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (368.5,484) {Failed};
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (242,150) {A worker executes the};
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (242,170) {next computation for the job.};
 \path[draw=black!80,line width=0.4528bp] (361,178) -- (366,216);
@@ -28,17 +21,23 @@
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (630,163) {with a corrected};
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (630,183) {document.};
 \path[draw=black!80,line width=0.4528bp] (619,164) .. controls (607.66667,176.66667) and (599.66667,194) .. (595,216);
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,345) {On a repairable failure,};
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,365) {retry (up to a limit,};
-\path[draw=black!80,line width=0.4528bp] (517,344) -- (463,363);
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,457) {If retries are exhausted};
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,477) {or the error is not repairable,};
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,497) {the job fails.};
-\path[draw=black!80,line width=0.4528bp] (517,457) -- (449,478);
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (528,385) {e.g., n ≤ 3).};
+
+% r counts retries already started, excluding the initial attempt.
+\node[anchor=base,inner sep=0pt] at (265,235) {start};
+\node[anchor=base,inner sep=0pt] at (478,235) {success};
+\node[anchor=base west,inner sep=0pt] at (48,195) {$r=0$ initially};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (367.5,274) -- (367.5,337);
+\node[anchor=west,align=left,inner sep=0pt] at (388,305) {Repairable failure, $r<N$};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);
+\node[anchor=east,align=right,inner sep=0pt] at (252,335) {Start another attempt;\\increment $r$};
+\node[anchor=base,inner sep=0pt] at (368.5,387) {(not yet started)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=.6792bp] (400,274) -- (400,285) -- (722,285) -- (722,478) -- (675,478);
+\path[fill=white,draw=black!80,line width=.6792bp,rounded corners=2.264bp] (523,452) rectangle (673,505);
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (598,484) {Failed};
+\node[anchor=east,align=right,inner sep=0pt] at (705,405) {Nonrepairable failure, or\\repairable failure with $r=N$};
 \path[draw=black!53,line width=0.4528bp] (48,536) -- (738,536);
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{12.49869}{14.3735}\selectfont}] at (48,563) {Properties to investigate};
-\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (48,590) {• At most N retry attempts (e.g., N = 3).};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (48,590) {• At most N retries (e.g., N = 3).};
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (48,617) {• Every started job eventually reaches Succeeded or Failed.};
 \node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (48,644) {• Succeeded is reachable only after Running.};
 \end{tikzpicture}

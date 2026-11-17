@@ -1,36 +1,23 @@
 {
   "source": "book/assets/in-flight-ownership-states.svg",
   "chapter": "2.4-behavioral",
-  "claim": "A stale generation cannot release the current owner: claim(A,7) expires, B claims generation8, and release(A,7) is rejected.",
+  "claim": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
   "topology": {
-    "description": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
-    "relations": [
-      [
-        "Unowned",
-        "Owned(A,7)",
-        "claim(A,7)"
-      ],
-      [
-        "Owned(A,7)",
-        "Reclaimable",
-        "expire"
-      ],
-      [
-        "Reclaimable",
-        "Owned(B,8)",
-        "claim(B,8)"
-      ],
-      [
-        "Owned(B,8)",
-        "Unowned",
-        "release(B,8)"
-      ],
-      [
-        "Owned(A,7)",
-        "Owned(B,8)",
-        "release(A,7) rejected: stale generation",
-        "crossed dashed"
-      ]
+    "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+    "native_draw_commands": [
+      "\\path[use as bounding box] (0,0) rectangle (444,252);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,90) rectangle (84,128);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,90) rectangle (193,128);",
+      "\\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,90) rectangle (313,128);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,90) rectangle (433,128);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,105) .. controls (96,100) and (109,100) .. (120,104);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,104) .. controls (207,102) and (220,102) .. (234,104);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,104) .. controls (329,102) and (345,102) .. (360,104);",
+      "\\draw[line width=0.65bp] (103,80) .. controls (105,91) .. (103,102);",
+      "\\draw[line width=0.65bp] (214,80) .. controls (216,91) .. (214,102);",
+      "\\draw[line width=0.65bp] (337,80) .. controls (339,91) .. (337,102);",
+      "\\draw[line width=.65bp] (375,128) -- (350,145);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);"
     ]
   },
   "required_terms": [
@@ -45,14 +32,15 @@
     "claim(A, 7)",
     "expire",
     "claim(B, 8)",
-    "release(A, 7) (rejected: stale generation)",
+    "release(A, 7): rejected",
     "release(B, 8)",
-    "Release clears ownership only when worker and generation match the current claim."
+    "Release clears ownership only when worker and generation match the current claim.",
+    "current claim remains (B, 8)"
   ],
   "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
   "redesign": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
   "questions": [],
-  "alt": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+  "alt": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
   "review": {
     "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
     "checks": [
@@ -486,15 +474,15 @@
               }
             },
             {
-              "source_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "source_text": "owner · epoch · expires_at",
               "source_style": "weight normal; italic; source size 14.5",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "candidate_text": "owner · epoch · expires_at",
               "candidate_style": "italic",
               "source_locator": {
                 "svg": "book/assets/in-flight-ownership-states.svg",
                 "element_text_path": "/svg/text[4]/text()",
-                "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
+                "text_element_context": "owner · epoch · expires_at",
                 "matching_fragment_count": 1
               }
             },
@@ -552,7 +540,7 @@
               "italic": false
             },
             {
-              "text": "owner \u00b7 epoch \u00b7 expires_at",
+              "text": "owner · epoch · expires_at",
               "bold": false,
               "italic": true
             },
@@ -661,7 +649,7 @@
         "required_terms": [
           "claim",
           "CLAIMED",
-          "owner \u00b7 epoch \u00b7 expires_at",
+          "owner · epoch · expires_at",
           "RELEASED",
           "Claim ends cleanly",
           "RECLAIMABLE",
@@ -671,7 +659,7 @@
           "may claim",
           "Completion releases the claim; expiry makes it reclaimable.",
           "A live claim is distinguishable from a stale",
-          "one \u2014 expiry is a state, not an accident."
+          "one — expiry is a state, not an accident."
         ],
         "bw_encoding": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone.",
         "redesign": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone. Orthogonal completion/expiry split with distinct line conventions; short outer reclaim loop preserves feedback.",
@@ -816,15 +804,15 @@
               }
             },
             {
-              "source_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "source_text": "owner · epoch · expires_at",
               "source_style": "weight normal; italic; source size 14.5",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "candidate_text": "owner · epoch · expires_at",
               "candidate_style": "italic",
               "source_locator": {
                 "svg": "book/assets/in-flight-ownership-states.svg",
                 "element_text_path": "/svg/text[4]/text()",
-                "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
+                "text_element_context": "owner · epoch · expires_at",
                 "matching_fragment_count": 1
               }
             },
@@ -882,7 +870,7 @@
               "italic": false
             },
             {
-              "text": "owner \u00b7 epoch \u00b7 expires_at",
+              "text": "owner · epoch · expires_at",
               "bold": false,
               "italic": true
             },
@@ -1026,18 +1014,18 @@
           "release(B, 8)",
           "State meaning",
           "Key transitions",
-          "Unowned \u2014 no active claim",
-          "Owned(w, g) \u2014 job held by worker w",
+          "Unowned — no active claim",
+          "Owned(w, g) — job held by worker w",
           "with generation g",
-          "Reclaimable \u2014 previous claim",
+          "Reclaimable — previous claim",
           "expired, job can be claimed",
-          "\u2022",
+          "•",
           "claim(w, g): acquire the job with",
           "generation g",
-          "\u2022",
+          "•",
           "expire: previous claim",
           "becomes invalid",
-          "\u2022",
+          "•",
           "release(w, g): release only if",
           "the current claim matches (w, g)",
           "A release may modify a job only if it still holds the current generation."
@@ -1224,13 +1212,13 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Unowned \u2014 no active claim",
+              "candidate_text": "Unowned — no active claim",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Owned(w, g) \u2014 job held by worker w",
+              "candidate_text": "Owned(w, g) — job held by worker w",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1242,7 +1230,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Reclaimable \u2014 previous claim",
+              "candidate_text": "Reclaimable — previous claim",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1254,7 +1242,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1272,7 +1260,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1290,7 +1278,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1391,10 +1379,10 @@
               "italic": false
             },
             {
-              "text": "Unowned \u2014 no active claim"
+              "text": "Unowned — no active claim"
             },
             {
-              "text": "Owned(w, g) \u2014 job held by worker w"
+              "text": "Owned(w, g) — job held by worker w"
             },
             {
               "text": "with generation g",
@@ -1402,7 +1390,7 @@
               "italic": false
             },
             {
-              "text": "Reclaimable \u2014 previous claim"
+              "text": "Reclaimable — previous claim"
             },
             {
               "text": "expired, job can be claimed",
@@ -1410,7 +1398,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -1423,7 +1411,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -1436,7 +1424,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -1595,18 +1583,18 @@
           "release(B, 8)",
           "State meaning",
           "Key transitions",
-          "Unowned \u2014 no active claim",
-          "Owned(w, g) \u2014 job held by worker w",
+          "Unowned — no active claim",
+          "Owned(w, g) — job held by worker w",
           "with generation g",
-          "Reclaimable \u2014 previous claim",
+          "Reclaimable — previous claim",
           "expired, job can be claimed",
-          "\u2022",
+          "•",
           "claim(w, g): acquire the job with",
           "generation g",
-          "\u2022",
+          "•",
           "expire: previous claim",
           "becomes invalid",
-          "\u2022",
+          "•",
           "release(w, g): release only if",
           "the current claim matches (w, g)",
           "A release may modify a job only if it still holds the current generation."
@@ -1787,13 +1775,13 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Unowned \u2014 no active claim",
+              "candidate_text": "Unowned — no active claim",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Owned(w, g) \u2014 job held by worker w",
+              "candidate_text": "Owned(w, g) — job held by worker w",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1805,7 +1793,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "Reclaimable \u2014 previous claim",
+              "candidate_text": "Reclaimable — previous claim",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1817,7 +1805,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1835,7 +1823,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1853,7 +1841,7 @@
             },
             {
               "semantic_role": "Reference label or explanation",
-              "candidate_text": "\u2022",
+              "candidate_text": "•",
               "candidate_style": "regular or mixed as in reference",
               "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
             },
@@ -1949,10 +1937,10 @@
               "italic": false
             },
             {
-              "text": "Unowned \u2014 no active claim"
+              "text": "Unowned — no active claim"
             },
             {
-              "text": "Owned(w, g) \u2014 job held by worker w"
+              "text": "Owned(w, g) — job held by worker w"
             },
             {
               "text": "with generation g",
@@ -1960,7 +1948,7 @@
               "italic": false
             },
             {
-              "text": "Reclaimable \u2014 previous claim"
+              "text": "Reclaimable — previous claim"
             },
             {
               "text": "expired, job can be claimed",
@@ -1968,7 +1956,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -1981,7 +1969,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -1994,7 +1982,7 @@
               "italic": false
             },
             {
-              "text": "\u2022",
+              "text": "•",
               "bold": false,
               "italic": false
             },
@@ -2099,6 +2087,57 @@
           "status": "geometry proof inspected; pending publication-pair review"
         }
       }
+    },
+    {
+      "date": "2026-11-17",
+      "reason": "Author-approved figure/prose semantic corrections; placement recommendations deferred.",
+      "previous_alt": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+      "previous_topology": {
+        "description": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+        "relations": [
+          [
+            "Unowned",
+            "Owned(A,7)",
+            "claim(A,7)"
+          ],
+          [
+            "Owned(A,7)",
+            "Reclaimable",
+            "expire"
+          ],
+          [
+            "Reclaimable",
+            "Owned(B,8)",
+            "claim(B,8)"
+          ],
+          [
+            "Owned(B,8)",
+            "Unowned",
+            "release(B,8)"
+          ],
+          [
+            "Owned(A,7)",
+            "Owned(B,8)",
+            "release(A,7) rejected: stale generation",
+            "crossed dashed"
+          ]
+        ]
+      }
     }
-  ]
+  ],
+  "source_sha256": "4501167c1e92ff6c3212f5f8016c8640c1f051bec81b84b7d61920bf83cb6829",
+  "candidate_sha256": "a0b486d04ab9fc9d97137b6356cf9fd60ecc19c335c3a9cce823499c11c71a56",
+  "semantic_revision_20261117": {
+    "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+    "proof": "book/latex/build/style-figure-proof.pdf",
+    "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+    "page": 3,
+    "dimensions_bp": [
+      449.97198486328125,
+      257.9750061035156
+    ],
+    "visual_review": "Labels, transitions and annotations inspected in rendered proof.",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
+  }
 }

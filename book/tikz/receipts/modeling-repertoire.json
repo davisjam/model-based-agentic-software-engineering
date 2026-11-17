@@ -1,28 +1,50 @@
 {
   "source": "book/assets/modeling-repertoire.svg",
   "chapter": "2.2-constructing-and-using-engineering-models",
-  "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
+  "claim": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
   "topology": {
-    "description": "Nine grouped examples remain. Finite-state branching is centered vertically in the expanded gap. DocAble control flow analyzes a figure, asks whether it is informative, then queries an LLM for a description on yes or marks it decorative on no. This binary illustration does not change the adjacent decision table, which preserves uncertain or missing classifications. Both control-flow branches use the same lower rank and equal 11bp vertical legs. Provenance keeps its symmetric paths. The quantitative panel defines r=E/N, E as errors and N as requests, and requires r<1% using native serif mathematical notation.",
+    "description": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
     "native_draw_commands": [
+      "\\draw[black!60,line width=.6pt] (0,14) rectangle (443,566);",
       "\\draw[edge] (58,40) -- (81,40);",
       "\\draw[edge] (107,50) -- (107,64);",
       "\\draw[edge] (81,74) -- (58,74);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);",
       "\\draw[edge] (53,57) -- (63,57) -- (63,40) -- (79,40);",
       "\\draw[edge] (53,57) -- (63,57) -- (63,74) -- (85,74);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);",
       "\\draw[edge] (58,40) -- (70,40) -- (70,53) -- (86,53);",
       "\\draw[edge,dashed] (58,74) -- (70,74) -- (70,61) -- (86,61);",
+      "\\draw[line width=.8pt] (67,65)--(73,71) (67,71)--(73,65);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);",
       "\\draw[edge] (58,40) -- (78,40);",
       "\\draw[edge] (107,50) -- (107,82);",
       "\\draw[edge] (107,50) -- (107,66) -- (32,66) -- (32,82);",
-      "\\draw[edge] (56,54) -- (67,54);",
-      "\\draw[edge] (104,74) -- (104,85) -- (35,85) -- (35,96);",
-      "\\draw[edge] (104,74) -- (104,85) -- (110,85) -- (110,96);",
+      "\\draw[black!40,line width=.4pt] (4,141) -- (140,141);",
+      "\\draw[black!30,line width=.4pt] (73,128) -- (73,177);",
+      "\\draw[fill=white,line width=.6pt] (102.5,34) -- (145,54) -- (102.5,80) -- (60,54) -- cycle;",
+      "\\draw[edge] (56,54) -- (60,54);",
+      "\\draw[edge] (102.5,80) -- (102.5,85) -- (35,85) -- (35,96);",
+      "\\draw[edge] (102.5,80) -- (102.5,85) -- (110,85) -- (110,96);",
+      "\\draw[black!40,line width=.4pt] (4,141) -- (140,141);",
+      "\\draw[black!30,line width=.4pt] (73,128) -- (73,177);",
       "\\draw[edge] (58,40) -- (81,40);",
       "\\draw[edge] (107,50) -- (107,82);",
       "\\draw[edge] (81,92) -- (58,92);",
+      "\\draw[black!40,line width=.4pt] (4,141) -- (140,141);",
+      "\\draw[black!30,line width=.4pt] (73,128) -- (73,177);",
+      "\\draw[black!60,line width=.4pt] (4,39) -- (140,39);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);",
       "\\draw[edge] (33,54) -- (33,65) -- (64,65) -- (64,76);",
-      "\\draw[edge] (111,54) -- (111,65) -- (80,65) -- (80,76);"
+      "\\draw[edge] (111,54) -- (111,65) -- (80,65) -- (80,76);",
+      "\\draw[black!40,line width=.4pt] (4,123) -- (140,123);",
+      "\\draw[black!30,line width=.4pt] (73,110) -- (73,159);"
     ]
   },
   "required_terms": [
@@ -52,7 +74,7 @@
     "Properties",
     "Analyses",
     "Analyze figure",
-    "Informative?",
+    "Clearly decorative?",
     "Query LLM for description",
     "Mark decorative",
     "Error rate",
@@ -62,7 +84,7 @@
   "bw_encoding": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
   "redesign": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
   "questions": [],
-  "alt": "Nine grouped model families with question subtitles and Properties/Analyses tables. Finite-state and control-flow branches use lower, aligned horizontal segments. DocAble control flow analyzes a figure and branches on informative: yes queries an LLM for a description, no marks decorative; the adjacent decision table separately preserves uncertain classifications. Quantitative modeling uses a native serif error-rate fraction r=E/N and requires r below one percent. No top notation sentence remains. The serif fraction names error and request counts directly.",
+  "alt": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -1350,5 +1372,50 @@
         "status": "passed"
       }
     ]
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-17",
+      "reason": "Author-approved figure/prose semantic corrections; placement recommendations deferred.",
+      "previous_alt": "Nine grouped model families with question subtitles and Properties/Analyses tables. Finite-state and control-flow branches use lower, aligned horizontal segments. DocAble control flow analyzes a figure and branches on informative: yes queries an LLM for a description, no marks decorative; the adjacent decision table separately preserves uncertain classifications. Quantitative modeling uses a native serif error-rate fraction r=E/N and requires r below one percent. No top notation sentence remains. The serif fraction names error and request counts directly.",
+      "previous_topology": {
+        "description": "Nine grouped examples remain. Finite-state branching is centered vertically in the expanded gap. DocAble control flow analyzes a figure, asks whether it is informative, then queries an LLM for a description on yes or marks it decorative on no. This binary illustration does not change the adjacent decision table, which preserves uncertain or missing classifications. Both control-flow branches use the same lower rank and equal 11bp vertical legs. Provenance keeps its symmetric paths. The quantitative panel defines r=E/N, E as errors and N as requests, and requires r<1% using native serif mathematical notation.",
+        "native_draw_commands": [
+          "\\draw[edge] (58,40) -- (81,40);",
+          "\\draw[edge] (107,50) -- (107,64);",
+          "\\draw[edge] (81,74) -- (58,74);",
+          "\\draw[edge] (53,57) -- (63,57) -- (63,40) -- (79,40);",
+          "\\draw[edge] (53,57) -- (63,57) -- (63,74) -- (85,74);",
+          "\\draw[edge] (58,40) -- (70,40) -- (70,53) -- (86,53);",
+          "\\draw[edge,dashed] (58,74) -- (70,74) -- (70,61) -- (86,61);",
+          "\\draw[edge] (58,40) -- (78,40);",
+          "\\draw[edge] (107,50) -- (107,82);",
+          "\\draw[edge] (107,50) -- (107,66) -- (32,66) -- (32,82);",
+          "\\draw[edge] (56,54) -- (67,54);",
+          "\\draw[edge] (104,74) -- (104,85) -- (35,85) -- (35,96);",
+          "\\draw[edge] (104,74) -- (104,85) -- (110,85) -- (110,96);",
+          "\\draw[edge] (58,40) -- (81,40);",
+          "\\draw[edge] (107,50) -- (107,82);",
+          "\\draw[edge] (81,92) -- (58,92);",
+          "\\draw[edge] (33,54) -- (33,65) -- (64,65) -- (64,76);",
+          "\\draw[edge] (111,54) -- (111,65) -- (80,65) -- (80,76);"
+        ]
+      }
+    }
+  ],
+  "source_sha256": "86c155892281d93035be6f8f116a8404d4cc6e87797c1ff6cfbe7f36abcf891f",
+  "candidate_sha256": "62cbbbbf27509cc6079359b09d4b0986a8daa4d30b1e98527fd31851fb80ac99",
+  "semantic_revision_20261117": {
+    "description": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
+    "proof": "book/latex/build/style-figure-proof.pdf",
+    "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+    "page": 1,
+    "dimensions_bp": [
+      449.57000732421875,
+      558.5689697265625
+    ],
+    "visual_review": "Labels, transitions and annotations inspected in rendered proof.",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
   }
 }

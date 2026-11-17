@@ -23,9 +23,9 @@
 \draw[line width=0.65bp] (214,80) .. controls (216,91) .. (214,102);
 \node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (337,74) {claim(B, 8)};
 \draw[line width=0.65bp] (337,80) .. controls (339,91) .. (337,102);
-\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (157,128) .. controls (174,155) and (207,156) .. (272,156) .. controls (327,156) and (358,149) .. (375,129);
-\draw[line width=2.3bp] (184,147) -- (192,155) (184,155) -- (192,147);
-\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (258,174) {release(A, 7) (rejected: stale generation)};
+\draw[line width=.65bp] (375,128) -- (350,145);
+\node[anchor=base east,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (355,160) {release(A, 7): rejected};
+\node[anchor=base east,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (355,175) {current claim remains (B, 8)};
 \draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);
 \node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (226,230) {release(B, 8)};
 \node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (222,260) {Release clears ownership only when worker and generation match the current claim.};

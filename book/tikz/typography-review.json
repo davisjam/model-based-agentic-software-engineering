@@ -4337,8 +4337,8 @@
       "source": "book/assets/modeling-repertoire.svg",
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
-      "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
+      "source_sha256": "86c155892281d93035be6f8f116a8404d4cc6e87797c1ff6cfbe7f36abcf891f",
+      "candidate_sha256": "62cbbbbf27509cc6079359b09d4b0986a8daa4d30b1e98527fd31851fb80ac99",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -4840,7 +4840,7 @@
           "candidate_style": "regular"
         }
       ],
-      "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
+      "reason": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
       "checks": [
         {
           "text": "Component/dependency",
@@ -5008,7 +5008,7 @@
           "italic": false
         },
         {
-          "text": "Informative?",
+          "text": "Clearly decorative?",
           "bold": false,
           "italic": false
         },
@@ -5038,40 +5038,6 @@
           "italic": false
         }
       ],
-      "validation": {
-        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
-        "page": 1,
-        "width_bp": 449.57,
-        "height_bp": 558.569,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 42,
-        "single_line_family_headings": 9,
-        "single_line_row_headings": 3,
-        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
-        "native_serif_math": true,
-        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-        "status": "passed",
-        "reviewed_math_labels": [
-          {
-            "text": "# errors",
-            "font": "SourceSerif4-Regular"
-          },
-          {
-            "text": "# requests",
-            "font": "SourceSerif4-Regular"
-          }
-        ]
-      },
       "validation_history": [
         {
           "proof": "latex/build/tikz/candidates.pdf",
@@ -5184,7 +5150,255 @@
           "text": "# requests",
           "font": "SourceSerif4-Regular"
         }
-      ]
+      ],
+      "revision_history": [
+        {
+          "date": "2026-11-17",
+          "reason": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
+          "previous_review": {
+            "validation": {
+              "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+              "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
+              "page": 1,
+              "width_bp": 449.57,
+              "height_bp": 558.569,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 17,
+              "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 42,
+              "single_line_family_headings": 9,
+              "single_line_row_headings": 3,
+              "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+              "native_serif_math": true,
+              "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
+              "status": "passed",
+              "reviewed_math_labels": [
+                {
+                  "text": "# errors",
+                  "font": "SourceSerif4-Regular"
+                },
+                {
+                  "text": "# requests",
+                  "font": "SourceSerif4-Regular"
+                }
+              ]
+            },
+            "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
+            "checks": [
+              {
+                "text": "Component/dependency",
+                "bold": true
+              },
+              {
+                "text": "Finite-state",
+                "bold": true
+              },
+              {
+                "text": "Data flow",
+                "bold": true
+              },
+              {
+                "text": "Ownership/resource",
+                "bold": true
+              },
+              {
+                "text": "Decision/policy",
+                "bold": true
+              },
+              {
+                "text": "Quantitative",
+                "bold": true
+              },
+              {
+                "text": "Entity/schema",
+                "bold": true
+              },
+              {
+                "text": "Provenance/derivation",
+                "bold": true
+              },
+              {
+                "text": "Control flow",
+                "bold": true
+              },
+              {
+                "text": "Depends on; reaches",
+                "italic": true
+              },
+              {
+                "text": "May become",
+                "italic": true
+              },
+              {
+                "text": "Flows to",
+                "italic": true
+              },
+              {
+                "text": "Only clearly decorative: omit",
+                "italic": true
+              },
+              {
+                "text": "owns / memberOf",
+                "italic": true
+              },
+              {
+                "text": "sourceOf / produced",
+                "italic": true
+              },
+              {
+                "text": "Owns; dashed = stale claim",
+                "italic": true,
+                "bold": false
+              },
+              {
+                "text": "WEB",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "What depends on what?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Structure and relationships",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Behavior and flow",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Decisions and evidence",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Classification",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Description",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Required:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Uncertain/missing",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Properties",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Analyses",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Entities and relations?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Who may control what?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "What may happen next?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Which path executes?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Where does data flow?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Which action to choose?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "How much / what bound?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "What produced this?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Analyze figure",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Informative?",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Query LLM for description",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Mark decorative",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Error rate",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "# errors",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "# requests",
+                "bold": false,
+                "italic": false
+              }
+            ]
+          }
+        }
+      ],
+      "semantic_revision_20261117": {
+        "description": "Nine model families retain their separate questions, properties and analyses. Control flow asks Clearly decorative?: yes marks decorative, no (including uncertainty) queries the LLM for a description, matching the decision-policy table.",
+        "proof": "book/latex/build/style-figure-proof.pdf",
+        "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+        "page": 1,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
+      }
     },
     {
       "source": "book/assets/canonical-structural.svg",
@@ -7527,8 +7741,8 @@
       "source": "book/assets/canonical-behavioral.svg",
       "candidate": "book/tikz/figures/canonical-behavioral.tex",
       "decision": "refined",
-      "source_sha256": "87a527bba99708f3a448b5a6036cf23e621032efdbad445da7e41b5f55250059",
-      "candidate_sha256": "51c3c24e1a615d035ea02a22d6382163c9e28eeade325d038fedbd0fce6a90e6",
+      "source_sha256": "284d4aa048b6c9a1409d82f77a3f499bde4abc4977784beaae3b487393d37842",
+      "candidate_sha256": "da0b0d9f1bd4890628b949b777b7a356dccdd0b0e2da32e0b5fb598b5598e020",
       "evidence": [
         {
           "source_text": "A state model for a remediation job, including retries.",
@@ -7538,9 +7752,7 @@
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "A state model for a remediation job, including retries.",
-            "matching_fragment_count": 1
+            "note": "Source synchronized with approved semantic revision; previous element offsets retired."
           }
         },
         {
@@ -7551,9 +7763,7 @@
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "Retrying",
-            "matching_fragment_count": 1
+            "note": "Source synchronized with approved semantic revision; previous element offsets retired."
           }
         },
         {
@@ -7564,13 +7774,11 @@
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[19]/text()",
-            "text_element_context": "Properties to investigate",
-            "matching_fragment_count": 1
+            "note": "Source synchronized with approved semantic revision; previous element offsets retired."
           }
         }
       ],
-      "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
+      "reason": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
       "checks": [
         {
           "text": "A state model for a remediation job, including retries.",
@@ -7596,9 +7804,6 @@
           "text": "Retrying",
           "bold": true,
           "italic": false
-        },
-        {
-          "text": "(attempt = n)"
         },
         {
           "text": "Failed",
@@ -7631,42 +7836,12 @@
           "italic": false
         },
         {
-          "text": "On a repairable failure,",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "retry (up to a limit,",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "If retries are exhausted",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "or the error is not repairable,",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "the job fails.",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "e.g., n ≤3).",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Properties to investigate",
           "bold": true,
           "italic": false
         },
         {
-          "text": "• At most N retry attempts (e.g., N = 3).",
+          "text": "• At most N retries (e.g., N = 3).",
           "bold": false,
           "italic": false
         },
@@ -7679,29 +7854,35 @@
           "text": "• Succeeded is reachable only after Running.",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "(not yet started)"
+        },
+        {
+          "text": "Start another attempt;"
+        },
+        {
+          "text": "increment"
+        },
+        {
+          "text": "Repairable failure,"
+        },
+        {
+          "text": "Nonrepairable failure, or"
+        },
+        {
+          "text": "repairable failure with"
+        },
+        {
+          "text": "initially"
+        },
+        {
+          "text": "start"
+        },
+        {
+          "text": "success"
         }
       ],
-      "validation": {
-        "date": "2026-11-17",
-        "proof": "latex/build/figure-2-10-properties-proof/figure-2-10-properties.pdf",
-        "proof_sha256": "82aecc0a313f3ae98be1a4beea6a1c1592242f219f73f7eb53bfc380e02da0a9",
-        "page": 1,
-        "width_bp": 448.584,
-        "height_bp": 337.649,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10.79,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 3,
-        "geometry_audit_sha256": "beabe324cd640a9dc074b99d018be90c9f5e3fbdec4927a9a143510063e3d7d1",
-        "typography_audit_sha256": "56b31a20bf932f71f93a4b1737b7578324528ee10b9eca47f7d3881da023921a",
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 22,
-        "status": "passed"
-      },
       "revision_history": [
         {
           "superseded_date": "2026-11-09",
@@ -7722,6 +7903,144 @@
             },
             "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail."
           }
+        },
+        {
+          "date": "2026-11-17",
+          "reason": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
+          "previous_review": {
+            "validation": {
+              "date": "2026-11-17",
+              "proof": "latex/build/figure-2-10-properties-proof/figure-2-10-properties.pdf",
+              "proof_sha256": "82aecc0a313f3ae98be1a4beea6a1c1592242f219f73f7eb53bfc380e02da0a9",
+              "page": 1,
+              "width_bp": 448.584,
+              "height_bp": 337.649,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.79,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 3,
+              "geometry_audit_sha256": "beabe324cd640a9dc074b99d018be90c9f5e3fbdec4927a9a143510063e3d7d1",
+              "typography_audit_sha256": "56b31a20bf932f71f93a4b1737b7578324528ee10b9eca47f7d3881da023921a",
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 22,
+              "status": "passed"
+            },
+            "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
+            "checks": [
+              {
+                "text": "A state model for a remediation job, including retries.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Pending",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Running",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Succeeded",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Retrying",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(attempt = n)"
+              },
+              {
+                "text": "Failed",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "A worker executes the",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "next computation for the job.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Job completes",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "with a corrected",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "document.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "On a repairable failure,",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "retry (up to a limit,",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "If retries are exhausted",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "or the error is not repairable,",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "the job fails.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "e.g., n ≤3).",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Properties to investigate",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "• At most N retry attempts (e.g., N = 3).",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "• Every started job eventually reaches Succeeded or Failed.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "• Succeeded is reachable only after Running.",
+                "bold": false,
+                "italic": false
+              }
+            ]
+          }
         }
       ],
       "validation_history": [
@@ -7741,7 +8060,15 @@
           "minimum_prose_font_pt": 8.97,
           "semantic_typography_checks": 11
         }
-      ]
+      ],
+      "semantic_revision_20261117": {
+        "description": "Pending starts Running. Success reaches Succeeded. A repairable failure with r<N enters Retrying, an authorized attempt not yet started. One return arrow starts the next attempt and increments r. Running reaches Failed on nonrepairable failure or repairable failure with r=N. Initially r=0; the initial attempt is not a retry. Bounded retries, eventual termination and success after Running remain properties to investigate.",
+        "proof": "book/latex/build/style-figure-proof.pdf",
+        "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+        "page": 2,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
+      }
     },
     {
       "source": "book/assets/recovery-ordering-model.svg",
@@ -8372,8 +8699,8 @@
       "source": "book/assets/in-flight-ownership-states.svg",
       "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
       "decision": "refined",
-      "source_sha256": "0f137f9d59ee214e38d503e7e86dcb5c12413ef25fd90205d5e5376dd4ad443a",
-      "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
+      "source_sha256": "4501167c1e92ff6c3212f5f8016c8640c1f051bec81b84b7d61920bf83cb6829",
+      "candidate_sha256": "a0b486d04ab9fc9d97137b6356cf9fd60ecc19c335c3a9cce823499c11c71a56",
       "evidence": [
         {
           "semantic_role": "Reference label or explanation",
@@ -8460,7 +8787,7 @@
           "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         }
       ],
-      "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
+      "reason": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
       "checks": [
         {
           "text": "A behavioral model for job ownership with generations.",
@@ -8518,7 +8845,7 @@
           "italic": false
         },
         {
-          "text": "release(A, 7) (rejected: stale generation)",
+          "text": "release(A, 7): rejected",
           "bold": false,
           "italic": false
         },
@@ -8531,24 +8858,11 @@
           "text": "Release clears ownership only when worker and generation match the current claim.",
           "bold": false,
           "italic": true
+        },
+        {
+          "text": "current claim remains (B, 8)"
         }
       ],
-      "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
-        "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
-        "page": 1,
-        "width_bp": 449.972,
-        "height_bp": 257.975,
-        "minimum_prose_font_pt": 10.461,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 14,
-        "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
-        "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
-        "status": "passed"
-      },
       "revision_history": [
         {
           "superseded_date": "2026-11-09",
@@ -9434,8 +9748,111 @@
               "status": "passed"
             }
           }
+        },
+        {
+          "date": "2026-11-17",
+          "reason": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+          "previous_review": {
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+              "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 257.975,
+              "minimum_prose_font_pt": 10.461,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 14,
+              "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+              "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
+              "status": "passed"
+            },
+            "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
+            "checks": [
+              {
+                "text": "A behavioral model for job ownership with generations.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Claims identify (worker, generation).",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Unowned",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Owned",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(A, 7)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Owned",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Reclaimable",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "claim(A, 7)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "expire",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "claim(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "release(A, 7) (rejected: stale generation)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "release(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Release clears ownership only when worker and generation match the current claim.",
+                "bold": false,
+                "italic": true
+              }
+            ]
+          }
         }
-      ]
+      ],
+      "semantic_revision_20261117": {
+        "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+        "proof": "book/latex/build/style-figure-proof.pdf",
+        "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
+        "page": 3,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "35fcd646acc1e2edc0755677bd4e6a616b67f12be247251a3ca90a486b575866"
+      }
     },
     {
       "source": "book/assets/service-flow-model.svg",
