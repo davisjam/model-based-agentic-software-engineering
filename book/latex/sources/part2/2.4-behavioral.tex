@@ -6,21 +6,21 @@
 
 \chapter{Behavioral Models: What May Happen?}
 
-A behavioral model represents how a system acts or changes over time. It may describe the messages exchanged by components, the order of steps in a workflow, or how a quantity changes continuously. Where a structural model like a dependency graph answers \emph{what is connected to what?}, a behavioral model asks \emph{what may happen, and in what order?} The representation should preserve the distinctions needed to answer the engineering question while leaving out implementation details that do not affect it.
+A structural model describes relationships among parts of a system. A behavioral model describes how the system acts or changes over time. Depending on the question, we might model messages exchanged in a protocol, steps in a workflow, or a quantity that changes continuously. Here we focus on a common choice for software systems: discrete states and the events that move a system between them. With such a model, we can ask whether a job can finish before it starts, or whether a job that starts will ever finish.
 
 \section{States, Transitions, and Behavioral Analysis}\label{heading:states-transitions-and-behavioral-analysis}
 
-% <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | State-transition models make lifecycle and recovery questions explicit; state machines, labeled transition systems, and statecharts represent behavior, while temporal specifications state properties over executions. -->
+Suppose a service processes jobs that may be waiting, running, completed, or failed. Can a job report completion before anyone has started it? To find out, we need to know where a job begins, which event starts it, and from which states the service permits completion. We can set aside the database schema, scheduling algorithm, and retry machinery for now. If a job can finish too early, we ought to be able to see how in a model small enough to trace by hand.
 
-For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them. This is the form of behavioral modeling developed here. A finite-state machine names a finite set of states and the transitions between them. A labeled transition system associates transitions with actions or events. Statecharts add hierarchy and concurrency to organize more complex behavior~\citep{harel1987}. Temporal specifications let us state properties over executions, such as whether every started job eventually finishes. These representations support reasoning about order, reachability, and progress without retaining the code that implements each operation.
+\subsection{Constructing a Behavioral Model}\label{heading:constructing-a-behavioral-model}
 
 % <!-- point: the-reduction-is-what-makes-behavior-checkable | Reducing a service to states and transitions turns "can it reach a state it should never occupy?" from a reconstruction over scattered handlers into a question a person or tool can answer. -->
 
-A job-processing service described only through its handlers, database writes, and retries makes even a simple ordering rule hard to inspect. Can an idle job report completion before anyone has started it? For this question we can set retries aside and specify the lifecycle with four states \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\), an initial state of \(\mathrm{IDLE}\), and three events \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\).
+For this question, four states and three events suffice. Let \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\) be the states, with each job starting in \(\mathrm{IDLE}\). The events are \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\). We still need to say which events are permitted in each state and where they take the job.
 
 % <!-- point: transition-semantics-can-construct-intended-behavior | A partial transition function defines the effects of start, finish, and fail in a four-state job lifecycle. Undefined pairs admit no transition, and the same function can guide implementation, interpretation, or test generation. | terms: semantic-commitment, modeling-principle -->
 
-The effect of an event depends on the current state. The partial transition function \(\delta:S\times E\rightharpoonup S\) is defined by
+What an event does depends on the state in which it occurs. The following partial function \(\delta:S\times E\rightharpoonup S\) gives the next state for each permitted pair:
 \[
 \begin{aligned}
 \delta(\mathrm{IDLE},\mathrm{start}) &= \mathrm{RUNNING},\\
@@ -28,9 +28,11 @@ The effect of an event depends on the current state. The partial transition func
 \delta(\mathrm{RUNNING},\mathrm{fail}) &= \mathrm{FAILED}.
 \end{aligned}
 \]
-For every other state--event pair, \(\delta\) is undefined. In particular, \(\delta(\mathrm{IDLE},\mathrm{finish})\) is undefined, so a finish event cannot take an idle job straight to completion. DONE and FAILED have no outgoing transitions in this lifecycle. An agent can implement the protocol using a database, a queue, or an in-memory scheduler. A state-machine interpreter can consult \(\delta\) directly to determine the next state. A test generator can use the same entries to derive event sequences and expected states. Starting from IDLE, start followed by finish ends in DONE, and start followed by fail ends in FAILED.
+Try \(\mathrm{finish}\) from \(\mathrm{IDLE}\). There is no entry for that pair, so the model forbids the transition. Now try \(\mathrm{start}\) followed by \(\mathrm{finish}\). The first entry takes the job to \(\mathrm{RUNNING}\), from which the second takes it to \(\mathrm{DONE}\). Both \(\mathrm{DONE}\) and \(\mathrm{FAILED}\) are terminal.
 
-For recovery questions, the engineer must also distinguish a failed attempt that can be retried from a failure that ends the job. \autoref{canonical-behavioral} makes that distinction in a remediation service. The transition into Retrying lets us follow another attempt back into Running and ask how many attempts the service permits before the job reaches a terminal state.
+The model settles when a job may finish while leaving the engineer free to choose how to implement it. An agent might store the state in a database, manage jobs through a queue, or use an in-memory scheduler. A state-machine interpreter can consult the entries directly. A test generator can use those same entries to produce a sequence of events and predict the state the implementation should report afterward.
+
+A failed attempt need not mean a failed job. In \autoref{canonical-behavioral}, a repairable failure can move a running job into Retrying, from which a new attempt returns it to Running. A job can therefore succeed after an earlier attempt failed. The extra state earns its place when we want to reason about recovery.
 
 \begin{figure}[htbp]
 \centering
@@ -39,49 +41,19 @@ For recovery questions, the engineer must also distinguish a failed attempt that
 \label{canonical-behavioral}
 \end{figure}
 
+\subsection{Properties and Analyses}\label{heading:behavioral-properties-and-analyses}
+
 % <!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A behavioral model represents states and transitions; it can specify allowed behavior or describe behavior to be checked against a requirement. Safety and liveness properties ask different questions over the admitted executions. -->
 
-Nodes represent states, and directed edges represent transitions. A path from an initial state describes an execution admitted by the model. The model's purpose tells us how to interpret that execution. A specification declares allowed behavior, as \autoref{canonical-behavioral} does: omitting a direct \texttt{Pending~→~Succeeded} transition forbids that step. A model of an implementation can instead represent behavior we intend to investigate, including states or transitions that may violate a requirement. Representing a state therefore does not, by itself, declare it acceptable.
+Starting at Pending and following permitted arrows gives us one possible execution of the model. Trace Pending, Running, Retrying, Running, Succeeded. That path shows that success after a retry is \emph{reachable}. Here the arrows specify behavior the service permits. In a model derived from an implementation, the same path would describe behavior to evaluate against a requirement.
 
-The required property tells us what to check over those executions. ``A job never reaches \texttt{Succeeded} before \texttt{Running}'' is a \textbf{safety} property: any violation has a finite execution prefix that demonstrates it. ``Every started job eventually finishes or fails'' is a \textbf{liveness} property: observing a finite period of waiting does not establish that the wait will last forever. Reachability asks whether a state can occur; it serves a safety check when the state being sought violates a required invariant. The choice among transition validation, reachability search, invariant checking, and temporal model checking follows from the property we want to establish~\citep{baier-katoen2008}.
+One path can establish reachability, and one bad path can disprove a \textbf{safety} requirement. Suppose the requirement is that a job must enter Running before it reaches Succeeded. Finding one execution that does so leaves all the other executions to consider. Instead, search for a path from Pending to Succeeded that avoids Running. Any such path would show exactly how premature completion could occur; in the figure, there is none.
 
-A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{Succeeded} to pass through \texttt{Running} excludes premature completion, but a job could remain in \texttt{Running} indefinitely. These are different questions about the same behavioral model. A transition check asks whether a particular state change is permitted; reachability analysis asks whether some sequence of transitions can lead to an undesirable state; and a temporal property can require that every started job eventually finishes or fails. Investigating that last property requires representing the ways processing can wait or retry, together with assumptions under which progress is expected. The model may therefore need to change as the engineering question changes.
+A job can obey every ordering rule and still never finish. The requirement that every started job eventually succeeds or fails is a \textbf{liveness} property. A limit of three retries bounds the number of attempts, but says nothing about how long a worker may remain in Running. Observing one slow attempt cannot settle whether it will ever finish.
 
-% <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
+% <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | State-transition models make lifecycle and recovery questions explicit; state machines, labeled transition systems, and statecharts represent behavior, while temporal specifications state properties over executions. -->
 
-When several workers can process the same job, \emph{who owns this job?} depends on their claims. A worker may stop responding, its claim may expire, and another worker may acquire the job. The original worker can later return and attempt to act using its old claim. An ownership model must retain enough information to distinguish the current right to act from a claim that is no longer valid.
-
-\autoref{ownership-constructs} distinguishes four familiar constructs used to represent access and ownership.
-
-{\footnotesize
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
-\caption[Constructs for access and ownership]{\emph{Constructs for access and ownership.} Locks, leases, capabilities, and claims express different aspects of a worker\textquotesingle s right to act.}\label{ownership-constructs}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Construct
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-What it expresses
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Lock & Coordinates access to a resource. An exclusive lock admits one holder at a time. \\
-Lease & Grants a right for a limited period; expiry can make that right available for reassignment~\citep{graycheriton1989}. \\
-Capability & Carries authority to perform specified operations on a resource; that authority need not be exclusive. \\
-Claim & Records a worker's assignment to a job and the conditions under which that assignment is valid. \\
-\end{longtable}
-}
-
-These constructs can be combined. For a leased job, the ownership model records the worker's claim and how expiry or reassignment changes it. The next distinction is between successive claims on the same job.
-
-% <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
-
-A claim binds a holder to a resource and carries the facts that make contention decidable: which holder, which generation of claim, and when it expires. The generation is the fact a bare "A owns X" edge cannot express --- it distinguishes a \emph{current} claim from a \emph{superseded} one. The difficult failures arise from the interleavings: the orders in which concurrent claims, expiries, and reclaims can occur. So the characteristic analysis is state-space exploration over those sequences, with an invariant checked at each reachable configuration --- the behavioral toolkit of this section pointed at a concurrency question.
-
-For example, a worker may hold a job, lose its claim after a timeout, and later return with an old completion request. The current owner alone is insufficient to decide whether that request still applies: the model must distinguish successive claims on the same job. Recording a claim generation supplies that distinction. At this level, a job is leased exactly when it has a current claim; the claim represents ownership directly. DocAble\textquotesingle s recovery and ownership models show how such small additions support two concrete crash-safety questions.
+To investigate progress, we must say what can keep a job waiting and what allows it to resume. If the service relies on a timeout, represent what happens when it fires and state the assumption that it will be delivered. We can then ask whether any execution under those assumptions can avoid both terminal states indefinitely. Temporal model checking evaluates such requirements over executions~\citep{baier-katoen2008}. For a more complex lifecycle, statecharts can organize related states hierarchically and represent concurrent activity~\citep{harel1987}.
 
 \section{DocAble: Job Lifecycles and Recovery}\label{heading:docable-job-lifecycles-and-recovery}
 
@@ -142,7 +114,35 @@ The three-state recovery model is a reduction for checking publication order. Do
 
 \textbf{Distinguishing a current owner from a returning one}
 
-DocAble leases each in-flight job to one worker. A lease carries an owner, a monotonically increasing generation, and a lifetime; when a lease looks abandoned it can be reclaimed and the job re-leased to another worker at the next generation.
+% <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
+
+DocAble leases each in-flight job to one worker. When a worker stops responding, its lease may expire and the job may be reassigned. If the first worker returns with a delayed release, the service must be able to tell which assignment that release concerns. \autoref{ownership-constructs} distinguishes four ways to represent access and ownership. Here we combine two of them: a claim records the assignment and a lease limits its lifetime.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Constructs for access and ownership]{\emph{Constructs for access and ownership.} Locks, leases, capabilities, and claims express different aspects of a worker\textquotesingle s right to act.}\label{ownership-constructs}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Construct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it expresses
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Lock & Coordinates access to a resource. An exclusive lock admits one holder at a time. \\
+Lease & Grants a right for a limited period; expiry can make that right available for reassignment~\citep{graycheriton1989}. \\
+Capability & Carries authority to perform specified operations on a resource; that authority need not be exclusive. \\
+Claim & Records a worker's assignment to a job and the conditions under which that assignment is valid. \\
+\end{longtable}
+}
+
+% <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
+
+Each new assignment receives a higher generation number. To check the recovery protocol, explore the orders in which an expiry, a new claim, and a delayed release can occur. At each reachable configuration, check that a release for an earlier generation cannot clear the current claim.
 
 \textbf{In-flight lease · Ownership}
 

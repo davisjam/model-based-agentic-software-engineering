@@ -17,7 +17,7 @@
     "Degrees of freedom: choices among acceptable implementations"
   ],
   "bw_encoding": "Light gray marks the ordering region; hatching marks the intersection. Dots denote possible implementations.",
-  "redesign": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+  "redesign": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
   "questions": [],
   "alt": "Possible software implementations for sorting up to 1,000 names alphabetically within 200 milliseconds. The left region represents alphabetical ordering and the right represents response time at most 200 milliseconds. Eight dots lie in each exclusive region, four in the overlap, and three outside both. These schematic dots represent distinct possible implementations, not measured algorithms. Multiple implementations satisfy both requirements, leaving degrees of freedom.",
   "review": {
@@ -30,12 +30,12 @@
     ],
     "outcome": "Inspected revised standalone proof: one-line requirement, legible 11–12pt type, symmetric region labels, and correct 8/8/4/3 schematic memberships.",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-1-review/proof.pdf",
-      "proof_sha256": "61fe1a93e03ead712889005126de9b36394e0c2ccc0b9390a23851e9539bea19",
+      "date": "2026-11-17",
+      "proof": "latex/build/figure-2-1-compact-proof/figure-2-1-compact.pdf",
+      "proof_sha256": "3fc75f3f877b3d1a21488dbb942b5a2a34917e69b883f27fed779082992f4c8d",
       "page": 1,
       "width_bp": 434.371,
-      "height_bp": 301.367,
+      "height_bp": 240.093,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -47,7 +47,9 @@
         "both": 4,
         "neither": 3
       },
-      "status": "passed"
+      "status": "passed",
+      "audit_sha256": "63920d0e187d4702753d5898625544109aa80d7332baebcfd873ea63d79e90db",
+      "typography_audit_sha256": "9b0b116bf6a65437b8d4f44eb64ca66ecabb33827520ed316edd71b12a2ee032"
     }
   },
   "style_review": {
@@ -59,21 +61,21 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
-    "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+    "candidate_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
     "fill": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
     "bold": "Universe heading and region names are bold; the requirement, values, and explanatory labels are regular.",
     "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Inspected standalone native-size proof on 2026-11-11: requirement fits one line, labels clear of geometry, exclusive regions each contain eight dots and overlap four.",
+    "visual_review": "The shorter ellipses keep labels clear of dots and outlines, with the same 8/8/4/3 memberships.",
     "book_references": [],
-    "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+    "reason": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-1-review/proof.pdf",
-      "proof_sha256": "61fe1a93e03ead712889005126de9b36394e0c2ccc0b9390a23851e9539bea19",
+      "date": "2026-11-17",
+      "proof": "latex/build/figure-2-1-compact-proof/figure-2-1-compact.pdf",
+      "proof_sha256": "3fc75f3f877b3d1a21488dbb942b5a2a34917e69b883f27fed779082992f4c8d",
       "page": 1,
       "width_bp": 434.371,
-      "height_bp": 301.367,
+      "height_bp": 240.093,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -85,7 +87,9 @@
         "both": 4,
         "neither": 3
       },
-      "status": "passed"
+      "status": "passed",
+      "audit_sha256": "63920d0e187d4702753d5898625544109aa80d7332baebcfd873ea63d79e90db",
+      "typography_audit_sha256": "9b0b116bf6a65437b8d4f44eb64ca66ecabb33827520ed316edd71b12a2ee032"
     }
   },
   "typography_review": {
@@ -93,7 +97,7 @@
     "candidate": "book/tikz/figures/realization-space.tex",
     "decision": "refined",
     "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
-    "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+    "candidate_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
     "evidence": [
       {
         "candidate_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
@@ -152,7 +156,7 @@
         "source_style": "Author-requested revision"
       }
     ],
-    "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+    "reason": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
     "checks": [
       {
         "text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
@@ -200,12 +204,12 @@
       "semantic_typography_checks": 5
     },
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-1-review/proof.pdf",
-      "proof_sha256": "61fe1a93e03ead712889005126de9b36394e0c2ccc0b9390a23851e9539bea19",
+      "date": "2026-11-17",
+      "proof": "latex/build/figure-2-1-compact-proof/figure-2-1-compact.pdf",
+      "proof_sha256": "3fc75f3f877b3d1a21488dbb942b5a2a34917e69b883f27fed779082992f4c8d",
       "page": 1,
       "width_bp": 434.371,
-      "height_bp": 301.367,
+      "height_bp": 240.093,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -217,7 +221,9 @@
         "both": 4,
         "neither": 3
       },
-      "status": "passed"
+      "status": "passed",
+      "audit_sha256": "63920d0e187d4702753d5898625544109aa80d7332baebcfd873ea63d79e90db",
+      "typography_audit_sha256": "9b0b116bf6a65437b8d4f44eb64ca66ecabb33827520ed316edd71b12a2ee032"
     }
   },
   "layout_review": {
@@ -225,9 +231,9 @@
     "candidate": "book/tikz/figures/realization-space.tex",
     "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
     "baseline_candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-    "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+    "candidate_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
     "decision": "refined",
-    "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+    "reason": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       350.1199951171875,
@@ -236,12 +242,12 @@
     "contracts": {},
     "page_layout": {
       "decision": "refined",
-      "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
-      "before_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
-      "after_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+      "reason": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
+      "before_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+      "after_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
       "before_font_sizes_pt": [
-        9,
-        10
+        11,
+        12
       ],
       "after_font_sizes_pt": [
         11,
@@ -250,7 +256,7 @@
       "reviewed_visually": true,
       "after_dimensions_bp": [
         434.371,
-        301.367
+        240.093
       ]
     },
     "previous_validation": {
@@ -273,12 +279,12 @@
       "height_bp": 246.943
     },
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-1-review/proof.pdf",
-      "proof_sha256": "61fe1a93e03ead712889005126de9b36394e0c2ccc0b9390a23851e9539bea19",
+      "date": "2026-11-17",
+      "proof": "latex/build/figure-2-1-compact-proof/figure-2-1-compact.pdf",
+      "proof_sha256": "3fc75f3f877b3d1a21488dbb942b5a2a34917e69b883f27fed779082992f4c8d",
       "page": 1,
       "width_bp": 434.371,
-      "height_bp": 301.367,
+      "height_bp": 240.093,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
@@ -290,7 +296,9 @@
         "both": 4,
         "neither": 3
       },
-      "status": "passed"
+      "status": "passed",
+      "audit_sha256": "63920d0e187d4702753d5898625544109aa80d7332baebcfd873ea63d79e90db",
+      "typography_audit_sha256": "9b0b116bf6a65437b8d4f44eb64ca66ecabb33827520ed316edd71b12a2ee032"
     }
   },
   "chapter2_layout_revision": {

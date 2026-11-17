@@ -60,10 +60,10 @@
       "reason": "Author directed immediate implementation of the compact two-row synthesis and retention of one compact summary figure in the merged closing section. Publish the revised native black-and-white artwork without a duplicate companion."
     },
     "book/assets/realization-space.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author explicitly approved the revised black-and-white Figure 2.1 after reviewing the requested wording and layout changes in the sidebar. Revised source commit: 60a15c65d2d069f1e815da0639c1ba13aed57d11.",
-      "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
-      "max_print_height_bp": 226
+      "approved_date": "2026-11-17",
+      "reason": "Compact the vertical geometry of Figure 2.1 by about one fifth at print size, retaining the text size and all set memberships.",
+      "candidate_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
+      "max_print_height_bp": 181
     },
     "book/assets/specified-region.svg": {
       "approved_date": "2026-11-11",

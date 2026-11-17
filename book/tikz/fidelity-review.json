@@ -286,13 +286,13 @@
       "source": "book/assets/realization-space.svg",
       "candidate": "book/tikz/figures/realization-space.tex",
       "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
-      "candidate_sha256": "a205ab520913c9ab2c308828b4341f8f8239961a33b67055ffacee4c41c2ed54",
+      "candidate_sha256": "a749af6ae747f2b61df5daf96488316b85ae6a919aa392d65cc4b2d55d93c222",
       "decision": "retained",
       "review": "Compared overlapping realization sets, hatched intersection, representative dots and outside labels. Distinct source sets and their shared region remain; dot placement is illustrative rather than quantitative. No new change.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        12.3515,
-        8.7442
+        15.32,
+        8.47
       ],
       "strict_compile_diagnostics": []
     },

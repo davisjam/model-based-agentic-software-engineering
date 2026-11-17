@@ -21469,3 +21469,91 @@ A build dependency graph answers a different question. Suppose two independent s
 
 The relation\textquotesingle s meaning also matters within one workflow. A task may consume an earlier result as data, or inspect a condition solely to decide whether it should run. Both create dependencies, but they support different questions about how information contributes to the output. A model that records only an undifferentiated arrow cannot answer those questions. DocAble\textquotesingle s document-processing pipeline provides a worked example of both architectural boundaries and typed computation dependencies.
 ```
+
+
+## 2026-11-17 — 2.4-behavioral, teaching the worked example
+
+Source: `book/latex/sources/part2/2.4-behavioral.tex`, revision `3a11caf34`, lines 9–85. The four-state model now precedes the retry model. The ownership explanation moves to the lease example in §2.4.2.
+
+```tex
+A behavioral model represents how a system acts or changes over time. It may describe the messages exchanged by components, the order of steps in a workflow, or how a quantity changes continuously. Where a structural model like a dependency graph answers \emph{what is connected to what?}, a behavioral model asks \emph{what may happen, and in what order?} The representation should preserve the distinctions needed to answer the engineering question while leaving out implementation details that do not affect it.
+
+% <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | State-transition models make lifecycle and recovery questions explicit; state machines, labeled transition systems, and statecharts represent behavior, while temporal specifications state properties over executions. -->
+
+For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them. This is the form of behavioral modeling developed here. A finite-state machine names a finite set of states and the transitions between them. A labeled transition system associates transitions with actions or events. Statecharts add hierarchy and concurrency to organize more complex behavior~\citep{harel1987}. Temporal specifications let us state properties over executions, such as whether every started job eventually finishes. These representations support reasoning about order, reachability, and progress without retaining the code that implements each operation.
+
+% <!-- point: the-reduction-is-what-makes-behavior-checkable | Reducing a service to states and transitions turns "can it reach a state it should never occupy?" from a reconstruction over scattered handlers into a question a person or tool can answer. -->
+
+A job-processing service described only through its handlers, database writes, and retries makes even a simple ordering rule hard to inspect. Can an idle job report completion before anyone has started it? For this question we can set retries aside and specify the lifecycle with four states \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\), an initial state of \(\mathrm{IDLE}\), and three events \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\).
+
+% <!-- point: transition-semantics-can-construct-intended-behavior | A partial transition function defines the effects of start, finish, and fail in a four-state job lifecycle. Undefined pairs admit no transition, and the same function can guide implementation, interpretation, or test generation. | terms: semantic-commitment, modeling-principle -->
+
+The effect of an event depends on the current state. The partial transition function \(\delta:S\times E\rightharpoonup S\) is defined by
+\[
+\begin{aligned}
+\delta(\mathrm{IDLE},\mathrm{start}) &= \mathrm{RUNNING},\\
+\delta(\mathrm{RUNNING},\mathrm{finish}) &= \mathrm{DONE},\\
+\delta(\mathrm{RUNNING},\mathrm{fail}) &= \mathrm{FAILED}.
+\end{aligned}
+\]
+For every other state--event pair, \(\delta\) is undefined. In particular, \(\delta(\mathrm{IDLE},\mathrm{finish})\) is undefined, so a finish event cannot take an idle job straight to completion. DONE and FAILED have no outgoing transitions in this lifecycle. An agent can implement the protocol using a database, a queue, or an in-memory scheduler. A state-machine interpreter can consult \(\delta\) directly to determine the next state. A test generator can use the same entries to derive event sequences and expected states. Starting from IDLE, start followed by finish ends in DONE, and start followed by fail ends in FAILED.
+
+For recovery questions, the engineer must also distinguish a failed attempt that can be retried from a failure that ends the job. \autoref{canonical-behavioral} makes that distinction in a remediation service. The transition into Retrying lets us follow another attempt back into Running and ask how many attempts the service permits before the job reaches a terminal state.
+
+% <!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A behavioral model represents states and transitions; it can specify allowed behavior or describe behavior to be checked against a requirement. Safety and liveness properties ask different questions over the admitted executions. -->
+
+Nodes represent states, and directed edges represent transitions. A path from an initial state describes an execution admitted by the model. The model's purpose tells us how to interpret that execution. A specification declares allowed behavior, as \autoref{canonical-behavioral} does: omitting a direct \texttt{Pending~→~Succeeded} transition forbids that step. A model of an implementation can instead represent behavior we intend to investigate, including states or transitions that may violate a requirement. Representing a state therefore does not, by itself, declare it acceptable.
+
+The required property tells us what to check over those executions. ``A job never reaches \texttt{Succeeded} before \texttt{Running}'' is a \textbf{safety} property: any violation has a finite execution prefix that demonstrates it. ``Every started job eventually finishes or fails'' is a \textbf{liveness} property: observing a finite period of waiting does not establish that the wait will last forever. Reachability asks whether a state can occur; it serves a safety check when the state being sought violates a required invariant. The choice among transition validation, reachability search, invariant checking, and temporal model checking follows from the property we want to establish~\citep{baier-katoen2008}.
+
+A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{Succeeded} to pass through \texttt{Running} excludes premature completion, but a job could remain in \texttt{Running} indefinitely. These are different questions about the same behavioral model. A transition check asks whether a particular state change is permitted; reachability analysis asks whether some sequence of transitions can lead to an undesirable state; and a temporal property can require that every started job eventually finishes or fails. Investigating that last property requires representing the ways processing can wait or retry, together with assumptions under which progress is expected. The model may therefore need to change as the engineering question changes.
+
+% <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
+
+When several workers can process the same job, \emph{who owns this job?} depends on their claims. A worker may stop responding, its claim may expire, and another worker may acquire the job. The original worker can later return and attempt to act using its old claim. An ownership model must retain enough information to distinguish the current right to act from a claim that is no longer valid.
+
+\autoref{ownership-constructs} distinguishes four familiar constructs used to represent access and ownership.
+
+These constructs can be combined. For a leased job, the ownership model records the worker's claim and how expiry or reassignment changes it. The next distinction is between successive claims on the same job.
+
+% <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
+
+A claim binds a holder to a resource and carries the facts that make contention decidable: which holder, which generation of claim, and when it expires. The generation is the fact a bare "A owns X" edge cannot express --- it distinguishes a \emph{current} claim from a \emph{superseded} one. The difficult failures arise from the interleavings: the orders in which concurrent claims, expiries, and reclaims can occur. So the characteristic analysis is state-space exploration over those sequences, with an invariant checked at each reachable configuration --- the behavioral toolkit of this section pointed at a concurrency question.
+
+For example, a worker may hold a job, lose its claim after a timeout, and later return with an old completion request. The current owner alone is insufficient to decide whether that request still applies: the model must distinguish successive claims on the same job. Recording a claim generation supplies that distinction. At this level, a job is leased exactly when it has a current claim; the claim represents ownership directly. DocAble\textquotesingle s recovery and ownership models show how such small additions support two concrete crash-safety questions.
+```
+
+
+## 2026-11-17 — 2.5-decision, teaching the worked example
+
+Source: `book/latex/sources/part2/2.5-decision.tex`, revision `3a11caf34`, lines 10–76. The admission table now introduces the decision model. The permission graph supplies a contrasting example before the analysis of rules, constraints and objectives.
+
+```tex
+The preceding models already expressed obligations: a user interface must reach its database through the service layer, and a job must pass through \texttt{Running} before \texttt{Succeeded}. A decision model makes explicit how to choose among alternatives: whether a result is acceptable, whether the evidence is sufficient, what to do after failure, or which strategy to try next. Its answer may be to accept, retry, repair, escalate, or stop.
+
+A behavioral model describes possible states and transitions. A decision model states how to choose among them using the available evidence, the cost of further work, and the attempts remaining. For example, a repair process may allow another attempt, escalation, or termination. A decision table can state when the observed failure justifies another attempt, when more evidence is needed, and when the remaining budget requires stopping. The model supplies criteria for the choice; a separate mechanism carries it out.
+
+% <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms. -->
+
+Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives. A policy is one kind of decision model: it specifies which alternatives an engineer permits, requires, or forbids. Access-control matrices record which subject may act on which object,~\citep{lampson1974} policy graphs declare permitted relationships, and feature models constrain valid combinations of options.
+
+% <!-- point: same-arrow-different-mood-is-the-sharpest-case-of-topology-not-fixing-meaning | An observed-call edge and a permitted-call edge can look identical while answering different questions; in the illustrated models, a missing edge means no recorded call or no permitted call respectively. -->
+
+The meaning of an edge depends on the model's purpose. In an observed call graph, \texttt{A~→~B} records that A calls B; in a policy graph, the same arrow means that A \emph{may} call B. An absent observed edge means only that no such call was recorded within the observation's coverage. An absent policy edge can mean that the call is prohibited, provided the policy declares a complete set of permitted relationships within its scope. These are different claims, even though both models use the same graphical notation. Comparing them lets engineers ask whether the implementation respects the declared permissions.
+
+% <!-- point: a-declared-policy-turns-is-this-allowed-into-an-evaluation | Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and "is this allowed?" becomes an evaluation rather than an argument. -->
+
+Once permission is declared, the claims a policy designer wants become expressible: which alternatives are permitted or forbidden, which are mutually exclusive, which imply prerequisites, whether the policy is internally consistent, whether it is complete over the cases that can arise, and whether it achieves least privilege. The analyses follow --- evaluating a rule against a case, checking or solving constraints, detecting conflicts between rules, testing completeness and consistency. A declared policy turns "is this allowed?" into an evaluation rather than an argument.
+
+In a hypothetical system, a public web interface may call a report service, which may in turn call a renderer. The declared policy permits those relationships but prohibits the web interface from calling the renderer directly. \autoref{observed-vs-declared} compares that policy with an observed call graph. The observation contains a direct web-to-renderer call that the policy does not permit. Comparing the graphs therefore identifies a violation of the declared architectural boundary.
+
+The comparison asks whether observations conform to the declared policy, not whether the policy itself is correct. A policy could permit an undesirable relationship, and an implementation could faithfully follow it. Conversely, the absence of an observed call does not establish that the call can never occur; the observation may have incomplete coverage. Engineers must therefore evaluate both whether the policy expresses the intended architecture and whether the available evidence establishes conformance to it.
+
+The input representation can make a decision wrong before any rule is evaluated. Consider a service that offers prepaid credits and unlimited subscriptions. For a simple policy with one applicable entitlement, \autoref{simple-admission-policy} states when to admit a request and whether to charge finite credit.
+
+The table needs the entitlement kind as well as the balance. If a previous step passes only a number, zero cannot distinguish an exhausted finite allowance from unlimited use. The decision code cannot recover a distinction that its input has discarded.
+
+% <!-- point: image-purpose-and-uncertainty-govern-the-decorative-decision | An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain. -->
+
+Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore~\citep{w3c2018wcag21}. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection~\citep{moma-blue-monochrome}.} What matters is the image's contribution to the document, not merely what it depicts.
+```

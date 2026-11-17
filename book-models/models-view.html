@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>38</b> chapters · <b>176</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>179</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -246,7 +246,15 @@
 <h3 id="ch-2-4-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.4-behavioral.html" class="ch-link">2.4-behavioral</a> <span class="ch-slug">2.4-behavioral</span></h3>
 <div class="section s2" id="sec-2-4-behavioral--states-transitions-and-behavioral-analysis">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">States, Transitions, and Behavioral Analysis</a></div>
-<p class="topic">For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them.</p>
+<p class="topic">Suppose a service processes jobs that may be waiting, running, completed, or failed.</p>
+</div>
+<div class="section s3" id="sec-2-4-behavioral--constructing-a-behavioral-model">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Constructing a Behavioral Model</a></div>
+<p class="topic">For this question, four states and three events suffice.</p>
+</div>
+<div class="section s3" id="sec-2-4-behavioral--behavioral-properties-and-analyses">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Properties and Analyses</a></div>
+<p class="topic">Starting at Pending and following permitted arrows gives us one possible execution of the model.</p>
 </div>
 <div class="section s2" id="sec-2-4-behavioral--docable-job-lifecycles-and-recovery">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">DocAble: Job Lifecycles and Recovery</a></div>
@@ -257,11 +265,15 @@
 <h3 id="ch-2-5-decision"><span class="tier-kick">Lesson</span><a href="../book/2.5-decision.html" class="ch-link">2.5-decision</a> <span class="ch-slug">2.5-decision</span></h3>
 <div class="section s2" id="sec-2-5-decision--conditions-alternatives-and-decision-analysis">
 <div class="sec-h"><a href="../book/2.5-decision.html">Conditions, Alternatives, and Decision Analysis</a></div>
-<p class="topic">Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives.</p>
+<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
-<div class="section s3" id="sec-2-5-decision--when-the-decision-depends-on-context">
-<div class="sec-h"><a href="../book/2.5-decision.html">When the Decision Depends on Context</a></div>
-<p class="topic">Some decisions cannot be made from the object alone.</p>
+<div class="section s3" id="sec-2-5-decision--constructing-a-decision-model">
+<div class="sec-h"><a href="../book/2.5-decision.html">Constructing a Decision Model</a></div>
+<p class="topic">Begin with one request.</p>
+</div>
+<div class="section s3" id="sec-2-5-decision--decision-properties-and-analyses">
+<div class="sec-h"><a href="../book/2.5-decision.html">Properties and Analyses</a></div>
+<p class="topic">A decision table is **complete** if it prescribes an outcome for every case in its declared scope.</p>
 </div>
 <div class="section s2" id="sec-2-5-decision--docable-policies-and-decisions">
 <div class="sec-h"><a href="../book/2.5-decision.html">DocAble: Policies and Decisions</a></div>
