@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 641,
+    "total_sites": 640,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 306,
+      "book-web": 305,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -57,7 +57,7 @@
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
-            "occ": 16
+            "occ": 13
           },
           {
             "file": "book/web/docs/2.4-behavioral.md",
@@ -941,7 +941,7 @@
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
-            "occ": 58
+            "occ": 57
           },
           {
             "file": "book/web/docs/2.3-structural.md",
@@ -1215,7 +1215,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 78
+            "occ": 82
           },
           {
             "file": "catalogue-figure.html",
@@ -1497,7 +1497,7 @@
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
-            "occ": 53
+            "occ": 50
           },
           {
             "file": "book/web/docs/2.3-structural.md",
@@ -2087,7 +2087,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 31
+            "occ": 33
           },
           {
             "file": "catalogue-figure.html",
@@ -2512,10 +2512,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/2.3-structural.md",
             "occ": 4
           },
@@ -2583,7 +2579,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 18
+            "occ": 17
           }
         ]
       },
@@ -2783,7 +2779,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 2
+            "occ": 3
           }
         ],
         "website-theory": [

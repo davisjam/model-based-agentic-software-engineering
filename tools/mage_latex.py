@@ -125,7 +125,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
         result = []
         pending_caption = None
         pending_label = None
-        for block in chapter.blocks:
+        for index, block in enumerate(chapter.blocks):
             text = block.raw
             if block.kind is book_ir.BlockKind.DIRECTIVE:
                 result.extend('% ' + line for line in text.splitlines())
@@ -181,7 +181,13 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
             elif block.kind is book_ir.BlockKind.EQ:
                 equation = re.match(r'<!-- eq:\s*(.*?)\s*-->', text, re.S)[1]
                 equation = re.sub(r'(?<!\\)\$', lambda m: r'\$', equation)
-                result.append('\\[\n' + equation + '\n\\]')
+                display = '\\[\n' + equation + '\n\\]'
+                # A blank line here ends the lead-in paragraph and makes TeX
+                # insert an empty line above the displayed equation.
+                if index and chapter.blocks[index - 1].kind is book_ir.BlockKind.PARA:
+                    result[-1] += '\n' + display
+                else:
+                    result.append(display)
             elif block.kind is book_ir.BlockKind.OTHER and block.directive == 'coda-rule':
                 result.append(r'\magerule{}')
             elif block.kind is book_ir.BlockKind.HEADING and block.heading_level == 1:
@@ -705,7 +711,13 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
-    latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
+    # Retain native rules for tagged tables, with clearance on the text sides.
+    rule_padding = r'\noalign{\vskip 3pt}'
+    rules = {'toprule': r'\hline' + rule_padding,
+             'midrule': rule_padding + r'\hline' + rule_padding,
+             'bottomrule': rule_padding + r'\hline'}
+    latex = re.sub(r'\\(toprule|midrule|bottomrule)(?:\\noalign\{\})?',
+                   lambda m: rules[m[1]], latex)
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

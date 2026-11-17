@@ -612,7 +612,7 @@
           "section_id": "representing-and-interacting-with-models",
           "level": 3,
           "heading_text": "Representing and Interacting with Models",
-          "topic_sentence": "A **structured** model can live in ordinary project files.",
+          "topic_sentence": "Models can be maintained in ordinary project files, databases, or specialized modeling environments.",
           "id_source": "derived",
           "block_index": 48,
           "points": [
@@ -629,7 +629,7 @@
             {
               "slug": "capability-comes-in-rungs",
               "text": "Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model.",
-              "block_index": 55
+              "block_index": 54
             }
           ]
         },
@@ -639,17 +639,17 @@
           "heading_text": "From Analysis to Engineering Decisions",
           "topic_sentence": "[ref:question-to-consequence-progression] follows an engineering question from model selection through analysis to a decision.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 57,
           "points": [
             {
               "slug": "validate-the-model-for-its-question",
               "text": "Validation examines whether the model represents the distinctions, assumptions, and behaviors needed for the question.",
-              "block_index": 59
+              "block_index": 58
             },
             {
               "slug": "analysis-produces-evidence-for-an-engineering-decision",
               "text": "A model's semantics determine which analyses can produce evidence for a design decision. Implementation conformance requires separate evidence.",
-              "block_index": 60
+              "block_index": 59
             }
           ]
         }

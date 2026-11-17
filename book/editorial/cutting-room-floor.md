@@ -21224,3 +21224,32 @@ The engineering question, representation, and analysis together determine what e
 
 The following sections examine these choices for three familiar classes of engineering question. Structural models preserve the relationships needed to ask what is connected to what. Behavioral models preserve states and transitions so we can ask what may happen. Decision models preserve the criteria for choosing what should happen next. A single system can raise all three questions, and their answers can draw on the same entities.
 ```
+
+## Chapter 2 — Sensor timing, compliance, and model tooling
+
+Superseded §2.2 text from 42628b443.
+
+Regulatory compliance & Can personal data outlive its permitted retention period? Compare recorded lifecycles with applicable retention rules. & Data-lifecycle and retention-policy models \\
+
+Both compliance questions concern personal data, but a record's retention deadline tells us little about where copies of that record went.
+
+One engineering question may require several models. Suppose we are designing a battery-powered device that collects measurements and transmits them over a radio. Can any measurements be lost? \autoref{sensor-buffer-radio} approaches this question through three models drawn from the engineering repertoire.
+
+Start with the structural model in panel (a). The sensor produces measurements, the buffer stores them, and the radio transmits them. This model establishes the data path but cannot tell us whether the buffer might overflow. For that, we need the quantitative model in panel (b): the sensor samples once per second, the buffer holds ten samples and discards new arrivals when full, and the radio transmits the accumulated samples every twelve seconds.
+
+The behavioral model in panel (c) puts those quantities on a timeline. Starting with an empty buffer, the first sample arrives at one second. The buffer fills at ten seconds, but the radio does not transmit until twelve seconds, just before that second's sample. The eleventh sample is therefore lost. Neither the structural model nor the quantitative model alone exposed this failure; combining them in a behavioral model did.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,alt={A sensor feeds a ten-sample buffer once a second. It fills at ten seconds and loses the next sample, one second before the radio first transmits.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Three models of one sensor system]{\emph{Three models of one sensor system.} The structural model identifies the measurement path; the quantitative model specifies rates and capacity; the behavioral model combines them to reveal that the eleventh sample is lost before the first transmission.}
+\label{sensor-buffer-radio}
+\end{figure}
+
+We can now investigate alternatives: transmit more frequently, increase buffer capacity, sample less often, or change the transmission policy. Each affects energy consumption, memory, or measurement quality. We have learned enough to change the design before deciding on interrupt handlers, allocation, or radio drivers. I would much rather discover this problem by examining a few small models than by debugging a thousand lines of C.
+
+A \textbf{structured} model can live in ordinary project files. A service registry might give each service a stable identifier and record its owner, dependencies, and deployment. Together those records form a system knowledge graph, whether stored in YAML files or in a database. An agent investigating one service can retrieve just the connected records it needs, even when the complete graph exceeds its working context.
+
+Choosing the tooling resembles deciding whether to keep data in flat files, embed SQLite, or operate a database server. A specialized modeling environment may offer graphical editing, consistency checks, simulation, and traceability across models. A Model Context Protocol (MCP) interface can give an agent access to those operations. The engineer still has to weigh the analyses the team needs against its familiarity with the tools and the time required to learn, integrate, and maintain them.
+
+What can an engineer or agent do with that access? Before changing a shared service, an agent might look up its owner and retrieve its documentation. Spotify makes both available to agents through its service catalog~\citep{spotify2026constraint}. Other models support operations beyond lookup. A schema can validate a document or supply the types for a generated interface. A transition model can drive a simulation or direct a running system. Each operation relies on the meaning the model assigns to the elements it uses.
