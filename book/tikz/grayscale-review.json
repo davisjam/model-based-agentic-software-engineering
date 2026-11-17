@@ -602,12 +602,12 @@
     "reviewed": true,
     "decision": "refined",
     "rationale": "Read-only ellipses are white; typed-patch diamonds are 5% gray; the direct-edit rounded box is13% gray. Shape and labels identify behavior independently of shade. Dashed control arrows run from Classify to both repair producers; solid data-flow arrows carry their patches to Apply patches and its output to the read-only alt-text check. Annotation leaders carry no flow semantics.",
-    "source_sha256": "ba53b312c980724d0382cdba7f1b9ddf463850dea67b67e5b5897f023e9721bf",
-    "candidate_sha256": "ef2ebe06249d7b93edf3c64a23456d0094c582967b0100ecbd28af3d500af05e",
+    "source_sha256": "a0569dd2f9136cb7890bb4436672a6812fa3096350669459d9308f8b5ca9a940",
+    "candidate_sha256": "ee979b0c73ede6746de1d67a470b0dd934aecbc955abbf3d0d1ebb9dc8c8d3ad",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "5059b14539ff7a4bac469f7b63f9b69e1019c8759581e35a83f5e30f538bb739",
+      "date": "2026-11-17",
+      "proof": "latex/build/figure-2-9-november-proof/figure-2-9-november.pdf",
+      "proof_sha256": "319d47cb48bb5336de4a1247fa346958c28c407d53ee44b6ff8491c278fb7709",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 450.848,
@@ -621,8 +621,8 @@
       "monochrome_pixels": true,
       "maximum_rgb_channel_delta": 1,
       "semantic_typography_checks": 54,
-      "geometry_audit_sha256": "feda907ce43b99676b702748c25d1ab8aab3841a9af3f5f3600613bc52a3b3b9",
-      "typography_audit_sha256": "5217055f8d2c3f113d922593e8345339be39484fd30f34f76de77f1c88523aaa",
+      "geometry_audit_sha256": "4d15230dc3e3da25a994c00ace5170c85db541d4f30cdc6383c3550a263577e9",
+      "typography_audit_sha256": "ebeeef393e72784e491a389892689517d686e05ae5225ac06653dcf1a36eb568",
       "status": "passed"
     },
     "validation_history": [

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 640,
+    "total_sites": 641,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 305,
+      "book-web": 306,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -58,6 +58,10 @@
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
             "occ": 13
+          },
+          {
+            "file": "book/web/docs/2.3-structural.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.4-behavioral.md",
@@ -231,7 +235,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 52
+            "occ": 53
           }
         ]
       },
@@ -1501,7 +1505,7 @@
           },
           {
             "file": "book/web/docs/2.3-structural.md",
-            "occ": 38
+            "occ": 39
           },
           {
             "file": "book/web/docs/2.4-behavioral.md",
@@ -2087,7 +2091,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "catalogue-figure.html",
@@ -2513,7 +2517,7 @@
           },
           {
             "file": "book/web/docs/2.3-structural.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/2.5-decision.md",

@@ -739,7 +739,7 @@
             },
             {
               "slug": "a-model-precedes-the-constraint-that-protects-it",
-              "text": "The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble’s static analyses enforce it by rejecting direct access to raw format libraries.",
+              "text": "The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble protects the boundary using format-specific static restrictions and runtime write-authority checks.",
               "block_index": 30
             },
             {

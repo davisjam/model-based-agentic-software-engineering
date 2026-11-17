@@ -33,6 +33,10 @@ def correct_mutation_categories(root, bw):
             x,y,w,h=[float(e.get(k)) for k in ('x','y','width','height')]
             ellipse=ET.Element('{'+NS+'}ellipse',{'cx':str(x+w/2),'cy':str(y+h/2),'rx':str(w/2),'ry':str(h/2),'fill':'white','stroke':'#333','stroke-width':'1.2'})
             root.insert(list(root).index(e),ellipse);root.remove(e);continue
+        if tag=='text' and t=='125 registered computations; 57 typed composition relations.':
+            e[0].text='147'
+            e[2].text='63'
+            e[3].text=' typed composition relations (November 2026).'
         if tag=='text' and t=='Validate':e.text='Check alt-text'
         if tag=='text' and t=='(direct edit)':e.text='(read-only)'
         if tag=='text' and t=='(apply seam)':e.text='(direct edit)'
