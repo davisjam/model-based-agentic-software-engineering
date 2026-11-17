@@ -145,7 +145,7 @@
     "svg_description": "Training supplies the foundation model. The model sends outputs to the harness and receives context. The harness acts on the governed engineering environment and receives evidence. Engineers maintain the environment, which supplies project knowledge and controls which actions are permitted.",
     "native_dimensions_bp": [
       436.62,
-      159.648
+      135.624
     ],
     "authored_font_sizes_pt": [
       9,
@@ -161,7 +161,7 @@
     },
     "web_dimensions_css_px": [
       990,
-      369
+      306
     ],
     "web_authored_font_sizes_css_px": [
       20.25,
@@ -174,24 +174,34 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/reasoning-horizon.svg",
-    "caption": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner’s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
+    "caption": "**Two ways to steer an agent.** (a) Purposeful representations can reduce the effort needed to recover relevant system knowledge. (b) Feedback loops let agents revise their work using observations from tools and checks. Both can improve performance without changing the foundation model, but neither guarantees an acceptable result.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/reasoning-horizon.json",
     "generator": null,
     "data": [],
     "conversion": "Editable native TikZ and SVG reauthored together from a compact teaching scene; no auto-layout dependency.",
-    "svg_title": "Representation and the reasoning horizon",
-    "svg_description": "Finite working state makes representation matter. Two parallel paths compare raw code, which requires reconstructing relevant structure at higher reconstruction cost, with purposeful abstraction, which supports retrieval of relevant structure at lower reconstruction cost. The comparison describes burden, not guaranteed outcomes.",
+    "svg_title": "Two ways to steer an agent",
+    "svg_description": "Two ways to steer an agent. Panel (a) compares reconstructing relevant structure from raw code at higher cost with retrieving it from a purposeful representation at lower cost. Panel (b) shows a loop from proposing a change through running tools, observing results, and revising. It repeats until acceptance criteria are met or work stops.",
     "native_dimensions_bp": [
-      209.97500610351562,
-      224.375
+      449.166,
+      239.171
     ],
     "authored_font_sizes_pt": [
-      9.5,
-      10.0
+      9.6,
+      10,
+      12
     ],
-    "declared_web_width_px": 448.8
+    "declared_web_width_px": 448.8,
+    "web_dimensions_css_px": [
+      1108,
+      583
+    ],
+    "web_authored_font_sizes_css_px": [
+      24,
+      25,
+      30
+    ]
   },
   {
     "chapter": "1.5-the-new-engineering-problem",

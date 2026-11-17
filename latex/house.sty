@@ -79,6 +79,15 @@
   \@afterindenttrue\@afterheading}
 \makeatother
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
+% Tagged floats install their kernel caption renderer at begin-document.
+% Set its size after installation, inside the caption's existing local group.
+\ifmageedition
+  \makeatletter
+  \AddToHook{begindocument/end}{%
+    \let\book@originalmakecaption\@makecaption
+    \long\def\@makecaption#1#2{{\small\book@originalmakecaption{#1}{#2}}}}
+  \makeatother
+\fi
 % Table captions sit above their table and read as captions, not body paragraphs.
 \captionsetup*[table]{font={small,it},labelfont={bf,it},position=top,skip=3pt}
 % Tagged floating tables use the kernel caption path rather than longtable's

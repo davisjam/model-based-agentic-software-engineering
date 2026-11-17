@@ -22,8 +22,7 @@
     "Outputs",
     "Context",
     "Actions",
-    "Evidence",
-    "Project guidance informs reasoning; controls govern actions."
+    "Evidence"
   ],
   "alt": "Training supplies the foundation model. The model sends outputs to the harness and receives context. The harness acts on the governed engineering environment and receives evidence. Engineers maintain the environment, which supplies project knowledge and controls which actions are permitted.",
   "historical_receipt": "book/editorial/figure-redraws-20261116/agentic-substrate-before/agentic-substrate.json",
@@ -32,23 +31,13 @@
   "style_review": "book/tikz/style-review.json",
   "fidelity_review": "book/tikz/fidelity-review.json",
   "grayscale_review": "book/tikz/grayscale-review.json",
+  "revision": "Removed the lower project-guidance return arrow and its annotation.",
   "qa": {
     "date": "2026-11-16",
     "proof": "latex/build/tikz/candidates.pdf",
     "page": 11,
     "width_bp": 436.62,
-    "height_bp": 159.648,
-    "minimum_prose_font_pt": 9,
-    "authored_type_sizes_pt": [
-      9,
-      9.5,
-      10,
-      10.5,
-      11
-    ],
-    "geometry_findings": 0,
-    "monochrome_pixels": true,
-    "proof_sha256": "324fde5a102aa111e28143a4c3c4bf0b4cc039c8f4ce862c13a555f6ed068cf6",
-    "typography_audit_sha256": "9ae85eb13fd4e4c1f57120a4dbf320dd7377901edcf460757bb83bb1354b78bc"
+    "height_bp": 135.624,
+    "monochrome_pixels": true
   }
 }

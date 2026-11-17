@@ -13,7 +13,7 @@
  *   - the two mermaid label sizes (pre.mermaid .nodeLabel / text.messageText) must equal
  *     design_tokens.mermaid_label_px() — the emitter fail-louds on drift (config==CSS invariant).
  */
-.md-typeset{ font-family: var(--font-body); font-size: 17px; line-height: 1.65; color: var(--ink); }/* "Calm authority" hierarchy: SEMIBOLD (--display-weight, 600) is the quiet default weight for every
+.md-typeset{ --book-caption-size: 15.5px; font-family: var(--font-body); font-size: 17px; line-height: 1.65; color: var(--ink); }/* "Calm authority" hierarchy: SEMIBOLD (--display-weight, 600) is the quiet default weight for every
    heading; only a Part-divider page's title steps up to bold (see `div.wrap.part-page header.chap h1`).
    Headings organise rather than compete — one bold level, .md-typeset the rest a lighter semibold, `###` subheads
    quieter still (italic regular, below). Mirrors the PDF show-rules in book_typst.py. */
@@ -309,12 +309,12 @@ figure.book-figure svg{ display: block; margin: 0 auto; height: auto;
 figure.book-figure--wide{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }figure.book-figure--wide svg, figure.book-figure--wide img{ max-width: 100%; height: auto; }/* The caption sits CENTERED under its figure (a block no wider than the figure itself, auto
    margins); running caption text stays left-set for multi-line readability, label-only captions
    center their text too. */
-figure.book-figure figcaption{ font-size: 14px; color: var(--muted); margin: 0.7rem auto 0;
+figure.book-figure figcaption{ font-size: var(--book-caption-size); color: var(--muted); margin: 0.7rem auto 0;
                                 max-width: min(100%, var(--fig-natural, 100%));
                                 text-align: left; line-height: 1.5; }figure.book-figure figcaption.fig-label-only{ text-align: center; }/* D74 — the author portrait floats left at a capped width so the bio flows around it. It is a PLAIN
    (unnumbered, .md-typeset uncaptioned) `figure.plain-image.portrait-wrap`, .md-typeset not a `book-figure` float. */
 figure.portrait-wrap{ float: left; width: 190px; max-width: 40%; margin: 0.2rem 1.5rem 0.8rem 0;
-                        text-align: center; }figure.portrait-wrap img{ width: 100%; height: auto; border-radius: 4px; }.fig-label, .tbl-label{ font-weight: 700; color: var(--ink); }.md-typeset table caption{ caption-side: top; text-align: left; font-size: 14px; color: var(--muted);
+                        text-align: center; }figure.portrait-wrap img{ width: 100%; height: auto; border-radius: 4px; }.fig-label, .tbl-label{ font-weight: 700; color: var(--ink); }.md-typeset table caption{ caption-side: top; text-align: left; font-size: var(--book-caption-size); color: var(--muted);
                  margin-bottom: 0.45rem; line-height: 1.5; }ul.list-of-floats-links{ list-style: none; padding-left: 0; }ul.list-of-floats-links li{ margin: 0.15rem 0; }/* Front-glossary term linked to its canonical definition site (idx-def anchor). Keeps the bold term's ink
    colour; a dotted underline marks it as a jump-to-definition without the heavy accent of an inline link. */
 a.gloss-site{ color: inherit; text-decoration: none; border-bottom: 1px dotted var(--muted); }a.gloss-site:hover, a.gloss-site:focus{ color: var(--accent); border-bottom-color: var(--accent); }/* Figures Gallery (figures.html) — every figure verbatim (same rendered fragment the chapters ship), `<hr>`-separated, .md-typeset each followed by a small "from <chapter>" back-link. */

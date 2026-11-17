@@ -1,0 +1,37 @@
+{
+  "source": "book/assets/agentic-substrate.svg",
+  "candidate": "book/tikz/figures/agentic-substrate.tex",
+  "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+  "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+    "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
+    "page": 1,
+    "width_bp": 442.52,
+    "height_bp": 284.522,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 7,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 59,
+    "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+    "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/grayscale-review.json",
+  "receipt": "book/tikz/receipts/agentic-substrate.json",
+  "reviewed": true,
+  "rationale": "Only the agentic-engineering-system enclosure has light 5% gray. Its three functional columns and nested GEE components remain white; grouping is encoded by outlines rather than color. Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt."
+}

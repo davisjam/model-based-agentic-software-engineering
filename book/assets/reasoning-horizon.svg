@@ -1,36 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="448.8" height="480.48" viewBox="0 0 448.8 480.48" role="img" aria-labelledby="title desc">
-<title id="title">Representation and the reasoning horizon</title>
-<desc id="desc">Finite working state makes representation matter. Two parallel paths compare raw code, which requires reconstructing relevant structure at higher reconstruction cost, with purposeful abstraction, which supports retrieval of relevant structure at lower reconstruction cost. The comparison describes burden, not guaranteed outcomes.</desc>
-<!-- Authored paired SVG/TikZ scene: compact peer geometry must preserve the half-width or summary slot. -->
-<defs><marker id="arrow" markerWidth="13.2" markerHeight="13.2" refX="11.44" refY="6.6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L11.44,6.6 L0,13.2 Z" fill="black"/></marker></defs>
-<rect width="448.8" height="480.48" fill="white"/>
-<style>text{font-family:"Source Sans 3",Arial,sans-serif;fill:black}</style>
-<g fill="black">
-<rect x="19.8" y="0.88" width="409.2" height="74.8" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="224.4" y="32.34" text-anchor="middle" font-size="22.0" font-weight="700">Finite working state</text>
-<text x="224.4" y="58.74" text-anchor="middle" font-size="22.0" font-weight="700">Representation matters</text>
-<rect x="0.88" y="149.6" width="206.8" height="77.0" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="104.28" y="195.36" text-anchor="middle" font-size="22.0" font-weight="700">Raw code</text>
-<rect x="241.12" y="149.6" width="206.8" height="77.0" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="344.52" y="182.16" text-anchor="middle" font-size="22.0" font-weight="700">Purposeful</text>
-<text x="344.52" y="208.56" text-anchor="middle" font-size="22.0" font-weight="700">abstraction</text>
-<rect x="0.88" y="272.8" width="206.8" height="79.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="104.28" y="306.46" text-anchor="middle" font-size="22.0" font-weight="400">Reconstruct</text>
-<text x="104.28" y="332.86" text-anchor="middle" font-size="22.0" font-weight="400">relevant structure</text>
-<rect x="241.12" y="272.8" width="206.8" height="79.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="344.52" y="306.46" text-anchor="middle" font-size="22.0" font-weight="400">Retrieve</text>
-<text x="344.52" y="332.86" text-anchor="middle" font-size="22.0" font-weight="400">relevant structure</text>
-<rect x="0.88" y="398.2" width="206.8" height="81.4" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="104.28" y="432.597" text-anchor="middle" font-size="20.9" font-weight="400">Higher</text>
-<text x="104.28" y="458.997" text-anchor="middle" font-size="20.9" font-weight="400">reconstruction cost</text>
-<rect x="241.12" y="398.2" width="206.8" height="81.4" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
-<text x="344.52" y="432.597" text-anchor="middle" font-size="20.9" font-weight="400">Lower</text>
-<text x="344.52" y="458.997" text-anchor="middle" font-size="20.9" font-weight="400">reconstruction cost</text>
-<path d="M224.4,75.68 L224.4,108.68 L104.28,108.68 L104.28,149.6" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-<path d="M224.4,108.68 L344.52,108.68 L344.52,149.6" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-<path d="M104.28,226.6 L104.28,272.8" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-<path d="M344.52,226.6 L344.52,272.8" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-<path d="M104.28,352.0 L104.28,398.2" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-<path d="M344.52,352.0 L344.52,398.2" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1108 583" width="1108" height="583" role="img" aria-labelledby="title desc">
+<title id="title">Two ways to steer an agent</title><desc id="desc">Two ways to steer an agent. Panel (a) compares reconstructing relevant structure from raw code at higher cost with retrieving it from a purposeful representation at lower cost. Panel (b) shows a loop from proposing a change through running tools, observing results, and revising. It repeats until acceptance criteria are met or work stops.</desc>
+<rect width="1108" height="583" fill="white"/>
+<g stroke-linejoin="round" stroke-linecap="round">
+<rect x="12" y="6" width="1084" height="282" rx="14" fill="white" stroke="black" stroke-width="2"/>
+<rect x="12" y="310" width="1084" height="267" rx="14" fill="white" stroke="black" stroke-width="2"/>
+<text x="40" y="41" font-family="sans-serif" font-size="30"><tspan font-weight="bold">(a) Context engineering:</tspan> make the right information available</text>
+<text x="40" y="345" font-family="sans-serif" font-size="30"><tspan font-weight="bold">(b) Feedback loops:</tspan> improve results through iteration</text>
+<path d="M554 71 L554 269" stroke="black" stroke-width="1.8" fill="none" stroke-dasharray="7 7"/>
+<rect x="93" y="76" width="173" height="130" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="75" y="86" width="173" height="130" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="53" y="97" width="173" height="147" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="634" y="71" width="180" height="141" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="619" y="79" width="180" height="141" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="600" y="86" width="180" height="158" rx="10" fill="white" stroke="black" stroke-width="2"/>
+<rect x="319" y="92" width="189" height="108" rx="12" fill="white" stroke="black" stroke-width="2"/>
+<rect x="868" y="92" width="189" height="108" rx="12" fill="white" stroke="black" stroke-width="2"/>
+<path d="M250 146 L314 146" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M318 146 L305 139 L307 146 L305 153 Z" stroke="black" stroke-width="1" fill="black"/>
+<path d="M800 146 L863 146" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M867 146 L854 139 L856 146 L854 153 Z" stroke="black" stroke-width="1" fill="black"/>
+<path d="M112 193 L111 119 L160 119 L175 134 L175 185 L165 185 L165 193 Z" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M159 119 L159 134 L174 134" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M119 128 L149 128 M119 135 L140 135 M132 150 L121 157 L132 164 M144 148 L138 169 M153 150 L164 157 L153 164" stroke="black" stroke-width="2.3" fill="none"/>
+<text x="139" y="227" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" font-style="normal">Raw code</text>
+<path d="M692 126 L692 137 M663 148 L663 138 L720 138 L720 148" stroke="black" stroke-width="2.3" fill="none"/>
+<rect x="676" y="104" width="33" height="21" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<rect x="646" y="147" width="33" height="21" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<rect x="704" y="147" width="33" height="21" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<text x="690" y="201" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" font-style="normal">Purposeful</text>
+<text x="690" y="227" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" font-style="normal">representation</text>
+<text x="414" y="125" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">Reconstruct</text>
+<text x="414" y="153" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">relevant</text>
+<text x="414" y="181" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">structure</text>
+<text x="414" y="231" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="italic">Higher cost</text>
+<text x="414" y="257" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="italic">(more work)</text>
+<text x="962" y="125" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">Retrieve</text>
+<text x="962" y="153" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">relevant</text>
+<text x="962" y="181" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="normal">structure</text>
+<text x="962" y="231" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="italic">Lower cost</text>
+<text x="962" y="257" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="italic">(less work)</text>
+<rect x="41" y="378" width="215" height="89" rx="15" fill="white" stroke="black" stroke-width="2"/>
+<rect x="307" y="378" width="255" height="89" rx="15" fill="white" stroke="black" stroke-width="2"/>
+<rect x="612" y="378" width="195" height="89" rx="15" fill="white" stroke="black" stroke-width="2"/>
+<rect x="856" y="378" width="217" height="89" rx="15" fill="white" stroke="black" stroke-width="2"/>
+<path d="M256 422 L302 422" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M306 422 L293 415 L295 422 L293 429 Z" stroke="black" stroke-width="1" fill="black"/>
+<path d="M562 422 L607 422" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M611 422 L598 415 L600 422 L598 429 Z" stroke="black" stroke-width="1" fill="black"/>
+<path d="M807 422 L851 422" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M855 422 L842 415 L844 422 L842 429 Z" stroke="black" stroke-width="1" fill="black"/>
+<rect x="72" y="411" width="47" height="33" rx="8" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="95" cy="400" r="3.6" stroke="black" stroke-width="2.3" fill="white"/>
+<path d="M95 404 L95 410 M72 421 L68 421 L68 431 L72 431 M119 421 L122 421 L122 431 L119 431" stroke="black" stroke-width="2.3" fill="none"/>
+<circle cx="85" cy="424" r="1.8" stroke="black" stroke-width="2.3" fill="black"/>
+<circle cx="105" cy="424" r="1.8" stroke="black" stroke-width="2.3" fill="black"/>
+<path d="M88 435 L102 435" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M341 403 C338 411 343 419 351 418 L372 440 C375 443 382 438 380 435 L359 413 C362 405 357 399 349 400 L354 406 L350 411 Z" stroke="black" stroke-width="2.3" fill="none"/>
+<path d="M341 432 L350 423 L355 428 L347 439 C344 443 337 438 341 432 Z M362 417 L374 404 L378 401 L381 404 L378 409 L374 409 L365 420" stroke="black" stroke-width="2.3" fill="none"/>
+<rect x="637" y="425" width="10" height="16" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<rect x="653" y="413" width="10" height="28" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<rect x="670" y="400" width="10" height="41" rx="0" fill="white" stroke="black" stroke-width="2"/>
+<path d="M881 416 C886 396 911 396 919 414 M919 405 L919 415 L910 412 M919 425 C912 446 889 444 881 426 M881 434 L881 424 L890 428" stroke="black" stroke-width="2.9" fill="none"/>
+<text x="188" y="416" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">Propose</text>
+<text x="188" y="443" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">change</text>
+<text x="466" y="416" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">Run tools</text>
+<text x="466" y="443" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">(check, test, etc.)</text>
+<text x="742" y="416" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">Observe</text>
+<text x="742" y="443" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">results</text>
+<text x="999" y="416" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">Revise</text>
+<text x="999" y="443" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="400" font-style="normal">and try again</text>
+<path d="M1006 467 L1006 502 C1006 516 997 522 986 522 L122 522 C109 522 101 514 101 503 L101 476" stroke="black" stroke-width="3" fill="none"/>
+<path d="M101 467 L94 482 L101 480 L109 482 Z" stroke="black" stroke-width="1" fill="black"/>
+<text x="554" y="552" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="400" font-style="italic">Repeat until acceptance criteria are met or work stops</text>
+</g></svg>

@@ -185,7 +185,8 @@
       "placement": "centered"
     },
     "reasoning-horizon-fig": {
-      "width_bp": 210,
+      "width_bp": 448,
+      "float_placement": "!htb",
       "placement": "centered"
     },
     "substrate-to-method": {

@@ -25,7 +25,7 @@
   ],
   "bw_encoding": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
   "redesign": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
-  "typography": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+  "typography": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. The three column headings are bold. All six box labels use regular type. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
   "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
   "questions": [],
   "alt": "Two rows connect substrate properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.",
@@ -49,8 +49,8 @@
   "fidelity_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
-    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "source_sha256": "0d9c61c81579d97a3bf45f4c8c544c34045a668ef6074a82c3fbfa9e05da70d1",
+    "candidate_sha256": "18cea4707270c0a9f33d893a3d3a07c81aaf67a0ebcaea2d5a60dbd0bb2123be",
     "decision": "refined",
     "revision_date": "2026-11-10",
     "review": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
@@ -103,13 +103,14 @@
         22.0
       ],
       "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
-    }
+    },
+    "revision_note": "Only the three column headings are bold. All six box labels use regular type."
   },
   "style_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
-    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "source_sha256": "0d9c61c81579d97a3bf45f4c8c544c34045a668ef6074a82c3fbfa9e05da70d1",
+    "candidate_sha256": "18cea4707270c0a9f33d893a3d3a07c81aaf67a0ebcaea2d5a60dbd0bb2123be",
     "decision": "refined",
     "revision_date": "2026-11-10",
     "receipt": "book/tikz/receipts/substrate-to-method.json",
@@ -117,7 +118,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
-    "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. The three column headings are bold. All six box labels use regular type. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
     "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
     "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
     "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
@@ -165,13 +166,14 @@
       ],
       "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
     },
-    "book_references": []
+    "book_references": [],
+    "revision_note": "Only the three column headings are bold. All six box labels use regular type."
   },
   "typography_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
-    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "source_sha256": "0d9c61c81579d97a3bf45f4c8c544c34045a668ef6074a82c3fbfa9e05da70d1",
+    "candidate_sha256": "18cea4707270c0a9f33d893a3d3a07c81aaf67a0ebcaea2d5a60dbd0bb2123be",
     "decision": "refined",
     "revision_date": "2026-11-10",
     "checks": [
@@ -181,11 +183,11 @@
       },
       {
         "text": "Representation Problem",
-        "bold": true
+        "bold": false
       },
       {
         "text": "Modeling",
-        "bold": true
+        "bold": false
       },
       {
         "text": "Probabilistic agentic work",
@@ -193,11 +195,11 @@
       },
       {
         "text": "Enforcement Problem",
-        "bold": true
+        "bold": false
       },
       {
         "text": "Alignment",
-        "bold": true
+        "bold": false
       },
       {
         "text": "SUBSTRATE",
@@ -212,7 +214,7 @@
         "bold": true
       }
     ],
-    "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. The three column headings are bold. All six box labels use regular type. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
     "evidence": [
       {
         "candidate_text": "Finite working state",
@@ -221,12 +223,12 @@
       },
       {
         "candidate_text": "Representation Problem",
-        "candidate_style": "bold",
+        "candidate_style": "regular",
         "semantic_role": "Named category or process/comparison explanation."
       },
       {
         "candidate_text": "Modeling",
-        "candidate_style": "bold",
+        "candidate_style": "regular",
         "semantic_role": "Named category or process/comparison explanation."
       },
       {
@@ -236,12 +238,12 @@
       },
       {
         "candidate_text": "Enforcement Problem",
-        "candidate_style": "bold",
+        "candidate_style": "regular",
         "semantic_role": "Named category or process/comparison explanation."
       },
       {
         "candidate_text": "Alignment",
-        "candidate_style": "bold",
+        "candidate_style": "regular",
         "semantic_role": "Named category or process/comparison explanation."
       },
       {
@@ -303,13 +305,14 @@
         22.0
       ],
       "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
-    }
+    },
+    "revision_note": "Only the three column headings are bold. All six box labels use regular type."
   },
   "layout_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
-    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "source_sha256": "0d9c61c81579d97a3bf45f4c8c544c34045a668ef6074a82c3fbfa9e05da70d1",
+    "candidate_sha256": "18cea4707270c0a9f33d893a3d3a07c81aaf67a0ebcaea2d5a60dbd0bb2123be",
     "decision": "refined",
     "revision_date": "2026-11-10",
     "reason": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
@@ -404,7 +407,8 @@
         10.0
       ],
       "reviewed_visually": true
-    }
+    },
+    "revision_note": "Only the three column headings are bold. All six box labels use regular type."
   },
   "validation": {
     "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
@@ -454,5 +458,6 @@
     "scene": "/private/tmp/mage-ch1-followup-20261110/compact-figures/scene.json",
     "generator": "/private/tmp/mage-ch1-followup-20261110/compact-figures/generate.py",
     "role": "Draft provenance; not a new runtime build dependency."
-  }
+  },
+  "revision_note": "Only the three column headings are bold. All six box labels use regular type."
 }

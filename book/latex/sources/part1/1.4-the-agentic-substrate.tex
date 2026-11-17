@@ -89,7 +89,7 @@ A \textbf{context window} limits how much information a foundation model can pro
 The generation of commodity intelligence that motivated this book is built around language models with bounded context windows. We deliberately abstract from that machinery: the \textbf{reasoning horizon} concerns what a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. The concept is thus broader than a context-window limit, and is intended to remain useful as new kinds of intelligence bring different capabilities and constraints.
 \end{bookbox}
 
-\section{Engineering the Environment}\label{heading:engineering-the-agent-environment}
+\section{Steering Agents}\label{heading:engineering-the-agent-environment}
 
 % <!-- section-terms: agentic-harness, engineered-environment, injection-point -->
 
@@ -99,22 +99,18 @@ The generation of commodity intelligence that motivated this book is built aroun
 
 % <!-- index-def: engineered-environment -->
 
-The harness supplies facilities for autonomous work; the engineered environment determines how those facilities are used for a particular system. A harness manages context, invokes tools, and may provide memory, parallel execution, and hooks through which actions can be observed or intercepted. The environment includes the existing codebase and the knowledge embodied in it, together with the requirements, architecture, documentation, models, tests, permissions, and operational infrastructure through which the engineer understands and governs the system. The distinction is one of roles: a hook facility belongs to the harness; installing a project check through it is part of engineering the environment. For example, the hook may run a check that refuses edits to generated files. Build checks and review procedures also belong to the environment even when they operate independently of the harness.
+A foundation model supplies general reasoning capabilities, but the effectiveness of an agent also depends on how its harness organizes the work. A harness manages the context supplied to the foundation model, invokes tools in response to its outputs, and returns their results for further reasoning. It may also provide memory, task management, parallel execution, and hooks at which additional code can run. Engineers can use these facilities to influence both the information available to an agent and the sequence of actions through which it pursues a task.
 
-% <!-- print-columns-start: reasoning-horizon-fig -->
+One approach, often called \emph{context engineering}, concerns selecting and organizing the information available to an agent when it makes decisions~\citep{rajasekaran2025contextengineering}. A foundation model's context window is finite, so supplying irrelevant material consumes limited capacity and processing resources. Instructions, repository files, documentation, earlier decisions, and tool results must be selected and presented so that the agent can recover the knowledge it needs. Research on external representations has long shown that how information is organized affects the effort needed to reason with it~\citep{larkin1987diagram,zhang1994representations}. A useful representation preserves relationships that would otherwise have to be reconstructed from implementation. Better representations can reduce that work without changing the underlying foundation model.
 
-Research on external representations has long shown that how information is organized affects the effort needed to reason with it~\citep{larkin1987diagram,zhang1994representations}. A useful engineering model preserves relationships that would otherwise have to be reconstructed from implementation. \autoref{reasoning-horizon-fig} illustrates this distinction: the agent can recover relevant structure from raw code or retrieve it from a purposeful representation. Better representations can reduce repeated reconstruction effort without necessarily increasing the range of tasks the system can handle.
+Another approach is to structure agent behavior through \emph{feedback loops}. Rather than asking an agent to produce a complete implementation in one attempt, the harness can organize repeated cycles of proposing changes, running tools, observing results, and revising the work~\citep{yao2023react}. Tests, static analyses, and other checks can provide feedback that helps the agent improve successive attempts. The effectiveness of these loops depends on the evidence they produce: an agent may repeatedly pursue an incorrect assumption, optimize for an inadequate test, or satisfy a new request while losing an earlier requirement. Repeated attempts can improve a result, but they do not establish that the result is correct. \autoref{reasoning-horizon-fig} illustrates these two approaches.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/reasoning-horizon-7eba103f30.pdf}
-\caption{\emph{Representation and the reasoning horizon.} When relevant system knowledge exceeds a reasoner's working state, it must be recovered for later decisions. Purposeful representations can reduce the work of recovering that knowledge. This may lower the cost of a task or make a larger task feasible.}
+\caption{\textbf{Two ways to steer an agent.} (a) Purposeful representations can reduce the effort needed to recover relevant system knowledge. (b) Feedback loops let agents revise their work using observations from tools and checks. Both can improve performance without changing the foundation model, but neither guarantees an acceptable result.}
 \label{reasoning-horizon-fig}
 \end{figure}
-
-Explicit engineering models are valuable not because they are inherently more accurate than a foundation model's internal representations, but because engineers can inspect, revise, and use them to enforce obligations. The environment can influence an agent's decisions by supplying knowledge and instructions; it can also constrain actions and evaluate results. Supplying an architectural model may help an agent preserve a dependency boundary, while a validator can detect a forbidden dependency and a build gate can refuse the change even when the agent fails to follow the model. These are different ways of exercising engineering control. MAGE develops them through Modeling and Alignment in the chapters that follow.
-
-% <!-- print-columns-end: reasoning-horizon-fig -->
 
 \section{A Simple Probabilistic Model of Success with Agents}\label{heading:a-simple-probabilistic-model-of-success-with-agents}
 

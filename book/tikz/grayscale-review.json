@@ -140,94 +140,45 @@
   {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "9af4a79426995e50b80b0825759e2cd8f321a5594a4d9a2f9198a6c1c34b70f9",
-    "candidate_sha256": "e55008c299aba6c3cf0a15f9ed41bb6e01a25ceee0c9435aa66112598ae65039",
-    "reason": "Compact opening overview for §1.4. The model-property table is explained later in the section; this drawing keeps the three components and their exchanges at readable type sizes.",
+    "source_sha256": "6332bb58fd75a293212966bf47834b0add01a6aa5e2d0292cdebe2b43df00fc1",
+    "candidate_sha256": "cec6ccbb3620136d6fc12b5a05104ae2815c6af09af04a5adb18a730e0f22f68",
+    "reason": "Removed the lower project-guidance return arrow and its annotation.",
     "previous_review": "book/editorial/figure-redraws-20261116/agentic-substrate-before/grayscale-review.json",
     "decision": "refined",
     "reviewed_visually": true,
+    "revision_date": "2026-11-16",
     "validation": {
       "date": "2026-11-16",
       "proof": "latex/build/tikz/candidates.pdf",
       "page": 11,
       "width_bp": 436.62,
-      "height_bp": 159.648,
-      "minimum_prose_font_pt": 9,
-      "authored_type_sizes_pt": [
-        9,
-        9.5,
-        10,
-        10.5,
-        11
-      ],
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "proof_sha256": "324fde5a102aa111e28143a4c3c4bf0b4cc039c8f4ce862c13a555f6ed068cf6",
-      "typography_audit_sha256": "9ae85eb13fd4e4c1f57120a4dbf320dd7377901edcf460757bb83bb1354b78bc"
+      "height_bp": 135.624,
+      "monochrome_pixels": true
     }
   },
   {
     "source": "book/assets/reasoning-horizon.svg",
     "candidate": "book/tikz/figures/reasoning-horizon.tex",
-    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
-    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+    "source_sha256": "6a13f2a80848265c02e9d5435d2ffbe1c6834f268448ab3cf1c80d7bcc146034",
+    "candidate_sha256": "004081abecbaed1c1f2f60a7d8b871682d72c462573479be63e40659e06d5a72",
     "decision": "refined",
-    "revision_date": "2026-11-10",
-    "receipt": "book/tikz/receipts/reasoning-horizon.json",
-    "reviewed": true,
-    "rationale": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
+    "reason": "Two stacked panels compare context retrieval and reconstruction, then show iteration through tools, observations and revision.",
+    "revision_date": "2026-11-16",
     "validation": {
-      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
-      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
-      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
-      "width_bp": 209.97500610351562,
-      "height_bp": 224.375,
-      "fonts": [
-        "SourceSans3-Bold",
-        "SourceSans3-Regular"
-      ],
-      "font_sizes_pt": [
-        9.5,
-        10.0
-      ],
-      "semantic_typography_checks": 7,
-      "geometry_findings": 0,
-      "typography_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "monochrome_pixels": true,
-      "page": 1,
-      "reviewed_peer_groups": 3,
-      "svg_sensors": {
-        "overflow": 0,
-        "label_collision": 0,
-        "text_occlusion": 0,
-        "text_intrusion": 0,
-        "font_band_full_width_assumption": 13,
-        "font_band_at_declared_web_width": 0
-      },
-      "date": "2026-11-10",
-      "status": "passed",
-      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
-      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
-      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
-      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
-      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
-      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
-      "reviewed_visually": true,
-      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
-      "declared_web_width_px": 448.8,
-      "declared_web_label_sizes_px": [
-        20.9,
-        22.0
-      ],
-      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
-    }
+      "date": "2026-11-16",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "page": 12,
+      "width_bp": 449.166,
+      "height_bp": 239.171,
+      "monochrome_pixels": true
+    },
+    "reviewed_visually": true
   },
   {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
-    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "source_sha256": "0d9c61c81579d97a3bf45f4c8c544c34045a668ef6074a82c3fbfa9e05da70d1",
+    "candidate_sha256": "18cea4707270c0a9f33d893a3d3a07c81aaf67a0ebcaea2d5a60dbd0bb2123be",
     "decision": "refined",
     "revision_date": "2026-11-10",
     "receipt": "book/tikz/receipts/substrate-to-method.json",
@@ -276,7 +227,8 @@
         22.0
       ],
       "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
-    }
+    },
+    "revision_note": "Only the three column headings are bold. All six box labels use regular type."
   },
   {
     "source": "book/assets/realization-space.svg",

@@ -310,8 +310,8 @@
         {
           "section_id": "engineering-the-agent-environment",
           "level": 2,
-          "heading_text": "Engineering the Environment",
-          "topic_sentence": "The harness supplies facilities for autonomous work; the engineered environment determines how those facilities are used for a particular system.",
+          "heading_text": "Steering Agents",
+          "topic_sentence": "A foundation model supplies general reasoning capabilities, but the effectiveness of an agent also depends on how its harness organizes the work.",
           "id_source": "explicit",
           "block_index": 32,
           "points": [
@@ -328,12 +328,12 @@
           "heading_text": "A Simple Probabilistic Model of Success with Agents",
           "topic_sentence": "Commodity intelligence is probabilistic.",
           "id_source": "explicit",
-          "block_index": 43,
+          "block_index": 41,
           "points": [
             {
               "slug": "the-probabilistic-surface-is-the-judgments-still-bought-per-instance",
               "text": "Decisions that depend on agentic inference form the probabilistic surface; mechanisms can enforce particular requirements even when the agent makes a mistake.",
-              "block_index": 53
+              "block_index": 51
             }
           ]
         }
@@ -363,13 +363,13 @@
         },
         {
           "slug": "modeling-and-alignment-complement-one-another",
-          "text": "Modeling makes consequential properties explicit and can reduce reconstruction or support assurance; Alignment connects selected obligations to constraints, evidence-producing sensors, and admission-controlling gates. They remain independent and can be combined selectively, as the DocAble content-preservation example demonstrates.",
+          "text": "Modeling makes consequential properties explicit and can reduce reconstruction or support assurance; Alignment connects selected obligations to constraints, evidence-producing sensors, and admission-controlling gates. Modeling can improve the information supplied to an agent, while Alignment can improve feedback and prevent acceptance of violations within the enforcing mechanism’s scope.",
           "block_index": 10
         },
         {
           "slug": "the-problem-is-larger-than-software",
           "text": "The engineering questions extend beyond software, while useful representations, credible evidence, and the appropriate balance of delegation and governance depend on the domain. The following chapters develop the mechanisms, practice, evidence, theory, and wider implications.",
-          "block_index": 15
+          "block_index": 16
         }
       ]
     },
