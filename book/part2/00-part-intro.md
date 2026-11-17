@@ -20,22 +20,17 @@ The central skill is choosing a useful representation for the engineering questi
 
 <!-- point: part-2-moves-through-five-model-classes | Structural, behavioral, and decision models answer different questions, and connected views support questions that span them. | terms: model-zoo, model-classes -->
 
-<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | The main text introduces each class through small examples and the worked insets apply it to DocAble. -->
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Connecting representations exposes relationships that no individual model captures. -->
 
-This chapter develops three familiar classes of engineering model: structural models ask what is connected to what; behavioral models ask what may happen; and decision models ask what should happen next. We then examine how models can be connected to answer questions that cross individual views. The main text develops each class through small examples, while worked insets apply the ideas to DocAble, introduced in {{chapter:problem}}.
+This chapter develops three familiar classes of engineering model: structural models ask what is connected to what; behavioral models ask what may happen; and decision models ask what should happen next. We then examine how models can be connected to answer questions that cross individual views. Different representations preserve different aspects of a system; connecting them makes relationships visible that no individual model captures.
 
-<!-- box-family: inset -->
+### Four questions for every model
 
-> #### Four questions for every model
->
-> Read each worked model with these four questions in mind:
->
-> - **Engineering question** — what am I trying to know or decide?
->
-> - **Model** — what representation makes the question tractable?
->
-> - **Property** — what can I now state precisely?
->
-> - **Quality attribute** — what engineering concern does that property serve?
+Read each worked model with these four questions in mind:
+
+- **Engineering question** — what am I trying to know or decide?
+- **Model** — what representation makes the question tractable?
+- **Property** — what can I now state precisely?
+- **Quality attribute** — what engineering concern does that property serve?
 
 {{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties explicit; Alignment makes selected obligations enforceable.
