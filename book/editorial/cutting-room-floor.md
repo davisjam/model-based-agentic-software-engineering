@@ -21402,3 +21402,30 @@ Explicit models also make delegated implementation easier for engineers to direc
 ```latex
 DocAble uses different representations for different engineering questions. Registries describe components and their relations; state machines describe transitions; other models encode contracts, decisions, quantitative relationships, or recorded history. Roughly 130 structured model records plus several data dialects represent component identity and metadata, deployment topology, inter-service edges, data flow, required environment, state machines, and the governance graph itself. They share identities, derivations, query surfaces, and traceability where engineers need to connect them, while retaining the form suited to each question. \autoref{modeling-substrate} illustrates how an engineering question determines which models to traverse. To investigate a slow service, for example, one might identify the service in the registry, use its identity to find the corresponding deployment, and retrieve measurements for that deployment. Other questions would traverse different relationships among the same models.
 ```
+
+## Former §2.6.4 and Figure 2.20 — 17 November 2026
+
+Source: `book/latex/sources/part2/2.6-system-knowledge.tex`, lines 170–189, at `59a6d8defb5ee59de946d31d01dfa4da2751653f`. The observation about adding or removing distinctions now appears in the §2.7 opening. The figure and the remainder of the coverage discussion were cut.
+
+```latex
+\section{The Limits of Model Coverage}\label{heading:the-limits-of-model-coverage}
+
+% <!-- point: two-layers-cover-the-relationship-mechanical-and-judgment | Model coverage has a revisable boundary: some claims are mechanically decidable, others require semantic judgment, and unmodeled properties have no model-based coverage; experience may justify representing a new property or removing an unnecessary distinction. | terms: drift-gate, map-and-territory, model-drift -->
+
+The boundary of what engineers choose to model can change with experience. A failure may reveal a property that the existing models do not represent. Making it explicit brings that property within the modeled surface, where it can support reasoning and, potentially, mechanical checking. The reverse is also possible: a distinction that no longer serves an engineering purpose can be removed, reducing the cost of maintaining the model. \autoref{model-sync-two-layer-net} illustrates both movements. \magevalue{chapter:one-problem-many-models} examines how failures and other observations lead engineers to revise the models and controls that govern subsequent work.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-sync-two-layer-net-078b1442b6.pdf}
+\caption{\emph{The modeled surface and its limits.} Models may represent properties that can be checked mechanically and properties that require semantic judgment. Properties outside the modeled surface have no model-based coverage. Over time, engineers can expand this surface by representing newly consequential properties or contract it by removing unnecessary distinctions.}
+\label{model-sync-two-layer-net}
+\end{figure}
+
+% <!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
+
+A synchronized model may still express a poor architecture or omit a relationship that matters. A pointer can resolve after its meaning has changed. A schema and its generated client can agree while a live producer emits something else.
+
+\begin{quote}
+\textbf{For the surface the model claims, check the correspondence that can actually be decided.}
+\end{quote}
+```

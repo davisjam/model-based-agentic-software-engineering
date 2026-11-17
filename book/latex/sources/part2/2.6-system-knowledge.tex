@@ -166,24 +166,3 @@ DocAble introduced the join after service URLs were wired correctly but the matc
 Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
 
 Each connection has a specific purpose. Resource declarations supply a dependency, computation identities connect measured cost to a pass, an edit record explains a document change, and a call joined to a deployment identity determines a permission. Keeping those relations explicit lets engineers inspect the connection that an analysis depends on, instead of treating membership in a model family as evidence that the models agree.
-
-\section{The Limits of Model Coverage}\label{heading:the-limits-of-model-coverage}
-
-% <!-- point: two-layers-cover-the-relationship-mechanical-and-judgment | Model coverage has a revisable boundary: some claims are mechanically decidable, others require semantic judgment, and unmodeled properties have no model-based coverage; experience may justify representing a new property or removing an unnecessary distinction. | terms: drift-gate, map-and-territory, model-drift -->
-
-The boundary of what engineers choose to model can change with experience. A failure may reveal a property that the existing models do not represent. Making it explicit brings that property within the modeled surface, where it can support reasoning and, potentially, mechanical checking. The reverse is also possible: a distinction that no longer serves an engineering purpose can be removed, reducing the cost of maintaining the model. \autoref{model-sync-two-layer-net} illustrates both movements. \magevalue{chapter:one-problem-many-models} examines how failures and other observations lead engineers to revise the models and controls that govern subsequent work.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/model-sync-two-layer-net-078b1442b6.pdf}
-\caption{\emph{The modeled surface and its limits.} Models may represent properties that can be checked mechanically and properties that require semantic judgment. Properties outside the modeled surface have no model-based coverage. Over time, engineers can expand this surface by representing newly consequential properties or contract it by removing unnecessary distinctions.}
-\label{model-sync-two-layer-net}
-\end{figure}
-
-% <!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
-
-A synchronized model may still express a poor architecture or omit a relationship that matters. A pointer can resolve after its meaning has changed. A schema and its generated client can agree while a live producer emits something else.
-
-\begin{quote}
-\textbf{For the surface the model claims, check the correspondence that can actually be decided.}
-\end{quote}

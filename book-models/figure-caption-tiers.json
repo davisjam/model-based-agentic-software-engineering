@@ -541,12 +541,6 @@
       "location": "part3",
       "rationale": "the four-model join — synthesizes the whole Part-3 model set"
     },
-    "assets/model-sync-two-layer-net.svg": {
-      "tier": "B",
-      "kind": "mechanism-illustration",
-      "location": "part2",
-      "rationale": "the two-layer net — teaches how to read coverage vs guarantee (v8 simplified the caption to a tier-B length)"
-    },
     "assets/wiki-linkage.svg": {
       "tier": "B",
       "kind": "process-diagram",
@@ -1442,6 +1436,12 @@
       "kind": "conceptual-framework",
       "location": "part5",
       "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
+    },
+    "assets/model-sync-two-layer-net.svg": {
+      "tier": "B",
+      "kind": "mechanism-illustration",
+      "location": "part2",
+      "rationale": "the two-layer net — teaches how to read coverage vs guarantee (v8 simplified the caption to a tier-B length)"
     }
   }
 }
