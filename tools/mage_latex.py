@@ -852,7 +852,12 @@ def resolve_external_references(chapters):
             if key not in external:
                 raise RuntimeError('Build the full native PDF before excerpts; no verified external reference for ' + key)
             return external[key]
-        path.write_text(re.sub(r'\\autoref\{([^}]+)\}', reference, path.read_text()))
+        text = re.sub(r'\\autoref\{([^}]+)\}', reference, path.read_text())
+        # An excerpt can name a heading in another chapter, but cannot jump to it.
+        # Keep the authored link text (including nested formatting) as a TeX group.
+        def heading_link(match):
+            return '' if match[1] in external and match[1] not in available else match[0]
+        path.write_text(re.sub(r'\\hyperref\[([^\]]+:heading:[^\]]+)\](?=\{)', heading_link, text))
 
 
 def print_contents(records, selected, external_pages=None, end_entries=()):
