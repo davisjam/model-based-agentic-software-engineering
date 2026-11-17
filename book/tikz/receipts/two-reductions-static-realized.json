@@ -1,6 +1,6 @@
 {
   "source": "book/assets/two-reductions-static-realized.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*Computation structure versus recorded history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
   "topology": {
     "description": "Separate unchanged computation-graph and edit-record panels, with static structure and recorded history labels inside their bottom edges. The dashed not joined today annotation remains below both panels.",

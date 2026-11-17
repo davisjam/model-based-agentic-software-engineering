@@ -1,6 +1,6 @@
 {
   "source": "book/assets/canonical-structural.svg",
-  "chapter": "2.2-structural",
+  "chapter": "2.3-structural",
   "claim": "Structural models state entities and defined relations. In this intended architecture, all Web-to-Database dependency paths must pass through API.",
   "topology": {
     "description": "Intended direct-dependency chain, not measured execution; crossed dashed direct bypass forbidden.",

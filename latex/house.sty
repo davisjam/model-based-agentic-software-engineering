@@ -110,6 +110,13 @@
     {\begin{enumerate}[leftmargin=0pt,labelsep=.5em,itemsep=1.5pt,parsep=0pt,topsep=2pt]}%
   \setlength{\itemsep}{1.5pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}%
 }{\end{enumerate}}
+% Closing restatements share one quiet frame and stay with the chapter transition.
+\newenvironment{bookprinciplerestatement}{%
+  \Needspace{8\baselineskip}\bookboxtagbegin
+  \begin{tcolorbox}[sharp corners,boxrule=.45pt,colframe=bookmuted,colback=white,
+    left=7pt,right=7pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+    before upper={\bookboxtagtext},after upper={\bookboxtagpause}]%
+}{\end{tcolorbox}\bookboxtagend}
 % The colored frame is an artifact; the box content remains tagged paragraphs in a Div.
 \newcommand{\bookboxtagbegin}{\ifdefined\tagstructbegin\par\tagpdfparaOff\tagstructbegin{tag=Div}\fi}
 % tcolorbox's breakable minipage uses the legacy footnote writer. Restore

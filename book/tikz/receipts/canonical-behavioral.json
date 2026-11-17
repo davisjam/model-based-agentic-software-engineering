@@ -1,6 +1,6 @@
 {
   "source": "book/assets/canonical-behavioral.svg",
-  "chapter": "2.3-behavioral",
+  "chapter": "2.4-behavioral",
   "claim": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",
   "topology": {
     "description": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",

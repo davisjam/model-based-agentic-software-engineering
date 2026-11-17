@@ -1,6 +1,6 @@
 {
   "source": "book/assets/coherence-triangle.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*Checked predicates over a structured model.* A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.",
   "topology": {
     "description": "Restored the invariant example as a separate inset sub-box inside Invariants and the external supports-predicates-over label. Structured model feeds invariants and checker; dashed recurring-failure feedback returns to invariants.",

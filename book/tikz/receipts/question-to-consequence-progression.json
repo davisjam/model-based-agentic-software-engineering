@@ -1,6 +1,6 @@
 {
   "source": "book/assets/question-to-consequence-progression.svg",
-  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "chapter": "2.2-constructing-and-using-engineering-models",
   "claim": "Engineering questions guide models and explicit properties; analysis supplies evidence for design decisions and selected enforcement, while feedback revises the model.",
   "topology": {
     "description": "Question → model and define properties → analysis → evidence → engineering decisions; decisions feed back to model and properties. Design refinement and enforcement selection share the final stage.",

@@ -433,7 +433,7 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             opening = (opening[:heading_end] + '\\begingroup\\setlength{\\parskip}{3pt}\n' +
                        opening[heading_end:] + '\\par\\endgroup\n')
             text = opening + separator + rest
-        if chapter.stem == '2.4-decision' and 'book/assets/observed-vs-declared.svg' in approved:
+        if chapter.stem == '2.5-decision' and 'book/assets/observed-vs-declared.svg' in approved:
             from mage_figure_layout import observation_policy_columns
             text = observation_policy_columns(text)
         if chapter.stem == '1.4-the-agentic-substrate':

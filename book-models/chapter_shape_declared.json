@@ -287,15 +287,40 @@
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
-        "thesis_link": "explicit",
+        "thesis_link": "implicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "synthesis"
+      },
+      "note": "Opens with the cost of reconstructing project knowledge. The engineer selects the subject, scope, and level of detail, distinguishes observed facts from obligations, and determines which implementation choices to leave open. The closing tests the model for adequacy and parsimony.",
+      "opening_anchor": "The knowledge an agent needs about a particular system is distributed across",
+      "closing_anchor": "question it settles, not by how much of the system it represents."
+    },
+    {
+      "slug": "constructing-and-using-engineering-models",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "implicit",
         "thesis_target": "modeling"
       },
       "closing": {
         "kind": "transition"
       },
-      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Principle link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling\u2192Alignment boundary that Part III begins from. A worked semantic interpretation now defines a permitted-call relation and constructive lifecycle transition function; the repertoire inset connects an agent\u2019s general training to the engineer\u2019s system-specific meanings and obligations.",
-      "opening_anchor": "A foundation model knows Python, React, queues, databases, and common architectural patterns.",
-      "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence."
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "sources and uses of engineering models",
+            "anchor": "multiple-routes-to-engineering-models"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "Opens by asking how engineers construct, revise, and use models. A service boundary illustrates judging a prototype discovery. The sensor example and permitted-call relation show how a representation supports analysis. The closing connects each of the three model classes to its engineering question.",
+      "opening_anchor": "How do engineers construct, revise, and put models to work? A service",
+      "closing_anchor": "all three questions, and their answers can draw on the same entities."
     },
     {
       "slug": "modeling-structure-and-ownership",
@@ -383,7 +408,7 @@
         "failure_question": "explicit",
         "answer": "explicit",
         "thesis_link": "explicit",
-        "thesis_target": "alignment"
+        "thesis_target": "modeling"
       },
       "closing": {
         "kind": "synthesis"
@@ -398,9 +423,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now SYSTEM KNOWLEDGE \u2014 the substrate, not a seventh class (label carried forward; filename -> 2.8-system-knowledge.md; replaces the joining-scenario story). Question (are the six models one universal model, or something else?) + answer (a family of typed models joined on shared identity; derive-and-join, purpose-before-shape, map-territory synchronization with a narrowed guarantee). Ends on the cross-Part 'Modeling creates surfaces for Alignment' figure and the Handoff to Alignment: models already pay in reasoning/prediction/composition/traceability; Part III asks the separate question of authority. thesis carried by content; closing transitions to Part III.",
-      "opening_anchor": "The preceding sections each drew a different model of the same product",
-      "closing_anchor": "a map that agrees with its territory"
+      "note": "Opens with Fairbanks's account of architectural views and the questions different views of one system answer. The worked joins use shared identity to relate declared calls, deployment information, and evidence. The closing explains how correspondence and review preserve decisions across changes in the agent or harness.",
+      "opening_anchor": "Different questions require different views of the same system. Following Fairbanks, we",
+      "closing_anchor": "keeps the decisions governing their work available for human inspection and revision."
     },
     {
       "slug": "reorganization-of-se",

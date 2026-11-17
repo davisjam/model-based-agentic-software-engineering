@@ -57,14 +57,15 @@ book/
   part1/  (Part 1 — The New Engineering Problem)
     1.1-the-printer.md … 1.5-the-new-engineering-problem.md
   part2/  (Part 2 — Modeling)
-    2.1-context-is-the-first-modeling-problem.md … 2.6-modeling-summary.md
+    2.1-context-is-the-first-modeling-problem.md … 2.7-modeling-summary.md
   part3/  (Part 3 — Alignment)
-    3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md
+    3.1-where-obligations-can-be-enforced.md … 3.6-alignment-summary.md
   part4/  (Part 4 — MAGE in Motion: Engineering Through Models)
     4.1-the-dynamics-of-mage.md
     4.2-one-problem-many-models.md
     4.3-brownfield-engineering.md
     4.4-engineering-the-environment.md
+    4.5-mage-in-motion-summary.md
   part5/  (Part 5 — DocAble Among Other Software Factories)
     5.1-software-factory.md … 5.5-engineering-the-factory.md
   part6/  (Part 6 — The Theory)

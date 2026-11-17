@@ -62,7 +62,8 @@
     "book/assets/realization-space.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the revised black-and-white Figure 2.1 after reviewing the requested wording and layout changes in the sidebar. Revised source commit: 60a15c65d2d069f1e815da0639c1ba13aed57d11.",
-      "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159"
+      "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
+      "max_print_height_bp": 226
     },
     "book/assets/specified-region.svg": {
       "approved_date": "2026-11-11",
@@ -77,7 +78,8 @@
     "book/assets/multiple-routes-to-engineering-models.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author approved the revised black-and-white Figure 2.4 (LGTM), including the matched Sources of models / Uses of models headings and narrowed central model box.",
-      "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7"
+      "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7",
+      "max_print_height_bp": 205
     },
     "book/assets/canonical-structural.svg": {
       "approved_date": "2026-11-11",
@@ -98,27 +100,32 @@
     "book/assets/from-nodes-to-composition.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author approved the corrected black-and-white Figure 2.9 distinguishing read-only computations, typed patch producers, and direct document edits.",
-      "candidate_sha256": "ef2ebe06249d7b93edf3c64a23456d0094c582967b0100ecbd28af3d500af05e"
+      "candidate_sha256": "ef2ebe06249d7b93edf3c64a23456d0094c582967b0100ecbd28af3d500af05e",
+      "max_print_height_bp": 318
     },
     "book/assets/canonical-behavioral.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved black-and-white Figure 2.10 in the sidebar review; remove the color companion from the PDF.",
-      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7"
+      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+      "max_print_height_bp": 283
     },
     "book/assets/recovery-ordering-model.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved black-and-white Figure 2.12 in the sidebar review; remove the color companion from the PDF.",
-      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92"
+      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+      "max_print_height_bp": 345
     },
     "book/assets/service-flow-model.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved black-and-white Figure 2.17 in the sidebar review; remove the color companion from the PDF.",
-      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806"
+      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+      "max_print_height_bp": 162
     },
     "book/assets/in-flight-ownership-states.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author approved black-and-white Figure 2.13 after removing the entire State meaning / Key transitions legend.",
-      "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc"
+      "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
+      "max_print_height_bp": 218
     },
     "book/assets/observed-vs-declared.svg": {
       "approved_date": "2026-11-11",

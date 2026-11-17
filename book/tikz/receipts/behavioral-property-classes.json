@@ -1,6 +1,6 @@
 {
   "source": "book/assets/behavioral-property-classes.svg",
-  "chapter": "2.3-behavioral",
+  "chapter": "2.4-behavioral",
   "claim": "*Behavioral models expose different classes of properties.* A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.",
   "topology": {
     "description": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",

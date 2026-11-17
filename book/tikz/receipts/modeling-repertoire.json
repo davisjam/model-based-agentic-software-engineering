@@ -1,6 +1,6 @@
 {
   "source": "book/assets/modeling-repertoire.svg",
-  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "chapter": "2.2-constructing-and-using-engineering-models",
   "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
   "topology": {
     "description": "Nine grouped examples remain. Finite-state branching is centered vertically in the expanded gap. DocAble control flow analyzes a figure, asks whether it is informative, then queries an LLM for a description on yes or marks it decorative on no. This binary illustration does not change the adjacent decision table, which preserves uncertain or missing classifications. Both control-flow branches use the same lower rank and equal 11bp vertical legs. Provenance keeps its symmetric paths. The quantitative panel defines r=E/N, E as errors and N as requests, and requires r<1% using native serif mathematical notation.",

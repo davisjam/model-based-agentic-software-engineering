@@ -1,0 +1,40 @@
+% mage-auto-heading: modeling-principle
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Modeling -->
+
+% <!-- chapter-title: Summary -->
+
+\chapter{Summary}
+
+Engineering models make selected properties of a system available for reasoning without requiring engineers or agents to reconstruct them from implementation. The useful representation depends on the question: architecture, behavior, decisions, and quantitative properties call for different reductions. Across these forms, the engineering task is to preserve the distinctions that matter, leave other choices open, and maintain the relationships on which subsequent reasoning depends.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Model parsimoniously for an engineering question.} Preserve the distinctions needed to answer the question. A model earns its carrying cost while the reasoning it enables justifies the work of keeping it current.
+\item
+  \textbf{Externalize consequential knowledge and intent.} A relationship or obligation recorded in a model is available to the next engineer or agent. Each can use it without having to infer the original decision from the code.
+\item
+  \textbf{Preserve degrees of freedom deliberately.} State the obligations every acceptable implementation must satisfy. Where several choices satisfy those obligations, leave the choice to the implementer.
+\item
+  \textbf{Maintain the correspondences you depend on.} Shared identities connect representations of the same system. Derivation and generation can carry facts from an authoritative source, while checked traceability can expose disagreements between independently maintained artifacts.
+\item
+  \textbf{Distinguish description from authority.} A model may describe the implementation or prescribe properties the implementation must satisfy. When the two disagree, which one should change depends on which is authoritative for the property in question.
+\end{enumerate}
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Modeling Principle}\label{heading:modeling-principle}
+
+Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
+
+Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
+\end{quote}
+
+A model can make an obligation explicit without ensuring that an implementation satisfies it. An agent may misunderstand the representation, overlook a constraint, or produce a result that violates a property the model states correctly. \magevalue{chapter:alignment} takes up the complementary engineering problem: how to make selected obligations enforceable in the environment where agents work.

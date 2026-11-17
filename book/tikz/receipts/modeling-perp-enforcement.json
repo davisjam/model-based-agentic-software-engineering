@@ -1,6 +1,6 @@
 {
   "source": "book/assets/modeling-perp-enforcement.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.",
   "topology": {
     "description": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",

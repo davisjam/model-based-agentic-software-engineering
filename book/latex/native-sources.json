@@ -84,44 +84,50 @@
     {
       "source": "book/latex/sources/part2/00-part-intro.tex",
       "projection": "book/part2/00-part-intro.md",
-      "source_hash": "08084b81706d25665f88291552249dcb2dc683a966de3e22dd1e28348122207b",
-      "projection_hash": "cfb5b83a8363c268bfdf8b02af73269323d17549833307a4b95fe4fcdc748b91"
+      "source_hash": "1ffff295bcb211c4a381736878de41e2ebf5536f377b47d4e431a9a08299d222",
+      "projection_hash": "6ed0657225ab93cd31d20fcc64e47d4988bea19bdeb80b1b4fa1b7e92424f6e3"
     },
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
-      "source_hash": "db7ce71a87994034e902c02202459e931b2a2e17c76366122b98aa31bae2295d",
-      "projection_hash": "622a61b60439021126d93622e76ce8a4eeddd2c0c66d0ae24b989a1863542e7d"
+      "source_hash": "072b3af3ac292c4835f159bde32a71b96e729e9b7b6bc3acf085dc096ac59d87",
+      "projection_hash": "13b3973f4e0ac0b86422ae1ff93c78c19db9e833a7ab4109cb7eca005d089ee6"
     },
     {
-      "source": "book/latex/sources/part2/2.2-structural.tex",
-      "projection": "book/part2/2.2-structural.md",
-      "source_hash": "0257bc1b484f8929c798d1ae67d7eaec9088b14e9ce912f0b71ec32da5d52d80",
-      "projection_hash": "52e4fdd6233bb2bc9e8606ff651bea5e58aa4a9925f061d71e5bc75d2f7635c1"
+      "source": "book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex",
+      "projection": "book/part2/2.2-constructing-and-using-engineering-models.md",
+      "source_hash": "f4f6368dc21ee15d380595adc7090344d359a83b88b5d683145af6f51e902f09",
+      "projection_hash": "52a2f02e987a648d51e5373dfe340f0d4557f7327cd7b895b82c6ae477d40b84"
     },
     {
-      "source": "book/latex/sources/part2/2.3-behavioral.tex",
-      "projection": "book/part2/2.3-behavioral.md",
-      "source_hash": "1998fff1a662344eb7d0285538acf436b7a615c872bd5b7fd24d2f88bffe489a",
-      "projection_hash": "b36f057dafd762bffe8f000443c4d9c77a37a47167338dd8ce66cb27ae3fe0d6"
+      "source": "book/latex/sources/part2/2.3-structural.tex",
+      "projection": "book/part2/2.3-structural.md",
+      "source_hash": "c080015b3770734045f99fbe5b4a341081909cc8002d15c96067e4161d3dc954",
+      "projection_hash": "8e92ffd5487a9430a877c8be9682e9fee7e37858bee66437e522fa7b11fc2ff5"
     },
     {
-      "source": "book/latex/sources/part2/2.4-decision.tex",
-      "projection": "book/part2/2.4-decision.md",
-      "source_hash": "7ef4a85ddd638801f0a4c55c08f3562a45aa2d59e42d0bdb980e8b7fe521b1ab",
-      "projection_hash": "f312cfb62ef679811024a43e0745ed781e2dbcb3de321f30ea4589de3da6fe57"
+      "source": "book/latex/sources/part2/2.4-behavioral.tex",
+      "projection": "book/part2/2.4-behavioral.md",
+      "source_hash": "74a779a5995d922d771a5c397b1f3df3db11a4bba9a7c15bd3246f63517e10ab",
+      "projection_hash": "0c1165e6ee566a44671f877f11773d6e4b6f16bd56fd23be545e5dda20365fc3"
     },
     {
-      "source": "book/latex/sources/part2/2.5-system-knowledge.tex",
-      "projection": "book/part2/2.5-system-knowledge.md",
-      "source_hash": "350107a9fdf930291cc541c8c24e5670960867df49d7289ff420b4f913b4c34a",
-      "projection_hash": "5216b5dfc32a500482c571e13f14609739772add6727491ec8c109284e37eaef"
+      "source": "book/latex/sources/part2/2.5-decision.tex",
+      "projection": "book/part2/2.5-decision.md",
+      "source_hash": "3fd11506f04d3494f2451b37871bc90ac10ca975c434beabd627c5d295b3a84f",
+      "projection_hash": "0070092627a10526c80c32d51cc2f5d561c436b51ab2f7bfc2d4130c67417c98"
     },
     {
-      "source": "book/latex/sources/part2/2.6-modeling-summary.tex",
-      "projection": "book/part2/2.6-modeling-summary.md",
-      "source_hash": "79c6e9ae71cdaac900bad6475cb3c38d5730a39ef125d83b4e9b412c81654fb2",
-      "projection_hash": "80e588593458b17ca095d77b7cd0121ef35f0a7fcd9968dd3c2bd8148babd3f3"
+      "source": "book/latex/sources/part2/2.6-system-knowledge.tex",
+      "projection": "book/part2/2.6-system-knowledge.md",
+      "source_hash": "503db3778835eaf895294d0af8dc8930294ba482dc39d35e7e779bf9c30b4f6c",
+      "projection_hash": "6aece14083b116b8900029f21ffb8e6ed2d47922e081182c99a9f5a9175c25a0"
+    },
+    {
+      "source": "book/latex/sources/part2/2.7-modeling-summary.tex",
+      "projection": "book/part2/2.7-modeling-summary.md",
+      "source_hash": "dc66c248d86b62776d1e605a90f2c39cd7cfd4467b2d293b32689fd232b3e817",
+      "projection_hash": "bb110bce04205bae2a1fbf05915d3b74920b73e9cad8a2bb3e80e03c376f0d7f"
     },
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
@@ -156,14 +162,14 @@
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
       "projection": "book/part3/3.5-when-guardrails-collide.md",
-      "source_hash": "3935b17f6669c6b5678e6ac7dde2ee3b4b6925bb4f29212ac40585f2fdb7fdc5",
-      "projection_hash": "cda88612ed023c09dc69611d9ecedc05bb6ea5fef20d8f73dd1c350274859616"
+      "source_hash": "0043e5f7fd95cc3233786a15575b0b5e8ca2fe2c017f1ac4f8420a7c8468f0cb",
+      "projection_hash": "dab8239687ff33f3bd72dcf8c386d18b36f2f5f157ae096d4e51533b33f32502"
     },
     {
       "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
       "projection": "book/part3/3.6-alignment-summary.md",
-      "source_hash": "5e8c3f5245e322c3401263bc71d71d1635dc5b48a21b1db6f11552349e75c2e3",
-      "projection_hash": "db78f220349f5cd29dd861552ae8493913656337e5ae3526c6389607d778e2c9"
+      "source_hash": "541caffff18e08784d8c88665387aa46d11da24ae9b2bc6345c6c36053bcad6f",
+      "projection_hash": "6cb5a62c752d6ffe8d2b98b11590565cf66c21de7189a675b532898c0c9daa1e"
     },
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
@@ -192,8 +198,14 @@
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "39708141d3dc769c9c2c402a86b345a1ebdf65830cb648927e18456814778112",
-      "projection_hash": "fe867cd43a90c9c5ac724a9d0af96c98d1d65acd0aae3dea5bf0552f753cc443"
+      "source_hash": "472e22b7b5b06f3e42b4a8c0847e268b78aca1b81381193ddb5f4188f1f9b27a",
+      "projection_hash": "d86c23da29dac4b08da3fd5fa947c1abcafc11b7023659a67541dc009b3830d8"
+    },
+    {
+      "source": "book/latex/sources/part4/4.5-mage-in-motion-summary.tex",
+      "projection": "book/part4/4.5-mage-in-motion-summary.md",
+      "source_hash": "e19aa992a8c8a6727c19e657be97e7b38d14737fac6693ebe29c69e146e8c772",
+      "projection_hash": "fa6c9510835203d3e8409a83d6caa06f763a83399cd8149158884bd6f0a4f894"
     },
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",
@@ -210,8 +222,8 @@
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "7f6e50a6b90db4d162dbc4aee8c092640eab523d42991027f3b60e756dea4c85",
-      "projection_hash": "6df2dcbbebb32b313d765842092e9c4babacbfe6f5dd0d2fd82e970119bd0977"
+      "source_hash": "cd80848d7e6b249bce118b16956df73abedfef7b8e0eaeeb7b61c9bd9b78b52f",
+      "projection_hash": "5aeb226501644bc4b4478c2ecf8b2f41885f4f73e6149cd111acc8f5c026b6f3"
     },
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
@@ -264,8 +276,8 @@
     {
       "source": "book/latex/sources/part6/6.5-what-the-theory-claims.tex",
       "projection": "book/part6/6.5-what-the-theory-claims.md",
-      "source_hash": "24f3ad9c095fe71421b6b33f5f307fa09c294c931337a8993bc41662d172872a",
-      "projection_hash": "89956783449a4fdf0d5977f3b9586bd7730f9032d88ea0abbe418151a79fc205"
+      "source_hash": "6486a76a8bf42bf142643715631bd3d176755f04a895d9e013b5e16f76d72383",
+      "projection_hash": "ff16efbf7887745e8e5a3a9d979a80ac34a753c09e3f4df218f65a1ca0ce08ef"
     },
     {
       "source": "book/latex/sources/part7/00-part-intro.tex",

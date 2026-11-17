@@ -44,22 +44,25 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 2 — Modeling
 
-- **[DECLARED]** (create) After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario. — _anchor: Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check._
+- **[DECLARED]** (create) After this chapter, the reader can select and construct models for engineering questions, establish the meaning and scope needed for analysis, and connect structural, behavioral, and decision models when a question spans views. — _anchor: Sections 2.1 and 2.2 develop purposeful reduction and semantic commitment. Sections 2.3 through 2.6 work through structural, behavioral, decision, and connected models._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
 ### Lesson 2.1-context-is-the-first-modeling-problem
 
 
-### Lesson 2.2-structural
+### Lesson 2.2-constructing-and-using-engineering-models
 
 
-### Lesson 2.3-behavioral
+### Lesson 2.3-structural
 
 
-### Lesson 2.4-decision
+### Lesson 2.4-behavioral
 
 
-### Lesson 2.5-system-knowledge
+### Lesson 2.5-decision
+
+
+### Lesson 2.6-system-knowledge
 
 
 ## Module 3 — Alignment
@@ -85,6 +88,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (know) After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. _(primary: where-enforcement-stops · elaborated by: reorganization-of-se)_ — _anchor: point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.4 Governance Conversion, 'Where Enforcement Stops')._
 
 ### Lesson 3.5-when-guardrails-collide
+
+
+### Lesson 3.6-alignment-summary
 
 
 ## Module 4 — MAGE in Motion: Engineering Through Models

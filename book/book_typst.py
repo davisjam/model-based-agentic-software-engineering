@@ -2620,9 +2620,6 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
 #: flags, so match on the minted slug exactly as `_is_part_page`/`_is_appendix_divider` do. Each sorts last
 #: in its Part by its `N.M-` filename but prints no number. Register a new terminal coda's slug here.
 _CODA_SLUGS = frozenset({
-    "2.6-modeling-summary",
-    "3.6-alignment-summary",
-    "6.5-what-the-theory-claims",
     "7.5-what-cannot-be-delegated",
 })
 

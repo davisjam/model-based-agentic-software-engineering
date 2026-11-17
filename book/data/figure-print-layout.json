@@ -117,11 +117,12 @@
     "document-mutation-model": {
       "width_bp": 247.5,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "realization-space": {
       "width_bp": 337.5,
-      "placement": "centered"
+      "placement": "centered",
+      "float_placement": "!htb"
     },
     "question-to-consequence-progression": {
       "width_bp": 315.0,
@@ -134,7 +135,8 @@
     },
     "canonical-behavioral": {
       "width_bp": 450.0,
-      "placement": "centered"
+      "placement": "centered",
+      "float_placement": "!htb"
     },
     "modeling-perp-enforcement": {
       "width_bp": 337.5,
@@ -143,7 +145,7 @@
     "from-nodes-to-composition": {
       "width_bp": 450.0,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "two-reductions-static-realized": {
       "width_bp": 337.5,
@@ -240,6 +242,11 @@
     },
     "modeling-repertoire": {
       "width_bp": 414,
+      "placement": "centered",
+      "float_placement": "p"
+    },
+    "multiple-routes-to-engineering-models": {
+      "width_bp": 282,
       "placement": "centered",
       "float_placement": "!htb"
     }

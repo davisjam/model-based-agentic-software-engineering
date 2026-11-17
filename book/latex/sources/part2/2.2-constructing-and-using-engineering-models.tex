@@ -1,0 +1,177 @@
+% mage-auto-heading: constructing-and-revising-models
+% mage-auto-heading: the-engineering-modeling-repertoire
+% mage-auto-heading: semantic-commitment-and-analysis
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Modeling -->
+
+% <!-- chapter-title: Constructing and Using Engineering Models -->
+
+\chapter{Constructing and Using Engineering Models}
+
+How do engineers construct, revise, and put models to work? A service boundary can originate as a requirement or emerge from a prototype. Before an agent uses it to guide the next change, the engineer must decide what the boundary means and what evidence would show that a change respects it.
+
+\section{Constructing and Revising Models}\label{heading:constructing-and-revising-models}
+
+% <!-- section-terms: modeling-principle, degrees-of-freedom -->
+
+% <!-- point: the-direction-also-runs-in-reverse | An exploratory implementation can expose constraints, tradeoffs, state distinctions, dependencies, and bounds that were not evident in the initial design. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: human-authority-is-not-human-invention | The agent may supply a design insight; the engineer takes responsibility for adopting it by evaluating it against the system's requirements. | terms: modeling-principle -->
+
+Useful models can originate in requirements, existing systems, or exploratory implementation. A requirement can supply an obligation before any code exists. An existing system and the people who maintain it can supply observed dependencies and the reasons for preserving some of them. An agent building a prototype may discover a state distinction that nobody thought to specify. The engineer can start from any of the sources in \autoref{multiple-routes-to-engineering-models} and judge what each establishes about the system, including which properties later implementations must preserve.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/multiple-routes-to-engineering-models-abe57356fe.pdf}
+\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it can support three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; engineers judge whether its design is desirable and which discovered properties should become obligations. Further engineering discoveries may motivate new or revised models.}
+\label{multiple-routes-to-engineering-models}
+\end{figure}
+
+% <!-- point: model-origins-and-uses | Models support engineering design, direct agent work, and supply properties against which results can be checked. | terms: modeling-principle -->
+
+However a model originates, its value depends on what engineers can do with it. Consider the three uses beneath the model in \autoref{multiple-routes-to-engineering-models}. An engineer can reason through a proposed service boundary by asking which clients would need to change if the database schema changed. The engineer can direct an agent adding a client to use the interface named in the model. A reviewer can then compare the client's actual dependencies with the permitted ones. Detecting an unexpected dependency gives the reviewer evidence. Enforcing the boundary requires some means of acting on that finding, such as rejecting a change that introduces the dependency.\magefootnote{agent-studio-models}{Siemens' Agent Studio research illustrates another design use. Agents work with formal engineering models, including SysML v2 representations, and simulations evaluate candidate electric-vehicle architectures using Simcenter Amesim. An engineer decides how to proceed at critical points. The research account describes an exploration of candidate designs~\citep{liu2024agentstudio}.}
+
+% <!-- point: a-prototype-preserves-a-realization-not-the-knowledge | A prototype retains an implementation but may not explain what engineers learned from it; record the useful relationships explicitly so later work can use the lesson without repeating the experiment. | terms: modeling-principle, externalized-knowledge -->
+% <!-- point: agents-import-patterns-but-design-is-contextual | An agent can introduce useful design choices through exploratory implementation, but the engineer must judge whether they suit the present system. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: model-extraction-turns-transfer-into-local-law | Engineers record accepted design choices so later implementations can preserve the relevant relationships without reproducing incidental details. | terms: modeling-principle, governance-conversion -->
+% <!-- point: not-every-extraction-becomes-law | Models can preserve both accepted obligations and descriptive observations; the representation should distinguish what later implementations must preserve from what engineers learned about the current one. | terms: modeling-principle, externalized-knowledge -->
+
+Models recovered from implementation require particular care because a prototype records one realization, including incidental choices alongside those that mattered to the design. Suppose an agent routes database access through a service that the user interface calls. After evaluating the design, the engineer decides that the user-interface layer should never call the database directly. An authoritative model of allowed calls between layers records that decision. Loading a particular screen also happens to require three database queries. A descriptive model may retain that observation for a performance investigation. A later implementation that needs fewer queries can improve performance while preserving the boundary.
+
+% <!-- point: the-most-important-evidence-comes-from-realization | Implementing and trying a design can reveal distinctions that were not evident in the initial model. | terms: modeling-principle -->
+% <!-- point: revise-the-model-when-evidence-changes-the-judgment | Neither direction guarantees the boundary is right; analysis, implementation, measurement, or failure may reveal that an omitted distinction mattered or an included one did not, and the model is revised when the evidence changes the engineering judgment. | terms: degrees-of-freedom, model-as-map -->
+
+New evidence can change what the model needs to represent. If measurements show that loading the screen violates a latency requirement, the count of three queries tells us little about where the time went. A performance model may then need to distinguish time spent waiting for the database from time spent rendering the result. Conversely, if two screens issue different queries through the same service and the question concerns only the layer boundary, the architecture can represent their common dependency once. The measured times can refine a descriptive performance model without changing an accepted latency requirement.
+
+% <!-- point: purposeful-reduction-is-judgment-not-algorithm | Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: reason-top-down-from-the-question | Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining implementation choices stay free. | terms: degrees-of-freedom, tolerance -->
+% <!-- point: reason-bottom-up-from-the-proposed-model | Reasoning bottom-up from the proposed model asks, for each represented distinction, what engineering question or obligation requires it; a distinction no consequential purpose justifies carrying is removed. | terms: degrees-of-freedom -->
+
+Engineers can evaluate a proposed model from either direction. Reasoning top-down from the question tests adequacy. Can the architecture distinguish a screen that calls the database directly from one that reaches it through the service? Reasoning bottom-up from the representation tests parsimony. For each distinction in the model, what question or obligation requires it? If removing query counts leaves the architectural question answerable, the architecture can dispense with them. Both tests can identify revisions, and either judgment can change as engineers learn more about the system.
+
+\section{The Engineering Modeling Repertoire}\label{heading:the-engineering-modeling-repertoire}
+
+% <!-- section-terms: model-classes, projection, modeling-principle -->
+
+% <!-- point: engineering-fields-have-accumulated-a-modeling-repertoire | Software engineers need not invent a representation from first principles each time; engineering fields have accumulated a large repertoire of models for recurring questions, each preserving different information and supporting different analyses. | terms: model-classes, modeling-principle -->
+% <!-- point: recognize-the-question-select-the-representation | The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; MAGE prescribes no new notation. | terms: modeling-principle, model-classes -->
+% <!-- point: reuse-the-established-repertoire-choosing-is-judgment | This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment. | terms: modeling-principle, model-classes -->
+% <!-- index-def: model-classes -->
+
+Engineers rarely need to invent a modeling technique from first principles. Software engineering draws on established representations and analyses from systems engineering, distributed systems, and operations research. UML supplies structural and behavioral notations~\citep{booch-uml}. SysML can connect system requirements to designs, schemas describe the forms data may take, and queueing models relate demand to service capacity. MAGE prescribes no new notation. The engineer's work is to recognize a question that one of these representations makes easier to answer.
+
+% <!-- point: read-the-repertoire-as-available-moves-not-a-taxonomy | What matters is not a representation's graphical shape but the engineering question its entities and relations preserve. | terms: model-classes, projection -->
+% <!-- point: shape-does-not-distinguish-a-model-semantics-do | Shape does not distinguish representations, semantics do; semantic commitment decides how much of that meaning is declared rather than understood. | terms: system-knowledge-graph, semantic-commitment -->
+
+The representation should be selected together with the analysis it must support. A dependency graph exposes paths, cycles, and violations of layering. A state machine lets us explore which transitions are permitted and which states are reachable. A quantitative model can expose a resource budget or the margin between expected demand and available capacity. A decision table lets us evaluate a rule and identify rows that give conflicting answers for the same inputs. A provenance model lets us trace a result to the inputs and transformations that produced it. Several of the examples in \autoref{modeling-repertoire} use arrows. What we can learn by following an arrow depends on whether it denotes a dependency, a transition, or a derivation. One engineering question may draw on several such relationships.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-repertoire-f010848f36.pdf}
+\caption{\emph{The engineering modeling repertoire.} Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.}
+\label{modeling-repertoire}
+\end{figure}
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 6 -->
+
+\begin{bookbox}{inset}{Debugging Models Before Code}
+\label{inset-debugging-models-before-code}
+One engineering question may require several models. Suppose we are designing a battery-powered device that collects measurements and transmits them over a radio. Can any measurements be lost? \autoref{sensor-buffer-radio} approaches this question through three models drawn from the engineering repertoire.
+
+Start with the structural model in panel (a). The sensor produces measurements, the buffer stores them, and the radio transmits them. This model establishes the data path but cannot tell us whether the buffer might overflow. For that, we need the quantitative model in panel (b): the sensor samples once per second, the buffer holds ten samples and discards new arrivals when full, and the radio transmits the accumulated samples every twelve seconds.
+
+The behavioral model in panel (c) puts those quantities on a timeline. Starting with an empty buffer, the first sample arrives at one second. The buffer fills at ten seconds, but the radio does not transmit until twelve seconds, just before that second's sample. The eleventh sample is therefore lost. Neither the structural model nor the quantitative model alone exposed this failure; combining them in a behavioral model did.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,alt={A sensor feeds a ten-sample buffer once a second. It fills at ten seconds and loses the next sample, one second before the radio first transmits.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Three models of one sensor system]{\emph{Three models of one sensor system.} The structural model identifies the measurement path; the quantitative model specifies rates and capacity; the behavioral model combines them to reveal that the eleventh sample is lost before the first transmission.}
+\label{sensor-buffer-radio}
+\end{figure}
+
+We can now investigate alternatives: transmit more frequently, increase buffer capacity, sample less often, or change the transmission policy. Each affects energy consumption, memory, or measurement quality. We have learned enough to change the design before deciding on interrupt handlers, allocation, or radio drivers. I would much rather discover this problem by examining a few small models than by debugging a thousand lines of C.
+\end{bookbox}
+
+Choosing a modeling technique leaves open how precisely to define its meaning. A team working out a service boundary can start with a sketch and agree on what each arrow denotes as the discussion proceeds. If the team later wants a tool to check the boundary, that interpretation has to be available outside the meeting. How much meaning the representation itself should carry is a separate engineering decision.
+
+\section{Semantic Commitment and Analysis}\label{heading:semantic-commitment-and-analysis}
+
+% <!-- section-terms: modeling-principle, semantic-commitment, system-knowledge-graph, structured -->
+
+% <!-- point: a-model-can-preserve-distinctions-without-defining-them | A representation can preserve the right distinctions while its interpreters supply most of its meaning. | terms: semantic-commitment, model-as-map -->
+% <!-- point: agents-make-the-semantics-tradeoff-newly-consequential | Explicit semantics preserve meanings that later agents would otherwise have to infer without the shared context of the original team. | terms: semantic-commitment, externalized-knowledge -->
+
+An informal model can preserve useful distinctions while leaving much of their meaning to its readers. In a design meeting the engineers may agree that the boxes denote services and the arrows denote calls. They know which details they omitted, whether an arrow records a call seen in production, and whether an unconnected pair ought to stay that way. A new engineer or an agent asked to change a service may have only the sketch. The difference between a call that happened and one that the architecture permits must then be reconstructed each time the sketch changes hands.
+
+% <!-- point: semantic-commitment-names-the-second-axis | Semantic commitment: how much meaning the representation itself carries explicitly. | terms: semantic-commitment, structured -->
+% <!-- point: semantic-commitment-is-distinct-from-purposeful-reduction | Purposeful reduction determines which distinctions to preserve; semantic commitment determines how precisely the representation defines them. | terms: semantic-commitment, model-as-map -->
+% <!-- index-def: semantic-commitment -->
+
+\textbf{Semantic commitment} concerns how much of a representation's meaning it defines explicitly and how much its interpreter must supply. Boxes can become typed entities with stable identities. Arrows can become declared relations with defined source and target types. Properties can acquire units, multiplicities, constraints, and invariants. A modeling language may define rules for composing elements, checking constraints, or simulating behavior. Saving a diagram in a machine-readable format can preserve every mark on the page while leaving the meanings of its arrows implicit. \textbf{Purposeful reduction determines which distinctions the model preserves. Semantic commitment determines how precisely the model defines those distinctions.}
+
+% <!-- point: semantic-precision-is-not-generative-completeness | Semantic precision and generative completeness are different properties. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: stronger-semantics-buy-capabilities-and-create-obligations | Stronger semantics buy capabilities and create obligations; they are not inherently better. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: the-spectrum-in-concrete-artifacts | Concrete artifacts illustrate the range; the rows are examples, not maturity levels. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: the-columns-are-not-one-progression | Stronger commitment aids mechanical interpretation; it moves interpretation burden rather than removing it. | terms: semantic-commitment -->
+
+A small typed graph can precisely specify permitted calls while leaving every algorithm in the services open. Conversely, a long natural-language prompt can prescribe implementation details down to individual methods while leaving the relationships between services ambiguous. Precision also has costs. Authors must define and maintain the relations, readers must learn their meanings, and tools must implement those meanings correctly. \autoref{semantic-commitment-spectrum} compares these tradeoffs for a sketch, UML 2.5.1~\citep{omg2017uml}, typed interface and repository models, and SysML v2 with its semantic foundation, KerML~\citep{omg2025sysml}~\citep{omg2025kerml}. The operations the engineer needs determine which commitments justify their cost.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.23}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
+\caption[Degrees of semantic commitment, in concrete artifacts]{\emph{Semantic commitment is not model completeness.} Each representation defines selected distinctions and leaves others to the engineer or agent. The choice depends on the question and the operations the model must support.}\label{semantic-commitment-spectrum}\tabularnewline
+\toprule\noalign{}
+Representation & Meaning available to the reader or tool & Decisions left to the implementer \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Informal architecture sketch & Labels identify components. Readers who know the project supply the meaning of an arrow. & An agent must recover the intended relationships before choosing an implementation. \\
+UML 2.5.1 state machine & Standardized meanings for states, triggers, guards, and transitions support behavioral reasoning. Readers need the notation and project context. & The specified lifecycle constrains behavior while leaving the implementation of handlers open. \\
+OpenAPI 3.1, JSON Schema, or typed repository registries & Named fields, types, constraints, and references permit queries, validation, and transformation. Domain intent can remain contextual. & An agent can use the declared interface or repository structure while choosing algorithms and internal storage. \\
+SysML v2 with KerML 1.0 & Defined types, relationships, expressions, constraints, and interchange support composition and analysis. Using them requires language and tool knowledge. & A tool can interpret the selected properties precisely while the engineer delegates choices the model leaves open. \\
+\end{longtable}
+}
+
+% <!-- point: defined-relations-make-architectural-questions-precise | Giving Calls a declared direct-invocation interpretation separates syntax from meaning; the model's purpose and scope determine whether recorded and omitted pairs describe observations or specify permitted behavior. | terms: semantic-commitment, model-as-map -->
+
+Defined semantics allow an engineering claim to become a precise question over a representation. Consider three boxes labeled Reporting, BillingAPI, and BillingDB. An arrow could denote an observed invocation, a permitted invocation, or another dependency. Define \(\operatorname{Calls}(a,b)\) to mean that the intended architecture permits component \(a\) to invoke component \(b\) directly. If the relation lists every permitted direct call within the declared scope, an omitted pair is prohibited. If the same pairs record calls observed over a week, an omitted pair establishes only that no call was recorded. On the permission interpretation, the direct-call prohibition is \(\neg\operatorname{Calls}(\mathrm{Reporting},\mathrm{BillingDB})\). A stronger boundary requires every route from Reporting to BillingDB to pass through BillingAPI. Checking that property requires examining paths, since a call through a helper could bypass the API without violating the direct-call prohibition.
+
+Behavioral models likewise need an interpretation for their states, events, and transitions. A labeled arrow from an idle job to a running one may illustrate what usually happens. A declared transition relation can specify exactly which changes an event permits, so a tool can recognize an attempted transition outside that relation. The same model can guide an agent implementing a handler, drive an interpreter that selects the next state, or support an analysis of which states can be reached.
+
+% <!-- point: structured-is-the-word-doing-the-work | Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined. | terms: structured, system-knowledge-graph -->
+% <!-- point: the-simplest-useful-form-is-a-graph | The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage. | terms: system-knowledge-graph, structured -->
+% <!-- index-def: structured -->
+% <!-- index-def: system-knowledge-graph -->
+
+A \textbf{structured} model gives its entities and relations a declared shape that machinery can read. A system knowledge graph might give each service a stable identifier and relate it to its dependencies, owner, deployment, and requirements. YAML records, registries, or schemas joined on those identifiers can represent the graph. A task concerning one service can begin at its identifier and retrieve the connected information relevant to the question. This makes a difference for an agent with bounded working state. The agent can reason over the selected relationships without loading the entire system representation into its context window. What the agent receives depends on the quality of the recorded relationships and on which ones the query follows.
+
+% <!-- point: capability-comes-in-rungs | Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model. | terms: capability-ladder, structured, semantic-commitment -->
+% <!-- index-def: capability-ladder -->
+
+Tools can expose these relationships as engineering operations. An ownership query returns the recorded owner of a service, resolving a question the agent might otherwise try to answer from directory names and nearby code. Spotify's service catalog makes component ownership and documentation available to agents this way~\citep{spotify2026constraint}. Other model semantics support different operations. A schema can validate a document or supply the types from which a generator produces an interface. A transition model can drive a simulation or direct a running system. In each case the tool needs a defined interpretation of the elements on which it operates.
+
+% <!-- point: validate-the-model-for-its-question | Validation examines whether the model represents the distinctions, assumptions, and behaviors needed for the question. | terms: semantic-commitment, model-as-map -->
+
+An analysis establishes a conclusion about the model. A state-space search may exhaustively establish that no prohibited state is reachable, yet the model may omit a failure transition present in the implementation. An agent can perform a correct analysis of an inadequate model. To validate the model for the intended question, engineers can compare its assumptions and transitions with domain knowledge, observations, and experiments. In this case, an observed failure trace can reveal the missing transition even when the search has examined every state the model admits.
+
+% <!-- point: analysis-produces-evidence-for-an-engineering-decision | A model's semantics determine which analyses can produce evidence for a design decision. Implementation conformance requires separate evidence. | terms: semantic-commitment, modeling-principle -->
+
+The engineering question, representation, and analysis together determine what evidence can inform a decision (\autoref{question-to-consequence-progression}). To decide whether a recovery policy is acceptable, an engineer may model its failure transitions and explore the states reachable under that policy. A reachable failure can warrant a change to the design. Evidence that the model omitted a real transition warrants revising the representation and repeating the analysis. If the engineer adopts the resulting recovery rule as an obligation, establishing that the implementation follows it still requires evidence about the implementation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/question-to-consequence-progression-25598a02ec.pdf}
+\caption{\emph{From engineering question to engineering consequence.} Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.}
+\label{question-to-consequence-progression}
+\end{figure}
+
+The following sections examine these choices for three familiar classes of engineering question. Structural models preserve the relationships needed to ask what is connected to what. Behavioral models preserve states and transitions so we can ask what may happen. Decision models preserve the criteria for choosing what should happen next. A single system can raise all three questions, and their answers can draw on the same entities.

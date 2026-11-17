@@ -1,6 +1,6 @@
 {
   "source": "book/assets/attribution-model.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*Attribution provenance model.* A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.",
   "topology": {
     "description": "Run contains operation records; each record encloses its four provenance fields; views derive from the record.",

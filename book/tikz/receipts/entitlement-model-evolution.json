@@ -1,6 +1,6 @@
 {
   "source": "book/assets/entitlement-model-evolution.svg",
-  "chapter": "2.4-decision",
+  "chapter": "2.5-decision",
   "claim": "*The admission check must preserve unlimited entitlement.* Panels (1)–(4) explain the old representation, domain change, failure, and repair; they are not one runtime pipeline. In (3), the client uses the finite-credit total and ignores a separate unlimited signal. In (4), the same uncapped entitlement produces an admitting decision and a separate display value for unlimited use.",
   "topology": {
     "description": "Verified against the corrected production RCA and executed decision model. Numbered panels distinguish the legacy scalar, changed domain, failed upload check, and later decision/display separation. Every outcome follows its producing calculation; cross-panel arrows are removed because these panels are not one runtime pipeline.",

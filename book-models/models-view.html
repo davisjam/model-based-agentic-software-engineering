@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>35</b> chapters · <b>180</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>37</b> chapters · <b>174</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -172,135 +172,118 @@
 </section>
 <section class="part" id="part-2">
 <h2>Module 2 — Modeling</h2>
-<div class="outcomes"><div class="oc-h">After Module 2 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario. <span class="prov">declared</span></span></li></ul></div>
+<div class="outcomes"><div class="oc-h">After Module 2 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can select and construct models for engineering questions, establish the meaning and scope needed for analysis, and connect structural, behavioral, and decision models when a question spans views. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
 <h3 id="ch-2-1-context-is-the-first-modeling-problem"><span class="tier-kick">Lesson</span><a href="../book/2.1-context-is-the-first-modeling-problem.html" class="ch-link">2.1-context-is-the-first-modeling-problem</a> <span class="ch-slug">2.1-context-is-the-first-modeling-problem</span></h3>
 <div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--modeling-is-a-classical-engineering-move">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Modeling Is a Classical Engineering Move</a></div>
-<p class="topic">Modeling is not new.</p>
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">What Makes an Engineering Model Useful?</a></div>
+<p class="topic">The knowledge an agent needs about a particular system is distributed across source code, configuration, documentation, registries, version history, and the people who maintain it.</p>
+</div>
+<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--choosing-what-to-model">
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Choosing What to Model</a></div>
+<p class="topic">A model may describe the environment in which a system operates or the behavior it owes the people who use it.</p>
 </div>
 <div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--a-model-is-a-purposeful-reduction">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">A Model Is a Purposeful Reduction</a></div>
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Purposeful Reduction and Engineering Freedom</a></div>
 <p class="topic">A **model** is a purposeful reduction of a system.</p>
 </div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--tolerance-and-degrees-of-freedom">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Tolerance and degrees of freedom</a></div>
-<p class="topic">Leaving detail out of a model can also be understood as preserving useful choices during implementation.</p>
 </div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--not-every-unmodeled-choice-is-free">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Not every unmodeled choice is free</a></div>
-<p class="topic">This also distinguishes tacit obligations from genuinely free choices.</p>
+<div class="chapter">
+<h3 id="ch-2-2-constructing-and-using-engineering-models"><span class="tier-kick">Lesson</span><a href="../book/2.2-constructing-and-using-engineering-models.html" class="ch-link">2.2-constructing-and-using-engineering-models</a> <span class="ch-slug">2.2-constructing-and-using-engineering-models</span></h3>
+<div class="section s2" id="sec-2-2-constructing-and-using-engineering-models--constructing-and-revising-models">
+<div class="sec-h"><a href="../book/2.2-constructing-and-using-engineering-models.html">Constructing and Revising Models</a></div>
+<p class="topic">Useful models can originate in requirements, existing systems, or exploratory implementation.</p>
 </div>
-<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--constructing-and-revising-a-model">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Constructing and Revising a Model</a></div>
-<p class="topic">These representations may be written as diagrams, tables, type declarations, or executable rules.</p>
+<div class="section s2" id="sec-2-2-constructing-and-using-engineering-models--the-engineering-modeling-repertoire">
+<div class="sec-h"><a href="../book/2.2-constructing-and-using-engineering-models.html">The Engineering Modeling Repertoire</a></div>
+<p class="topic">Engineers rarely need to invent a modeling technique from first principles.</p>
 </div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--learning-from-implementation">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Learning from implementation</a></div>
-<p class="topic">We can also learn what to model by building and trying an implementation.</p>
-</div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--judging-what-an-agent-discovers">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Judging what an agent discovers</a></div>
-<p class="topic">An exploratory implementation can introduce useful design choices that the engineer did not specify in advance.</p>
-</div>
-<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--structure-and-semantics-make-representations-machine-operable">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Structure and Semantics Make Representations Machine-Operable</a></div>
-<p class="topic">A model can preserve the right distinctions without completely defining what those distinctions mean.</p>
-</div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--giving-a-model-defined-meaning">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Giving a Model Defined Meaning</a></div>
-<p class="topic">Consider three boxes labeled Reporting, BillingAPI, and BillingDB, representing a reporting service, the billing API, and the billing database.</p>
-</div>
-<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--what-structured-models-make-possible">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">What Structured Models Make Possible</a></div>
-<p class="topic">A model’s structure and semantics determine what tools can do with it.</p>
-</div>
-<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--the-engineering-modeling-repertoire">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">The Engineering Modeling Repertoire</a></div>
-<p class="topic">Software engineers do not need to invent a representation from first principles each time they encounter a consequential question.</p>
+<div class="section s2" id="sec-2-2-constructing-and-using-engineering-models--semantic-commitment-and-analysis">
+<div class="sec-h"><a href="../book/2.2-constructing-and-using-engineering-models.html">Semantic Commitment and Analysis</a></div>
+<p class="topic">An informal model can preserve useful distinctions while leaving much of their meaning to its readers.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-2-structural"><span class="tier-kick">Lesson</span><a href="../book/2.2-structural.html" class="ch-link">2.2-structural</a> <span class="ch-slug">2.2-structural</span></h3>
-<div class="section s2" id="sec-2-2-structural--the-canonical-move-structure-and-dependency">
-<div class="sec-h"><a href="../book/2.2-structural.html">The Canonical Move: Structure and Dependency</a></div>
+<h3 id="ch-2-3-structural"><span class="tier-kick">Lesson</span><a href="../book/2.3-structural.html" class="ch-link">2.3-structural</a> <span class="ch-slug">2.3-structural</span></h3>
+<div class="section s2" id="sec-2-3-structural--the-canonical-move-structure-and-dependency">
+<div class="sec-h"><a href="../book/2.3-structural.html">The Canonical Move: Structure and Dependency</a></div>
 <p class="topic">A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations.</p>
 </div>
-<div class="section s2" id="sec-2-2-structural--choose-the-relation-for-the-question">
-<div class="sec-h"><a href="../book/2.2-structural.html">Choose the Relation for the Question</a></div>
-<p class="topic">Suppose a web application&#x27;s user interface should reach its database only through an application service.</p>
+<div class="section s2" id="sec-2-3-structural--choose-the-relation-for-the-question">
+<div class="sec-h"><a href="../book/2.3-structural.html">Choose the Relation for the Question</a></div>
+<p class="topic">The billing boundary illustrates how the choice of relation changes the property we check.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-3-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.3-behavioral.html" class="ch-link">2.3-behavioral</a> <span class="ch-slug">2.3-behavioral</span></h3>
-<div class="section s2" id="sec-2-3-behavioral--modeling-behavior-with-states-and-transitions">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">Modeling Behavior with States and Transitions</a></div>
+<h3 id="ch-2-4-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.4-behavioral.html" class="ch-link">2.4-behavioral</a> <span class="ch-slug">2.4-behavioral</span></h3>
+<div class="section s2" id="sec-2-4-behavioral--modeling-behavior-with-states-and-transitions">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Modeling Behavior with States and Transitions</a></div>
 <p class="topic">For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them.</p>
 </div>
-<div class="section s2" id="sec-2-3-behavioral--ownership-under-contention">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">Ownership Under Contention</a></div>
+<div class="section s2" id="sec-2-4-behavioral--ownership-under-contention">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Ownership Under Contention</a></div>
 <p class="topic">When several workers can process the same job, *who owns this job?* depends on their claims.</p>
 </div>
-<div class="section s2" id="sec-2-3-behavioral--one-representation-several-questions">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">One Representation, Several Questions</a></div>
+<div class="section s2" id="sec-2-4-behavioral--one-representation-several-questions">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">One Representation, Several Questions</a></div>
 <p class="topic">A lease illustrates how one representation can answer several classes of question.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-4-decision"><span class="tier-kick">Lesson</span><a href="../book/2.4-decision.html" class="ch-link">2.4-decision</a> <span class="ch-slug">2.4-decision</span></h3>
-<div class="section s2" id="sec-2-4-decision--the-canonical-move-choosing-among-alternatives">
-<div class="sec-h"><a href="../book/2.4-decision.html">The Canonical Move: Choosing Among Alternatives</a></div>
+<h3 id="ch-2-5-decision"><span class="tier-kick">Lesson</span><a href="../book/2.5-decision.html" class="ch-link">2.5-decision</a> <span class="ch-slug">2.5-decision</span></h3>
+<div class="section s2" id="sec-2-5-decision--the-canonical-move-choosing-among-alternatives">
+<div class="sec-h"><a href="../book/2.5-decision.html">The Canonical Move: Choosing Among Alternatives</a></div>
 <p class="topic">Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives.</p>
 </div>
-<div class="section s2" id="sec-2-4-decision--compare-the-decision-with-the-facts">
-<div class="sec-h"><a href="../book/2.4-decision.html">Compare the Decision with the Facts</a></div>
+<div class="section s2" id="sec-2-5-decision--compare-the-decision-with-the-facts">
+<div class="sec-h"><a href="../book/2.5-decision.html">Compare the Decision with the Facts</a></div>
 <p class="topic">In a hypothetical system, a public web interface may call a report service, which may in turn call a renderer.</p>
 </div>
-<div class="section s2" id="sec-2-4-decision--preserve-the-cases-a-decision-must-distinguish">
-<div class="sec-h"><a href="../book/2.4-decision.html">Preserve the Cases a Decision Must Distinguish</a></div>
+<div class="section s2" id="sec-2-5-decision--preserve-the-cases-a-decision-must-distinguish">
+<div class="sec-h"><a href="../book/2.5-decision.html">Preserve the Cases a Decision Must Distinguish</a></div>
 <p class="topic">The input representation can make a decision wrong before any rule is evaluated.</p>
 </div>
-<div class="section s3" id="sec-2-4-decision--when-the-decision-depends-on-context">
-<div class="sec-h"><a href="../book/2.4-decision.html">When the Decision Depends on Context</a></div>
+<div class="section s3" id="sec-2-5-decision--when-the-decision-depends-on-context">
+<div class="sec-h"><a href="../book/2.5-decision.html">When the Decision Depends on Context</a></div>
 <p class="topic">Some decisions cannot be made from the object alone.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-5-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.5-system-knowledge.html" class="ch-link">2.5-system-knowledge</a> <span class="ch-slug">2.5-system-knowledge</span></h3>
-<div class="section s2" id="sec-2-5-system-knowledge--a-heterogeneous-modeling-substrate">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">A Heterogeneous Modeling Substrate</a></div>
+<h3 id="ch-2-6-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.6-system-knowledge.html" class="ch-link">2.6-system-knowledge</a> <span class="ch-slug">2.6-system-knowledge</span></h3>
+<div class="section s2" id="sec-2-6-system-knowledge--a-heterogeneous-modeling-substrate">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">A Heterogeneous Modeling Substrate</a></div>
 <p class="topic">A **modeling substrate** is the collection of representations through which engineers and agents can recover and relate system knowledge.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--execution-history-and-provenance">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Execution History and Provenance</a></div>
+<div class="section s3" id="sec-2-6-system-knowledge--execution-history-and-provenance">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Execution History and Provenance</a></div>
 <p class="topic">A static model and a history answer different questions.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--questions-that-span-models">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Questions that span models</a></div>
+<div class="section s3" id="sec-2-6-system-knowledge--questions-that-span-models">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Questions that span models</a></div>
 <p class="topic">Some answers require a join.</p>
 </div>
-<div class="section s2" id="sec-2-5-system-knowledge--maintain-explicit-correspondence">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Maintain Explicit Correspondence</a></div>
+<div class="section s2" id="sec-2-6-system-knowledge--maintain-explicit-correspondence">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Maintain Explicit Correspondence</a></div>
 <p class="topic">Models and implementations can fall out of correspondence as a system changes.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--derive-when-implementation-owns-the-truth">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Derive when implementation owns the truth</a></div>
+<div class="section s3" id="sec-2-6-system-knowledge--derive-when-implementation-owns-the-truth">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Derive when implementation owns the truth</a></div>
 <p class="topic">The model is a projection of the implementation.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--when-the-model-is-the-source-of-truth">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">When the model is the source of truth</a></div>
-<p class="topic">**Generation** produces an artifact from a model: code, configuration, or documentation.</p>
+<div class="section s3" id="sec-2-6-system-knowledge--when-the-model-is-the-source-of-truth">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">When the model is the source of truth</a></div>
+<p class="topic">Software makes the relationship between model and implementation unusually fluid because both are made of information.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--trace-and-check-where-neither-owns-the-truth">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Trace and check where neither owns the truth</a></div>
+<div class="section s3" id="sec-2-6-system-knowledge--trace-and-check-where-neither-owns-the-truth">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Trace and check where neither owns the truth</a></div>
 <p class="topic">Where neither side can be fully derived from the other, **traceability** records their relationship explicitly.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--the-limits-of-model-coverage">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">The Limits of Model Coverage</a></div>
+<div class="section s3" id="sec-2-6-system-knowledge--the-limits-of-model-coverage">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">The Limits of Model Coverage</a></div>
 <p class="topic">The boundary of what engineers choose to model can change with experience.</p>
 </div>
-<div class="section s2" id="sec-2-5-system-knowledge--modeling-makes-properties-available-to-engineering">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Modeling Makes Properties Available to Engineering</a></div>
+<div class="section s2" id="sec-2-6-system-knowledge--modeling-makes-properties-available-to-engineering">
+<div class="sec-h"><a href="../book/2.6-system-knowledge.html">Modeling Makes Properties Available to Engineering</a></div>
 <p class="topic">Modeling makes a property explicit; engineers decide how to use it.</p>
 </div>
 </div>
@@ -424,6 +407,9 @@
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Preserve Engineering Freedom</a></div>
 <p class="topic">Alignment must preserve two kinds of freedom.</p>
 </div>
+</div>
+<div class="chapter">
+<h3 id="ch-3-6-alignment-summary"><span class="tier-kick">Lesson</span><a href="../book/3.6-alignment-summary.html" class="ch-link">3.6-alignment-summary</a> <span class="ch-slug">3.6-alignment-summary</span></h3>
 </div>
 </section>
 <section class="part" id="part-4">
@@ -564,10 +550,6 @@
 <div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Maintain the Machinery</a></div>
 <p class="topic">As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate.</p>
 </div>
-<div class="section s2" id="sec-4-4-engineering-the-environment--portable-moves">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Summary</a></div>
-<p class="topic">The DocAble episodes illustrate engineering moves that apply beyond this particular system and the agent harnesses used to develop it.</p>
-</div>
 </div>
 </section>
 <section class="part" id="part-5">
@@ -624,7 +606,7 @@
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--the-joins-what-the-factory-can-derive-and-enforce">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Joins: What the Factory Can Derive and Enforce</a></div>
-<p class="topic">In [§2.5](2.5-system-knowledge.html), DocAble used shared identities to answer engineering questions, such as how a particular deployment performed.</p>
+<p class="topic">In [§2.6](2.6-system-knowledge.html), DocAble used shared identities to answer engineering questions, such as how a particular deployment performed.</p>
 </div>
 <div class="section s3" id="sec-5-2-inside-docables-software-factory--the-computation-graph-a-representation-that-took-over-execution">
 <div class="sec-h"><a href="../book/5.2-inside-docables-software-factory.html">The Computation Graph: a Representation That Took Over Execution</a></div>

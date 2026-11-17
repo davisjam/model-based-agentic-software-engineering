@@ -17,7 +17,9 @@
 
 % <!-- point: different-questions-drew-different-models-joined-where-needed | Different questions require different models of one system; shared identity and explicit correspondence connect them where a question crosses views. | terms: system-knowledge, modeling-substrate -->
 
-Different questions require different models of the same system. A service catalog names components, a deployment model places them in an environment, a lifecycle model records their states, and an execution record reports what happened. These representations need not become one large model. They need to agree on the identities and relationships that engineering questions cross. MBSE methods connect requirements, design models, analyses, and verification results so that engineers can follow a decision across these representations~\citep{estefan2008mbse}~\citep{madni2018mbse}.
+Different questions require different views of the same system. Following Fairbanks, we understand software architecture as the structures needed to reason about a system, including the software elements, the relations among them, and properties of both~\citep{fairbanks2010}. A component view exposes decomposition, a behavioral view shows legal transitions, a deployment view records allocation, and a quantitative view can supply a resource bound. An architectural decision can draw on several of these views. To decide whether two workers can share a host within its memory budget, for example, an engineer needs to know which workers may run together, how much memory each needs, and how much the host provides.
+
+The views need to agree on the identities and relationships that their questions cross. A deployment record and a memory budget can each serve its own purpose if the engineer can identify the workers and host in both. MBSE methods likewise connect requirements, design models, analyses, and verification results so that engineers can follow a decision across representations~\citep{estefan2008mbse}~\citep{madni2018mbse}. When these views are cheap to derive, maintain, and query, more of that knowledge can remain explicit between tasks.
 
 \section{A Heterogeneous Modeling Substrate}\label{heading:a-heterogeneous-modeling-substrate}
 
@@ -97,7 +99,7 @@ The model is a projection of the implementation. A component registry can read t
 
 \subsection{When the model is the source of truth}\label{heading:when-the-model-is-the-source-of-truth}
 
-\textbf{Generation} produces an artifact from a model: code, configuration, or documentation. For example, a schema can generate the types used by interface clients. A freshness check compares the checked-in artifact with current generator output; provenance identifies the model and generation step that produced it. The generator preserves that declared correspondence while leaving open whether the schema expresses the right contract.
+Software makes the relationship between model and implementation unusually fluid because both are made of information. In \textbf{generation}, a tool reads selected engineering decisions from a model and produces an artifact such as code or configuration. For example, a schema can generate the types used by interface clients. A freshness check compares the checked-in artifact with current generator output; provenance identifies the model and generation step that produced it. The generator preserves that declared correspondence while leaving open whether the schema expresses the right contract.
 
 \begin{figure}[htbp]
 \centering

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/from-nodes-to-composition.svg",
-  "chapter": "2.2-structural",
+  "chapter": "2.3-structural",
   "claim": "Typed composition distinguishes conditional execution from data flow while separately identifying read-only, typed-patch-producing, and direct-edit computations.",
   "topology": {
     "description": "Dashed control arrows run from Classify to both repair producers; solid data-flow arrows carry their patches to Apply patches and its output to the read-only alt-text check. Annotation leaders carry no flow semantics.",

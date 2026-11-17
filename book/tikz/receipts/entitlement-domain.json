@@ -1,6 +1,6 @@
 {
   "source": "book/assets/entitlement-domain.svg",
-  "chapter": "2.4-decision",
+  "chapter": "2.5-decision",
   "claim": "*The upload-entitlement domain.* A user belongs to one or more groups; a group carries either a finite credit balance or unlimited use. The admission decision needs both facts, so a representation that can express only the finite balance cannot answer the question the decision asks.",
   "topology": {
     "description": "User-group multiplicity; finite/unlimited entitlement alternatives must both feed admission.",

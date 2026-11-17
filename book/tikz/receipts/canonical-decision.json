@@ -1,6 +1,6 @@
 {
   "source": "book/assets/canonical-decision.svg",
-  "chapter": "2.4-decision",
+  "chapter": "2.5-decision",
   "claim": "*The decision move: the same arrow, a different mood.* A structural edge states that a call happens; a decision edge states that it is permitted. The absent edge carries the weight — \"not allowed,\" not \"does not happen\" — and the analyses check a declared policy for consistency and least privilege.",
   "topology": {
     "description": "Parallel same-topology pair differs in edge meaning: observed fact vs permission.",

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/in-flight-ownership-states.svg",
-  "chapter": "2.3-behavioral",
+  "chapter": "2.4-behavioral",
   "claim": "A stale generation cannot release the current owner: claim(A,7) expires, B claims generation8, and release(A,7) is rejected.",
   "topology": {
     "description": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",

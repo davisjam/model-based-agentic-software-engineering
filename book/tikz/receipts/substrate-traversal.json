@@ -1,6 +1,6 @@
 {
   "source": "book/assets/substrate-traversal.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*Task-driven traversal.* A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.",
   "topology": {
     "description": "Directed task entry to named entity; equal unordered relation peers accessible selectively.",

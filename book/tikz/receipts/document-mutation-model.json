@@ -1,6 +1,6 @@
 {
   "source": "book/assets/document-mutation-model.svg",
-  "chapter": "2.2-structural",
+  "chapter": "2.3-structural",
   "claim": "*Document-mutation structural model.* The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.",
   "topology": {
     "description": "Remediation operates through a shared structured-document abstraction, implemented separately for DOCX, PPTX, XLSX, PDF and further formats; no enforcement claim.",

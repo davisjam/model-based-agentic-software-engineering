@@ -1,6 +1,6 @@
 {
   "source": "book/assets/docable-execution-analysis.svg",
-  "chapter": "2.5-system-knowledge",
+  "chapter": "2.6-system-knowledge",
   "claim": "*One declared dependency, two uses.* In the DOCX pipeline, with table-header repair enabled, the registry's read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.",
   "topology": {
     "description": "A registry container holds a directed repair-before-check dependency, then supplies two consumers: execution and analytical projection.",

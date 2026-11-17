@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 631,
+    "total_sites": 640,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 296,
+      "book-web": 305,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -53,15 +53,23 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 60
+            "occ": 38
           },
           {
-            "file": "book/web/docs/2.5-system-knowledge.md",
+            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
+            "occ": 23
+          },
+          {
+            "file": "book/web/docs/2.4-behavioral.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/2.6-system-knowledge.md",
             "occ": 12
           },
           {
-            "file": "book/web/docs/2.6-modeling-summary.md",
-            "occ": 1
+            "file": "book/web/docs/2.7-modeling-summary.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
@@ -84,6 +92,10 @@
             "occ": 2
           },
           {
+            "file": "book/web/docs/3.6-alignment-summary.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
             "occ": 15
           },
@@ -93,7 +105,11 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 27
+            "occ": 25
+          },
+          {
+            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -215,7 +231,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 52
           }
         ]
       },
@@ -798,20 +814,12 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
             "occ": 2
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
             "occ": 3
-          },
-          {
-            "file": "book/web/docs/3.6-alignment-summary.md",
-            "occ": 1
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -833,7 +841,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 9
           }
         ]
       },
@@ -925,26 +933,30 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 141
+            "occ": 52
           },
           {
-            "file": "book/web/docs/2.2-structural.md",
+            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
+            "occ": 55
+          },
+          {
+            "file": "book/web/docs/2.3-structural.md",
             "occ": 8
           },
           {
-            "file": "book/web/docs/2.3-behavioral.md",
+            "file": "book/web/docs/2.4-behavioral.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/2.4-decision.md",
+            "file": "book/web/docs/2.5-decision.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/2.5-system-knowledge.md",
+            "file": "book/web/docs/2.6-system-knowledge.md",
             "occ": 25
           },
           {
-            "file": "book/web/docs/2.6-modeling-summary.md",
+            "file": "book/web/docs/2.7-modeling-summary.md",
             "occ": 7
           },
           {
@@ -965,11 +977,11 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 15
+            "occ": 13
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -985,7 +997,11 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 46
+            "occ": 44
+          },
+          {
+            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
+            "occ": 7
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1109,7 +1125,7 @@
           },
           {
             "file": "book/web/docs/contents.md",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/web/docs/figures.md",
@@ -1117,7 +1133,7 @@
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1141,7 +1157,7 @@
           },
           {
             "file": "book/web/docs/part-5-intro.md",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -1155,7 +1171,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 68
+            "occ": 70
           }
         ]
       },
@@ -1294,6 +1310,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 1
           },
@@ -1349,7 +1369,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 20
+            "occ": 21
           }
         ]
       },
@@ -1469,27 +1489,31 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 117
+            "occ": 32
           },
           {
-            "file": "book/web/docs/2.2-structural.md",
+            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
+            "occ": 58
+          },
+          {
+            "file": "book/web/docs/2.3-structural.md",
+            "occ": 42
+          },
+          {
+            "file": "book/web/docs/2.4-behavioral.md",
             "occ": 44
           },
           {
-            "file": "book/web/docs/2.3-behavioral.md",
-            "occ": 44
-          },
-          {
-            "file": "book/web/docs/2.4-decision.md",
+            "file": "book/web/docs/2.5-decision.md",
             "occ": 28
           },
           {
-            "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 63
+            "file": "book/web/docs/2.6-system-knowledge.md",
+            "occ": 61
           },
           {
-            "file": "book/web/docs/2.6-modeling-summary.md",
-            "occ": 5
+            "file": "book/web/docs/2.7-modeling-summary.md",
+            "occ": 6
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
@@ -1512,6 +1536,10 @@
             "occ": 13
           },
           {
+            "file": "book/web/docs/3.6-alignment-summary.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
             "occ": 25
           },
@@ -1526,6 +1554,10 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 24
+          },
+          {
+            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -1671,7 +1703,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 57
+            "occ": 60
           }
         ]
       },
@@ -2051,7 +2083,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 38
+            "occ": 36
           },
           {
             "file": "catalogue-figure.html",
@@ -2303,7 +2335,11 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 13
+            "occ": 7
+          },
+          {
+            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
@@ -2421,7 +2457,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 37
           }
         ]
       },
@@ -2472,19 +2508,19 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/2.2-structural.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/2.4-decision.md",
+            "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/2.5-system-knowledge.md",
+            "file": "book/web/docs/2.3-structural.md",
+            "occ": 4
+          },
+          {
+            "file": "book/web/docs/2.5-decision.md",
+            "occ": 1
+          },
+          {
+            "file": "book/web/docs/2.6-system-knowledge.md",
             "occ": 2
           },
           {

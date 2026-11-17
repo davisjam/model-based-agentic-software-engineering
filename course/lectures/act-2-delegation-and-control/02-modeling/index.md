@@ -8,8 +8,8 @@ readings:
     - heading: The Modeling principle
       items:
         - cite: davis2026mage
-          locator: '§2.1, especially §2.1.4'
-          annotation: '{mage:2.1} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1, with purposeful reduction as the lens: *what must this model preserve, and what can it safely leave out?* Return to §2.1.4 for Lecture 2, which names semantic commitment: how much of a representation''s meaning the representation itself carries. Consult {mage:2.5} when questions about relationships among models arise, and §§2.2–2.4 as a repertoire for reference.'
+          locator: '§2.1 and §2.2.3'
+          annotation: '{mage:2.1} Davis, 2026. The spine of the unit, assigned by lecture. Read §2.1 for Lecture 1, with purposeful reduction as the lens: *what must this model preserve, and what can it safely leave out?* Read §2.2.3 for Lecture 2, which names semantic commitment: how much of a representation''s meaning the representation itself carries. Consult {mage:2.6} when questions about relationships among models arise, and §§2.3–2.5 as a repertoire for reference.'
     - heading: The Modeling repertoire
       items:
         - cite: visualparadigm-uml-guide

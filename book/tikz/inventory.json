@@ -93,7 +93,7 @@
     "svg_description": "Two production chains compare primary points of engineering control: Implementation in classical engineering and Engineered Environment in agentic engineering. Dotted guides expand the environment into models, obligations, evidence, controls, and infrastructure."
   },
   {
-    "chapter": "2.1-context-is-the-first-modeling-problem",
+    "chapter": "2.2-constructing-and-using-engineering-models",
     "source": "assets/multiple-routes-to-engineering-models.svg",
     "caption": "*Multiple routes to engineering models.* A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration—the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -251,7 +251,7 @@
     "svg_description": "A stacked diagram. The specified region groups two layers: the engineering\n    obligation, holding consequential distinctions that must be preserved, and scaffolding, the\n    additional structure this agent needs to interpret and satisfy the obligation reliably. The\n    obligation boundary between them is set by the engineering problem and does not move with\n    capability. The specification boundary below the scaffolding is set by the obligation and by this\n    agent's capability. Below it sit the degrees of freedom: implementation choices left to the agent.\n    An upward arrow shows that greater agent capability can reduce required scaffolding."
   },
   {
-    "chapter": "2.1-context-is-the-first-modeling-problem",
+    "chapter": "2.2-constructing-and-using-engineering-models",
     "source": "assets/question-to-consequence-progression.svg",
     "caption": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -264,7 +264,7 @@
     "svg_description": "Five stages lead from engineering question through modeling, analysis, interpretation, and engineering decisions. Examples define representation forms and properties before analysis. Decisions refine design and choose obligations for enforcement; a feedback arrow revises the model and properties."
   },
   {
-    "chapter": "2.1-context-is-the-first-modeling-problem",
+    "chapter": "2.2-constructing-and-using-engineering-models",
     "source": "assets/modeling-repertoire.svg",
     "caption": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -277,7 +277,7 @@
     "svg_description": "Nine model families in a full-page three-by-three reference layout. Each gives a directed example, its relation meaning, and the engineering question, properties, and analyses. Dashed crossed relations distinguish stale claims and prohibited calls. The quantitative example compares error rate with a bracketed bound."
   },
   {
-    "chapter": "2.2-structural",
+    "chapter": "2.3-structural",
     "source": "assets/canonical-structural.svg",
     "caption": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations — reachability, path, and cycle checks.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -290,7 +290,7 @@
     "svg_description": "A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles."
   },
   {
-    "chapter": "2.2-structural",
+    "chapter": "2.3-structural",
     "source": "assets/document-mutation-model.svg",
     "caption": "*Document-mutation structural model.* The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -303,7 +303,7 @@
     "svg_description": "Remediation logic operates through a structured document model, the sanctioned seam.\n    That model is implemented by a format-specific implementation, which reaches the concrete formats\n    DOCX, PPTX, XLSX, and PDF. The structured document model marks where mutation is supposed to occur; it\n    does not by itself prevent code from bypassing the seam."
   },
   {
-    "chapter": "2.2-structural",
+    "chapter": "2.3-structural",
     "source": "assets/from-nodes-to-composition.svg",
     "caption": "*From computations to composition.* This illustrative fragment distinguishes data flow (solid arrows) from control dependencies (dashed arrows). Ellipses identify read-only computations, diamonds typed patch producers, and rounded boxes direct document edits. The apply seam is the boundary where patches are applied; the final alt-text check reports findings without changing the document.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -316,7 +316,7 @@
     "svg_description": "Illustrative remediation computations with read-only, typed-patch and direct-edit behaviors; solid data flow and dashed control dependencies. The apply seam is shown separately."
   },
   {
-    "chapter": "2.3-behavioral",
+    "chapter": "2.4-behavioral",
     "source": "assets/canonical-behavioral.svg",
     "caption": "*The behavioral move: states and transitions.* This example specifies an allowed job lifecycle: a job passes through Running before Succeeded, with retry and failure transitions describing other possible paths. The legend lists example properties to investigate.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -329,7 +329,7 @@
     "svg_description": "Editable vector recreation of the author-supplied reference. A state model for a remediation job, including retries."
   },
   {
-    "chapter": "2.3-behavioral",
+    "chapter": "2.4-behavioral",
     "source": "assets/recovery-ordering-model.svg",
     "caption": "*Recovery-ordering model.* A recovered artifact must be published to durable storage before the database may refer to it. The prohibited transition from `FALLBACK_STAGED` directly to `DB_UPDATED` illustrates the ordering violation; the property also excludes indirect paths that bypass `FALLBACK_UPLOADED`.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -342,7 +342,7 @@
     "svg_description": "Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions."
   },
   {
-    "chapter": "2.3-behavioral",
+    "chapter": "2.4-behavioral",
     "source": "assets/in-flight-ownership-states.svg",
     "caption": "*Ownership under contention.* Worker A’s generation-7 claim expires and worker B acquires generation 8. A later release from A cannot clear B’s current claim. Recording the generation makes stale operations distinguishable from operations authorized by the current owner.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -355,7 +355,7 @@
     "svg_description": "Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions."
   },
   {
-    "chapter": "2.4-decision",
+    "chapter": "2.5-decision",
     "source": "assets/service-flow-model.svg",
     "caption": "*DocAble’s service-flow model.* Arrows show selected permitted service invocations; asynchronous job dispatch is omitted. The web tier is the sole public entry point. Deployment configuration is generated from the full model, while runtime conformance requires separate enforcement.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -368,7 +368,7 @@
     "svg_description": "A declared directed graph. The Internet reaches the web service. Web reaches worker,\n    document editor, and other. Worker reaches generation, render, and OCR. Each edge is a declared,\n    permitted relationship; an absent edge means the model does not declare that relationship."
   },
   {
-    "chapter": "2.4-decision",
+    "chapter": "2.5-decision",
     "source": "assets/observed-vs-declared.svg",
     "caption": "*Observation compared with declared permission.* The observed web-to-renderer call violates the declared policy.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -381,7 +381,7 @@
     "svg_description": "Two panels. On the left, the implementation, in gray: A calls B and A calls C, observed\n    facts, asking does A call C. On the right, the model, in blue: A to B is a declared edge, and between A\n    and C there is no edge, marked with a rust X, asking may A call C. Agreement between observed and\n    declared establishes correspondence, not correctness."
   },
   {
-    "chapter": "2.4-decision",
+    "chapter": "2.5-decision",
     "source": "assets/entitlement-domain.svg",
     "caption": "*The upload-entitlement domain.* A user belongs to one or more groups; a group carries either a finite credit balance or unlimited use. The admission decision needs both facts, so a representation that can express only the finite balance cannot answer the question the decision asks.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -394,7 +394,7 @@
     "svg_description": "A user belongs to one or more groups. A group is either a finite-credit group, carrying remaining credits, or an unlimited group, carrying no credit limit. Both kinds feed the upload decision, which must preserve both facts and ends in admit or reject."
   },
   {
-    "chapter": "2.4-decision",
+    "chapter": "2.5-decision",
     "source": "assets/entitlement-model-evolution.svg",
     "caption": "*The admission check must preserve unlimited entitlement.* Panels (1)–(4) explain the old representation, domain change, failure, and repair; they are not one runtime pipeline. In (3), the client uses the finite-credit total and ignores a separate unlimited signal. In (4), the same uncapped entitlement produces an admitting decision and a separate display value for unlimited use.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -407,7 +407,7 @@
     "svg_description": "Four numbered panels explain a legacy balance check, the addition of unlimited entitlement, the actual client upload-check failure, and the later model. There are no arrows between panels. In panel 3, the server excludes the unlimited group from a finite-credit sum; the client compares zero with thirty-eight while ignoring a separate unlimited signal, then rejects before POST. In panel 4, the same uncapped group feeds an admission decision that admits and a separate display projection that returns an unlimited sentinel. The display value is not an admission input."
   },
   {
-    "chapter": "2.5-system-knowledge",
+    "chapter": "2.6-system-knowledge",
     "source": "assets/modeling-substrate.svg",
     "caption": "*Heterogeneous models over shared identities.* An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -420,7 +420,7 @@
     "svg_description": "Seven representations surround shared identities. The heavy path goes from service registry through the hub to deployment topology, returns to the hub, and continues to measurements. Thin spokes connect provenance records, computation graph, entitlement policy, and state machines."
   },
   {
-    "chapter": "2.5-system-knowledge",
+    "chapter": "2.6-system-knowledge",
     "source": "assets/two-reductions-static-realized.svg",
     "caption": "*Computation structure versus recorded history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -433,7 +433,7 @@
     "svg_description": "Two reductions of the same remediation system, side by side. Left: the static computation graph — named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record — a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it."
   },
   {
-    "chapter": "2.5-system-knowledge",
+    "chapter": "2.6-system-knowledge",
     "source": "assets/derive-generate-trace.svg",
     "caption": "*Three correspondence patterns.* Derivation extracts models from implementation; generation produces implementation artifacts from models; traceability connects representations maintained independently. Each relationship covers selected properties or artifacts rather than necessarily determining the entire implementation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -446,7 +446,7 @@
     "svg_description": "Three columns distinguish correspondence patterns. Derive: implementation is authoritative and an upward arrow extracts selected models from implementation; the implementation is shown without a represented-portion division. Generate: models are authoritative and a downward arrow produces a generated portion of implementation, leaving other decisions open. Trace and check: neither fully determines the other; one curved arrow traces related elements and the opposing arrow checks correspondence where decidable. A shaded corresponding portion is maintained and checked while other implementation decisions remain separate. Each model box shows the same small graph and state/response table."
   },
   {
-    "chapter": "2.5-system-knowledge",
+    "chapter": "2.6-system-knowledge",
     "source": "assets/model-sync-two-layer-net.svg",
     "caption": "*Coverage of model correspondence.* The modeled surface contains claims that can be checked mechanically and claims that require semantic judgment. Properties outside it have no model-based coverage. Engineering experience can move this boundary in either direction as newly important properties are represented or unnecessary distinctions are removed.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -459,7 +459,7 @@
     "svg_description": "The modeled surface contains two regions: decidable claims checked mechanically, exemplified by no two owners for the same job, and semantic claims requiring judgment, exemplified by a meaningful result. Outside the modeled surface, unmodeled properties have no model-based coverage. An arrow from outside to the outer modeled boundary represents a newly consequential property; the opposing arrow removes an unnecessary distinction. Both changes apply to the modeled surface as a whole."
   },
   {
-    "chapter": "2.5-system-knowledge",
+    "chapter": "2.6-system-knowledge",
     "source": "assets/coherence-triangle.svg",
     "caption": "*Checked predicates over a structured model.* A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

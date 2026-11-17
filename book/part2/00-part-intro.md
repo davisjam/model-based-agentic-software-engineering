@@ -8,6 +8,8 @@
 
 > ### Key Ideas {#modeling-principle}
 >
+> <!-- index-def: modeling-principle -->
+>
 > **Modeling Principle.** Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
 >
 > Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/recovery-ordering-model.svg",
-  "chapter": "2.3-behavioral",
+  "chapter": "2.4-behavioral",
   "claim": "Durable publication must precede updating the database reference; the direct staged-to-database bypass is forbidden.",
   "topology": {
     "description": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",

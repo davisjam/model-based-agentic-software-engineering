@@ -70,10 +70,10 @@
       "granularity": "part",
       "primary_unit": "part:modeling",
       "verb": "model",
-      "obj": "a system as the small set of models it needs — chosen from five classes of model (behavioral, structural, decision, measurement, documentation), each kept honest by a drift check",
-      "statement": "After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario.",
+      "obj": "engineering questions with purposeful reductions and connected views",
+      "statement": "After this chapter, the reader can select and construct models for engineering questions, establish the meaning and scope needed for analysis, and connect structural, behavioral, and decision models when a question spans views.",
       "provenance": "declared",
-      "anchor": "Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check."
+      "anchor": "Sections 2.1 and 2.2 develop purposeful reduction and semantic commitment. Sections 2.3 through 2.6 work through structural, behavioral, decision, and connected models."
     },
     {
       "granularity": "part",
@@ -205,14 +205,23 @@
     {
       "granularity": "chapter",
       "primary_unit": "context-is-the-first-modeling-problem",
-      "verb": "explain",
-      "obj": "why a fleet pays for free the modeling expense that once buried MBSE",
-      "statement": "After this chapter, the reader can explain why the standing cost that kept explicit models secondary in code-centric practice is one an agent fleet now absorbs, so modeling becomes an economical first move.",
+      "verb": "choose",
+      "obj": "the scope and detail that an engineering question requires",
+      "statement": "After this section, the reader can choose what a model must preserve for its intended users, identify assumptions that limit its use, and distinguish implementation obligations from scaffolding and choices that can be delegated.",
       "provenance": "declared",
-      "anchor": "Part-II intro: maintaining another representation carried a standing cost; commodity intelligence changes that economics.",
+      "anchor": "point: a-model-is-a-reduction-not-an-approximation / explicit-models-record-accepted-intent / capability-moves-the-specification-boundary-not-the-obligation / there-is-no-model-of-the-system",
       "secondary_units": [
         "scenarios-and-the-joined-model"
       ]
+    },
+    {
+      "granularity": "chapter",
+      "primary_unit": "constructing-and-using-engineering-models",
+      "verb": "construct",
+      "obj": "an engineering model with the meaning needed for a particular analysis",
+      "statement": "After this section, the reader can construct or revise a model from requirements, observation, or a prototype, select an established representation, and assess whether its assumptions and semantics support the conclusion drawn from it.",
+      "provenance": "declared",
+      "anchor": "point: model-origins-and-uses / defined-relations-make-architectural-questions-precise / validate-the-model-for-its-question"
     },
     {
       "granularity": "chapter",

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/multiple-routes-to-engineering-models.svg",
-  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "chapter": "2.2-constructing-and-using-engineering-models",
   "claim": "*Multiple routes to engineering models.* A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration—the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.",
   "topology": {
     "description": "Three routes fan in to one modeling band; three uses fan out; the uses rejoin and engineering continues. The horizontal bars are collection rails, not process edges.",

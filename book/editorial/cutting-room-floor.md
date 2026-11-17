@@ -20953,3 +20953,7 @@ The progression continues past prose. Retrieval can select knowledge from a larg
 
 Skills and instruction files are contemporary carriers. The engineering requirement survives changes in harness design: consequential knowledge that would otherwise be tacit or repeatedly reconstructed should be externalized in a form suited to how it will be used.
 ```
+
+## Chapter 2 modeling primer, 2026-11-16
+
+The [previous §2.1](cutting-room-floor/chapter-2-primer-20261116.tex) preserves the original prose, figures, and citations from `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 1–563, revision `5ff6866d4`. The split integrates the uncertainty, tools and repertoire insets, moves formal examples to their model classes, and cuts the extended TDD and industrial comparisons to keep the primer focused on modeling.

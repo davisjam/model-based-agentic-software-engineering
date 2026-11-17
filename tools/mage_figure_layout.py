@@ -39,7 +39,7 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
     for label, rule in data.items():
         if rule.get('inset_placement') not in (None, 'flow', 'inline'):
             raise ValueError('Invalid inset placement for ' + label)
-        if rule.get('float_placement') not in (None, '!htb'):
+        if rule.get('float_placement') not in (None, '!htb', 'p'):
             raise ValueError('Invalid scoped float placement for ' + label)
         if rule.get('float_placement'):
             if rule.get('inset_placement'):

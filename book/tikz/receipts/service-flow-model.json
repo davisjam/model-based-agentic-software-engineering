@@ -1,6 +1,6 @@
 {
   "source": "book/assets/service-flow-model.svg",
-  "chapter": "2.4-decision",
+  "chapter": "2.5-decision",
   "claim": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",
   "topology": {
     "description": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",

@@ -5,23 +5,23 @@
 
 % <!-- chapter-title: Summary -->
 
-% <!-- coda: true -->
-
 \chapter{Summary}
+
+Modeling establishes what an engineered system should satisfy; Alignment determines how selected obligations will be upheld as agents work. Constraints restrict available actions or states, sensors produce evidence, and gates use evidence to decide what may proceed. Their effectiveness depends on choosing obligations independently of the work being judged, placing mechanisms where those obligations can be evaluated, and understanding the limits of the resulting assurance.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Enforcement is what makes an obligation more than a request.} Guidance can influence a reasoner; enforcement determines what the engineered environment will permit or accept.
+  \textbf{Enforcement makes an obligation more than a request.} Guidance tells an agent how it should act. Enforcement determines which actions the environment permits or which results it accepts.
 \item
-  \textbf{Place the mechanism where the obligation becomes decidable.} Constraints restrict actions; sensors produce evidence; gates evaluate whether work may proceed and enforce that decision. Prefer the earliest boundary where the environment has enough meaning and evidence to decide the obligation adequately.
+  \textbf{Enforce at the earliest decidable boundary.} A constraint can prohibit an action as soon as the relevant facts are available. An obligation about the result may have to wait until a sensor can produce the evidence a gate needs.
 \item
-  \textbf{Correspondence is not correctness.} Models, implementations, and evidence can agree while being wrong together. Independent obligations and evidence are needed to distinguish faithful realization from mutually consistent error.
+  \textbf{Correspondence is not correctness.} A model and its implementation can agree and share the same error. To judge correctness, engineers need an independent obligation and evidence capable of revealing a violation.
 \item
-  \textbf{Convert recurring judgment into durable structure.} When failures or repeated engineering decisions reveal knowledge future work should inherit, encode that knowledge into models, mechanisms, architecture, procedures, or evidence. When later work benefits from that structure, it becomes engineering capital.
+  \textbf{Convert recurring judgment into durable structure.} When a failure or repeated decision reveals something future work should inherit, preserve it in a model, check, or control. That structure becomes engineering capital when subsequent work benefits from it.
 \item
-  \textbf{Govern the governance machinery.} Constraints, sensors, and gates form an engineering system of their own. Their coverage, correspondence, cost, effects, and failure modes must themselves be understood and controlled.
+  \textbf{Govern the governance machinery.} Controls can leave an obligation uncovered, interfere with one another, or become too costly to maintain. Engineers need to know which controls exist, how they interact, and which obligations they govern.
 \end{enumerate}
 
 % <!-- principlebox -->
@@ -30,7 +30,11 @@
 
 \begin{quote}
 \mbox{}%
-\subsection{Alignment principle}\label{heading:alignment-principle}
+\subsection{Alignment Principle}\label{heading:alignment-principle}
 
 Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
 \end{quote}
+
+% <!-- point: modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method | Chapter 4 shows how engineers use and revise models and controls together as an engineering problem develops. | -->
+
+Modeling and Alignment have been examined separately, but engineering does not proceed in two isolated phases. Implementations expose missing models; analyses reveal obligations worth enforcing; and failures motivate changes to the governed environment. \magevalue{chapter:one-problem-many-models} follows these interactions as they unfold, showing how engineers introduce, revise, and retain models and controls while a system evolves.

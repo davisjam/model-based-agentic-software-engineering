@@ -674,6 +674,17 @@ def _prepare_record(task):
                               m[1] + '\n' + r'\end{minipage}\par'), latex)
     latex = apply_print_keep_with_next(latex)
 
+    if record.get('chapter_title') == 'Summary' and record['part'] in (2, 3, 4, 6):
+        # The block renderer emits each Markdown item as a resumed enumerate.
+        # A summary is one uninterrupted numbered list in print and in its tags.
+        latex = re.sub(r'\\end\{enumerate\}\s*\\begin\{enumerate\}\s*'
+                       r'\\def\\labelenumi\{\\arabic\{enumi\}\.\}\s*'
+                       r'\\setcounter\{enumi\}\{\d+\}\s*\\tightlist\s*(?=\\item)',
+                       '\n', latex)
+        latex = latex.replace(r'\tightlist', r'\setlength{\itemsep}{.45\baselineskip}')
+        latex = latex.replace(r'\begin{quote}', r'\begin{bookprinciplerestatement}')
+        latex = latex.replace(r'\end{quote}', r'\end{bookprinciplerestatement}')
+
     # Original artwork can be compact without shrinking native review labels.
     from mage_figure_layout import apply_figure_print_layout, inset_flow_labels, inset_inline_labels
     latex = apply_figure_print_layout(latex)
@@ -713,6 +724,22 @@ def _prepare_record(task):
     chapter_letter = re.match(r'Appendix ([A-Z]) [—–-]', record['part_title'])
     counters += r'\renewcommand{\thechapter}{' + (chapter_letter[1] if chapter_letter else r'\arabic{chapter}') + '}\n'
     counters += r'\setcounter{section}{' + str(record.get('chapter',0)) + '}\n' + r'\setcounter{subsection}{0}' + '\n'
+    # Ordinary book sections use the native section counter and destination.
+    # Keep the established lower-level heading style throughout each section.
+    if (bb._chap_ref(record) and 1 <= record['part'] <= 7
+            and not record.get('_group_start')):
+        title = inline(record['chapter_title'])
+        number = record['chapter']
+        old = (r'\section*{' + f"{record['part']}.{number} " + title + '}\n'
+               + r'\phantomsection\label{chapter:' + slug + '}\n'
+               + r'\addcontentsline{toc}{chapter}{' + title + '}')
+        new = (r'\setcounter{secnumdepth}{1}\section{' + title + '}'
+               + r'\label{chapter:' + slug + r'}\setcounter{secnumdepth}{0}')
+        if old not in latex:
+            raise ValueError(f"Missing section heading for {slug}")
+        latex = latex.replace(old, new, 1)
+        counters = counters.replace(r'\setcounter{section}{' + str(number) + '}',
+                                    r'\setcounter{section}{' + str(number - 1) + '}')
     if '_figure_start' in record:
         counters += r'\setcounter{figure}{' + str(record['_figure_start']) + r'}\setcounter{table}{' + str(record['_table_start']) + '}' + '\n'
     elif record.get('_group_start'):
