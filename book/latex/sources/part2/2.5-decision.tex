@@ -1,6 +1,3 @@
-% mage-auto-heading: the-canonical-move-permitted-alternatives
-% mage-auto-heading: compare-the-decision-with-the-facts
-% mage-auto-heading: preserve-the-cases-a-decision-must-distinguish
 % mage-auto-heading: when-the-decision-depends-on-context
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
@@ -14,7 +11,7 @@ The preceding models already expressed obligations: a user interface must reach 
 
 A behavioral model describes possible states and transitions. A decision model states how to choose among them using the available evidence, the cost of further work, and the attempts remaining. For example, a repair process may allow another attempt, escalation, or termination. A decision table can state when the observed failure justifies another attempt, when more evidence is needed, and when the remaining budget requires stopping. The model supplies criteria for the choice; a separate mechanism carries it out.
 
-\section{The Canonical Move: Choosing Among Alternatives}\label{heading:the-canonical-move-permitted-alternatives}
+\section{Conditions, Alternatives, and Decision Analysis}\label{heading:conditions-alternatives-and-decision-analysis}
 
 % <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms. -->
 
@@ -27,8 +24,6 @@ The meaning of an edge depends on the model's purpose. In an observed call graph
 % <!-- point: a-declared-policy-turns-is-this-allowed-into-an-evaluation | Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and "is this allowed?" becomes an evaluation rather than an argument. -->
 
 Once permission is declared, the claims a policy designer wants become expressible: which alternatives are permitted or forbidden, which are mutually exclusive, which imply prerequisites, whether the policy is internally consistent, whether it is complete over the cases that can arise, and whether it achieves least privilege. The analyses follow --- evaluating a rule against a case, checking or solving constraints, detecting conflicts between rules, testing completeness and consistency. A declared policy turns "is this allowed?" into an evaluation rather than an argument.
-
-\section{Compare the Decision with the Facts}\label{heading:compare-the-decision-with-the-facts}
 
 % <!-- print-columns-start: observed-vs-declared -->
 
@@ -45,9 +40,7 @@ In a hypothetical system, a public web interface may call a report service, whic
 
 The comparison asks whether observations conform to the declared policy, not whether the policy itself is correct. A policy could permit an undesirable relationship, and an implementation could faithfully follow it. Conversely, the absence of an observed call does not establish that the call can never occur; the observation may have incomplete coverage. Engineers must therefore evaluate both whether the policy expresses the intended architecture and whether the available evidence establishes conformance to it.
 
-\section{Preserve the Cases a Decision Must Distinguish}\label{heading:preserve-the-cases-a-decision-must-distinguish}
-
-The input representation can make a decision wrong before any rule is evaluated. Return to the prepaid and unlimited subscriptions introduced earlier. For a simple policy with one applicable entitlement, \autoref{simple-admission-policy} states when to admit a request and whether to charge finite credit.
+The input representation can make a decision wrong before any rule is evaluated. Consider a service that offers prepaid credits and unlimited subscriptions. For a simple policy with one applicable entitlement, \autoref{simple-admission-policy} states when to admit a request and whether to charge finite credit.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -81,23 +74,13 @@ The table needs the entitlement kind as well as the balance. If a previous step 
 
 Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore~\citep{w3c2018wcag21}. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection~\citep{moma-blue-monochrome}.} What matters is the image's contribution to the document, not merely what it depicts.
 
+\section{DocAble: Policies and Decisions}\label{heading:docable-policies-and-decisions}
+
 DocAble's slide classifier gives a vision-language model (VLM) a rendered slide so it can judge each image or shape in context. The VLM returns a classification: clearly decorative, uncertain, or informational. That judgment supplies evidence; the decision policy determines what to do with it. For content-bearing images, only a clearly decorative verdict permits suppressing the description. An uncertain or missing verdict preserves the image's informational role. The asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
 
 An evaluation found that earlier classifiers had marked content-bearing images as decorative, particularly in visualization-heavy documents. We tightened the policy by representing uncertainty explicitly and making its conservative interpretation common to the classification paths. The decision model now states how uncertain evidence affects remediation without prescribing which VLM must supply that evidence. A different VLM can make the semantic judgment; it does not redefine the policy for acting on it.
 
-DocAble supplies two worked applications of permission: a declared service-call policy and an upload-admission failure that required a richer decision model.
-
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: WORKED EXAMPLE -->
-
-% <!-- box-weight: deep-dive -->
-
-% mage-box-prefix:
-
-\begin{bookbox}{inset}{Worked example --- Permission at two system boundaries}
-\label{inset-docable-decisions}
-DocAble accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
+Two further DocAble examples concern permission. The system accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
 
 \textbf{Which services may communicate?}
 
@@ -219,6 +202,5 @@ Box (4) separates the admission decision from the display projection. For the sa
 A note in the first person: I changed the domain in one place --- groups could now be unlimited --- and did not carry the change into every representation of the same decision. An explicit model would not have made the change automatically correct; it would have made the inconsistency visible as an engineering obligation. When the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. \magevalue{chapter:alignment} gives the recurring pattern here --- a failure converted into explicit structure that later work inherits --- a name.
 
 The two models give a decision an explicit domain: permitted service pairs in the first case, distinct entitlement alternatives in the second. That makes the decision inspectable and checkable. It also exposes what must change when the intended policy or the product\textquotesingle s domain changes.
-\end{bookbox}
 
 Decision models make the criteria for a choice explicit, whether the choice concerns permission or what to do next. The final section steps back from one representation to ask how a family of models can answer questions together.

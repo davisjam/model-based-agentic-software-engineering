@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>38</b> chapters · <b>179</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>177</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -225,47 +225,39 @@
 </div>
 <div class="chapter">
 <h3 id="ch-2-3-structural"><span class="tier-kick">Lesson</span><a href="../book/2.3-structural.html" class="ch-link">2.3-structural</a> <span class="ch-slug">2.3-structural</span></h3>
-<div class="section s2" id="sec-2-3-structural--the-canonical-move-structure-and-dependency">
-<div class="sec-h"><a href="../book/2.3-structural.html">The Canonical Move: Structure and Dependency</a></div>
+<div class="section s2" id="sec-2-3-structural--entities-relationships-and-graph-analysis">
+<div class="sec-h"><a href="../book/2.3-structural.html">Entities, Relationships, and Graph Analysis</a></div>
 <p class="topic">A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations.</p>
 </div>
-<div class="section s2" id="sec-2-3-structural--choose-the-relation-for-the-question">
-<div class="sec-h"><a href="../book/2.3-structural.html">Choose the Relation for the Question</a></div>
-<p class="topic">The billing boundary illustrates how the choice of relation changes the property we check.</p>
+<div class="section s2" id="sec-2-3-structural--docable-architecture-and-computation-dependencies">
+<div class="sec-h"><a href="../book/2.3-structural.html">DocAble: Architecture and Computation Dependencies</a></div>
+<p class="topic">DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-4-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.4-behavioral.html" class="ch-link">2.4-behavioral</a> <span class="ch-slug">2.4-behavioral</span></h3>
-<div class="section s2" id="sec-2-4-behavioral--modeling-behavior-with-states-and-transitions">
-<div class="sec-h"><a href="../book/2.4-behavioral.html">Modeling Behavior with States and Transitions</a></div>
+<div class="section s2" id="sec-2-4-behavioral--states-transitions-and-behavioral-analysis">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">States, Transitions, and Behavioral Analysis</a></div>
 <p class="topic">For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them.</p>
 </div>
-<div class="section s2" id="sec-2-4-behavioral--ownership-under-contention">
-<div class="sec-h"><a href="../book/2.4-behavioral.html">Ownership Under Contention</a></div>
-<p class="topic">When several workers can process the same job, *who owns this job?* depends on their claims.</p>
-</div>
-<div class="section s2" id="sec-2-4-behavioral--one-representation-several-questions">
-<div class="sec-h"><a href="../book/2.4-behavioral.html">One Representation, Several Questions</a></div>
-<p class="topic">A lease illustrates how one representation can answer several classes of question.</p>
+<div class="section s2" id="sec-2-4-behavioral--docable-job-lifecycles-and-recovery">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">DocAble: Job Lifecycles and Recovery</a></div>
+<p class="topic">DocAble distributes document accessibility work across workers.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-5-decision"><span class="tier-kick">Lesson</span><a href="../book/2.5-decision.html" class="ch-link">2.5-decision</a> <span class="ch-slug">2.5-decision</span></h3>
-<div class="section s2" id="sec-2-5-decision--the-canonical-move-choosing-among-alternatives">
-<div class="sec-h"><a href="../book/2.5-decision.html">The Canonical Move: Choosing Among Alternatives</a></div>
+<div class="section s2" id="sec-2-5-decision--conditions-alternatives-and-decision-analysis">
+<div class="sec-h"><a href="../book/2.5-decision.html">Conditions, Alternatives, and Decision Analysis</a></div>
 <p class="topic">Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives.</p>
-</div>
-<div class="section s2" id="sec-2-5-decision--compare-the-decision-with-the-facts">
-<div class="sec-h"><a href="../book/2.5-decision.html">Compare the Decision with the Facts</a></div>
-<p class="topic">In a hypothetical system, a public web interface may call a report service, which may in turn call a renderer.</p>
-</div>
-<div class="section s2" id="sec-2-5-decision--preserve-the-cases-a-decision-must-distinguish">
-<div class="sec-h"><a href="../book/2.5-decision.html">Preserve the Cases a Decision Must Distinguish</a></div>
-<p class="topic">The input representation can make a decision wrong before any rule is evaluated.</p>
 </div>
 <div class="section s3" id="sec-2-5-decision--when-the-decision-depends-on-context">
 <div class="sec-h"><a href="../book/2.5-decision.html">When the Decision Depends on Context</a></div>
 <p class="topic">Some decisions cannot be made from the object alone.</p>
+</div>
+<div class="section s2" id="sec-2-5-decision--docable-policies-and-decisions">
+<div class="sec-h"><a href="../book/2.5-decision.html">DocAble: Policies and Decisions</a></div>
+<p class="topic">DocAble’s slide classifier gives a vision-language model (VLM) a rendered slide so it can judge each image or shape in context.</p>
 </div>
 </div>
 <div class="chapter">

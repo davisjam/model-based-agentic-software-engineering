@@ -1,5 +1,3 @@
-% mage-auto-heading: the-canonical-move-structure-and-dependency
-% mage-auto-heading: choose-the-relation-for-the-question
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Modeling -->
@@ -10,7 +8,7 @@
 
 Structural models hold a system still. They suppress most behavior and keep the entities, boundaries, containment, dependency, and flow --- what parts exist and which rest on which. This is the most familiar reduction in engineering, and the natural place to begin.
 
-\section{The Canonical Move: Structure and Dependency}\label{heading:the-canonical-move-structure-and-dependency}
+\section{Entities, Relationships, and Graph Analysis}\label{heading:entities-relationships-and-graph-analysis}
 
 % <!-- point: structure-has-a-long-repertoire-of-graphs-that-keep-entities-and-relations | Component and dependency graphs, call graphs, data-flow diagrams, and deployment topologies all name the entities a question needs and the declared relations between them, and drop the behavior. -->
 
@@ -35,8 +33,6 @@ Once structure is explicit, the claims an engineer wants become graph properties
 
 Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims: one describes what the system appears to do, the other what it is supposed to do. \magevalue{chapter:alignment} treats the distinction carefully.
 
-\section{Choose the Relation for the Question}\label{heading:choose-the-relation-for-the-question}
-
 The billing boundary illustrates how the choice of relation changes the property we check. Suppose Reporting may obtain billing data only through BillingAPI. Let \(\operatorname{Calls}\) contain all permitted direct calls among the components in scope. Excluding the pair \((\mathrm{Reporting},\mathrm{BillingDB})\) rules out a direct call, but a route through a helper could still bypass the API. A path is a sequence of components whose successive pairs belong to \(\operatorname{Calls}\). The architectural obligation applies to every such path from the reporting service to the billing database, as expressed by
 \[
 \forall p\in\operatorname{Paths}_{\operatorname{Calls}}(\mathrm{Reporting},\mathrm{BillingDB}),
@@ -48,16 +44,8 @@ A build dependency graph answers a different question. Suppose two independent s
 
 The relation\textquotesingle s meaning also matters within one workflow. A task may consume an earlier result as data, or inspect a condition solely to decide whether it should run. Both create dependencies, but they support different questions about how information contributes to the output. A model that records only an undifferentiated arrow cannot answer those questions. DocAble\textquotesingle s document-processing pipeline provides a worked example of both architectural boundaries and typed computation dependencies.
 
-% <!-- box-family: inset -->
+\section{DocAble: Architecture and Computation Dependencies}\label{heading:docable-architecture-and-computation-dependencies}
 
-% <!-- inset-domain: WORKED EXAMPLE -->
-
-% <!-- box-weight: deep-dive -->
-
-% mage-box-prefix:
-
-\begin{bookbox}{inset}{Worked example --- Two structural views of document repair}
-\label{inset-docable-structural}
 DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order. The same operation may need a different implementation for a Word document and a PDF. Its structural models let engineers separate two questions: where format-specific changes belong, and how the repair computations depend on one another.
 
 \textbf{Where may a document change?}
@@ -171,6 +159,5 @@ The computation model remains static with respect to any one run: it records no 
 The same identities can support additional engineering views without enlarging the structural schema each time. Separate providers can record complexity, bounded execution, latency, test coverage, or checker trust against the same computation identity. Declared properties state engineering intent. Measured properties report observations and may have incomplete coverage. An unmeasured latency is therefore unknown, not zero. Joining these views lets engineers ask questions about combinations of properties while keeping each representation focused on its own question.
 
 The two reductions keep different relations because they support different changes. To investigate a bypass of the document abstraction, inspect the architectural paths. To investigate the effect of changing a repair pass, inspect its declared inputs, outputs, and dependents. Neither question requires a complete model of the product.
-\end{bookbox}
 
 A structural model earns its detail by the question it helps answer. Architectural paths, data dependencies, and control dependencies preserve different facts even when each is drawn with boxes and arrows. The next section adds time: what states a thing occupies, and what sequences of changes the model admits.

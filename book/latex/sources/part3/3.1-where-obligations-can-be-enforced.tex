@@ -51,14 +51,6 @@ The first location is \textbf{reasoning input}: the context, representations, ex
 
 The context supplied to an agent can change as the work becomes better understood. \autoref{docable-context-selection} illustrates dynamic context injection in two stages. At dispatch, anticipated files and components determine an initial selection of relevant engineering knowledge. After planning, the agent\textquotesingle s refined understanding of the work determines a second selection, which may add or remove relevant material. Standing instructions remain available throughout. This arrangement limits unnecessary context while allowing newly relevant obligations to be surfaced before implementation.
 
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: Case study -->
-
-% mage-box-prefix:
-
-\begin{bookbox}{inset}{Worked inset --- DocAble: Supplying Context and Requiring Discovery}
-\label{inset-context-engineering}
 An agent assigned to change DocAble's code needs the rules relevant to the files it expects to edit. DocAble is a document-remediation service developed with agents, and its engineering environment selects those rules for each task. Those rules include architectural invariants, ownership declarations, lint requirements, and links to design decisions. The engineering problem is to select that knowledge for a particular task without making every agent reconstruct it from the repository.
 
 DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change~\citep{davis2026docable}. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
@@ -73,7 +65,6 @@ DocAble selects context twice. At dispatch, an agent hook matches the work order
 Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
 
 Completion requires a different view of the work. DocAble's definition-of-done audit recomputes evidence over the completed task instead of relying only on an earlier record. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} traces an actual dispatch through model selection, work-order construction, and completion checks.)
-\end{bookbox}
 
 Guidance can make an acceptable realization more likely. A sound constraint or admission mechanism can instead rule a represented class of unacceptable realizations out of the surface it governs. Guidance improves the producer\textquotesingle s odds; enforcement changes what admission must trust.
 

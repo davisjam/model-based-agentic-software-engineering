@@ -317,7 +317,7 @@ An inset should:
 - include only the formalism needed here;
 - and let the reader rejoin the main argument.
 
-The mainline must remain readable if the inset is skipped.
+The mainline must remain readable if the inset is skipped. An inset should ordinarily fit on one printed page, including its figures. Place extended worked examples and case evidence essential to the argument in the main text.
 
 An inset belongs to the chapter's reading sequence. Its opening should pick up a concept, question, or difficulty in the preceding prose and make clear why the extra detail is useful here. Its closing should reconnect the explanation to the main argument. Provide both transitions: a return to the mainline at the end does not replace a segue into the inset.
 

@@ -1,6 +1,3 @@
-% mage-auto-heading: modeling-behavior-with-states-and-transitions
-% mage-auto-heading: ownership-under-contention
-% mage-auto-heading: one-representation-several-questions
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Modeling -->
@@ -11,7 +8,7 @@
 
 A behavioral model represents how a system acts or changes over time. It may describe the messages exchanged by components, the order of steps in a workflow, or how a quantity changes continuously. Where a structural model like a dependency graph answers \emph{what is connected to what?}, a behavioral model asks \emph{what may happen, and in what order?} The representation should preserve the distinctions needed to answer the engineering question while leaving out implementation details that do not affect it.
 
-\section{Modeling Behavior with States and Transitions}\label{heading:modeling-behavior-with-states-and-transitions}
+\section{States, Transitions, and Behavioral Analysis}\label{heading:states-transitions-and-behavioral-analysis}
 
 % <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | State-transition models make lifecycle and recovery questions explicit; state machines, labeled transition systems, and statecharts represent behavior, while temporal specifications state properties over executions. -->
 
@@ -50,8 +47,6 @@ The required property tells us what to check over those executions. ``A job neve
 
 A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{Succeeded} to pass through \texttt{Running} excludes premature completion, but a job could remain in \texttt{Running} indefinitely. These are different questions about the same behavioral model. A transition check asks whether a particular state change is permitted; reachability analysis asks whether some sequence of transitions can lead to an undesirable state; and a temporal property can require that every started job eventually finishes or fails. Investigating that last property requires representing the ways processing can wait or retry, together with assumptions under which progress is expected. The model may therefore need to change as the engineering question changes.
 
-\section{Ownership Under Contention}\label{heading:ownership-under-contention}
-
 % <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
 
 When several workers can process the same job, \emph{who owns this job?} depends on their claims. A worker may stop responding, its claim may expire, and another worker may acquire the job. The original worker can later return and attempt to act using its old claim. An ownership model must retain enough information to distinguish the current right to act from a claim that is no longer valid.
@@ -88,16 +83,8 @@ A claim binds a holder to a resource and carries the facts that make contention 
 
 For example, a worker may hold a job, lose its claim after a timeout, and later return with an old completion request. The current owner alone is insufficient to decide whether that request still applies: the model must distinguish successive claims on the same job. Recording a claim generation supplies that distinction. At this level, a job is leased exactly when it has a current claim; the claim represents ownership directly. DocAble\textquotesingle s recovery and ownership models show how such small additions support two concrete crash-safety questions.
 
-% <!-- box-family: inset -->
+\section{DocAble: Job Lifecycles and Recovery}\label{heading:docable-job-lifecycles-and-recovery}
 
-% <!-- inset-domain: WORKED EXAMPLE -->
-
-% <!-- box-weight: deep-dive -->
-
-% mage-box-prefix:
-
-\begin{bookbox}{inset}{Worked example --- Recovery and ownership of a document job}
-\label{inset-docable-behavior}
 DocAble distributes document accessibility work across workers. A worker can fail while producing a corrected document, and another worker may have to recover the job. Safe recovery therefore involves two related questions: when is a recovered artifact safe to publish as the result, and which worker currently has the right to complete the job? Separate models preserve the facts each question needs.
 
 \textbf{Publishing a recovered result}
@@ -205,7 +192,6 @@ The next invariant concerns ownership under contention. A stale claim must not c
 \end{figure}
 
 The publication model separates a local artifact from a durably stored one. The ownership model separates a current claim from a superseded one. In each case, the useful addition is a distinction that changes whether a state change is acceptable. The models make those distinctions available for analysis; the later Alignment chapter examines the mechanisms that enforce them.
-\end{bookbox}
 
 % <!-- point: the-lease-model-omits-the-processing-topology | The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model. -->
 
@@ -234,8 +220,6 @@ def invariant(s):                                    # leased iff owned
 assert all(invariant(s) for s in reachable_states())  # check every reachable state
 \end{verbatim}
 \end{bookbox}
-
-\section{One Representation, Several Questions}\label{heading:one-representation-several-questions}
 
 % <!-- point: the-lease-answers-ownership-behavioral-and-measurement-questions-at-once | Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions. -->
 

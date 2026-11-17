@@ -22,12 +22,12 @@
     "docable-context-selection": {
       "width_bp": 450,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "match-mechanism-to-property": {
       "width_bp": 450,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "governance-conversion-fig": {
       "width_bp": 360,
@@ -97,12 +97,12 @@
     "entitlement-domain": {
       "width_bp": 270.0,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "in-flight-ownership-states": {
       "width_bp": 450.0,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "attribution-model": {
       "width_bp": 247.5,
@@ -112,12 +112,12 @@
     "service-flow-model": {
       "width_bp": 450.0,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "document-mutation-model": {
       "width_bp": 247.5,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "realization-space": {
       "width_bp": 337.5,
@@ -131,7 +131,7 @@
     "recovery-ordering-model": {
       "width_bp": 247.5,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "canonical-behavioral": {
       "width_bp": 450.0,
@@ -145,7 +145,7 @@
     "from-nodes-to-composition": {
       "width_bp": 450.0,
       "placement": "centered",
-      "inset_placement": "inline"
+      "float_placement": "!htb"
     },
     "two-reductions-static-realized": {
       "width_bp": 337.5,
@@ -157,9 +157,9 @@
       "placement": "centered"
     },
     "entitlement-model-evolution": {
-      "inset_placement": "inline",
       "width_bp": 450,
-      "placement": "centered"
+      "placement": "centered",
+      "float_placement": "!htb"
     },
     "alignment-kernel": {
       "width_bp": 450,

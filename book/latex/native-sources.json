@@ -102,20 +102,20 @@
     {
       "source": "book/latex/sources/part2/2.3-structural.tex",
       "projection": "book/part2/2.3-structural.md",
-      "source_hash": "c080015b3770734045f99fbe5b4a341081909cc8002d15c96067e4161d3dc954",
-      "projection_hash": "8e92ffd5487a9430a877c8be9682e9fee7e37858bee66437e522fa7b11fc2ff5"
+      "source_hash": "349b0dbeb2c0478c19a899ac26a0124c12d158f746b8424f5b24a7dd684bf85d",
+      "projection_hash": "75a739c07784934ceb2ec273b1a4c184047b9051bcb44b2a6a8a71764d159155"
     },
     {
       "source": "book/latex/sources/part2/2.4-behavioral.tex",
       "projection": "book/part2/2.4-behavioral.md",
-      "source_hash": "74a779a5995d922d771a5c397b1f3df3db11a4bba9a7c15bd3246f63517e10ab",
-      "projection_hash": "0c1165e6ee566a44671f877f11773d6e4b6f16bd56fd23be545e5dda20365fc3"
+      "source_hash": "a4905a572f34b7abba46cfb48f69bc71b2cd2d9c652a57c1e8f41689adf80229",
+      "projection_hash": "3562b25e1d12d0f1fbc46cd9695f401fa7e646a93f9d348425ef37d4eaa0883d"
     },
     {
       "source": "book/latex/sources/part2/2.5-decision.tex",
       "projection": "book/part2/2.5-decision.md",
-      "source_hash": "3fd11506f04d3494f2451b37871bc90ac10ca975c434beabd627c5d295b3a84f",
-      "projection_hash": "0070092627a10526c80c32d51cc2f5d561c436b51ab2f7bfc2d4130c67417c98"
+      "source_hash": "1f6b7ef2050fa34495a9dd71d082d2f4017a823bb63df913038ebdd77c6477df",
+      "projection_hash": "c610789b3926fbdbdc17047b5a4d7a528a05268f92e5eb685f720842b76f49e7"
     },
     {
       "source": "book/latex/sources/part2/2.6-system-knowledge.tex",
@@ -138,20 +138,20 @@
     {
       "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
       "projection": "book/part3/3.1-where-obligations-can-be-enforced.md",
-      "source_hash": "1f846720fb05f82598047a7e0a8698247579a50eb8595a259b7bb984120d4347",
-      "projection_hash": "b76ee5f3a9e79b0dd8d0920e163aa86f46fac82135aa05c6caec68fffc8e80bd"
+      "source_hash": "ea598abfa0c1c0a5f7fd3137024b85dfa097265087f1e1f8f20588a395f28e06",
+      "projection_hash": "f5aa849950b60ce40267fdb834a9c2ad0d438179c4bd939de33359a1db3c1ee8"
     },
     {
       "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
       "projection": "book/part3/3.2-models-and-the-semantic-gap.md",
-      "source_hash": "26ce35d15f260fdd544c4943bf9ba13a8134cb993b457463bd09d14792c5ae62",
-      "projection_hash": "2a2ef48282bcd718367714244564df550c0c7457accce61e8e1fd9e8ff848491"
+      "source_hash": "3b002b0f8085ad19a09535b020254598d080ed4d3d86e2b391628fed3e5dd603",
+      "projection_hash": "39300945f7e5d4f4c86bee87fcbc6b957dd11c728e5e28ecd1804a483693bf36"
     },
     {
       "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
       "projection": "book/part3/3.3-constraints-sensors-validators-gates.md",
-      "source_hash": "f42d57751ef503debe0eb775a362a12577549cd93f7fe1b47dc648205ce2062f",
-      "projection_hash": "608a9354048d487c4c1bf2f7c66400cc569c7a5c0da29f1568ec271d3534603d"
+      "source_hash": "d9a80df61b3df16d17c3cb473a01bc1011626d72c78087036eba102be20a13cf",
+      "projection_hash": "8e1d2f2809cda6d9b8ba6ab365f523269b320089b31292a12703e10f613b2b58"
     },
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
@@ -162,8 +162,8 @@
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
       "projection": "book/part3/3.5-when-guardrails-collide.md",
-      "source_hash": "0043e5f7fd95cc3233786a15575b0b5e8ca2fe2c017f1ac4f8420a7c8468f0cb",
-      "projection_hash": "dab8239687ff33f3bd72dcf8c386d18b36f2f5f157ae096d4e51533b33f32502"
+      "source_hash": "a0cd2fc97c3575f405388b5eb127a5b80b370a999510d6dbaab695b733ebe610",
+      "projection_hash": "e173e84c77c8e51a811e3125bab8eb2f46122ba392daef7f9753b6b550f9ee60"
     },
     {
       "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
@@ -180,8 +180,8 @@
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "bc472ebfe07f9ab7f27214b0de1b0ebf1976cd4b2fac181edfd637f9efa5270d",
-      "projection_hash": "0412d5ced49884b5ce0cb4a37f4dd14968ce3f1d47401758596cb34920dfa341"
+      "source_hash": "5416165c5e33a96f8a96ecdb408442e1a7cf633f248fb64d4e34b0652e6e55fe",
+      "projection_hash": "9ee53228468e61941c13aba150563158d19b12e40cdd72fac8df5c7d167211e5"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
