@@ -21,6 +21,10 @@ Different questions require different views of the same system. Following Fairba
 
 The views need to agree on the identities and relationships that their questions cross. A deployment record and a memory budget can each serve its own purpose if the engineer can identify the workers and host in both. MBSE methods likewise connect requirements, design models, analyses, and verification results so that engineers can follow a decision across representations~\citep{estefan2008mbse}~\citep{madni2018mbse}. When these views are cheap to derive, maintain, and query, more of that knowledge can remain explicit between tasks.
 
+Models can be connected across different concerns or across levels of abstraction. A service catalog, deployment model, and measurement record provide different views of the same service; joining them connects information that no individual view contains. A service-level architecture and a module-level dependency graph instead describe related structure at different levels of detail. The latter introduces classes, interfaces, and dependencies omitted from the former, but must preserve any architectural boundaries established by the higher-level model.
+
+The relationship between abstraction levels recalls the classical technique of \textbf{stepwise refinement}~\citep{wirth1971program}: progressively transforming an abstract description into a more detailed realization while preserving its required properties. In agentic engineering, an agent can perform much of this refinement, choosing algorithms, data structures, and internal organization within the freedom left by the higher-level model. The engineer remains responsible for deciding which properties must survive that translation. Explicit relationships between abstraction levels make those obligations available for analysis and checking rather than relying on the agent to infer them correctly.
+
 \section{A Heterogeneous Modeling Substrate}\label{heading:a-heterogeneous-modeling-substrate}
 
 % <!-- section-terms: system-knowledge, modeling-substrate -->
@@ -87,7 +91,7 @@ Models and implementations can fall out of correspondence as a system changes. M
 
 An authoritative model can also be interpreted directly during execution, as the build-runner example below illustrates.
 
-The third arrangement is particularly useful when agents implement systems whose models specify only selected properties. The models preserve engineering decisions while leaving other implementation choices open. The three arrangements can coexist within one system, and their coverage can change as engineers learn which properties need explicit representation.
+The third arrangement is particularly useful when agents implement systems whose models specify only selected properties. The models preserve engineering decisions while leaving other implementation choices open. The three arrangements can coexist within one system, and their coverage can change as engineers learn which properties need explicit representation. These correspondence patterns apply between models at different abstraction levels as well as between models and implementation; a refinement relationship identifies which higher-level properties a more detailed representation must preserve.
 
 % <!-- index-def: model-from-code -->
 

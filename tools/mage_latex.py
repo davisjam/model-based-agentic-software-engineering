@@ -699,6 +699,8 @@ def _prepare_record(task):
     latex = bold_table_headers(latex)
     from mage_figure_layout import theory_perspectives_columns
     latex = theory_perspectives_columns(latex)
+    latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
+                                  row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
@@ -720,8 +722,9 @@ def _prepare_record(task):
         heading = ''  # The chapter opener already provides its title and anchor.
     elif section_page and 1 <= record['part'] <= 7 and bb._chap_ref(record):
         # Native sectioning numbers the heading and nests the bookmark under its chapter.
-        heading = (r'\setcounter{secnumdepth}{1}\section{' + title + '}'
-                   + r'\label{chapter:' + slug + r'}\setcounter{secnumdepth}{0}')
+        heading = (r'\setcounter{secnumdepth}{2}\section{' + title + '}'
+                   + r'\label{chapter:' + slug + '}')
+        latex += '\n' + r'\setcounter{secnumdepth}{0}' + '\n'
         section_number -= 1
     else:
         prefix = f"{record['part']}.{section_number} " if section_page and 0 < record['part'] < 9 and section_number else ''
@@ -918,8 +921,12 @@ def prepare_pdf(slugs=None, name="mage-book"):
             full_text = full_chapter.read_text()
             from mage_inset_print import count_print_figures
             figures += count_print_figures(full_text, numbered_only=True)
-            tables += sum(r'\caption' in block for block in re.findall(
-                r'\\begin\{(?:longtable|table)\}.*?\\end\{(?:longtable|table)\}', full_text, flags=re.S))
+            # Inline tables use captionof and advance the same counter as table floats.
+            table_blocks = re.findall(
+                r'\\begin\{(?:longtable|table)\}.*?\\end\{(?:longtable|table)\}'
+                r'|\\captionof\{table\}.*?\\end\{tabular\}', full_text, flags=re.S)
+            tables += sum(bool(re.search(r'\\caption(?:of\{table\})?(?![a-zA-Z*])', block))
+                          for block in table_blocks)
             previous = record['part']
         selected = set(slugs)
         records = [record for record in records if record['slug'] in selected]

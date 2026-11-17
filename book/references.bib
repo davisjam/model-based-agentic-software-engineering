@@ -3838,6 +3838,32 @@
   urldate   = {2026-11-04},
 }
 
+% The engineering counterpart to the Cloudflare postmortem above: a review of what regex engines in
+% nine widely used languages actually do about super-linear matching, what they document, and how
+% maintainers treat ReDoS reports. Cited by the Act III reliability lecture as the component-selection
+% case study, where the lesson is that behavior, documentation and maintainer expectations diverge.
+@inproceedings{bhuiyan2025sokredos,
+  author    = {Bhuiyan, Masudul Hasan Masud and {\c{C}}akar, Berk and Burmane, Ethan H. and
+               Davis, James C. and Staicu, Cristian-Alexandru},
+  title     = {SoK: A Literature and Engineering Review of Regular Expression Denial of Service
+               (ReDoS)},
+  booktitle = {Proceedings of the 20th ACM Asia Conference on Computer and Communications Security
+               (ASIA CCS '25)},
+  year      = {2025},
+}
+
+% The foundational framing for failure models: what it means for a component to fail, which classes
+% of failure a protocol assumes, and how those assumptions bound what fault tolerance can deliver.
+@article{cristian1991faulttolerant,
+  author  = {Cristian, Flaviu},
+  title   = {Understanding Fault-Tolerant Distributed Systems},
+  journal = {Communications of the ACM},
+  volume  = {34},
+  number  = {2},
+  pages   = {56--78},
+  year    = {1991},
+}
+
 % Return-oriented programming: arbitrary computation assembled from instruction sequences already
 % present in executable memory, without injecting code. Single-authored.
 @inproceedings{shacham2007geometry,
@@ -4491,6 +4517,33 @@
 }
 
 % Recommended new entries; primary metadata verified 2026-11-10.
+@inproceedings{sarkar2025vibe,
+  author    = {Sarkar, Advait and Drosos, Ian},
+  title     = {Vibe Coding: Programming Through Conversation with Artificial Intelligence},
+  booktitle = {Proceedings of the 36th Annual Workshop of the Psychology of Programming Interest Group},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2506.23253},
+}
+
+@article{chou2026vibe,
+  author  = {Chou, Yi-Hung and Jiang, Boyuan and Chen, Yiwen and Weng, Mingyue and Jackson, Victoria and Zimmermann, Thomas and Jones, James A.},
+  title   = {Building Software by Rolling the Dice: A Qualitative Study of Vibe Coding},
+  journal = {Proceedings of the ACM on Software Engineering},
+  volume  = {3},
+  number  = {FSE},
+  year    = {2026},
+  doi     = {10.1145/3797105},
+}
+
+@misc{vir2026failurepatterns,
+  author       = {Vir, Reya},
+  title        = {9 Critical Failure Patterns of Coding Agents},
+  howpublished = {DAPLab, Columbia University},
+  year         = {2026},
+  month        = jan,
+  url          = {https://daplab.cs.columbia.edu/general/2026/01/08/9-critical-failure-patterns-of-coding-agents.html},
+}
+
 @inproceedings{vir2026flowcheck,
   author    = {Vir, Reya and Chilton, Lydia and Zhang, Zhuo and Wu, Eugene},
   title     = {{FlowCheck}: Helping End-Users Specify and Verify Intent in Vibe-Coded Web Apps},
@@ -4606,4 +4659,64 @@
   year        = {2023},
   doi         = {10.17487/RFC9334},
   url         = {https://www.rfc-editor.org/rfc/rfc9334}
+}
+
+@article{wirth1971program,
+  author  = {Niklaus Wirth},
+  title   = {Program Development by Stepwise Refinement},
+  journal = {Communications of the ACM},
+  volume  = {14},
+  number  = {4},
+  pages   = {221--227},
+  year    = {1971},
+  doi     = {10.1145/362575.362577}
+}
+
+@article{garcia2021modelproductivity,
+  author  = {Garcia, Gustavo and Golparvar-Fard, Mani
+             and de la Garza, Jesus M. and Fischer, Martin},
+  title   = {Measuring Progress and Productivity in
+             Model-Driven Engineering for Capital Project Delivery},
+  journal = {Journal of Construction Engineering and Management},
+  volume  = {147},
+  number  = {4},
+  year    = {2021},
+  doi     = {10.1061/(ASCE)CO.1943-7862.0001969}
+}
+@article{henderson2023digitalmetrics,
+  author  = {Henderson, Kaitlin and McDermott, Tom
+             and Van Aken, Eileen and Salado, Alejandro},
+  title   = {Towards Developing Metrics to Evaluate Digital Engineering},
+  journal = {Systems Engineering},
+  volume  = {26},
+  number  = {1},
+  pages   = {3--31},
+  year    = {2023},
+  doi     = {10.1002/sys.21640}
+}
+@article{campo2023mbse,
+  author  = {Campo, Kelly X. and Teper, Thomas
+             and Eaton, Casey E. and Shipman, Anna M.
+             and Bhatia, Garima and Mesmer, Bryan},
+  title   = {Model-Based Systems Engineering:
+             Evaluating Perceived Value, Metrics,
+             and Evidence Through Literature},
+  journal = {Systems Engineering},
+  volume  = {26},
+  number  = {1},
+  pages   = {104--129},
+  year    = {2023},
+  doi     = {10.1002/sys.21644}
+}
+@misc{agarwal2026tokens,
+  author = {Agarwal, Shyam and Lvova, Olga
+            and Sergeyuk, Agnia and Serova, Anastasiia
+            and Bryksin, Timofey and Zimmermann, Thomas
+            and Vasilescu, Bogdan},
+  title  = {The {AI} Era's Lines of Code?
+            A Case Study on What an Engineer's Token Spend Measures},
+  year   = {2026},
+  month  = nov,
+  note   = {arXiv preprint arXiv:2611.13396v1},
+  doi    = {10.48550/arXiv.2611.13396}
 }

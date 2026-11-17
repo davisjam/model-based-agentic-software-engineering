@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 640,
+    "total_sites": 641,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 305,
+      "book-web": 306,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -53,7 +53,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 38
+            "occ": 28
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -65,7 +65,7 @@
           },
           {
             "file": "book/web/docs/2.6-system-knowledge.md",
-            "occ": 12
+            "occ": 14
           },
           {
             "file": "book/web/docs/2.7-modeling-summary.md",
@@ -145,7 +145,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 4
+            "occ": 7
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -632,6 +632,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/6.4-research-agenda.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
             "occ": 2
           },
@@ -647,7 +651,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 6
+            "occ": 7
           }
         ]
       },
@@ -925,7 +929,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 36
+            "occ": 38
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
@@ -933,7 +937,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 52
+            "occ": 41
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -953,7 +957,7 @@
           },
           {
             "file": "book/web/docs/2.6-system-knowledge.md",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/web/docs/2.7-modeling-summary.md",
@@ -1037,7 +1041,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 20
+            "occ": 54
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1113,7 +1117,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 135
+            "occ": 139
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1137,7 +1141,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 16
+            "occ": 17
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1145,7 +1149,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1489,7 +1493,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 32
+            "occ": 39
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -1509,7 +1513,7 @@
           },
           {
             "file": "book/web/docs/2.6-system-knowledge.md",
-            "occ": 61
+            "occ": 64
           },
           {
             "file": "book/web/docs/2.7-modeling-summary.md",
@@ -1585,7 +1589,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 14
+            "occ": 21
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -2331,11 +2335,11 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 7
+            "occ": 3
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -2415,7 +2419,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 39
+            "occ": 38
           },
           {
             "file": "book/web/docs/figures.md",

@@ -14,7 +14,7 @@
 >
 > Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
 
-{{chapter:problem}} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also cost work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep.
+{{chapter:problem}} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also take work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep. Which engineering models are worth constructing?
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | The engineering question determines which distinctions a useful model must preserve. | terms: modeling-principle, model-as-map, scope-of-modeling -->
 
@@ -30,9 +30,9 @@ This chapter develops three familiar classes of engineering model: structural mo
 
 Read each worked model with these four questions in mind:
 
-- **Engineering question** — what am I trying to know or decide?
-- **Model** — what representation makes the question tractable?
-- **Property** — what can I now state precisely?
-- **Quality attribute** — what engineering concern does that property serve?
+- **Engineering question** — What am I trying to know or decide?
+- **Model** — What representation makes the question tractable?
+- **Property** — What can I now state precisely?
+- **Quality attribute** — What engineering concern does that property serve?
 
-{{chapter:alignment}} adds a fifth question: **what enforces the property?** Modeling makes properties explicit; Alignment makes selected obligations enforceable.
+{{chapter:alignment}} adds a fifth question: **What enforces the property?** Modeling makes properties explicit; Alignment makes selected obligations enforceable.

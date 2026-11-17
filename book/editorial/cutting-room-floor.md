@@ -20957,3 +20957,130 @@ Skills and instruction files are contemporary carriers. The engineering requirem
 ## Chapter 2 modeling primer, 2026-11-16
 
 The [previous §2.1](cutting-room-floor/chapter-2-primer-20261116.tex) preserves the original prose, figures, and citations from `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 1–563, revision `5ff6866d4`. The split integrates the uncertainty, tools and repertoire insets, moves formal examples to their model classes, and cuts the extended TDD and industrial comparisons to keep the primer focused on modeling.
+
+## Chapter 2, §2.1 opening, 2026-11-17
+
+Replaced the opening before “Choosing What to Model” with three paragraphs and a shorter inset. The original passage and citations are preserved below.
+
+```tex
+\section{What Makes an Engineering Model Useful?}\label{heading:modeling-is-a-classical-engineering-move}
+
+% <!-- section-terms: modeling-principle, reasoning-horizon, context-window -->
+
+% <!-- point: a-reasoner-arrives-knowing-nothing-about-your-system | Preserving project knowledge across tasks reduces repeated reconstruction. | terms: reasoning-horizon, context-window, modeling-principle -->
+
+The knowledge an agent needs about a particular system might be distributed across source code, configuration, documentation, registries, version history, and the people who maintain it. An agent can reconstruct what a task needs from those sources, but doing so takes work. If the result is not preserved, the next agent may have to repeat that work for a closely related task. Context engineering gives us a way to make that knowledge available across tasks.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: AGENT HARNESS -->
+
+% <!-- box-weight: aside -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Skills and Project Instructions Can Be Engineering Models}
+\label{inset-skills-and-project-instructions}
+For a familiar example of externalizing engineering knowledge, consider project instructions and agent skills. Project instructions record repository-specific conventions, architectural decisions, and obligations that should persist across tasks. Skills package procedures and resources for recurring work. Both preserve knowledge, but not everything they preserve constitutes an engineering model. Sometimes, however, they do. Consider a project instruction such as ``all database access must go through the service layer.'' It expresses an architectural constraint, albeit imprecisely: the permitted dependencies remain open to interpretation, and violations cannot necessarily be detected mechanically. Now consider a skill specifying how an agent should commit changes and publish them to a remote repository. Its sequence of steps, preconditions, and failure-handling rules may encode a behavioral model of the publishing process, even if expressed entirely in natural language. In both cases, the representation preserves engineering decisions across tasks, but its informal semantics limit the precision with which those decisions can be analyzed or enforced.
+\end{bookbox}
+
+% <!-- point: natural-language-is-itself-a-representation | Natural language is a representation, and often an appropriate one; consequential knowledge kept only in prose must be articulated correctly and then recovered correctly by each later reasoner, and a structured model can preserve distinctions that would otherwise be restated or reconstructed. | terms: modeling-principle, structured -->
+
+The form of the context matters as well as its availability. Natural language is inexpensive to write, expressive, and sufficient for many engineering questions. But when we rely on prose, two things must go right. The engineer must state the relevant distinctions clearly, and each later reader, human or agent, must interpret them correctly. An engineering model demands greater precision of the engineer. The engineer must decide which entities, relationships, properties, or obligations a question depends on. Choosing the permitted values of a field, for example, can expose a case for which nobody has decided what the system should do. Recording the distinction explicitly gives later readers something to inspect and gives the engineer a decision to make.
+
+% <!-- point: the-first-purpose-of-a-model-is-better-context | The first modeling move is simple: externalize engineering knowledge that should not have to be rediscovered. | terms: modeling-principle, reasoning-horizon, context-window -->
+
+For an agent, such a model can serve as a persistent source of project-specific context. An agent changing a component can consult a record of its permitted dependencies. An agent reviewing the change in a later task can consult the same record, even if the two never share a conversation. Both can still misinterpret the rule, and the engineer may have recorded it incorrectly. Making an architectural obligation available to the implementer is one engineering activity. Preventing a change that violates it requires a mechanism that acts on the obligation.
+
+% <!-- point: modeling-is-a-classical-engineering-move-not-a-mage-invention | Modeling is not new: engineering has long used representations that suppress irrelevant detail so a property can be reasoned about directly. | terms: modeling-principle -->
+
+Engineers have long used models to connect questions about a system to decisions about its implementation. Requirements engineering distinguishes stakeholder goals from assumptions about the environment~\citep{zave1997darkcorners,nuseibeh2000roadmap,vanlamsweerde2009re}. Specifications state properties an implementation must satisfy. An interface contract may define valid inputs and promised results, a schema the records the system must accept, and a state machine the transitions it permits. Architectural descriptions and model-based systems engineering use such views for design, communication, and assurance~\citep{isoiec42010,incose2023handbook}, and UML supplies established notations for structural and behavioral views~\citep{booch-uml}. A little whiteboarding followed by implementation can be economical when the same programmers do both and carry the remaining design knowledge in their heads. When agents independently implement and modify the system, they benefit from access to some of those decisions. Agents can also help construct, maintain, and query the representations that record them, changing the cost of keeping that knowledge available.
+
+% <!-- point: a-useful-model-need-not-be-elaborate | A useful model may be three states and two transitions, a list of permitted edges, or a schema joined on identifiers; the relevant question is what representation makes a recurring engineering question easier to answer. | terms: modeling-principle -->
+
+The value of a model depends on the engineering question it is intended to answer. Sometimes three states and two legal transitions suffice. A question about which services may communicate instead calls for the permitted connections, even if it concerns exactly the same system. Before writing a complete specification, we can already make two decisions about a useful model. What is its subject, and how much detail does the question require?
+```
+
+## Chapter 2, §2.1, Choosing What to Model, 2026-11-17
+
+The revised “Attributes of an Engineering Model” condenses the worked examples into three paragraphs on a model’s subject, scope and assumptions, and authority. Previous text and footnote:
+
+```tex
+\section{Choosing What to Model}\label{heading:choosing-what-to-model}
+
+% <!-- section-terms: model-as-map, scope-of-modeling, modeling-principle -->
+
+A model may describe the environment in which a system operates or the behavior it owes the people who use it. Before an implementation exists, an engineer can model the workload a service will encounter and specify how quickly it must respond under that load. A threat model might identify the records the service must protect and the capabilities it assumes an adversary has. If part of the question is which components may read those records, the same model can include a trust boundary inside the system.
+
+A model also needs a scope and assumptions under which its conclusions apply. A capacity estimate for a service may depend on the rate at which requests arrive and the distribution of their service times. This practice is especially important when modeling with agents because an agent can reuse a familiar model in a setting where its assumptions no longer hold. An agent adapting the design to a deployment that receives most of its requests in bursts cannot rely on an estimate derived for evenly spaced arrivals just because the daily totals agree. Recording the assumed arrival pattern alongside the estimate gives the agent a specific condition to check against measurements from the new deployment.
+
+% <!-- point: a-reduction-first-even-when-executable | Models may be encoded in types or held in an engineer’s understanding of code; modeling makes the relevant reduction available to other reasoners, and a different question may require another reduction. | terms: model-as-map, executable-source-of-truth -->
+
+Models can equally describe the system's internal organization and operation. Some relationships are already explicit in types and interfaces. Others an engineer carries in mind while working with the code. Consider a worker pool whose implementation contains synchronization, scheduling, and error-handling details. To decide whether two workers can process the same job at once, the engineer may draw just the queue, worker slots, and rules for acquiring and releasing an assignment.\magefootnote{model-object}{Compare René Magritte's \emph{The Treachery of Images} (1929): a painting of a pipe labeled ``This is not a pipe''~\citep{magritte1929}.} To decide whether the queue will grow during a busy period, we need arrival patterns, job service times, and worker capacity. Two workloads can obey the same assignment rules while one queue drains and the other grows.
+
+% <!-- point: explicit-models-record-accepted-intent | A model adopted as a statement of requirements records which properties later implementations must preserve; purposeful reduction makes those decisions available for human review and agent use without reproducing every code detail. | terms: modeling-principle, externalized-knowledge -->
+
+Whether a model describes the existing system or states what the system ought to do is a separate engineering decision. An observed dependency graph records connections found in the implementation. An architect can use the same notation to declare the connections a future implementation is permitted to make. The difference matters to an agent proposing a change. The pool's eight-worker limit might be a resource requirement or simply today's tuning choice. The number in the code cannot establish its status. A descriptive model can record the current setting, while an authoritative model of the resource requirement tells the agent which limit a change must preserve.
+
+% <!-- point: the-question-decides-what-to-keep | Hold the system constant, change the question, and the model changes; there is no single model of the system. | terms: model-as-map, scope-of-modeling, map-and-territory -->
+
+Once the subject is chosen, the next decision is which of its distinctions the model must preserve. In the pool, leaving the assignment rule implicit would force a reader to go back to the scheduler to settle the ownership question. Recording the business logic of every job would give that reader more code to examine without helping settle it. Both choices affect whether another engineer or agent can actually use the representation.
+```
+
+## Chapter 2, §2.1, Purposeful Reduction and Engineering Freedom, 2026-11-17
+
+Earlier discussion, including the prepaid-credit example, replaced with the service-boundary example and the distinction between product tolerance and implementation freedom.
+
+```tex
+\section{Purposeful Reduction and Engineering Freedom}\label{heading:a-model-is-a-purposeful-reduction}
+
+% <!-- section-terms: modeling-principle, model-as-map, scope-of-modeling, tolerance, degrees-of-freedom -->
+
+% <!-- point: a-model-is-a-reduction-not-an-approximation | A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep. | terms: model-as-map, scope-of-modeling, modeling-principle -->
+
+% <!-- index-def: model -->
+
+A \textbf{model} is a purposeful reduction of a system. It preserves the information one engineering question needs and suppresses the detail that question does not. A property that requires an engineer to trace thousands of implementation details may become a relation over a small graph, a transition over a finite set of states, or a bound over a measured quantity. The form of a representation affects which inferences a reasoner can readily draw from it~\citep{davis1993kr}.
+
+Choosing a model also means choosing its granularity. Engineers examining service boundaries may need only services and their dependencies. A maintainer changing one interface may need the classes or functions that use it. Engineers can maintain views at different levels of detail for people, for agents, or for both. Even for the same task, a less capable agent may need an intermediate view showing which classes implement the interface. A stronger agent may reliably reconstruct those relationships from the service model and the available code. Listing every function in the service model would make it harder for a human reviewer to inspect the boundaries and consume more of an agent's context.
+
+% <!-- point: a-reduction-must-preserve-the-distinctions-its-question-requires | A model can record accurate facts yet omit a distinction needed for a decision: remaining prepaid credits cannot distinguish an exhausted allowance from unlimited service entitlement. | terms: model-as-map, modeling-principle -->
+
+Reduction fails in either direction. Consider a service that offers prepaid credits and unlimited subscriptions. A model of remaining credits records a balance of zero both for the customer who spent the last credit and for the subscriber who never needed to buy one. The balances can be accurate even though they cannot settle whether to admit the next request. At the other extreme, retaining each payment transaction is unnecessary if current entitlement alone settles the question. Every detail retained consumes attention and incurs some cost to keep current. Parsimony means that the model preserves enough for its intended use and that each distinction it retains contributes to that purpose.
+
+% <!-- point: reduction-preserves-degrees-of-freedom | Obligations rarely fix one implementation; a tolerance bounds permitted variation, a degree of freedom is a choice left open. | terms: model-as-map, scope-of-modeling, degrees-of-freedom, tolerance -->
+
+Engineering obligations usually constrain a set of acceptable implementations~\citep{brooks1987}. A \textbf{tolerance} bounds the variation an obligation permits. A \textbf{degree of freedom} is a choice left open because the governing obligations do not distinguish among its acceptable alternatives. A tolerance may be qualitative, as when a component may use any public operation of its neighbor but may not access the neighbor's private state. For a numerical example, suppose a list of up to 1,000 names must be returned in alphabetical order within 200 milliseconds. The timing requirement permits variation up to that limit. In \autoref{realization-space}, only implementations within the overlap meet both obligations. If several sorting algorithms fall there, the choice among them remains open.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/realization-space-2a3916a20a.pdf}
+\caption{\emph{Requirements bound the acceptable implementation space.} Each dot represents a possible implementation for lists of up to 1,000 names. Alphabetical ordering defines the left region, and the 200-millisecond response-time tolerance defines the right. Their intersection contains multiple acceptable implementations, leaving degrees of freedom such as the choice of algorithm.}
+\label{realization-space}
+\end{figure}
+
+% <!-- point: freedom-defers-commitment | Preserving a degree of freedom defers a decision to a reasoner better positioned to make it: information may arrive later, and the implementing agent can acquire evidence before deciding. | terms: degrees-of-freedom, scope-of-modeling -->
+
+Preserving implementation freedom is particularly useful when an agent can acquire evidence before deciding. The workload or target environment may only become known during implementation. An agent can compare sorting algorithms on representative inputs, benchmark them, and revise its choice in light of the measured time. Prescribing one algorithm before those measurements are available can replace a later, evidence-informed choice with an earlier guess. The engineer must still decide which results are acceptable and give the agent the ordering and timing obligations against which to evaluate its alternatives.
+
+% <!-- point: capability-moves-the-specification-boundary-not-the-obligation | The engineering problem sets the obligations regardless of the implementer; a more capable human or agent may need less scaffolding but still needs the relevant information in the model or from other evidence. -->
+
+The amount of guidance needed to satisfy an obligation also depends on the implementer. An engineer or agent may need examples, a decomposition, or intermediate constraints to interpret and satisfy it reliably. These provide \emph{scaffolding} in addition to the obligation itself. In \autoref{specified-region}, the engineering problem fixes the obligation, while the additional guidance depends on what the agent can do with the evidence available to it. An agent that can design a suitable benchmark may need only the workload and timing requirement. Another may need an example of how to exercise the full range of list sizes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/specified-region-bfae6b28e3.pdf}
+\caption{\emph{Obligation, scaffolding, and degrees of freedom.} The engineering obligation establishes the minimum consequential content that must be preserved. A particular agent may require additional scaffolding to interpret and satisfy that obligation reliably. Greater agent capability can reduce this scaffolding and leave more implementation choices open, but it does not change the obligation itself.}
+\label{specified-region}
+\end{figure}
+
+These choices determine which decisions the engineer delegates. Specifying an ordering, a workload, and a response-time tolerance gives the agent responsibility for choosing an algorithm within those bounds. An example can guide that choice without requiring every future implementation to use the example's algorithm. If a particular algorithm must survive a change, the engineer owes the implementer a statement of that obligation. Otherwise an agent may preserve an incidental choice and discard another implementation that meets the requirements just as well.
+
+% <!-- point: tacit-obligation-vs-genuinely-free | A tacit obligation can look free; the "not that" test reveals a boundary that was never written down. | terms: degrees-of-freedom, tolerance, modeling-principle -->
+
+A choice omitted from a model is not necessarily a genuine degree of freedom. If an implementation would cause the reviewer to say, ``\textbf{\emph{NOT THAT!}}'', the reviewer has identified a consequential boundary that the model left implicit. Uncertainty is different again. A degree of freedom allows a choice among alternatives known to be acceptable, while an unresolved question means we do not yet know which alternatives are acceptable. We can record what is known, investigate the uncertain cases, and revise the model when an unexpected interaction reveals a distinction nobody had thought to specify.
+
+% <!-- point: there-is-no-model-of-the-system | A model earns its place by the question it settles, not by how much of the system it represents. | terms: model-as-map, scope-of-modeling -->
+
+A useful model must therefore be judged both by what it preserves and by what it leaves open. To test adequacy, start with the question and ask whether the model distinguishes the cases that require different answers. To test parsimony, start with the model and ask whether any distinction could be removed without impairing that purpose. New evidence can change either judgment, and the work a model saves must justify the effort of constructing and maintaining it.
+```

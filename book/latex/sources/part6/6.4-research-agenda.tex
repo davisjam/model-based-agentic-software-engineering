@@ -13,6 +13,37 @@
 
 The next step is to find out when these mechanisms matter, by how much, and at what cost. The central experimental difficulty is to distinguish improvements in the reasoning engine from improvements in the engineering environment through which it works. Three research directions organize that problem: representation engineering, governance and engineering capital, and the interaction between capacity and environment.
 
+Lines of code have long served as a convenient measure of software production, although their relationship to engineering effort and value is imperfect. Agentic implementation weakens that relationship further: large quantities of code can be produced with little human effort, while substantial engineering work may produce no code at all. Token expenditure offers another readily available measure, but it describes resource consumption rather than engineering output. Agarwal and colleagues~\citep{agarwal2026tokens} found that token expenditure varied widely across weeks with similar commit counts. Engineers also reported using agents for analysis, research, and planning as well as implementation.
+
+Model-based engineering offers a broader measurement perspective. Prior work has examined model maturity, traceability, verification, rework, and engineering effort~\citep{garcia2021modelproductivity,henderson2023digitalmetrics,campo2023mbse}. MAGE extends the objects of measurement to the governed engineering environment itself: its models, relationships, controls, and ability to support subsequent engineering work. \autoref{engineering-measures} organizes candidate measures into four categories. These measures describe different aspects of engineering activity, output, and capability; they are alternatives and complements for empirical investigation, not components of a prescribed productivity score.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.20}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.54}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.26}}@{}}
+\caption[Candidate measures of agentic engineering]{\emph{Candidate measures of agentic engineering.} Implementation measures describe changes to the product; modeling measures describe explicit engineering knowledge; GEE measures describe the machinery supporting controlled change; activity measures describe resources consumed and work performed. Examples are illustrative rather than exhaustive.}\label{engineering-measures}\tabularnewline
+\toprule\noalign{}
+Measurement target & Candidate measures & What they characterize \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Measurement target & Candidate measures & What they characterize \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Implementation & LOC added, deleted, or retained; code churn; commits and merged changes; completed features; escaped defects; rework; accepted changes per unit time & Product change, delivery, and durability \\
+Engineering models & Model elements or size; model maturity; represented requirements and properties; model coverage; relationships across views or abstraction levels; traceability completeness; properties analyzed or validated & Explicit engineering knowledge, relationships, and evidence \\
+Governed engineering environment (GEE) & Number and coverage of constraints, sensors, and gates; obligations with independent checks; model–implementation correspondence; violations detected or blocked; false rejections; human interventions; control maintenance cost; changes admitted without human inspection & Capacity to direct, evaluate, and govern implementation \\
+Engineering activity and resources & Agent invocations; tokens consumed; inference expenditure; agent execution time; human engineering and review time; dispatches; retries; tool calls; validation runs & Work performed and resources consumed \\
+\end{longtable}
+}
+
+These categories need not move together. A migration may change thousands of lines while preserving the product’s externally visible behavior. Adding a model may make an architectural obligation explicit without changing the implementation, while introducing a gate may prevent future violations without producing a new feature. Conversely, an agent may complete substantial implementation work without adding to the engineering environment. Measurements should therefore be interpreted according to the engineering question: an experiment on implementation capacity may emphasize accepted changes and their durability; one on Modeling may examine represented properties and the analyses they support; and one on Alignment may examine enforcement coverage, violations, and the human attention required to govern changes.
+
+The distinction also matters when measuring productivity over time. Durable throughput concerns useful work that survives subsequent change, but useful work may take the form of product functionality or reusable engineering capability. Code retained without churn, a model that continues to answer consequential questions, and a control that remains effective across later changes are different forms of durability. None is adequately measured by its size alone. Their costs and subsequent uses provide additional evidence for interpreting what was accomplished.
+
 \autoref{theory-experimental-comparisons} collects four useful comparisons. Each holds the proposed move against an alternative that could plausibly work. Independent acceptance and the lifecycle accounting of \magevalue{sec:toward-a-theory-of-mage} provide a common basis: include failed work and upkeep, report unresolved requests, and compare delivery under declared quality requirements and evaluation horizons.
 
 {\footnotesize
