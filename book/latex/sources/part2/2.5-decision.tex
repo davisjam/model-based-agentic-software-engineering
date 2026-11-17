@@ -77,11 +77,15 @@ Checking \textbf{conformance} asks whether a particular decision or observed act
 
 \section{DocAble: Policies and Decisions}\label{heading:docable-policies-and-decisions}
 
-DocAble's slide classifier gives a vision-language model (VLM) a rendered slide so it can judge each image or shape in context. The VLM returns a classification: clearly decorative, uncertain, or informational. That judgment supplies evidence; the decision policy determines what to do with it. For content-bearing images, only a clearly decorative verdict permits suppressing the description. An uncertain or missing verdict preserves the image's informational role. The asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
+DocAble uses decision models for several purposes: deciding whether an image needs a description, declaring which services may communicate, and determining whether a user may upload a document. The representations differ because the decisions depend on different information. Each must preserve the distinctions that can change its answer.
 
-An evaluation found that earlier classifiers had marked content-bearing images as decorative, particularly in visualization-heavy documents. We tightened the policy by representing uncertainty explicitly and making its conservative interpretation common to the classification paths. The decision model now states how uncertain evidence affects remediation without prescribing which VLM must supply that evidence. A different VLM can make the semantic judgment; it does not redefine the policy for acting on it.
+\textbf{When is an image decorative?}
 
-Two further DocAble examples concern permission. The system accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
+Accessibility remediation must distinguish images that convey information from those that are merely decorative. As \hyperref[2.5-decision:heading:conditions-alternatives-and-decision-analysis]{the worked example} illustrated, the same image can serve either purpose depending on its context. DocAble supplies a rendered slide to a vision-language model (VLM), which classifies each image or shape as clearly decorative, uncertain, or informational. The classification supplies evidence; the decision policy determines what to do with it. Only a clearly decorative verdict permits suppressing a description. An uncertain or missing verdict preserves the image's informational role. This asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
+
+The need for an explicit uncertainty policy emerged from evaluation. Earlier classifiers had marked content-bearing images as decorative, particularly in visualization-heavy documents. We tightened the policy by representing uncertainty explicitly and making its conservative interpretation common to the classification paths. The decision model now states how uncertain evidence affects remediation without prescribing which VLM must supply that evidence. A different VLM can make the semantic judgment; it does not redefine the policy for acting on it.
+
+The remaining two DocAble examples concern permission. The system accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
 
 \textbf{Which services may communicate?}
 
@@ -117,7 +121,7 @@ DocAble distributes document remediation across several services. The public web
 
 \autoref{service-flow-model} shows a reduced view of the service-invocation policy. The web tier is the only publicly reachable service. Its declared outgoing edges permit calls to selected internal services. Separately, the worker may invoke generation, rendering, and OCR services. The arrows express permissions, not observed traffic or a requirement that every permitted call occur. Asynchronous job dispatch is omitted from this selected view; absence here does not imply prohibition by the full policy.
 
-The service-flow model is the source of truth for these relationships. DocAble generates deployment configuration from the declared edges, and a completeness check requires each gated edge to contain the information needed for deployment. This prevents omissions in the declaration from silently producing incomplete configuration. It does not establish that runtime traffic follows the intended topology: the model defines the policy, while enforcing it against actual calls requires separate mechanisms.
+The declared graph answers whether a proposed service invocation is permitted: look for the corresponding directed edge. It also supports reachability questions, such as which services the public web tier can reach through permitted calls. DocAble treats this graph as the source of truth for service-flow relationships and generates deployment configuration from its declared edges. A completeness check requires each gated edge to contain the information needed for deployment. These checks establish properties of the declaration and its generated configuration, not whether runtime traffic follows the intended policy.
 
 \begin{figure}[htbp]
 \centering
@@ -134,11 +138,11 @@ The declared graph can also serve as the policy against which observed service c
 
 % <!-- point: the-entitlement-model-was-born-from-a-production-failure | The service-flow policy was declared in advance; DocAble's upload-admission decision acquired its model in the opposite order, after a production failure exposed a representation that could no longer express the decision. -->
 
-The service-flow policy states an architectural decision. A different decision, whether a user may upload a document, exposed the cost of losing a domain distinction as the product changed.
+The service-flow model determines which calls are permitted. Upload admission presents a different decision: whether a user's entitlements authorize a particular document. This became a modeling problem when DocAble added unlimited-use groups to a system originally designed around finite credits.
 
 % <!-- point: upload-entitlement-flows-through-groups | A user receives upload entitlement through groups — finite-credit or unlimited — so the admission decision depends on two facts: how many credits remain and whether any entitlement is unlimited. -->
 
-In DocAble, a user can belong to several groups. Applying the rule from \autoref{simple-admission-policy} to this case requires two facts about the user's groups: the available finite credits and whether any applicable group grants unlimited use (\autoref{entitlement-domain}). The production failure arose when those facts traveled separately.
+\autoref{simple-admission-policy} assumed that exactly one entitlement applied to a request. DocAble's domain is more complex: a user may belong to several groups, each with its own entitlement. The upload decision must account for the available finite credits and whether any applicable group grants unlimited use (\autoref{entitlement-domain}). The production failure arose when these facts traveled separately through the system.
 
 \begin{figure}[htbp]
 \centering
@@ -159,7 +163,7 @@ Box (3) traces the production failure. In August 2026, a user whose personal gro
 
 % <!-- point: the-production-failure-produced-the-model | After fixing the client to read the existing unlimited signal, the team made the more complex entitlement policy explicit in a decision model and checked it with property tests, shared policy cases, and a shape check. -->
 
-The immediate fix made the client consult the existing unlimited-status flag it had been ignoring. We then introduced the entitlement decision model shown in box (4) to state the policy explicitly: given the user's group entitlements and the requested work, should this upload be admitted, and under which entitlement? Property tests checked the model, and a cross-runtime parity corpus checked shared policy cases in the server and client. A further check validated the model's shape. The display code derived its values from the model, and the server admission code delegated the policy decision to it.
+The immediate fix made the client consult the unlimited-status flag it had been ignoring. That repaired the observed failure, but left the admission policy represented separately across the client and server. We therefore introduced the entitlement decision model shown in box (4): given the user's group entitlements and the requested work, should the upload be admitted, and under which entitlement? Property tests checked the model, a cross-runtime parity corpus checked shared policy cases in the server and client, and another check validated the model's shape. The display code derived its values from the model, while server admission delegated the policy decision to it.
 
 \textbf{Entitlement decision model · Decision}
 
@@ -189,7 +193,7 @@ The immediate fix made the client consult the existing unlimited-status flag it 
 
 % <!-- point: the-repair-was-model-to-model | The revised model yields a structured admission decision and a separate display projection; unlimited use produces an admitting decision and a display sentinel, even though the group has zero finite credits. -->
 
-Box (4) separates the admission decision from the display projection. For the same unlimited group, with no per-user cap, the model admits the 38-page upload and records the authorizing group and an \emph{admit\_unlimited} plan step. The group's finite credit balance is still zero. The display projection, however, returns a special numeric value marking unlimited use; it returns a finite credit sum only when all of the user's groups are finite. That display value is explicitly excluded from the admission decision. The two outputs answer different questions, and each preserves the information its consumer needs.
+The repaired model preserves the distinction that the earlier admission check lost. For the same uncapped unlimited group and 38-page request, it admits the upload and records the authorizing group and an \emph{admit\_unlimited} plan step, even though the finite credit balance remains zero. The display projection answers a different question: it returns a special numeric value for unlimited use, or a finite credit sum when all groups are finite. That display value cannot determine admission. The model can therefore be tested against cases involving finite credits, unlimited entitlement, and their combinations without treating a display value as the decision itself.
 
 \begin{figure}[htbp]
 \centering
@@ -202,6 +206,6 @@ Box (4) separates the admission decision from the display projection. For the sa
 
 A note in the first person: I changed the domain in one place --- groups could now be unlimited --- and did not carry the change into every representation of the same decision. An explicit model would not have made the change automatically correct; it would have made the inconsistency visible as an engineering obligation. When the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. \magevalue{chapter:alignment} gives the recurring pattern here --- a failure converted into explicit structure that later work inherits --- a name.
 
-The two models give a decision an explicit domain: permitted service pairs in the first case, distinct entitlement alternatives in the second. That makes the decision inspectable and checkable. It also exposes what must change when the intended policy or the product\textquotesingle s domain changes.
+The three decision models preserve different kinds of information: evidence about an image's role, permitted relationships between services, and the entitlements that authorize an upload. Each makes a decision inspectable by separating the information used to make it from the criteria governing the outcome. That separation also makes it possible to revise a classifier, service topology, or entitlement scheme without silently redefining the decision policy.
 
 Decision models make the criteria for a choice explicit, whether the choice concerns permission or what to do next. The final section steps back from one representation to ask how a family of models can answer questions together.

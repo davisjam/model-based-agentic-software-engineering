@@ -57,11 +57,11 @@ To investigate progress, we must say what can keep a job waiting and what allows
 
 \section{DocAble: Job Lifecycles and Recovery}\label{heading:docable-job-lifecycles-and-recovery}
 
-DocAble distributes document accessibility work across workers. A worker can fail while producing a corrected document, and another worker may have to recover the job. Safe recovery therefore involves two related questions: when is a recovered artifact safe to publish as the result, and which worker currently has the right to complete the job? Separate models preserve the facts each question needs.
+DocAble distributes document accessibility work across workers that may fail or lose their assignments. Recovery raises two behavioral questions beyond the simple job lifecycle in \hyperref[2.4-behavioral:heading:states-transitions-and-behavioral-analysis]{the preceding subsection}. Can a worker publish a recovered result in an unsafe order? Can a former owner return and interfere with a newer assignment? The first requires a model of publication states; the second requires a model of ownership across competing workers.
 
 \textbf{Publishing a recovered result}
 
-DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published. Reduced to its states, that concern is a small model.
+A worker recovering a document job may have a corrected artifact available locally before uploading it to persistent storage. If the worker updates the database record first and then crashes, the record can point to an artifact that other workers cannot retrieve. What ordering of publication and database updates prevents this failure?
 
 \textbf{Recovery-ordering model · Behavioral}
 
@@ -97,9 +97,7 @@ DocAble must preserve the ordering between publishing a recovered artifact and u
 
 % <!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
 
-A worker recovering a document job may have a corrected artifact available locally before it has been uploaded to persistent storage. These are different conditions: a local artifact may disappear if the worker fails, while a published artifact remains available to the service. The database record must not refer to the recovered artifact until publication succeeds. \autoref{recovery-ordering-model} reduces this obligation to three states. In \texttt{FALLBACK\_STAGED}, the artifact exists locally; in \texttt{FALLBACK\_UPLOADED}, it has been published to durable storage; and in \texttt{DB\_UPDATED}, the database refers to it. The permitted path passes through all three states. The forbidden shortcut from \texttt{FALLBACK\_STAGED} to \texttt{DB\_UPDATED} captures the failure the model must exclude: a worker could update the database and then crash before uploading the artifact, leaving the record pointing to a result that other workers cannot retrieve.
-
-The model omits the storage API, retry machinery, and other recovery details because they do not determine this ordering requirement. To check the property, search for a path to \texttt{DB\_UPDATED} that does not pass through \texttt{FALLBACK\_UPLOADED}. In a larger lifecycle, checking only for the direct forbidden transition would miss an indirect route through other states. The model establishes publication order, not eventual completion: a worker could wait or retry indefinitely without violating the ordering constraint.
+\autoref{recovery-ordering-model} represents the recovery operation using three states. In \texttt{FALLBACK\_STAGED}, the corrected artifact exists locally; in \texttt{FALLBACK\_UPLOADED}, it has been published to durable storage; and in \texttt{DB\_UPDATED}, the database refers to it. The permitted path passes through all three states. The prohibited transition from \texttt{FALLBACK\_STAGED} directly to \texttt{DB\_UPDATED} represents the unsafe ordering: the database would refer to an artifact that had not yet been published.
 
 \begin{figure}[htbp]
 \centering
@@ -107,6 +105,8 @@ The model omits the storage API, retry machinery, and other recovery details bec
 \caption{\emph{Recovery-ordering model.} A recovered artifact must be published to durable storage before the database may refer to it. The prohibited transition from \texttt{FALLBACK\_STAGED} directly to \texttt{DB\_UPDATED} illustrates the ordering violation; the property also excludes indirect paths that bypass \texttt{FALLBACK\_UPLOADED}.}
 \label{recovery-ordering-model}
 \end{figure}
+
+To check the ordering property, search for an execution that reaches \texttt{DB\_UPDATED} without first visiting \texttt{FALLBACK\_UPLOADED}. The three-state model has no such execution. In a larger lifecycle, checking only for the direct forbidden transition would be insufficient: another sequence of transitions might reach \texttt{DB\_UPDATED} while bypassing publication. This is a safety property, not a liveness guarantee. A worker could wait or retry indefinitely without violating the ordering requirement.
 
 % <!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | The recovery model keeps the states needed to check publication order; a fuller job lifecycle can support broader workflow questions when it includes the relevant transitions. -->
 
@@ -116,7 +116,7 @@ The three-state recovery model is a reduction for checking publication order. Do
 
 % <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
 
-DocAble leases each in-flight job to one worker. If its lease expires, a second worker can acquire the job. Which assignment does a delayed release from the first worker concern? \autoref{ownership-constructs} distinguishes four ways to represent access and ownership. Here we combine two of them: a claim records the assignment and a lease limits its lifetime.
+DocAble leases each in-flight job to one worker. Suppose worker A stalls and its lease expires. Worker B acquires the job, but A later returns and attempts to release its old assignment. How can the system distinguish A's obsolete claim from B's current one? \autoref{ownership-constructs} distinguishes several constructs for representing access and ownership. DocAble combines two: a claim records the assignment, and a lease limits its lifetime.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -140,9 +140,9 @@ Claim & Records a worker's assignment to a job and the conditions under which th
 \end{longtable}
 }
 
-% <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
+% <!-- point: leased-iff-owner-is-the-models-definition | A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what "leased" means, and it sets up the invariant that follows. -->
 
-Each new assignment receives a higher generation number. To check the recovery protocol, explore the orders in which an expiry, a new claim, and a delayed release can occur. At each reachable configuration, check that a release for an earlier generation cannot clear the current claim.
+The model represents ownership through a current claim relating a worker to a job. A job is leased exactly when it has such a claim; ownership and lease status are not separate facts that can disagree within this model. Each claim also records a generation and a lifetime. Expiry makes the job available for reassignment, and a new assignment advances the generation. The generation distinguishes successive claims even when they concern the same job.
 
 \textbf{In-flight lease · Ownership}
 
@@ -176,13 +176,9 @@ Each new assignment receives a higher generation number. To check the recovery p
   \textbf{Quality attribute} --- correctness under concurrency; crash-safety.
 \end{itemize}
 
-% <!-- point: leased-iff-owner-is-the-models-definition | A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what "leased" means, and it sets up the invariant that follows. -->
-
-Start with what the model \emph{means}. A job is leased exactly when it has an owner; the two are the same fact seen from two sides, so the model represents ownership as the presence of a current claim rather than as a separate flag that could disagree with it. That is a definition, not a property that could fail. It sets up the invariant that can.
-
 % <!-- point: the-epoch-generation-makes-a-stale-release-inapplicable | Suppose A holds generation 7, stalls, and is reclaimed; the job is re-leased to B at generation 8; a late release from A carrying generation 7 must not clear B's generation-8 claim, and the generation makes that decidable. | terms: soft-vs-hard-governance -->
 
-The next invariant concerns ownership under contention. A stale claim must not clear or supersede the current claim. Suppose worker A holds a claim at generation 7, appears to stall, and loses its lease. Worker B then acquires the job at generation 8. When A returns and attempts to release its generation-7 claim, that operation must not clear B\textquotesingle s current claim. \autoref{in-flight-ownership-states} models this sequence. The generation number distinguishes successive claims on the same job, making the stale release identifiable and rejectable. Without it, A\textquotesingle s delayed release could clear B\textquotesingle s valid claim. The model preserves owner, generation, and lifetime while omitting the worker implementation and the machinery that stores the lease.
+\autoref{in-flight-ownership-states} follows one possible execution. Worker A acquires generation 7, then stalls until its lease expires. Worker B reclaims the job at generation 8. When A returns and attempts to release generation 7, the operation must not clear B's current claim. The generation number makes the stale operation distinguishable from a release by the current owner. Without that distinction, A's delayed release could clear B's valid assignment.
 
 \begin{figure}[htbp]
 \centering
@@ -191,11 +187,15 @@ The next invariant concerns ownership under contention. A stale claim must not c
 \label{in-flight-ownership-states}
 \end{figure}
 
+% <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
+
+The illustrated execution is only one possible ordering of events. To investigate the invariant, explore the interleavings of lease expiry, reassignment, and delayed release. At each reachable configuration, check whether a release from an earlier generation can clear or supersede the current claim. A counterexample would identify an event sequence that violates ownership; checking the reachable configurations establishes the property within the model's declared scope.
+
 The publication model separates a local artifact from a durably stored one. The ownership model separates a current claim from a superseded one. In each case, the useful addition is a distinction that changes whether a state change is acceptable. The models make those distinctions available for analysis; the later Alignment chapter examines the mechanisms that enforce them.
 
 % <!-- point: the-lease-model-omits-the-processing-topology | The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model. -->
 
-Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. DocAble\textquotesingle s implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset explains what an invariant requires and how a checker evaluates one.
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. DocAble\textquotesingle s implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset shows how a relationship built into the model can become an invariant when an implementation stores its parts separately.
 
 % <!-- index-def: invariant -->
 

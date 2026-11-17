@@ -839,7 +839,7 @@
           "section_id": "docable-job-lifecycles-and-recovery",
           "level": 2,
           "heading_text": "DocAble: Job Lifecycles and Recovery",
-          "topic_sentence": "DocAble distributes document accessibility work across workers.",
+          "topic_sentence": "DocAble distributes document accessibility work across workers that may fail or lose their assignments.",
           "id_source": "explicit",
           "block_index": 21,
           "points": [
@@ -859,19 +859,19 @@
               "block_index": 40
             },
             {
-              "slug": "a-claim-carries-the-facts-that-make-contention-decidable",
-              "text": "A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking.",
-              "block_index": 43
-            },
-            {
               "slug": "leased-iff-owner-is-the-models-definition",
               "text": "A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what \"leased\" means, and it sets up the invariant that follows.",
-              "block_index": 53
+              "block_index": 43
             },
             {
               "slug": "the-epoch-generation-makes-a-stale-release-inapplicable",
               "text": "Suppose A holds generation 7, stalls, and is reclaimed; the job is re-leased to B at generation 8; a late release from A carrying generation 7 must not clear B's generation-8 claim, and the generation makes that decidable.",
-              "block_index": 55
+              "block_index": 53
+            },
+            {
+              "slug": "a-claim-carries-the-facts-that-make-contention-decidable",
+              "text": "A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking.",
+              "block_index": 56
             },
             {
               "slug": "the-lease-model-omits-the-processing-topology",
@@ -950,54 +950,54 @@
           "section_id": "docable-policies-and-decisions",
           "level": 2,
           "heading_text": "DocAble: Policies and Decisions",
-          "topic_sentence": "DocAble’s slide classifier gives a vision-language model (VLM) a rendered slide so it can judge each image or shape in context.",
+          "topic_sentence": "DocAble uses decision models for several purposes: deciding whether an image needs a description, declaring which services may communicate, and determining whether a user may upload a document.",
           "id_source": "explicit",
           "block_index": 22,
           "points": [
             {
               "slug": "the-service-flow-model-is-a-declared-source-of-truth-not-a-firewall",
               "text": "The declared graph is the single source of truth for permitted inter-service edges, with one node declared publicly reachable and every other edge authenticated; a completeness check requires each gated edge to be fully specified, and the deployment config is generated from the graph.",
-              "block_index": 36
+              "block_index": 38
             },
             {
               "slug": "docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question",
               "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "the-entitlement-model-was-born-from-a-production-failure",
               "text": "The service-flow policy was declared in advance; DocAble's upload-admission decision acquired its model in the opposite order, after a production failure exposed a representation that could no longer express the decision.",
-              "block_index": 43
+              "block_index": 45
             },
             {
               "slug": "upload-entitlement-flows-through-groups",
               "text": "A user receives upload entitlement through groups — finite-credit or unlimited — so the admission decision depends on two facts: how many credits remain and whether any entitlement is unlimited.",
-              "block_index": 45
+              "block_index": 47
             },
             {
               "slug": "the-scalar-was-adequate-until-the-domain-changed",
               "text": "The original credit comparison was understandable directly in code; unlimited entitlement made the policy harder to follow across implementation sites and motivated a separate decision model.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "the-old-reduction-observed-the-distinction-and-discarded-it",
               "text": "The finite-credit reduction excluded unlimited groups, while the client upload check ignored a separate unlimited-status signal and rejected the upload before the correct server gate was reached.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "the-production-failure-produced-the-model",
               "text": "After fixing the client to read the existing unlimited signal, the team made the more complex entitlement policy explicit in a decision model and checked it with property tests, shared policy cases, and a shape check.",
-              "block_index": 53
+              "block_index": 55
             },
             {
               "slug": "the-repair-was-model-to-model",
               "text": "The revised model yields a structured admission decision and a separate display projection; unlimited use produces an admitting decision and a display sentinel, even though the group has zero finite credits.",
-              "block_index": 63
+              "block_index": 65
             },
             {
               "slug": "an-explicit-model-would-have-made-the-obligation-visible",
               "text": "The author changed the domain in one place and did not carry the change into every representation of the same decision; when the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it.",
-              "block_index": 66
+              "block_index": 68
             }
           ]
         }
