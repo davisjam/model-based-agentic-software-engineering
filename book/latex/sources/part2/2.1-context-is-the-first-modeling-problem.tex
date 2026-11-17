@@ -18,9 +18,9 @@
 
 % <!-- section-terms: modeling-principle, reasoning-horizon, context-window -->
 
-% <!-- point: a-reasoner-arrives-knowing-nothing-about-your-system | A foundation model knows the languages and patterns; it does not know your system — those facts live in the engineered environment. | terms: reasoning-horizon, context-window, modeling-principle -->
+% <!-- point: a-reasoner-arrives-knowing-nothing-about-your-system | Preserving project knowledge across tasks reduces repeated reconstruction. | terms: reasoning-horizon, context-window, modeling-principle -->
 
-A foundation model brings knowledge of programming languages, frameworks, databases, distributed systems, and common engineering practices. Fresh out of the box, it does not know the particular system in front of it: its boundaries, history, conventions, ownership, or current state. That knowledge is distributed across source code, configuration, documentation, registries, version history, and the people who maintain the system. An agent can reconstruct what a task needs from those sources, but doing so takes work. If the result is not preserved, the next agent may have to repeat that work for a closely related task.
+The knowledge an agent needs about a particular system is distributed across source code, configuration, documentation, registries, version history, and the people who maintain it. An agent can reconstruct what a task needs from those sources, but doing so takes work. If the result is not preserved, the next agent may have to repeat that work for a closely related task.
 
 % <!-- box-family: inset -->
 
@@ -51,11 +51,11 @@ The form of the context matters as well as its size. Natural language is often a
 
 Models also help the engineer decide what to require. Choosing entities, relationships, and permitted values can expose omissions that are easy to overlook in prose. A representation may reveal that two cases need different treatment, or that a decision has not yet been made. That benefit arises while the engineer constructs and examines the model, before any agent uses it. Some knowledge may still be best expressed in prose, and some decisions may still require human judgment.
 
-% <!-- point: the-modeling-principle-in-its-weakest-form | The Modeling Principle in its weakest form: externalize engineering knowledge into explicit, structured models to reason through. | terms: modeling-principle, reasoning-horizon, context-window -->
+% <!-- point: the-modeling-principle-in-its-weakest-form | Externalize knowledge and intent into engineering models that both engineers and agents can reason through. | terms: modeling-principle, reasoning-horizon, context-window -->
 
 % <!-- index-def: modeling-principle -->
 
-\textbf{The Modeling Principle:} externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through. In practice, give recurring engineering questions purposeful representations. A useful representation may bring a question within the reasoner's capacity, or make an already manageable question cheaper to answer.
+\textbf{Modeling Principle.} Externalize knowledge and intent into engineering models that both engineers and agents can reason through. Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
 
 Software is unusually changeable. As a system evolves, engineers need to track what should change and which characteristics must be preserved. Requirements engineering helps engineers state what stakeholders want and distinguish those goals from assumptions about the environment~\citep{zave1997darkcorners}~\citep{nuseibeh2000roadmap}~\citep{vanlamsweerde2009re}. Requirements may initially be qualitative or incomplete, and can depend on assumptions about the environment. Making requirements explicit lets engineers examine and refine them, and assess whether a later change preserves the properties that matter.
 

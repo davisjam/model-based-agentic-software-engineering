@@ -20869,3 +20869,37 @@ Explicit engineering models are valuable not because they are inherently more ac
 Replaced with the author’s connection to steering agents and the probability of success. From `book/latex/sources/part1/1.5-the-new-engineering-problem.tex`, revision `5c32c0b45`, line 45.
 
 DocAble illustrates how the two activities meet in practice. Its remediation pipeline must improve document accessibility while preserving the original content. A representation of extracted content makes it possible to compare the original document with the result. A validator checks whether the revised document has lost any of that extracted content, and the completion rule refuses the result if the check fails. The representation and validator perform narrower jobs than remediation itself: the agent still proposes changes, and the engineer must determine what accessible content should convey. Together, the representation, check, and acceptance rule preserve a consequential engineering decision across independently produced changes. The obligation remains in force without requiring each implementing agent to remember it or certify its own compliance.
+
+## 2026-11-16 — Chapter 2 opening and §2.1
+
+Replaced the introductory survey and ownership example with the shorter chapter opening and reading guide. Source at `04aeae99e` in `part2/00-part-intro.tex` and `part2/2.1-context-is-the-first-modeling-problem.tex`.
+
+```tex
+Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so engineers understand them through purposeful views. A dependency graph exposes relationships among components; a state machine exposes legal behavior; a schema exposes permitted structure; a quantitative model exposes a resource bound. Each representation preserves what an engineering question needs and suppresses what it does not.
+
+Explicit models cost work to create, maintain, and keep consistent with a changing system. Those costs help explain why models have often remained secondary to code in software practice. Commodity intelligence changes the economics: agents can help derive, regenerate, reconcile, and query structured representations. Rapid autonomous software implementation\mageaside{Here, implementation means writing software. Throughout the book, the term can also refer to an agent carrying out other kinds of delegated work, including specification, design, and validation.} also increases their value. Knowledge that an engineer once reconstructed for an occasional change may now be needed by many agents working on many tasks. A maintained model gives those tasks a shared starting point.
+
+% <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Chapter 2 asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
+
+MAGE therefore treats Modeling as an engineering activity in its own right:
+
+\textbf{What should I model, and what will the model let me know?}
+
+Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
+
+% <!-- point: part-2-moves-through-five-model-classes | The chapter develops three familiar modeling questions and connects views to answer questions that cross them. | terms: model-zoo, model-classes -->
+
+We will develop three familiar modeling questions in detail: what is connected to what, what may happen, and what should happen next. We will then connect models to answer questions that cross individual views. The examples illustrate a broader engineering skill: recognizing which representation makes a particular question tractable.
+
+% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Mainline examples introduce modeling questions; optional worked insets develop the production case, while property, invariant, analysis, and enforcement retain distinct meanings. -->
+
+The main text develops each modeling question through a small example. Four worked insets apply those ideas to DocAble, the production accessibility service introduced in \magevalue{chapter:problem}. DocAble accepts a document, distributes accessibility repairs across workers and services, validates the result, and returns the corrected document with a record of what changed. Each inset introduces the part of the system it needs, so the main argument remains readable without the case details.
+
+Four terms recur throughout the chapter. A \textbf{property} is a claim about a system that we can express using a model. An \textbf{invariant} is a property that must always hold within a specified scope. An \textbf{analysis} or check produces evidence about whether a property holds. \textbf{Enforcement} prevents violations through a mechanism in the running system or development process. \magevalue{chapter:alignment} examines enforcement.
+
+For example, a job-ownership model can record which worker may modify each job. ``Each job has at most one modifying worker'' is a property; requiring it throughout every job\textquotesingle s lifetime makes it an invariant. An analysis can search the modeled transitions for a state in which two workers both hold permission. In a service where a worker must claim the job before changing it, an atomic claim can enforce exclusive ownership: it assigns an unowned job to one worker and rejects competing claims.
+
+A foundation model brings knowledge of programming languages, frameworks, databases, distributed systems, and common engineering practices. Fresh out of the box, it does not know the particular system in front of it: its boundaries, history, conventions, ownership, or current state. That knowledge is distributed across source code, configuration, documentation, registries, version history, and the people who maintain the system. An agent can reconstruct what a task needs from those sources, but doing so takes work. If the result is not preserved, the next agent may have to repeat that work for a closely related task.
+
+\textbf{The Modeling Principle:} externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through. In practice, give recurring engineering questions purposeful representations. A useful representation may bring a question within the reasoner's capacity, or make an already manageable question cheaper to answer.
+```

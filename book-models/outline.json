@@ -761,7 +761,7 @@
       "preamble_points": [
         {
           "slug": "a-reasoner-arrives-knowing-nothing-about-your-system",
-          "text": "A foundation model knows the languages and patterns; it does not know your system — those facts live in the engineered environment.",
+          "text": "Preserving project knowledge across tasks reduces repeated reconstruction.",
           "block_index": 2
         },
         {
@@ -781,7 +781,7 @@
         },
         {
           "slug": "the-modeling-principle-in-its-weakest-form",
-          "text": "The Modeling Principle in its weakest form: externalize engineering knowledge into explicit, structured models to reason through.",
+          "text": "Externalize knowledge and intent into engineering models that both engineers and agents can reason through.",
           "block_index": 14
         }
       ]

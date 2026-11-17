@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 634,
+    "total_sites": 631,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 299,
+      "book-web": 296,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -53,7 +53,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 60
+            "occ": 61
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
@@ -200,10 +200,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/part-2-intro.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/part-3-intro.md",
             "occ": 2
           },
@@ -219,7 +215,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 48
           }
         ]
       },
@@ -901,7 +897,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 59
+            "occ": 60
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -929,7 +925,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 139
+            "occ": 138
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -1473,7 +1469,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 107
+            "occ": 106
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -1649,7 +1645,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 12
+            "occ": 7
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -2399,7 +2395,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -2477,7 +2473,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -2490,10 +2486,6 @@
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
             "occ": 2
-          },
-          {
-            "file": "book/web/docs/2.6-modeling-summary.md",
-            "occ": 1
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -2546,16 +2538,12 @@
           {
             "file": "book/web/docs/figures.md",
             "occ": 13
-          },
-          {
-            "file": "book/web/docs/part-2-intro.md",
-            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 20
+            "occ": 18
           }
         ]
       },

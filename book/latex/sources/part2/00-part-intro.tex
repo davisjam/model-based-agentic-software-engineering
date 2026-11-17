@@ -3,10 +3,6 @@
 
 % <!-- part-foreshadows: modeling-principle, mage-becomes-practical -->
 
-Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so engineers understand them through purposeful views. A dependency graph exposes relationships among components; a state machine exposes legal behavior; a schema exposes permitted structure; a quantitative model exposes a resource bound. Each representation preserves what an engineering question needs and suppresses what it does not.
-
-Explicit models cost work to create, maintain, and keep consistent with a changing system. Those costs help explain why models have often remained secondary to code in software practice. Commodity intelligence changes the economics: agents can help derive, regenerate, reconcile, and query structured representations. Rapid autonomous software implementation\mageaside{Here, implementation means writing software. Throughout the book, the term can also refer to an agent carrying out other kinds of delegated work, including specification, design, and validation.} also increases their value. Knowledge that an engineer once reconstructed for an occasional change may now be needed by many agents working on many tasks. A maintained model gives those tasks a shared starting point.
-
 % <!-- principlebox -->
 
 % <!-- box-family: canonical -->
@@ -15,30 +11,22 @@ Explicit models cost work to create, maintain, and keep consistent with a changi
 \mbox{}%
 \subsection{Key Ideas}\label{heading:modeling-principle}
 
-\textbf{Modeling Principle.} Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.
+\textbf{Modeling Principle.} Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
 
-Appropriate representations make broader engineering questions tractable and make additional properties available for Alignment.
+Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
 \end{quote}
 
-% <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Chapter 2 asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
+\magevalue{chapter:problem} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also cost work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep.
 
-MAGE therefore treats Modeling as an engineering activity in its own right:
+% <!-- point: part-2-asks-what-to-model-and-what-it-reveals | The engineering question determines which distinctions a useful model must preserve. | terms: modeling-principle, model-as-map, scope-of-modeling -->
 
-\textbf{What should I model, and what will the model let me know?}
+The central skill is choosing a useful representation for the engineering question. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system call for different models. A useful model preserves the distinctions needed to answer its question while leaving irrelevant details out.
 
-Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
+% <!-- point: part-2-moves-through-five-model-classes | Structural, behavioral, and decision models answer different questions, and connected views support questions that span them. | terms: model-zoo, model-classes -->
 
-% <!-- point: part-2-moves-through-five-model-classes | The chapter develops three familiar modeling questions and connects views to answer questions that cross them. | terms: model-zoo, model-classes -->
+% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | The main text introduces each class through small examples and the worked insets apply it to DocAble. -->
 
-We will develop three familiar modeling questions in detail: what is connected to what, what may happen, and what should happen next. We will then connect models to answer questions that cross individual views. The examples illustrate a broader engineering skill: recognizing which representation makes a particular question tractable.
-
-% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Mainline examples introduce modeling questions; optional worked insets develop the production case, while property, invariant, analysis, and enforcement retain distinct meanings. -->
-
-The main text develops each modeling question through a small example. Four worked insets apply those ideas to DocAble, the production accessibility service introduced in \magevalue{chapter:problem}. DocAble accepts a document, distributes accessibility repairs across workers and services, validates the result, and returns the corrected document with a record of what changed. Each inset introduces the part of the system it needs, so the main argument remains readable without the case details.
-
-Four terms recur throughout the chapter. A \textbf{property} is a claim about a system that we can express using a model. An \textbf{invariant} is a property that must always hold within a specified scope. An \textbf{analysis} or check produces evidence about whether a property holds. \textbf{Enforcement} prevents violations through a mechanism in the running system or development process. \magevalue{chapter:alignment} examines enforcement.
-
-For example, a job-ownership model can record which worker may modify each job. ``Each job has at most one modifying worker'' is a property; requiring it throughout every job\textquotesingle s lifetime makes it an invariant. An analysis can search the modeled transitions for a state in which two workers both hold permission. In a service where a worker must claim the job before changing it, an atomic claim can enforce exclusive ownership: it assigns an unowned job to one worker and rejects competing claims.
+This chapter develops three familiar classes of engineering model: structural models ask what is connected to what; behavioral models ask what may happen; and decision models ask what should happen next. We then examine how models can be connected to answer questions that cross individual views. The main text develops each class through small examples, while worked insets apply the ideas to DocAble, introduced in \magevalue{chapter:problem}.
 
 % <!-- box-family: inset -->
 
