@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="414" height="160" viewBox="0 0 414 160"
+<svg xmlns="http://www.w3.org/2000/svg" width="414" height="175" viewBox="0 0 414 175"
      role="img" aria-labelledby="sensor-title sensor-description"
      font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10.5" fill="#171717">
   <title id="sensor-title">Three models of a sensor, buffer, and radio</title>
@@ -14,8 +14,11 @@
       <path d="M0 0L5 2.5L0 5Z" fill="#333333"/>
     </marker>
   </defs>
-  <text x="10" y="16" font-size="12" font-weight="700">(a) Structure</text>
-  <text x="233" y="16" font-size="12" font-weight="700">(b) Quantities</text>
+  <text x="10" y="16" font-size="12" font-weight="700">(a) Structural model</text>
+  <text x="10" y="29">— measurement flow</text>
+  <text x="233" y="16" font-size="12" font-weight="700">(b) Quantitative model</text>
+  <text x="233" y="29">— rates and capacity</text>
+  <g transform="translate(0,15)">
   <g fill="#ffffff" stroke="#444444" stroke-width="0.85">
     <rect x="10" y="32" width="52" height="25" rx="3"/>
     <rect x="88" y="32" width="52" height="25" rx="3"/>
@@ -25,7 +28,6 @@
     <text x="36" y="48">Sensor</text>
     <text x="114" y="48">Buffer</text>
     <text x="192" y="48">Radio</text>
-    <text x="114" y="73">Measurement flow</text>
   </g>
   <path d="M64 44.5H86" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
   <path d="M142 44.5H164" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
@@ -38,7 +40,7 @@
     <text x="404" y="69">12 s</text>
   </g>
   <path d="M10 84H404M10 122H404" fill="none" stroke="#777777" stroke-width="0.7"/>
-  <text x="10" y="101" font-size="12" font-weight="700">(c) Behavior through the first transmission</text>
+  <text x="10" y="101" font-size="12" font-weight="700">(c) Behavioral model — buffer occupancy over time</text>
   <text x="10" y="117">Time (s)</text>
   <text x="10" y="137">Samples stored</text>
   <g text-anchor="middle">
@@ -60,4 +62,5 @@
   <path d="M316 105H342V142H316Z" fill="none" stroke="#444444" stroke-dasharray="2 2"/>
   <text x="215" y="154" font-weight="700">11 s: sample lost</text>
   <text x="404" y="154" text-anchor="end">12 s: send, then sample</text>
+  </g>
 </svg>

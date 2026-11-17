@@ -20903,3 +20903,41 @@ A foundation model brings knowledge of programming languages, frameworks, databa
 
 \textbf{The Modeling Principle:} externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through. In practice, give recurring engineering questions purposeful representations. A useful representation may bring a question within the reasoner's capacity, or make an already manageable question cheaper to answer.
 ```
+
+## 2026-11-16 — §2.1 sensor and repertoire insets
+
+Earlier wording from `2.1-context-is-the-first-modeling-problem.tex` at `8093e2558`.
+
+```tex
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: page -->
+
+\begin{bookbox}{inset}{Debugging Models Before Code}
+\label{inset-debugging-models-before-code}
+One question may need several models. Suppose we are designing a battery-powered device that collects measurements and transmits them over a radio. Can any measurements be lost?
+
+Start with the structural model in panel (a) of \autoref{sensor-buffer-radio}. The sensor produces measurements, the buffer stores them, and the radio transmits them. The model shows the data path. To decide whether the buffer can overflow, we need to know how quickly it fills and when it empties.
+
+Add the quantities in panel (b). The sensor samples once a second, the buffer holds ten samples and discards new arrivals when full, and the radio transmits the accumulated samples every twelve seconds. The behavioral model in panel (c) puts those quantities on one timeline. Start with an empty buffer, take the first sample at one second, and let the radio empty the buffer at twelve seconds, just before that second's sample. The buffer fills at ten seconds. The eleventh sample arrives before the radio runs, so there is no room to store it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,alt={A sensor feeds a ten-sample buffer once a second. It fills at ten seconds and loses the next sample, one second before the radio first transmits.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Three models of one sensor system]{\emph{Three models of one sensor system.} Structure shows where measurements flow, and quantities specify the rates and capacity. Putting the events on a timeline exposes the loss of the eleventh sample before the radio first runs.}
+\label{sensor-buffer-radio}
+\end{figure}
+
+We can now investigate alternatives: transmit more frequently, increase the buffer capacity, sample less often, or change the transmission policy. Each affects energy consumption, memory, or measurement quality. We have learned enough to change the design before deciding on interrupt handlers, allocation, or radio drivers. I would much rather discover this problem by examining a few small models than by debugging a thousand lines of C.
+\end{bookbox}
+
+This chapter does not attempt to enumerate every useful model or engineering question. Start with the models, patterns, and analyses your field has already developed. Software engineering draws on techniques from model-based systems engineering, distributed systems, operations research, and other disciplines. Each brings established representations, analyses, strengths, and tradeoffs.
+
+An engineer who needs to sort data does not ordinarily invent a sorting algorithm from first principles. The engineer recognizes the problem and selects among established algorithms according to the properties and tradeoffs that matter. Modeling works the same way. Occasionally the established repertoire is inadequate and invention is required, but that is the exception.
+
+For example, UML offers structural and behavioral diagrams; SysML supports broader systems engineering concerns, including requirements, architecture, and verification. A state machine may expose illegal transitions, while a queueing model may reveal whether a service has sufficient capacity. These representations support different questions and analyses, and they need not share a modeling language or toolchain. The engineer chooses a representation according to the question it must answer and the analyses it should support. The notation is a means to that end, not the method itself.
+```
