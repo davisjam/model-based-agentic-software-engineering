@@ -296,14 +296,14 @@
               "block_index": 18
             },
             {
-              "slug": "natural-language-delegation-needs-durable-intent",
-              "text": "Natural-language requests can leave consequential choices implicit, and iterative changes can lose earlier obligations; FlowCheck provides a concrete scheduler example.",
-              "block_index": 25
-            },
-            {
               "slug": "the-reasoning-horizon-defined",
               "text": "The reasoning horizon is the practical limit of work the reasoner and its supporting machinery can carry through reliably, given the available representations and resources; task demands are distinct from this system-level limit.",
-              "block_index": 28
+              "block_index": 23
+            },
+            {
+              "slug": "natural-language-delegation-needs-durable-intent",
+              "text": "Natural-language requests can leave consequential choices implicit, and iterative changes can lose earlier obligations; FlowCheck provides a concrete scheduler example.",
+              "block_index": 27
             }
           ]
         },

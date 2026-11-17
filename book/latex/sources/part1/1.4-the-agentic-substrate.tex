@@ -62,7 +62,11 @@ Four properties of contemporary foundation models matter to the engineering argu
 
 % <!-- index-def: long-horizon-task -->
 
-\textbf{Bounded working state.} The information available to a foundation model during an invocation is finite. An agentic harness can extend its effective working state through retrieval, external memory, compaction, and repeated tool use, but information needed for a particular decision must be available when that decision is made. A \emph{long-horizon task} requires carrying earlier decisions or commitments into later steps. Large software systems exceed what can be presented in a single reasoning episode, so agents must select and reconstruct relevant system knowledge.
+% <!-- point: the-reasoning-horizon-defined | The reasoning horizon is the practical limit of work the reasoner and its supporting machinery can carry through reliably, given the available representations and resources; task demands are distinct from this system-level limit. | terms: reasoning-horizon, context-window -->
+
+% <!-- index-def: reasoning-horizon -->
+
+\textbf{Bounded working state.} The information available to a foundation model during an invocation is finite. An agentic harness can extend its effective working state through retrieval, external memory, compaction, and repeated tool use, but information needed for a particular decision must be available when that decision is made. A \emph{long-horizon task} requires carrying earlier decisions or commitments into later steps. Large software systems exceed what can be presented in a single reasoning episode, so agents must select and reconstruct relevant system knowledge. The \textbf{reasoning horizon} is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources.
 
 \textbf{Inexpensive repeated reasoning.} Agents can explore alternatives at a speed and cost that human engineers cannot match. An agent can propose an implementation, run checks, revise its work, and try again, often many times in the time a human engineer would need for one attempt. This is particularly valuable when the engineer can state what constitutes an acceptable result. Human engineers are fallible reasoners too: they misunderstand requirements, overlook interactions, make incorrect assumptions, and introduce defects. Software engineering has long responded with specifications, types, tests, reviews, and other means of checking work independently of its author. Artificial reasoners introduce a new source of implementation capacity, not a new need for engineering assurance.
 
@@ -72,10 +76,6 @@ These capabilities make natural language a remarkably productive interface for p
 
 On more complex systems, a change must also preserve requirements that nobody thought to repeat in the latest request. In experiments at Columbia University, applications that appeared to work mishandled business rules or lost track of state as users moved between components~\citep{vir2026failurepatterns}. The FlowCheck study gives a particularly clear example. Three coding systems were asked to let several speakers share a time slot. All three also allowed a speaker to occupy several slots, violating an earlier rule~\citep{vir2026flowcheck}. A developer who tried only the newly requested feature could easily miss what the change had undone.
 
-% <!-- point: the-reasoning-horizon-defined | The reasoning horizon is the practical limit of work the reasoner and its supporting machinery can carry through reliably, given the available representations and resources; task demands are distinct from this system-level limit. | terms: reasoning-horizon, context-window -->
-
-% <!-- index-def: reasoning-horizon -->
-
 % <!-- box-family: inset -->
 
 % <!-- inset-domain: AGENT HARNESS -->
@@ -84,11 +84,11 @@ On more complex systems, a change must also preserve requirements that nobody th
 
 \begin{bookbox}{inset}{Context Windows, Compaction, and the Reasoning Horizon}
 \label{inset-context-windows-and-compaction}
-A long-running engineering task can fail even when an agent has enough information for each step in isolation. An earlier decision or test result may be missing when the next step depends on it. The \textbf{reasoning horizon} is the practical limit of the work a reasoner and its supporting machinery can carry through reliably. In seqBench the term describes the length of a sequence a model can reliably complete~\citep{ramezanali2025seqbench}; here it includes what the harness and external resources make possible.
+A long-running engineering task can fail even when an agent has enough information for each step in isolation. An earlier decision or test result may be missing when the next step depends on it. In seqBench, reasoning horizon describes the length of a sequence a model can reliably complete~\citep{ramezanali2025seqbench}; here it includes what the harness and external resources make possible.
 
 A \textbf{context window} limits how much information a foundation model can process in one invocation. Instructions, conversation history, files, and tool results compete for space measured in tokens. A harness can carry work beyond one window by storing records for retrieval or using \textbf{compaction}: replacing accumulated context with a shorter account. Pages of investigation and test output might become a handoff recording the plan, decisions, checks, and remaining work. If the handoff says only ``the tests passed,'' the next agent cannot tell which tests ran or which version they exercised. Keeping the original results helps only if the agent retrieves them when needed~\citep{rajasekaran2025contextengineering}.
 
-The generation of commodity intelligence that motivated this book is built around language models with bounded context windows. We deliberately abstract from that machinery: the \textbf{reasoning horizon} concerns what a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. The concept is thus broader than a context-window limit, and is intended to remain useful as new kinds of intelligence bring different capabilities and constraints.
+The generation of commodity intelligence that motivated this book is built around language models with bounded context windows. The reasoning horizon is broader than a context-window limit and is intended to remain useful as new kinds of intelligence bring different capabilities and constraints.
 \end{bookbox}
 
 \section{Steering Agents}\label{heading:engineering-the-agent-environment}

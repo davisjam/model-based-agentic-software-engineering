@@ -100,7 +100,7 @@ A structural model can become stale as the implementation changes. The code move
 
 The document-mutation model identifies where changes belong. A second structural question concerns how remediation computations depend on one another. If we change one computation, which others might be affected? DocAble runs documents through registered remediation passes that detect conditions, produce information for later passes, decide whether work should proceed, or modify document state. A \emph{registered computation} is a named remediation pass that DocAble knows how to invoke, such as a pass that classifies document content or repairs alternative text. The registry identifies the pass and records selected properties of its role in the pipeline. The graph represents the pass as a node, leaving its internal statements, library calls, and loops out of the graph.
 
-A repair pass may change a document directly or produce a typed patch: a structured description of a proposed change, such as assigning alternative text to a figure. A separate applier interprets the patch and performs the change. Recording these alternatives lets the computation model distinguish passes that modify document state from those that only propose modifications.
+A repair pass may edit a document directly or produce a \textbf{typed patch}: a structured description of a proposed change, such as assigning alternative text to a figure. A separate component, the \textbf{applier}, interprets the patch and performs the change. The boundary where proposed changes become document mutations is the \textbf{apply seam}.
 
 \textbf{Remediation-computation model · Structural}
 
