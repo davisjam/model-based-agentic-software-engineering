@@ -939,6 +939,25 @@ re-deriving these, so they live here:**
     perfectly healthy. Agent briefs should say this outright, or an agent reads 128 as a real failure
     and either gives up with work uncommitted or starts deleting locks.
 
+  - **Two more ways a commit silently lands NOTHING, both measured 261118 and both reading as
+    success.**
+    - **`timeout 1800` on an AGENT's foreground command is silently clamped to its ~600s cap, and
+      the pre-commit hook takes roughly 12 minutes.** So the documented 1800s bound, copied into a
+      brief verbatim, gets the commit killed mid-hook with nothing committed and no error that
+      names the cause. Brief agents to run the commit BACKGROUNDED and wait for it; the orchestrator
+      has no such cap and can bound it in the foreground.
+    - **A pathspec commit needs TRACKEDNESS, and existence is not trackedness.** `git commit -- <new
+      file>` dies with "did not match any file(s) known to git" and commits NOTHING, so a pre-flight
+      that tests `[ -e "$p" ]` and `git check-ignore` passes while the commit cannot work. Worse and
+      quieter: a DIRECTORY pathspec over a figures dir commits only the files git already tracks and
+      drops every new one without a word. `git add` the new paths first, and pre-flight with
+      `git ls-files`, which is the only one of the three that answers the question being asked.
+    - **And build the pathspec as a zsh ARRAY.** `FILES=$(...)` then `git commit -- $FILES` passes
+      all ten paths as ONE argument, because zsh does not word-split an unquoted expansion, and git
+      reports one impossible filename. `FILES=(${(f)"$(...)"})` then `"${FILES[@]}"`, and echo
+      `${#FILES[@]}` before the commit. This is the same trap as the shell-mechanics bullet above,
+      aimed at a pathspec rather than a search.
+
 - **`warning: core.bare and core.worktree do not make sense` means something WROTE to the submodule's
   gitdir config — and the line that shouts is not the damage.** Same family as the lock above: the
   symptom surfaces in the working tree, the cause sits in `G=$(git rev-parse --git-dir)`. The warning
