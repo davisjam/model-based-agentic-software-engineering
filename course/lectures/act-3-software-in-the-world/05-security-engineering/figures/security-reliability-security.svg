@@ -28,6 +28,28 @@
      12.5px -> 11.0pt, subtitles 11px -> 9.7pt, notes 12px -> 10.5pt, title 16px -> 14.1pt. At a
      700 px column the box labels sit at 10.5pt and the subtitles at 8.3pt, so the subtitles are
      restatements of the box label rather than new information. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     Two boxes sit side by side at the top of the figure. The left box, WORLD AND USERS, holds people, data,
+     the physical environment, and anyone who may choose to act on it. The right box, SOFTWARE SYSTEM, holds
+     the HTTP API, the booking service, and the reservation store. Below them run two long arrows across the
+     full width of the figure, each labeled with the question it carries. The upper arrow points leftward,
+     from the system toward the world, and asks what happens to the world when the system fails, which is
+     the reliability and safety direction. The lower arrow points rightward, from the world toward the
+     system, and asks what an adversary in the world can make the system do, which is the security
+     direction. A note states that the two directions overlap rather than partition: an attack can cause a
+     safety failure, a reliability failure can open a security opportunity, and reliability is also not a
+     synonym for safety. Beneath the arrows a band headed SHARED BY BOTH ANALYSES holds four boxes joined
+     left to right by arrows: models, then undesirable outcomes, then causal paths, then controls. A closing
+     note names where the two analyses part company: threat modeling adds an adversary who chooses which
+     actions to try, and who changes tactics when a control is introduced.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 446" width="700" height="446"
      role="img" aria-labelledby="relsecTitle relsecDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

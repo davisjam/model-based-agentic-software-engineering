@@ -28,6 +28,31 @@
      (scale 1.1714): panel headers 13.5px -> 11.9pt, box labels 12.5px -> 11.0pt, body 11px -> 9.7pt,
      band text 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column the body sits at 8.3pt, so
      each box's first line carries its meaning on its own. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     Two panels sit side by side with no connector between them, because the two limits are about different
+     things. The left panel, headed THE ANALYSIS LIMIT, holds a chain of three boxes read downward. The
+     first names the scope: an arbitrary program, in a language with no restriction. An arrow reaches the
+     second: a nontrivial semantic property, such as whether the program ever discloses a secret. An arrow
+     reaches the third: no algorithm decides it for all, under a suitable formalization, which is Rice's
+     theorem. The right panel, headed THE TRUST LIMIT, holds its own chain of three boxes. The first names
+     its scope: reviewed source, read line by line and found innocent. An arrow reaches the second, drawn in
+     the hostile color: a compiler nobody examined, outside the trusted assumptions. An arrow reaches the
+     third: the executable may differ, which is the argument of Reflections on Trusting Trust. Beneath both
+     panels a band headed WHAT NEITHER LIMIT SAYS holds two statements. First, that a restricted language, a
+     bounded model and a precisely scoped property support rigorous analysis and proof, so the obligation is
+     to state what was established and for which class of programs and environments. Second, that the
+     trusted computing base can be made smaller and evidence can be obtained about it, and that a
+     reproducible build is evidence about the toolchain rather than about the source alone. A closing note
+     states that a security control's guarantee is conditional on assumptions of both kinds: what the
+     analysis covered, and what the environment was trusted to be.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 488" width="700" height="488"
      role="img" aria-labelledby="limTitle limDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

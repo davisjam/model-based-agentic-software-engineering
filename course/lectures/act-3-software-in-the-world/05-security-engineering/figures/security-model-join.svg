@@ -30,6 +30,42 @@
      9.5px -> 8.3pt, the join and WHERE clauses 11px -> 9.7pt, the result row 13px -> 11.4pt, notes
      11.5px -> 10.1pt, title 16px -> 14.1pt. The tables are the densest element and set the floor:
      at a 700 px column their cells fall to 7.9pt, so this figure wants the wider column. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+     ONE CORRECTION was applied while relocating: the markdown alt still spoke the ENDPOINTS column as
+     'ownership underscore check', a name the drawing, the lander prose, the SQL and this figure's
+     <desc> had already replaced with 'enforces underscore MayCancel'. The stale name is corrected here
+     rather than imported, so the figure source does not contradict the figure.
+
+     Four small relations are drawn as tables in a two by two grid. Top left, Permissions, from the external
+     specification: columns role, operation and scope; the row student, cancel, own, and the row
+     administrator, cancel, administered underscore room. Top right, Endpoints, from the architecture model:
+     columns endpoint, operation and enforces underscore MayCancel; the row slash api slash cancel, cancel,
+     true, and the row slash legacy slash cancel, cancel, false. Bottom left, Capabilities, from the
+     adversary model: columns actor, role and endpoint; two rows, each malicious underscore student as a
+     student, one reaching slash api slash cancel and one reaching slash legacy slash cancel. Bottom right,
+     Exposure, from the environment model: columns endpoint and reachable; both endpoints are reachable. The
+     column headers role, operation and endpoint are set in rust wherever they appear, because those are the
+     shared identifiers the join runs on. Connectors leave each table into a central gutter, where two
+     vertical spines carry two tables each and merge into a single arrow pointing down into a panel headed
+     JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel lists four equalities: permissions dot role
+     equals capabilities dot role; endpoints dot endpoint equals capabilities dot endpoint; endpoints dot
+     operation equals permissions dot operation; and exposure dot endpoint equals endpoints dot endpoint.
+     Beneath them a WHERE line reads: scope equals own, and reachable is true, and enforces underscore
+     MayCancel is false. An arrow leaves the panel and reaches a result box headed FINDING, ONE ROW, holding
+     malicious underscore student, slash legacy slash cancel, cancel, own. A line beneath the row states
+     what the row claims: an actor the adversary model grants, on a path the environment model makes
+     reachable, through an endpoint the architecture model records as not enforcing the scope the
+     specification requires. A final note, in the hostile color, states the failure mode of the analysis
+     itself: remove the legacy endpoint from the architecture relation and the same query returns no rows,
+     which establishes that the available models hold no matching violation and not that the service is
+     secure.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 710" width="700" height="710"
      role="img" aria-labelledby="joinTitle joinDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

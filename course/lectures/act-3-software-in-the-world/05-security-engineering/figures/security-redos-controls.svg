@@ -29,6 +29,31 @@
      (scale 1.1714): column headers 13.5px -> 11.9pt, box labels 12.5px -> 11.0pt, body 11px -> 9.7pt,
      row labels 10.5px -> 9.2pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column the
      row labels fall to 7.9pt, so each row's meaning is also carried by its boxes. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     Two columns are aligned against three rows named down the left edge: what the attacker supplies, what
+     the engine does, and what the guarantee covers. The left column is headed BACKTRACKING MATCHER. Its
+     row-one box, drawn in the hostile color, holds a short, cheap request whose input is chosen to make the
+     server-side match expensive. Its row-two box states that the engine explores alternatives, so work can
+     grow super-linearly and on some patterns exponentially, while the answer it returns stays correct. Its
+     row-three box, A BOUND ON THE DAMAGE, names timeouts, resource budgets and isolating the match in its
+     own worker, and states that the cost of the match is unchanged. The right column is headed
+     AUTOMATA-BASED MATCHER. Its row-one box holds the same request, because the attacker's choice does not
+     change when the engine does. Its row-two box states that the engine simulates an automaton, so matching
+     time is linear in the length of the input for the constructs the engine supports. Its row-three box, A
+     BOUND ON THE COST, states that the asymptotic cost of a supported match is stated by the engine, and
+     that this is paid for in expressive power. A band with a dashed outline and no connector holds two
+     hedges the comparison needs: not every backtracking engine exhibits explosive cost on every pattern and
+     input, and not every construct a backtracking syntax accepts survives translation to an automaton. A
+     closing note states that the engineer should identify which guarantee the application needs, rather
+     than treating the use of a regular expression as either safe or unsafe.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520"
      role="img" aria-labelledby="redosTitle redosDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

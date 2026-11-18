@@ -33,6 +33,37 @@
      11.5px -> 10.1pt, body 10.5px -> 9.2pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. The resource
      verdicts are the smallest type that carries new information; at a 700 px column they sit at
      7.9pt, so this figure wants the wider column. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     Two panels sit side by side, with the dependency at the same height in each and the three resources in
+     the same column, so only what lies between them differs. The left panel is headed IMPLICIT TRUST and
+     subtitled that the dependency runs with the application's permissions. Untrusted input reaches a box
+     labeled VULNERABLE DEPENDENCY, from which three arrows fan out to three resource boxes drawn in the
+     hostile color: FILE SYSTEM, read and write; NETWORK, connect to any host; and SHELL, execute a command.
+     A dashed note states that nothing on these paths asks whether this dependency needs this resource, and
+     a closing note states that a defect in the library reaches whatever the application can reach, although
+     its own task needed one of the three. The right panel is headed ZERO-TRUST DEPENDENCY and subtitled
+     that each dependency's resource access is separately authorized. The same untrusted input reaches the
+     same VULNERABLE DEPENDENCY box, but its arrow now reaches a RUNTIME AUTHORIZER box, which asks whether
+     this dependency may perform this operation on this resource. Three arrows fan from the authorizer to
+     the same three resources, each carrying the verdict the policy produced: the file system is allowed for
+     its input, the network is restricted to one host, and the shell is denied. Beneath the authorizer sit
+     two boxes forming a cycle: a LEAST-PRIVILEGE POLICY box stating what this library needs, with an arrow
+     running up into the authorizer labeled decides, and a MONITOR box recording observed accesses that
+     refine the policy, reached by an arrow from the authorizer labeled records and returning an arrow to
+     the policy. A note in that panel states that a vulnerability may still be triggered while the operation
+     it attempts is denied from outside the library. Closing notes outside both panels state the scope: the
+     guarantee covers the operating-system resources this mechanism mediates, namely file, network and shell
+     access; it is not a general prevention of code execution, and the paper places denial of service
+     outside its threat model. Its stated limits are native execution, asynchronous delegation, shared
+     namespaces, and a policy learned from an incomplete workload.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 552" width="700" height="552"
      role="img" aria-labelledby="ztdTitle ztdDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

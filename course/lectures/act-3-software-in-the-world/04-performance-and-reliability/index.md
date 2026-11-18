@@ -232,7 +232,7 @@ FMEA begins with a model of the system's components. Select a component, identif
 
 Consider the reservation service. A student submits a request to a router, which forwards it to one of two reservation-service instances. The selected instance accesses a database. Suppose the router intermittently misbehaves: it might drop a request, select an unhealthy instance, or delay forwarding. The student may experience no response, an error, or a timeout. **The router dropping a request is a component failure mode; the student receiving no response is a system effect.** One observable effect may arise from several failures, and a timeout does not establish that the reservation never committed: the response may have been lost after a successful write.
 
-![FMEA traces failure modes from a selected component toward system effects, then considers detection and mitigation.](figures/fmea-component-up.svg)
+![FMEA traces router failure modes to system effects and identifies possible detection and mitigation mechanisms.](figures/fmea-component-up.svg)
 
 | Component | Failure mode | System effect | Detection | Candidate mitigation |
 |---|---|---|---|---|
@@ -248,7 +248,7 @@ The analysis can also prioritize work. Traditional FMEA considers severity, occu
 
 FTA starts from the other direction. Select an unacceptable outcome and work backward to events that could produce it. A practical way to identify top events is to examine requirements and consider their violation. If a reservation request must receive a successful response within five seconds, the top event is **No successful response within five seconds**. We then consult the architecture: the router might drop the request; the backend path might become unavailable without timely recovery; the required database might become unavailable. Each is a *candidate* sufficient explanation, subject to assumptions about retries, alternate paths, and the deadline.
 
-![A fault tree works downward from an unacceptable response outcome through OR and AND gates to causal events.](figures/fault-tree-system-down.svg)
+![Fault tree for an unsuccessful reservation request, showing how OR and AND gates represent alternative and combined causes.](figures/fault-tree-system-down.svg)
 
 A fault tree uses Boolean relationships. An **OR** gate means any input event suffices for the parent event; an **AND** gate means all inputs are required. These are claims about causation in the modeled architecture, not merely ways to arrange boxes. If two independently usable request paths exist, both must fail for that route-level redundancy to be lost. If both paths share a required database, database failure may defeat them together. The tree must reflect those relationships.
 

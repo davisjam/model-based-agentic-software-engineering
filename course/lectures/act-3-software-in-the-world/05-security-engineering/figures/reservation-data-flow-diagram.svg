@@ -12,6 +12,44 @@
      vocabulary (sibling
      ../../03-technical-debt-architecture-and-dependencies/figures/internal-and-external-dependencies.svg,
      ../../04-performance-and-reliability/figures/reservation-request-state-model.svg). -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     A data-flow diagram of the reservation service in standard notation. A legend along the bottom states
+     the vocabulary: a square-cornered rectangle is an external entity outside the engineer's control, a
+     circle is a process, a shape held between two heavy horizontal rules is a data store, a solid labeled
+     arrow is a data flow, and a heavy dashed red line is a trust boundary. Four tinted regions hold the
+     elements that share one authority. The CLIENT DOMAIN region at the upper left, labeled requests the
+     attacker controls, holds two external entities, ADMINISTRATOR and STUDENT. The EXTERNAL IDENTITY DOMAIN
+     region at the upper right, labeled an authority we rely on and do not operate, holds one external
+     entity, IDENTITY PROVIDER. Between the student and the provider runs an authentication exchange of two
+     flows: the student sends credentials rightward to the provider, and the provider returns a signed
+     assertion leftward to the student. The SERVICE DOMAIN region across the middle, labeled code and
+     credentials we operate, holds two processes drawn as circles: process one point zero, the HTTP API,
+     which authenticates and validates, and process two point zero, the booking service, which evaluates the
+     reservation policy. A flow labeled request plus assertion runs down from the administrator into the
+     HTTP API, and a second such flow runs down from the student into the same process, so both client paths
+     arrive at one entry point. A flow labeled authenticated request runs rightward from the HTTP API to the
+     booking service, and a flow labeled result runs back. Two further flows connect the booking service to
+     the identity provider: the service requests verification keys, and the provider returns signing keys
+     and metadata, so the service verifies an assertion it did not create. The DATA DOMAIN region at the
+     bottom, labeled authority the service credentials carry, holds the data store D1, Reservations, holding
+     owner, room and time. A flow labeled read and write reservations runs down from the booking service
+     into the store, and a flow labeled reservation records runs back up. Three dashed red boundaries are
+     drawn and labeled. TB1 runs horizontally between the client domain and the service domain, where
+     client-controlled requests meet server-side execution. TB2 runs vertically between the client and
+     service domains on one side and the identity domain on the other, then turns horizontal across the
+     right of the figure, annotated that the service verifies an assertion it did not create. TB3 runs
+     horizontally between the service domain and the data domain, annotated that the service's credentials
+     reach every reservation. A closing note reads that a trust boundary need not follow a machine boundary:
+     two components on one host may hold different privileges, and two hosts may share one administrative
+     authority, so what matters is which assumptions and permissions hold on each side.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 772" width="920" height="772"
      role="img" aria-labelledby="dfdTitle dfdDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

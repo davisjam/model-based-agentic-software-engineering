@@ -27,6 +27,30 @@
      (scale 1.1714): box labels 14px -> 12.3pt, subtitles 11px -> 9.7pt, edge labels 11px -> 9.7pt,
      control headers 12.5px -> 11.0pt, notes 12px -> 10.5pt, title 16px -> 14.1pt. At a 700 px column
      the box labels sit at 10.5pt and the subtitles at 8.3pt. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     A chain reads left to right and then downward. On the left, a box drawn in the hostile color holds
+     ATTACKER, who sends no malformed input and needs no defect in the software. An arrow labeled fraudulent
+     request reaches the ADMINISTRATOR box, drawn in the neutral structure color, whose subtitle states that
+     authentication succeeds, the role is valid, and the request resembles ordinary work. A downward arrow
+     labeled exercises legitimate authority reaches the PRIVILEGED ACTION box, drawn in the hostile color,
+     which names a credential reset or an approved release and notes that the software performs exactly what
+     was asked. Beneath the chain sits a band with a dashed outline, headed WHAT CONSTRAINS THE AUTHORITY
+     THE DECEPTION YIELDS, holding two boxes. The first, SCOPED AUTHORITY, states that the role carries only
+     the permissions its task requires, so the reach is smaller. The second, INDEPENDENT APPROVAL, states
+     that a second principal, separately authorized, must also decide, so one person is not enough. An arrow
+     points up from the band to the privileged action, because these controls bound the authority the
+     deception yields rather than preventing the deception itself. Two closing notes state that strong
+     authentication establishes who is acting and not that the action requested is legitimate, and that a
+     system can enforce its access-control policy correctly and still permit the harm when the policy grants
+     one deceived actor enough power.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 532" width="700" height="532"
      role="img" aria-labelledby="socTitle socDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

@@ -31,6 +31,34 @@
      band headers 12.5px -> 11.0pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column
      the region labels sit at 9pt, which is the floor, so the body lines are restatements rather than
      new information. -->
+
+<!-- RELOCATED FROM THE MARKDOWN ALT ATTRIBUTE. The lander's alt text now states what this figure
+     COMMUNICATES, per the author's rule that construction-level description belongs in the figure
+     source. The displaced prose description of the drawn composition is preserved below, rewrapped.
+     The figure's own <desc> element carries an independently worded description of the same drawing;
+     this text is the markdown rendition and is kept because the two are not word-for-word identical.
+
+     Three panels read left to right. The first, headed UNCHECKED COPY and subtitled where the attack
+     begins, holds two stacked memory regions: an input buffer of fixed size, and beneath it adjacent state
+     that influences control flow. A dashed line separates them, and a red arrow runs down the left of both
+     and crosses it, labeled that an overlong copy writes past the end of the buffer and across the
+     boundary. An arrow leads to the second panel, headed W xor X POLICY and subtitled one response to the
+     write, which holds two regions: writable data, which is not executable, and executable code, which is
+     not writable, with a note that the operating system enforces this as a permission policy on memory
+     regions. A second arrow leads to the third panel, headed REMAINING RISK, subtitled what the policy does
+     not exclude and drawn in the hostile color. It holds one region: instructions already in an executable
+     region, reusable without injecting code, with a note that an attacker who still controls the
+     control-flow state can chain them, which is return-oriented programming. Beneath the three panels a
+     band holds two boxes side by side. The left box, PREVENT THE CORRUPTION, names memory-safe languages,
+     bounds checking and interfaces that carry the buffer's length, and states that the out-of-bounds write
+     does not happen. The right box, LIMIT THE EXECUTION, names write xor execute on memory regions so that
+     no region is both writable and executable at once, and states that the write may happen while the bytes
+     are not run. Closing notes state that these are different protections resting on different assumptions
+     whose effects must not be conflated, that control-flow defenses are a third kind constraining how
+     corrupted state may redirect execution, and that a control earns its place by the class of behavior it
+     excludes rather than by the exploit that first motivated it.
+-->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 478" width="700" height="478"
      role="img" aria-labelledby="memTitle memDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
