@@ -8,18 +8,18 @@ readings:
     - heading: Threat Modeling
       items:
         - cite: shostack2008threatmodeling
-          annotation: 'Shostack, ["Experiences Threat Modeling at Microsoft"](https://shostack.org/files/papers/modsec08/Shostack-ModSec08-Experiences-Threat-Modeling-At-Microsoft.pdf) (2008). Eleven pages, and the source of Lecture 1''s method: the data-flow diagram as the system model, with STRIDE applied per element rather than to the application as a whole. Its author owned the method across a decade of mandatory use, so its limitations come from the person responsible for them, not from a critic. The validation heuristics are in section 3.4, the part students skip: a diagram nobody checked against the implementation describes a system that may not exist. Section 5.1 then names the gap that produces this unit''s closing reveal, asking whether the model holds every trust boundary and entry point the code does. Answer that question about your own project''s diagram before the lecture answers it for you.'
+          annotation: 'Shostack, ["Experiences Threat Modeling at Microsoft"](https://shostack.org/files/papers/modsec08/Shostack-ModSec08-Experiences-Threat-Modeling-At-Microsoft.pdf) (2008). An account of threat modeling as a repeatable engineering practice: data-flow diagrams represent the system, STRIDE supplies prompts for examining its elements, and model validation checks whether the representation matches the implementation. Pay particular attention to the validation heuristics and ask whether your project''s diagram includes every relevant entry point and trust boundary.'
+        - cite: anderson2020security
+          locator: 'chapter 27, Secure Systems Development'
+          annotation: 'Anderson, *Security Engineering*, 3rd edition, Chapter 27, "Secure Systems Development" (2020; [the author makes the chapters freely available](https://www.cl.cam.ac.uk/~rja14/book.html)). Security requirements emerge from a system''s operating environment, assets, and plausible adversaries rather than from a generic checklist. Sample the sections relevant to your project and consider which environmental facts must be known before a threat can be prioritized.'
+        - cite: sommerville2011
+          locator: 'chapter 14, sections 14.1 and 14.2'
+          annotation: 'Sommerville, *Software Engineering*, 9th edition, Chapter 14, Sections 14.1 to 14.2, "Security Engineering." The chapter introduces security risk management and design for security. Compare its account with the model-join analysis: which questions can be answered from the system model, and which require information about adversaries and the operating environment? The 10th edition reorganizes this material under Chapter 13.'
+    - heading: Controls & Assurance
+      items:
         - cite: mitre-cwe
           locator: 'the CWE Top 25 as an entry point'
           annotation: 'MITRE, [Common Weakness Enumeration](https://cwe.mitre.org/), with the [CWE Top 25](https://cwe.mitre.org/top25/) as a way in. A CWE names a class of defect; a CVE names one disclosed vulnerability in one product. The two get used interchangeably often enough that settling the distinction early is worth the few minutes it takes. Choose three weaknesses, read their descriptions, consequences and relationships to neighboring entries, and write down what a system model would have to contain before you could decide whether each one matters to your project. Notice what the catalogue does not give you: neither an entry nor an identifier establishes that the code in front of you is exploitable under its actual configuration, which is why Lecture 2 treats a weakness class as the start of an investigation rather than its conclusion.'
-        - cite: anderson2020security
-          locator: 'chapter 27, Secure Systems Development'
-          annotation: 'Anderson, *Security Engineering: A Guide to Building Dependable Distributed Systems*, 3rd edition, chapter 27, "Secure Systems Development" (Wiley, 2020; [the author makes the chapters freely available](https://www.cl.cam.ac.uk/~rja14/book.html)). Forty-nine pages, and the argument that earns the length is that security requirements emerge from a system and its environment rather than from a checklist. Risk management becomes a judgment made under uncertainty rather than a score to compute. Anderson writes from decades of deployments that failed, so the chapter is unusually direct about which practices survive a real project. Work out which facts about an adversary or a deployment you would need before a threat could be prioritized at all, and sample the sections nearest your own project.'
-        - cite: sommerville2011
-          locator: 'chapter 14, sections 14.1 and 14.2'
-          annotation: 'Sommerville, *Software Engineering*, 9th edition, chapter 14, "Security engineering". Sections 14.1 and 14.2 frame the unit in textbook terms: security risk management, design for security, and system survivability. Notice that risk management precedes any particular control, which is the ordering this unit follows. Set its risk-management questions beside Lecture 1''s model join and sort them: which of them are answered by the system itself, and which only by facts about the environment it runs in? One caution about editions. The course scan is the 9th, where security engineering is chapter 14; the 10th renumbers it to chapter 13 and reorganizes the sections, so a locator from one edition will not find the same material in the other.'
-    - heading: Controls & Assurance
-      items:
         - cite: saltzer1975protection
           locator: 'the design-principles discussion in Section I'
           annotation: 'Saltzer and Schroeder, ["The Protection of Information in Computer Systems"](https://web.mit.edu/Saltzer/www/publications/protection/), *Proceedings of the IEEE* 63, no. 9 (1975). Section I''s design-principles discussion runs a few pages; the 1970s protection-hardware survey that follows is not what this unit draws on. Each principle states an engineering question rather than a slogan: least privilege asks what authority a component actually requires, complete mediation asks whether any path reaches the operation without passing the check. Both principles answer a case from Lecture 2. Decide which principle a library inherits a violation of when it is granted shell access it never needs, and which one an administrative endpoint violates when it reaches the same operation without the authorization check. Then decide which of the principles your own project satisfies by construction and which only by discipline.'
@@ -27,7 +27,7 @@ readings:
           annotation: 'Graham-Cumming, ["Details of the Cloudflare Outage on July 2, 2019"](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/) (Cloudflare, 2019). A single firewall rule carrying a regular expression with pathological backtracking saturated CPU across the network and took service down for 27 minutes. No attacker was involved, because the rule was deployed internally; the algorithmic weakness it exposed is exploitable as a denial of service all the same, which is what makes this a security reading and not only a reliability one. Settle four things: what made certain inputs expensive, how an attacker reaches that behavior deliberately, why the rule reached production so broadly, and what control would have caught it.'
         - cite: amusuo2025ztdjava
           locator: 'Figure 1, and sections IV and V'
-          annotation: 'Amusuo and colleagues, ["ZTDJava: Mitigating Software Supply Chain Vulnerabilities via Zero-Trust Dependencies"](https://arxiv.org/abs/2310.14117), ICSE 2025. The design treats a third-party library as a principal whose access to files, the network and shell execution is authorized separately from the application''s, rather than inherited from it. Figure 1 carries the concept and sections IV and V carry the threat model and the prototype, which is where the reading repays attention. Trace what the authors place in scope and what they place outside it, then set the evaluation against the limitations in section V-B: which exploit classes does an enforced policy constrain, and what remains reachable through native code, asynchronous delegation, or a shared namespace? A policy learned from an incomplete workload is the failure mode to think hardest about, because it denies a legitimate access rather than a malicious one.'
+          annotation: 'Amusuo et al., ["ZTDJava: Mitigating Software Supply Chain Vulnerabilities via Zero-Trust Dependencies"](https://arxiv.org/abs/2310.14117) (ICSE 2025). Figure 1 and Sections IV to V show how a library''s access to files, networks, and shell execution can be authorized independently of the application''s broader permissions. Trace the threat model, enforcement mechanism, and stated limitations. Which attacks does the control constrain, and which assumptions must hold for its guarantee?'
         - cite: thompson1984trust
           annotation: 'Thompson, ["Reflections on Trusting Trust"](https://doi.org/10.1145/358198.358210), *Communications of the ACM* 27, no. 8 (1984). Three pages, delivered as a Turing Award lecture, and they end an argument most engineers start by assuming they have already won. A compiler can insert behavior into an executable that appears nowhere in the source being reviewed, and can hide the insertion from a reading of its own source too. The example makes the trusted computing base concrete: it is not an abstraction but a specific list of artifacts whose behavior your evidence never examined. Ask what claims about a source repository would stop being persuasive if the build toolchain were under an adversary''s control, and which of your project''s current evidence would survive that.'
         - cite: nistir8397
@@ -136,7 +136,7 @@ Security is also a problem of judgment. A finite threat model cannot enumerate e
 
 ## From reliability failures to adversarial threats
 
-In the previous unit, a router could drop a request, a backend could crash, and a database could become unavailable. We examined how these failures propagate and how an architecture could tolerate them. Security asks what happens when an actor intentionally tries to produce a bad outcome. The actor may submit unusual inputs, impersonate another user, exploit a compromised dependency, or repeat an operation until a resource is exhausted. The consequences can resemble ordinary failures, but the cause is now strategic: the adversary selects a path that appears promising and may change tactics when a defense is introduced.
+In the previous unit, we constructed a fault tree for the event No successful response within ten seconds. A router could drop a request, a backend could crash, or a database could become unavailable. The same outcome can also be produced deliberately: an attacker might submit inputs that exhaust CPU, overwhelm a queue, or exploit a dependency to disrupt service. The unacceptable outcome has not changed, but our model of how it can occur has expanded. Security introduces an adversary who selects actions strategically and may change tactics when a defense is introduced.
 
 A threat model is not simply a list of things that might go wrong. It represents what we want to protect, what the system permits, where an attacker can interact with it, and what the attacker is assumed able to control. These assumptions matter as much as the diagram. An unauthenticated internet client, an authenticated student, a compromised administrator, and a malicious software dependency have different capabilities. A model that silently treats them as interchangeable will produce misleading security conclusions.
 
@@ -162,7 +162,7 @@ This is already more precise than saying that "administrators can cancel reserva
 
 ## Joining the models: an executable security analysis
 
-Models become particularly useful when their entities have identifiers that permit their information to be combined. Consider four small relations. Here `ownership_check` is a deliberately simplified, *verified model fact* about whether an endpoint enforces the resource-specific student restriction; it is not something inferred from a passing functional test.
+Models become particularly useful when their entities have identifiers that permit their information to be combined. Consider four small relations. The `enforces_MayCancel` field records whether an endpoint's complete enforcement path implements the authorization predicate defined above. This is a verified model fact, established through architecture or implementation inspection, not inferred from passing functional tests. The simplified Boolean stands in for an analysis of the actual enforcement path.
 
 **`Permissions(role, operation, scope)`**
 
@@ -171,9 +171,9 @@ Models become particularly useful when their entities have identifiers that perm
 | student | cancel | own |
 | administrator | cancel | administered_room |
 
-**`Endpoints(endpoint, operation, ownership_check)`**
+**`Endpoints(endpoint, operation, enforces_MayCancel)`**
 
-| endpoint | operation | ownership_check |
+| endpoint | operation | enforces_MayCancel |
 |---|---|---|
 | `/api/cancel` | cancel | true |
 | `/legacy/cancel` | cancel | false |
@@ -184,6 +184,8 @@ Models become particularly useful when their entities have identifiers that perm
 |---|---|---|
 | malicious_student | student | `/api/cancel` |
 | malicious_student | student | `/legacy/cancel` |
+
+The adversary model assumes that the legacy endpoint accepts requests authenticated with ordinary student credentials. That assumption must be checked against the deployed system; if the endpoint requires a credential the student cannot obtain, the corresponding capability row is incorrect.
 
 **`Exposure(endpoint, reachable)`**
 
@@ -197,20 +199,25 @@ The following query identifies a reachable path that is modeled as omitting the 
 ```sql
 SELECT c.actor, e.endpoint, p.operation, p.scope
 FROM Permissions AS p
-JOIN Capabilities AS c ON c.role = p.role
+JOIN Capabilities AS c
+  ON c.role = p.role
 JOIN Endpoints AS e
-  ON e.endpoint = c.endpoint AND e.operation = p.operation
-JOIN Exposure AS x ON x.endpoint = e.endpoint
+  ON e.endpoint = c.endpoint
+ AND e.operation = p.operation
+JOIN Exposure AS x
+  ON x.endpoint = e.endpoint
 WHERE p.scope = 'own'
   AND x.reachable = TRUE
-  AND e.ownership_check = FALSE;
+  AND e.enforces_MayCancel = FALSE;
 ```
 
 **Result:** `malicious_student | /legacy/cancel | cancel | own`.
 
-The query does not discover an exploit by magic. It makes a specific claim about four related models: the student can reach an endpoint whose recorded enforcement behavior does not satisfy the specified authorization scope. The shared identifiers for role, operation, and endpoint make the join possible. In a realistic system, enforcement might be implemented downstream in a shared service or database, so a single Boolean is insufficient; the model would need to represent the actual authorization path and any compensating controls. The simplified query teaches the mechanism of model composition, not a universal vulnerability scanner.
+The query identifies a modeled path on which an authenticated student can reach a cancellation operation without enforcement of the required authorization policy. The result is a security finding about the joined models, not independent proof of an exploitable implementation. A real system may enforce the policy in a shared service or database, so the engineer must inspect the complete path before recording `enforces_MayCancel`. The simplified relation makes model composition visible without pretending that a Boolean field is a general-purpose vulnerability detector.
 
 There is also a serious failure mode in the analysis itself. Remove `/legacy/cancel` from the architecture relation and rerun the query: it returns no rows. That does **not** establish that the service is secure. It establishes that the available models contain no matching violation. If the omitted endpoint exists in production, the analysis is incomplete. Thus a model-based security argument has at least three obligations: the models correspond to the real system; the models include the information relevant to the decision; and the query correctly expresses the intended property. The lecture's closing reveal of a legacy endpoint returns to this exact distinction.
+
+This use of model joins is not unique to security. Performance analysis combines architecture, workload, and resource models; reliability analysis combines architecture, component-failure models, and recovery assumptions. Security adds models of adversary capabilities, exposure, and protected obligations. The engineering benefit is the same: an analysis can use information distributed across several representations, provided their entities correspond and the combined assumptions are valid.
 
 ![Four small relations are drawn as tables in a two by two grid. Top left, Permissions, from the external specification: columns role, operation and scope; the row student, cancel, own, and the row administrator, cancel, administered underscore room. Top right, Endpoints, from the architecture model: columns endpoint, operation and ownership underscore check; the row slash api slash cancel, cancel, true, and the row slash legacy slash cancel, cancel, false. Bottom left, Capabilities, from the adversary model: columns actor, role and endpoint; two rows, each malicious underscore student as a student, one reaching slash api slash cancel and one reaching slash legacy slash cancel. Bottom right, Exposure, from the environment model: columns endpoint and reachable; both endpoints are reachable. The column headers role, operation and endpoint are set in rust wherever they appear, because those are the shared identifiers the join runs on. Connectors leave each table into a central gutter, where two vertical spines carry two tables each and merge into a single arrow pointing down into a panel headed JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel lists four equalities: permissions dot role equals capabilities dot role; endpoints dot endpoint equals capabilities dot endpoint; endpoints dot operation equals permissions dot operation; and exposure dot endpoint equals endpoints dot endpoint. Beneath them a WHERE line reads: scope equals own, and reachable is true, and ownership underscore check is false. An arrow leaves the panel and reaches a result box headed FINDING, ONE ROW, holding malicious underscore student, slash legacy slash cancel, cancel, own. A line beneath the row states what the row claims: an actor the adversary model grants, on a path the environment model makes reachable, through an endpoint the architecture model records as not enforcing the scope the specification requires. A final note, in the hostile color, states the failure mode of the analysis itself: remove the legacy endpoint from the architecture relation and the same query returns no rows, which establishes that the available models hold no matching violation and not that the service is secure.](figures/security-model-join.svg)
 
@@ -317,7 +324,7 @@ This is a particularly useful example of a *software-enforced* control. The prot
 
 ## What the cases have in common
 
-The four cases are technically different. Memory corruption redirects execution through an invalid memory operation. Social engineering manipulates a person with legitimate permissions. ReDoS turns input selection into resource exhaustion. Dependency exploitation converts a library vulnerability into access to resources it did not need. Their common feature is that the attacker exploits a mismatch between what the engineer intended to permit and what the implemented system can actually be made to do.
+The four attacks exploit different weaknesses, but each reveals a gap between the behavior the engineer intended to permit and what the system can actually be made to do. The corresponding controls constrain different kinds of behavior.
 
 | Attack mechanism | Intended property | Software control | What remains to examine |
 |---|---|---|---|
@@ -326,7 +333,7 @@ The four cases are technically different. Memory corruption redirects execution 
 | ReDoS | Untrusted input must not induce unbounded work | Linear-time matching for supported constructs, resource budgets | Other expensive operations and aggregate overload |
 | Vulnerable dependency | A library cannot exercise unrelated application authority | Dependency sandboxing, least-privilege resource access | Bypass paths, incomplete policy, native or asynchronous execution |
 
-This is the cat-and-mouse character of security engineering. A control changes the set of attacks available to an adversary. W⊕X obstructs injected instructions, but not all code reuse. Strong authentication obstructs impersonation, but does not prevent a legitimate user from being deceived. Linear-time matching addresses a complexity class in one component, not all denial-of-service attacks. Sandboxing constrains selected resource accesses, but only when the enforcement path cannot be bypassed. A good defense is justified by the class of behavior it excludes, not merely by the particular exploit that first motivated it.
+Security is a continuing contest because controls change the attacker's available strategies. W⊕X obstructs injected code but not all code reuse; authentication establishes identity but not legitimate intent; linear-time matching addresses one class of resource exhaustion; and dependency confinement constrains only the operations it mediates. A control should be evaluated by the class of behavior it excludes, not merely the exploit that motivated it.
 
 ## Fundamental limits and trusted assumptions
 
@@ -350,6 +357,6 @@ For each important security claim, the engineer should identify a control and ev
 | A document parser cannot launch shell commands | Dependency-level permission enforcement | Policy inspection, denied-operation tests, runtime audit |
 | Sensitive operations require independent approval | Approval workflow with separated authority | Workflow inspection, bypass tests, audit events |
 
-Static analysis examines representations of software without executing it; dynamic analysis observes executions; fuzzing explores generated or mutated inputs; penetration testing investigates selected attack paths adversarially. These techniques provide complementary evidence, not universal guarantees. The same is true of runtime logs, metrics, and traces. They can reveal attacks or enforcement decisions in production, but recording a forbidden operation is not the same as preventing it. The subsequent Operations unit develops these signals and the decisions they support.
+Static analysis, dynamic testing, fuzzing, and penetration testing provide complementary evidence about a security claim. Each examines different properties, executions, or attack paths; none establishes that every possible violation has been excluded. Runtime logs, metrics, and traces provide additional evidence about the deployed system, but detecting a forbidden operation is not the same as preventing it. The subsequent Operations unit develops these signals in greater detail.
 
 A useful final question is not "Is the system secure?" but *Which adversaries and behaviors have we modeled, what prevents the relevant violations, and what evidence supports that claim?* A security argument is conditional on its models and assumptions. The engineer remains responsible for deciding whether those conditions match the system's intended environment and for revisiting the argument when the system or the adversary changes. See {exercise:secure-cancellation}.

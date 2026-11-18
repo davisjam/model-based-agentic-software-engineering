@@ -316,13 +316,13 @@ Regular expression engines illustrate the problem. Applications treat matching a
 
 Three questions matter: Can a pattern and input cause excessive execution time? Can matching consume excessive memory? Does the engine produce the intended match or mismatch? Controls include choosing an engine with appropriate complexity guarantees, restricting pattern features, bounding input and pattern sizes, isolating execution, enforcing resource limits, and testing against intended semantics.
 
-A systematic review of regular expression denial of service examined engines in nine widely used languages. Backtracking engines can exhibit super-linear worst-case behavior, and relevant defenses and limitations were often undocumented. Maintainers have sometimes regarded such behavior as an accepted consequence of supporting extended regex features rather than a defect requiring correction. A component can therefore be functioning exactly as its maintainers intend while being unsuitable for the system in which an engineer proposes to use it.
+Bhuiyan, Cakar, and Davis's *SoK: Regular Expression Denial of Service* examined regex engines in nine widely used programming languages. They found that backtracking engines can exhibit super-linear worst-case behavior and that relevant defenses and limitations were often undocumented. Maintainers have sometimes regarded such behavior as an accepted consequence of supporting extended regex features rather than a defect requiring correction. A component can therefore function as its maintainers intend while remaining unsuitable for the system in which an engineer proposes to use it.
 
 This is why component selection cannot be delegated merely by asking an agent to find a library that works. The agent can search documentation, compare alternatives, construct benchmarks, and test candidates. Those are useful delegated tasks. **The engineer must supply the workload, trust boundary, resource budget, required guarantees, and consequences of failure.** Without that context, passing tests and successful integration are weak evidence of suitability. The engineer is responsible for the assembled system, not merely the functional correctness of individual components.
 
 ### Selecting reliability mechanisms
 
-The same scrutiny applies to reliability mechanisms. A mechanism may be correctly implemented yet fail to provide the intended guarantee because its assumptions do not hold.
+The same scrutiny applies to reliability mechanisms. A mechanism may be correctly implemented yet fail to provide the intended guarantee because an assumption does not hold. The table summarizes several common choices and the conditions under which they can help.
 
 | Failure | Candidate mechanism | Required assumption |
 |---|---|---|
@@ -333,7 +333,7 @@ The same scrutiny applies to reliability mechanisms. A mechanism may be correctl
 | Duplicate message | Idempotency | Operation identity is stable |
 | Data loss | Backup and recovery | Recovery point is acceptable |
 
-The rightmost column is decisive. A retry cannot safely recover an operation whose repeated effects violate an invariant. Replication cannot tolerate a shared failure disabling all replicas. A backup cannot meet a recovery obligation if the newest recoverable state is too old. Mechanisms interact too: retries add load to admission control; a circuit breaker may reject a request that could have succeeded; a watchdog may restart a worker that is still executing. Evaluate the combined behavior, including failures of the mechanisms themselves.
+A retry is unsafe when repeating an operation violates an invariant; replication cannot tolerate a shared failure that disables every replica; and a backup cannot satisfy a recovery obligation if the newest recoverable state is too old. The engineer must evaluate the mechanism against the modeled failure, then test whether its assumptions hold in the assembled system.
 
 ### Apply the analysis to your project
 
@@ -343,6 +343,6 @@ Inspect the tree's assumptions against your models. Are dependencies represented
 
 ### Engineering judgment
 
-Performance and reliability use different models but share a method. Performance models explain resource consumption, waiting, and capacity; failure models explain how components and interactions produce unacceptable outcomes. Both support decisions about what to change and what evidence would justify it. Neither decides which properties matter or what protecting them is worth. The concerns interact: capacity reduces overload-induced failures, retries recover transient faults while adding load, and admission control protects accepted work by refusing other requests. A change that improves one property may weaken another, so the assembled system must be evaluated as a whole.
+Performance and reliability are properties of the assembled system. A change that improves one may weaken the other: retries can recover transient failures while increasing load, and admission control can protect accepted work by refusing other requests. The engineer must evaluate these interactions against the requirements and operating environment, not merely the behavior of individual components.
 
-The engineer must understand selected components, the assumptions behind mechanisms, and the behavior of the system they compose. Modeling makes those assumptions explicit enough to analyze before discovering their consequences in production. The next unit, Security Engineering, examines failures produced deliberately by an adversary examining the same architecture.
+The next unit, Security Engineering, examines how an adversary can deliberately produce undesirable outcomes in the same architecture.

@@ -24,13 +24,13 @@
      rows are monospace so the shared values line up as tokens; flat fills only, so the figure survives
      black-and-white print.
 
-     SIZING. viewBox 700 x 690. The arithmetic is
+     SIZING. viewBox 700 x 710. The arithmetic is
      rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
      (scale 1.1714): relation names 12.5px -> 11.0pt, table cells 10.5px -> 9.2pt, column headers
      9.5px -> 8.3pt, the join and WHERE clauses 11px -> 9.7pt, the result row 13px -> 11.4pt, notes
      11.5px -> 10.1pt, title 16px -> 14.1pt. The tables are the densest element and set the floor:
      at a 700 px column their cells fall to 7.9pt, so this figure wants the wider column. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 690" width="700" height="690"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 710" width="700" height="710"
      role="img" aria-labelledby="joinTitle joinDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="joinTitle">Four model relations joined on their shared identifiers, producing a single-row
@@ -38,7 +38,7 @@
   <desc id="joinDesc">Four small relations are drawn as tables in a two by two grid. Top left,
     PERMISSIONS, from the external specification: columns role, operation and scope; the row student,
     cancel, own, and the row administrator, cancel, administered underscore room. Top right, ENDPOINTS,
-    from the architecture model: columns endpoint, operation and ownership underscore check; the row
+    from the architecture model: columns endpoint, operation and enforces underscore MayCancel; the row
     slash api slash cancel, cancel, true, and the row slash legacy slash cancel, cancel, false. Bottom
     left, CAPABILITIES, from the adversary model: columns actor, role and endpoint; the row malicious
     underscore student, student, slash api slash cancel, and the row malicious underscore student,
@@ -51,11 +51,12 @@
     lists three equalities: permissions dot role equals capabilities dot role; endpoints dot endpoint
     equals capabilities dot endpoint and endpoints dot operation equals permissions dot operation; and
     exposure dot endpoint equals endpoints dot endpoint. Beneath them a WHERE line reads: scope equals
-    own, and reachable is true, and ownership underscore check is false. An arrow leaves the panel and
+    own, and reachable is true, and enforces underscore MayCancel is false. An arrow leaves the panel and
     reaches a result box headed FINDING, one row, holding malicious underscore student, slash legacy
-    slash cancel, cancel, own. A line beneath the row states what the row claims: an actor the adversary
-    model grants, on a path the environment model makes reachable, through an endpoint the architecture
-    model records as not enforcing the scope the specification requires. A final band, drawn in the
+    slash cancel, cancel, own. A line beneath the row states the finding: a reachable cancellation path
+    does not enforce the specified authorization predicate. A further line states what the row claims: an
+    actor the adversary model grants, on a path the environment model makes reachable, through an
+    endpoint the architecture model records as not enforcing the scope the specification requires. A final band, drawn in the
     hostile colour, states the failure mode of the analysis itself: remove the legacy endpoint from the
     architecture relation and the same query returns no rows, which establishes that the available
     models contain no matching violation and not that the service is secure.</desc>
@@ -67,7 +68,7 @@
   </defs>
 
   <!-- solid paper ground so the figure stays legible on the dark theme -->
-  <rect x="0" y="0" width="700" height="690" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="700" height="710" fill="#fdfcf9"/>
 
   <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">A SECURITY FINDING IS A JOIN ACROSS FOUR MODELS</text>
 
@@ -100,17 +101,17 @@
   <g font-size="9.5" font-weight="700" letter-spacing="0.4">
     <text x="384" y="106" fill="#9a3f12">endpoint</text>
     <text x="484" y="106" fill="#9a3f12">operation</text>
-    <text x="562" y="106" fill="#1c1917">ownership_check</text>
+    <text x="552" y="106" fill="#1c1917">enforces_MayCancel</text>
   </g>
   <line x1="370" y1="113" x2="674" y2="113" stroke="#d6d3d1" stroke-width="1"/>
   <g font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
     <text x="384" y="131">/api/cancel</text>
     <text x="484" y="131">cancel</text>
-    <text x="562" y="131">true</text>
+    <text x="552" y="131">true</text>
     <text x="384" y="155">/legacy/cancel</text>
     <text x="484" y="155">cancel</text>
   </g>
-  <text x="562" y="155" font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#8a2f2f">false</text>
+  <text x="552" y="155" font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#8a2f2f">false</text>
   <line x1="370" y1="139" x2="674" y2="139" stroke="#eef2f6" stroke-width="1"/>
 
   <!-- ══════════ CAPABILITIES — the adversary model ══════════ -->
@@ -173,18 +174,19 @@
     <text x="70" y="502">Exposure.endpoint</text><text x="238" y="502">=</text><text x="258" y="502">Endpoints.endpoint</text>
   </g>
   <line x1="70" y1="511" x2="630" y2="511" stroke="#2f5169" stroke-width="1"/>
-  <text x="70" y="528" font-size="11" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#9a3f12">WHERE scope = 'own' AND reachable = TRUE AND ownership_check = FALSE</text>
+  <text x="70" y="528" font-size="11" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#9a3f12">WHERE scope = 'own' AND reachable = true AND enforces_MayCancel = false</text>
 
   <path d="M350,536 V558" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#jn-ah)"/>
 
   <!-- ══════════ the single result row ══════════ -->
-  <rect x="48" y="562" width="604" height="72" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <rect x="48" y="562" width="604" height="92" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
   <text x="70" y="584" font-size="11.5" font-weight="700" fill="#9a3f12" letter-spacing="0.8">FINDING, ONE ROW</text>
   <text x="212" y="584" font-size="13" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#1c1917">malicious_student | /legacy/cancel | cancel | own</text>
-  <text x="70" y="606" font-size="11" fill="#57534e">An actor the adversary model grants, on a path the environment model makes reachable, through an</text>
-  <text x="70" y="623" font-size="11" fill="#57534e">endpoint the architecture model records as not enforcing the scope the specification requires.</text>
+  <text x="70" y="606" font-size="11" font-weight="700" fill="#1c1917">A reachable cancellation path does not enforce the specified authorization predicate.</text>
+  <text x="70" y="627" font-size="11" fill="#57534e">An actor the adversary model grants, on a path the environment model makes reachable, through an</text>
+  <text x="70" y="644" font-size="11" fill="#57534e">endpoint the architecture model records as not enforcing the scope the specification requires.</text>
 
   <!-- ══════════ the failure mode of the analysis itself ══════════ -->
-  <text x="350" y="662" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">Remove /legacy/cancel from the architecture relation and the same query returns no rows. That establishes</text>
-  <text x="350" y="679" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">that the available models hold no matching violation. It does not establish that the service is secure.</text>
+  <text x="350" y="682" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">Remove /legacy/cancel from the architecture relation and the same query returns no rows. That establishes</text>
+  <text x="350" y="699" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">that the available models hold no matching violation. It does not establish that the service is secure.</text>
 </svg>
