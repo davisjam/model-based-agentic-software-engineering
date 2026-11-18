@@ -17,7 +17,12 @@ docs_dir: ../course
 use_directory_urls: true
 strict: true  # fail the build on a bad internal link or nav reference (link-integrity gate)
 
-# README.md + LICENSE under course/ are repo-facing, not site pages.
+# README.md + LICENSE under course/ are repo-facing, not site pages. AGENTS.md and
+# reading-annotation-style.md are the same class: authoring guidance addressed to whoever edits the
+# course, not teaching material addressed to a student. Both shipped as /teach/AGENTS/ and
+# /teach/reading-annotation-style/ before being excluded here. They are excluded as a PAIR because
+# AGENTS.md holds the only link to the style guide, so excluding one alone orphans the other.
+
 # lectures/act-3-*/archived/ is retired from the teaching sequence and kept for reference in the
 # repo only — it must NOT be published. Excluded rather than merely hidden from nav: `not_in_nav`
 # still BUILDS and SERVES the page, and `catalog.py build` runs a blocking reachability gate that
@@ -31,6 +36,8 @@ strict: true  # fail the build on a bad internal link or nav reference (link-int
 exclude_docs: |
   README.md
   LICENSE
+  AGENTS.md
+  reading-annotation-style.md
   lectures/act-3-software-in-the-world/archived/*
   interactive/*/tests/*
 
