@@ -110,7 +110,7 @@ The models are represented as data rather than importing the implementation they
 
 \subsection{One Dependency for Execution and Analysis}
 
-DocAble\textquotesingle s remediation subsystem illustrates how one set of declarations can support both execution and analysis. For a DOCX job with table-header repair enabled, one pass marks table headers and another checks the table\textquotesingle s structure. The registry declares that the repair pass writes table-header information and that the structure check reads it.
+Suppose we change a remediation pass. Which later computations depend on its output, and will they still execute in the required order? In \autoref{chapter:2.3-structural}, we introduced DocAble\textquotesingle s remediation-computation graph for investigating dependencies. Connecting those dependencies to the execution declarations lets us examine their scheduling consequences without reconstructing the pipeline from code. For a DOCX job with table-header repair enabled, one pass marks table headers and another checks the table\textquotesingle s structure. The registry declares that the repair pass writes table-header information and that the structure check reads it.
 
 Matching that write to that read gives a dependency: repair must precede the check. The scheduler uses the dependency to order the work, so the check examines the table after the header pass has run.
 
@@ -122,7 +122,7 @@ PDF uses a different connection. Its analytical edges are projected from paralle
 
 % <!-- point: one-source-of-truth-supports-both-directions | One set of Office read/write declarations supplies both scheduling and analysis; PDF analytical relations instead depend on checked correspondence with parallel declarations. -->
 
-One source of truth can thus support execution and analysis at once. The execution machinery uses the declared relationships to schedule work; the analytical view exposes the structure needed for queries and checks. The important question is which representation owns each fact and how each consumer remains connected to that source. Where separate declarations are necessary, as in the PDF view, checked correspondence carries that connection.
+The Office example makes the same dependency available for execution and analysis; it does not derive a new relationship by joining independent models. The execution machinery uses the declared relationships to schedule work; the analytical view exposes the structure needed for queries and checks. The important question is which representation owns each fact and how each consumer remains connected to that source. Where separate declarations are necessary, as in the PDF view, checked correspondence carries that connection.
 
 \subsection{What One Document Run Changed}
 
