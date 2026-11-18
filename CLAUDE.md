@@ -265,6 +265,21 @@ re-deriving these, so they live here:**
   - **All three modes share one root, which is worth stating once:** the gate runs BEFORE the
     transfer, so both the verdict and the credential age across a long window. That is why the exit
     code is never the check and `git log --oneline origin/main..HEAD` returning EMPTY always is.
+  - **A SIXTH mode, 261118 — the gate PASSES and the hook then dies writing its own output, because
+    you piped the push.** The log ends in a Python traceback from `hooks/pre-push` —
+    `BlockingIOError: [Errno 35] write could not complete without blocking` at `sys.stderr.write` —
+    directly below a clean `== 105 gate checks: 99 passed, 0 failed ==`. That shape invites reading
+    the hook as broken. It is not: `git push ... 2>&1 | tail -60` gives the hook a pipe whose 64 KB
+    buffer fills while `tail` holds its output to the end, and a non-blocking write to a full pipe
+    raises rather than waiting. The gate had already passed; only the reporting failed, and the push
+    was refused anyway.
+    - **So never pipe a backgrounded push through `tail`, `head` or a pager — redirect to a file**
+      (`> /tmp/push-<stamp>.log 2>&1`) and read the file. The pipe also costs you progress
+      visibility, since `tail` emits nothing until exit, which is the same reason it is wrong for
+      any long backgrounded command.
+    - The discriminator against modes 3 and 4 is that a gate verdict IS present and says `0 failed`.
+      A traceback below a green verdict is plumbing, not a defect in your change.
+
   - **Fix, repo-local so nothing outside the working tree is touched:**
     `git config core.sshCommand "ssh -o ServerAliveInterval=20 -o ServerAliveCountMax=30"`.
     Reverts with `git config --unset core.sshCommand`. Related, and cheap to get wrong: `git commit -m "msg" -- <paths>` —
