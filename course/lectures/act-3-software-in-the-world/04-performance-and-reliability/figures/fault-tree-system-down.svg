@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch: a fault tree's
+     meaning lives in its GATE GLYPHS — the curved-bottom OR shape and the flat-bottom AND shape are the
+     notation, and swapping one for the other changes the claim about how many events must occur. No
+     graph auto-layout draws those glyphs, and rendering the gates as labelled boxes would teach the
+     decomposition while losing the convention students meet in any reliability review. Gate shapes,
+     plain downward connectors and the absence of arrowheads follow the unit's existing fault tree
+     (fault-tree-confirmed-reservation-lost.svg); the palette follows the unit vocabulary
+     (queues-and-service-stations.svg).
+
+     TWO DECISIONS CARRY THE TEACHING, and both are logical rather than decorative.
+
+     1. The expanded middle branch is named "BACKEND PATH UNAVAILABLE", not "backend fails". The AND
+        beneath it decomposes to the selected instance failing AND no alternate path succeeding in time.
+        That decomposition is only sound for an event that already INCLUDES FAILED RECOVERY: if the
+        parent named a bare backend failure, the tree would be wrong for any architecture where a second
+        backend can still serve the request. The event's own subtitle restates the inclusion so the
+        wording cannot be read loosely.
+
+     2. Only ONE first-level branch is expanded. The other two are drawn in the plain, unhighlighted
+        idiom and labelled "not yet expanded". That asymmetry is the point rather than an omission: a
+        fault tree is built depth-first, following one causal path to events concrete enough to control
+        before expanding its siblings. The shaded branch is a depth marker, not a status or a verdict —
+        this is a logical model, so it carries no pass/fail decoration of any kind.
+
+     Palette: gold #8E6F3E, brown #5C4826, cream #F5F1E8, ink #2D2D2D, pale blue #C9DCEC on #1F3D57
+     text, grey #555960, paper #fdfcf9. The OR subtree draws in gold and the AND subtree in brown, so
+     each gate's reach is visible; shape remains the notation, so the figure survives monochrome print.
+
+     SIZING. viewBox 700 x 540. At a 700-900 CSS px column the arithmetic is
+     rendered_pt = authored_px * (display_width / 700) * 0.75, so at 820 px (scale 1.1714):
+     the top event 15px -> 13.2pt, event labels 13.5px -> 11.9pt, basic events 12.5px -> 11.0pt,
+     subtitles and the caveat 11.5px -> 10.1pt, title 16px -> 14.1pt. At 700 px the event labels sit
+     at 10.1pt, above the 9pt floor, so the figure holds across the range. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540"
+     role="img" aria-labelledby="ftsTitle ftsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ftsTitle">A fault tree for the top event "no successful response within five seconds",
+    decomposed through an OR gate into three branches, of which one is expanded through an AND gate</title>
+  <desc id="ftsDesc">The tree reads downward. At the top sits the top event: no successful response
+    within five seconds, described as the requirement negated. Below it is an OR gate, drawn with a
+    curved bottom edge, which feeds three events side by side. On the left, the router drops the
+    request, marked not yet expanded. In the middle, shaded to mark it as the branch expanded here, the
+    backend path is unavailable, meaning no backend serves the request before the deadline. On the
+    right, the required database is unavailable, also marked not yet expanded. Only the middle branch
+    continues. Beneath it is an AND gate, drawn with a flat bottom and a rounded top, taking two events
+    that must both occur: the selected instance fails, and no alternate path succeeds within the
+    deadline. Naming the parent event as the backend path being unavailable rather than as a backend
+    failing is what makes that AND correct, because another backend may still serve the request. A
+    legend states that an OR gate occurs when any one input occurs while an AND gate occurs only when
+    every input occurs together, and that the shaded branch is the one expanded here while the others
+    stay unexpanded because a tree is built depth-first. A closing italic note reads that the tree is
+    illustrative and conditional: a router drop produces the top event only if no retry succeeds within
+    five seconds, and an AND gate does not assert independence, since instances can fail together
+    through shared code, configuration or dependencies.</desc>
+
+  <!-- No arrowheads: a fault tree is read downward through plain gate connectors, which is the
+       notation students will meet in a reliability review. -->
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="540" fill="#fdfcf9"/>
+
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#5c4826">FAULT TREE: SYSTEM-DOWN, FROM AN UNACCEPTABLE OUTCOME TO ITS CAUSES</text>
+
+  <!-- top event: a requirement, negated -->
+  <rect x="175" y="46" width="350" height="54" rx="10" fill="#f5f1e8" stroke="#8e6f3e" stroke-width="2.5"/>
+  <text x="350" y="71" text-anchor="middle" font-size="15" font-weight="700" fill="#5c4826">NO SUCCESSFUL RESPONSE WITHIN 5 SECONDS</text>
+  <text x="350" y="90" text-anchor="middle" font-size="11.5" fill="#5c4826">top event: the requirement, negated</text>
+
+  <line x1="350" y1="100" x2="350" y2="114" stroke="#8e6f3e" stroke-width="2"/>
+
+  <!-- OR gate: curved (concave) bottom edge -->
+  <path d="M322,154 Q322,124 350,114 Q378,124 378,154 Q350,143 322,154 Z"
+        fill="#fdfcf9" stroke="#8e6f3e" stroke-width="2"/>
+  <text x="350" y="143" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8e6f3e">OR</text>
+
+  <!-- split to the three first-level events -->
+  <g stroke="#8e6f3e" stroke-width="2" fill="none">
+    <path d="M350,152 V170"/>
+    <path d="M130,170 H570"/>
+    <path d="M130,170 V186"/>
+    <path d="M350,170 V186"/>
+    <path d="M570,170 V186"/>
+  </g>
+
+  <!-- left branch: left unexpanded on purpose -->
+  <rect x="28" y="186" width="204" height="70" rx="9" fill="#ffffff" stroke="#555960" stroke-width="1.8"/>
+  <text x="130" y="211" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2d2d2d">ROUTER DROPS</text>
+  <text x="130" y="229" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2d2d2d">THE REQUEST</text>
+  <text x="130" y="247" text-anchor="middle" font-size="11.5" font-style="italic" fill="#555960">not yet expanded</text>
+
+  <!-- middle branch: the one this tree expands. The name INCLUDES failed recovery. -->
+  <rect x="248" y="186" width="204" height="70" rx="9" fill="#c9dcec" stroke="#8e6f3e" stroke-width="2.5"/>
+  <text x="350" y="210" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f3d57">BACKEND PATH UNAVAILABLE</text>
+  <text x="350" y="228" text-anchor="middle" font-size="11.5" fill="#1f3d57">no backend serves the request</text>
+  <text x="350" y="244" text-anchor="middle" font-size="11.5" fill="#1f3d57">before the deadline</text>
+
+  <!-- right branch: left unexpanded on purpose -->
+  <rect x="468" y="186" width="204" height="70" rx="9" fill="#ffffff" stroke="#555960" stroke-width="1.8"/>
+  <text x="570" y="211" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2d2d2d">REQUIRED DATABASE</text>
+  <text x="570" y="229" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2d2d2d">UNAVAILABLE</text>
+  <text x="570" y="247" text-anchor="middle" font-size="11.5" font-style="italic" fill="#555960">not yet expanded</text>
+
+  <line x1="350" y1="256" x2="350" y2="266" stroke="#5c4826" stroke-width="2"/>
+
+  <!-- AND gate: flat bottom, semicircular top -->
+  <path d="M322,318 L322,294 A28,28 0 0 1 378,294 L378,318 Z"
+        fill="#f5f1e8" stroke="#5c4826" stroke-width="2"/>
+  <text x="350" y="311" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5c4826">AND</text>
+
+  <!-- split to the two events that must BOTH occur -->
+  <g stroke="#5c4826" stroke-width="2" fill="none">
+    <path d="M350,318 V334"/>
+    <path d="M180,334 H520"/>
+    <path d="M180,334 V350"/>
+    <path d="M520,334 V350"/>
+  </g>
+
+  <rect x="58" y="350" width="244" height="62" rx="8" fill="#f5f1e8" stroke="#555960" stroke-width="1.5"/>
+  <text x="180" y="378" text-anchor="middle" font-size="12.5" fill="#2d2d2d">The selected instance</text>
+  <text x="180" y="396" text-anchor="middle" font-size="12.5" fill="#2d2d2d">fails</text>
+
+  <rect x="398" y="350" width="244" height="62" rx="8" fill="#f5f1e8" stroke="#555960" stroke-width="1.5"/>
+  <text x="520" y="378" text-anchor="middle" font-size="12.5" fill="#2d2d2d">No alternate path succeeds</text>
+  <text x="520" y="396" text-anchor="middle" font-size="12.5" fill="#2d2d2d">within the deadline</text>
+
+  <!-- legend -->
+  <line x1="28" y1="438" x2="672" y2="438" stroke="#555960" stroke-width="1"/>
+  <g font-size="12.5" fill="#2d2d2d">
+    <text x="28" y="461"><tspan font-weight="700" fill="#8e6f3e">OR</tspan> occurs when any one input occurs. <tspan font-weight="700" fill="#5c4826">AND</tspan> occurs only when every input occurs together.</text>
+    <text x="28" y="479">The shaded branch is the one expanded here; the others wait, because a tree is built depth-first.</text>
+  </g>
+
+  <g font-size="11.5" font-style="italic" fill="#5c4826">
+    <text x="28" y="508">Illustrative and conditional: a router drop produces the top event only if no retry succeeds within five seconds.</text>
+    <text x="28" y="526">AND does not assert independence: instances can fail together through shared code, configuration or dependencies.</text>
+  </g>
+</svg>

@@ -5,20 +5,19 @@ readings:
     - heading: Where engineering work moves
       items:
         - cite: davis2026mage
+          locator: 'chap. 6, §6.1 A Theory of MAGE and §6.2 What the Theory Predicts'
+          annotation: '{mage:6.1} and {mage:6.2} Davis, 2026. The economic argument underneath the lecture''s third and fourth sections: governance conversion, engineering capital, and why a change inherits the architecture, representations, conventions, obligations and tests that earlier work produced. §6.2 is the more useful of the two here, because it treats engineering capital as a quantity that can fail to materialize, and gives the conditions under which a conversion does not pay.'
+        - cite: davis2026mage
           locator: 'chap. 7, §7.1 The Reorganization of Software Work'
           annotation: '{mage:7.1} Davis, 2026. Required. The chapter argues that commodity intelligence changes software engineering''s cost structure rather than invalidating it: when implementation consumes less of the engineering budget, the relative value of specification, architecture, modeling, validation, measurement and governance rises. Read it for the distinction the lecture turns on, between accelerating the coding portion of the work and reorganizing the whole production process. Ask yourself which of your own project''s activities got cheaper this semester, and which got more consequential as a result.'
     - heading: What the engineer still owes
       items:
+        - cite: beyer2016sre
+          locator: 'chapter 15, Postmortem Culture: Learning from Failure'
+          annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering* (O''Reilly, 2016), [chapter 15](https://sre.google/sre-book/postmortem-culture/). Optional, and carried over from Operations & SRE. Reread the section on corrective actions against this unit''s closing questions: it is the clearest short account of the difference between repairing one failure and changing the conditions that let its class recur.'
         - cite: davis2026mage
           locator: 'chap. 7, §7.4 The Engineer and §7.5 What Cannot Be Delegated?'
           annotation: '{mage:7.4} and {mage:7.5} Davis, 2026. Required. These two sections pose the question the final lecture closes on: if agents can implement changes, maintain models, run analyses and propose engineering moves, what remains the engineer''s work? The answer offered is not a list of tasks machines currently perform badly, because such lists expire. It is informed control and responsibility for what the system should mean. Read §7.5 last; it is the book''s coda and it states where the difficulty moves rather than claiming the difficulty disappears.'
-  optional:
-    - cite: davis2026mage
-      locator: 'chap. 6, §6.1 A Theory of MAGE and §6.2 What the Theory Predicts'
-      annotation: '{mage:6.1} and {mage:6.2} Davis, 2026. Optional. The economic argument underneath the lecture''s third and fourth sections: governance conversion, engineering capital, and why a change inherits the architecture, representations, conventions, obligations and tests that earlier work produced. §6.2 is the more useful of the two here, because it treats engineering capital as a quantity that can fail to materialize, and gives the conditions under which a conversion does not pay.'
-    - cite: beyer2016sre
-      locator: 'chapter 15, Postmortem Culture: Learning from Failure'
-      annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering* (O''Reilly, 2016), [chapter 15](https://sre.google/sre-book/postmortem-culture/). Optional, and carried over from Operations & SRE. Reread the section on corrective actions against this unit''s closing questions: it is the clearest short account of the difference between repairing one failure and changing the conditions that let its class recur.'
 instructor_materials: []
 student_materials: []
 assignments: []

@@ -10,7 +10,7 @@ readings:
     - heading: 'Human attention is a finite validation mechanism'
       items:
         - cite: warm2008vigilance
-          annotation: 'Warm, Parasuraman, and Matthews, ["Vigilance Requires Hard Mental Work and Is Stressful"](https://doi.org/10.1518/001872008X312152) (2008). Why human monitoring is itself demanding work, and why assurance cannot scale simply by putting more machine output in front of human reviewers. The authors gather evidence that sustained watching consumes attentional resources, imposes measurable workload, and produces stress, rather than being the passive activity it appears to be. The paper is not about software, but code review is this unit''s own vigilance task: a reviewer scanning a diff for defects that are rare, scattered, and usually absent is doing exactly the work these experiments measure. Read it against your own code reviewing, and against the growing volume of machine-generated code arriving for review: which defects can you still rely on a reviewer to catch in the tenth diff of the day, and where are we asking reviewers to serve as indefinitely scalable detectors of rare defects instead of as the source of judgment that makes them valuable?'
+          annotation: 'Warm, Parasuraman, and Matthews, ["Vigilance Requires Hard Mental Work and Is Stressful"](https://doi.org/10.1518/001872008X312152) (2008). Sustained watching consumes attentional resources, imposes measurable workload and produces stress, rather than being the passive activity it appears to be. The paper is not about software, but code review is this unit''s own vigilance task: a reviewer scanning a diff for defects that are rare, scattered and usually absent is doing exactly the work these experiments measure. Read it against the rising volume of machine-generated code arriving for review, and ask which defects you can still rely on a reviewer to catch in the tenth diff of the day.'
     - heading: 'Fuzz testing: let unexpected inputs find the failures'
       items:
         - cite: miller2022fuzz
@@ -23,7 +23,7 @@ readings:
           annotation: 'The canonical paper introducing QuickCheck. Read it for where the technique came from.'
         - cite: anthropic2026propertytesting
           annotation: 'A contemporary application: inexpensive generated implementation makes the separation between producing code and stating useful properties about that code especially visible.'
-      note: 'Only the Cockx introduction is required. Claessen and Hughes and the Anthropic write-up are further reading — neither is necessary for understanding Cockx, but together they show where the technique came from and why it remains relevant in an agentic setting.'
+      note: 'Cockx introduces the technique most directly. Claessen and Hughes is where it originates, and the Anthropic write-up shows what it looks like in an agentic setting; together they explain how a method from 2000 came to matter again.'
     - heading: 'Differential testing: create an oracle by comparison'
       items:
         - cite: mckeeman1998differential

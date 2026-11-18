@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is that
+     three things are DIFFERENT PROTECTIONS over the same attack, not three stages of one defense. The
+     figure draws them as three panels read left to right, and each panel carries a SUBTITLE naming its
+     own relation to the attack (where it begins, one response to it, what that response leaves), so no
+     reader can take the sequence for a pipeline the attack passes through.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. The overflow is drawn as a write CROSSING A REGION BOUNDARY, and nothing else. There is no
+        payload, no gadget chain, no address. The claim the figure makes is about where the write lands,
+        which is the whole mechanism; drawing the exploit would teach an instance instead of a class.
+     2. The third panel is drawn in the hostile colour and subtitled what the policy does not exclude.
+        W xor X ends the second panel, and the figure refuses to end there. Code reuse is not a defeat
+        of the control; it is evidence that the control's guarantee was narrower than the property a
+        reader may have assumed it had.
+     3. The bottom band separates PREVENT THE CORRUPTION from LIMIT THE EXECUTION and states each one's
+        guarantee as a sentence about the write. Two controls drawn as peers in a row would teach that
+        they are interchangeable, and conflating their effects is the misreading the lander's prose
+        exists to prevent.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
+     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
+     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel #eef2f6, paper #fdfcf9. Flat fills
+     only, so the figure survives black-and-white print; panel position and the dashed region boundary,
+     not colour, carry the distinction.
+
+     SIZING. viewBox 700 x 478. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): panel headers 13px -> 11.4pt, region labels 12px -> 10.5pt, body 11px -> 9.7pt,
+     band headers 12.5px -> 11.0pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column
+     the region labels sit at 9pt, which is the floor, so the body lines are restatements rather than
+     new information. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 478" width="700" height="478"
+     role="img" aria-labelledby="memTitle memDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="memTitle">An unchecked copy crossing a memory-region boundary, the write-xor-execute
+    permission policy, and the code reuse that remains possible under it, drawn as three different
+    protections rather than three stages</title>
+  <desc id="memDesc">Three panels read left to right. The first, headed UNCHECKED COPY, holds two
+    stacked memory regions: an input buffer of fixed size, and beneath it adjacent state that influences
+    control flow. A red arrow runs down the left of both regions and crosses the dashed line between
+    them, labeled that an overlong copy writes past the end of the buffer and into the adjacent region.
+    An arrow leads to the second panel, headed W XOR X POLICY and subtitled one response to the write,
+    which holds two regions: writable data, which is not executable, and executable code, which is not
+    writable. A note states that the operating system enforces this as a permission policy on memory
+    regions. A second arrow leads to the third panel, headed REMAINING RISK, subtitled what the policy
+    does not exclude and drawn in the hostile colour. It holds one region:
+    instructions already present in an executable mapping, which an attacker who controls the
+    control-flow state can reuse without injecting any new code. Return-oriented programming is named as
+    the example. Beneath the three panels a band holds two boxes side by side. The left box, PREVENT THE
+    CORRUPTION, names memory-safe languages, bounds checking and safer interfaces, and states that the
+    out-of-bounds write does not happen. The right box, LIMIT THE EXECUTION, names write xor execute,
+    and states that the write may still happen while the bytes written are not instructions. A closing
+    note states that these are different protections resting on different assumptions, that bounds-safe
+    code targets the corruption while W xor X targets the permissions of memory regions, and that a
+    control is justified by the class of behavior it excludes rather than by the exploit that first
+    motivated it.</desc>
+
+  <defs>
+    <marker id="mem-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="mem-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="478" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">THREE DIFFERENT PROTECTIONS, WITH THREE DIFFERENT GUARANTEES</text>
+
+  <!-- ══════════ PANEL 1: the write crosses a region boundary ══════════ -->
+  <rect x="20" y="44" width="200" height="212" rx="10" fill="#eef2f6"/>
+  <text x="120" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.6">UNCHECKED COPY</text>
+  <text x="120" y="82" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">where the attack begins</text>
+
+  <rect x="56" y="92" width="150" height="54" rx="7" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="131" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">INPUT BUFFER</text>
+  <text x="131" y="131" text-anchor="middle" font-size="11" fill="#57534e">a fixed size</text>
+
+  <line x1="46" y1="153" x2="206" y2="153" stroke="#8a2f2f" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+  <rect x="56" y="160" width="150" height="54" rx="7" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="131" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#8a2f2f">ADJACENT STATE</text>
+  <text x="131" y="199" text-anchor="middle" font-size="11" fill="#8a2f2f">influences control flow</text>
+
+  <path d="M40,104 V208" fill="none" stroke="#8a2f2f" stroke-width="2.5" marker-end="url(#mem-ah-red)"/>
+  <text x="120" y="234" text-anchor="middle" font-size="11" fill="#8a2f2f">an overlong copy writes past the end</text>
+  <text x="120" y="248" text-anchor="middle" font-size="11" fill="#8a2f2f">of the buffer and across the boundary</text>
+
+  <path d="M224,150 H246" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#mem-ah)"/>
+
+  <!-- ══════════ PANEL 2: the permission policy ══════════ -->
+  <rect x="250" y="44" width="200" height="212" rx="10" fill="#eef2f6"/>
+  <text x="350" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.6">W &#8853; X POLICY</text>
+  <text x="350" y="82" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">one response to the write</text>
+
+  <rect x="266" y="92" width="168" height="54" rx="7" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">WRITABLE DATA</text>
+  <text x="350" y="131" text-anchor="middle" font-size="11" fill="#57534e">not executable</text>
+
+  <rect x="266" y="160" width="168" height="54" rx="7" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">EXECUTABLE CODE</text>
+  <text x="350" y="199" text-anchor="middle" font-size="11" fill="#57534e">not writable</text>
+
+  <text x="350" y="234" text-anchor="middle" font-size="11" fill="#57534e">the operating system enforces this as a</text>
+  <text x="350" y="248" text-anchor="middle" font-size="11" fill="#57534e">permission policy on memory regions</text>
+
+  <path d="M454,150 H476" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#mem-ah-red)"/>
+
+  <!-- ══════════ PANEL 3: what the policy does not exclude ══════════ -->
+  <rect x="480" y="44" width="200" height="212" rx="10" fill="#f9f0ed"/>
+  <text x="580" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="#8a2f2f" letter-spacing="0.6">REMAINING RISK</text>
+  <text x="580" y="82" text-anchor="middle" font-size="10.5" font-style="italic" fill="#8a2f2f">what the policy does not exclude</text>
+
+  <rect x="496" y="96" width="168" height="76" rx="7" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="580" y="120" text-anchor="middle" font-size="12" font-weight="700" fill="#8a2f2f">INSTRUCTIONS ALREADY</text>
+  <text x="580" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#8a2f2f">IN AN EXECUTABLE REGION</text>
+  <text x="580" y="155" text-anchor="middle" font-size="11" fill="#8a2f2f">reusable without injecting code</text>
+
+  <text x="580" y="200" text-anchor="middle" font-size="11" fill="#8a2f2f">An attacker who still controls the</text>
+  <text x="580" y="214" text-anchor="middle" font-size="11" fill="#8a2f2f">control-flow state can chain them:</text>
+  <text x="580" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="#8a2f2f">return-oriented programming</text>
+
+  <!-- ══════════ the two guarantees, kept apart ══════════ -->
+  <rect x="20" y="278" width="328" height="106" rx="10" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="184" y="302" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12" letter-spacing="0.6">PREVENT THE CORRUPTION</text>
+  <text x="184" y="324" text-anchor="middle" font-size="11" fill="#1c1917">memory-safe languages, bounds checking,</text>
+  <text x="184" y="340" text-anchor="middle" font-size="11" fill="#1c1917">interfaces that carry the buffer's length</text>
+  <text x="184" y="364" text-anchor="middle" font-size="11.5" font-weight="700" fill="#9a3f12">The out-of-bounds write does not happen.</text>
+
+  <rect x="352" y="278" width="328" height="106" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="516" y="302" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169" letter-spacing="0.6">LIMIT THE EXECUTION</text>
+  <text x="516" y="324" text-anchor="middle" font-size="11" fill="#1c1917">W &#8853; X on memory regions, so no region is</text>
+  <text x="516" y="340" text-anchor="middle" font-size="11" fill="#1c1917">both writable and executable at once</text>
+  <text x="516" y="364" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2f5169">The write may happen; the bytes are not run.</text>
+
+  <g text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">
+    <text x="350" y="414">These are different protections resting on different assumptions, and their effects must not be conflated.</text>
+    <text x="350" y="432">Control-flow defenses are a third, constraining how corrupted state may redirect execution.</text>
+    <text x="350" y="456">A control earns its place by the class of behavior it excludes, not by the exploit that first motivated it.</text>
+  </g>
+</svg>

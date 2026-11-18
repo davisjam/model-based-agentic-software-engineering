@@ -6,19 +6,21 @@ readings:
       items:
         - cite: brooks1995
           locator: 'chap. 2'
-          annotation: 'Discusses the nonlinear scaling of teamwork.'
+          annotation: 'Brooks, *The Mythical Man-Month*, chapter 2. The source of the claim this unit builds on, that adding people to a late project makes it later. The reasoning is what matters: perfectly partitionable work scales, work requiring communication pays a cost that grows with the square of the team, and training a new member consumes the time of someone already productive. Brooks argues from 1960s mainframe projects, so treat the mechanism as durable and the magnitudes as contingent. Ask which of his three terms an agent changes and which it leaves untouched.'
         - cite: winters2020
           locator: 'chap. 2, "How to Work Well on Teams"'
+          annotation: 'Winters et al., *Software Engineering at Google*, chapter 2, "How to Work Well on Teams." Software development is a team sport, and the obstacle the authors name is the instinct to hide work until it is good, which they call the genius myth. Against it they set humility, respect and trust, treated as engineering practice rather than sentiment: share early, invite review, make it safe to be wrong. Brooks prices coordination; this chapter asks what makes coordination work at all. Which of the three does your Team Contract give an actual mechanism for?'
     - heading: Engineering work
       items:
-        - '{mage:7.1} Davis, 2026. How increasingly capable agents change the distribution of work in software engineering, shifting human attention toward intent, abstraction, evidence, coordination, judgment, and acceptance.'
-        - '{mage:7.3} Davis, 2026. What does it mean to be a software engineer when machines can perform increasing amounts of engineering work? The durable role of the engineer lies not in whatever tasks machines currently cannot perform, but in responsibility for what systems should mean, what evidence is sufficient, and what tradeoffs are acceptable.'
+        - '{mage:7.1} Davis, 2026. As agents grow more capable the distribution of engineering work shifts rather than shrinking, moving human attention toward intent, abstraction, evidence, coordination, judgment and acceptance. That list is a claim about which capabilities a team will need, so read it as input to the allocation question this unit poses. If the scarce work becomes judgment and coordination, ask where a team is meant to acquire either, given that engineers have traditionally acquired both by doing the implementation an agent now does.'
+        - '{mage:7.3} Davis, 2026. What does it mean to be a software engineer when machines can perform increasing amounts of engineering work? The answer offered here locates the durable role not in whatever tasks machines currently cannot do, a boundary that moves every year, but in responsibility for what a system should mean, what evidence is sufficient, and which tradeoffs are acceptable. Responsibility of that kind cannot be delegated to an agent, which is why the section bears directly on how a team assigns its work.'
     - heading: Metrics
       items:
         - cite: winters2020
           locator: 'chap. 7, "Measuring Engineering Productivity"'
+          annotation: 'Winters et al., *Software Engineering at Google*, chapter 7, "Measuring Engineering Productivity." The chapter opens on whether a measurement is worth taking at all, and offers a triage: who will act on the result, and what changes if it comes back either way. Its framework spreads productivity across quality, attention, intellectual complexity, tempo, satisfaction and effectiveness, on the grounds that any single proxy gets gamed. That the authors staff this work with researchers is itself a claim about how hard honest measurement is. Ask what decision a commit count could possibly inform.'
         - cite: dora-metrics
-          annotation: 'A widely used framework for measuring software delivery performance.'
+          annotation: 'DORA, ["Software Delivery Metrics: The Four Keys"](https://dora.dev/guides/dora-metrics/). Four measures of delivery performance, deployment frequency, lead time for changes, change failure rate and failed-deployment recovery time, paired so that throughput and stability are read together rather than traded off. The pairing is the design: a team can inflate either alone, and only the four together describe a delivery system. Notice what they measure, the path a change takes from commit to production, and what they do not, which is anything about an individual engineer. Decide which of the four you could instrument this semester.'
 instructor_materials: []
 student_materials: []
 assignments: []

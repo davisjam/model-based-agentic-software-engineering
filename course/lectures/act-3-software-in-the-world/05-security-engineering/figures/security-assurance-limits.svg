@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is that
+     two limits are about DIFFERENT THINGS, and the figure's only job is to keep them apart. One bounds
+     what an analysis can decide; the other bounds what an artifact can be trusted to be. So the two
+     chains are drawn as separate panels with no connector between them, and each chain's last box
+     states the limit as a sentence rather than as a verdict word.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. Each chain's first box names its SCOPE, because scope is where the two limits differ. The left
+        chain begins at an arbitrary program; the right begins at reviewed source whose compiler was
+        never examined. Dropping the scope would make both read as "software cannot be trusted".
+     2. Neither chain ends in red. The hostile colour marks only the right chain's compromised compiler,
+        which is an adversary's doing; undecidability is a property of the problem and gets the neutral
+        colour. Colouring a theorem as a threat would teach that mathematics is attacking us.
+     3. The band beneath both panels is what the figure is FOR: it names what each limit does not say.
+        Restricted languages, bounded models and scoped properties support rigorous analysis, and a
+        reproducible build gives evidence about the toolchain. Without that band the figure argues that
+        assurance is impossible, which is the opposite of the lander's claim.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
+     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
+     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel #eef2f6, paper #fdfcf9. Flat fills
+     only, so the figure survives black-and-white print.
+
+     SIZING. viewBox 700 x 488. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): panel headers 13.5px -> 11.9pt, box labels 12.5px -> 11.0pt, body 11px -> 9.7pt,
+     band text 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column the body sits at 8.3pt, so
+     each box's first line carries its meaning on its own. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 488" width="700" height="488"
+     role="img" aria-labelledby="limTitle limDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="limTitle">Two separate limits on security assurance: what no general analysis can decide
+    about arbitrary programs, and what source review cannot establish when the toolchain lies outside
+    the trusted assumptions</title>
+  <desc id="limDesc">Two panels sit side by side with no connector between them, because the two limits
+    are about different things. The left panel, headed THE ANALYSIS LIMIT, holds a chain of three boxes
+    read downward. The first names the scope: an arbitrary program, written in a language with no
+    restriction. An arrow reaches the second: a nontrivial semantic property, such as whether the
+    program ever discloses a secret. An arrow reaches the third: under a suitable formalization, no
+    algorithm decides this for every program, which is Rice's theorem. The right panel, headed THE TRUST
+    LIMIT, holds its own chain of three boxes. The first names its scope: reviewed source, read line by
+    line and found innocent. An arrow reaches the second, drawn in the hostile colour: a compiler
+    outside the trusted assumptions, which no one examined. An arrow reaches the third: the executable
+    can differ from what the review established, which is the argument of Reflections on Trusting Trust.
+    Beneath both panels a band headed WHAT NEITHER LIMIT SAYS holds two statements. The first: a
+    restricted language, a bounded model and a precisely scoped property support rigorous analysis and
+    proof, so the obligation is to state what was established and for which class of programs and
+    environments. The second: the trusted computing base can be made smaller and can itself be given
+    evidence, and a reproducible build is evidence about the toolchain rather than about the source
+    alone.</desc>
+
+  <defs>
+    <marker id="lim-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="lim-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="488" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">TWO LIMITS, ABOUT TWO DIFFERENT THINGS</text>
+
+  <!-- ══════════ PANEL A: what no general procedure decides ══════════ -->
+  <rect x="20" y="44" width="322" height="268" rx="12" fill="#eef2f6"/>
+  <text x="181" y="68" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.6">THE ANALYSIS LIMIT</text>
+
+  <rect x="44" y="82" width="274" height="56" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="181" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">AN ARBITRARY PROGRAM</text>
+  <text x="181" y="123" text-anchor="middle" font-size="11" fill="#57534e">in a language with no restriction</text>
+  <path d="M181,138 V160" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#lim-ah)"/>
+
+  <rect x="44" y="164" width="274" height="56" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="181" y="186" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">A NONTRIVIAL SEMANTIC PROPERTY</text>
+  <text x="181" y="205" text-anchor="middle" font-size="11" fill="#57534e">does it ever disclose a secret?</text>
+  <path d="M181,220 V242" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#lim-ah)"/>
+
+  <rect x="44" y="246" width="274" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="181" y="268" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">NO ALGORITHM DECIDES IT FOR ALL</text>
+  <text x="181" y="286" text-anchor="middle" font-size="11" fill="#57534e">under a suitable formalization: Rice's theorem</text>
+
+  <!-- ══════════ PANEL B: what the review cannot reach ══════════ -->
+  <rect x="358" y="44" width="322" height="268" rx="12" fill="#eef2f6"/>
+  <text x="519" y="68" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.6">THE TRUST LIMIT</text>
+
+  <rect x="382" y="82" width="274" height="56" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="519" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">REVIEWED SOURCE</text>
+  <text x="519" y="123" text-anchor="middle" font-size="11" fill="#57534e">read line by line and found innocent</text>
+  <path d="M519,138 V160" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#lim-ah-red)"/>
+
+  <rect x="382" y="164" width="274" height="56" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="519" y="186" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">A COMPILER NOBODY EXAMINED</text>
+  <text x="519" y="205" text-anchor="middle" font-size="11" fill="#8a2f2f">outside the trusted assumptions</text>
+  <path d="M519,220 V242" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#lim-ah-red)"/>
+
+  <rect x="382" y="246" width="274" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="519" y="268" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">THE EXECUTABLE MAY DIFFER</text>
+  <text x="519" y="286" text-anchor="middle" font-size="11" fill="#57534e">the argument of Reflections on Trusting Trust</text>
+
+  <!-- ══════════ what the figure is for: neither limit says assurance is impossible ══════════ -->
+  <rect x="20" y="332" width="660" height="106" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="350" y="356" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12" letter-spacing="0.8">WHAT NEITHER LIMIT SAYS</text>
+  <text x="40" y="378" font-size="11.5" fill="#1c1917">A restricted language, a bounded model and a precisely scoped property support rigorous analysis and</text>
+  <text x="40" y="394" font-size="11.5" fill="#1c1917">proof. The obligation is to state what was established, and for which class of programs and environments.</text>
+  <text x="40" y="416" font-size="11.5" fill="#1c1917">The trusted computing base can be made smaller, and evidence can be obtained about it. A reproducible</text>
+  <text x="40" y="432" font-size="11.5" fill="#1c1917">build is evidence about the toolchain rather than about the source alone.</text>
+
+  <text x="350" y="460" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">A security control's guarantee is conditional on assumptions of both kinds: what the analysis</text>
+  <text x="350" y="477" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">covered, and what the environment was trusted to be.</text>
+</svg>

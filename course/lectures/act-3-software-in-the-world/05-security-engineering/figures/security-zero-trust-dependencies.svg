@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The semantic
+     structure is redrawn from Figure 1 of the Zero-Trust Dependencies paper (Amusuo et al., ICSE 2025)
+     rather than screenshotted, so the type, palette and labels match the rest of this unit. The MEANING
+     is that ONE position in the path changes: the same library, with the same defect, reaching the same
+     three operating-system resources, but with an authorization step interposed. Both panels therefore
+     place the dependency at the same height and the resources in the same column, and only the right
+     panel has anything between them.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. The right panel's resources are NOT all denied. One is allowed, one is narrowed, one is refused.
+        A policy that denied everything would be an isolation diagram; the paper's claim is about least
+        privilege, which means the library keeps the access its legitimate task needs.
+     2. The policy and the monitor are drawn as a CYCLE beneath the authorizer: the policy decides, the
+        monitor records, and what the monitor observes refines the policy. The paper's third principle
+        is continuous monitoring, and drawing it as a terminal box would lose the feedback that makes
+        policy discovery possible.
+     3. The scope note sits outside both panels and states what the mechanism mediates: selected
+        operating-system resources. It is not a general prevention of code execution, and the paper
+        places denial of service outside its threat model. Omitting that would let the figure claim a
+        guarantee the prototype does not make.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
+     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
+     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel #eef2f6, paper #fdfcf9. Flat fills
+     only, so the figure survives black-and-white print; the verdict word in each resource box, not its
+     colour, states what the policy decided.
+
+     SIZING. viewBox 700 x 552. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): panel headers 13.5px -> 11.9pt, box labels 12px -> 10.5pt, resource labels
+     11.5px -> 10.1pt, body 10.5px -> 9.2pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. The resource
+     verdicts are the smallest type that carries new information; at a 700 px column they sit at
+     7.9pt, so this figure wants the wider column. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 552" width="700" height="552"
+     role="img" aria-labelledby="ztdTitle ztdDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ztdTitle">A vulnerable dependency reaching file, network and shell resources with the
+    application's inherited permissions, compared with the same dependency reaching them through a
+    runtime authorizer, a least-privilege policy and a monitor</title>
+  <desc id="ztdDesc">Two panels sit side by side, with the dependency at the same height in each and the
+    three resources in the same column, so only what lies between them differs. The left panel is headed
+    IMPLICIT TRUST and subtitled: the dependency runs with the application's permissions. Untrusted
+    input reaches a box labeled VULNERABLE DEPENDENCY, from which three arrows fan out to three resource
+    boxes drawn in the hostile colour: FILE SYSTEM, read and write; NETWORK, connect to any host; and
+    SHELL, execute a command. A note states that nothing on these paths asks whether this dependency
+    needs this resource, and that a defect in the library can therefore reach whatever the application
+    can reach, though the library's own task needed one of the three. The right panel is headed
+    ZERO-TRUST DEPENDENCY and subtitled: each dependency's resource access is separately authorized. The
+    same untrusted input reaches the same VULNERABLE DEPENDENCY box, but its arrow now reaches a RUNTIME
+    AUTHORIZER box, which checks this dependency's permission for this operation. Three arrows fan from
+    the authorizer to the same three resources, each carrying the verdict the policy produced: the file
+    system is allowed for the path the parser reads, the network is restricted to the one host the
+    dependency needs, and the shell is denied. Beneath the authorizer sit two boxes forming a cycle. A
+    LEAST-PRIVILEGE POLICY box states which resources this dependency requires, and an arrow runs up
+    from it into the authorizer. A MONITOR box records the accesses actually observed, reached by an
+    arrow from the authorizer, and an arrow runs back from the monitor to the policy, labeled refines.
+    A closing note outside both panels states the scope: the mechanism mediates selected
+    operating-system resources, so a vulnerability may still be triggered while the operation it
+    attempts is denied by a control outside the library. It also states the limits, which the paper
+    identifies: native execution, asynchronous delegation across threads, shared namespaces, and a
+    policy discovered from an incomplete workload, which can deny a legitimate access.</desc>
+
+  <defs>
+    <marker id="ztd-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ztd-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+    <marker id="ztd-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="552" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">THE AUTHORITY A DEPENDENCY HOLDS WHILE IT RUNS</text>
+
+  <!-- ══════════ PANEL A: inherited authority ══════════ -->
+  <rect x="20" y="44" width="322" height="424" rx="12" fill="#f9f0ed"/>
+  <text x="181" y="68" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a2f2f" letter-spacing="0.6">IMPLICIT TRUST</text>
+  <text x="181" y="86" text-anchor="middle" font-size="10.5" font-style="italic" fill="#8a2f2f">the dependency runs with the application's permissions</text>
+
+  <rect x="46" y="100" width="150" height="40" rx="20" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="121" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#8a2f2f">UNTRUSTED INPUT</text>
+  <path d="M121,140 V164" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#ztd-ah-red)"/>
+
+  <rect x="46" y="168" width="150" height="58" rx="9" fill="#faf7f0" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="121" y="192" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">VULNERABLE</text>
+  <text x="121" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">DEPENDENCY</text>
+
+  <g fill="none" stroke="#8a2f2f" stroke-width="2">
+    <path d="M196,197 H210"/>
+    <path d="M210,171 V279"/>
+    <path d="M210,171 H222" marker-end="url(#ztd-ah-red)"/>
+    <path d="M210,225 H222" marker-end="url(#ztd-ah-red)"/>
+    <path d="M210,279 H222" marker-end="url(#ztd-ah-red)"/>
+  </g>
+
+  <g fill="#f6ece9" stroke="#8a2f2f" stroke-width="2">
+    <rect x="226" y="150" width="96" height="42" rx="8"/>
+    <rect x="226" y="204" width="96" height="42" rx="8"/>
+    <rect x="226" y="258" width="96" height="42" rx="8"/>
+  </g>
+  <g text-anchor="middle" fill="#8a2f2f">
+    <text x="274" y="169" font-size="11.5" font-weight="700">FILE SYSTEM</text>
+    <text x="274" y="184" font-size="10.5">read and write</text>
+    <text x="274" y="223" font-size="11.5" font-weight="700">NETWORK</text>
+    <text x="274" y="238" font-size="10.5">connect to any host</text>
+    <text x="274" y="277" font-size="11.5" font-weight="700">SHELL</text>
+    <text x="274" y="292" font-size="10.5">execute a command</text>
+  </g>
+
+  <rect x="40" y="322" width="282" height="52" rx="9" fill="none" stroke="#8a2f2f" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="181" y="342" text-anchor="middle" font-size="10.5" fill="#8a2f2f">Nothing on these paths asks whether this</text>
+  <text x="181" y="357" text-anchor="middle" font-size="10.5" fill="#8a2f2f">dependency needs this resource.</text>
+
+  <text x="181" y="400" text-anchor="middle" font-size="11" fill="#8a2f2f">A defect in the library reaches whatever</text>
+  <text x="181" y="416" text-anchor="middle" font-size="11" fill="#8a2f2f">the application can reach, although its own</text>
+  <text x="181" y="432" text-anchor="middle" font-size="11" fill="#8a2f2f">task needed one of the three.</text>
+
+  <!-- ══════════ PANEL B: authorization interposed ══════════ -->
+  <rect x="358" y="44" width="322" height="424" rx="12" fill="#eef2f6"/>
+  <text x="519" y="68" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.6">ZERO-TRUST DEPENDENCY</text>
+  <text x="519" y="86" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">each dependency's resource access is separately authorized</text>
+
+  <rect x="384" y="96" width="150" height="36" rx="18" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="459" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#8a2f2f">UNTRUSTED INPUT</text>
+  <path d="M459,132 V146" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#ztd-ah)"/>
+
+  <rect x="384" y="150" width="150" height="50" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="459" y="172" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">VULNERABLE</text>
+  <text x="459" y="189" text-anchor="middle" font-size="12" font-weight="700" fill="#1c1917">DEPENDENCY</text>
+  <path d="M459,200 V220" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#ztd-ah)"/>
+
+  <rect x="384" y="224" width="150" height="62" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="459" y="246" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">RUNTIME AUTHORIZER</text>
+  <text x="459" y="262" text-anchor="middle" font-size="10.5" fill="#57534e">may this dependency perform</text>
+  <text x="459" y="276" text-anchor="middle" font-size="10.5" fill="#57534e">this operation on this resource?</text>
+
+  <g fill="none" stroke="#2f5169" stroke-width="2">
+    <path d="M534,255 H548"/>
+    <path d="M548,171 V283"/>
+    <path d="M548,171 H560" marker-end="url(#ztd-ah)"/>
+    <path d="M548,227 H560" marker-end="url(#ztd-ah)"/>
+    <path d="M548,283 H560" marker-end="url(#ztd-ah)"/>
+  </g>
+
+  <rect x="564" y="150" width="100" height="42" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="564" y="206" width="100" height="42" rx="8" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <rect x="564" y="262" width="100" height="42" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <g text-anchor="middle">
+    <text x="614" y="169" font-size="11.5" font-weight="700" fill="#1c1917">FILE SYSTEM</text>
+    <text x="614" y="184" font-size="10.5" font-weight="700" fill="#2f5169">allowed: its input</text>
+    <text x="614" y="225" font-size="11.5" font-weight="700" fill="#1c1917">NETWORK</text>
+    <text x="614" y="240" font-size="10.5" font-weight="700" fill="#9a3f12">restricted: one host</text>
+    <text x="614" y="281" font-size="11.5" font-weight="700" fill="#8a2f2f">SHELL</text>
+    <text x="614" y="296" font-size="10.5" font-weight="700" fill="#8a2f2f">denied</text>
+  </g>
+
+  <!-- the policy-monitor cycle: decide, record, refine -->
+  <g fill="none" stroke="#9a3f12" stroke-width="2">
+    <path d="M490,286 V322 H596 V348" marker-end="url(#ztd-ah-rust)"/>
+    <path d="M534,372 H516" marker-end="url(#ztd-ah-rust)"/>
+    <path d="M440,352 V290" marker-end="url(#ztd-ah-rust)"/>
+  </g>
+  <text x="546" y="340" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3f12">records</text>
+  <text x="414" y="330" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3f12">decides</text>
+
+  <rect x="384" y="352" width="128" height="52" rx="9" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="448" y="372" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3f12">LEAST-PRIVILEGE</text>
+  <text x="448" y="386" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3f12">POLICY</text>
+  <text x="448" y="399" text-anchor="middle" font-size="10" fill="#57534e">what this library needs</text>
+
+  <rect x="538" y="352" width="128" height="52" rx="9" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="602" y="372" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3f12">MONITOR</text>
+  <text x="602" y="386" text-anchor="middle" font-size="10" fill="#57534e">observed accesses</text>
+  <text x="602" y="399" text-anchor="middle" font-size="10" fill="#57534e">refine the policy</text>
+
+  <text x="519" y="430" text-anchor="middle" font-size="11" fill="#57534e">A vulnerability may still be triggered. The operation it</text>
+  <text x="519" y="446" text-anchor="middle" font-size="11" fill="#57534e">attempts can be denied from outside the library.</text>
+
+  <!-- scope, stated so the figure claims no more than the prototype does -->
+  <text x="350" y="498" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">The guarantee covers the operating-system resources this mechanism mediates: file, network and shell access.</text>
+  <text x="350" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">It is not a general prevention of code execution, and the paper places denial of service outside its threat model.</text>
+  <text x="350" y="540" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">Its stated limits: native execution, asynchronous delegation, shared namespaces, and a policy learned from an incomplete workload.</text>
+</svg>

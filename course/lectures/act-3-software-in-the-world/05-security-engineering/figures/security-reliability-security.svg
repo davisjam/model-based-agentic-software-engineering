@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is a
+     pair of OPPOSED DIRECTIONS over one pair of boxes: consequences run from the system out to the
+     world, and adversarial influence runs from the world in to the system. An auto-laid-out graph draws
+     a flow, and a flow cannot carry two directions across the same gap without the reader losing track
+     of which label belongs to which arrowhead. So the two arrows span the full figure width, each with
+     its question stated directly above its own line.
+
+     TWO COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. Neither direction is drawn as a DEFINITION. The labels are questions, and the note beneath them
+        states the overlap in both directions: an attack can cause a safety failure, a reliability
+        failure can create a security opportunity, and reliability is not a synonym for safety. Drawing
+        the pair as a clean dichotomy would teach a partition the prose exists to deny.
+     2. The shared-method band sits BELOW both arrows and holds four stages in one chain, because the
+        method really is common to both analyses. The adversary is named only in the closing note, which
+        is where the two analyses part company: the adversary chooses, and adapts when a control lands.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg,
+     untrusted-information-acquires-authority.svg): structure blue #2f5169 on tint #e7edf3, hostile red
+     #8a2f2f on tint #f6ece9, accent rust #9a3f12, ink #1c1917, grey #57534e, cream #faf7f0, panel
+     #eef2f6, paper #fdfcf9. Flat fills only, so the figure survives black-and-white print; direction
+     and position carry the distinction, never colour alone.
+
+     SIZING. viewBox 700 x 446. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): box labels 14px -> 12.3pt, direction labels 12.5px -> 11.0pt, stage labels
+     12.5px -> 11.0pt, subtitles 11px -> 9.7pt, notes 12px -> 10.5pt, title 16px -> 14.1pt. At a
+     700 px column the box labels sit at 10.5pt and the subtitles at 8.3pt, so the subtitles are
+     restatements of the box label rather than new information. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 446" width="700" height="446"
+     role="img" aria-labelledby="relsecTitle relsecDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="relsecTitle">Two opposed directions of concern between the world and a software system,
+    over one engineering method shared by reliability analysis and security analysis</title>
+  <desc id="relsecDesc">Two boxes sit side by side at the top. The left box, WORLD AND USERS, holds
+    people, data and the physical environment. The right box, SOFTWARE SYSTEM, holds the API, the
+    booking service and the reservation store. Below them run two long arrows across the full width of
+    the figure, each labeled with the question it carries. The upper arrow points leftward, from the
+    system toward the world, and asks: what happens to the world when the system fails? That is the
+    reliability and safety direction. The lower arrow points rightward, from the world toward the
+    system, and asks: what can an adversary in the world make the system do? That is the security
+    direction. A note states that the two directions overlap rather than partition: a security attack
+    can cause a safety failure, a reliability failure can create a security opportunity, and reliability
+    is not a synonym for safety. Beneath the arrows a band headed SHARED BY BOTH ANALYSES holds four
+    boxes joined left to right by arrows: models, then undesirable outcomes, then causal paths, then
+    controls. A closing note states where the two analyses part company: threat modeling adds an
+    adversary who chooses actions, and who adapts when a control is introduced.</desc>
+
+  <defs>
+    <marker id="rs-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="rs-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+    <marker id="rs-ah-sm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="446" fill="#fdfcf9"/>
+
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">TWO DIRECTIONS OF CONCERN, ONE ENGINEERING METHOD</text>
+
+  <!-- the two sides -->
+  <rect x="40" y="52" width="250" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="165" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">WORLD AND USERS</text>
+  <text x="165" y="99" text-anchor="middle" font-size="11" fill="#57534e">people, data, the physical environment,</text>
+  <text x="165" y="116" text-anchor="middle" font-size="11" fill="#57534e">and anyone who may choose to act on it</text>
+
+  <rect x="410" y="52" width="250" height="78" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="535" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">SOFTWARE SYSTEM</text>
+  <text x="535" y="99" text-anchor="middle" font-size="11" fill="#57534e">the HTTP API, the booking service,</text>
+  <text x="535" y="116" text-anchor="middle" font-size="11" fill="#57534e">and the reservation store</text>
+
+  <!-- direction one: consequences leave the system and reach the world -->
+  <text x="350" y="160" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">Reliability and safety ask: what happens to the world when the system fails?</text>
+  <path d="M652,176 H48" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#rs-ah)"/>
+
+  <!-- direction two: influence leaves the world and reaches the system -->
+  <text x="350" y="208" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">Security asks: what can an adversary in the world make the system do?</text>
+  <path d="M48,224 H652" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#rs-ah-red)"/>
+
+  <g text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">
+    <text x="350" y="254">The two directions overlap rather than partition. An attack can cause a safety failure, and a reliability</text>
+    <text x="350" y="272">failure can open a security opportunity. Reliability is also not a synonym for safety.</text>
+  </g>
+
+  <!-- the method both analyses run -->
+  <rect x="24" y="290" width="652" height="96" rx="12" fill="#eef2f6"/>
+  <text x="350" y="313" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169" letter-spacing="1">SHARED BY BOTH ANALYSES</text>
+
+  <g fill="#faf7f0" stroke="#2f5169" stroke-width="2">
+    <rect x="42" y="326" width="140" height="44" rx="8"/>
+    <rect x="206" y="326" width="140" height="44" rx="8"/>
+    <rect x="370" y="326" width="140" height="44" rx="8"/>
+    <rect x="534" y="326" width="124" height="44" rx="8"/>
+  </g>
+  <g font-size="12.5" font-weight="700" fill="#1c1917" text-anchor="middle">
+    <text x="112" y="353">Models</text>
+    <text x="276" y="346">Undesirable</text>
+    <text x="276" y="362">outcomes</text>
+    <text x="440" y="353">Causal paths</text>
+    <text x="596" y="353">Controls</text>
+  </g>
+  <g fill="none" stroke="#57534e" stroke-width="1.8">
+    <path d="M182,348 H202" marker-end="url(#rs-ah-sm)"/>
+    <path d="M346,348 H366" marker-end="url(#rs-ah-sm)"/>
+    <path d="M510,348 H530" marker-end="url(#rs-ah-sm)"/>
+  </g>
+
+  <g text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">
+    <text x="350" y="410">Where the analyses part company: threat modeling adds an adversary who chooses which actions to try,</text>
+    <text x="350" y="428">and who changes tactics when a control is introduced.</text>
+  </g>
+</svg>

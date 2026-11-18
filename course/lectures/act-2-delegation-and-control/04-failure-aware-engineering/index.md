@@ -2,7 +2,7 @@
 title: Failure-Aware Engineering
 readings:
   groups:
-    - heading: Core reading
+    - heading: What should change after a failure?
       items:
         - cite: davis2026sehandbook
           locator: 'chap. 11'
@@ -11,7 +11,7 @@ readings:
       items:
         - cite: crowdstrike2024rca
           annotation: 'CrowdStrike, [*External Technical Root Cause Analysis — Channel File 291 Incident*](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) (2024). The official technical postmortem for the July 19, 2024 Falcon outage. As you read, distinguish the technical cause from the weaknesses in the engineering process, and consider which questions require examining the larger system.'
-    - heading: Earlier reading revisited
+    - heading: What does a failure reveal about the control structure?
       items:
         - cite: leveson2003stamp
           annotation: 'Leveson, Daouk, Dulac, and Marais, ["Applying STAMP in Accident Analysis"](../03-alignment/readings/leveson-stamp-accident-analysis-2003.pdf), previously assigned in Unit 12, Alignment. First read for control structures, constraints, feedback, and intervention; reread it now as a model of accident causation. Instead of asking how a control structure can enforce an obligation, ask what a failure reveals about the control structure that was supposed to do so. How does the explanation change as the causal boundary expands?'
@@ -23,6 +23,8 @@ readings:
           annotation: 'Petroski, *To Engineer Is Human: The Role of Failure in Successful Design* (1992). The book that argues failure is not an interruption of engineering but a condition of it: designs are built on incomplete knowledge, and the limits of that knowledge become visible mainly when something breaks. Read for failure as a source of engineering knowledge — failed designs expose assumptions and margins that successful operation leaves invisible — and for why a discipline that never failed would also never learn where its limits are. Written about bridges and buildings; the argument transfers to software without modification.'
     - heading: What kind of thing is an error?
       items:
+        - cite: norman2013
+          annotation: 'Norman, *The Design of Everyday Things* (2013). Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
         - cite: reason1990humanerror
           locator: 'chap. 1'
           annotation: 'Reason, *Human Error* (1990). Read for what an error *is* before asking whose it was: the distinctions among slips, lapses, and mistakes, and the argument that error is a by-product of the same cognitive processes that make skilled performance possible — not a separate defective mode a better person would avoid. The defense-in-depth account the lecture uses comes later in the book; this chapter supplies the theory of fallibility it rests on.'
@@ -37,9 +39,6 @@ readings:
           annotation: 'Lunney, Lueder, and O''Connor, ["Postmortem Culture: Learning from Failure"](https://sre.google/sre-book/postmortem-culture/) (2016). A production-software practice for turning operational failures into shared organizational knowledge. Read for what a postmortem is asked to reconstruct, and for why blamelessness is an engineering stance rather than a courtesy: people acted under particular information, interfaces, and incentives, and those conditions are what an organization can change.'
         - cite: anandayuvaraj2026failures
           annotation: 'Anandayuvaraj et al., "Learning From Software Failures: A Case Study at a National Space Research Center" (ICSE 2026). Empirical evidence about how software practitioners gather, document, share, and apply lessons from failure. Read for what becomes difficult when the learning loop stays informal: lessons may remain tacit or fragmented, depend on individual memory, and fail to travel reliably across projects.'
-  optional:
-    - cite: norman2013
-      annotation: 'Norman, *The Design of Everyday Things* (2013). Read for the distinction among slips, mistakes, and apparent "human error," and for how designed systems shape the conditions under which people err.'
 instructor_materials: []
 student_materials: []
 assignments: []

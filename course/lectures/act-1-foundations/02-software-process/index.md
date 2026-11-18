@@ -4,23 +4,23 @@ readings:
   groups:
     - heading: The engineered medium
       items:
-        - '{mage:1.1} A contemporary perspective on how commodity intelligence changes the economics of software production. The reading asks what happens to software engineering when implementation becomes abundant relative to engineering judgment, and provides a useful lens for considering why engineering processes change as the underlying productive medium changes.'
+        - '{mage:1.1} Davis, 2026. Commodity intelligence changes the economics of software production, making implementation abundant relative to engineering judgment. The section asks what follows for engineering work once the scarce input shifts, which is the premise this unit carries into process: the medium you build in decides which arrangements of work are even sensible. Hold it against the three dimensions developed below, and ask which of certainty, changeability and decomposability cheap implementation actually improves.'
     - heading: Process models
       items:
         - cite: royce1970
-          annotation: 'Summarizes early efforts and failures to engineer large software systems.'
+          annotation: 'Royce, 1970. The paper usually cited for the waterfall diagram in fact argues against relying on it. Royce lays out the sequential arrangement, calls its straightforward implementation risky, and then adds the feedback it omits: design before analysis is complete, document the design, build the thing twice, plan and monitor testing as its own activity, and involve the customer. Read it as a report on where plan-driven arrangements broke, written by someone who had watched them break. Ask which of this unit''s three dimensions each of his remedies was trying to repair.'
         - cite: brooks1995
           locator: 'chap. 11'
-          annotation: 'Covers similar ground to Royce from Brooks''s more informal, essay-like perspective.'
+          annotation: 'Brooks, *The Mythical Man-Month*, chapter 11, "Plan to Throw One Away." Brooks covers much of Royce''s ground in essay form: the first build of a system teaches what the design should have been, so change is a condition of the work rather than a disruption to the plan. He therefore asks engineers to design the system, its documentation and the organization for change. Reading him beside Royce shows two practitioners reaching the same conclusion from different evidence, and raises the question of what a throwaway build is worth once implementation is cheap.'
         - cite: beck1999xp
-          annotation: 'Describes the major practices of XP and its approach to embracing change compared with traditional Waterfall development.'
+          annotation: 'Beck, "Embracing Change with Extreme Programming" (1999). Beck inverts the assumption behind the two readings above: rather than reduce the cost of late change through planning, XP drives that cost down through practice, holding the feedback loop short with continuous testing, continuous integration, refactoring and an on-site customer. The practices are offered as mutually supporting, which is the claim to interrogate: take any one and ask what fails if a team adopts it alone. This is the changeability dimension turned into a method.'
         - cite: agile-manifesto2001
-          annotation: 'Read the manifesto together with its [Principles](https://agilemanifesto.org/principles.html).'
+          annotation: 'Beck et al., "Manifesto for Agile Software Development" (2001), read together with its [Principles](https://agilemanifesto.org/principles.html). Four value statements and twelve principles, each phrased as a preference between two goods rather than a rejection of one, which is easy to miss and is where most arguments about Agile go wrong. The document specifies no process; it specifies the criteria by which seventeen practitioners thought a process should be judged. Ask which of the twelve principles presuppose high changeability and high decomposability, and what becomes of them in a system that has neither.'
         - cite: scrumguide2020
-          annotation: 'Read the [course copy](readings/scrum-guide-2020.pdf) of the November 2020 edition. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
+          annotation: 'Schwaber and Sutherland, *The Scrum Guide*, November 2020 edition; read the [course copy](readings/scrum-guide-2020.pdf). It is deliberately thin: roles, events and artifacts, with the technical practices left out. That omission is the interesting part, because it lets Scrum wrap almost any engineering practice, including bad ones. Compare it with Beck, who specifies the technical practices and says little about management structure, and decide which of the two your project actually needs specified. (Source: [redagile.com/scrum-guide](https://www.redagile.com/scrum-guide).)'
     - heading: A critical perspective
       items:
-        - '["Extreme Programming Considered Harmful."](readings/extreme-programming-considered-harmful.pdf) An engineering critique of Extreme Programming based on the author''s experience. Read as a practitioner perspective rather than as systematic empirical evidence.'
+        - '["Extreme Programming Considered Harmful for Reliable Software Development."](readings/extreme-programming-considered-harmful.pdf) Keefer, 2002. A practitioner critique written from a quality-assurance standpoint and unusually honest about its own position: section 2 is titled "Bias" and states the author''s commitments before the argument begins. Keefer credits XP with popularizing testing and visual communication, then goes after particular practices, and his sharpest material is evidentiary rather than philosophical, counting how few studies the pair-programming claims of the period rested on and what those studies actually measured. Read it for how to interrogate a method''s evidence base, and ask which of his objections survive once implementation becomes cheap.'
 instructor_materials: []
 student_materials: []
 assignments: []

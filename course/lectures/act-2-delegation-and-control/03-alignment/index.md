@@ -5,6 +5,9 @@ readings:
     - heading: The Alignment principle
       items:
         - cite: davis2026mage
+          locator: '§§3.3.4–3.3.7 and §3.5'
+          annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. The later control mechanisms, and what happens once accumulated controls become a system in their own right. Read it after the principle itself has landed: it shows the principle applied repeatedly until the controls acquire their own structure, which is where the chapter stops being about one check and starts being about a substrate.'
+        - cite: davis2026mage
           locator: 'chap. 3 introduction, §§3.1–3.3.3, and §3.4'
           annotation: '{mage:3.1} and {mage:3.4} Davis, 2026. Read the chapter 3 introduction, §§3.1–3.3.3, and §3.4. The opening sections establish the core Alignment account: obligations become enforceable through checks and controls placed where they can be decided; §3.4 shows the governed environment accumulating controls through experience.'
     - heading: Place the check where the semantics exist
@@ -19,10 +22,6 @@ readings:
       items:
         - cite: simons1995control
           annotation: 'Simons, ["Control in an Age of Empowerment"](https://hbr.org/1995/03/control-in-an-age-of-empowerment) (1995). Management faced the delegation problem before software agents existed: how can people receive meaningful autonomy while the organization retains control over consequential obligations? Read Simons for the idea that delegation and control are complements rather than opposites, and ask what transfers when the delegatee is a software agent.'
-  optional:
-    - cite: davis2026mage
-      locator: '§§3.3.4–3.3.7 and §3.5'
-      annotation: 'MAGE, Chapter 3, §§3.3.4–3.3.7 and {mage:3.5}. Optional: the later control mechanisms, and what happens when accumulated controls become a system.'
 exercises:
   - title: Design the alignment for the Modeling-lab models
     slug: design-the-alignment

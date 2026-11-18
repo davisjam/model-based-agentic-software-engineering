@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is the
+     DIRECTION of the analysis: FMEA starts at a chosen component, fans out to the ways that component
+     can fail, and only then reaches what the user observes. The selected component is drawn once on the
+     left and highlighted, because "begin with a component" is the whole claim the figure carries; the
+     three failure modes fan from it; each failure mode reaches exactly one system effect.
+
+     The load-bearing composition decision is the BOTTOM BAND. Detection and mitigation are questions
+     asked ABOUT a row, not stages a failure passes through, so they are deliberately NOT drawn in the
+     causal idiom: no arrowhead reaches them, no connector joins them to any box, the outline is dashed
+     rather than solid, and the type is smaller and greyer. Drawing them as a fourth and fifth column of
+     arrows would teach that detecting a failure mitigates it, which is the misreading the lander's prose
+     exists to prevent. The band's label names its own relation to the rows above it.
+
+     Palette, stroke and type follow the unit figure vocabulary (queues-and-service-stations.svg):
+     gold #8E6F3E, brown #5C4826, cream #F5F1E8, ink #2D2D2D, pale blue #C9DCEC on #1F3D57 text,
+     grey #555960, paper #fdfcf9. Flat fills only, so the figure survives black-and-white print; the
+     column position and the box outline, not the colour, carry the component/mode/effect distinction.
+
+     SIZING. viewBox 700 x 494. At a 700-900 CSS px column the arithmetic is
+     rendered_pt = authored_px * (display_width / 700) * 0.75, so at 820 px (scale 1.1714):
+     box labels 13.5px -> 11.9pt, effect labels 13px -> 11.4pt, secondary 12px -> 10.5pt,
+     the subordinate band's examples 11.5px -> 10.1pt, title 16px -> 14.1pt. At 700 px the body
+     labels sit at 10.1pt, still above the 9pt floor, so the figure is legible across the range. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 494" width="700" height="494"
+     role="img" aria-labelledby="fmeaTitle fmeaDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fmeaTitle">Failure mode and effects analysis of the router in the reservation service, tracing
+    three failure modes from the component to the effect each has on the student</title>
+  <desc id="fmeaDesc">The figure reads left to right across three columns: component, failure mode, and
+    system effect. One box on the left, highlighted in pale blue, names the selected component: the
+    router, the service's entry point. Three arrows fan from it to three failure modes, each in its own
+    box. The first failure mode, the router drops a request, reaches the system effect that the student
+    receives no response. The second, the router selects an unhealthy instance, reaches the effect of an
+    error or a timeout. The third, the router delays forwarding, reaches the effect of a slow response or
+    a timeout. Only these arrows carry arrowheads, because only these claim causation. Below a horizontal
+    rule sits a subordinate band, drawn with a dashed outline and no connector of any kind, headed: for
+    each row, the analysis then asks two questions. The first question is detection: how would we know
+    this failure occurred? Candidate answers are request tracing, health checks and latency metrics. The
+    second is mitigation: how could we prevent it or limit what it costs? Candidate answers are retrying
+    elsewhere and removing unhealthy instances from routing. A closing italic note states that detection
+    and mitigation are questions asked about each row rather than stages the failure passes through, that
+    detecting a failure does not mitigate it, and that a mitigation need not make the failure
+    impossible.</desc>
+
+  <defs>
+    <marker id="fmeaAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
+            orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8e6f3e"/></marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="494" fill="#fdfcf9"/>
+
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#5c4826">FMEA: COMPONENT-UP, FROM FAILURE MODES TO SYSTEM EFFECTS</text>
+
+  <!-- column headers -->
+  <g font-size="12" font-weight="700" fill="#555960" text-anchor="middle" letter-spacing="1.2">
+    <text x="80" y="62">COMPONENT</text>
+    <text x="325" y="62">FAILURE MODE</text>
+    <text x="590" y="62">SYSTEM EFFECT</text>
+  </g>
+
+  <!-- the selected component: highlighted, because FMEA begins here -->
+  <rect x="20" y="163" width="120" height="58" rx="9" fill="#c9dcec" stroke="#8e6f3e" stroke-width="2.5"/>
+  <text x="80" y="186" text-anchor="middle" font-size="15" font-weight="700" fill="#1f3d57">ROUTER</text>
+  <text x="80" y="204" text-anchor="middle" font-size="11.5" fill="#1f3d57">the entry point</text>
+
+  <!-- fan-out: one trunk, one spine, three arrowed branches -->
+  <g stroke="#8e6f3e" stroke-width="2" fill="none">
+    <path d="M140,192 H172"/>
+    <path d="M172,112 V272"/>
+    <path d="M172,112 H200" marker-end="url(#fmeaAh)"/>
+    <path d="M172,192 H200" marker-end="url(#fmeaAh)"/>
+    <path d="M172,272 H200" marker-end="url(#fmeaAh)"/>
+  </g>
+
+  <!-- failure modes: what the component does wrong -->
+  <g fill="#ffffff" stroke="#8e6f3e" stroke-width="2">
+    <rect x="200" y="83" width="250" height="58" rx="9"/>
+    <rect x="200" y="163" width="250" height="58" rx="9"/>
+    <rect x="200" y="243" width="250" height="58" rx="9"/>
+  </g>
+  <g font-size="13.5" font-weight="700" fill="#5c4826" text-anchor="middle">
+    <text x="325" y="117">Drops a request</text>
+    <text x="325" y="197">Selects an unhealthy instance</text>
+    <text x="325" y="277">Delays forwarding</text>
+  </g>
+
+  <!-- mode to effect -->
+  <g stroke="#8e6f3e" stroke-width="2" fill="none">
+    <path d="M450,112 H500" marker-end="url(#fmeaAh)"/>
+    <path d="M450,192 H500" marker-end="url(#fmeaAh)"/>
+    <path d="M450,272 H500" marker-end="url(#fmeaAh)"/>
+  </g>
+
+  <!-- system effects: what the student observes -->
+  <g fill="#f5f1e8" stroke="#5c4826" stroke-width="2">
+    <rect x="500" y="83" width="180" height="58" rx="9"/>
+    <rect x="500" y="163" width="180" height="58" rx="9"/>
+    <rect x="500" y="243" width="180" height="58" rx="9"/>
+  </g>
+  <g font-size="13" font-weight="700" fill="#2d2d2d" text-anchor="middle">
+    <text x="590" y="107">Student receives</text>
+    <text x="590" y="125">no response</text>
+    <text x="590" y="197">Error or timeout</text>
+    <text x="590" y="267">Slow response</text>
+    <text x="590" y="285">or timeout</text>
+  </g>
+
+  <!-- subordinate band: questions about a row, never stages after it. No connector, dashed outline. -->
+  <line x1="20" y1="332" x2="680" y2="332" stroke="#555960" stroke-width="1"/>
+  <text x="350" y="356" text-anchor="middle" font-size="12" font-weight="700" fill="#555960" letter-spacing="1.2">FOR EACH ROW, THE ANALYSIS THEN ASKS TWO QUESTIONS</text>
+
+  <g fill="none" stroke="#555960" stroke-width="1.5" stroke-dasharray="6 4">
+    <rect x="20" y="368" width="320" height="68" rx="9"/>
+    <rect x="360" y="368" width="320" height="68" rx="9"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="180" y="391" font-size="12.5" font-weight="700" fill="#8e6f3e" letter-spacing="0.8">DETECTION</text>
+    <text x="180" y="410" font-size="12" fill="#2d2d2d">How would we know this failure occurred?</text>
+    <text x="180" y="428" font-size="11.5" fill="#555960">request tracing · health checks · latency metrics</text>
+    <text x="520" y="391" font-size="12.5" font-weight="700" fill="#8e6f3e" letter-spacing="0.8">MITIGATION</text>
+    <text x="520" y="410" font-size="12" fill="#2d2d2d">How could we prevent it or limit what it costs?</text>
+    <text x="520" y="428" font-size="11.5" fill="#555960">retry elsewhere · remove unhealthy instances</text>
+  </g>
+
+  <g font-size="12" font-style="italic" fill="#5c4826" text-anchor="middle">
+    <text x="350" y="462">Detection and mitigation are questions asked about each row, not stages the failure passes through.</text>
+    <text x="350" y="480">Detecting a failure does not mitigate it, and a mitigation need not make the failure impossible.</text>
+  </g>
+</svg>

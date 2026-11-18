@@ -5,34 +5,29 @@ sessions:
   - "Reliability Engineering"
 readings:
   groups:
-    - heading: Modeling and improving a real system
+    - heading: Performance
       items:
         - cite: davis2026mage
           locator: 'chap. 4, §§4.1–4.2'
-          annotation: '{mage:4.1} and {mage:4.2} Davis, 2026. Read the DocAble performance episode. The chapter follows an observed memory failure through changes in representation, execution, and resource models. The idea to carry away is that a performance improvement should be justified by an explanation of the relevant resource cost, not merely by a better benchmark result. Active alignment changes the implementation to satisfy a model; passive alignment preserves the established obligation during later changes.'
-    - heading: Understanding queues and overload
-      items:
+          annotation: '**Modeling and improving a real system.** {mage:4.1} and {mage:4.2} Davis, 2026. The DocAble performance episode follows a memory failure through changes in representation, execution, and resource models. Notice how a performance obligation becomes a model against which candidate implementations can be evaluated, and how active alignment differs from preserving the established property during subsequent changes.'
         - cite: yanacek_backlogs
-          annotation: 'Yanacek, ["Avoiding Insurmountable Queue Backlogs"](https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/), Amazon Builders'' Library. Read it for its account of how queues accumulate work, why long backlogs are dangerous, and how services can limit overload. Connect the examples to the lecture''s model of queues and processors. The purpose is practical reasoning about capacity, not queueing-theory derivations.'
-    - heading: Measuring where time and resources go
-      items:
+          annotation: '**Understanding queues and overload.** Yanacek, ["Avoiding Insurmountable Queue Backlogs"](https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/), Amazon Builders'' Library. Queues absorb bursts, but sustained arrivals above capacity can produce a backlog that is no longer useful to serve. As you read, look for the engineering decisions behind bounded queues and overload protection. When is rejecting work preferable to accepting work that will time out?'
         - cite: gregg_use_method
-          annotation: 'Gregg, ["The USE Method"](https://www.brendangregg.com/usemethod.html). Read the method and its examples of resource utilization, saturation, and errors. Apply the distinction to the reservation service: database CPU may be available while the connection pool is saturated. The important question is which resource is limiting useful work, and the method applies to thread pools and file descriptors, not only to CPUs and disks.'
+          annotation: '**Measuring where resources go.** Gregg, ["The USE Method"](https://www.brendangregg.com/usemethod.html). Utilization, saturation, and errors offer a disciplined way to investigate resource constraints. Apply the distinction to the reservation service: database CPU may be available while the connection pool is saturated. Which measurement tells us where useful work is limited?'
         - cite: opentelemetry_traces
-          annotation: 'OpenTelemetry, ["Traces"](https://opentelemetry.io/docs/concepts/signals/traces/). Read the introduction and the explanations of spans and context propagation. A trace correlates operations across components, which is what lets an engineer distinguish processing time from waiting time and locate the source of end-to-end latency. This is the concrete form of the queue-and-processor model once it is instrumented.'
-    - heading: Further reading
-      items:
+          annotation: '**Following a request.** OpenTelemetry, ["Traces"](https://opentelemetry.io/docs/concepts/signals/traces/). A trace correlates operations across components, making waiting and processing visible in the same request. Pay particular attention to spans and context propagation, then consider the instrumentation needed to reconstruct a reservation request through the queues and service stations in our model.'
         - cite: ousterhout2018
-          annotation: 'Ousterhout, "Always Measure One Level Deeper" (2018). Recommended rather than required. An aggregate performance measurement is often insufficient to identify the mechanism worth changing: end-to-end latency says something is slow, a trace says where the time is spent, and a deeper investigation explains why that operation is expensive. In DocAble, peak memory was the observed problem and media residency was the mechanism.'
-    - heading: Reliability engineering
+          annotation: '**Measuring one level deeper.** Ousterhout, "Always Measure One Level Deeper" (2018). An aggregate measurement identifies a symptom but often not the mechanism worth changing. Consider the DocAble case: peak memory was observed, and media residency explained it.'
+    - heading: Reliability
       items:
+        - cite: stamatelatos2002faulttree
+          locator: '§2.3, §2.4, and §§3.1–3.4'
+          annotation: '**Two directions for failure analysis.** Stamatelatos et al., [*Fault Tree Handbook with Aerospace Applications*, Version 1.1](https://www.mwftr.com/CS2/Fault%20Tree%20Handbook_NASA.pdf) (NASA, 2002). Read only §2.3 ("Inductive Methods," and within it "Failure Mode and Effect Analysis"), §2.4 ("Comparison of FTA with Inductive Methods"), and §§3.1–3.4 ("Fault Tree Analysis," with its steps, paradigm, boundaries, and top event). Those are printed pages 12–20 and 22–25; the PDF page numbers differ because of the front matter. The handbook covers both analyses, so no second source is needed. Compare the component-up and system-down questions, and consider how each analysis depends on an architecture model. The later chapters on quantitative probability calculations are not assigned.'
         - cite: beyer2016sre
           locator: 'chapters 21 and 22'
-          annotation: 'Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering: How Google Runs Production Systems* (O''Reilly, 2016), [chapter 21, "Handling Overload"](https://sre.google/sre-book/handling-overload/) and [chapter 22, "Addressing Cascading Failures"](https://sre.google/sre-book/addressing-cascading-failures/). Read both. Chapter 21 treats overload as a condition the service must be designed to survive rather than an operational surprise, and covers per-client throttling, request criticality, graceful degradation, and retry budgets. Chapter 22 follows the same argument into propagation: how one saturated resource takes down its neighbours, and why retries and health checks can accelerate a collapse they were installed to prevent. The retry budget is the idea to carry across both lectures, because a retry policy that looks correct from one client can multiply the load arriving at a service that is already failing. The book''s distributed-consensus chapters are out of scope here.'
-        - cite: bhuiyan2025sokredos
-          annotation: 'Bhuiyan, Çakar, Burmane, Davis and Staicu, "SoK: A Literature and Engineering Review of Regular Expression Denial of Service (ReDoS)" (ASIA CCS 2025). Read it for the component-selection case study rather than for regex internals. The question to hold is not whether ReDoS exists but what a component''s documentation does and does not tell you: the review examines engines in nine widely used languages and records where defenses and limitations go undocumented, and where maintainers regard super-linear matching as an accepted consequence of the features they support rather than a defect to fix. Carry away the general rule, which applies to every dependency: the absence of a documented limitation is not evidence that the limitation is absent.'
-        - cite: cristian1991faulttolerant
-          annotation: 'Cristian, "Understanding Fault-Tolerant Distributed Systems" (1991). Recommended rather than required, and read it for the framing rather than the protocols. It is the clearest statement of why a fault-tolerance claim is meaningless without a failure model: what a component is assumed to do when it fails, which classes of failure a mechanism is designed to survive, and how those assumptions bound what any amount of redundancy can deliver. That distinction underlies the whole of Lecture 2, where every mechanism is paired with the assumption it rests on.'
+          annotation: '**Overload and cascading failures.** Beyer, Jones, Petoff and Murphy (eds.), *Site Reliability Engineering: How Google Runs Production Systems* (2016), ["Handling Overload"](https://sre.google/sre-book/handling-overload/) and ["Addressing Cascading Failures"](https://sre.google/sre-book/addressing-cascading-failures/). Choose either chapter. Overload can spread across dependencies, and recovery mechanisms may amplify it. Trace how a retry policy that helps one client can reduce reliability for the assembled system. Notice where throttling, graceful degradation, and retry budgets intervene.'
+        - cite: azure_cloud_design_patterns
+          annotation: '**The reliability toolbox.** Microsoft Azure Architecture Center, [*Cloud Design Patterns*](https://learn.microsoft.com/en-us/azure/architecture/patterns/). Choose three of these patterns, preferably ones relevant to your semester project: [Bulkhead](https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead), [Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker), [Health Endpoint Monitoring](https://learn.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring), [Quarantine](https://learn.microsoft.com/en-us/azure/architecture/patterns/quarantine), [Rate Limiting](https://learn.microsoft.com/en-us/azure/architecture/patterns/rate-limiting-pattern), [Retry](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry), and [Throttling](https://learn.microsoft.com/en-us/azure/architecture/patterns/throttling). For each, identify the failure or operating condition addressed, the assumptions the mechanism needs, and a way it could itself cause trouble. Would it help your architecture, or merely add complexity?'
 exercises:
   - title: Improving reservation performance
     slug: improve-reservation-performance
@@ -49,42 +44,32 @@ exercises:
       Three interventions are on the table — add application replicas, add database capacity, or
       shorten the connection hold — and you choose one and name what would prove you wrong. The
       intervention is justified by the measurement, not by the symptom.
-  - title: Analyze a component failure
-    slug: analyze-component-failure
+  - title: A fault tree for your project
+    slug: project-fault-tree
     about: |
-      A document-processing service accepts uploaded documents through an API, places work on a
-      message queue, processes it with a pool of workers, and writes results to an object store. The
-      queue provides at-least-once delivery.
+      Ten minutes, with your project team. Begin with the engineering models your team has already
+      built: the architecture, the deployment topology, the component dependencies, and the
+      requirements. Choose one representative request and state what counts as its successful
+      completion. The top event is that your system cannot produce a successful response within ten
+      seconds.
 
-      A worker finishes processing and writes its output, then crashes before acknowledging the
-      message. The queue, having heard no acknowledgement, delivers the message again.
+      Construct a fault tree for that outcome. Work depth-first, following one plausible causal path
+      down to events concrete enough to analyze or control before you expand a sibling branch. Use an
+      OR gate only where any one input event suffices, and an AND gate only where the architecture
+      requires every input together. Account explicitly for redundancy, retries, recovery, and
+      fallback, because a component failure does not necessarily produce a system failure when another
+      path can still complete within the deadline.
 
-      Identify the failure modes and their effects, and explain why the retry that recovers
-      interrupted work is the same action that repeats work already completed. Propose a mitigation,
-      and say what evidence would establish that repeated delivery does not produce an inconsistent
-      result.
+      Then inspect the tree against your models. Are the dependencies represented accurately? Does the
+      retry you assumed actually occur? Is the alternate path independent, or could one shared
+      dependency disable both? An AND gate records a logical requirement, not statistical independence,
+      so say which assumption each conjunction rests on.
 
-      The distinction to hold onto is between executing an operation once and producing one logical
-      result. Only the second is achievable here, and only by design.
-  - title: Design a reliable document-processing service
-    slug: design-reliable-document-service
-    about: |
-      Four minutes in pairs. The same service: an upload API, a message queue, a worker pool, and an
-      object store. It has four obligations.
+      Finally, identify one failure path that is inadequately controlled and propose a mitigation
+      mechanism. Name the event it addresses, the assumptions that must hold for it to work, and the
+      evidence that would establish it works in your system.
 
-      1. Accepted documents must not disappear.
-      2. A worker crash must not permanently prevent processing.
-      3. Duplicate messages must not produce inconsistent results.
-      4. One pathological document must not exhaust the service.
-
-      Select components and reliability mechanisms that could satisfy them, and state the failure
-      assumptions your design depends on.
-
-      Then compare three candidates: a durable queue alone; a durable queue with idempotent
-      processing; and a durable queue with idempotent processing and worker isolation. Say what each
-      one improves, which failures remain, and what evidence would justify accepting the design you
-      choose. A durable queue does not by itself guarantee that every accepted job survives, which
-      makes the acknowledgement and persistence semantics part of the answer rather than a detail.
+      Deliverable: the fault tree, its assumptions, and one mitigation.
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -110,266 +95,254 @@ labs:
 
 **Premise.** *Functional correctness does not establish that a system will behave acceptably under load, or that it will continue to satisfy its obligations when components fail. Engineers must understand the workloads and failure modes their systems will encounter, select appropriate designs and mechanisms, and obtain evidence that the result meets its requirements.*
 
-Software systems are assembled from components that execute work, preserve state, communicate, and coordinate activity. Each component provides capabilities, consumes resources, and carries characteristic failure modes. A database may lose a write, a message broker may deliver a message twice, and a worker may exhaust its memory. Failures also arise from interactions among components that are individually behaving as specified.
+Software systems are assembled from components that execute work, preserve state, communicate, and coordinate activity. Each component provides capabilities, consumes resources, and carries characteristic failure modes. A database may lose a write, a message broker may deliver a message twice, and a worker may exhaust its memory. Failures also arise from interactions among components that are individually behaving as specified. A service may be correct when tested in isolation yet become unusable when its users arrive simultaneously, or when another component on which it depends stops working.
 
-Performance and reliability ask different questions about such a system. Performance engineering examines the relationship between workload, resource consumption, and observable behavior. Reliability engineering examines what can fail, how a failure affects the system, and which mechanisms can prevent, contain, or recover from it.
+Performance and reliability examine different aspects of these problems. **Performance engineering** examines the relationship between workload, resource consumption, and observable behavior. It asks whether the system can perform the work required of it within acceptable time and resource bounds. **Reliability engineering** examines what can fail, how failures affect the assembled system, and which mechanisms can prevent, contain, detect, or recover from them. Both require us to reason beyond individual functions and consider the system in its operating environment.
 
-Both require engineering judgment. The engineer decides which workloads and which failures matter, what behavior is acceptable, and what evidence would establish that the system provides it.
+Both also require engineering judgment. The engineer decides which workloads and failures matter, what behavior is acceptable, and what evidence would establish that the system provides it. A model can predict how waiting increases as a resource approaches capacity, but it cannot decide what latency users should tolerate. A fault tree can identify conditions that produce an unacceptable outcome, but it cannot decide how much redundancy is worth purchasing.
 
 ## Structure of this unit
 
-**Lecture 1, Performance Engineering.** We model how requests move through queues and processors, characterize workloads, and use measurements to find the resource that limits useful work. We compare configuration changes, architectural optimizations, and additional capacity against their costs and constraints, then ask what evidence would establish that an improvement worked. To practise the reasoning, see {exercise:improve-reservation-performance} and the {lab:performance-lab}.
+**Lecture 1, Performance Engineering.** We begin with a service that passes its functional tests but becomes unusable when many students attempt to make reservations. We model requests moving through queues and service stations, characterize the workload, and examine waiting as demand approaches capacity. We then use measurements to locate the limiting resource, compare interventions, and establish whether an improvement worked. Configuration tuning, optimization, and additional capacity are alternatives whose value depends on workload, environment, and cost. See {exercise:improve-reservation-performance} and {lab:performance-lab}.
 
-**Lecture 2, Reliability Engineering.** We begin with a catalog of software components and their characteristic failure modes, including failures shared across component families and failures that arise only from their interactions. We use failure mode and effects analysis and fault trees to analyze how systems fail, then examine mechanisms for isolation, detection, recovery, redundancy, and containment. We close on the decisions that matter most: how to select a component, how to combine mechanisms whose assumptions interact, and what evidence establishes that the result meets its obligations. See {exercise:analyze-component-failure} and {exercise:design-reliable-document-service}.
+**Lecture 2, Reliability Engineering.** We begin with the software hardware store: components and their characteristic failure modes. We introduce two complementary engineering models: failure mode and effects analysis (component-up) and fault-tree analysis (system-down). We then examine isolation, detection, recovery, redundancy, containment, and state protection; investigate component selection and its assumptions; and apply fault-tree analysis to the architecture of your semester project.
 
 Both lectures follow the Act III method: identify the problem, model what matters, exercise judgment about realization, and obtain evidence.
 
-## Performance engineering
+## Lecture 1: Performance Engineering
+
+### Performance engineering
 
 Registration begins, requests arrive at forty times their usual rate, and students start receiving timeouts. The software has not changed. What has?
 
-Performance engineering examines how a system behaves under a workload. Before changing the implementation, we need to know what work is arriving, what the system does with that work, and what performance we require. We also need to distinguish a service that responds too slowly from one that may eventually exhaust its resources and stop responding altogether.
+Our reservation service passes its functional tests. It can create reservations, enforce booking rules, preserve data across restarts, and respond correctly to ordinary requests. Yet none of those tests establishes what happens when four hundred students attempt to book rooms during the same two minutes. A system can be fully implemented and still be unready for its users. The 2013 launch of Healthcare.gov offers a well-known example: many users could not complete enrollment, and subsequent investigations identified interacting software, integration, testing, and operational problems. Capacity was one concern among several. The engineering question is what evidence should have established beforehand that the *integrated* service could perform its function under expected demand.
 
-Three measurements recur throughout the analysis. **Latency** is the elapsed time required to complete an operation. **Throughput** is completed work per unit time. **Utilization** is the fraction of a resource's capacity being used. None substitutes for the others. A service may complete many requests per second while some users wait unacceptably long, and low CPU utilization does not establish that other resources have available capacity.
+Performance engineering examines how a system behaves under a workload. Before changing the implementation, we need to know what work arrives, what resources the system uses to perform it, and what performance we require. We also need to distinguish a service that responds too slowly from one that may eventually exhaust resources and stop responding altogether. Those problems are related, but they do not necessarily call for the same intervention. A service with insufficient capacity may need more resources; one that spends most of its time waiting for a database lock may not benefit from additional application servers.
 
-## Modeling the system
+Three measurements recur. **Latency** is elapsed time to complete an operation. **Throughput** is completed work per unit time. **Utilization** describes how much of a resource's capacity is in use. None substitutes for the others. A service can complete many requests per second while some users wait unacceptably long, and low CPU utilization does not establish that other resources have spare capacity. A connection pool may be saturated while application and database processors remain relatively idle. The engineer must determine which measurement answers the question at hand.
 
-A useful first model represents the system as a network of queues and processors. Requests arrive, wait for resources, undergo processing, and eventually complete. A reservation request might wait for an application worker, execute booking logic, wait for a database connection, execute a query, and wait for a row lock. Each stage contributes to the elapsed response time.
+### Modeling the system
 
-This model distinguishes waiting time from processing time. A request waiting for a database connection consumes elapsed time without necessarily consuming application CPU. Adding application workers will not remove that wait if the database connection pool remains the limiting resource. The figure shows one reservation request moving through those stages: the blue containers hold work that is waiting, and the outlined stations hold the work being performed.
+A useful first model represents the system as a network of queues and service stations. Requests arrive, wait for resources, undergo processing, and eventually complete. A reservation request might wait for an application worker, execute booking logic, wait for a database connection, execute a query, and wait for a row lock. Each stage contributes to elapsed response time, but not every stage consumes the same resources. Some stages perform computation; others primarily represent waiting for capacity.
 
-![A request flows top to bottom through four shapes. Two pale blue containers are queues, each holding individually outlined requests that have arrived and cannot yet be served: the HTTP request queue holds R4, R3, R2 and R1; the database connection queue holds R7, R6 and R5, and is labelled as waiting for a connection, consuming elapsed time but no application CPU. Between and after them are two outlined service stations performing work, each holding the one request it is serving: the application, evaluating the booking rules, holds R0; the database, running the query, holds R8 and is labelled as the station inside which lock waits live. An arrow at each queue-to-station boundary is labelled with its admission condition, admitted when a handler is free and admitted when a connection is free. A legend names the two shapes: a blue container is a queue, work waiting for capacity; an outlined box is a service station, work being performed.](figures/queues-and-service-stations.svg)
+Waiting consumes elapsed time without necessarily consuming application CPU. A request waiting for a database connection is not making progress, even if the application processor has spare capacity. Adding application workers may increase the number of requests waiting for that connection without reducing the time any request spends there. The model helps us ask a better question than whether the system is generally busy: *Where can work accumulate, and which resources limit its progress?*
 
-Queues also explain how performance problems can become failures. Suppose 120 requests arrive each second while a processor completes only 100. If those rates persist and no work is rejected, the backlog grows by approximately twenty requests per second. A bounded queue eventually rejects additional work. An unbounded in-memory queue can continue consuming memory until the system exhausts its resources. Rejection is not successful service, but it may protect the system from a more extensive failure.
+![A request moves through queues and service stations. Blue containers represent waiting work; outlined stations represent processing.](figures/queues-and-service-stations.svg)
 
-The engineer must therefore understand not only which components exist, but where work can accumulate, what limits each resource, and what happens when those limits are reached.
+Queues also explain how performance problems become failures. Suppose 120 requests arrive each second while a processor completes 100. If those rates persist and no work is rejected, the backlog grows by about twenty requests per second. After one minute, roughly 1,200 requests are waiting. A bounded queue eventually refuses additional work, preserving its resource bound at the cost of rejecting requests. An unbounded in-memory queue may continue consuming memory until the system exhausts its resources. Rejection is not successful service, but it may prevent a larger failure.
 
-## Characterizing the workload
+The engineer must understand not only which components exist, but where work can accumulate, what limits each resource, and what happens at those limits. This is an engineering model because it represents selected properties of the system for a particular analysis, rather than every implementation detail.
 
-A system model describes how work is processed. A workload model describes the work arriving.
+### Characterizing the workload
 
-For the reservation service, the workload includes request rate, operation mix, concurrency, resource demand, and variation over time. Searches and bookings may arrive at the same rate but place very different demands on the database. Registration can produce bursts that are absent during ordinary use.
+A system model describes how work is processed. A workload model describes the work arriving. For the reservation service, offered workload includes request rate, operation mix, and variation over time. Searches and bookings may arrive at the same rate but impose very different demands on the database. A search might perform a short index lookup, while a booking must validate rules, acquire a lock, and commit a transaction. Registration also produces bursts absent during ordinary use. Provisioning for the average afternoon is insufficient if users depend on the service during the busiest hour of the semester.
 
-| Workload property | Engineering question | Reservation example |
+| Property | Role in the model | Engineering question | Reservation example |
+|---|---|---|---|
+| Request rate | Offered workload | How often does work arrive? | Requests per second |
+| Operation mix | Offered workload | Which kinds of work arrive, in what proportion? | Searches, bookings, cancellations |
+| Variation | Offered workload | How does demand change over time? | Registration bursts |
+| Service demand | Implementation and environment | What resources does one operation consume? | Database time per booking |
+| Concurrency | Imposed in some tests; otherwise an outcome | How much work overlaps? | Active requests at once |
+
+These are not five independent settings. Request rate, mix, and variation describe what the environment asks the system to do. Service demand depends on the implementation and environment: changing an index may reduce demand per request without changing the offered workload. Concurrency may be imposed by a closed-loop load generator, but in a running service it is often an observed consequence of throughput and response time.
+
+A performance requirement is meaningful only against a stated workload. A service that satisfies a one-second latency requirement during an ordinary afternoon may fail it during registration. A benchmark exercising only searches cannot establish performance for a workload dominated by bookings. Latency is also a distribution: median latency describes the middle request, while p95 and p99 expose increasingly slow portions. A requirement that 95% of requests complete within one second cannot be evaluated from mean latency alone. The percentile and workload belong to the requirement, not to post-hoc interpretation.
+
+### Relating workload, concurrency, and capacity
+
+**Little's Law** relates three measured averages for a stable system: **L = λW**. Here L is the average number of requests in the system, λ is average throughput, and W is average time in the system. At 100 completed requests per second and 0.2 seconds per request, approximately twenty requests are outstanding on average. If response time rises to one second at the same throughput, average outstanding work rises to one hundred. The law is useful for estimating average concurrency and checking measurements, but it does not identify where requests wait or independently predict how waiting changes with load.
+
+For prediction we need service capacity and assumptions about arrival and service processes. A simple M/M/1 queue assumes one server, Poisson arrivals, exponentially distributed service times, and a stable queue. Under those assumptions mean response time is **W = 1/(μ − λ)** for **λ < μ**, where λ is arrival rate and μ is service rate. As arrival rate approaches capacity, predicted waiting rises sharply even though the server performs each operation at the same speed. At 99% utilization a burst can produce a backlog that takes considerable time to drain.
+
+Real services have multiple resources, variable operation costs, bursts, and complicated scheduling behavior. The M/M/1 model does not describe all of them. Its value here is explaining why latency can rise nonlinearly near capacity; it does not prescribe a universally safe utilization threshold. The engineer chooses a threshold based on the latency requirement, workload variation, and cost. In {lab:performance-lab}, predict before each experiment, then compare the observation with the model and its assumptions.
+
+### Measuring and diagnosing performance
+
+A system model tells us where waiting *could* occur. Instrumentation tells us where it *actually* occurs. A trace records operations involved in servicing a request. Recording entry and exit from queues, and start and end of processing, distinguishes waiting from work. Correlated spans reconstruct the request path across components. On a sequential path, nonoverlapping durations can be added; with overlapping operations, the trace must also represent their relationships.
+
+Different instruments answer different questions. CPU-time profiling identifies where processor time is consumed. Tracing exposes elapsed time across operations, including waiting. Resource metrics reveal utilization, saturation, and errors; database execution plans explain the work of individual queries. A CPU-time profile accounting for 61 milliseconds does not explain a request that takes 420 milliseconds: the difference may be time waiting for a database query, connection, or lock.
+
+A **bottleneck** is the constraint whose relief would improve useful throughput or bring response time within the required bound. It is not necessarily the component with highest CPU utilization, and a saturated resource does not automatically identify the correct intervention. If every database connection is occupied while CPU utilization remains modest, adding application replicas may only increase the queue. The next measurement should establish *why* connections remain occupied: slow queries, lock waits, long transactions, or connections retained unnecessarily. A full pool tells us where to investigate, not that the pool must be larger.
+
+Relieving one bottleneck often exposes another. After reducing query time, application CPU or a row lock may become the limiting resource. Improvement is iterative: measure, change, and measure again. The objective is not to eliminate every expensive operation, but to establish that the system satisfies its requirements under the relevant workload.
+
+### Improving performance
+
+Once the limiting cost is understood, several kinds of intervention are available. The question is not which optimization is fashionable, but which resource cost the current constraint requires us to reduce. **Configuration tuning** changes how existing components operate: worker concurrency, connection-pool size, queue limits, cache capacity, and timeouts. Parameters interact. More concurrency may increase throughput until a shared resource saturates; shorter timeouts may reduce client waiting while increasing failures. A configuration validated today may be inappropriate when the workload changes.
+
+Tuning can be framed as choosing a configuration that balances latency and operating cost while satisfying constraints on errors, memory, connections, and other resources. Engineers may transfer settings from similar systems, search combinations, or automate experiments. An agent can propose configurations and run tests, but the workload and acceptance conditions must be established independently of the search. Otherwise, it may optimize a convenient metric while violating the actual requirement.
+
+Other optimizations change the work. **Caching** avoids repeated computation or retrieval; **batching** amortizes fixed overhead; **algorithms and data structures** reduce work per operation; **parallelism** overlaps independent work; **placement** reduces data transfer; and **streaming** bounds the resident working set. Each has conditions and costs. A cache introduces staleness and invalidation; batching adds buffering and latency; parallelism can increase contention; streaming can reduce peak memory without reducing CPU or elapsed time. The engineer must identify the scarce resource and the cost the technique actually changes.
+
+**Autoscaling** changes available capacity rather than work per request. It helps only when an additional instance provides useful capacity. Replicas in front of a saturated shared resource may make waiting worse. Scaling also takes time, so sudden bursts must initially be absorbed by headroom, admission control, or advance provisioning.
+
+The environment changes the decision. Embedded systems may have fixed memory, deadlines, power, and thermal budgets; optimization may be necessary for feasibility. Cloud systems can often buy capacity, but at recurring cost and subject to shared bottlenecks and quotas. Engineering effort and infrastructure spending are partially substitutable: a $4,000 optimization that saves $400 monthly breaks even after ten months, before maintenance, demand growth, and risk. The fastest implementation is not necessarily the economically preferable one. Performance engineering selects an implementation and configuration that satisfy the requirement at an acceptable cost.
+
+### A case study: DocAble
+
+Chapter 4 of *Model-Based Agentic Engineering* follows a performance problem in DocAble, a document-accessibility remediation system. A media-heavy PowerPoint presentation of roughly 250 MB exceeded a worker's available memory. The initial architecture retained document structure and media together, and manipulating the document could create further copies. Small presentations worked; large ones failed. Page chunking reduced the working set but left media resident within each chunk. The problem was not merely insufficient memory: the representation unnecessarily coupled structural processing to media residency.
+
+The solution changed that representation. Skeletonization separated document structure from large media, leaving references in the worker and streaming media when needed. Resident memory became less dependent on aggregate media size, subject to assumptions about structural size, streaming buffers, and active state. This traded worker memory for storage access and implementation complexity, appropriate because worker memory was the scarce resource.
+
+The change illustrates **active alignment**: a memory model states an obligation, measurements reveal violations, and implementation changes are evaluated against the model. The engineer establishes the obligation and acceptance evidence. Agents can investigate and implement candidate solutions, but they do not determine what the system must guarantee. Once acceptable behavior is established, checks can preserve it during later changes: **passive alignment**.
+
+### Establishing that an improvement worked
+
+An optimization is not complete when one benchmark improves. Establish acceptance conditions *before* testing: perhaps p95 latency at or below one second during registration, sufficient completed throughput, bounded pool waiting, and controlled overload behavior. A user-facing latency requirement is different from a diagnostic pool-wait target. The workload must reproduce relevant operation mix, concurrency, bursts, data size, and cache state; repeated measurements characterize variation. After a change, measure again because the bottleneck may have moved. See {exercise:improve-reservation-performance}.
+
+Performance and reliability meet at overload. Bounded queues, admission control, and timeouts can protect resources but may reject work or leave clients uncertain about outcomes. Retrying failed requests can increase load on an already saturated service. The next lecture examines what the system owes when components fail and how to establish that recovery is acceptable.
+
+## Lecture 2: Reliability Engineering
+
+### Reliability engineering
+
+A system can satisfy its functional specification and still fail when a component stops working. A database becomes unavailable, a worker crashes, or a router sends traffic to an unhealthy service. The component failure may be straightforward to describe, but its effect depends on the architecture. A worker crash might fail one request, leave a partial transaction, exhaust a shared resource, or trigger recovery that affects other requests. Reliability engineering asks whether the *assembled system* continues to satisfy its obligations under specified failures.
+
+We must distinguish failures that are acceptable from failures that violate a requirement. A service that promptly rejects a request during overload may be behaving as designed; a service that acknowledges a successful reservation and then loses it has violated a stronger obligation. There are also limits to what we can guarantee. Redundancy, recovery, and isolation cost resources and engineering effort. The CAP theorem establishes that during a network partition a distributed system cannot guarantee both linearizable consistency and availability in the theorem's formal sense. We must choose what behavior matters under which failures, not pretend that partitions can be prohibited.
+
+The task is not to prevent every conceivable failure. It is to identify those that matter, determine achievable guarantees, and select mechanisms that provide them under explicit assumptions. Knowing that a cloud service offers retries, replication, or health checks is not enough; we must understand what each mechanism guarantees, which failures it addresses, and what happens when its assumptions fail.
+
+### Components and their failure modes
+
+Software engineers rarely build systems entirely from scratch. We assemble components that execute code, preserve data, exchange messages, coordinate access, accelerate operations, and direct work. Each solves a problem and introduces dependencies and failure modes. Think of a **software hardware store**: a physical store offers many ways to fasten, support, or protect things; software platforms offer many ways to provide capabilities. The vocabulary is overwhelming until we organize the options by what they do. Six broad categories cover many contemporary components.
+
+| Category | Representative components | Characteristic failure modes |
 |---|---|---|
-| Request rate | How often does work arrive? | Reservations per second |
-| Operation mix | What kinds of work arrive? | Searches, bookings, cancellations |
-| Concurrency | How much work overlaps? | Simultaneously active requests |
-| Service demand | What does each operation consume? | Database queries, CPU time |
-| Variation | How does demand change over time? | Registration bursts |
+| **Compute** | Processes, containers, serverless functions | Crashes, hangs, resource exhaustion |
+| **Storage** | Filesystems, databases, object stores | Lost writes, corruption, unavailable data |
+| **Communication** | HTTP/RPC, message brokers, event streams | Message loss, duplication, delay |
+| **Coordination** | Locks, schedulers, consensus services | Deadlock, stale ownership, double ownership |
+| **Acceleration** | Caches, CDNs, connection pools | Stale results, eviction, cache stampedes |
+| **Control** | Load balancers, orchestrators, service discovery | Incorrect routing, stale service information, gray failures |
 
-A performance requirement is meaningful only against a stated workload. A service that satisfies a one-second latency requirement during an ordinary afternoon may fail it during registration.
+These are functional categories, not mutually exclusive product types. A database stores and coordinates through transactions and locks; a message broker communicates and may persist data. The classification helps us ask which capability we rely on and which characteristic failures it brings. For instance, two threads each need two locks. One acquires lock A and waits for B; the other acquires B and waits for A. Both threads may obey their local rules, but together they deadlock. A consistent lock-acquisition order is a system-level control on their interaction, not a correction to one isolated function.
 
-Latency is also a distribution. The median describes the experience of the middle request; p95 and p99 expose increasingly slow portions of the workload. A requirement that 95% of requests complete within one second cannot be evaluated from mean latency alone.
+Other failures arise among components behaving according to specification. A cache returns an old value while the database holds a newer one. A client retries an operation that already committed because the response was lost. Two replicas share a database whose failure disables both. Reliability cannot be established by testing each component separately. The assembled system has properties and failure modes determined by relationships among its parts.
 
-## Relating workload, concurrency, and capacity
+Failures may be hard to observe, propagate across boundaries, or depend on timing that is difficult to reproduce. A component can keep responding while returning incorrect data; a slow dependency can cause callers to exhaust their own resources; a rare concurrency interleaving can escape thousands of tests. Tests establish what happened in particular executions, not that every possible failure has been considered. For systematic reasoning, we need engineering models.
 
-**Little's Law** relates three measured averages for a stable system: `L = λW`. Here `L` is the average number of requests in the system, `λ` is average throughput, and `W` is average time in the system. At 100 completed requests per second and 0.2 seconds per request, approximately twenty requests are outstanding on average.
+### Modeling failures
 
-This relationship is useful for estimating average concurrency and checking measurements. It does not identify where requests are waiting, determine maximum concurrency, or independently predict latency from throughput.
+There are two complementary starting points. Begin with a **component** and ask what could happen if it fails, or begin with an **unacceptable system outcome** and ask what events could produce it. These approaches are *failure mode and effects analysis* (FMEA) and *fault-tree analysis* (FTA). They differ not merely in diagram notation, but in their engineering questions and the information they require. FMEA uses a component model to trace possible failures toward system effects. FTA begins with a top event, often obtained by negating a requirement, and works backward through the architecture. Both produce representations that can be inspected, revised, and used to select controls.
 
-To predict how waiting changes with load, we need additional assumptions about the system. A simple single-server queueing model illustrates the result: as utilization approaches capacity, response time can increase sharply. Real systems may not satisfy that model's assumptions, but the phenomenon matters. Engineers must leave enough capacity to accommodate variation rather than sizing a system solely for its average workload.
+#### Failure mode and effects analysis: Component-up
 
-To explore the effect, see {lab:performance-lab}.
+FMEA begins with a model of the system's components. Select a component, identify ways it might fail, and trace the consequences through the system. Then ask how each failure could be detected and what could prevent it or limit its consequences. A mitigation need not make failure impossible; it may reduce likelihood, duration, or damage.
 
-## Measuring and diagnosing performance
+Consider the reservation service. A student submits a request to a router, which forwards it to one of two reservation-service instances. The selected instance accesses a database. Suppose the router intermittently misbehaves: it might drop a request, select an unhealthy instance, or delay forwarding. The student may experience no response, an error, or a timeout. **The router dropping a request is a component failure mode; the student receiving no response is a system effect.** One observable effect may arise from several failures, and a timeout does not establish that the reservation never committed: the response may have been lost after a successful write.
 
-A system model tells us where waiting could occur. Instrumentation tells us where it actually occurs.
+![FMEA traces failure modes from a selected component toward system effects, then considers detection and mitigation.](figures/fmea-component-up.svg)
 
-A trace records the operations involved in servicing a request. Recording when work enters and leaves queues, and when processing begins and ends, lets engineers distinguish waiting from computation. Correlated spans reconstruct the request's path across components.
-
-Different measurements answer different questions. CPU profiling identifies where processor time is consumed. Tracing exposes elapsed time across operations, including time spent waiting. Resource metrics reveal utilization, saturation, and errors. Database execution plans explain the work performed by individual queries.
-
-A bottleneck is the constraint whose relief would improve useful throughput or bring response times within the required bounds. It is not necessarily the component with the highest CPU utilization.
-
-Suppose application CPU utilization is modest, but every database connection is occupied. Adding application replicas may increase the number of requests waiting for connections without materially improving throughput. The next measurement should establish why connections remain occupied: slow queries, lock waits, long transactions, or connections retained unnecessarily.
-
-Relieving one bottleneck often exposes another. Performance improvement is therefore iterative: measure, change, and measure again. To practise diagnosing a bottleneck and watching it move, see {lab:performance-lab}.
-
-## Improving performance
-
-Once the limiting cost is understood, several kinds of intervention are available.
-
-**Configuration tuning** changes how existing components operate. Examples include adjusting worker concurrency, connection-pool size, queue limits, cache capacity, and timeouts. These parameters interact. Increasing concurrency can improve throughput until another shared resource becomes saturated. Shortening timeouts can reduce waiting while increasing the number of failed requests.
-
-The tuning problem can be expressed as choosing a configuration that balances objectives such as latency and cost while satisfying constraints on errors, memory, connections, or other resources. A configuration that works for today's workload may not work after demand changes. Engineers may transfer settings from similar systems, search parameter combinations, or automate experiments, but every candidate requires evaluation against a representative workload.
-
-Other optimizations change the work itself. **Caching** avoids repeated computation or retrieval. **Batching** amortizes fixed overhead. **Better algorithms and data structures** reduce work per operation. **Parallelism** executes independent work concurrently. **Changing the placement** of data or computation can reduce communication. **Streaming** reduces the amount of input that must remain resident in memory.
-
-Each technique has conditions under which it helps. A cache consumes memory and introduces consistency concerns. Parallelism may exploit idle cores, but can introduce synchronization and contention. Streaming can reduce memory consumption while increasing remote access or coordination.
-
-**Autoscaling** belongs to a different category. The techniques above change how much work a request requires; autoscaling changes how much capacity is available to serve it, by adding or removing instances in response to demand or another scaling signal. It helps only when an added instance supplies useful service capacity. Replicas placed in front of a saturated shared resource relocate the queue rather than shorten it. Scaling also takes time, so a burst arriving faster than instances can start is absorbed by whatever headroom already existed, which is why admission control or advance provisioning may still be required.
-
-Some optimizations are effectively free lunches within the relevant operating conditions. Eliminating redundant work may improve performance without materially increasing another runtime cost. Using an idle core may reduce latency without additional hardware, although synchronization, memory, and power costs still matter. Even an optimization with no consequential runtime downside requires engineering effort to implement and validate.
-
-The operating environment changes the judgment. Embedded systems may be constrained by fixed memory, deadlines, energy, and thermal budgets; where hardware is fixed after deployment, optimization can be a condition of feasibility rather than a saving. Cloud services may have elastic capacity but incur costs for memory, computation, storage, and communication. The same optimization can be attractive in one environment and inappropriate in another.
-
-Where capacity can be purchased, engineering effort and infrastructure expenditure become partially substitutable, and the decision acquires a break-even point. Optimizing an implementation costs engineering time once; operating additional capacity costs money for as long as the service runs. Which is cheaper depends on the expected lifetime of the system, the growth of demand, and the maintenance burden the optimization introduces. A technically faster implementation is therefore not necessarily the economically preferable one. Performance engineering means selecting an implementation and operating configuration that satisfy the stated requirements under the relevant constraints, which sometimes means accepting worse performance because the improvement is not worth its cost.
-
-## A case study: DocAble
-
-Chapter 4 of *Model-Based Agentic Engineering* follows a performance problem in DocAble, a document-accessibility remediation system.
-
-A media-heavy PowerPoint presentation of roughly 250 MB exceeded the memory available to a worker. The initial architecture retained document structure and media together. Dividing documents into page chunks reduced the working set, but each chunk still retained its media.
-
-The eventual solution changed the representation. Skeletonization separated document structure from large media objects, leaving references in the worker and streaming media when needed. This reduced the dependence of resident worker memory on aggregate media size, subject to explicit assumptions about structural size, streaming buffers, and active working state.
-
-The change illustrates **active alignment**. A memory model states the required property; measurements identify where the implementation violates it; implementation changes are made and evaluated against the model. Once acceptable behavior is established, appropriate checks can preserve the property during later changes. This is **passive alignment**.
-
-## Establishing that an improvement worked
-
-An optimization is not complete when a benchmark improves once.
-
-Before evaluating a change, establish acceptance conditions. For the reservation service, these might include p95 latency at or below one second during registration, sufficient completed throughput, bounded connection-pool waiting, and controlled behavior when offered load exceeds capacity.
-
-The test workload must reproduce the relevant operation mix, concurrency, bursts, data size, and cache state. Repeated measurements help distinguish a genuine improvement from variation.
-
-An improvement may also move the bottleneck. After shortening database connection holds, the application CPU or a row lock may become the limiting resource. The engineer must measure the resulting system rather than assume that removing the original bottleneck completes the work.
-
-To practice this reasoning, see {exercise:improve-reservation-performance}.
-
-Performance and reliability meet at overload. Bounded queues, admission control, and timeouts can protect resources, but may reject work or leave clients uncertain about outcomes. Retrying failed requests can increase the load on an already saturated service. The next lecture examines what the system must do when components fail and how to establish that its recovery behavior is acceptable.
-
-## Reliability engineering
-
-Software engineers rarely build a system entirely from scratch. They assemble components that provide execution, storage, communication, coordination, and other capabilities. A service might use an HTTP server, a message queue, a worker pool, a database, a cache, and a load balancer. Each component solves a problem, and each introduces a dependency and a set of possible failures.
-
-Reliability engineering asks whether the assembled system continues to satisfy its obligations under specified failures. A claim that a system is reliable is incomplete without three things: the behavior required, the failures considered, and the conditions under which the claim holds.
-
-## The software hardware store
-
-Components can be organized by the capabilities they provide, much as a hardware store organizes tools and materials by what they are for.
-
-| Capability | Representative components | Engineering question |
-|---|---|---|
-| Execute work | Processes, containers, serverless functions | How is execution isolated? |
-| Preserve state | Filesystems, databases, object stores | What durability is guaranteed? |
-| Exchange information | RPC, message brokers, event streams | Can messages be lost or duplicated? |
-| Coordinate activity | Locks, schedulers, consensus services | What happens when a participant fails? |
-| Accelerate access | Caches, CDNs, connection pools | How stale may the result be? |
-| Direct work | Load balancers, orchestrators, service discovery | How are unhealthy components handled? |
-
-These categories are not mutually exclusive. A message broker may also provide durable storage, and a database may provide coordination through transactions and locks. The catalog is a way to recognize the capabilities available and, more usefully, to identify the question each one raises when a component is selected.
-
-Components share some failure modes. Processes, databases, communication services, and coordination mechanisms can all become unavailable, exhaust resources, behave incorrectly, or be misconfigured. Many can also be compromised through an exploitable vulnerability. The causes and consequences differ by component, but the broad classes recur.
-
-Other failures are characteristic of a family. Caches return stale values and suffer stampedes. Message brokers lose, duplicate, or reorder messages, depending on the delivery guarantee they offer. Databases suffer corruption, lost writes, and transaction anomalies. Schedulers miss work or run it more than once.
-
-Failures also arise from interactions. A client retries when a service slows down, adding to the load that caused the slowdown. Two replicated services share a database whose failure disables both. A cache returns an old value while the database correctly holds a newer one. In each case the components behave according to their specifications and the system fails to provide what its users require.
-
-The engineer therefore has to understand both component behavior and the consequences of assembling components into a system.
-
-## Analyzing failures
-
-Knowing that components can fail is not enough. We need to identify which failures matter for a particular system, and how they could produce an unacceptable outcome. Two established techniques approach the problem from opposite directions.
-
-**Failure mode and effects analysis** works from the bottom up. Starting with a component, the engineer asks how it can fail, what effects follow, how the failure could be detected, and what mitigation might be appropriate.
-
-Consider the document-processing service: an upload API, a message queue, a pool of workers, and an object store for results.
-
-| Component | Failure mode | Effect | Detection | Candidate mitigation |
+| Component | Failure mode | System effect | Detection | Candidate mitigation |
 |---|---|---|---|---|
-| Message queue | Duplicate delivery | Work executes twice | Repeated job identifier | Idempotent consumer |
-| Worker | Crash during processing | Work remains incomplete | Missing completion | Restart and retry |
-| Object store | Write failure | Output unavailable | Write error | Retry or fail the job |
+| Router | Drops a request | Student receives no response | Request tracing, missing completion | Safe retry through another route |
+| Router | Selects an unhealthy instance | Error or timeout | Health checks, error metrics | Remove unhealthy instances from routing |
+| Router | Delays forwarding | Slow response or timeout | Latency measurements | Bound queueing and forwarding time |
 
-The table connects each proposed mitigation to a specific failure, which is its first value. Its second is that it exposes the interactions between failures and the mechanisms meant to recover from them.
+The same failure can have different consequences in different architectures. A router serving an optional recommendation feature may degrade the experience without preventing reservations; a router that is the only entry point may make the whole service unavailable. FMEA therefore cannot be filled in from a component catalog alone. It requires a model of the component's place in the architecture and the recovery behavior around it.
 
-Suppose a worker writes its output successfully and crashes before acknowledging the message. A queue providing at-least-once delivery will deliver that message again. Retrying is what allows the system to recover from interrupted processing, and it is also what repeats work that already completed. The engineer must decide whether repetition is acceptable and, if it is not, how the application will prevent duplicate effects.
+The analysis can also prioritize work. Traditional FMEA considers severity, occurrence, and detectability; qualitative judgments suffice here. A severe, poorly detectable failure may warrant controls even if its likelihood is unknown. A frequent but inconsequential failure may not justify an expensive mitigation. The goal is an engineering decision, not a spurious numerical risk score.
 
-**Fault-tree analysis** begins with an unacceptable outcome and works backward to the events that could produce it. Suppose the top event is that a completed document becomes permanently unrecoverable. One explanation requires two conditions together: the primary copy is unavailable, and no usable recovery copy exists.
+#### Fault-tree analysis: System-down
 
-A fault tree represents these relationships with logical gates. An OR gate means any one input event is sufficient to produce the event above it. An AND gate means every input event is required.
+FTA starts from the other direction. Select an unacceptable outcome and work backward to events that could produce it. A practical way to identify top events is to examine requirements and consider their violation. If a reservation request must receive a successful response within five seconds, the top event is **No successful response within five seconds**. We then consult the architecture: the router might drop the request; the backend path might become unavailable without timely recovery; the required database might become unavailable. Each is a *candidate* sufficient explanation, subject to assumptions about retries, alternate paths, and the deadline.
 
-The gates express logical relationships, not statistical independence. Two replicas may fail together because they share a power supply, a configuration, a software defect, or an upstream dependency. An AND gate does not license multiplying two failure probabilities unless the independence assumption has been established separately.
+![A fault tree works downward from an unacceptable response outcome through OR and AND gates to causal events.](figures/fault-tree-system-down.svg)
 
-The two techniques are complementary. Failure mode and effects analysis asks what a component's failure can cause. Fault-tree analysis asks what events or combinations could produce a particular unacceptable outcome. Used together, they identify the failures that deserve engineering attention.
+A fault tree uses Boolean relationships. An **OR** gate means any input event suffices for the parent event; an **AND** gate means all inputs are required. These are claims about causation in the modeled architecture, not merely ways to arrange boxes. If two independently usable request paths exist, both must fail for that route-level redundancy to be lost. If both paths share a required database, database failure may defeat them together. The tree must reflect those relationships.
 
-## Engineering for reliability
+The assumptions matter. If a router detects a failed backend and retries another instance successfully before the deadline, failure of the first backend is not sufficient for the top event. A tree claiming otherwise is wrong for that architecture. Nor does an AND gate imply statistical independence: replicas can fail together because of shared code, configuration, power, or dependencies. Independence must be established separately before multiplying probabilities.
 
-Once the relevant failures are understood, mechanisms can be selected to prevent them, detect them, contain their effects, or restore acceptable operation. The mechanisms are usefully organized by purpose.
+FTA makes the conditions for an unacceptable outcome explicit. We can inspect which paths are already controlled, which need mitigation, and which assumptions need evidence. When architecture or recovery policy changes, the tree changes too. Adding fallback may convert a single failure into a conjunction of failures; that is a property of the *system*, not of the component considered alone.
 
-| Purpose | Representative mechanisms |
+#### Constructing and using the models
+
+Both analyses reuse engineering models we should already have. The engineer chooses an abstraction appropriate to the decision. Treating an entire application as one component might suffice for analyzing loss of a machine but not interactions among internal services. For **FMEA**, begin with architecture or component models; select a component, enumerate relevant failure modes, trace effects, and consider detection and mitigation. Repeat across the components that matter. The direction is component-up.
+
+For **FTA**, begin with a requirement and formulate its violation as an observable top event. Use the architecture and component failure models to identify causes, then decompose them with justified AND and OR relationships. **Work depth-first**: follow one plausible causal path to events concrete enough to analyze or control before expanding sibling branches. Stop when further detail would not change the engineering decision. The direction is system-down.
+
+| Dimension | FMEA | Fault tree |
+|---|---|---|
+| **Direction** | Component-up | System-down |
+| **Representation** | Components, failure modes, effects | Events and Boolean relationships |
+| **Properties examined** | Consequences, detectability | Conditions producing an unacceptable outcome |
+| **Assumptions** | Component behavior, architecture | Dependencies, recovery behavior |
+| **Analyses** | Trace effects, identify gaps, prioritize | Identify causal paths and combinations |
+
+Neither model is automatically complete or correct. FMEA may omit components or interactions; a fault tree may omit causes or choose the wrong gate. Both can become outdated as the architecture changes. Their value is that they make claims about failure behavior explicit enough to inspect and act upon. This is why we construct engineering models elsewhere in the course: representations support analyses, and analyses support decisions.
+
+### Engineering for reliability
+
+Once relevant failures are understood, we can choose mechanisms to prevent them, detect them, contain their effects, or restore operation. Software borrows many metaphors from physical engineering: containers isolate, bulkheads prevent damage spreading, watchdogs detect problems, and circuit breakers interrupt interactions with unhealthy dependencies. The metaphors are helpful, but what matters is the guarantee each mechanism actually provides.
+
+| Purpose | Representative mechanisms | Engineering role |
+|---|---|---|
+| **Isolation** | Containers, bulkheads, resource limits | Limit what a failure can affect |
+| **Detection** | Health checks, heartbeats, watchdogs | Recognize failed or unhealthy components |
+| **Recovery** | Restart, retry, failover | Attempt to restore operation |
+| **Redundancy** | Replication, diverse implementations, N-version programming | Provide alternative ways to perform work |
+| **Containment** | Circuit breakers, admission control, backpressure | Prevent propagation or overload |
+| **State protection** | Transactions, idempotency, backups | Preserve or recover required state |
+
+The mechanisms are not interchangeable. Isolation does not necessarily detect failure; detection does not repair it; recovery may repeat work or encounter the same defect; redundancy depends on sufficiently independent alternatives. Consider a worker emitting heartbeats. A watchdog may restart it after a missed heartbeat, but the worker might merely be slow and continue operating. If both the old and replacement workers believe they own a shared resource, the recovery protocol creates a correctness failure. Stronger ownership rules, such as fencing, may be needed. The mechanism must be evaluated as part of the assembled system.
+
+**Redundancy and diversity** also differ. Replication can survive the loss of an instance, but identical replicas share implementation defects. N-version programming uses independently developed implementations and may compare results, at greater cost; independence of development does not guarantee independent failures. The engineer must say which failure class redundancy is intended to tolerate.
+
+**Retries and backoff** show how a locally reasonable mechanism can destabilize a system. A timeout says only that the caller stopped waiting, not that the operation failed to commit. Retrying state-changing work requires an idempotency policy. If many clients retry together, they amplify load on a struggling dependency. Backoff reduces retry frequency; jitter spreads attempts; retry budgets and admission control limit aggregate work. The goal is not to install every mechanism, but to select those that address modeled failures under valid assumptions.
+
+### Selecting and integrating components
+
+Component selection is itself an engineering decision. When we integrate a library, database, broker, cloud service, or other dependency, its behavior becomes part of the assumptions on which our system relies. We need to investigate more than advertised features. A component may perform its intended function correctly while consuming unacceptable resources, failing under concurrency, or offering weaker recovery guarantees than the application needs.
+
+This distinction is especially important with AI coding agents. An agent can identify a library, install it, integrate its API, and run tests. The tests may all pass. That establishes only behavior under the conditions tested; it does not establish suitability for the actual workload, environment, and reliability obligations. **Unless the engineer supplies those constraints explicitly, the agent has no reliable basis for evaluating them.** Functional correctness and **contextual appropriateness** are distinct engineering obligations. A dependency suitable for a desktop application processing trusted inputs may be unacceptable for a public service processing untrusted requests, even if it functions as specified in both.
+
+| Dimension | Questions for the engineer |
 |---|---|
-| Isolation | Containers, bulkheads, resource limits |
-| Detection | Health checks, heartbeats, watchdogs |
-| Recovery | Restart, retry, failover |
-| Redundancy | Replication, diverse implementations, N-version programming |
-| Containment | Circuit breakers, admission control, backpressure |
-| State protection | Transactions, idempotency, durable logging, backups |
+| **Functional semantics** | What behavior is guaranteed? Which inputs, outputs, and edge cases are specified? |
+| **Resource bounds** | What time, memory, storage, and communication costs arise? Are worst-case bounds documented? |
+| **Failure modes** | Can it hang, crash, corrupt state, or return incorrect results? |
+| **Recovery guarantees** | What happens after failure? Are retries safe? Can partial work be recovered? |
+| **Concurrency behavior** | What synchronization, ordering, and isolation guarantees apply? |
+| **Security** | How are untrusted inputs handled? What attack surfaces are introduced? |
+| **Maintainer practices** | How are defects fixed and vulnerabilities disclosed? Which versions receive updates? |
+| **Compatibility and evolution** | Can the dependency be upgraded, constrained, or replaced without violating requirements? |
 
-**Isolation, detection, and recovery** work as a chain. A container provides an execution boundary, a watchdog detects a failed or unresponsive process, and a restart policy attempts to restore operation. None of them guarantees recovery on its own. Restarting a process does not restore corrupted state, and restarting a process that keeps meeting the same defect produces a restart loop rather than a recovery.
+Not every dependency needs an exhaustive investigation. The depth of analysis should reflect consequences and dependence: a library formatting an optional report deserves different scrutiny from one validating security-sensitive input or preserving transactions. The engineer identifies which properties matter in context and obtains evidence. Documentation may describe functions without worst-case resource bounds or failure behavior. **The absence of a documented limitation is not evidence that the limitation does not exist.** If a property matters and is unspecified, investigate it or impose an independent control.
 
-**Redundancy and diversity** are not the same thing. Replication preserves service when a machine or instance fails, provided the replicas and their dependencies are sufficiently independent. Identical replicas remain vulnerable to a defect in the implementation they share. N-version programming attempts to tolerate implementation faults by running independently developed versions and comparing their results; its effectiveness depends on achieving meaningful diversity and on a suitable decision procedure, neither of which is guaranteed by the arrangement itself.
+#### Case study: Regular expression engines
 
-**Containing failures** limits consequences rather than removing causes. A circuit breaker stops repeated calls into an unhealthy dependency, letting callers fail promptly or take an alternative path. A bulkhead partitions resources so one workload cannot exhaust what another depends on. Neither repairs the failing dependency.
+Regular expression engines illustrate the problem. Applications treat matching as an operation returning success or failure. An AI agent asked to validate a field can select a regex library, integrate it, and write tests showing that ordinary valid and invalid inputs are handled correctly. From a functional perspective, the implementation may appear complete. But matching consumes time and memory, and the engine's implementation determines which patterns and inputs are expensive. Some backtracking engines exhibit exponential worst-case execution time for particular pattern/input combinations; other approaches trade execution time for memory. These properties may be inconsequential for short trusted inputs on a desktop computer and unacceptable for attacker-controlled inputs in a public service.
 
-**Recovering from transient failures** depends on a judgment about what the failure was. A timeout bounds how long a caller waits; a retry attempts recovery where another execution may succeed; exponential backoff spaces repeated attempts; and jitter reduces synchronization across clients. Retrying is not automatically safe. A timed-out operation may already have completed, and repeated requests can amplify the overload that produced the timeout.
+Three questions matter: Can a pattern and input cause excessive execution time? Can matching consume excessive memory? Does the engine produce the intended match or mismatch? Controls include choosing an engine with appropriate complexity guarantees, restricting pattern features, bounding input and pattern sizes, isolating execution, enforcing resource limits, and testing against intended semantics.
 
-**Protecting state** addresses obligations the other categories do not. Transactions prevent selected partial updates, idempotency controls the effects of repeated operations, durable logging supports recovery of committed changes under stated assumptions, and backups provide recovery points. These are not interchangeable. Replication does not substitute for a backup, because it copies a mistake as faithfully as it copies a write; and an idempotent operation need not execute exactly once, it need only produce one logical result.
+A systematic review of regular expression denial of service examined engines in nine widely used languages. Backtracking engines can exhibit super-linear worst-case behavior, and relevant defenses and limitations were often undocumented. Maintainers have sometimes regarded such behavior as an accepted consequence of supporting extended regex features rather than a defect requiring correction. A component can therefore be functioning exactly as its maintainers intend while being unsuitable for the system in which an engineer proposes to use it.
 
-The engineering task is not to install every available mechanism. It is to select mechanisms whose guarantees address the failures the system must actually tolerate.
+This is why component selection cannot be delegated merely by asking an agent to find a library that works. The agent can search documentation, compare alternatives, construct benchmarks, and test candidates. Those are useful delegated tasks. **The engineer must supply the workload, trust boundary, resource budget, required guarantees, and consequences of failure.** Without that context, passing tests and successful integration are weak evidence of suitability. The engineer is responsible for the assembled system, not merely the functional correctness of individual components.
 
-## Selecting and integrating components
+### Selecting reliability mechanisms
 
-Component selection is itself a reliability decision. The behavior of a component becomes part of the system's assumptions, so it has to be investigated before it is depended upon.
-
-The relevant questions concern the component's documented semantics, resource bounds, concurrency behavior, failure modes, and recovery guarantees. They also concern the maintainer's policies: how defects are reported, whether security vulnerabilities receive coordinated disclosure, which versions receive fixes, and what compatibility commitments accompany an update.
-
-A component's documentation may simply omit the behavior that matters to the application. The absence of a documented limitation is not evidence that the limitation does not exist.
-
-## Case study: regular expression denial of service
-
-Regular expression engines illustrate the problem. Applications use them to recognize patterns in text, often treating a match as a simple operation returning success or failure. The engine also consumes time and memory, and its matching semantics determine which strings it accepts.
-
-Three questions matter when selecting one. Can a pattern and input cause excessive execution time? Can matching consume excessive memory? Does the engine produce the intended match or mismatch? Available controls include selecting an engine with appropriate complexity guarantees, restricting the pattern features supported, bounding input and pattern sizes, isolating execution, enforcing resource limits, and testing behavior against the intended semantics.
-
-A systematic review of regular expression denial of service examined engines in nine widely used programming languages. Backtracking engines can exhibit super-linear worst-case behavior, and relevant defenses and limitations were often undocumented. Maintainers have sometimes regarded such behavior as an accepted consequence of supporting extended regular-expression features rather than a defect requiring correction.
-
-The lesson generalizes past regular expressions. Selecting a component requires investigating the behavior relevant to the intended application, including behavior its maintainers may consider the user's responsibility.
-
-## Selecting reliability mechanisms
-
-The same scrutiny applies to the mechanisms themselves.
+The same scrutiny applies to reliability mechanisms. A mechanism may be correctly implemented yet fail to provide the intended guarantee because its assumptions do not hold.
 
 | Failure | Candidate mechanism | Required assumption |
 |---|---|---|
 | Process crash | Restart | State can be recovered |
 | Transient network failure | Retry | Repetition is safe |
-| Persistent dependency failure | Circuit breaker | The caller can fail or degrade |
+| Persistent dependency failure | Circuit breaker | Caller can fail or degrade |
 | Machine failure | Replication | Failures are sufficiently independent |
 | Duplicate message | Idempotency | Operation identity is stable |
-| Data loss | Backup and recovery | The recovery point is acceptable |
+| Data loss | Backup and recovery | Recovery point is acceptable |
 
-The rightmost column decides whether the mechanism is appropriate. A retry policy cannot safely recover an operation whose repeated effects violate an invariant. Replication cannot tolerate a shared failure that disables every replica. A mechanism whose assumption does not hold provides the appearance of protection without its substance.
+The rightmost column is decisive. A retry cannot safely recover an operation whose repeated effects violate an invariant. Replication cannot tolerate a shared failure disabling all replicas. A backup cannot meet a recovery obligation if the newest recoverable state is too old. Mechanisms interact too: retries add load to admission control; a circuit breaker may reject a request that could have succeeded; a watchdog may restart a worker that is still executing. Evaluate the combined behavior, including failures of the mechanisms themselves.
 
-Mechanisms also interact. A client may retry an operation that already committed. Retries may increase the load presented to admission control, which is placed to reduce it. A circuit breaker may reject a request the dependency could have served successfully. Placement and configuration therefore matter as much as the behavior of any mechanism in isolation.
+### Apply the analysis to your project
 
-Consider the document-processing service again. A durable message queue lets work survive a worker crash, and duplicate delivery then requires an idempotency policy. Resource limits and worker isolation keep a pathological document from exhausting the service. The design must also account for the queue's acknowledgement semantics, the persistence of job state, and what happens after processing is interrupted partway.
+Begin with the engineering models your team has already developed: architecture, deployment topology, component dependencies, and requirements. Choose a representative request and define successful completion. The top event is **Your system cannot produce a successful response within ten seconds.** Construct a fault tree for that outcome, working depth-first along one causal path before expanding other branches. Use OR and AND gates only where the architecture justifies them. Account explicitly for redundancy, retries, recovery, and fallback: a component failure does not necessarily produce a system failure when another path can complete within the deadline.
 
-The engineer has to establish which combination of components and mechanisms satisfies the system's obligations, rather than assuming that adding reliability features improves reliability.
+Inspect the tree's assumptions against your models. Are dependencies represented accurately? Does the retry actually occur? Is the alternate path independent? Could a shared dependency disable both? Finally, identify one inadequately controlled failure path and **propose a mitigation mechanism**, stating which event it addresses and what assumptions must hold. **Ten minutes, with your project team. Deliverable: fault tree, assumptions, and one mitigation.**
 
-## Establishing evidence
+### Engineering judgment
 
-A reliability design is not finished when its mechanisms have been selected. The engineer must establish that the assembled system behaves acceptably under the failures it claims to tolerate. Fault injection introduces those failures deliberately, under controlled conditions, and observes what the system does.
+Performance and reliability use different models but share a method. Performance models explain resource consumption, waiting, and capacity; failure models explain how components and interactions produce unacceptable outcomes. Both support decisions about what to change and what evidence would justify it. Neither decides which properties matter or what protecting them is worth. The concerns interact: capacity reduces overload-induced failures, retries recover transient faults while adding load, and admission control protects accepted work by refusing other requests. A change that improves one property may weaken another, so the assembled system must be evaluated as a whole.
 
-| Reliability claim | Failure injected | Evidence sought |
-|---|---|---|
-| Worker crashes are recoverable | Kill a worker during processing | The job eventually completes |
-| Duplicate delivery is safe | Deliver the same message twice | One logical result |
-| Resource exhaustion is contained | Submit a pathological document | Other jobs remain serviceable |
-| Stored outputs survive failure | Remove a storage instance | Recovery meets the stated objective |
-
-Each test is evaluated against an explicit requirement. A job that eventually completes may still violate a recovery-time objective. A system that survives one worker crash may fail when several workers share a dependency that has become unavailable.
-
-Recovery paths are the least exercised code in most systems and the code most needed when something goes wrong, which is why they have to be tested deliberately rather than observed in production. Passing a fault-injection test establishes behavior under the conditions tested. It does not establish reliability in general.
-
-## Engineering judgment
-
-Performance and reliability engineering use different models and share a method. Performance models explain resource consumption, waiting, and capacity. Failure models explain how components and their interactions produce unacceptable outcomes. Both support decisions about what to change, and about what evidence would justify the change.
-
-The two concerns interact in both directions. Additional capacity reduces overload-induced failures. Retries recover transient faults and increase offered load. Admission control preserves service for accepted work by rejecting other requests immediately. A design that improves one property often weakens another, so the two are evaluated together rather than in sequence.
-
-Reliability engineering therefore asks for more than a list of failures or a familiarity with reliability patterns. The engineer must understand the components selected, the assumptions behind the mechanisms chosen, and the behavior of the system they compose.
-
-The next unit, Security Engineering, examines failures produced deliberately, by an adversary reading the same architecture you are.
+The engineer must understand selected components, the assumptions behind mechanisms, and the behavior of the system they compose. Modeling makes those assumptions explicit enough to analyze before discovering their consequences in production. The next unit, Security Engineering, examines failures produced deliberately by an adversary examining the same architecture.

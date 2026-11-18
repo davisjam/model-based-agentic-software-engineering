@@ -3864,6 +3864,23 @@
   year    = {1991},
 }
 
+% The Act III reliability unit's analysis reading: one source covering BOTH directions. Inductive
+% methods including FMEA in 2.3 (printed p. 12), the FTA-vs-inductive comparison in 2.4 (printed
+% p. 20), and fault-tree construction in 3.1-3.4 (printed pp. 22-25). Cover and title pages verified
+% 2026-11-18 against the PDF: Version 1.1, August 2002, prepared for the NASA Office of Safety and
+% Mission Assurance; Stamatelatos and Caraballo coordinated, Vesely was lead author.
+@techreport{stamatelatos2002faulttree,
+  author      = {Stamatelatos, Michael and Vesely, William and Dugan, Joanne and Fragola, Joseph and
+                 Minarick, Joseph and Railsback, Jan},
+  title       = {Fault Tree Handbook with Aerospace Applications, Version 1.1},
+  year        = {2002},
+  month       = {8},
+  institution = {{National Aeronautics and Space Administration, Office of Safety and Mission Assurance}},
+  address     = {Washington, DC},
+  url         = {https://www.mwftr.com/CS2/Fault%20Tree%20Handbook_NASA.pdf},
+  urldate     = {2026-11-18},
+}
+
 % Return-oriented programming: arbitrary computation assembled from instruction sequences already
 % present in executable memory, without injecting code. Single-authored.
 @inproceedings{shacham2007geometry,
@@ -3898,6 +3915,61 @@
   year      = {2011},
   publisher = {Addison-Wesley},
   address   = {Boston, MA},
+}
+
+% The weakness vocabulary the Act III security unit uses to move from an observed attack outcome to a
+% plausible mechanism. A CWE names a CLASS of defect; a CVE names one disclosed vulnerability in one
+% product, so neither establishes that the software in front of us is exploitable as configured.
+% Verified 2026-11-18 against the site itself: the resource's own name is "Common Weakness Enumeration
+% (CWE)", operated by The MITRE Corporation; https://cwe.mitre.org/ and the CWE Top 25 list at
+% https://cwe.mitre.org/top25/ both resolve. No version is recorded here because the list is versioned
+% continuously and a pinned number would be stale by the time a student reads it.
+@online{mitre-cwe,
+  author    = {{The MITRE Corporation}},
+  title     = {Common Weakness Enumeration},
+  year      = {2026},
+  publisher = {{The MITRE Corporation}},
+  url       = {https://cwe.mitre.org/},
+  urldate   = {2026-11-18},
+}
+
+% Zero-Trust Dependencies: the Act III security unit's worked example of a SOFTWARE-ENFORCED control.
+% A third-party library is treated as a principal whose file, network and shell access is separately
+% authorized at runtime, rather than inherited from the application. Verified 2026-11-18: the eight
+% authors and their order come from the paper's own title page and from Crossref for the ICSE DOI;
+% pages 1294-1306; the conference ran in Ottawa, 26 April to 6 May 2025. The arXiv URL below is the
+% openly readable version (v3, 20 December 2024) and carries the Figure 1 and sections IV and V the
+% reading list cites.
+@inproceedings{amusuo2025ztdjava,
+  author    = {Amusuo, Paschal C. and Robinson, Kyle A. and Singla, Tanmay and Peng, Huiyun and
+               Machiry, Aravind and Torres-Arias, Santiago and Simon, Laurent and Davis, James C.},
+  title     = {{ZTDJAVA}: Mitigating Software Supply Chain Vulnerabilities via Zero-Trust Dependencies},
+  booktitle = {Proceedings of the 47th {IEEE/ACM} International Conference on Software Engineering
+               ({ICSE} '25)},
+  pages     = {1294--1306},
+  year      = {2025},
+  address   = {Ottawa, ON, Canada},
+  publisher = {IEEE},
+  doi       = {10.1109/ICSE55347.2025.00148},
+  url       = {https://arxiv.org/abs/2310.14117},
+}
+
+% The limit on what source review can establish: a compromised compiler can insert behavior that never
+% appears in the source being read, so the toolchain belongs inside the trusted assumptions or the
+% review's conclusion does not reach the executable. Thompson's 1984 ACM Turing Award lecture. Verified
+% 2026-11-18 via Crossref for DOI 10.1145/358198.358210: Communications of the ACM 27(8), August 1984,
+% pp. 761-763, single-authored. The DOI resolves to the ACM Digital Library.
+@article{thompson1984trust,
+  author  = {Thompson, Ken},
+  title   = {Reflections on Trusting Trust},
+  journal = {Communications of the ACM},
+  volume  = {27},
+  number  = {8},
+  pages   = {761--763},
+  year    = {1984},
+  month   = {8},
+  doi     = {10.1145/358198.358210},
+  url     = {https://doi.org/10.1145/358198.358210},
 }
 
 
@@ -4588,6 +4660,20 @@
   howpublished = {OpenTelemetry documentation, Concepts: Signals},
   url          = {https://opentelemetry.io/docs/concepts/signals/traces/},
   urldate      = {2026-11-12},
+}
+
+% The reliability-mechanism menu for the Act III reliability unit; students choose three patterns.
+% The index page and all seven assigned pattern URLs resolved 2026-11-18. Two slugs are irregular
+% and were checked individually rather than inferred: rate-limiting-pattern carries the -pattern
+% suffix that its siblings do not, and quarantine is a supply-chain verification pattern rather
+% than a runtime reliability mechanism.
+@misc{azure_cloud_design_patterns,
+  author       = {{Microsoft}},
+  title        = {Cloud Design Patterns},
+  year         = {2026},
+  howpublished = {Azure Architecture Center},
+  url          = {https://learn.microsoft.com/en-us/azure/architecture/patterns/},
+  urldate      = {2026-11-18},
 }
 
 @book{bohner1996impact,

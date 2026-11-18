@@ -241,6 +241,27 @@ re-deriving these, so they live here:**
     cores. So: `sysctl -n vm.loadavg` before pushing, and **order the push BEFORE dispatching a
     wave, or after it lands** — never dispatch five agents and then immediately push, which is the
     sequencing mistake that produced the measurement.
+  - **A FIFTH mode, 261117 — the gate REFUSES rather than dies, and the refusal is about a stale
+    CACHE WORKTREE, not about your change.** The push is rejected with a real gate verdict (`pre-push:
+    phase FAILED: book PDF`), which reads like a defect you introduced. It is not: the gate runs in
+    `~/Library/Caches/gc-gate-worktree/<hash>/prepush/gc-prepush`, and **those are REGISTERED git
+    worktrees** (`git worktree list` shows them). A fresh worktree has none of the gitignored build
+    artifacts, and the TikZ pool's reuse key is computed from INPUTS — so it reports "reusing 135
+    verified candidates", skips the compile, and leaves the worktree with nothing to reuse. The build
+    then fails on `Missing publication grayscale figure: latex/build/tikz/candidates.pdf`.
+    - **Remove them with `git worktree remove --force <path>`, then clear the cache root.** A bare
+      `rm -rf` leaves dangling worktree registrations behind.
+    - **Two diagnostic traps cost most of the time here, both already named elsewhere in this file.**
+      (1) The pronoun checker prints three `PRECONDITION FAILED` lines — a missing source, an empty
+      manifest, an unreadable one — that are its own NEGATIVE SELF-TESTS; the fixture is literally
+      `part9/9.9-absent.tex`. They are not the failure, exactly as the `latex_kernel` version
+      mismatch is not the failure. (2) `BUILD` for the TikZ pool is `<repo>/latex/build/tikz`, at the
+      REPO ROOT, not `book/latex/build/tikz`; checking the wrong path reports the artifact missing
+      when it is present, which points the expensive way and nearly condemned a healthy tree.
+    - A concurrent book build is a separate, real cause worth ruling out first: a `.aux` read while
+      `lualatex` is writing it yields `Argument of \new@label@record has an extra }` on a line that
+      begins mid-token. Wait for the build, then delete that one gitignored artifact so it
+      regenerates.
   - **All three modes share one root, which is worth stating once:** the gate runs BEFORE the
     transfer, so both the verdict and the credential age across a long window. That is why the exit
     code is never the check and `git log --oneline origin/main..HEAD` returning EMPTY always is.
@@ -324,6 +345,20 @@ re-deriving these, so they live here:**
     reader to your own parse — the census above was wrong because it re-implemented YAML traversal
     the loader already does correctly, and the refutation ran `canonicalize` instead.
     A probe with no precondition is not a measurement; it is a number with the provenance removed.
+  - **Three SHELL mechanics produce a false absence even when the probe's logic is right, and all
+    three fired on 261117 while searching a corpus.** The bullets above are about looking in the
+    wrong PLACE; these are about the search never running at all, which looks identical.
+    - **zsh does not word-split an unquoted parameter expansion.** `FILES=$(ls ...)` then
+      `grep X $FILES` passes ONE argument containing newlines, so grep searches a file that does
+      not exist and reports nothing. Build an array — `FILES=(${(f)"$(...)"})` or a glob — and echo
+      `${#FILES[@]}` before trusting a zero result.
+    - **A pipeline's exit status is the LAST command's**, so `ls missing | sed s/x/y/ || echo NONE`
+      never prints NONE: `sed` succeeded on empty input. Test the file, not the pipeline
+      (`[ -f x ] && ... || ...`). Same family as the `head`-exits-0 inversion above.
+    - **Quoting inside a nested `awk`/`python` one-liner breaks silently** and the interpreter's
+      error can scroll past above a wall of empty results.
+    **The control is one line: run the probe against a term you KNOW is present before you believe
+    a zero.** A corpus search that cannot find `the` is not reporting an absence.
   - **Two further costumes, both found on 261006. First: a probe that GUESSES A SHAPE reports the
     absence of its own guess.** Four in one sitting, all orchestrator-authored against
     `window.mage`, each read at first as a missing feature: `requirements()` was assumed to return

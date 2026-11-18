@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is that
+     the attack path runs THROUGH a principal whose every step the system judges correct. The attacker
+     never touches the software. So the figure draws one unbroken chain from attacker to privileged
+     action, and places the controls BENEATH it pointing upward at the step they constrain, rather than
+     drawing them as a gate the attack must pass. A gate would teach that the controls stop the
+     deception, and they do not: they bound what the deceived principal can do.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. The administrator box is drawn in the NEUTRAL structure colour, not the hostile one, and its
+        subtitle states that authentication succeeded and the role is valid. Colouring the deceived
+        principal as hostile would make this a story about a bad administrator, which it is not.
+     2. Only two boxes are hostile: the request that enters, and the action that results. The harm is at
+        both ends of the chain and nowhere in the middle, which is what makes the case hard.
+     3. The controls band sits below the chain and its arrow points UP at the privileged action. It does
+        not interrupt the chain, because the figure must not claim that scope or a second approver
+        prevents the deception. They constrain the authority the deception yields.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
+     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
+     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, paper #fdfcf9. Flat fills only, so the
+     figure survives black-and-white print; the dashed outline, not colour, marks the controls band.
+
+     SIZING. viewBox 700 x 532. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): box labels 14px -> 12.3pt, subtitles 11px -> 9.7pt, edge labels 11px -> 9.7pt,
+     control headers 12.5px -> 11.0pt, notes 12px -> 10.5pt, title 16px -> 14.1pt. At a 700 px column
+     the box labels sit at 10.5pt and the subtitles at 8.3pt. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 532" width="700" height="532"
+     role="img" aria-labelledby="socTitle socDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="socTitle">An attacker's fraudulent request reaching a correctly authenticated administrator
+    who then performs a privileged action, with scoped authority and independent approval drawn beneath
+    as constraints on the resulting authority</title>
+  <desc id="socDesc">A chain reads left to right and then downward. On the left, a box drawn in the
+    hostile colour holds ATTACKER, who sends no malformed input and needs no defect in the software. An
+    arrow labeled fraudulent request reaches the ADMINISTRATOR box, drawn in the neutral structure
+    colour, whose subtitle states that authentication succeeds, the role is valid, and the request looks
+    like ordinary work. A downward arrow labeled exercises legitimate authority reaches the PRIVILEGED
+    ACTION box, drawn in the hostile colour, which names a credential reset or an approved release, and
+    notes that the software executes exactly the operation requested. Beneath the chain sits a band with
+    a dashed outline, headed WHAT CONSTRAINS THE AUTHORITY THE DECEPTION YIELDS, holding two boxes. The
+    first, SCOPED AUTHORITY, states that the role carries only the permissions its task requires, so a
+    deceived administrator can reach fewer resources. The second, INDEPENDENT APPROVAL, states that a
+    second principal with separate authority must also decide, so one deceived person is not sufficient.
+    An arrow points up from the band to the privileged action, because these controls bound the
+    authority the deception yields rather than preventing the deception itself. Two closing notes state
+    that strong authentication establishes who is acting and not whether the action requested is
+    legitimate, and that a system can enforce its access-control policy correctly and still permit the
+    harm when the policy grants one deceived actor enough power.</desc>
+
+  <defs>
+    <marker id="soc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="soc-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a2f2f"/>
+    </marker>
+    <marker id="soc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="532" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">LEGITIMATE AUTHORITY, EXERCISED FOR THE ATTACKER'S PURPOSE</text>
+
+  <!-- the attacker, who touches no software -->
+  <rect x="30" y="68" width="186" height="80" rx="10" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="123" y="97" text-anchor="middle" font-size="14" font-weight="700" fill="#8a2f2f">ATTACKER</text>
+  <text x="123" y="116" text-anchor="middle" font-size="11" fill="#8a2f2f">sends no malformed input and</text>
+  <text x="123" y="132" text-anchor="middle" font-size="11" fill="#8a2f2f">needs no defect in the software</text>
+
+  <path d="M216,108 H324" fill="none" stroke="#8a2f2f" stroke-width="2" marker-end="url(#soc-ah-red)"/>
+  <text x="270" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#8a2f2f">fraudulent request</text>
+
+  <!-- the deceived principal, drawn as the system sees them: correct -->
+  <rect x="328" y="62" width="246" height="92" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="451" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">ADMINISTRATOR</text>
+  <text x="451" y="110" text-anchor="middle" font-size="11" fill="#57534e">authentication succeeds, the role is valid,</text>
+  <text x="451" y="126" text-anchor="middle" font-size="11" fill="#57534e">and the request resembles ordinary work</text>
+
+  <path d="M451,154 V214" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#soc-ah)"/>
+  <text x="466" y="188" font-size="11" font-weight="700" fill="#2f5169">exercises legitimate authority</text>
+
+  <!-- the harm -->
+  <rect x="328" y="218" width="246" height="80" rx="10" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="451" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#8a2f2f">PRIVILEGED ACTION</text>
+  <text x="451" y="266" text-anchor="middle" font-size="11" fill="#8a2f2f">a credential reset, an approved release</text>
+  <text x="451" y="282" text-anchor="middle" font-size="11" fill="#8a2f2f">the software performs exactly what was asked</text>
+
+  <!-- the controls bound the authority; they do not interrupt the deception -->
+  <path d="M451,326 V306" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#soc-ah-rust)"/>
+
+  <rect x="30" y="326" width="640" height="118" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="350" y="350" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12" letter-spacing="0.8">WHAT CONSTRAINS THE AUTHORITY THE DECEPTION YIELDS</text>
+
+  <rect x="48" y="362" width="296" height="66" rx="9" fill="#faf7f0" stroke="#9a3f12" stroke-width="2"/>
+  <text x="196" y="384" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12">SCOPED AUTHORITY</text>
+  <text x="196" y="402" text-anchor="middle" font-size="11" fill="#1c1917">the role carries only the permissions its</text>
+  <text x="196" y="418" text-anchor="middle" font-size="11" fill="#1c1917">task requires, so the reach is smaller</text>
+
+  <rect x="356" y="362" width="296" height="66" rx="9" fill="#faf7f0" stroke="#9a3f12" stroke-width="2"/>
+  <text x="504" y="384" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12">INDEPENDENT APPROVAL</text>
+  <text x="504" y="402" text-anchor="middle" font-size="11" fill="#1c1917">a second principal, separately authorized,</text>
+  <text x="504" y="418" text-anchor="middle" font-size="11" fill="#1c1917">must also decide, so one person is not enough</text>
+
+  <g text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">
+    <text x="350" y="472">Strong authentication establishes who is acting. It does not establish that the action requested is legitimate.</text>
+    <text x="350" y="496">A system can enforce its access-control policy correctly and still permit the harm, when the policy</text>
+    <text x="350" y="514">grants one deceived actor enough power.</text>
+  </g>
+</svg>

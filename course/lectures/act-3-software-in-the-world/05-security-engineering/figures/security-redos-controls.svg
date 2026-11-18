@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is the
+     ROW-FOR-ROW comparison of two matching strategies, so the reader reads across the columns rather
+     than down either one. The two columns are aligned against three named rows, following the sibling
+     comparison figure in this unit (untrusted-information-acquires-authority.svg); auto-laid-out
+     flowcharts do not align their rows, and the alignment is the figure.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. Row 3 is labelled WHAT THE GUARANTEE COVERS, not "the fix". The left column's answer is a
+        resource bound on one worker and the right column's is an asymptotic bound on the match. Calling
+        either one a fix would teach that they are substitutes, which is the misreading the lander's
+        prose exists to prevent.
+     2. Neither column is drawn as safe. The right column carries its own cost in row 3: constructs the
+        engine does not support. A figure that coloured one column green would recommend an engine, and
+        the unit recommends a question instead.
+     3. The hedges are drawn as a caveat band with a dashed outline and no connector, because they are
+        qualifications on the whole comparison rather than a further step in it. Not every backtracking
+        engine is exponential on every pattern, and not every construct survives the translation.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
+     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
+     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel #eef2f6, paper #fdfcf9. Flat fills
+     only, so the figure survives black-and-white print; the row labels, not colour, carry the
+     comparison.
+
+     SIZING. viewBox 700 x 520. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): column headers 13.5px -> 11.9pt, box labels 12.5px -> 11.0pt, body 11px -> 9.7pt,
+     row labels 10.5px -> 9.2pt, notes 11.5px -> 10.1pt, title 16px -> 14.1pt. At a 700 px column the
+     row labels fall to 7.9pt, so each row's meaning is also carried by its boxes. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520"
+     role="img" aria-labelledby="redosTitle redosDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="redosTitle">A backtracking matcher and an automata-based matcher compared row for row on
+    what the attacker supplies, what the engine does, and what guarantee the engineer obtains</title>
+  <desc id="redosDesc">Two columns are aligned against three rows named down the left edge. Row one is
+    WHAT THE ATTACKER SUPPLIES, row two is WHAT THE ENGINE DOES, row three is WHAT THE GUARANTEE COVERS.
+    The left column is headed BACKTRACKING MATCHER. Its row-one box, drawn in the hostile colour, holds
+    a short, cheap request whose input is chosen to make the match expensive. Its row-two box states
+    that the engine explores alternatives and may spend super-linear or exponential time while still
+    returning the correct answer. Its row-three box names timeouts, resource budgets and isolating the
+    match in a worker, and states that these bound the damage to one worker without changing the cost of
+    the match. The right column is headed AUTOMATA-BASED MATCHER. Its row-one box holds the same
+    adversarial input, because the attacker's choice does not change. Its row-two box states that the
+    engine simulates an automaton over the input, so matching time is linear in the input length for the
+    constructs it supports. Its row-three box states that the asymptotic cost of a supported match is
+    bounded, and that the cost of this guarantee is paid in expressive power: certain constructs, such
+    as some backreferences, cannot be supported under the same general regular-language guarantee. A
+    band with a dashed outline and no connector holds two hedges: not every backtracking engine exhibits
+    explosive cost on every pattern, and not every construct a backtracking syntax accepts can be
+    translated into a finite-automaton engine. A closing note states that the engineer should identify
+    which guarantee the application needs rather than treating the use of a regular expression as either
+    safe or unsafe.</desc>
+
+  <defs>
+    <marker id="rdx-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="520" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">WHAT THE CHOICE OF MATCHING ENGINE ACTUALLY BUYS</text>
+
+  <!-- column headers -->
+  <rect x="134" y="44" width="272" height="30" rx="8" fill="#eef2f6"/>
+  <text x="270" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">BACKTRACKING MATCHER</text>
+  <rect x="414" y="44" width="272" height="30" rx="8" fill="#eef2f6"/>
+  <text x="550" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2f5169">AUTOMATA-BASED MATCHER</text>
+
+  <!-- row labels: the axis the reader compares across -->
+  <g font-size="10.5" font-weight="700" fill="#57534e" letter-spacing="0.4">
+    <text x="18" y="106">WHAT THE</text>
+    <text x="18" y="120">ATTACKER</text>
+    <text x="18" y="134">SUPPLIES</text>
+    <text x="18" y="212">WHAT THE</text>
+    <text x="18" y="226">ENGINE</text>
+    <text x="18" y="240">DOES</text>
+    <text x="18" y="330">WHAT THE</text>
+    <text x="18" y="344">GUARANTEE</text>
+    <text x="18" y="358">COVERS</text>
+  </g>
+
+  <!-- ══════════ ROW 1: the same input reaches both engines ══════════ -->
+  <rect x="134" y="86" width="272" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="270" y="108" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">A SHORT, CHEAP REQUEST</text>
+  <text x="270" y="127" text-anchor="middle" font-size="11" fill="#8a2f2f">whose input is chosen to make the</text>
+  <text x="270" y="141" text-anchor="middle" font-size="11" fill="#8a2f2f">server-side match expensive</text>
+
+  <rect x="414" y="86" width="272" height="62" rx="9" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="550" y="108" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a2f2f">THE SAME REQUEST</text>
+  <text x="550" y="127" text-anchor="middle" font-size="11" fill="#8a2f2f">the attacker's choice does not change</text>
+  <text x="550" y="141" text-anchor="middle" font-size="11" fill="#8a2f2f">when the engine does</text>
+
+  <path d="M270,148 V176" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#rdx-ah)"/>
+  <path d="M550,148 V176" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#rdx-ah)"/>
+
+  <!-- ══════════ ROW 2: what each engine does with it ══════════ -->
+  <rect x="134" y="180" width="272" height="76" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="270" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">EXPLORES ALTERNATIVES</text>
+  <text x="270" y="221" text-anchor="middle" font-size="11" fill="#57534e">work can grow super-linearly, and on</text>
+  <text x="270" y="235" text-anchor="middle" font-size="11" fill="#57534e">some patterns exponentially, while the</text>
+  <text x="270" y="249" text-anchor="middle" font-size="11" fill="#57534e">answer it returns stays correct</text>
+
+  <rect x="414" y="180" width="272" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="550" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">SIMULATES AN AUTOMATON</text>
+  <text x="550" y="221" text-anchor="middle" font-size="11" fill="#57534e">matching time is linear in the length of</text>
+  <text x="550" y="235" text-anchor="middle" font-size="11" fill="#57534e">the input for the constructs the engine</text>
+  <text x="550" y="249" text-anchor="middle" font-size="11" fill="#57534e">supports</text>
+
+  <path d="M270,256 V284" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#rdx-ah)"/>
+  <path d="M550,256 V284" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#rdx-ah)"/>
+
+  <!-- ══════════ ROW 3: the guarantee, and what it does not reach ══════════ -->
+  <rect x="134" y="288" width="272" height="88" rx="9" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="270" y="310" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12">A BOUND ON THE DAMAGE</text>
+  <text x="270" y="329" text-anchor="middle" font-size="11" fill="#1c1917">timeouts, resource budgets, isolating</text>
+  <text x="270" y="343" text-anchor="middle" font-size="11" fill="#1c1917">the match in its own worker</text>
+  <text x="270" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3f12">The cost of the match is unchanged.</text>
+
+  <rect x="414" y="288" width="272" height="88" rx="9" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="550" y="310" text-anchor="middle" font-size="12.5" font-weight="700" fill="#9a3f12">A BOUND ON THE COST</text>
+  <text x="550" y="329" text-anchor="middle" font-size="11" fill="#1c1917">the asymptotic cost of a supported</text>
+  <text x="550" y="343" text-anchor="middle" font-size="11" fill="#1c1917">match is stated by the engine</text>
+  <text x="550" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3f12">Paid for in expressive power.</text>
+
+  <!-- the hedges: qualifications on the comparison, not a further step in it -->
+  <rect x="20" y="398" width="660" height="66" rx="10" fill="none" stroke="#57534e" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="350" y="420" text-anchor="middle" font-size="11.5" font-weight="700" fill="#57534e" letter-spacing="0.6">TWO HEDGES THE COMPARISON NEEDS</text>
+  <text x="350" y="438" text-anchor="middle" font-size="11" fill="#57534e">Not every backtracking engine exhibits explosive cost on every pattern and input.</text>
+  <text x="350" y="454" text-anchor="middle" font-size="11" fill="#57534e">Not every construct a backtracking syntax accepts survives translation to an automaton.</text>
+
+  <text x="350" y="494" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">Identify which guarantee the application needs, rather than treating the use of a regular expression as</text>
+  <text x="350" y="511" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">either safe or unsafe.</text>
+</svg>
