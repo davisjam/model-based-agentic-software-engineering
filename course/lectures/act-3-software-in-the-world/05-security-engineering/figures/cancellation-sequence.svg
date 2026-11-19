@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. Mermaid draws
+     sequence diagrams well, and for the seven messages alone it would be the right tool. It cannot draw
+     the thing this figure exists to say. The MEANING is an ABSENCE: every message on the board succeeded,
+     and the defect is a check that appears nowhere in the sequence. A note attached to a lifeline reads
+     as commentary on a message that is present; what is needed is a band that interrupts the sequence at
+     the point where the missing check belongs, so the reader's eye stops at a gap rather than at a label.
+
+     THREE COMPOSITION DECISIONS CARRY THE TEACHING.
+
+     1. The missing check is a CALLOUT, not a message. Drawing it as an eighth arrow would show a system
+        that performs the check, which is the opposite of the finding. It is drawn in the hostile colour,
+        dashed, spanning the full width, between the message that establishes identity and the message
+        that performs the write. Its position between those two is the argument.
+     2. The seven real messages are NUMBERED and all succeed. Nothing is drawn in the failure colour above
+        the band. A reader who scans only the arrows sees a working system, which is what the class saw
+        before a student asked what the scheduler knew about ownership.
+     3. The RESERVATIONS lifeline is drawn even though the scheduler never consults it about ownership.
+        Its emptiness above the band is the visible form of the defect: there are no arrows to the store
+        that holds the ownership relation. That was the observation that opened the discovery in class.
+
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg,
+     security-model-join.svg): structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint
+     #f6ece9, accent rust #9a3f12, ink #1c1917, grey #57534e, cream #faf7f0, paper #fdfcf9. Flat fills
+     only, so the figure survives black-and-white print.
+
+     SIZING. viewBox 700 x 486. The arithmetic is
+     rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
+     (scale 1.1714): actor names 12px -> 10.5pt, message labels 11.5px -> 10.1pt, message numbers
+     10.5px -> 9.2pt, the callout question 14px -> 12.3pt, callout heading 11.5px -> 10.1pt, the closing
+     note 11.5px -> 10.1pt, title 16px -> 14.1pt. The message labels set the floor: at a 640 px column
+     they fall to 7.9pt, so this figure wants a column of at least 760 px. -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 486" width="700" height="486"
+     role="img" aria-labelledby="seqTitle seqDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="seqTitle">A cancellation sequence in which every message succeeds, interrupted by a band
+    marking the ownership check that the path never performs</title>
+  <desc id="seqDesc">A sequence diagram with four lifelines, named left to right: USER, AUTH SERVICE,
+    SCHEDULER and RESERVATIONS. Seven numbered messages run down the diagram. One, the user sends login to
+    the auth service. Two, the auth service returns OK. Three, the user sends cancel reservation 17 to the
+    scheduler. Four, the scheduler asks the auth service whether the caller is logged in. Five, the auth
+    service answers yes, user X. Every message so far has succeeded and none is drawn in the failure
+    colour. A heavy dashed band in the hostile colour then interrupts the sequence across its full width.
+    The band is headed THE CHECK THAT IS NEVER MADE and carries the question, does X own 17, in monospace.
+    Beneath the question a line reads that identity has been established and the caller's relationship to
+    the resource has not. Below the band the sequence resumes. Six, the scheduler sends cancel 17 to the
+    reservations store. Seven, the scheduler returns OK to the user. The RESERVATIONS lifeline carries no
+    arrow at all above the band, because nothing on this path consults the store that holds the ownership
+    relation. A closing note states that the band is not a message that failed; it is a message that was
+    never sent, and that no execution of this sequence can reveal it.</desc>
+
+  <defs>
+    <marker id="seq-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- solid paper ground so the figure stays legible on the dark theme -->
+  <rect x="0" y="0" width="700" height="486" fill="#fdfcf9"/>
+
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EVERY MESSAGE SUCCEEDS. ONE QUESTION IS NEVER ASKED.</text>
+
+  <!-- ══════════ the four participants ══════════ -->
+  <g>
+    <rect x="28" y="46" width="124" height="34" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="90" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">USER</text>
+
+    <rect x="196" y="46" width="138" height="34" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="265" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">AUTH SERVICE</text>
+
+    <rect x="376" y="46" width="128" height="34" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="440" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">SCHEDULER</text>
+
+    <rect x="544" y="46" width="142" height="34" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="615" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">RESERVATIONS</text>
+  </g>
+
+  <!-- ══════════ lifelines ══════════ -->
+  <g stroke="#a8a29e" stroke-width="1.5" stroke-dasharray="5 5">
+    <line x1="90"  y1="80" x2="90"  y2="420"/>
+    <line x1="265" y1="80" x2="265" y2="420"/>
+    <line x1="440" y1="80" x2="440" y2="420"/>
+    <line x1="615" y1="80" x2="615" y2="420"/>
+  </g>
+
+  <!-- ══════════ messages 1 to 5: authentication, then the cancellation request ══════════ -->
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <line x1="90"  y1="116" x2="265" y2="116" marker-end="url(#seq-ah)"/>
+    <line x1="265" y1="146" x2="90"  y2="146" marker-end="url(#seq-ah)" stroke-dasharray="6 4"/>
+    <line x1="90"  y1="186" x2="440" y2="186" marker-end="url(#seq-ah)"/>
+    <line x1="440" y1="216" x2="265" y2="216" marker-end="url(#seq-ah)"/>
+    <line x1="265" y1="246" x2="440" y2="246" marker-end="url(#seq-ah)" stroke-dasharray="6 4"/>
+  </g>
+  <g font-size="11.5" fill="#1c1917">
+    <text x="178" y="110" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">1</tspan><tspan dx="6">login</tspan></text>
+    <text x="178" y="140" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">2</tspan><tspan dx="6">OK</tspan></text>
+    <text x="265" y="180" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">3</tspan><tspan dx="6">cancel reservation 17</tspan></text>
+    <text x="353" y="210" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">4</tspan><tspan dx="6">is the caller logged in?</tspan></text>
+    <text x="353" y="240" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">5</tspan><tspan dx="6">yes, user X</tspan></text>
+  </g>
+
+  <!-- ══════════ the band: a message that was never sent ══════════ -->
+  <rect x="28" y="264" width="644" height="76" rx="10" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.5" stroke-dasharray="9 5"/>
+  <text x="350" y="288" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a2f2f" letter-spacing="1.1">THE CHECK THAT IS NEVER MADE</text>
+  <text x="350" y="312" text-anchor="middle" font-size="14" font-weight="700" font-family="'SFMono-Regular', Consolas, monospace" fill="#8a2f2f">does X own 17?</text>
+  <text x="350" y="332" text-anchor="middle" font-size="11.5" fill="#57534e">Identity has been established. The caller's relationship to the resource has not.</text>
+
+  <!-- ══════════ messages 6 and 7: the write proceeds ══════════ -->
+  <g stroke="#2f5169" stroke-width="2" fill="none">
+    <line x1="440" y1="368" x2="615" y2="368" marker-end="url(#seq-ah)"/>
+    <line x1="440" y1="398" x2="90"  y2="398" marker-end="url(#seq-ah)" stroke-dasharray="6 4"/>
+  </g>
+  <g font-size="11.5" fill="#1c1917">
+    <text x="528" y="362" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">6</tspan><tspan dx="6">cancel 17</tspan></text>
+    <text x="228" y="392" text-anchor="middle"><tspan font-weight="700" fill="#9a3f12">7</tspan><tspan dx="6">OK</tspan></text>
+  </g>
+
+  <!-- ══════════ what the band is ══════════ -->
+  <text x="350" y="450" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">The band is not a message that failed. It is a message that was never sent, and no execution of this</text>
+  <text x="350" y="468" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">sequence can reveal it. Note that no arrow reaches RESERVATIONS before the cancellation is performed.</text>
+</svg>
