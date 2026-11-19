@@ -219,13 +219,44 @@ def _mark_note_followers(inner: str) -> str:
     return "".join(out)
 
 
-# In-body figures: every `figure.book-figure` holding an inlined SVG gets a `--fig-natural` CSS
-# custom property carrying the SVG's natural width (its viewBox width — the coordinate space the
-# diagram was laid out in, where mermaid label px == CSS px). The stylesheet sizes the SVG
-# `min(100%, var(--fig-natural))`: a wide diagram fills the reading column, a small one centers at
-# its natural size instead of being upscaled past the size it was designed at. The viewBox is the
-# only width signal these SVGs carry (no width/height attrs), and CSS cannot read it — hence the
-# emitter-side annotation.
+# SVG <style> elements participate in the HTML cascade. Scope them to their
+# own drawing so a generic `text` or `.label` rule cannot resize another figure.
+# Walk the tags rather than matching complete SVGs: drawings may nest SVGs, and
+# styles may live in <defs>. This is web-only; print/ePub retain their own assets.
+_SVG_STYLE_RE = re.compile(
+    r"<style\b[^>]*>.*?</style>|<svg\b[^>]*>|</svg\s*>", re.S | re.I)
+
+
+def _scope_inline_svg_styles(inner: str) -> str:
+    scopes: list[str] = []
+    serial = 0
+
+    def rewrite(m: re.Match[str]) -> str:
+        nonlocal serial
+        tag = m.group(0)
+        if tag.lower().startswith("<svg"):
+            serial += 1
+            scope = f"book-svg-{serial}"
+            if not tag.rstrip().endswith("/>"):
+                scopes.append(scope)
+            return tag.replace("<svg", f'<svg data-book-svg="{scope}"', 1)
+        if tag.lower().startswith("</svg"):
+            if scopes:
+                scopes.pop()
+            return tag
+        if not scopes:
+            return tag
+        start = tag.index(">") + 1
+        end = tag.lower().rindex("</style>")
+        return (tag[:start] + f'@scope ([data-book-svg="{scopes[-1]}"]) {{\n'
+                + tag[start:end] + "\n}" + tag[end:])
+
+    return _SVG_STYLE_RE.sub(rewrite, inner)
+
+
+# Preserve the viewBox width as a drawing-size hint. The stylesheet supplies a
+# readable screen minimum: a small print coordinate system is not a CSS-pixel
+# display size. Both SVG and caption use the same responsive measure.
 _FIG_SVG_RE = re.compile(
     r'(?P<fig><figure\b[^>]*class="book-figure[^"]*"[^>]*)>\s*(?=<svg\b)'
     r'(?P<svg><svg\b(?:"[^"]*"|\'[^\']*\'|[^>])*>)', re.S)
@@ -262,7 +293,7 @@ def _page_md(rec: dict, nav_title: str) -> str:
     `hide: [toc]` that drops Material's right-TOC rail + the Scholar `citation_head` block the
     theme's extrahead renders) + wrap div + interleaved body."""
     wrap_open = f'<div class="{rec["main_cls"]}">'
-    main = _UPREF_RE.sub(r"\1../../", rec["main"].strip())
+    main = _scope_inline_svg_styles(_UPREF_RE.sub(r"\1../../", rec["main"].strip()))
     body = _interleave(_annotate_figure_widths(_mark_note_followers(main)), wrap_open, rec["slug"])
     # `hide: [toc]` — Material's native per-page switch for the right-TOC rail. The rail is
     # dropped on every page (author decision 260916: the margin belongs to the Tufte sidenotes,

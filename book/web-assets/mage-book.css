@@ -146,7 +146,7 @@ blockquote.concept-inset{
   color: var(--inset-body);
   font-style: normal;            /* KEY: kill the base blockquote italic — a primer reads as roman prose */
   padding: 0 var(--inset-pad-x) var(--inset-pad-y);
-  margin: 1.7rem 0;
+  margin: 1.7rem auto;
   max-width: var(--inset-max);
 }/* Header treatment — the "Inset N — Title" label sits in its own tinted band, .md-typeset flush to the panel edges, .md-typeset set in small-caps-ish tracked type so it reads as a sidebar HEADER, .md-typeset not a run-in paragraph. It stays a
    demoted callout label (`p.inset-title`, .md-typeset not an <hN>) so no heading-order break and its id anchor is
@@ -297,20 +297,18 @@ hr.coda-rule{
   border-top: 1px solid var(--accent);
   height: 0;
 }.book-eq{ text-align: center; color: var(--ink); margin: 1.3rem 0; overflow-x: auto; }.book-eq math{ font-size: 1.18em; }.book-eq-boxed math{ font-size: 1.06em; }.book-eq-boxed{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
-           display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }/* Inlined figure SVGs carry only a viewBox (no width/height), so without an explicit width the
-   browser default-sizes them well under the reading column. The emitter stamps each figure with
-   `--fig-natural` (the viewBox width — the coordinate space the diagram was laid out in, where a
-   mermaid label's px == CSS px); the SVG fills the column but never upscales past its natural
-   size, so a wide diagram spans the measure while a small glyph centers at the size it was
-   designed at. */
+           display: inline-block; margin: 0.5rem auto; }.book-eq-boxed-wrap{ text-align: center; margin: 1.3rem 0; }math.book-math-inline{ font-size: 1.05em; }figure.book-figure{ margin: 1.8rem 0; text-align: center; }/* A viewBox describes drawing coordinates, not a readable screen size. Print-native
+   figures often use 300–450 units while web-native drawings use 800–1200. Give
+   both a readable measure, bounded by the available column on smaller screens.
+   Scale the entire SVG: never override its internal font sizes or geometry. */
 figure.book-figure svg{ display: block; margin: 0 auto; height: auto;
-                          width: min(100%, var(--fig-natural, 100%)); }figure.book-figure img{ max-width: 100%; height: auto; }/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+                          width: min(100%, max(34rem, var(--fig-natural, 100%))); }figure.book-figure img{ max-width: 100%; height: auto; }/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
    a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
 figure.book-figure--wide{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }figure.book-figure--wide svg, figure.book-figure--wide img{ max-width: 100%; height: auto; }/* The caption sits CENTERED under its figure (a block no wider than the figure itself, auto
    margins); running caption text stays left-set for multi-line readability, label-only captions
    center their text too. */
 figure.book-figure figcaption{ font-size: var(--book-caption-size); color: var(--muted); margin: 0.7rem auto 0;
-                                max-width: min(100%, var(--fig-natural, 100%));
+                                max-width: min(100%, max(34rem, var(--fig-natural, 100%)));
                                 text-align: left; line-height: 1.5; }figure.book-figure figcaption.fig-label-only{ text-align: center; }/* D74 — the author portrait floats left at a capped width so the bio flows around it. It is a PLAIN
    (unnumbered, .md-typeset uncaptioned) `figure.plain-image.portrait-wrap`, .md-typeset not a `book-figure` float. */
 figure.portrait-wrap{ float: left; width: 190px; max-width: 40%; margin: 0.2rem 1.5rem 0.8rem 0;
@@ -476,3 +474,16 @@ div.wrap.appendix h1{ text-transform: uppercase; letter-spacing: 0.015em; }
 
 /* Signed closing in the Author’s Note. */
 p.letter-signature { width: 50%; margin: 1.25em 0 0 auto; text-align: center; text-indent: 0; break-inside: avoid; }
+
+/* Captions keep linked citation numbers; the complete references remain in Works
+   Cited. Duplicate margin cards inside a table-caption enlarge its formatting
+   context and separate the caption from its table by the height of the notes. */
+.md-typeset :is(caption, figcaption) .cite-note { display: none; }
+.md-typeset :is(caption, figcaption) sup.cn-follow {
+  position: static; width: auto; height: auto; overflow: visible;
+  clip: auto; clip-path: none; white-space: normal;
+}
+
+@media (max-width: 40rem) {
+  .md-typeset table.book-table :is(th, td) { overflow-wrap: anywhere; }
+}
