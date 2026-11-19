@@ -132,15 +132,15 @@ Security is also a problem of judgment. A finite threat model cannot enumerate e
 
 **Lecture 2, Controls & Assurance.** We begin with two attacker objectives, changing data and executing code, then use the Common Weakness Enumeration (CWE) to investigate the weaknesses that can make those outcomes possible. Four technical cases connect attacks to software controls: memory corruption and W⊕X, social engineering and identity management, ReDoS and linear-time matching, and vulnerable dependencies and zero-trust resource permissions. We close with fundamental limits on assurance and a claim, control and evidence exercise. See {exercise:secure-cancellation} and {lab:redos}.
 
-# Lecture 1: Threat Modeling
+## Lecture 1: Threat Modeling
 
-## From reliability failures to adversarial threats
+### From reliability failures to adversarial threats
 
 In the previous unit, we constructed a fault tree for the event No successful response within ten seconds. A router could drop a request, a backend could crash, or a database could become unavailable. The same outcome can also be produced deliberately: an attacker might submit inputs that exhaust CPU, overwhelm a queue, or exploit a dependency to disrupt service. The unacceptable outcome has not changed, but our model of how it can occur has expanded. Security introduces an adversary who selects actions strategically and may change tactics when a defense is introduced.
 
 A threat model is not simply a list of things that might go wrong. It represents what we want to protect, what the system permits, where an attacker can interact with it, and what the attacker is assumed able to control. These assumptions matter as much as the diagram. An unauthenticated internet client, an authenticated student, a compromised administrator, and a malicious software dependency have different capabilities. A model that silently treats them as interchangeable will produce misleading security conclusions.
 
-## Worked example: cancel somebody else's reservation
+### Worked example: cancel somebody else's reservation
 
 Suppose the specification says that a student may cancel a reservation only if they own it; an administrator may cancel a reservation only for a room they administer. The system exposes a cancellation operation that accepts a reservation identifier. An authenticated student can choose the identifier in a request. If an endpoint verifies the student's identity but fails to check the required relationship to the reservation, the endpoint can perform a forbidden cancellation. The problem is not failed authentication: the student's identity may have been established correctly. The problem is that identity alone does not authorize an operation on a particular resource.
 
@@ -160,7 +160,7 @@ The authorization obligation can be written as a predicate:
 
 This is already more precise than saying that "administrators can cancel reservations." It names the relevant resource relationship. A check that only asks whether the caller has an administrator role does not establish the scope required by the policy. The same predicate will return in Lecture 2, where we ask what mechanism can enforce it.
 
-## Joining the models: an executable security analysis
+### Joining the models: an executable security analysis
 
 Models become particularly useful when their entities have identifiers that permit their information to be combined. Consider four small relations. The `enforces_MayCancel` field records whether an endpoint's complete enforcement path implements the authorization predicate defined above. This is a verified model fact, established through architecture or implementation inspection, not inferred from passing functional tests. The simplified Boolean stands in for an analysis of the actual enforcement path.
 
@@ -221,7 +221,7 @@ This use of model joins is not unique to security. Performance analysis combines
 
 ![Four relational models are joined on shared identifiers to identify a reachable cancellation path that does not enforce the specified authorization policy.](figures/security-model-join.svg)
 
-## Constructing system and adversary models
+### Constructing system and adversary models
 
 The small relations above were easy to query because we already knew which components and interfaces mattered. In a real project, that information must be obtained. A **data-flow diagram (DFD)** is one useful representation: it records external actors, processes, data stores, and the flows connecting them. For the reservation service, the diagram includes students and administrators, the HTTP API, the booking service, the identity provider, and the reservation store. A trust boundary marks where assumptions about identity, integrity, or authority must be reconsidered. It is not necessarily a machine boundary: two components on one host may run with different privileges, and two hosts may share one authority.
 
@@ -239,7 +239,7 @@ The DFD should be selective rather than exhaustive. It must show the paths by wh
 | Dependency | Which outside service or component is trusted? | Identity provider and its signing keys |
 | Assumption | What must be true for the analysis to hold? | All cancellation paths are represented |
 
-## Eliciting threats and analyzing risk
+### Eliciting threats and analyzing risk
 
 Once the relevant system and adversary models exist, we can search systematically for violations. **STRIDE** supplies six prompts: spoofing, tampering, repudiation, information disclosure, denial of service, and elevation of privilege. It is most useful when applied to particular elements and flows, not as a label attached to the entire application. For example, at the client-to-API boundary we might ask whether the caller can impersonate another principal; at the API-to-database boundary we might ask whether a service account can modify records outside its intended scope.
 
@@ -266,9 +266,9 @@ Threat identification and risk analysis are related but distinct. A threat state
 
 A threat model should be reviewed against the actual implementation and revised as the system changes. A peer reviewer who discovers an omitted interface has done more than improve the drawing: they have changed the set of security conclusions the model can support. The closing exercise asks teams to identify such omissions and to revise their analysis, not merely add more STRIDE labels. See {exercise:threat-model-cancellation}.
 
-# Lecture 2: Controls & Assurance
+## Lecture 2: Controls & Assurance
 
-## What can an adversary make our software do?
+### What can an adversary make our software do?
 
 Begin with two simple outcomes. An attacker **changes data** they are not authorized to change, such as another student's reservation. Or an attacker **causes code to execute** with authority they were not granted, such as inducing a document-processing dependency to launch a command. These are consequences, not particular weaknesses. Many different defects can produce the same consequence, and a single defect can permit several kinds of harm. The engineer needs a vocabulary for the underlying mechanisms in order to investigate them and choose appropriate controls.
 
@@ -284,7 +284,7 @@ The **Common Weakness Enumeration (CWE)** catalogs recurring classes of software
 
 A CWE entry is useful because it explains a weakness, its consequences, relationships to other weaknesses, and candidate mitigations. The important activity is not memorizing identifiers. It is learning how to move from an observed failure or attack outcome to a plausible mechanism and then to an engineering control. The following cases demonstrate four different mechanisms. They also show why security is adversarial: once one attack path is constrained, an attacker may search for another path or exploit a different assumption.
 
-## Memory corruption: writeable data becomes control
+### Memory corruption: writeable data becomes control
 
 Consider a program that copies attacker-controlled input into a fixed-size buffer without checking its length. A sufficiently long input can overwrite adjacent memory, including state that influences control flow. The attacker is not using an authorized application interface to request a privileged operation. The attacker is corrupting the program's representation so that execution deviates from the intended control flow. In memory-unsafe code, this can turn a data input into a means of changing what the program does.
 
@@ -294,7 +294,7 @@ A strong first response is to avoid the weakness through memory-safe languages, 
 
 The lesson is to distinguish the weakness from the control's actual guarantee. Bounds-safe code aims to prevent the memory corruption. W⊕X constrains the execution permissions of memory regions. Control-flow defenses constrain certain ways corrupted state can redirect execution. They are different protections with different assumptions, and their effects must not be conflated.
 
-## Social engineering: legitimate authority used for the wrong purpose
+### Social engineering: legitimate authority used for the wrong purpose
 
 A different attacker may never send malformed input. Instead, the attacker convinces a legitimate administrator to approve a fraudulent request, disclose credentials, or authorize a harmful action. Authentication may succeed, the administrator's role may be valid, and the software may execute exactly the operation requested. The failure lies in how the attacker influenced the person who exercised legitimate authority. This case matters because a system can enforce its access-control policy correctly and still allow a harmful outcome if the policy grants one deceived actor too much power.
 
@@ -302,7 +302,7 @@ A different attacker may never send malformed input. Instead, the attacker convi
 
 The engineering response comes from identity and access management (IAM) and the older reference-monitor tradition: least privilege, scoped authority, complete mediation, revocation, and separation of duties. A sensitive release or account change might require independent approval rather than relying on one administrator's decision. The Orange Book is historically relevant to trusted-system evaluation and access-control enforcement, but it is not a social-engineering manual. Its connection is that consequential permissions should be mediated by mechanisms whose behavior does not depend solely on a user remembering the right thing to do. Strong authentication helps establish who is acting; it does not establish that the actor's intention is legitimate.
 
-## ReDoS: correct computation at an unacceptable cost
+### ReDoS: correct computation at an unacceptable cost
 
 Regular-expression denial of service (ReDoS) is a different kind of exploit. A backtracking regex engine may return the functionally correct answer while spending super-linear or exponential time on certain patterns and inputs. The attacker supplies a short, cheap request that induces much more expensive server-side computation. The attack exploits an asymmetry in resource cost, not necessarily an incorrect match result. The Cloudflare outage of July 2019 illustrates the same algorithmic weakness, although that incident was triggered by an internally deployed firewall rule, not an adversary.
 
@@ -312,7 +312,7 @@ One response is to select an engine whose supported pattern language and matchin
 
 The {lab:redos} laboratory makes the mechanism observable. It compares patterns and inputs while measuring actual matching time, and it isolates an overlong match in a worker. Students should distinguish the measured behavior of the browser engine from a general complexity guarantee about another implementation.
 
-## Vulnerable dependencies: code inherits authority it does not need
+### Vulnerable dependencies: code inherits authority it does not need
 
 Applications incorporate libraries that parse files, log messages, process images, and perform many other tasks. By default, a library executing inside an application may inherit the application's ability to read files, open network connections, or launch subprocesses. If an attacker exploits a vulnerable dependency, that inherited authority can make a local defect far more consequential. The problem is not simply that the library contains a bug. It is that the bug can be exercised with privileges unrelated to the library's legitimate task.
 
@@ -322,7 +322,7 @@ Applications incorporate libraries that parse files, log messages, process image
 
 This is a particularly useful example of a *software-enforced* control. The protection is not a request that the dependency behave safely; it is an independently evaluated resource-access policy. ZTDJava's paper reports blocking the reproduced exploits evaluated under its threat model, while explicitly identifying limitations involving native code, asynchronous delegation, namespace identification, and policies inferred from incomplete workloads. Those limitations matter: a sandbox is only as strong as the operations it mediates and the authority of its enforcement mechanism. An unobserved legitimate operation can also be denied by an incomplete policy, so security and availability must be judged together.
 
-## What the cases have in common
+### What the cases have in common
 
 The four attacks exploit different weaknesses, but each reveals a gap between the behavior the engineer intended to permit and what the system can actually be made to do. The corresponding controls constrain different kinds of behavior.
 
@@ -335,7 +335,7 @@ The four attacks exploit different weaknesses, but each reveals a gap between th
 
 Security is a continuing contest because controls change the attacker's available strategies. W⊕X obstructs injected code but not all code reuse; authentication establishes identity but not legitimate intent; linear-time matching addresses one class of resource exhaustion; and dependency confinement constrains only the operations it mediates. A control should be evaluated by the class of behavior it excludes, not merely the exploit that motivated it.
 
-## Fundamental limits and trusted assumptions
+### Fundamental limits and trusted assumptions
 
 There are limits to what an engineer can establish about arbitrary software. **Rice's theorem** shows that nontrivial semantic properties of arbitrary programs are undecidable in general. Under a suitable formalization, there can be no algorithm that correctly decides for every arbitrary program whether it ever discloses a secret. This does not make verification useless. Restricted languages, bounded models, carefully scoped properties, and explicit assumptions can support rigorous analyses and proofs. The lesson is to state precisely what has been established and for which class of programs and environments.
 
@@ -345,7 +345,7 @@ A different limit concerns the tools and components on which the assurance argum
 
 The reference-monitor tradition gives a practical counterpart to these limitations. A security control must mediate the relevant operations, resist tampering within the assumed threat model, and be sufficiently understandable to evaluate. A control that checks one API while another reaches the same operation does not provide complete mediation. Two checks that rely on the same stale authorization value do not constitute two independent defenses. These are not reasons to abandon controls. They are reasons to identify the assumptions on which their guarantees depend.
 
-## Obtaining security assurance
+### Obtaining security assurance
 
 For each important security claim, the engineer should identify a control and evidence that supports the claim. A test is not itself a mitigation: fuzzing may discover a malformed request that causes a failure, but the defense is a change in the implementation or its enforcement. Likewise, a successful test of an authorized cancellation cannot establish that unauthorized cancellations are rejected. The evidence must exercise or analyze the property actually claimed.
 
