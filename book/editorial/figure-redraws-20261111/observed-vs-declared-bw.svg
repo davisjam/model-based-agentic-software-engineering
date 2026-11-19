@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="312" viewBox="0 0 444 156" role="img" aria-labelledby="title desc"><title id="title">Observation compared with declared permission</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="444" height="156" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<text x="108" y="36" text-anchor="middle" style="font-size:14px;font-weight:bold;fill:#222222">Observed calls</text>
+<text x="336" y="36" text-anchor="middle" style="font-size:14px;font-weight:bold;fill:#222222">Declared permissions</text>
+<path d="M224,26 V174" fill="none" stroke="#999999" stroke-width="0.65"/>
+<rect x="4" y="58" width="76" height="38" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="42" y="82" text-anchor="middle" style="font-size:13.5px;fill:#222222">web</text>
+<rect x="112" y="55" width="88" height="44" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="156" y="73" text-anchor="middle" style="font-size:13.5px;fill:#222222">report</text>
+<text x="156" y="90" text-anchor="middle" style="font-size:13.5px;fill:#222222">service</text>
+<rect x="112" y="130" width="88" height="38" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="156" y="154" text-anchor="middle" style="font-size:13.5px;fill:#222222">render</text>
+<path d="M80,77 H111" fill="none" stroke="#222222" stroke-width="0.9" marker-end="url(#arrow)"/>
+<rect x="240" y="58" width="76" height="38" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="278" y="82" text-anchor="middle" style="font-size:13.5px;fill:#222222">web</text>
+<rect x="348" y="55" width="88" height="44" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="392" y="73" text-anchor="middle" style="font-size:13.5px;fill:#222222">report</text>
+<text x="392" y="90" text-anchor="middle" style="font-size:13.5px;fill:#222222">service</text>
+<rect x="348" y="130" width="88" height="38" rx="6" fill="#ffffff" stroke="#222222" stroke-width="0.75"/>
+<text x="392" y="154" text-anchor="middle" style="font-size:13.5px;fill:#222222">render</text>
+<path d="M316,77 H347" fill="none" stroke="#222222" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M392,99 V129" fill="none" stroke="#222222" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M42,96 V149 H111" fill="none" stroke="#222222" stroke-width="0.9" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+<path d="M70,131 L79,140 M70,140 L79,131" fill="none" stroke="#222222" stroke-width="1.1"/></g></svg>

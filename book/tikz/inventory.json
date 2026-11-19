@@ -287,7 +287,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Canonical structural model: a read-through cache architecture",
-    "svg_description": "A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles."
+    "svg_description": "Structural model of a layered read-through-cache architecture. Solid arrows denote direct dependencies from Web to API to Cache to Database. A crossed dashed Web-to-Database arrow marks a forbidden bypass. This is intended architecture, not an execution trace."
   },
   {
     "chapter": "2.3-structural",
@@ -318,7 +318,7 @@
   {
     "chapter": "2.4-behavioral",
     "source": "assets/canonical-behavioral.svg",
-    "caption": "*The behavioral move: states and transitions.* This example specifies an allowed job lifecycle: a job passes through Running before Succeeded, with retry and failure transitions describing other possible paths. The legend lists example properties to investigate.",
+    "caption": "*Behavioral modeling—job lifecycle and retries.* This example specifies an allowed job lifecycle: a job passes through Running before Succeeded, with retry and failure transitions describing other possible paths. The legend lists example properties to investigate.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/canonical-behavioral.json",
@@ -331,7 +331,7 @@
   {
     "chapter": "2.4-behavioral",
     "source": "assets/recovery-ordering-model.svg",
-    "caption": "*Recovery-ordering model.* A recovered artifact must be published to durable storage before the database may refer to it. The prohibited transition from `FALLBACK_STAGED` directly to `DB_UPDATED` illustrates the ordering violation; the property also excludes indirect paths that bypass `FALLBACK_UPLOADED`.",
+    "caption": "*Recovery-ordering model.* The artifact must be persisted before the database may refer to it. The crossed path illustrates the prohibited shortcut from `FALLBACK_STAGED` to `DB_UPDATED`.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/recovery-ordering-model.json",
@@ -339,7 +339,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Recovery-Ordering Model",
-    "svg_description": "Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions."
+    "svg_description": "Compact horizontal recovery states with a crossed forbidden shortcut below."
   },
   {
     "chapter": "2.4-behavioral",
@@ -352,7 +352,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Ownership Under Contention",
-    "svg_description": "Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions."
+    "svg_description": "Four states proceed left to right from Unowned through Owned(A,7) and Reclaimable to Owned(B,8). A square-cornered return below the states shows release(B,8) returning to Unowned. A separate callout rejects release(A,7) and states that the current claim remains (B,8)."
   },
   {
     "chapter": "2.5-decision",
@@ -370,15 +370,15 @@
   {
     "chapter": "2.5-decision",
     "source": "assets/observed-vs-declared.svg",
-    "caption": "*Observation compared with declared permission.* The observed web-to-renderer call violates the declared policy.",
+    "caption": "*Observation compared with declared permission.* The observed web-to-render call violates the declared policy.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/observed-vs-declared.json",
-    "generator": "book/editorial/figure-redraws-20261111/build_service_figures.py",
+    "generator": "book/editorial/figure-redraws-20261111/build_observed_policy_figure.py",
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Illustrative observed calls compared with declared permissions",
-    "svg_description": "Two panels. On the left, the implementation, in gray: A calls B and A calls C, observed\n    facts, asking does A call C. On the right, the model, in blue: A to B is a declared edge, and between A\n    and C there is no edge, marked with a rust X, asking may A call C. Agreement between observed and\n    declared establishes correspondence, not correctness."
+    "svg_description": "Match author Figure 2.13 reference: white nodes, two equal panels, light central divider, dashed crossed observed web-to-render call, declared web-to-report-to-render permissions. Ordinary figure with full caption."
   },
   {
     "chapter": "2.5-decision",
@@ -409,7 +409,7 @@
   {
     "chapter": "2.6-system-knowledge",
     "source": "assets/modeling-substrate.svg",
-    "caption": "*Heterogeneous models over shared identities.* An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.",
+    "caption": "*Connecting models—service identity, deployment, and measurements.* An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/modeling-substrate.d2",
     "receipt": "book/d2-pilot/modeling-substrate.receipt.yaml",

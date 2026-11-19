@@ -1296,6 +1296,18 @@
       "kind": "reference-lookup",
       "location": "part4",
       "rationale": "Pairs each model used for large files with its engineering question."
+    },
+    "modeling-decision::Decision modeling—admission by entitlement": {
+      "tier": "B",
+      "kind": "worked-example",
+      "location": "part2",
+      "rationale": "Supporting caption explains the one-entitlement assumption and the contrasting admission and charging decisions in the worked decision table."
+    },
+    "scenarios-and-the-joined-model::Analytical uses of model connections": {
+      "tier": "C",
+      "kind": "reference-table",
+      "location": "part2",
+      "rationale": "Brief identifying caption for a comparative reference table; the rows and surrounding prose explain the three overlapping analytical uses."
     }
   },
   "historical_tiers": {

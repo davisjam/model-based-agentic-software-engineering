@@ -5,68 +5,41 @@
   "topology": {
     "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
     "native_draw_commands": [
-      "\\path[use as bounding box] (0,0) rectangle (444,252);",
-      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,90) rectangle (84,128);",
-      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,90) rectangle (193,128);",
-      "\\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,90) rectangle (313,128);",
-      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,90) rectangle (433,128);",
-      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,105) .. controls (96,100) and (109,100) .. (120,104);",
-      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,104) .. controls (207,102) and (220,102) .. (234,104);",
-      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,104) .. controls (329,102) and (345,102) .. (360,104);",
-      "\\draw[line width=0.65bp] (103,80) .. controls (105,91) .. (103,102);",
-      "\\draw[line width=0.65bp] (214,80) .. controls (216,91) .. (214,102);",
-      "\\draw[line width=0.65bp] (337,80) .. controls (339,91) .. (337,102);",
-      "\\draw[line width=.65bp] (375,128) -- (350,145);",
-      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);"
+      "\\path[use as bounding box] (0,0) rectangle (444,128);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,40) rectangle (84,78);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,40) rectangle (193,78);",
+      "\\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,40) rectangle (313,78);",
+      "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,40) rectangle (433,78);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,59) -- (120,59);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,59) -- (234,59);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,59) -- (360,59);",
+      "\\draw[line width=0.65bp] (103,34) -- (103,55);",
+      "\\draw[line width=0.65bp] (214,34) -- (214,55);",
+      "\\draw[line width=0.65bp] (337,34) -- (337,55);",
+      "\\draw[line width=0.65bp] (382,78) -- (370,87);",
+      "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (415,78) -- (415,123) -- (49.5,123) -- (49.5,79);"
     ]
   },
   "required_terms": [
-    "A behavioral model for job ownership with generations.",
-    "Claims identify (worker, generation).",
     "Unowned",
     "Owned",
     "(A, 7)",
-    "Owned",
     "(B, 8)",
     "Reclaimable",
     "claim(A, 7)",
     "expire",
     "claim(B, 8)",
     "release(A, 7): rejected",
-    "release(B, 8)",
-    "Release clears ownership only when worker and generation match the current claim.",
-    "current claim remains (B, 8)"
+    "current claim remains (B, 8)",
+    "release(B, 8)"
   ],
-  "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
-  "redesign": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
+  "bw_encoding": "Gray state boxes and solid permitted transitions; rejected stale release is a text callout with an arrowless leader.",
+  "redesign": "Author-requested compact four-state row with orthogonal B/8 release below the states, separate rejected A/7 callout, no internal title or repeated explanation; font sizes retained.",
   "questions": [],
-  "alt": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+  "alt": "Four states proceed left to right from Unowned through Owned(A,7) and Reclaimable to Owned(B,8). A square-cornered return below the states shows release(B,8) returning to Unowned. A separate callout rejects release(A,7) and states that the current claim remains (B,8).",
   "review": {
-    "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
-    "checks": [
-      "state and generation identity",
-      "permitted and prohibited transitions",
-      "worker/generation key and release condition",
-      "default house typography",
-      "native print envelope"
-    ],
-    "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. The author approved the diagram with this legend-removal request; publication approval is recorded separately by integration.",
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
-      "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 257.975,
-      "minimum_prose_font_pt": 10.461,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 14,
-      "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
-      "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
-      "status": "passed"
-    }
+    "reference": "Author compact ownership instructions, 2026-11-18",
+    "outcome": "Verified in native proof and Chapter 2 page 24: unchanged state sequence, valid B/8 orthogonal return, separate rejected A/7 callout, unchanged caption and fonts. Diagram height reduced 48%; geometry and typography audits pass, and Chapter 2 has zero unapproved LaTeX diagnostics."
   },
   "fidelity_review": {
     "stem": "in-flight-ownership-states",
@@ -2122,6 +2095,74 @@
             "crossed dashed"
           ]
         ]
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "previous": {
+        "topology": {
+          "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+          "native_draw_commands": [
+            "\\path[use as bounding box] (0,0) rectangle (444,128);",
+            "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,40) rectangle (84,78);",
+            "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,40) rectangle (193,78);",
+            "\\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,40) rectangle (313,78);",
+            "\\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,40) rectangle (433,78);",
+            "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,59) -- (120,59);",
+            "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,59) -- (234,59);",
+            "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,59) -- (360,59);",
+            "\\draw[line width=0.65bp] (103,34) -- (103,55);",
+            "\\draw[line width=0.65bp] (214,34) -- (214,55);",
+            "\\draw[line width=0.65bp] (337,34) -- (337,55);",
+            "\\draw[line width=0.65bp] (382,78) -- (370,87);",
+            "\\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (415,78) -- (415,123) -- (49.5,123) -- (49.5,79);"
+          ]
+        },
+        "required_terms": [
+          "A behavioral model for job ownership with generations.",
+          "Claims identify (worker, generation).",
+          "Unowned",
+          "Owned",
+          "(A, 7)",
+          "Owned",
+          "(B, 8)",
+          "Reclaimable",
+          "claim(A, 7)",
+          "expire",
+          "claim(B, 8)",
+          "release(A, 7): rejected",
+          "release(B, 8)",
+          "Release clears ownership only when worker and generation match the current claim.",
+          "current claim remains (B, 8)"
+        ],
+        "review": {
+          "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
+          "checks": [
+            "state and generation identity",
+            "permitted and prohibited transitions",
+            "worker/generation key and release condition",
+            "default house typography",
+            "native print envelope"
+          ],
+          "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. The author approved the diagram with this legend-removal request; publication approval is recorded separately by integration.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 257.975,
+            "minimum_prose_font_pt": 10.461,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+            "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
+            "status": "passed"
+          }
+        },
+        "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color."
       }
     }
   ],

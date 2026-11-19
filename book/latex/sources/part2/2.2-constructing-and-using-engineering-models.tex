@@ -89,21 +89,21 @@ An engineering concern alone does not determine the choice of model. The same st
 
 \begin{bookbox}{inset}{Debugging Models Before Code}
 \label{inset-debugging-models-before-code}
-One engineering question may require several models. Suppose we are designing a battery-powered device that collects measurements and transmits them over a radio. Can any measurements be lost? \autoref{sensor-buffer-radio} answers this question using three models:
+One engineering question may require several models. Suppose we are designing a battery-powered device with two sensors that collect measurements and transmit them over a radio. Can any measurements be lost? \autoref{sensor-buffer-radio} answers this question by combining three models:
 
 \begin{itemize}
 \tightlist
-\item \textbf{(a) Structural model.} A sensor produces measurements, a buffer stores them, and a radio transmits them. The model identifies the data path but cannot tell us whether measurements may be lost.
-\item \textbf{(b) Quantitative model.} The sensor samples once per second, the buffer holds three samples, and the radio transmits every five seconds. New samples are discarded when the buffer is full.
-\item \textbf{(c) Behavioral model.} Starting with an empty buffer, samples arrive at seconds 1, 2, and 3. The fourth sample arrives before the first transmission and is lost. The behavioral model combines the structure and quantities to expose the failure.
+\item \textbf{(a) Structural model.} Two sensors feed a shared buffer in on-device storage, from which a radio transmits measurements. The model establishes that both sensors compete for the same storage capacity.
+\item \textbf{(b) Quantitative model.} Each sensor produces one measurement per second, the buffer holds three measurements, and the radio transmits every five seconds. These parameters do not specify how many sensors share the buffer.
+\item \textbf{(c) Behavioral model.} An arriving measurement is stored if space remains and discarded otherwise. A transmission sends and removes all stored measurements; when transmission and sampling coincide, transmission occurs first. Starting with an empty buffer, two measurements arrive at second 1. At second 2, only one of the next two fits; the other is lost. The derived execution trace combines the structure, quantities, and behavioral rules to expose the failure.
 \end{itemize}
 
-We can now consider transmitting more frequently, increasing buffer capacity, or sampling less often. Each changes energy consumption, memory requirements, or measurement quality. I would much rather discover this problem by examining three small models than by debugging a thousand lines of C.
+We can now consider increasing buffer capacity, transmitting more frequently, or sampling less often. Alternatively, we could change the overflow behavior to retain measurements elsewhere until transmission, provided that additional storage and eventual transmission capacity are sufficient. Each choice affects energy consumption, memory requirements, measurement quality, or implementation complexity. I would much rather discover this problem by examining three small models than by debugging a thousand lines of C.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth,alt={A sensor fills a three-sample buffer in three seconds. The fourth sample is lost. At five seconds the radio sends the stored samples before the fifth arrives, leaving one sample.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
-\caption[Three models of one sensor system]{\emph{Three models of one sensor system.} The structural model identifies the measurement path; the quantitative model specifies rates and capacity; the behavioral model combines them to reveal that the fourth sample is lost before the first transmission.}
+\includegraphics[width=\linewidth,alt={Two sensors share a three-measurement buffer in on-device storage. Each samples once per second; the radio transmits every five seconds. Arrivals are stored if space remains and discarded otherwise. The derived trace shows one measurement lost at second two. At second five, transmission empties the buffer before two new measurements arrive.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Combining three models to expose measurement loss]{\emph{Combining three models to expose measurement loss.} The structural model identifies two sensors sharing on-device storage; the quantitative model specifies per-sensor sampling rates, buffer capacity, and transmission interval; and the behavioral model specifies what happens when measurements arrive at a full buffer. Their combination reveals that a measurement is lost at second 2, before the first transmission.}
 \label{sensor-buffer-radio}
 \end{figure}
 \end{bookbox}

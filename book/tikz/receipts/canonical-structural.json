@@ -26,6 +26,17 @@
         "forbidden bypass",
         "dashed crossed"
       ]
+    ],
+    "native_draw_commands": [
+      "\\draw[-Stealth,line width=.55pt] (104,47) -- (129,47);",
+      "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (5,64) rectangle (66,91);",
+      "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (79,64) rectangle (140,91);",
+      "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (153,64) rectangle (214,91);",
+      "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (227,64) rectangle (288,91);",
+      "\\draw[-Stealth,line width=.55pt] (66,77.5) -- (79,77.5);",
+      "\\draw[-Stealth,line width=.55pt] (140,77.5) -- (153,77.5);",
+      "\\draw[-Stealth,line width=.55pt] (214,77.5) -- (227,77.5);",
+      "\\draw[-Stealth,line width=.55pt,dashed] (35.5,91) -- (35.5,113) -- (257.5,113) -- (257.5,91);"
     ]
   },
   "required_terms": [
@@ -34,46 +45,17 @@
     "API",
     "CACHE",
     "DATABASE",
-    "Question:",
-    "Semantics:",
-    "Analysis:",
     "Example: A read-through cache",
     "forbidden bypass",
-    "Depends on",
-    "Components and direct dependencies.",
-    "Remove API. Is Database still",
-    "reachable from Web?"
+    "Depends on"
   ],
   "bw_encoding": "White component boxes, solid direct-dependency arrows, and a separately routed crossed dashed prohibited bypass.",
-  "redesign": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in §2.3.1.",
+  "redesign": "Author teaching-order revision: question, semantics, and analysis now live in the prose; the figure retains the dependency graph, edge meaning, and crossed bypass.",
   "questions": [],
-  "alt": "Structural model. Example: A read-through cache. Solid arrows all mean direct dependency: WEB to API to CACHE to DATABASE. A crossed dashed arrow from WEB to DATABASE marks a forbidden bypass. The model represents components and their direct dependencies. Remove API and check whether Database is still reachable from Web. This is intended architecture, not an execution trace.",
+  "alt": "Structural model of a layered read-through-cache architecture. Solid arrows denote direct dependencies from Web to API to Cache to Database. A crossed dashed Web-to-Database arrow marks a forbidden bypass. This is intended architecture, not an execution trace.",
   "review": {
-    "reference": "Author Figure 2.7 feedback, 2026-11-11",
-    "checks": [
-      "uniform edge meaning",
-      "read-through dependency sequence",
-      "forbidden bypass",
-      "concrete semantics and path analysis",
-      "legible typography"
-    ],
-    "outcome": "The revised labels were checked in the standalone proof. Geometry and typography checks passed.",
-    "validation": {
-      "date": "2026-11-17",
-      "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "42ec6dba618408afc981e186eaac8302f1833d393fe11f991276a729c11db3c1",
-      "page": 1,
-      "width_bp": 289.522,
-      "height_bp": 225.691,
-      "minimum_prose_font_pt": 10.959,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 14,
-      "audit_sha256": "df0580405c4e5274516825bcd1345589b1d1e0c81aa7492500710cfb827c9c48",
-      "typography_audit_sha256": "f34f4ab6b814f2d7c85b2a7a4f07419293ed7dc24f54e944c9d73454d3834f21",
-      "status": "passed"
-    }
+    "reference": "Author teaching-order revision, 2026-11-19",
+    "outcome": "Pass: native proof and assembled Chapter 2 page visually inspected; labels, dependency chain, and crossed bypass preserved; geometry and typography audits have no findings."
   },
   "style_review": {
     "source": "book/assets/canonical-structural.svg",
@@ -1483,6 +1465,92 @@
           "width_bp": 285.5369873046875,
           "height_bp": 216.05999755859375,
           "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "previous": {
+        "required_terms": [
+          "Structural model",
+          "WEB",
+          "API",
+          "CACHE",
+          "DATABASE",
+          "Question:",
+          "Semantics:",
+          "Analysis:",
+          "Example: A read-through cache",
+          "forbidden bypass",
+          "Depends on",
+          "Components and direct dependencies.",
+          "Remove API. Is Database still",
+          "reachable from Web?"
+        ],
+        "alt": "Structural model. Example: A read-through cache. Solid arrows all mean direct dependency: WEB to API to CACHE to DATABASE. A crossed dashed arrow from WEB to DATABASE marks a forbidden bypass. The model represents components and their direct dependencies. Remove API and check whether Database is still reachable from Web. This is intended architecture, not an execution trace.",
+        "review": {
+          "reference": "Author Figure 2.7 feedback, 2026-11-11",
+          "checks": [
+            "uniform edge meaning",
+            "read-through dependency sequence",
+            "forbidden bypass",
+            "concrete semantics and path analysis",
+            "legible typography"
+          ],
+          "outcome": "The revised labels were checked in the standalone proof. Geometry and typography checks passed.",
+          "validation": {
+            "date": "2026-11-17",
+            "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+            "proof_sha256": "42ec6dba618408afc981e186eaac8302f1833d393fe11f991276a729c11db3c1",
+            "page": 1,
+            "width_bp": 289.522,
+            "height_bp": 225.691,
+            "minimum_prose_font_pt": 10.959,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "df0580405c4e5274516825bcd1345589b1d1e0c81aa7492500710cfb827c9c48",
+            "typography_audit_sha256": "f34f4ab6b814f2d7c85b2a7a4f07419293ed7dc24f54e944c9d73454d3834f21",
+            "status": "passed"
+          }
+        },
+        "topology": {
+          "description": "Intended direct-dependency chain, not measured execution; crossed dashed direct bypass forbidden.",
+          "relations": [
+            [
+              "web",
+              "api",
+              "direct dependency"
+            ],
+            [
+              "api",
+              "cache",
+              "direct dependency"
+            ],
+            [
+              "cache",
+              "db",
+              "direct dependency"
+            ],
+            [
+              "web",
+              "db",
+              "forbidden bypass",
+              "dashed crossed"
+            ]
+          ],
+          "native_draw_commands": [
+            "\\draw[-Stealth,line width=.55pt] (104,47) -- (129,47);",
+            "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (5,64) rectangle (66,91);",
+            "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (79,64) rectangle (140,91);",
+            "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (153,64) rectangle (214,91);",
+            "\\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (227,64) rectangle (288,91);",
+            "\\draw[-Stealth,line width=.55pt] (66,77.5) -- (79,77.5);",
+            "\\draw[-Stealth,line width=.55pt] (140,77.5) -- (153,77.5);",
+            "\\draw[-Stealth,line width=.55pt] (214,77.5) -- (227,77.5);",
+            "\\draw[-Stealth,line width=.55pt,dashed] (35.5,91) -- (35.5,113) -- (257.5,113) -- (257.5,91);"
+          ]
         }
       }
     }

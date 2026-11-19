@@ -171,3 +171,6 @@ book/_contract/
 # full re-derivation was 335s of a 441s site build). Never committed — a stamp is a statement about one
 # machine's working tree. Deleting the directory only costs the next build a re-emit.
 /.build-cache/
+
+# Local rendered evidence for the Chapters 2–4 figure-fill audit
+/scratchpad/figure-fill-audit-20261118/

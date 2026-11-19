@@ -50,7 +50,7 @@ def pathdata(d):
   else:
    a,b,c,d,x,y=vals;out.append('.. controls '+point(a,b)+' and '+point(c,d)+' .. '+point(x,y))
  return ' '.join(out)
-for number,stem in [('2-9','from-nodes-to-composition'),('2-10','canonical-behavioral'),('2-16','observed-vs-declared'),('2-17','service-flow-model')]:
+for number,stem in [('2-9','from-nodes-to-composition'),('2-10','canonical-behavioral'),('2-17','service-flow-model')]:
  svg=ET.parse(SRC/f'figure-{number}-house-bw.svg').getroot()
  out=[f'% Book-style revision of author-supplied Figure {number.replace("-",".")} reference; editable native counterpart.\n',r'\begin{tikzpicture}[x=.566bp,y=-.566bp,font=\magefigurefont\fontsize{10.8}{12}\selectfont,>=Latex]'+'\n']
  for e in svg:

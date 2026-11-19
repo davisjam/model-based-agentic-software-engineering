@@ -21557,3 +21557,57 @@ The table needs the entitlement kind as well as the balance. If a previous step 
 
 Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore~\citep{w3c2018wcag21}. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection~\citep{moma-blue-monochrome}.} What matters is the image's contribution to the document, not merely what it depicts.
 ```
+
+## Chapter 2 connection-example introduction — 2026-11-19
+
+- Source: `book/latex/sources/part2/2.6-system-knowledge.tex`, §2.6.3, line 98.
+- Source revision: working tree based on `266ae853a74b05e641f70b0c2002524e4de39b91`.
+- Removal revision: pending commit.
+- Reason: replaced with the approved introduction relating the examples to the analytical uses in the new table. The detailed examples remain.
+
+```latex
+DocAble improves document accessibility through passes that analyze or change a document. Workers and services execute those passes, and the product retains evidence about the resulting artifact. Its modeling problem therefore crosses several views: the intended computation, the execution arrangement, and what one run actually changed. The worked question is how those views can share facts without becoming independent accounts that drift apart.
+```
+
+## Chapter 2 teaching transitions — 2026-11-19
+
+- Sources: `book/latex/sources/part2/`, §§2.3–2.6; individual paths and working-tree line numbers below.
+- Source revision: working tree based on `266ae853a74b05e641f70b0c2002524e4de39b91`.
+- Removal revision: pending commit.
+- Reason: author-requested copyedit to make conclusions specific to each modeling technique, remove redundant comparison, and clarify transitions. Replaced excerpts retained below; substantive examples remain in the manuscript.
+
+### 2.3-structural.tex, line 44
+
+```latex
+The general procedure is to identify the entities and relationships relevant to a question, define what those relationships mean, and analyze the resulting graph. The same approach applies to a system's environment, where we might trace communication pathways or dependencies between organizations, and to its internal structure. DocAble uses two such models of the same software: one to locate architectural boundaries and one to trace dependencies between computations.
+```
+
+### 2.3-structural.tex, line 148
+
+```latex
+The first model preserves one architectural relation. The second preserves a family of typed compositional relations over the same system.
+```
+
+### 2.3-structural.tex, line 164
+
+```latex
+A structural model earns its detail by the question it helps answer.
+```
+
+### 2.4-behavioral.tex, line 250
+
+```latex
+Ownership introduced permission implicitly: a stale claimant \emph{may not} clear a current lease. The next section examines decisions directly, including permissions and how to choose what should happen next.
+```
+
+### 2.5-decision.tex, line 213
+
+```latex
+Decision models make the criteria for a choice explicit, whether the choice concerns permission or what to do next. The final section steps back from one representation to ask how a family of models can answer questions together.
+```
+
+### 2.6-system-knowledge.tex, line 195
+
+```latex
+Keeping those relations explicit lets engineers inspect the connection that an analysis depends on, instead of treating membership in a model family as evidence that the models agree.
+```

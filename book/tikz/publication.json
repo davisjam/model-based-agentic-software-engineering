@@ -83,8 +83,8 @@
     },
     "book/assets/canonical-structural.svg": {
       "approved_date": "2026-11-17",
-      "reason": "Approved monochrome figure with Question and Analysis wording revised at the author’s request.",
-      "candidate_sha256": "b204e0b403bb2accff2bb8bc752a3636bcb81a1386a0a2385a48d6a229cf7a17"
+      "reason": "Author teaching-order revision: question, semantics, and analysis now live in the prose; the figure retains the dependency graph, edge meaning, and crossed bypass.",
+      "candidate_sha256": "42cac49724e0aba5045ca9aec55b1dc24add604573b8fdc620e35abd06afef0e"
     },
     "book/assets/document-mutation-model.svg": {
       "approved_date": "2026-11-11",
@@ -111,9 +111,8 @@
     },
     "book/assets/recovery-ordering-model.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author explicitly approved black-and-white Figure 2.12 in the sidebar review; remove the color companion from the PDF.",
-      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
-      "max_print_height_bp": 345
+      "reason": "Author-approved monochrome figure with the requested compact horizontal redraw, 2026-11-18.",
+      "candidate_sha256": "9add06b100fd4647dd57b4f11a95b185f61e994d0a5b7fe0cbc19c83619b8d7f"
     },
     "book/assets/service-flow-model.svg": {
       "approved_date": "2026-11-11",
@@ -123,14 +122,13 @@
     },
     "book/assets/in-flight-ownership-states.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author approved black-and-white Figure 2.13 after removing the entire State meaning / Key transitions legend.",
-      "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
-      "max_print_height_bp": 218
+      "reason": "Author-requested compact four-state row with orthogonal B/8 release below the states, separate rejected A/7 callout, no internal title or repeated explanation; font sizes retained.",
+      "candidate_sha256": "1c4f09f628935e71643aef0532cd3a8aa0199057b76783185e74674ef4fc5a1f"
     },
     "book/assets/observed-vs-declared.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author approved black-and-white Figure 2.16 after compacting it and placing it beside its explanatory prose.",
-      "candidate_sha256": "4cc812a03c83eb105d371763f5ea1f9517b6f28133917f1efe5eb4c2e733a955"
+      "reason": "Match author Figure 2.13 reference: white nodes, two equal panels, light central divider, dashed crossed observed web-to-render call, declared web-to-report-to-render permissions. Ordinary figure with full caption.",
+      "candidate_sha256": "4ae9df46aa1431f362f2980ba5c13119d6876025793a1393b34e15bb926a7442"
     },
     "book/assets/modeling-substrate.svg": {
       "approved_date": "2026-11-12",

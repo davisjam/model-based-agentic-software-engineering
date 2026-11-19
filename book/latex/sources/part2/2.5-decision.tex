@@ -10,18 +10,20 @@ A behavioral model can tell us that a failed job may be retried, escalated, or s
 
 \section{Conditions, Alternatives, and Decision Analysis}\label{heading:conditions-alternatives-and-decision-analysis}
 
+We will again begin with a small example, examine the properties and analyses it supports, and then turn to DocAble. Here we will consider several kinds of representation, because choosing among alternatives can involve rules, permissions, constraints, or optimization. We begin with a decision table and introduce other forms as the questions require.
+
 \subsection{Constructing a Decision Model}\label{heading:constructing-a-decision-model}
 
-Begin with one request. A service sells prepaid credits and also offers unlimited subscriptions. A customer requests work costing five credits. Should the service admit the request, and if so, should it charge five credits? To answer, we need to know which entitlement applies. For a prepaid customer we also need the balance. For an unlimited subscriber we need to know whether the work is covered.
+A service sells prepaid credits and also offers unlimited subscriptions. A customer requests work costing five credits. An incorrect admission decision could reject work the customer has paid to receive, or admit work without the required entitlement.
 
-A decision table makes the cases easy to inspect when there are only a few. In \autoref{simple-admission-policy}, assume the request falls under exactly one entitlement. Read across the row whose conditions hold. A prepaid customer with five credits can proceed and spends the five; with four credits, the same request is rejected. For an unlimited subscription covering the work, the service admits the request without drawing on a balance.
+\textbf{Question.} Should the service admit the request, and if so, should it charge five credits? To answer, we need to know which entitlement applies. For a prepaid customer we also need the balance. For an unlimited subscriber we need to know whether the work is covered. \autoref{simple-admission-policy} assumes the request falls under exactly one entitlement.
 
 {\footnotesize
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
-\caption[Admission under one entitlement]{\emph{Admission under one entitlement.} Unlimited entitlement admits covered work without drawing down finite credit; a finite balance must cover the requested work.}\label{simple-admission-policy}\tabularnewline
+\caption[Decision modeling---admission by entitlement]{\emph{Decision modeling---admission by entitlement.} Each request falls under one entitlement. Unlimited entitlement admits covered work without drawing down finite credit; a finite balance must cover the requested work.}\label{simple-admission-policy}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Entitlement
@@ -40,6 +42,8 @@ Finite balance & Insufficient credit for the request & Reject for insufficient c
 \end{longtable}
 }
 
+\textbf{Semantics.} Each row specifies conditions and the corresponding admission and charging decision. Read across the row whose conditions hold. A prepaid customer with five credits can proceed and spends the five; with four credits, the same request is rejected. For an unlimited subscription covering the work, the service admits the request without drawing on a balance.
+
 The input to the decision must preserve every distinction that can change its outcome. Suppose a caller supplies only the number of prepaid credits. A customer who has spent the last credit and an unlimited subscriber who never bought credits can both have a balance of zero. The table gives them different answers. No revision to a rule that sees only the balance can recover the missing entitlement.
 
 % <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms. -->
@@ -48,24 +52,22 @@ A decision tree arranges the same choice as a sequence of tests: first determine
 
 % <!-- point: same-arrow-different-mood-is-the-sharpest-case-of-topology-not-fixing-meaning | An observed-call edge and a permitted-call edge can look identical while answering different questions; in the illustrated models, a missing edge means no recorded call or no permitted call respectively. -->
 
-% <!-- print-columns-start: observed-vs-declared -->
-
 A permission graph is useful when the decision concerns a relationship. In \autoref{observed-vs-declared}, a web interface may call a report service, and the report service may call a renderer. To decide whether Web may call Renderer directly, look for that particular edge in the declared policy. The two-hop route through the report service grants no such permission. The observed graph records a direct Web-to-Renderer call. Comparing the two identifies a violation. If the observation had missed the call, its absence from the trace would tell us only what was recorded.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/observed-vs-declared-4186370076.pdf}
-\caption{\emph{Observation compared with declared permission.} The observed web-to-renderer call violates the declared policy.}
+\caption{\emph{Observation compared with declared permission.} The observed web-to-render call violates the declared policy.}
 \label{observed-vs-declared}
 \end{figure}
-
-% <!-- print-columns-end: observed-vs-declared -->
 
 % <!-- point: image-purpose-and-uncertainty-govern-the-decorative-decision | An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain. -->
 
 Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore~\citep{w3c2018wcag21}. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection~\citep{moma-blue-monochrome}.} What matters is the image's contribution to the document, not merely what it depicts. A classifier can supply evidence about that role. The decision rule must say when the evidence warrants omitting a description and what to do when the role is uncertain.
 
 \subsection{Properties and Analyses}\label{heading:decision-properties-and-analyses}
+
+Decision models let us examine whether the available rules cover the cases they must handle, whether those rules agree, and whether the choices they permit satisfy the applicable constraints. When several acceptable choices remain, we can also ask which best serves a stated objective.
 
 % <!-- point: a-declared-policy-turns-is-this-allowed-into-an-evaluation | Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and "is this allowed?" becomes an evaluation rather than an argument. -->
 
@@ -75,11 +77,13 @@ For a quantitative decision, first check \textbf{admissibility}: does an alterna
 
 Checking \textbf{conformance} asks whether a particular decision or observed action agrees with the declared policy. For the service graph, compare the observed edges with the permitted set. For the entitlement table, use the inputs to select a row and compare its verdict with the service's actual response. Neither comparison settles whether the policy expresses the right judgment. A consistent policy could permit the very call the architect meant to exclude, just as an optimizer could minimize cost while omitting a requirement users care about. Engineers must examine the choice of inputs and criteria as well as the decisions made from them.
 
+We now turn to DocAble to see how decision models address choices involving uncertain evidence, service permissions, and user entitlements.
+
 \section{DocAble: Policies and Decisions}\label{heading:docable-policies-and-decisions}
 
 DocAble uses decision models for several purposes: deciding whether an image needs a description, declaring which services may communicate, and determining whether a user may upload a document. The representations differ because the decisions depend on different information. Each must preserve the distinctions that can change its answer.
 
-\textbf{When is an image decorative?}
+\subsection{When is an image decorative?}\label{heading:when-is-an-image-decorative}
 
 Accessibility remediation must distinguish images that convey information from those that are merely decorative. As \hyperref[2.5-decision:heading:conditions-alternatives-and-decision-analysis]{the worked example} illustrated, the same image can serve either purpose depending on its context. DocAble supplies a rendered slide to a vision-language model (VLM), which classifies each image or shape as clearly decorative, uncertain, or informational. The classification supplies evidence; the decision policy determines what to do with it. Only a clearly decorative verdict permits suppressing a description. An uncertain or missing verdict preserves the image's informational role. This asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
 
@@ -87,7 +91,7 @@ The need for an explicit uncertainty policy emerged from evaluation. Earlier cla
 
 The remaining two DocAble examples concern permission. The system accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
 
-\textbf{Which services may communicate?}
+\subsection{Which services may communicate?}\label{heading:which-services-may-communicate}
 
 DocAble distributes document remediation across several services. The public web tier receives requests, while internal services perform document editing, generation, rendering, OCR, and other work. Rather than specifying the permitted connections independently in deployment configuration, DocAble records them in a service-flow model. Each directed edge declares that one service may invoke another; an absent edge excludes that relationship from the declared policy.
 
@@ -134,7 +138,7 @@ The declared graph answers whether a proposed service invocation is permitted: l
 
 The declared graph can also serve as the policy against which observed service calls are checked. DocAble does not currently reconcile runtime traffic against that declaration. Whether to add such a check, and what consequences a violation should have, are Alignment decisions taken up in \magevalue{chapter:alignment}.
 
-\textbf{Which entitlement authorizes an upload?}
+\subsection{Which entitlement authorizes an upload?}\label{heading:which-entitlement-authorizes-an-upload}
 
 % <!-- point: the-entitlement-model-was-born-from-a-production-failure | The service-flow policy was declared in advance; DocAble's upload-admission decision acquired its model in the opposite order, after a production failure exposed a representation that could no longer express the decision. -->
 
@@ -208,4 +212,4 @@ A note in the first person: I changed the domain in one place --- groups could n
 
 The three decision models preserve different kinds of information: evidence about an image's role, permitted relationships between services, and the entitlements that authorize an upload. Each makes a decision inspectable by separating the information used to make it from the criteria governing the outcome. That separation also makes it possible to revise a classifier, service topology, or entitlement scheme without silently redefining the decision policy.
 
-Decision models make the criteria for a choice explicit, whether the choice concerns permission or what to do next. The final section steps back from one representation to ask how a family of models can answer questions together.
+The next section examines how different models can be connected to answer questions that no individual representation can settle.

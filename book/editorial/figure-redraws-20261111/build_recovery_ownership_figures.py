@@ -54,44 +54,41 @@ class Figure:
         return path
 
 def recovery(bw=False):
-    f=Figure('recovery-ordering-model','Recovery-Ordering Model',230,417,bw)
-    f.text(115,39,'A state model for publishing',11,italic=True,anchor='middle')
-    f.text(115,52,'a recovered artifact.',11,italic=True,anchor='middle')
-    f.circle(77.5,70,5.3)
-    f.path('M77.5,75.3 V90','(77.5,75.3) -- (77.5,90)')
-    for y,name,detail,col in [(91,'FALLBACK_STAGED','(artifact exists locally)','blue'),(174,'FALLBACK_UPLOADED','(artifact durably stored)','blue'),(257,'DB_UPDATED','(database refers to artifact)','green')]:
-        f.rect(5,y,145,42,col)
-        f.text(77.5,y+17,name,10.5,True,anchor='middle');f.text(77.5,y+31,detail,10.5,anchor='middle')
-    f.path('M77.5,133 V173','(77.5,133) -- (77.5,173)')
-    f.path('M77.5,216 V256','(77.5,216) -- (77.5,256)')
-    f.path('M150,112 C166,112 166,260 150,278','(150,112) .. controls (166,112) and (166,260) .. (150,278)',dashed=True,red=True)
-    f.cross(162,194)
-    for i,s in enumerate(['Forbidden:','update DB','before','upload']):f.text(171,174+i*13,s,10.3,bold=(i==0),red=True)
-    f.path('M26,325 H64','(26,325) -- (64,325)')
-    f.text(73,328,'Permitted transition',10.5)
-    f.path('M26,346 H64','(26,346) -- (64,346)',dashed=True,red=True);f.cross(47,346,3.2)
-    f.text(73,349,'Prohibited transition',10.5)
-    for i,s in enumerate(['The artifact must be published','(durably stored) before the database','may refer to it.']):f.text(115,378+i*13,s,10.5,italic=True,anchor='middle')
+    # Compact horizontal path, with the forbidden shortcut below the states.
+    # Keep the existing 10.5 pt text; remove internal title, legend and footer.
+    f=Figure('recovery-ordering-model','Recovery-Ordering Model',440,94,bw)
+    for x,name,detail,col in [(2,'FALLBACK_STAGED','(artifact local)','blue'),(152,'FALLBACK_UPLOADED','(artifact persisted)','blue'),(302,'DB_UPDATED','(DB refers to artifact)','green')]:
+        f.rect(x,22,136,34,col)
+        f.text(x+68,36,name,10.5,True,anchor='middle')
+        f.text(x+68,49,detail,10.5,anchor='middle')
+    f.path('M138,39 H151','(138,39) -- (151,39)')
+    f.path('M288,39 H301','(288,39) -- (301,39)')
+    f.path('M70,56 V70 H370 V57','(70,56) -- (70,70) -- (370,70) -- (370,57)',dashed=True,red=True)
+    f.cross(220,70,3.5)
+    f.rich(125,88,[('Forbidden:',True),(' update DB before upload',False)],10.5)
     return f.save()
 
 def ownership(bw=False):
-    f=Figure('in-flight-ownership-states','Ownership Under Contention',444,272,bw)
-    f.text(222,39,'A behavioral model for job ownership with generations.',11,italic=True,anchor='middle')
-    f.text(222,53,'Claims identify (worker, generation).',10.5,anchor='middle')
-    for x,w,col in [(15,69,'blue'),(121,72,'blue'),(235,78,'yellow'),(361,72,'blue')]:f.rect(x,90,w,38,col)
-    f.text(49.5,113,'Unowned',11,anchor='middle')
+    # Keep the four-state row; successful B release returns beneath a separate
+    # stale-A callout. Rejected operations are annotations, never transitions.
+    f=Figure('in-flight-ownership-states','Ownership Under Contention',444,148,bw)
+    for x,w,col in [(15,69,'blue'),(121,72,'blue'),(235,78,'yellow'),(361,72,'blue')]:
+        f.rect(x,40,w,38,col)
+    f.text(49.5,63,'Unowned',11,anchor='middle')
     for x,who in [(157,'(A, 7)'),(397,'(B, 8)')]:
-        f.text(x,105,'Owned',11,True,anchor='middle');f.text(x,119,who,11,anchor='middle')
-    f.text(274,113,'Reclaimable',11,anchor='middle')
-    for sv,tz in [('M84,105 C96,100 109,100 120,104','(84,105) .. controls (96,100) and (109,100) .. (120,104)'),('M193,104 C207,102 220,102 234,104','(193,104) .. controls (207,102) and (220,102) .. (234,104)'),('M313,104 C329,102 345,102 360,104','(313,104) .. controls (329,102) and (345,102) .. (360,104)')]:f.path(sv,tz)
-    for x,s in [(103,'claim(A, 7)'),(214,'expire'),(337,'claim(B, 8)')]:
-        f.text(x,74,s,11,anchor='middle');f.path(f'M{x},80 Q{x+2},91 {x},102',f'({x},80) .. controls ({x+2},91) .. ({x},102)',False,width=.65)
-    f.path('M157,128 C174,155 207,156 272,156 C327,156 358,149 375,129','(157,128) .. controls (174,155) and (207,156) .. (272,156) .. controls (327,156) and (358,149) .. (375,129)',dashed=True,red=True)
-    f.cross(188,151,4)
-    f.text(258,174,'release(A, 7) (rejected: stale generation)',10.5,anchor='middle',red=True)
-    f.path('M397,128 C397,242 49.5,242 49.5,129','(397,128) .. controls (397,242) and (49.5,242) .. (49.5,129)')
-    f.text(226,230,'release(B, 8)',11,anchor='middle')
-    f.text(222,260,'Release clears ownership only when worker and generation match the current claim.',10.5,italic=True,anchor='middle')
+        f.text(x,55,'Owned',11,True,anchor='middle')
+        f.text(x,69,who,11,anchor='middle')
+    f.text(274,63,'Reclaimable',11,anchor='middle')
+    for a,b in [(84,120),(193,234),(313,360)]:
+        f.path(f'M{a},59 H{b}',f'({a},59) -- ({b},59)')
+    for x,label in [(103,'claim(A, 7)'),(214,'expire'),(337,'claim(B, 8)')]:
+        f.text(x,30,label,11,anchor='middle')
+        f.path(f'M{x},34 V55',f'({x},34) -- ({x},55)',False,width=.65)
+    f.path('M382,78 L370,87','(382,78) -- (370,87)',False,width=.65)
+    f.text(325,98,'release(A, 7): rejected',10.5,anchor='middle',red=True)
+    f.text(325,111,'current claim remains (B, 8)',10.5,anchor='middle')
+    f.path('M415,78 V123 H49.5 V79','(415,78) -- (415,123) -- (49.5,123) -- (49.5,79)')
+    f.text(222,141,'release(B, 8)',11,anchor='middle')
     return f.save()
 
 def main():

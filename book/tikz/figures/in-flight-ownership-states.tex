@@ -1,33 +1,30 @@
 % Author-reference redraw; geometry and labels generated with the SVG.
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\path[use as bounding box] (0,0) rectangle (444,252);
+\path[use as bounding box] (0,0) rectangle (444,128);
 \begin{scope}[yshift=20bp]
-\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{11}{13.2}\selectfont}] at (222,39) {A behavioral model for job ownership with generations.};
-\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (222,53) {Claims identify (worker, generation).};
-\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,90) rectangle (84,128);
-\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,90) rectangle (193,128);
-\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,90) rectangle (313,128);
-\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,90) rectangle (433,128);
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (49.5,113) {Unowned};
-\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (157,105) {Owned};
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (157,119) {(A, 7)};
-\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (397,105) {Owned};
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (397,119) {(B, 8)};
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (274,113) {Reclaimable};
-\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,105) .. controls (96,100) and (109,100) .. (120,104);
-\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,104) .. controls (207,102) and (220,102) .. (234,104);
-\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,104) .. controls (329,102) and (345,102) .. (360,104);
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (103,74) {claim(A, 7)};
-\draw[line width=0.65bp] (103,80) .. controls (105,91) .. (103,102);
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (214,74) {expire};
-\draw[line width=0.65bp] (214,80) .. controls (216,91) .. (214,102);
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (337,74) {claim(B, 8)};
-\draw[line width=0.65bp] (337,80) .. controls (339,91) .. (337,102);
-\draw[line width=.65bp] (375,128) -- (350,145);
-\node[anchor=base east,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (355,160) {release(A, 7): rejected};
-\node[anchor=base east,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (355,175) {current claim remains (B, 8)};
-\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);
-\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (226,230) {release(B, 8)};
-\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (222,260) {Release clears ownership only when worker and generation match the current claim.};
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,40) rectangle (84,78);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,40) rectangle (193,78);
+\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,40) rectangle (313,78);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,40) rectangle (433,78);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (49.5,63) {Unowned};
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (157,55) {Owned};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (157,69) {(A, 7)};
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (397,55) {Owned};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (397,69) {(B, 8)};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (274,63) {Reclaimable};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,59) -- (120,59);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,59) -- (234,59);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,59) -- (360,59);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (103,30) {claim(A, 7)};
+\draw[line width=0.65bp] (103,34) -- (103,55);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (214,30) {expire};
+\draw[line width=0.65bp] (214,34) -- (214,55);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (337,30) {claim(B, 8)};
+\draw[line width=0.65bp] (337,34) -- (337,55);
+\draw[line width=0.65bp] (382,78) -- (370,87);
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (325,98) {release(A, 7): rejected};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (325,111) {current claim remains (B, 8)};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (415,78) -- (415,123) -- (49.5,123) -- (49.5,79);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (222,141) {release(B, 8)};
 \end{scope}
 \end{tikzpicture}

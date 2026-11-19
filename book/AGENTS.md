@@ -414,6 +414,9 @@ HTML and PDF are peer outputs. Author semantic source, not target-specific hacks
 
 Do not hand-edit generated artifacts. Fix the source representation, build rule, or mechanism that future outputs inherit.
 
+For diagram fill and shading, follow the [drawing policy](../plugin/mage/skills/self-communicate/drawing/figures.md#fill-and-shading-meaning-before-decoration): white is the default; gray must carry meaning or useful emphasis. Audit comparable figures together and preserve local semantic encodings. The [Chapters 2–4 fill audit](editorial/figure-fill-audit-20261118.md) records the current baseline and targeted follow-up.
+
+
 Before cutting or deferring substantive book prose, preserve it in the single
 [cutting room floor](editorial/cutting-room-floor.md). Include the original text,
 source path and section, source revision and line range, removal date/revision

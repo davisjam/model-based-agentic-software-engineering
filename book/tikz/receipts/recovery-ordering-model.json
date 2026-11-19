@@ -3,13 +3,8 @@
   "chapter": "2.4-behavioral",
   "claim": "Durable publication must precede updating the database reference; the direct staged-to-database bypass is forbidden.",
   "topology": {
-    "description": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+    "description": "Three states left to right; solid arrows from staged to uploaded to updated, and a crossed dashed shortcut below from staged to updated.",
     "relations": [
-      [
-        "initial",
-        "FALLBACK_STAGED",
-        "permitted"
-      ],
       [
         "FALLBACK_STAGED",
         "FALLBACK_UPLOADED",
@@ -28,54 +23,29 @@
     ]
   },
   "required_terms": [
-    "A state model for publishing",
-    "a recovered artifact.",
     "FALLBACK_STAGED",
-    "(artifact exists locally)",
+    "(artifact local)",
     "FALLBACK_UPLOADED",
-    "(artifact durably stored)",
+    "(artifact persisted)",
     "DB_UPDATED",
-    "(database refers to artifact)",
+    "(DB refers to artifact)",
     "Forbidden:",
-    "update DB",
-    "before",
-    "upload",
-    "Permitted transition",
-    "Prohibited transition",
-    "The artifact must be published",
-    "(durably stored) before the database",
-    "may refer to it."
+    "update DB before upload"
   ],
   "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
-  "redesign": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+  "redesign": "Author-requested compact horizontal layout: three states, lower crossed dashed shortcut, artifact persisted; internal title, legend, and repeated footer removed. Text remains 10.5 pt.",
   "questions": [],
-  "alt": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+  "alt": "Three horizontal states: FALLBACK_STAGED (artifact local), FALLBACK_UPLOADED (artifact persisted), and DB_UPDATED (DB refers to artifact). Solid arrows connect successive states. A crossed dashed path below goes directly from staged to updated, labeled Forbidden: update DB before upload.",
   "review": {
-    "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
+    "reference": "Author compact-horizontal instructions, 2026-11-18",
     "checks": [
-      "state and generation identity",
-      "permitted and prohibited transitions",
-      "legend wording",
-      "default house typography",
-      "native print envelope"
+      "state identities",
+      "permitted and forbidden paths",
+      "horizontal alignment",
+      "retained 10.5 pt typography",
+      "compact footprint"
     ],
-    "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
-      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
-      "page": 1,
-      "width_bp": 235.975,
-      "height_bp": 402.973,
-      "minimum_prose_font_pt": 10.262,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 17,
-      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
-      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
-      "status": "passed"
-    }
+    "outcome": "Verified in native PDF proof and rebuilt Chapter 2 PDF: horizontal states, artifact persisted, lower crossed dashed shortcut, retained font size, and compact footprint. Geometry and typography audits passed; chapter has zero unapproved compile diagnostics."
   },
   "fidelity_review": {
     "stem": "recovery-ordering-model",
@@ -676,7 +646,7 @@
           "upload succeeds",
           "DB_UPDATED",
           "durable state updated",
-          "\u00d7",
+          "×",
           "Forbidden /",
           "absent",
           "transition",
@@ -1396,6 +1366,81 @@
           "width_bp": 225.72999572753906,
           "height_bp": 197.98800659179688,
           "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "reason": "Previous vertical layout superseded",
+      "topology": {
+        "description": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+        "relations": [
+          [
+            "initial",
+            "FALLBACK_STAGED",
+            "permitted"
+          ],
+          [
+            "FALLBACK_STAGED",
+            "FALLBACK_UPLOADED",
+            "permitted"
+          ],
+          [
+            "FALLBACK_UPLOADED",
+            "DB_UPDATED",
+            "permitted"
+          ],
+          [
+            "FALLBACK_STAGED",
+            "DB_UPDATED",
+            "forbidden"
+          ]
+        ]
+      },
+      "required_terms": [
+        "A state model for publishing",
+        "a recovered artifact.",
+        "FALLBACK_STAGED",
+        "(artifact exists locally)",
+        "FALLBACK_UPLOADED",
+        "(artifact durably stored)",
+        "DB_UPDATED",
+        "(database refers to artifact)",
+        "Forbidden:",
+        "update DB",
+        "before",
+        "upload",
+        "Permitted transition",
+        "Prohibited transition",
+        "The artifact must be published",
+        "(durably stored) before the database",
+        "may refer to it."
+      ],
+      "review": {
+        "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
+        "checks": [
+          "state and generation identity",
+          "permitted and prohibited transitions",
+          "legend wording",
+          "default house typography",
+          "native print envelope"
+        ],
+        "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+        "validation": {
+          "date": "2026-11-11",
+          "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+          "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+          "page": 1,
+          "width_bp": 235.975,
+          "height_bp": 402.973,
+          "minimum_prose_font_pt": 10.262,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 17,
+          "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+          "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+          "status": "passed"
         }
       }
     }

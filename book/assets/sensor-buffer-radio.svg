@@ -1,69 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="414" height="175" viewBox="0 0 414 175"
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="350" viewBox="0 0 560 350"
      role="img" aria-labelledby="sensor-title sensor-description"
-     font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10.5" fill="#171717">
-  <title id="sensor-title">Three models of a sensor, buffer, and radio</title>
-  <desc id="sensor-description">The sensor sends measurements through the buffer to the radio.
-    Sampling occurs once per second, the buffer holds three measurements, and the first radio
-    transmission is at five seconds. The initially empty buffer becomes full at three seconds.
-    At four seconds the next sample is lost. At five seconds the radio empties the buffer
-    before the sample arrives, leaving one sample stored.</desc>
-  <!-- Fixed positions align the event trace with its occupancy values across the three panels. -->
+     font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="12" fill="#171717">
+  <title id="sensor-title">Combining three models to expose measurement loss</title>
+  <desc id="sensor-description">Two sensors feed a shared buffer in on-device storage and a radio.
+    Each sensor samples once per second, the buffer holds three measurements, and the radio
+    transmits every five seconds. Arriving measurements are stored if space remains and discarded
+    otherwise. Transmission sends and removes all stored measurements before coincident sampling.
+    In the derived trace, one measurement is lost at second two. The losses at seconds three and
+    four are two each. At second five, transmission empties the buffer before two measurements arrive.</desc>
   <defs>
-    <marker id="sensor-arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+    <marker id="sensor-arrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3"
             orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0L5 2.5L0 5Z" fill="#333333"/>
+      <path d="M0 0L6 3L0 6Z" fill="#333333"/>
     </marker>
   </defs>
-  <text x="10" y="16" font-size="12" font-weight="700">(a) Structural model</text>
-  <text x="10" y="29">— measurement flow</text>
-  <text x="233" y="16" font-size="12" font-weight="700">(b) Quantitative model</text>
-  <text x="233" y="29">— rates and capacity</text>
-  <g transform="translate(0,15)">
-  <g fill="#ffffff" stroke="#444444" stroke-width="0.85">
-    <rect x="10" y="32" width="52" height="25" rx="3"/>
-    <rect x="88" y="32" width="52" height="25" rx="3"/>
-    <rect x="166" y="32" width="52" height="25" rx="3"/>
+  <text x="10" y="18" font-size="14" font-weight="700">(a) Structural model</text>
+  <text x="10" y="34">— shared on-device storage</text>
+  <text x="308" y="18" font-size="14" font-weight="700">(b) Quantitative model</text>
+  <text x="308" y="34">— rates and capacity</text>
+  <g fill="#ffffff" stroke="#444444" stroke-width="1">
+    <rect x="10" y="48" width="72" height="26" rx="3"/>
+    <rect x="10" y="87" width="72" height="26" rx="3"/>
+    <rect x="113" y="54" width="90" height="58" rx="3"/>
+    <rect x="226" y="70" width="54" height="27" rx="3"/>
   </g>
   <g text-anchor="middle">
-    <text x="36" y="48">Sensor</text>
-    <text x="114" y="48">Buffer</text>
-    <text x="192" y="48">Radio</text>
+    <text x="46" y="65">Sensor A</text>
+    <text x="46" y="104">Sensor B</text>
+    <text x="158" y="72">Buffer</text>
+    <text x="158" y="88">(on-device</text>
+    <text x="158" y="103">storage)</text>
+    <text x="253" y="88">Radio</text>
   </g>
-  <path d="M64 44.5H86" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
-  <path d="M142 44.5H164" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
-  <text x="233" y="35">Sample interval</text>
-  <text x="233" y="52">Buffer capacity</text>
-  <text x="233" y="69">Radio interval</text>
+  <g fill="none" stroke="#333333" stroke-width="1.1">
+    <path d="M82 61H96V100H82"/>
+    <path d="M96 83H111" marker-end="url(#sensor-arrow)"/>
+    <path d="M203 83H224" marker-end="url(#sensor-arrow)"/>
+  </g>
+  <text x="308" y="59">Sample interval</text>
+  <text x="308" y="82">Buffer capacity</text>
+  <text x="308" y="105">Radio interval</text>
   <g text-anchor="end">
-    <text x="404" y="35">1 s</text>
-    <text x="404" y="52">3 samples</text>
-    <text x="404" y="69">5 s</text>
+    <text x="550" y="59">1 s per sensor</text>
+    <text x="550" y="82">3 measurements</text>
+    <text x="550" y="105">5 s</text>
   </g>
-  <path d="M10 84H404M10 122H404" fill="none" stroke="#777777" stroke-width="0.7"/>
-  <text x="10" y="101" font-size="12" font-weight="700">(c) Behavioral model — buffer occupancy over time</text>
-  <text x="10" y="117">Time (s)</text>
-  <text x="10" y="137">Samples stored</text>
-  <text x="10" y="154">Event</text>
+  <path d="M10 127H550" fill="none" stroke="#777777" stroke-width="0.8"/>
+  <text x="10" y="148" font-size="14" font-weight="700">(c) Behavioral model — arrivals, overflow, and transmission</text>
+  <text x="10" y="168">On arrival: store the measurement if space remains; otherwise discard it.</text>
+  <text x="10" y="185">On transmission: send and remove all stored measurements.</text>
+  <text x="10" y="202">If transmission and sampling coincide, transmit first.</text>
+  <text x="10" y="224" font-style="italic">Derived trace — buffer occupancy after each second’s events</text>
+  <path d="M10 234H550M10 257H550" fill="none" stroke="#777777" stroke-width="0.8"/>
+  <text x="10" y="250">Time (s)</text>
+  <text x="10" y="275">Measurements arriving</text>
+  <text x="10" y="293">Measurements stored</text>
+  <text x="10" y="311">Measurements lost at t</text>
+  <text x="10" y="331">Event</text>
   <g text-anchor="middle">
-    <text x="93" y="117">0</text>
-    <text x="133" y="117">1</text>
-    <text x="178" y="117">2</text>
-    <text x="223" y="117">3</text>
-    <text x="282" y="117" font-weight="700">4</text>
-    <text x="362" y="117">5</text>
-    <text x="93" y="137">0</text>
-    <text x="133" y="137">1</text>
-    <text x="178" y="137">2</text>
-    <text x="223" y="137">3</text>
-    <text x="282" y="137" font-weight="700">3</text>
-    <text x="362" y="137">1</text>
-    <text x="93" y="154">—</text>
-    <text x="133" y="154">Sample</text>
-    <text x="178" y="154">Sample</text>
-    <text x="223" y="154">Sample</text>
-    <text x="282" y="154" font-weight="700">Sample lost</text>
-    <text x="362" y="154">Send, then sample</text>
+    <text x="200" y="250">0</text>
+    <text x="200" y="275">0</text>
+    <text x="200" y="293">0</text>
+    <text x="200" y="311">0</text>
+    <text x="200" y="331">—</text>
+    <text x="250" y="250">1</text>
+    <text x="250" y="275">2</text>
+    <text x="250" y="293">2</text>
+    <text x="250" y="311">0</text>
+    <text x="250" y="331">Sample</text>
+    <text x="300" y="250" font-weight="700">2</text>
+    <text x="300" y="275" font-weight="700">2</text>
+    <text x="300" y="293" font-weight="700">3</text>
+    <text x="300" y="311" font-weight="700">1</text>
+    <text x="300" y="331" font-weight="700">Overflow</text>
+    <text x="350" y="250">3</text>
+    <text x="350" y="275">2</text>
+    <text x="350" y="293">3</text>
+    <text x="350" y="311">2</text>
+    <text x="350" y="331">Overflow</text>
+    <text x="400" y="250">4</text>
+    <text x="400" y="275">2</text>
+    <text x="400" y="293">3</text>
+    <text x="400" y="311">2</text>
+    <text x="400" y="331">Overflow</text>
+    <text x="499" y="250">5</text>
+    <text x="499" y="275">2</text>
+    <text x="499" y="293">2</text>
+    <text x="499" y="311">0</text>
+    <text x="499" y="331">Transmit, then</text>
+    <text x="499" y="346">sample</text>
   </g>
-  <path d="M269 105H295V142H269Z" fill="none" stroke="#444444" stroke-dasharray="2 2"/>
-  </g>
+  <path d="M279 262H321V316H279Z" fill="none" stroke="#444444" stroke-width="0.9" stroke-dasharray="3 2"/>
 </svg>

@@ -1,28 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="888" height="504" viewBox="0 0 444 252" role="img" aria-labelledby="title desc"><title id="title">Ownership Under Contention</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="444" height="252" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
-<text x="222" y="39" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">A behavioral model for job ownership with generations.</text>
-<text x="222" y="53" text-anchor="middle" style="font-size:10.5px;fill:#222222">Claims identify (worker, generation).</text>
-<rect x="15" y="90" width="69" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
-<rect x="121" y="90" width="72" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
-<rect x="235" y="90" width="78" height="38" rx="4" fill="#f7f7f7" stroke="#444444" stroke-width="0.75"/>
-<rect x="361" y="90" width="72" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
-<text x="49.5" y="113" text-anchor="middle" style="font-size:11px;fill:#222222">Unowned</text>
-<text x="157" y="105" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
-<text x="157" y="119" text-anchor="middle" style="font-size:11px;fill:#222222">(A, 7)</text>
-<text x="397" y="105" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
-<text x="397" y="119" text-anchor="middle" style="font-size:11px;fill:#222222">(B, 8)</text>
-<text x="274" y="113" text-anchor="middle" style="font-size:11px;fill:#222222">Reclaimable</text>
-<path d="M84,105 C96,100 109,100 120,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
-<path d="M193,104 C207,102 220,102 234,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
-<path d="M313,104 C329,102 345,102 360,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
-<text x="103" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">claim(A, 7)</text>
-<path d="M103,80 Q105,91 103,102" fill="none" stroke="#222222" stroke-width="0.65"/>
-<text x="214" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">expire</text>
-<path d="M214,80 Q216,91 214,102" fill="none" stroke="#222222" stroke-width="0.65"/>
-<text x="337" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">claim(B, 8)</text>
-<path d="M337,80 Q339,91 337,102" fill="none" stroke="#222222" stroke-width="0.65"/>
-<path d="M157,128 C174,155 207,156 272,156 C327,156 358,149 375,129" fill="none" stroke="#222222" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
-<path d="M184,147 L192,155 M184,155 L192,147" stroke="#222222" stroke-width="2.3"/>
-<text x="258" y="174" text-anchor="middle" style="font-size:10.5px;fill:#222222">release(A, 7) (rejected: stale generation)</text>
-<path d="M397,128 C397,242 49.5,242 49.5,129" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
-<text x="226" y="230" text-anchor="middle" style="font-size:11px;fill:#222222">release(B, 8)</text>
-<text x="222" y="260" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">Release clears ownership only when worker and generation match the current claim.</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="256" viewBox="0 0 444 128" role="img" aria-labelledby="title desc"><title id="title">Ownership Under Contention</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="444" height="128" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<rect x="15" y="40" width="69" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
+<rect x="121" y="40" width="72" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
+<rect x="235" y="40" width="78" height="38" rx="4" fill="#f7f7f7" stroke="#444444" stroke-width="0.75"/>
+<rect x="361" y="40" width="72" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
+<text x="49.5" y="63" text-anchor="middle" style="font-size:11px;fill:#222222">Unowned</text>
+<text x="157" y="55" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
+<text x="157" y="69" text-anchor="middle" style="font-size:11px;fill:#222222">(A, 7)</text>
+<text x="397" y="55" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
+<text x="397" y="69" text-anchor="middle" style="font-size:11px;fill:#222222">(B, 8)</text>
+<text x="274" y="63" text-anchor="middle" style="font-size:11px;fill:#222222">Reclaimable</text>
+<path d="M84,59 H120" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M193,59 H234" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M313,59 H360" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="103" y="30" text-anchor="middle" style="font-size:11px;fill:#222222">claim(A, 7)</text>
+<path d="M103,34 V55" fill="none" stroke="#222222" stroke-width="0.65"/>
+<text x="214" y="30" text-anchor="middle" style="font-size:11px;fill:#222222">expire</text>
+<path d="M214,34 V55" fill="none" stroke="#222222" stroke-width="0.65"/>
+<text x="337" y="30" text-anchor="middle" style="font-size:11px;fill:#222222">claim(B, 8)</text>
+<path d="M337,34 V55" fill="none" stroke="#222222" stroke-width="0.65"/>
+<path d="M382,78 L370,87" fill="none" stroke="#222222" stroke-width="0.65"/>
+<text x="325" y="98" text-anchor="middle" style="font-size:10.5px;fill:#222222">release(A, 7): rejected</text>
+<text x="325" y="111" text-anchor="middle" style="font-size:10.5px;fill:#222222">current claim remains (B, 8)</text>
+<path d="M415,78 V123 H49.5 V79" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="222" y="141" text-anchor="middle" style="font-size:11px;fill:#222222">release(B, 8)</text></g></svg>

@@ -69,6 +69,33 @@ entities to make that point — six boxes and one forbidden edge make it faster 
 The full production graph stays available in the supporting repository for a reader who wants it. The
 figure's job is the property, not the inventory.
 
+## Fill and shading: meaning before decoration
+
+**White is the default; gray is a semantic or attentional accent.** Ordinary entities,
+components, states, operations, and artifacts use white fills with dark outlines. Use
+light gray to distinguish a named role, region, or group; stronger gray may emphasize a
+focal element or outcome. The reason must be recoverable from labels, grouping, a caption,
+or an existing legend. Do not add a legend merely to justify decoration.
+
+Comparable elements within a figure and related figures should use consistent treatment.
+Preserve established semantic encodings, hatching, shapes, and line styles. Gray does not
+universally mean “model,” “authoritative,” “approved,” or “implemented.” Do not assign a
+meaning to an existing fill after the fact. Color may reinforce a distinction, but labels,
+geometry, or line styles must preserve it in monochrome. Inspect the rendered print result
+before accepting changes.
+
+For new monochrome diagrams, prefer white, roughly 8% black for light emphasis, and
+roughly 18% black for stronger emphasis; a very pale 4% group background is optional.
+These are defaults, not a mandate to recolor approved semantic palettes or quantitative
+charts. Dark outcome bars can remain when their labels and contrast are clear. Avoid
+near-identical shades that invite a distinction the reader cannot decode.
+
+Audit related figures together. Record the current treatment, its instructional purpose,
+and the proposed action. Preserve author-approved content and geometry during a fill-only
+pass. Change only the fills or associated contrast needed to implement this policy; do not
+alter topology, labels, captions, sizing, or placement as a side effect. Existing renderer
+palettes are implementation facilities, not a reason to color every node by category.
+
 ## One job per figure
 
 Impose a test on every figure before drawing it. Complete the sentence: **"After this figure, the reader

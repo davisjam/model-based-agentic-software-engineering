@@ -66,6 +66,14 @@ manual box-widening and two-line wrapping — *does not exist* in d2. You set a 
 fit. So for a **structured** figure (a grid, a pipeline, a container map, a comparison table) d2 is now the
 default over hand-SVG; reserve hand-SVG for the geometry-bearing figures.
 
+### Fill semantics take precedence over palette defaults
+
+For teaching figures, follow [Fill and shading: meaning before decoration](figures.md#fill-and-shading-meaning-before-decoration).
+The classes below provide available styles; they do not require tinted nodes. Ordinary
+nodes default to white. Choose a role-colored class only when its distinction contributes
+to the lesson, and preserve that distinction in the monochrome output. Do not replace
+meaningful local encodings with a universal “all models are gray” rule.
+
 ### The house-style include — one style source for the whole set
 
 Map the design tokens (`book-models/design-tokens.json`) to d2 **classes** once, in a shared include, and

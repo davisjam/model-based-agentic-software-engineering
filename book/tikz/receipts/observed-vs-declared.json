@@ -3,21 +3,21 @@
   "chapter": "2.5-decision",
   "claim": "*Observation compared with declared permission.* The observed web-to-renderer call violates the declared policy.",
   "topology": {
-    "description": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
+    "description": "Observed: web -> report service and a direct web -> render call marked as violating the illustrated policy. There is no observed report-service-to-render edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> render only. This is an illustrative example, not a measured DocAble violation. Each transition arrow has a single terminal head.",
     "native_draw_commands": [
-      "\\path[fill=white] (0,0) rectangle (362,158);",
-      "\\path[draw=black!33,line width=0.6792bp] (181,29) -- (181,150);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (6,35) rectangle (66,77);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (90,35) rectangle (170,77);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (90,105) rectangle (170,141);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (66,56) -- (90,56);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (187,35) rectangle (247,77);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (271,35) rectangle (351,77);",
-      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (271,105) rectangle (351,141);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (247,56) -- (271,56);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (311,77) -- (311,105);",
-      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (36,77) -- (36,123) -- (90,123);",
-      "\\path[draw=black!87,line width=0.6792bp] (53,110) -- (61,118) (53,118) -- (61,110);"
+      "\\path[use as bounding box] (0,0) rectangle (444,156);",
+      "\\draw[draw=black!45,line width=0.65bp] (224,26) -- (224,174);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (4,58) rectangle (80,96);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (112,55) rectangle (200,99);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (112,130) rectangle (200,168);",
+      "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (80,77) -- (111,77);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (240,58) rectangle (316,96);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (348,55) rectangle (436,99);",
+      "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (348,130) rectangle (436,168);",
+      "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (316,77) -- (347,77);",
+      "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (392,99) -- (392,129);",
+      "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (42,96) -- (42,149) -- (111,149);",
+      "\\draw[line width=1.1bp] (70,131) -- (79,140) (70,140) -- (79,131);"
     ]
   },
   "required_terms": [
@@ -26,66 +26,15 @@
     "web",
     "report",
     "service",
-    "renderer",
-    "web",
-    "report",
-    "service",
-    "renderer"
+    "render"
   ],
   "bw_encoding": "Uniform pale-gray house boxes and black solid edges. The unmatched observed edge is marked by a separate cross. No dashed edge in the policy graph could be mistaken for permission. Panel labels distinguish observation from permission.",
-  "redesign": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+  "redesign": "Match author Figure 2.13 reference: white nodes, two equal panels, light central divider, dashed crossed observed web-to-render call, declared web-to-report-to-render permissions. Ordinary figure with full caption.",
   "questions": [],
-  "alt": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
+  "alt": "Observed: web -> report service and a direct web -> render call marked as violating the illustrated policy. There is no observed report-service-to-render edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> render only. This is an illustrative example, not a measured DocAble violation. Each transition arrow has a single terminal head.",
   "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
-    "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
-    ],
-    "outcome": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "native_dimensions_cm": [
-      7.4389,
-      3.3656
-    ],
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
-      "proof_sha256": "67786f31baadbcd69d27e2e89a7de78892ff98fbb6463eadc15a022cf84b4073",
-      "page": 1,
-      "width_bp": 210.867,
-      "height_bp": 95.404,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10.23,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 4,
-      "geometry_audit_sha256": "4e7b2359c861f040524fb1f876c1502545b389d908a3bfe0d9b794b150e076bd",
-      "typography_audit_sha256": "4fe8377986c5e7a0675f30d9460f021c3f44e8b6302ce12f3ac9d4ca131e4733",
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 10,
-      "status": "passed",
-      "chapter_context": {
-        "proof": "book/latex/build/figure216-wrap-proof/figure216-wrap-proof.pdf",
-        "proof_sha256": "be66aba4a4722f19adb989b1391349a60763908a73465660e5fbfa4369aa573e",
-        "page": 41,
-        "layout": "introductory paragraph left; compact native diagram and complete caption right; qualification returns to full width",
-        "native_width_bp": 210.867,
-        "body_font_unchanged": true,
-        "numbered_caption_count": 1,
-        "reviewed_visually": true,
-        "unapproved_compile_diagnostics": 0,
-        "mechanism": "existing tagged-book aligned-column technique; wrapfig paragraph hooks incompatible"
-      }
-    }
+    "reference": "Author Figure 2.13 reference, 2026-11-18",
+    "outcome": "Verified in native PDF proof and rebuilt Chapter 2 PDF: two-panel author reference, white nodes, light divider, render labels, dashed crossed observed shortcut, and retained permitted edges. Geometry and typography audits pass; Chapter 2 has zero unapproved compile diagnostics."
   },
   "fidelity_review": {
     "stem": "observed-vs-declared",
@@ -442,5 +391,93 @@
         "status": "passed"
       }
     ]
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-18",
+      "previous": {
+        "topology": {
+          "description": "Observed: web -> report service and a direct web -> render call marked as violating the illustrated policy. There is no observed report-service-to-render edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> render only. This is an illustrative example, not a measured DocAble violation. Each transition arrow has a single terminal head.",
+          "native_draw_commands": [
+            "\\path[use as bounding box] (0,0) rectangle (444,156);",
+            "\\draw[draw=black!45,line width=0.65bp] (224,26) -- (224,174);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (4,58) rectangle (80,96);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (112,55) rectangle (200,99);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (112,130) rectangle (200,168);",
+            "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (80,77) -- (111,77);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (240,58) rectangle (316,96);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (348,55) rectangle (436,99);",
+            "\\draw[fill=black!0,draw=black!90,line width=.65pt,rounded corners=6bp] (348,130) rectangle (436,168);",
+            "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (316,77) -- (347,77);",
+            "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]}] (392,99) -- (392,129);",
+            "\\draw[line width=0.9bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (42,96) -- (42,149) -- (111,149);",
+            "\\draw[line width=1.1bp] (70,131) -- (79,140) (70,140) -- (79,131);"
+          ]
+        },
+        "required_terms": [
+          "Observed calls",
+          "Declared permissions",
+          "web",
+          "report",
+          "service",
+          "renderer",
+          "web",
+          "report",
+          "service",
+          "renderer"
+        ],
+        "review": {
+          "reference": "authored SVG raster and labels, not D2 or caption alone",
+          "checks": [
+            "expansion/detail links",
+            "icons and prohibited-path marks",
+            "external annotations versus node content",
+            "node shapes and containment",
+            "direction and dashed meanings",
+            "grayscale semantic modes",
+            "native font legibility"
+          ],
+          "outcome": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+          "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+          "native_dimensions_cm": [
+            7.4389,
+            3.3656
+          ],
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+            "proof_sha256": "67786f31baadbcd69d27e2e89a7de78892ff98fbb6463eadc15a022cf84b4073",
+            "page": 1,
+            "width_bp": 210.867,
+            "height_bp": 95.404,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 10.23,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 4,
+            "geometry_audit_sha256": "4e7b2359c861f040524fb1f876c1502545b389d908a3bfe0d9b794b150e076bd",
+            "typography_audit_sha256": "4fe8377986c5e7a0675f30d9460f021c3f44e8b6302ce12f3ac9d4ca131e4733",
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 10,
+            "status": "passed",
+            "chapter_context": {
+              "proof": "book/latex/build/figure216-wrap-proof/figure216-wrap-proof.pdf",
+              "proof_sha256": "be66aba4a4722f19adb989b1391349a60763908a73465660e5fbfa4369aa573e",
+              "page": 41,
+              "layout": "introductory paragraph left; compact native diagram and complete caption right; qualification returns to full width",
+              "native_width_bp": 210.867,
+              "body_font_unchanged": true,
+              "numbered_caption_count": 1,
+              "reviewed_visually": true,
+              "unapproved_compile_diagnostics": 0,
+              "mechanism": "existing tagged-book aligned-column technique; wrapfig paragraph hooks incompatible"
+            }
+          }
+        }
+      }
+    }
+  ]
 }
