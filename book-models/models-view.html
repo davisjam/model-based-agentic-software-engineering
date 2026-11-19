@@ -231,11 +231,11 @@
 </div>
 <div class="section s3" id="sec-2-3-structural--constructing-a-structural-model">
 <div class="sec-h"><a href="../book/2.3-structural.html">Constructing a Structural Model</a></div>
-<p class="topic">[ref:canonical-structural] shows the intended architecture of a web application with an API, a cache, and a database.</p>
+<p class="topic">Consider a web application with an API, a cache, and a database.</p>
 </div>
 <div class="section s3" id="sec-2-3-structural--structural-properties-and-analyses">
 <div class="sec-h"><a href="../book/2.3-structural.html">Properties and Analyses</a></div>
-<p class="topic">**Reachability** asks whether a path connects one entity to another.</p>
+<p class="topic">Structural models support several kinds of questions about how a system is organized.</p>
 </div>
 <div class="section s2" id="sec-2-3-structural--docable-architecture-and-computation-dependencies">
 <div class="sec-h"><a href="../book/2.3-structural.html">DocAble: Architecture and Computation Dependencies</a></div>
@@ -258,11 +258,11 @@
 </div>
 <div class="section s3" id="sec-2-4-behavioral--constructing-a-behavioral-model">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">Constructing a Behavioral Model</a></div>
-<p class="topic">Four states and three events suffice.</p>
+<p class="topic">A service processes jobs that may be waiting, running, completed, or failed.</p>
 </div>
 <div class="section s3" id="sec-2-4-behavioral--behavioral-properties-and-analyses">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">Properties and Analyses</a></div>
-<p class="topic">Starting at Pending and following permitted arrows gives us one possible execution of the model.</p>
+<p class="topic">Behavioral models let us investigate which states a system can reach, which sequences of events are permitted, and whether required outcomes eventually occur.</p>
 </div>
 <div class="section s2" id="sec-2-4-behavioral--docable-job-lifecycles-and-recovery">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">DocAble: Job Lifecycles and Recovery</a></div>
@@ -285,11 +285,11 @@
 </div>
 <div class="section s3" id="sec-2-5-decision--constructing-a-decision-model">
 <div class="sec-h"><a href="../book/2.5-decision.html">Constructing a Decision Model</a></div>
-<p class="topic">Begin with one request.</p>
+<p class="topic">A service sells prepaid credits and also offers unlimited subscriptions.</p>
 </div>
 <div class="section s3" id="sec-2-5-decision--decision-properties-and-analyses">
 <div class="sec-h"><a href="../book/2.5-decision.html">Properties and Analyses</a></div>
-<p class="topic">A decision table is **complete** if it prescribes an outcome for every case in its declared scope.</p>
+<p class="topic">Decision models let us examine whether the available rules cover the cases they must handle, whether those rules agree, and whether the choices they permit satisfy the applicable constraints.</p>
 </div>
 <div class="section s2" id="sec-2-5-decision--docable-policies-and-decisions">
 <div class="sec-h"><a href="../book/2.5-decision.html">DocAble: Policies and Decisions</a></div>
@@ -312,15 +312,15 @@
 <h3 id="ch-2-6-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.6-system-knowledge.html" class="ch-link">2.6-system-knowledge</a> <span class="ch-slug">2.6-system-knowledge</span></h3>
 <div class="section s2" id="sec-2-6-system-knowledge--connecting-models-to-answer-engineering-questions">
 <div class="sec-h"><a href="../book/2.6-system-knowledge.html">Connecting Models to Answer Engineering Questions</a></div>
-<p class="topic">Models can be connected across different concerns or across levels of abstraction.</p>
+<p class="topic">Connecting models lets us answer questions that no individual representation can settle.</p>
 </div>
 <div class="section s2" id="sec-2-6-system-knowledge--maintaining-correspondence">
 <div class="sec-h"><a href="../book/2.6-system-knowledge.html">Maintaining Correspondence</a></div>
-<p class="topic">Prefer shared identity and derivation over independently maintained copies of the same fact.</p>
+<p class="topic">A connection remains useful only while the participating representations refer to the intended entities and preserve the relationships the analysis depends on.</p>
 </div>
 <div class="section s2" id="sec-2-6-system-knowledge--docable-connecting-engineering-models">
 <div class="sec-h"><a href="../book/2.6-system-knowledge.html">DocAble: Connecting Engineering Models</a></div>
-<p class="topic">DocAble improves document accessibility through passes that analyze or change a document.</p>
+<p class="topic">DocAble uses connections among engineering models to answer questions about its remediation pipeline and deployed services.</p>
 </div>
 <div class="section s3" id="sec-2-6-system-knowledge--one-dependency-for-execution-and-analysis">
 <div class="sec-h"><a href="../book/2.6-system-knowledge.html">One Dependency for Execution and Analysis</a></div>

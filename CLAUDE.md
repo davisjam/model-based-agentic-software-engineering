@@ -322,6 +322,26 @@ re-deriving these, so they live here:**
   pristine tree. Do the read-only analysis while you wait, then write as one fast transaction and
   re-check the handle immediately before writing — a confirmation that the file was closed goes stale
   in minutes.
+- **A MODIFIED DECK IS THE AUTHOR'S SAVE UNTIL PROVEN OTHERWISE: COMMIT IT BEFORE STARTING ANY NEW
+  WORK ON IT.** Author's standing instruction, 261119, after the orchestrator destroyed his work.
+  If `git status --porcelain -- <deck>` shows a `.pptx` modified and you did not modify it, the
+  overwhelmingly likely explanation is that he opened it and saved. That content exists in exactly
+  one place on earth: the working tree. Commit it FIRST, as its own commit, with a message saying
+  it is the author's save recovered by the orchestrator. Only then begin new work on that deck.
+  - **The check must be its OWN STEP and must GATE.** The 261119 loss happened because the status
+    check and the overwrite were in the SAME command: the probe printed ` M`, and the next line
+    wrote over it regardless. A check whose result cannot stop the action is decoration. Same
+    lesson as gating a destructive `rm` on a separate liveness check.
+  - **There is no recovery.** All four macOS avenues were tried within minutes and all four were
+    empty: no APFS local snapshots, an empty PowerPoint AutoRecovery directory,
+    `/.DocumentRevisions-V100` unreadable without sudo, and every `.pptx` elsewhere on disk either
+    predating the overwrite or being a copy of it. A `.pptx` is replaced whole; there is no partial
+    credit and no sibling to diff against.
+  - **This generalizes to every binary the author edits** — `.pptx`, `.docx`, `.xlsx`, images. For
+    TEXT his save would still be in the diff and recoverable; for a binary it is simply gone.
+  - The cheap habit that makes it impossible: when a landing would overwrite a tracked binary, run
+    the dirty check as a separate command, read it, and commit what you find before writing.
+
 - **Never infer from a fragment when the whole is a command away — this governs reading ARTIFACTS as
   much as agents.** The failure class is one thing wearing four costumes, all seen on 260930–261002:
   a live unit judged dead from transcript quiet; a dense ten-finding review judged empty from a
