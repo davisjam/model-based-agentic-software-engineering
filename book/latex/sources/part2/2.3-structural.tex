@@ -27,7 +27,7 @@ Consider a web application with an API, a cache, and a database. We want the web
 \label{canonical-structural}
 \end{figure}
 
-\textbf{Semantics.} In \autoref{canonical-structural}, each solid arrow denotes a permitted direct dependency between two components. A path is a sequence of components connected by those arrows. The crossed arrow marks a forbidden direct dependency and is excluded when tracing paths. Web therefore has an indirect route to Database through API and Cache.
+\textbf{Semantics.} In \autoref{canonical-structural}, each solid arrow denotes a permitted direct dependency between two components. For this analysis, we assume the graph includes all permitted dependencies among the four components; it does not establish which dependencies the implementation actually uses. A path is a sequence of components connected by those arrows. The crossed arrow marks a forbidden direct dependency and is excluded when tracing paths. Web therefore has an indirect route to Database through API and Cache.
 
 % <!-- point: once-structure-is-explicit-the-properties-are-graph-properties-and-the-analyses-graph-operations | Removing API and searching for a remaining Web-to-Database path tests whether the declared architecture permits a bypass. -->
 

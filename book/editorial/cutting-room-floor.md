@@ -21611,3 +21611,14 @@ Decision models make the criteria for a choice explicit, whether the choice conc
 ```latex
 Keeping those relations explicit lets engineers inspect the connection that an analysis depends on, instead of treating membership in a model family as evidence that the models agree.
 ```
+
+## Worker-pool scope and assumptions clarification — 2026-11-19
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1.1, line 50.
+- Source revision: `19f7eba8bae5814dd22b3b1a0817b0c37d24be5d`.
+- Removal revision: pending commit.
+- Reason: replaced with the approved paragraph explicitly labeling scope and assumptions in the same example.
+
+```latex
+Models can only be understood in context. Two important aspects of that context are \textbf{scope} and \textbf{assumptions}. Scope identifies what part of the system or its behavior the model represents; assumptions state conditions taken to hold when reasoning with it. For example, a worker-pool model might cover how jobs enter a queue, are assigned to workers, and complete, while omitting the work performed inside each job. An analysis of whether the queue will grow may assume a particular arrival pattern and distribution of service times. A conclusion derived under evenly spaced arrivals need not hold when requests arrive in bursts, even if the daily totals agree. Stating the scope and assumptions makes clear what the model can establish and where further evidence is needed.
+```
