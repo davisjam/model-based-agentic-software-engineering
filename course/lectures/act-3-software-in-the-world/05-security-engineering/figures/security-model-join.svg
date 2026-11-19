@@ -10,21 +10,24 @@
      1. The join keys are MARKED IN THE COLUMN HEADERS, in rust, in all four relations. role appears in
         two tables, operation in two, endpoint in three. A reader who follows one rust word across two
         tables has performed the join by eye, which is the mechanism the SQL then states formally.
-     2. The connectors run through ONE PAIR OF SPINES in the central gutter, so each spine carries two
-        relations and no connector crosses another. Four independent diagonals would cross, and a
-        crossing in this figure reads as a relationship that is not there.
+     2. The relations are STACKED FULL WIDTH and their connectors run into ONE SPINE in the right gutter,
+        so no connector crosses another and no crossing can be misread as a relationship that is not
+        there. The stack is what accommodates the real endpoint paths: the reservation cancellation
+        route is thirty-four characters, and a two-by-two grid of half-width tables cannot hold it
+        without either truncating the path or dropping the cells below legible type.
      3. The failure mode gets its own band at the bottom, OUTSIDE the result box and drawn in the
-        hostile colour. Removing the legacy endpoint from the architecture relation returns no rows, and
-        an empty result is a statement about the models rather than about the service. Placing that
-        inside the result box would read as a caveat on this finding; it is a caveat on the method.
+        hostile colour. It states what an empty result means and does not name a particular missing
+        path, because the lecture's closing exercise turns on the reader meeting that path for the
+        first time there. Placing the band inside the result box would read as a caveat on this
+        finding; it is a caveat on the method.
 
-     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg):
-     structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint #f6ece9, accent rust #9a3f12 on
-     cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel #eef2f6, paper #fdfcf9. The relation
-     rows are monospace so the shared values line up as tokens; flat fills only, so the figure survives
-     black-and-white print.
+     Palette, stroke and type follow this unit's figure vocabulary (authorization-enforcement.svg,
+     cancellation-sequence.svg): structure blue #2f5169 on tint #e7edf3, hostile red #8a2f2f on tint
+     #f6ece9, accent rust #9a3f12 on cream #f8f3ea, ink #1c1917, grey #57534e, cream #faf7f0, panel
+     #eef2f6, paper #fdfcf9. The relation rows are monospace so the shared values line up as tokens;
+     flat fills only, so the figure survives black-and-white print.
 
-     SIZING. viewBox 700 x 710. The arithmetic is
+     SIZING. viewBox 700 x 976. The arithmetic is
      rendered_pt = authored_px * (display_width / viewBox_width) * 0.75, so at an 820 px column
      (scale 1.1714): relation names 12.5px -> 11.0pt, table cells 10.5px -> 9.2pt, column headers
      9.5px -> 8.3pt, the join and WHERE clauses 11px -> 9.7pt, the result row 13px -> 11.4pt, notes
@@ -36,66 +39,76 @@
      source. The displaced prose description of the drawn composition is preserved below, rewrapped.
      The figure's own <desc> element carries an independently worded description of the same drawing;
      this text is the markdown rendition and is kept because the two are not word-for-word identical.
-     ONE CORRECTION was applied while relocating: the markdown alt still spoke the ENDPOINTS column as
-     'ownership underscore check', a name the drawing, the lander prose, the SQL and this figure's
-     <desc> had already replaced with 'enforces underscore MayCancel'. The stale name is corrected here
-     rather than imported, so the figure source does not contradict the figure.
 
-     Four small relations are drawn as tables in a two by two grid. Top left, Permissions, from the external
-     specification: columns role, operation and scope; the row student, cancel, own, and the row
-     administrator, cancel, administered underscore room. Top right, Endpoints, from the architecture model:
-     columns endpoint, operation and enforces underscore MayCancel; the row slash api slash cancel, cancel,
-     true, and the row slash legacy slash cancel, cancel, false. Bottom left, Capabilities, from the
-     adversary model: columns actor, role and endpoint; two rows, each malicious underscore student as a
-     student, one reaching slash api slash cancel and one reaching slash legacy slash cancel. Bottom right,
-     Exposure, from the environment model: columns endpoint and reachable; both endpoints are reachable. The
-     column headers role, operation and endpoint are set in rust wherever they appear, because those are the
-     shared identifiers the join runs on. Connectors leave each table into a central gutter, where two
-     vertical spines carry two tables each and merge into a single arrow pointing down into a panel headed
-     JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel lists four equalities: permissions dot role
-     equals capabilities dot role; endpoints dot endpoint equals capabilities dot endpoint; endpoints dot
-     operation equals permissions dot operation; and exposure dot endpoint equals endpoints dot endpoint.
-     Beneath them a WHERE line reads: scope equals own, and reachable is true, and enforces underscore
-     MayCancel is false. An arrow leaves the panel and reaches a result box headed FINDING, ONE ROW, holding
-     malicious underscore student, slash legacy slash cancel, cancel, own. A line beneath the row states
-     what the row claims: an actor the adversary model grants, on a path the environment model makes
-     reachable, through an endpoint the architecture model records as not enforcing the scope the
-     specification requires. A final note, in the hostile color, states the failure mode of the analysis
-     itself: remove the legacy endpoint from the architecture relation and the same query returns no rows,
-     which establishes that the available models hold no matching violation and not that the service is
-     secure.
+     TWO CORRECTIONS have been applied since the description was relocated here. The first, applied at
+     relocation: the markdown alt still spoke the ENDPOINTS column as 'ownership underscore check', a
+     name the drawing, the lander prose, the SQL and this figure's <desc> had already replaced with
+     'enforces underscore MayCancel'. The second, applied when the running example's endpoints were
+     reconciled across the lander, the slides and this figure: the endpoints are now the two the
+     reservation service actually exposes, the student cancellation route and the administrative one.
+     The administrative endpoint is role-restricted and scoped, so it satisfies the predicate and is
+     not a finding; it is drawn anyway, because a relation that records only suspected defects cannot
+     distinguish a path that enforces the predicate from a path nobody examined.
+
+     Four small relations are drawn as full-width tables stacked down the figure. First, Permissions, from
+     the external specification: columns role, operation and scope; the row student, cancel, own, and the
+     row administrator, cancel, administered underscore room. Second, Endpoints, from the architecture
+     model: columns endpoint, operation and enforces underscore MayCancel; the row POST slash api slash
+     reservations slash id slash cancel, cancel, false, and the row POST slash api slash admin slash
+     cancel, cancel, true. Third, Capabilities, from the adversary model: columns actor, role and
+     endpoint; the row malicious underscore student, student, POST slash api slash reservations slash id
+     slash cancel, and the row room underscore admin, administrator, POST slash api slash admin slash
+     cancel. Fourth, Exposure, from the environment model: columns endpoint and reachable; both endpoints
+     are reachable. The column headers role, operation and endpoint are set in rust wherever they appear,
+     because those are the shared identifiers the join runs on. A connector leaves each table into a
+     single spine in the right gutter, which gathers all four and turns inward to one arrow pointing down
+     into a panel headed JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel lists four
+     equalities: permissions dot role equals capabilities dot role; endpoints dot endpoint equals
+     capabilities dot endpoint; endpoints dot operation equals permissions dot operation; and exposure dot
+     endpoint equals endpoints dot endpoint. Beneath them a WHERE line reads: scope equals own, and
+     reachable is true, and enforces underscore MayCancel is false. An arrow leaves the panel and reaches
+     a result box headed FINDING, ONE ROW, holding malicious underscore student, POST slash api slash
+     reservations slash id slash cancel, cancel, own. A line beneath the row states what the row claims:
+     an actor the adversary model grants, on a path the environment model makes reachable, through an
+     endpoint the architecture model records as not enforcing the scope the specification requires. A
+     final note, in the hostile colour, states the failure mode of the analysis itself: the query reports
+     only the paths the architecture relation contains, so an empty result is a statement about the
+     available models and not about the service.
 -->
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 710" width="700" height="710"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 976" width="700" height="976"
      role="img" aria-labelledby="joinTitle joinDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="joinTitle">Four model relations joined on their shared identifiers, producing a single-row
     security finding, with the failure mode of an incomplete architecture model stated beneath</title>
-  <desc id="joinDesc">Four small relations are drawn as tables in a two by two grid. Top left,
+  <desc id="joinDesc">Four small relations are drawn as full-width tables stacked down the figure. First,
     PERMISSIONS, from the external specification: columns role, operation and scope; the row student,
-    cancel, own, and the row administrator, cancel, administered underscore room. Top right, ENDPOINTS,
-    from the architecture model: columns endpoint, operation and enforces underscore MayCancel; the row
-    slash api slash cancel, cancel, true, and the row slash legacy slash cancel, cancel, false. Bottom
-    left, CAPABILITIES, from the adversary model: columns actor, role and endpoint; the row malicious
-    underscore student, student, slash api slash cancel, and the row malicious underscore student,
-    student, slash legacy slash cancel. Bottom right, EXPOSURE, from the environment model: columns
-    endpoint and reachable; the row slash api slash cancel, true, and the row slash legacy slash cancel,
-    true. The column headers role, operation and endpoint are drawn in rust in every table that carries
-    them, because those are the shared identifiers the join runs on. Connectors leave each table into a
-    central gutter, where two vertical spines carry two tables each and merge into one arrow pointing
-    down. The arrow enters a panel headed JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel
-    lists three equalities: permissions dot role equals capabilities dot role; endpoints dot endpoint
-    equals capabilities dot endpoint and endpoints dot operation equals permissions dot operation; and
-    exposure dot endpoint equals endpoints dot endpoint. Beneath them a WHERE line reads: scope equals
-    own, and reachable is true, and enforces underscore MayCancel is false. An arrow leaves the panel and
-    reaches a result box headed FINDING, one row, holding malicious underscore student, slash legacy
-    slash cancel, cancel, own. A line beneath the row states the finding: a reachable cancellation path
-    does not enforce the specified authorization predicate. A further line states what the row claims: an
-    actor the adversary model grants, on a path the environment model makes reachable, through an
-    endpoint the architecture model records as not enforcing the scope the specification requires. A final band, drawn in the
-    hostile colour, states the failure mode of the analysis itself: remove the legacy endpoint from the
-    architecture relation and the same query returns no rows, which establishes that the available
-    models contain no matching violation and not that the service is secure.</desc>
+    cancel, own, and the row administrator, cancel, administered underscore room. Second, ENDPOINTS, from
+    the architecture model: columns endpoint, operation and enforces underscore MayCancel; the row POST
+    slash api slash reservations slash id slash cancel, cancel, false, with false drawn in the hostile
+    colour, and the row POST slash api slash admin slash cancel, cancel, true. Third, CAPABILITIES, from
+    the adversary model: columns actor, role and endpoint; the row malicious underscore student, student,
+    POST slash api slash reservations slash id slash cancel, and the row room underscore admin,
+    administrator, POST slash api slash admin slash cancel. Fourth, EXPOSURE, from the environment model:
+    columns endpoint and reachable; the row POST slash api slash reservations slash id slash cancel, true,
+    and the row POST slash api slash admin slash cancel, true. The column headers role, operation and
+    endpoint are drawn in rust in every table that carries them, because those are the shared identifiers
+    the join runs on. A connector leaves each table on the right into a single vertical spine, which
+    gathers all four and turns inward to one arrow pointing down. The arrow enters a panel headed JOIN THE
+    FOUR MODELS ON THEIR SHARED IDENTIFIERS. The panel lists four equalities: permissions dot role equals
+    capabilities dot role; endpoints dot endpoint equals capabilities dot endpoint; endpoints dot operation
+    equals permissions dot operation; and exposure dot endpoint equals endpoints dot endpoint. Beneath them
+    a WHERE line reads: scope equals own, and reachable is true, and enforces underscore MayCancel is
+    false. An arrow leaves the panel and reaches a result box headed FINDING, one row, holding malicious
+    underscore student, POST slash api slash reservations slash id slash cancel, cancel, own. A line
+    beneath the row states the finding: a reachable cancellation path does not enforce the specified
+    authorization predicate. A further line states what the row claims: an actor the adversary model
+    grants, on a path the environment model makes reachable, through an endpoint the architecture model
+    records as not enforcing the scope the specification requires. A final band, drawn in the hostile
+    colour, states the failure mode of the analysis itself: the query reports only the paths the
+    architecture relation contains, so a cancellation path absent from that relation produces no row, and
+    an empty result establishes that the available models hold no matching violation rather than that the
+    service is secure.</desc>
 
   <defs>
     <marker id="jn-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -104,125 +117,125 @@
   </defs>
 
   <!-- solid paper ground so the figure stays legible on the dark theme -->
-  <rect x="0" y="0" width="700" height="710" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="700" height="976" fill="#fdfcf9"/>
 
   <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">A SECURITY FINDING IS A JOIN ACROSS FOUR MODELS</text>
 
   <!-- ══════════ PERMISSIONS — the external specification ══════════ -->
-  <rect x="26" y="44" width="304" height="126" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
-  <text x="40" y="65" font-size="12.5" font-weight="700" fill="#2f5169">Permissions</text>
-  <text x="40" y="81" font-size="10.5" font-style="italic" fill="#57534e">from the external specification</text>
-  <line x1="26" y1="90" x2="330" y2="90" stroke="#2f5169" stroke-width="1"/>
+  <rect x="40" y="46" width="620" height="120" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="58" y="67" font-size="12.5" font-weight="700" fill="#2f5169">Permissions</text>
+  <text x="58" y="83" font-size="10.5" font-style="italic" fill="#57534e">from the external specification</text>
+  <line x1="40" y1="92" x2="660" y2="92" stroke="#2f5169" stroke-width="1"/>
   <g font-size="9.5" font-weight="700" letter-spacing="0.4">
-    <text x="40" y="106" fill="#9a3f12">role</text>
-    <text x="140" y="106" fill="#9a3f12">operation</text>
-    <text x="206" y="106" fill="#1c1917">scope</text>
+    <text x="58" y="108" fill="#9a3f12">role</text>
+    <text x="230" y="108" fill="#9a3f12">operation</text>
+    <text x="360" y="108" fill="#1c1917">scope</text>
   </g>
-  <line x1="26" y1="113" x2="330" y2="113" stroke="#d6d3d1" stroke-width="1"/>
+  <line x1="40" y1="115" x2="660" y2="115" stroke="#d6d3d1" stroke-width="1"/>
   <g font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
-    <text x="40" y="131">student</text>
-    <text x="140" y="131">cancel</text>
-    <text x="206" y="131">own</text>
-    <text x="40" y="155">administrator</text>
-    <text x="140" y="155">cancel</text>
-    <text x="206" y="155">administered_room</text>
+    <text x="58" y="133">student</text>
+    <text x="230" y="133">cancel</text>
+    <text x="360" y="133">own</text>
+    <text x="58" y="157">administrator</text>
+    <text x="230" y="157">cancel</text>
+    <text x="360" y="157">administered_room</text>
   </g>
-  <line x1="26" y1="139" x2="330" y2="139" stroke="#eef2f6" stroke-width="1"/>
+  <line x1="40" y1="141" x2="660" y2="141" stroke="#eef2f6" stroke-width="1"/>
 
   <!-- ══════════ ENDPOINTS — the architecture model ══════════ -->
-  <rect x="370" y="44" width="304" height="126" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
-  <text x="384" y="65" font-size="12.5" font-weight="700" fill="#2f5169">Endpoints</text>
-  <text x="384" y="81" font-size="10.5" font-style="italic" fill="#57534e">from the architecture model</text>
-  <line x1="370" y1="90" x2="674" y2="90" stroke="#2f5169" stroke-width="1"/>
+  <rect x="40" y="178" width="620" height="120" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="58" y="199" font-size="12.5" font-weight="700" fill="#2f5169">Endpoints</text>
+  <text x="58" y="215" font-size="10.5" font-style="italic" fill="#57534e">from the architecture model</text>
+  <line x1="40" y1="224" x2="660" y2="224" stroke="#2f5169" stroke-width="1"/>
   <g font-size="9.5" font-weight="700" letter-spacing="0.4">
-    <text x="384" y="106" fill="#9a3f12">endpoint</text>
-    <text x="484" y="106" fill="#9a3f12">operation</text>
-    <text x="552" y="106" fill="#1c1917">enforces_MayCancel</text>
+    <text x="58" y="240" fill="#9a3f12">endpoint</text>
+    <text x="330" y="240" fill="#9a3f12">operation</text>
+    <text x="430" y="240" fill="#1c1917">enforces_MayCancel</text>
   </g>
-  <line x1="370" y1="113" x2="674" y2="113" stroke="#d6d3d1" stroke-width="1"/>
+  <line x1="40" y1="247" x2="660" y2="247" stroke="#d6d3d1" stroke-width="1"/>
   <g font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
-    <text x="384" y="131">/api/cancel</text>
-    <text x="484" y="131">cancel</text>
-    <text x="552" y="131">true</text>
-    <text x="384" y="155">/legacy/cancel</text>
-    <text x="484" y="155">cancel</text>
+    <text x="58" y="265">POST /api/reservations/{id}/cancel</text>
+    <text x="330" y="265">cancel</text>
+    <text x="58" y="289">POST /api/admin/cancel</text>
+    <text x="330" y="289">cancel</text>
+    <text x="430" y="289">true</text>
   </g>
-  <text x="552" y="155" font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#8a2f2f">false</text>
-  <line x1="370" y1="139" x2="674" y2="139" stroke="#eef2f6" stroke-width="1"/>
+  <text x="430" y="265" font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#8a2f2f">false</text>
+  <line x1="40" y1="273" x2="660" y2="273" stroke="#eef2f6" stroke-width="1"/>
 
   <!-- ══════════ CAPABILITIES — the adversary model ══════════ -->
-  <rect x="26" y="192" width="304" height="126" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
-  <text x="40" y="213" font-size="12.5" font-weight="700" fill="#2f5169">Capabilities</text>
-  <text x="40" y="229" font-size="10.5" font-style="italic" fill="#57534e">from the adversary model</text>
-  <line x1="26" y1="238" x2="330" y2="238" stroke="#2f5169" stroke-width="1"/>
+  <rect x="40" y="310" width="620" height="120" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="58" y="331" font-size="12.5" font-weight="700" fill="#2f5169">Capabilities</text>
+  <text x="58" y="347" font-size="10.5" font-style="italic" fill="#57534e">from the adversary model</text>
+  <line x1="40" y1="356" x2="660" y2="356" stroke="#2f5169" stroke-width="1"/>
   <g font-size="9.5" font-weight="700" letter-spacing="0.4">
-    <text x="40" y="254" fill="#1c1917">actor</text>
-    <text x="162" y="254" fill="#9a3f12">role</text>
-    <text x="220" y="254" fill="#9a3f12">endpoint</text>
+    <text x="58" y="372" fill="#1c1917">actor</text>
+    <text x="230" y="372" fill="#9a3f12">role</text>
+    <text x="330" y="372" fill="#9a3f12">endpoint</text>
   </g>
-  <line x1="26" y1="261" x2="330" y2="261" stroke="#d6d3d1" stroke-width="1"/>
+  <line x1="40" y1="379" x2="660" y2="379" stroke="#d6d3d1" stroke-width="1"/>
   <g font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
-    <text x="40" y="279">malicious_student</text>
-    <text x="162" y="279">student</text>
-    <text x="220" y="279">/api/cancel</text>
-    <text x="40" y="303">malicious_student</text>
-    <text x="162" y="303">student</text>
-    <text x="220" y="303">/legacy/cancel</text>
+    <text x="58" y="397">malicious_student</text>
+    <text x="230" y="397">student</text>
+    <text x="330" y="397">POST /api/reservations/{id}/cancel</text>
+    <text x="58" y="421">room_admin</text>
+    <text x="230" y="421">administrator</text>
+    <text x="330" y="421">POST /api/admin/cancel</text>
   </g>
-  <line x1="26" y1="287" x2="330" y2="287" stroke="#eef2f6" stroke-width="1"/>
+  <line x1="40" y1="405" x2="660" y2="405" stroke="#eef2f6" stroke-width="1"/>
 
   <!-- ══════════ EXPOSURE — the environment model ══════════ -->
-  <rect x="370" y="192" width="304" height="126" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
-  <text x="384" y="213" font-size="12.5" font-weight="700" fill="#2f5169">Exposure</text>
-  <text x="384" y="229" font-size="10.5" font-style="italic" fill="#57534e">from the environment model</text>
-  <line x1="370" y1="238" x2="674" y2="238" stroke="#2f5169" stroke-width="1"/>
+  <rect x="40" y="442" width="620" height="120" rx="10" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
+  <text x="58" y="463" font-size="12.5" font-weight="700" fill="#2f5169">Exposure</text>
+  <text x="58" y="479" font-size="10.5" font-style="italic" fill="#57534e">from the environment model</text>
+  <line x1="40" y1="488" x2="660" y2="488" stroke="#2f5169" stroke-width="1"/>
   <g font-size="9.5" font-weight="700" letter-spacing="0.4">
-    <text x="384" y="254" fill="#9a3f12">endpoint</text>
-    <text x="540" y="254" fill="#1c1917">reachable</text>
+    <text x="58" y="504" fill="#9a3f12">endpoint</text>
+    <text x="430" y="504" fill="#1c1917">reachable</text>
   </g>
-  <line x1="370" y1="261" x2="674" y2="261" stroke="#d6d3d1" stroke-width="1"/>
+  <line x1="40" y1="511" x2="660" y2="511" stroke="#d6d3d1" stroke-width="1"/>
   <g font-size="10.5" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
-    <text x="384" y="279">/api/cancel</text>
-    <text x="540" y="279">true</text>
-    <text x="384" y="303">/legacy/cancel</text>
-    <text x="540" y="303">true</text>
+    <text x="58" y="529">POST /api/reservations/{id}/cancel</text>
+    <text x="430" y="529">true</text>
+    <text x="58" y="553">POST /api/admin/cancel</text>
+    <text x="430" y="553">true</text>
   </g>
-  <line x1="370" y1="287" x2="674" y2="287" stroke="#eef2f6" stroke-width="1"/>
+  <line x1="40" y1="537" x2="660" y2="537" stroke="#eef2f6" stroke-width="1"/>
 
-  <!-- ══════════ connectors: two spines in the central gutter, no crossings ══════════ -->
+  <!-- ══════════ connectors: one spine in the right gutter, no crossings ══════════ -->
   <g fill="none" stroke="#2f5169" stroke-width="2">
-    <path d="M330,107 H344 V358"/>
-    <path d="M330,255 H344"/>
-    <path d="M370,107 H356 V358"/>
-    <path d="M370,255 H356"/>
-    <path d="M344,358 H356"/>
-    <path d="M350,358 V380" marker-end="url(#jn-ah)"/>
+    <path d="M660,106 H678"/>
+    <path d="M660,238 H678"/>
+    <path d="M660,370 H678"/>
+    <path d="M660,502 H678"/>
+    <path d="M678,106 V592 H350"/>
+    <path d="M350,592 V616" marker-end="url(#jn-ah)"/>
   </g>
 
   <!-- ══════════ the join ══════════ -->
-  <rect x="48" y="384" width="604" height="152" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="350" y="407" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169" letter-spacing="0.8">JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS</text>
-  <text x="350" y="425" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">The column names set in rust above are those identifiers. They are what makes this join possible at all.</text>
+  <rect x="48" y="620" width="604" height="152" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="350" y="643" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169" letter-spacing="0.8">JOIN THE FOUR MODELS ON THEIR SHARED IDENTIFIERS</text>
+  <text x="350" y="661" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">The column names set in rust above are those identifiers. They are what makes this join possible at all.</text>
   <g font-size="11" font-family="'SFMono-Regular', Consolas, monospace" fill="#1c1917">
-    <text x="70" y="448">Permissions.role</text><text x="238" y="448">=</text><text x="258" y="448">Capabilities.role</text>
-    <text x="70" y="466">Endpoints.endpoint</text><text x="238" y="466">=</text><text x="258" y="466">Capabilities.endpoint</text>
-    <text x="70" y="484">Endpoints.operation</text><text x="238" y="484">=</text><text x="258" y="484">Permissions.operation</text>
-    <text x="70" y="502">Exposure.endpoint</text><text x="238" y="502">=</text><text x="258" y="502">Endpoints.endpoint</text>
+    <text x="70" y="684">Permissions.role</text><text x="238" y="684">=</text><text x="258" y="684">Capabilities.role</text>
+    <text x="70" y="702">Endpoints.endpoint</text><text x="238" y="702">=</text><text x="258" y="702">Capabilities.endpoint</text>
+    <text x="70" y="720">Endpoints.operation</text><text x="238" y="720">=</text><text x="258" y="720">Permissions.operation</text>
+    <text x="70" y="738">Exposure.endpoint</text><text x="238" y="738">=</text><text x="258" y="738">Endpoints.endpoint</text>
   </g>
-  <line x1="70" y1="511" x2="630" y2="511" stroke="#2f5169" stroke-width="1"/>
-  <text x="70" y="528" font-size="11" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#9a3f12">WHERE scope = 'own' AND reachable = true AND enforces_MayCancel = false</text>
+  <line x1="70" y1="747" x2="630" y2="747" stroke="#2f5169" stroke-width="1"/>
+  <text x="70" y="764" font-size="11" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#9a3f12">WHERE scope = 'own' AND reachable = true AND enforces_MayCancel = false</text>
 
-  <path d="M350,536 V558" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#jn-ah)"/>
+  <path d="M350,772 V796" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#jn-ah)"/>
 
   <!-- ══════════ the single result row ══════════ -->
-  <rect x="48" y="562" width="604" height="92" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
-  <text x="70" y="584" font-size="11.5" font-weight="700" fill="#9a3f12" letter-spacing="0.8">FINDING, ONE ROW</text>
-  <text x="212" y="584" font-size="13" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#1c1917">malicious_student | /legacy/cancel | cancel | own</text>
-  <text x="70" y="606" font-size="11" font-weight="700" fill="#1c1917">A reachable cancellation path does not enforce the specified authorization predicate.</text>
-  <text x="70" y="627" font-size="11" fill="#57534e">An actor the adversary model grants, on a path the environment model makes reachable, through an</text>
-  <text x="70" y="644" font-size="11" fill="#57534e">endpoint the architecture model records as not enforcing the scope the specification requires.</text>
+  <rect x="48" y="800" width="604" height="124" rx="12" fill="#f8f3ea" stroke="#9a3f12" stroke-width="2"/>
+  <text x="70" y="822" font-size="11.5" font-weight="700" fill="#9a3f12" letter-spacing="0.8">FINDING, ONE ROW</text>
+  <text x="70" y="848" font-size="13" font-family="'SFMono-Regular', Consolas, monospace" font-weight="700" fill="#1c1917">malicious_student | POST /api/reservations/{id}/cancel | cancel | own</text>
+  <text x="70" y="874" font-size="11" font-weight="700" fill="#1c1917">A reachable cancellation path does not enforce the specified authorization predicate.</text>
+  <text x="70" y="894" font-size="11" fill="#57534e">An actor the adversary model grants, on a path the environment model makes reachable, through an</text>
+  <text x="70" y="911" font-size="11" fill="#57534e">endpoint the architecture model records as not enforcing the scope the specification requires.</text>
 
   <!-- ══════════ the failure mode of the analysis itself ══════════ -->
-  <text x="350" y="682" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">Remove /legacy/cancel from the architecture relation and the same query returns no rows. That establishes</text>
-  <text x="350" y="699" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">that the available models hold no matching violation. It does not establish that the service is secure.</text>
+  <text x="350" y="950" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">The query reports only the paths the architecture relation contains. A cancellation path absent from that</text>
+  <text x="350" y="967" text-anchor="middle" font-size="11.5" font-style="italic" fill="#8a2f2f">relation produces no row, and no row is a statement about the models rather than about the service.</text>
 </svg>

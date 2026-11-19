@@ -14,7 +14,9 @@ readings:
           annotation: 'Anderson, *Security Engineering*, 3rd edition, Chapter 27, "Secure Systems Development" (2020; [the author makes the chapters freely available](https://www.cl.cam.ac.uk/~rja14/book.html)). Security requirements emerge from a system''s operating environment, assets, and plausible adversaries rather than from a generic checklist. Sample the sections relevant to your project and consider which environmental facts must be known before a threat can be prioritized.'
         - cite: sommerville2011
           locator: 'chapter 14, sections 14.1 and 14.2'
-          annotation: 'Sommerville, *Software Engineering*, 9th edition, Chapter 14, Sections 14.1 to 14.2, "Security Engineering." The chapter introduces security risk management and design for security. Compare its account with the model-join analysis: which questions can be answered from the system model, and which require information about adversaries and the operating environment? The 10th edition reorganizes this material under Chapter 13.'
+          annotation: 'Sommerville, *Software Engineering*, 9th edition, Chapter 14, Sections 14.1 to 14.2, "Security Engineering." The chapter introduces security risk management and design for security. Set its treatment of adversary capabilities and assets beside this unit''s, and note where each locates the decision about which risks an organization accepts. Then ask which of the alternatives to changing the code it counts as a genuine control, and on what grounds. The 10th edition reorganizes this material under Chapter 13.'
+        - cite: grahamcumming2019cloudflare
+          annotation: 'Graham-Cumming, ["Details of the Cloudflare Outage on July 2, 2019"](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/) (Cloudflare, 2019). A single firewall rule carrying a regular expression with pathological backtracking saturated CPU across the network and took service down for 27 minutes. No attacker was involved, because the rule was deployed internally; the algorithmic weakness it exposed is exploitable as a denial of service all the same, which is what makes this a security reading and not only a reliability one. Settle four things: what made certain inputs expensive, how an attacker reaches that behavior deliberately, why the rule reached production so broadly, and what control would have caught it.'
     - heading: Controls & Assurance
       items:
         - cite: mitre-cwe
@@ -23,8 +25,6 @@ readings:
         - cite: saltzer1975protection
           locator: 'the design-principles discussion in Section I'
           annotation: 'Saltzer and Schroeder, ["The Protection of Information in Computer Systems"](https://web.mit.edu/Saltzer/www/publications/protection/), *Proceedings of the IEEE* 63, no. 9 (1975). Section I''s design-principles discussion runs a few pages; the 1970s protection-hardware survey that follows is not what this unit draws on. Each principle states an engineering question rather than a slogan: least privilege asks what authority a component actually requires, complete mediation asks whether any path reaches the operation without passing the check. Both principles answer a case from Lecture 2. Decide which principle a library inherits a violation of when it is granted shell access it never needs, and which one an administrative endpoint violates when it reaches the same operation without the authorization check. Then decide which of the principles your own project satisfies by construction and which only by discipline.'
-        - cite: grahamcumming2019cloudflare
-          annotation: 'Graham-Cumming, ["Details of the Cloudflare Outage on July 2, 2019"](https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/) (Cloudflare, 2019). A single firewall rule carrying a regular expression with pathological backtracking saturated CPU across the network and took service down for 27 minutes. No attacker was involved, because the rule was deployed internally; the algorithmic weakness it exposed is exploitable as a denial of service all the same, which is what makes this a security reading and not only a reliability one. Settle four things: what made certain inputs expensive, how an attacker reaches that behavior deliberately, why the rule reached production so broadly, and what control would have caught it.'
         - cite: amusuo2025ztdjava
           locator: 'Figure 1, and sections IV and V'
           annotation: 'Amusuo et al., ["ZTDJava: Mitigating Software Supply Chain Vulnerabilities via Zero-Trust Dependencies"](https://arxiv.org/abs/2310.14117) (ICSE 2025). Figure 1 and Sections IV to V show how a library''s access to files, networks, and shell execution can be authorized independently of the application''s broader permissions. Trace the threat model, enforcement mechanism, and stated limitations. Which attacks does the control constrain, and which assumptions must hold for its guarantee?'
@@ -128,7 +128,9 @@ Security is also a problem of judgment. A finite threat model cannot enumerate e
 
 ## Structure of this unit
 
-**Lecture 1, Threat Modeling.** We begin with an unauthorized cancellation in the reservation service and show how the security finding emerges by *joining* the specification, architecture, adversary, and environment models. We then construct data-flow diagrams and trust boundaries, use STRIDE to search for threats, and evaluate the risks under explicit assumptions. We finish by revising a model when a previously omitted endpoint is revealed. See {exercise:threat-model-cancellation}.
+**Lecture 1, Threat Modeling.** We begin with an apparently correct reservation service and ask whether an authenticated user can cancel somebody else's reservation. The example introduces the distinction between authentication and authorization, concrete threat statements, and several ways to reduce security risk without necessarily changing the implementation. We then identify the assets worth protecting, model adversary capabilities and motivations, construct data-flow diagrams, and use STRIDE to search systematically for threats. A denial-of-service example connects adversarial resource consumption to the preceding Performance and Reliability unit.
+
+The extended material develops risk prioritization, joins models of specifications, architecture, adversaries, and deployment into an executable analysis, and examines what happens when a model omits a relevant path. These topics can be taught as a continuation or studied independently. See {exercise:threat-model-cancellation}.
 
 **Lecture 2, Controls & Assurance.** We begin with two attacker objectives, changing data and executing code, then use the Common Weakness Enumeration (CWE) to investigate the weaknesses that can make those outcomes possible. Four technical cases connect attacks to software controls: memory corruption and W⊕X, social engineering and identity management, ReDoS and linear-time matching, and vulnerable dependencies and zero-trust resource permissions. We close with fundamental limits on assurance and a claim, control and evidence exercise. See {exercise:secure-cancellation} and {lab:redos}.
 
@@ -142,27 +144,157 @@ A threat model is not simply a list of things that might go wrong. It represents
 
 ### Worked example: cancel somebody else's reservation
 
-Suppose the specification says that a student may cancel a reservation only if they own it; an administrator may cancel a reservation only for a room they administer. The system exposes a cancellation operation that accepts a reservation identifier. An authenticated student can choose the identifier in a request. If an endpoint verifies the student's identity but fails to check the required relationship to the reservation, the endpoint can perform a forbidden cancellation. The problem is not failed authentication: the student's identity may have been established correctly. The problem is that identity alone does not authorize an operation on a particular resource.
+Suppose a student authenticates through the university identity provider and then asks the reservation service to cancel reservation 17. The scheduler checks that the student is logged in, receives confirmation, and cancels the reservation. Every step succeeds. Is the system behaving correctly?
 
-The finding depends on information from several models. The **external specification** states which cancellations are permitted. The **architecture** identifies endpoints and the enforcement paths they use. The **adversary model** states which requests and parameters an attacker controls. The **environment model** states which endpoints are reachable in the deployed system. The data model supplies the ownership and room-administration relationships. None of these models, considered alone, establishes the complete threat.
+![Authentication succeeds, but the cancellation path never establishes whether the caller owns reservation 17.](figures/cancellation-sequence.svg)
+
+Put that question to a class before naming any defect and the first proposals concern the authentication mechanism. An adversary might attempt logins repeatedly until one succeeds. An adversary might impersonate the authentication service and return a forged confirmation. The drawing answers the second: the scheduler does not take the caller's word for who they are, it asks the authentication service, so that path stays closed for as long as the service answers correctly. The first names a real threat, but it belongs to the identity provider, which this diagram treats as a trusted dependency rather than as part of the system. Neither proposal was wasted. Checking a failure hypothesis against the model is the activity, and a hypothesis the model deflects shows what the model is currently assuming.
+
+The discovery arrives when the specification is stated out loud. A reservation belongs to somebody, and every reservation in the database is associated with people who have the authority to modify it. Set that property beside the drawing and the question becomes *"Does this flow? Is it aware of that property?"* Nothing in the sequence consults the store that records ownership. The authentication service reports that the caller is user X, and the step that should follow is the one the class then named: *"Does X own 17?"*
+
+One habit makes this kind of discussion productive. When a student answers "it depends," ask what it depends on. The answer is almost always a fact about the system that the analysis has not yet represented, which is to say that an honest "it depends" locates the next thing the model needs.
+
+The answer depends on something the sequence has not established: whether the authenticated student is authorized to cancel that particular reservation. Authentication establishes the caller's identity. It does not establish the relationship between the caller and the resource being modified. If reservation 17 belongs to another student, the cancellation violates the specification even though the authentication mechanism works correctly.
+
+The missing obligation is not merely to check permissions in general. The server must establish that the requesting principal owns the reservation or holds administrative authority over the room. The distinction matters because a student may legitimately cancel one reservation and be forbidden from canceling another. Written as a predicate, the obligation reads:
+
+> MayCancel(u, r) = Owner(u, r) OR AdminOf(u, Room(r))
+
+This is already more precise than saying that "administrators can cancel reservations," because it names the resource relationship each principal must stand in. A check that only asks whether the caller holds an administrator role does not establish the scope the policy requires. The same predicate returns in Lecture 2, where we ask what mechanism can enforce it.
+
+A useful threat statement resembles a bug report, but records additional information about the adversary. A bug report arranges a state, takes an action, and asserts what should then be true. A threat statement keeps that structure and adds the actor and the conditions that let the action succeed, which gives it five elements: the actor, entry point, action, enabling condition, and consequence. For the cancellation example, an authenticated student submits another student's reservation identifier to `POST /api/reservations/{id}/cancel`. Because the endpoint checks identity but not ownership, the request cancels a reservation the student does not control.
+
+The enabling condition is especially important. "Unauthorized cancellation" describes an undesirable outcome; "the endpoint checks authentication but not ownership" identifies the condition that permits it. The engineer can then investigate whether that condition exists on each path to the cancellation operation, which is a question an implementation can be inspected against.
+
+### One threat, several possible controls
+
+The most direct repair is to enforce the authorization predicate before cancellation. Enforcing it means more than inserting a check: the decision and the write must be applied to the same state, or the predicate can hold when it is evaluated and fail by the time the cancellation lands. But an organization may also consider other ways to reduce the threat. It could require confirmation from the reservation owner, restrict access to the campus network, make reservation identifiers difficult to discover, or use audit records and disciplinary procedures to deter misuse. These measures do not provide equivalent guarantees.
+
+![The direct repair, with the authorization decision and the cancellation held inside one atomic step and denial as the fail-safe default. The lower panel shows the interleaving that occurs when they are not.](figures/authorization-enforcement.svg)
+
+| Proposed measure | What it changes | Does it enforce the original authorization property? |
+|---|---|---|
+| Owner confirmation | Requires independent approval | Yes, if correctly enforced |
+| Unpredictable identifiers | Reduces target discovery | No |
+| Campus network or VPN | Reduces exposure | No |
+| Logging and investigation | Improves detection and accountability | No |
+| Disciplinary consequences | May deter identifiable attackers | No |
+
+The column that matters is the third one. These are not five solutions to the same problem; they are four different changes plus one repair. The distinction is between preventing an unauthorized operation, reducing the attacker's opportunity to attempt it, detecting misuse after the fact, and discouraging an identifiable actor from attempting it. Unpredictable identifiers may make targets harder to discover, but they do not establish authorization. A VPN may restrict exposure, but an authenticated insider can still exploit the endpoint. An audit log may establish who submitted a request, but it cannot undo the cancellation.
+
+Security engineering therefore requires judgment about more than software defects. The engineer must identify what each control changes, which adversaries remain capable of attacking once it is in place, and what residual risk the organization will accept. Several of these measures are cheaper and faster than a code change, and an organization under time pressure will reach for them first. That can be a sound decision, and it is still not a repair. Accepting a compensating control does not mean the vulnerability has disappeared; it means the organization has made a risk decision under stated assumptions. Those assumptions are what a later reviewer must check, because when one of them lapses the exposure returns with no code having changed, and nothing in the system announces it.
+
+### Identifying assets worth protecting
+
+Before asking what an adversary can do, decide what is worth protecting: *"What are the assets that this system manipulates?"* The first answer is the reservation records themselves. Notice what an attacker who alters them has accomplished: the service is still available and the records are still present, but they can no longer be trusted. The most fundamental asset of a reservation system is the trustworthiness of its reservations, and the loss here is of integrity rather than availability.
+
+An analysis that stops at application data will miss the adversary with no interest in reservations at all. *"What they actually care about is being able to use your computer to run code."* The target may be compute capacity, for mining or for a botnet that attacks somebody else. It may be the credentials the service holds for an external provider, spent on that provider's bill under the organization's account. It may be the organization's identity, used to make a message or a release appear trustworthy. Systems that actuate physical equipment extend the list further, into consequences that no later software change can undo.
+
+| Asset | Example adversarial objective |
+|---|---|
+| Reservation records | Change or disclose another user's booking |
+| Compute capacity | Run unauthorized workloads or exhaust service resources |
+| Administrative authority | Perform privileged operations |
+| Credentials and API tokens | Consume external services under the organization's account |
+| Organizational identity | Impersonate trusted communications or releases |
+
+Naming the assets changes which parts of the system deserve examination. An analysis that protects only the reservation table will not ask who can reach a deployment credential. An analysis that protects only confidentiality will not ask what an attacker gains by making a record untrustworthy rather than by reading it.
+
+### Modeling the adversary
+
+An adversary model specifies more than who might attack. It describes the capabilities available to that actor and the assumptions under which the analysis is performed. An unauthenticated client may submit requests to public endpoints. An authenticated student can invoke student operations and choose their parameters. A compromised administrator may exercise legitimate administrative authority for an illegitimate purpose. An insider may know implementation details unavailable to ordinary users.
+
+The engineer must also consider the adversary's resources and motivation. An opportunistic attacker may use readily available tools against many targets. A criminal organization may invest in infrastructure and specialized expertise because successful attacks produce revenue. A state-sponsored actor may sustain a campaign for strategic reasons. These categories do not determine capability by themselves, but they help establish plausible assumptions about the effort an attacker may expend against this system in particular.
+
+| Adversary category | Typical motivation | Relevant capabilities or resources |
+|---|---|---|
+| Opportunistic individual | Curiosity, disruption, personal benefit | Public tools, limited access, variable expertise |
+| Disgruntled insider | Retaliation, financial gain | Internal knowledge, legitimate credentials |
+| Professional contractor or mercenary | Payment | Specialized expertise, tools, time |
+| Criminal organization | Financial gain | Coordinated operations, purchased access, infrastructure |
+| State-sponsored actor | Strategic or intelligence objectives | Sustained effort, specialized capabilities, substantial resources |
+| AI-assisted attacker | Depends on the human or organization directing it | Automated exploration, scalable attempts, tool use |
+
+These are illustrative categories, not a ranking of inherent competence. An individual researcher may be more technically capable than a poorly resourced organization.
+
+Motivation, resources, and capability are related, and treating any one as a proxy for the others will mislead. An attacker can be highly motivated and poorly resourced, or well resourced and unwilling to spend much on a particular target. The consequence for analysis is that attack feasibility is not solely a property of the vulnerability. It depends on the adversary's access, knowledge, expertise, resources, and motivation, and a defect that is infeasible for one of these actors may be routine for another.
+
+Knowledge is a separate dimension again. An attacker may know only the public interface, may inspect open-source dependencies, or may obtain internal source code and architecture information. A system whose security depends on the attacker remaining ignorant of an implementation detail is relying on an assumption that may fail, and that usually fails quietly. Security analyses should therefore state what the attacker is assumed to know, rather than treating undocumented behavior as inaccessible.
+
+The purpose of this model is not to enumerate every possible attacker. It is to establish which capabilities the system must withstand and which are outside the current analysis. Those exclusions must be explicit, because they determine which threat statements are meaningful and which conclusions the analysis is entitled to draw.
+
+### Data-flow diagrams and trust boundaries
+
+Three models are now in hand and each answers a different question. The asset model identifies what matters. The adversary model identifies what the attacker controls. A data-flow diagram identifies where those capabilities can affect the protected resources, which is the question neither of the other two can answer on its own.
+
+A **data-flow diagram (DFD)** records external actors, processes, data stores, and the flows connecting them. For the reservation service, the diagram includes students and administrators, the HTTP API, the booking service, the identity provider, and the reservation store. A trust boundary marks where assumptions about identity, integrity, or authority must be reconsidered. It is not necessarily a machine boundary: two components on one host may run with different privileges, and two hosts may share one authority.
+
+![The reservation service as a data-flow diagram, showing where authority changes hands. Requests from the Student and the Administrator cross the client/service boundary into the HTTP API, which authenticates and validates before the booking service evaluates reservation policy. A second boundary separates the service from the external Identity Provider, whose assertions it verifies but did not create; a third separates the service from the Reservations store, which its credentials reach in full.](figures/reservation-data-flow-diagram.svg)
+
+The DFD should be selective rather than exhaustive. It must show the paths by which an attacker-controlled value reaches a consequential operation, the source of identity assertions, and the authority carried by services that access the reservation store. If the diagram omits a legacy endpoint, an administrative workflow, or a background job that can cancel reservations, it cannot support a complete analysis of cancellation authorization. Existing architecture, deployment, and data models should be reused wherever possible, rather than redrawn independently and allowed to drift.
+
+Drawing the diagram is also when the remaining elements of the security model get named, because the diagram will not hold together without them.
+
+| Security-model element | Engineering question | Example |
+|---|---|---|
+| Asset / protected property | What matters, and to whom? | Reservation integrity; private student data |
+| Adversary | Who may seek to violate it? | Authenticated student |
+| Capability | What can that actor control? | Request parameters and timing |
+| Entry point | Where can the actor interact with the system? | The student cancellation endpoint |
+| Trust boundary | Where does an assumption about authority change? | Client input enters server-side execution |
+| Dependency | Which outside service or component is trusted? | Identity provider and its signing keys |
+| Assumption | What must be true for the analysis to hold? | All cancellation paths are represented |
+
+### Searching for threats with STRIDE
+
+The cancellation defect was found by asking one good question about one drawing. That does not scale, and it does not generalize to the threats nobody happened to think of. **STRIDE** supplies six prompts to apply in turn: spoofing, tampering, repudiation, information disclosure, denial of service, and elevation of privilege. It is most useful when applied to particular elements and flows, not as a label attached to the whole application. At the client-to-API boundary we might ask whether the caller can impersonate another principal; at the API-to-database boundary, whether a service account can modify records outside its intended scope.
+
+Like FMEA, STRIDE examines a model element by element; the difference is that its questions concern adversarial violations rather than accidental failure modes. The procedure is the same one the Performance and Reliability unit used, pointed at a different kind of cause.
+
+| STRIDE prompt | Concrete reservation-service question | Property at risk |
+|---|---|---|
+| Spoofing | Can a request be accepted as another student? | Authentication |
+| Tampering | Can a student alter somebody else's reservation? | Integrity |
+| Repudiation | Can a cancellation be denied without reliable evidence? | Accountability |
+| Information disclosure | Can one student retrieve another's private reservation details? | Confidentiality |
+| Denial of service | Can repeated requests exhaust booking capacity? | Availability |
+| Elevation of privilege | Can a student invoke an administrator-only operation? | Authorization |
+
+A STRIDE label is not yet a threat statement. The six prompts produce candidates; what records a candidate is the five-element statement used earlier for the cancellation defect, naming the actor, entry point, action, enabling condition, and consequence. "Tampering" alone cannot be examined against an architecture, translated into a policy, or tested. The elevation-of-privilege row is the prompt that would have found the cancellation defect without anyone needing to notice it first.
+
+### Resource exhaustion: a small input and a large cost
+
+The denial-of-service prompt is where this unit meets the previous one, and it covers two attacks that an engineer should not treat alike. A distributed flood costs the attacker real resources. Controlling enough machines to saturate a service is a purchase, and the defender's spending and the attacker's spending rise together; an organization that can buy capacity, filtering, and admission control can often answer it with money. An algorithmic complexity attack is asymmetric. A short request induces work that grows super-linearly in its length, so the attacker spends bytes and the defender spends CPU, and buying capacity buys very little. A backtracking regular-expression engine is the standard instance. The Cloudflare outage of July 2019 demonstrates the weakness without any attacker at all: one rule carrying a pathological expression, deployed globally, saturated CPU across the network. The distinction to carry away is between attacker effort and defender resource consumption, because it decides whether more capacity is a defense or a postponement. Lecture 2 develops the control, and {lab:redos} measures the behavior directly.
+
+The core of Lecture 1 ends here. The three sections that follow extend the same analysis rather than beginning a new subject: how to decide which of the threats found this way deserves a response, how the models that produced them can be combined mechanically, and what such an analysis cannot establish however well it is executed. The closing exercise draws on both halves.
+
+### Extended analysis: prioritizing threats
+
+Threat identification and risk analysis are related but distinct. A threat statement describes a possible violation. Prioritization asks whether the violation matters enough to warrant a particular response, considering consequences, attack feasibility, exposure, existing protection, and cost. The alternatives examined earlier are what prioritization chooses among: the question is rarely whether to repair the endpoint in the abstract, but which combination of prevention, exposure reduction, detection, and deterrence the organization will fund this quarter, and what each combination leaves unaddressed.
+
+| Risk consideration | Information required | Models to consult |
+|---|---|---|
+| Consequence | Which requirement is violated and what is affected? | Specification, data, stakeholders |
+| Feasibility | Can this adversary reach and exercise the weakness? | Adversary, architecture |
+| Exposure | Under which deployment conditions is the opportunity available? | Deployment, environment |
+| Existing protection | What actually constrains the attack? | Controls, enforcement paths |
+| Cost of response | What changes and what does it cost? | Design, operations |
+
+Every row of that table is a question about a model, which is why prioritization cannot be settled by scoring alone. An administrator credential compromise may have greater consequences than disclosure of one reservation identifier, but its plausibility depends on how credentials are issued, protected, and revoked. A numerical score computed without those facts records a judgment rather than supporting one.
+
+### Extended analysis: joining security models
+
+The cancellation finding drew on information from several models at once, and it is worth naming them before combining them mechanically. The **external specification** states which cancellations are permitted. The **architecture** identifies endpoints and the enforcement paths they use. The **adversary model** states which requests and parameters an attacker controls. The **environment model** states which endpoints are reachable in the deployed system. The data model supplies the ownership and room-administration relationships. None of these models, considered alone, establishes the complete threat.
 
 | Model | Question it answers | Reservation-service fact |
 |---|---|---|
 | External specification | What behavior must be permitted or forbidden? | Students cancel only their own reservations; administrators act only within their room scope |
-| Architecture / implementation | Which paths reach the protected operation, and what checks do they perform? | Student and legacy administrative cancellation endpoints |
+| Architecture / implementation | Which paths reach the protected operation, and what checks do they perform? | A student cancellation endpoint and an administrative one |
 | Data model | Which relationships determine authorization? | `Owner(user,reservation)`, `Room(reservation)`, `AdminOf(user,room)` |
 | Adversary model | Which actions and inputs can the attacker choose? | Authenticated student can choose a reservation identifier |
-| Environment / deployment | Which paths can that actor reach? | Legacy endpoint remains publicly reachable |
+| Environment / deployment | Which paths can that actor reach? | A student credential reaches the student endpoint from anywhere the service is published |
 
-The authorization obligation can be written as a predicate:
-
-> MayCancel(u, r) = Owner(u, r) OR AdminOf(u, Room(r))
-
-This is already more precise than saying that "administrators can cancel reservations." It names the relevant resource relationship. A check that only asks whether the caller has an administrator role does not establish the scope required by the policy. The same predicate will return in Lecture 2, where we ask what mechanism can enforce it.
-
-### Joining the models: an executable security analysis
-
-Models become particularly useful when their entities have identifiers that permit their information to be combined. Consider four small relations. The `enforces_MayCancel` field records whether an endpoint's complete enforcement path implements the authorization predicate defined above. This is a verified model fact, established through architecture or implementation inspection, not inferred from passing functional tests. The simplified Boolean stands in for an analysis of the actual enforcement path.
+Models become particularly useful when their entities have identifiers that permit their information to be combined. Consider four small relations drawn from the models above. The `enforces_MayCancel` field records whether an endpoint's complete enforcement path implements the authorization predicate. This is a verified model fact, established through architecture or implementation inspection, not inferred from passing functional tests. The simplified Boolean stands in for an analysis of the actual enforcement path.
 
 **`Permissions(role, operation, scope)`**
 
@@ -175,24 +307,26 @@ Models become particularly useful when their entities have identifiers that perm
 
 | endpoint | operation | enforces_MayCancel |
 |---|---|---|
-| `/api/cancel` | cancel | true |
-| `/legacy/cancel` | cancel | false |
+| `POST /api/reservations/{id}/cancel` | cancel | false |
+| `POST /api/admin/cancel` | cancel | true |
 
 **`Capabilities(actor, role, endpoint)`**
 
 | actor | role | endpoint |
 |---|---|---|
-| malicious_student | student | `/api/cancel` |
-| malicious_student | student | `/legacy/cancel` |
+| malicious_student | student | `POST /api/reservations/{id}/cancel` |
+| room_admin | administrator | `POST /api/admin/cancel` |
 
-The adversary model assumes that the legacy endpoint accepts requests authenticated with ordinary student credentials. That assumption must be checked against the deployed system; if the endpoint requires a credential the student cannot obtain, the corresponding capability row is incorrect.
+The administrative endpoint is in the model and it is not a finding. It restricts the operation to the administrator role and scopes it to the rooms that administrator administers, which is what `MayCancel` already admits. Recording a correct path is not wasted effort: an analysis that contains only suspected defects cannot distinguish a path that enforces the predicate from a path nobody examined.
+
+The adversary model assumes that an authenticated student can reach the student cancellation endpoint with ordinary credentials, and cannot obtain a credential the administrative endpoint accepts. Both assumptions must be checked against the deployed system. If the administrative endpoint can be reached with a student credential, a capability row is missing and the query below will not report the path it opens.
 
 **`Exposure(endpoint, reachable)`**
 
 | endpoint | reachable |
 |---|---|
-| `/api/cancel` | true |
-| `/legacy/cancel` | true |
+| `POST /api/reservations/{id}/cancel` | true |
+| `POST /api/admin/cancel` | true |
 
 The following query identifies a reachable path that is modeled as omitting the check required by the student's policy:
 
@@ -211,60 +345,27 @@ WHERE p.scope = 'own'
   AND e.enforces_MayCancel = FALSE;
 ```
 
-**Result:** `malicious_student | /legacy/cancel | cancel | own`.
+**Result:** `malicious_student | POST /api/reservations/{id}/cancel | cancel | own`.
 
-The query identifies a modeled path on which an authenticated student can reach a cancellation operation without enforcement of the required authorization policy. The result is a security finding about the joined models, not independent proof of an exploitable implementation. A real system may enforce the policy in a shared service or database, so the engineer must inspect the complete path before recording `enforces_MayCancel`. The simplified relation makes model composition visible without pretending that a Boolean field is a general-purpose vulnerability detector.
-
-There is also a serious failure mode in the analysis itself. Remove `/legacy/cancel` from the architecture relation and rerun the query: it returns no rows. That does **not** establish that the service is secure. It establishes that the available models contain no matching violation. If the omitted endpoint exists in production, the analysis is incomplete. Thus a model-based security argument has at least three obligations: the models correspond to the real system; the models include the information relevant to the decision; and the query correctly expresses the intended property. The lecture's closing reveal of a legacy endpoint returns to this exact distinction.
-
-This use of model joins is not unique to security. Performance analysis combines architecture, workload, and resource models; reliability analysis combines architecture, component-failure models, and recovery assumptions. Security adds models of adversary capabilities, exposure, and protected obligations. The engineering benefit is the same: an analysis can use information distributed across several representations, provided their entities correspond and the combined assumptions are valid.
+The query identifies a modeled path on which an authenticated student can reach a cancellation operation without enforcement of the required authorization policy. It is the same finding the class reached by looking at a drawing, obtained instead from facts recorded in four separate places, none of which contains it alone. The result is a finding about the joined models, not independent proof of an exploitable implementation. A real system may enforce the policy in a shared service or in the database, so the engineer must inspect the complete path before recording `enforces_MayCancel`. The simplified relation makes model composition visible without pretending that a Boolean field is a general-purpose vulnerability detector.
 
 ![Four relational models are joined on shared identifiers to identify a reachable cancellation path that does not enforce the specified authorization policy.](figures/security-model-join.svg)
 
-### Constructing system and adversary models
+This use of model joins is not unique to security. Performance analysis combines architecture, workload, and resource models; reliability analysis combines architecture, component-failure models, and recovery assumptions. Security adds models of adversary capabilities, exposure, and protected obligations. The engineering benefit is the same: an analysis can use information distributed across several representations, provided their entities correspond and the combined assumptions are valid.
 
-The small relations above were easy to query because we already knew which components and interfaces mattered. In a real project, that information must be obtained. A **data-flow diagram (DFD)** is one useful representation: it records external actors, processes, data stores, and the flows connecting them. For the reservation service, the diagram includes students and administrators, the HTTP API, the booking service, the identity provider, and the reservation store. A trust boundary marks where assumptions about identity, integrity, or authority must be reconsidered. It is not necessarily a machine boundary: two components on one host may run with different privileges, and two hosts may share one authority.
+### Extended analysis: validating the model
 
-![The reservation service as a data-flow diagram, showing where authority changes hands. Requests from the Student and the Administrator cross the client/service boundary into the HTTP API, which authenticates and validates before the booking service evaluates reservation policy. A second boundary separates the service from the external Identity Provider, whose assertions it verifies but did not create; a third separates the service from the Reservations store, which its credentials reach in full.](figures/reservation-data-flow-diagram.svg)
+The analysis has a failure mode of its own, and it is not a defect in the query. Suppose the deployed service exposes a cancellation path that nobody recorded in `Endpoints`. Nothing changes. The query runs, the join succeeds, and it reports what the relations contain; had every recorded endpoint enforced the predicate it would have returned no rows at all. An empty result establishes that the available models hold no matching violation. It does not establish that the service is secure, and the difference between those two statements is the whole of this section.
 
-The DFD should be selective rather than exhaustive. It must show the paths by which an attacker-controlled value reaches a consequential operation, the source of identity assertions, and the authority carried by services that access the reservation store. If the diagram omits a legacy endpoint, an administrative workflow, or a background job that can cancel reservations, it cannot support a complete analysis of cancellation authorization. Existing architecture, deployment, and data models should be reused wherever possible, rather than redrawn independently and allowed to drift.
+A model-based security argument therefore carries at least three obligations, and they fail in different ways.
 
-| Security-model element | Engineering question | Example |
-|---|---|---|
-| Asset / protected property | What matters, and to whom? | Reservation integrity; private student data |
-| Adversary | Who may seek to violate it? | Authenticated student |
-| Capability | What can that actor control? | Request parameters and timing |
-| Entry point | Where can the actor interact with the system? | Public cancellation API |
-| Trust boundary | Where does an assumption about authority change? | Client input enters server-side execution |
-| Dependency | Which outside service or component is trusted? | Identity provider and its signing keys |
-| Assumption | What must be true for the analysis to hold? | All cancellation paths are represented |
+- **Correspondence.** The models describe the system that is actually deployed. This is the obligation that fails silently, because a relation short a row looks exactly like a relation that is complete.
+- **Sufficiency.** The models contain the information the decision requires. A model may correspond to the system perfectly and still omit the field on which the question turns.
+- **Correctness.** The query expresses the intended property. This is the obligation most easily checked, and the one least often violated.
 
-### Eliciting threats and analyzing risk
+A peer reviewer who discovers an unrecorded interface has therefore done more than improve a drawing. They have changed the set of conclusions the model can support, which means the conclusions already drawn must be revisited rather than extended, and any clean result obtained before the discovery establishes less than it appeared to. This is also why the obligations are worth writing down next to the analysis: a reader who can see what the model claims to contain can look for what it does not.
 
-Once the relevant system and adversary models exist, we can search systematically for violations. **STRIDE** supplies six prompts: spoofing, tampering, repudiation, information disclosure, denial of service, and elevation of privilege. It is most useful when applied to particular elements and flows, not as a label attached to the entire application. For example, at the client-to-API boundary we might ask whether the caller can impersonate another principal; at the API-to-database boundary we might ask whether a service account can modify records outside its intended scope.
-
-| STRIDE prompt | Concrete reservation-service question | Property at risk |
-|---|---|---|
-| Spoofing | Can a request be accepted as another student? | Authentication |
-| Tampering | Can a student alter somebody else's reservation? | Integrity |
-| Repudiation | Can a cancellation be denied without reliable evidence? | Accountability |
-| Information disclosure | Can one student retrieve another's private reservation details? | Confidentiality |
-| Denial of service | Can repeated requests exhaust booking capacity? | Availability |
-| Elevation of privilege | Can a student invoke an administrator-only operation? | Authorization |
-
-A STRIDE label is not yet a threat statement. A useful statement identifies the actor, entry point, action, enabling condition, and consequence: *An authenticated student supplies another student's reservation identifier to a reachable cancellation endpoint; if the endpoint checks identity but not ownership, the student can cancel a reservation they do not control.* This can be examined against a concrete architecture, translated into a policy, and tested. "Tampering" alone cannot.
-
-Threat identification and risk analysis are related but distinct. A threat statement describes a possible violation. Prioritization asks whether the violation matters enough to warrant a particular control, considering consequences, attack feasibility, exposure, existing protection, and cost. These judgments require further joins with stakeholder obligations, deployment information, and operating assumptions. An administrator credential compromise may have greater consequences than disclosure of one reservation identifier, but its plausibility depends on how credentials are issued, protected, and revoked. Numerical scores cannot compensate for missing facts about the environment.
-
-| Risk consideration | Information required | Models to consult |
-|---|---|---|
-| Consequence | Which requirement is violated and what is affected? | Specification, data, stakeholders |
-| Feasibility | Can this adversary reach and exercise the weakness? | Adversary, architecture |
-| Exposure | Under which deployment conditions is the opportunity available? | Deployment, environment |
-| Existing protection | What actually constrains the attack? | Controls, enforcement paths |
-| Cost of response | What changes and what does it cost? | Design, operations |
-
-A threat model should be reviewed against the actual implementation and revised as the system changes. A peer reviewer who discovers an omitted interface has done more than improve the drawing: they have changed the set of security conclusions the model can support. The closing exercise asks teams to identify such omissions and to revise their analysis, not merely add more STRIDE labels. See {exercise:threat-model-cancellation}.
+A model can be internally consistent, correctly queried, and still omit the path that matters. That is not an argument against models. An informal review omits paths too, and leaves no record of which ones it considered, so the omission cannot be found later by anyone. It is an argument for stating what a model contains, because a stated boundary is the only kind that can be audited. The closing exercise perturbs one assumption at a time and asks which conclusions survive; the perturbation worth dwelling on is the one that adds a path the first diagram never held. See {exercise:threat-model-cancellation}.
 
 ## Lecture 2: Controls & Assurance
 
