@@ -826,6 +826,17 @@ re-deriving these, so they live here:**
     intent; the commit is the only thing that survives.
   - The orchestrator's half: on EVERY return, `git status --porcelain` the worktree before accepting
     a completion. Untracked work plus a confident closing line is the shape this failure takes.
+  - **For a LONG multi-item job, commit after each ITEM, not once at the end — "commit as the LAST
+    action" is the floor, not the whole rule.** Read alone, the bullet above says to commit once,
+    at the end, which is exactly what loses everything when the process dies mid-task. Three agents
+    died on `API Error: Connection closed mid-response` on 261118, two of them hours into a deck
+    rebuild with nothing committed. Both were recoverable only because the orchestrator probed the
+    worktree instead of re-dispatching, and one of them had in fact finished all seven of its edits
+    while its closing line said it was starting the fourth.
+    So a brief covering N numbered items should say: commit after EACH item, backgrounded, with a
+    pathspec; a half-finished round is a fine commit and a dirty tree is not. The cost is N hook
+    runs instead of one; the alternative is losing an hour of work to a dropped connection. Keep
+    the final commit too, for whatever the last item left.
 - **The 261006 browser-tier wedge is FIXED, and concurrency was never the mechanism.** The tier
   hung at ~0.11 s of CPU five times that day (19m46s in one agent, the pre-push gate, finally a
   GitHub Actions run — a fresh machine with no stale profiles and no concurrent agents, which is

@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>38</b> chapters · <b>180</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>187</b> sections · <b>48</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -227,7 +227,7 @@
 <h3 id="ch-2-3-structural"><span class="tier-kick">Lesson</span><a href="../book/2.3-structural.html" class="ch-link">2.3-structural</a> <span class="ch-slug">2.3-structural</span></h3>
 <div class="section s2" id="sec-2-3-structural--entities-relationships-and-graph-analysis">
 <div class="sec-h"><a href="../book/2.3-structural.html">Entities, Relationships, and Graph Analysis</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+<p class="topic">We will examine each class of model in the same way.</p>
 </div>
 <div class="section s3" id="sec-2-3-structural--constructing-a-structural-model">
 <div class="sec-h"><a href="../book/2.3-structural.html">Constructing a Structural Model</a></div>
@@ -241,12 +241,20 @@
 <div class="sec-h"><a href="../book/2.3-structural.html">DocAble: Architecture and Computation Dependencies</a></div>
 <p class="topic">DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order.</p>
 </div>
+<div class="section s3" id="sec-2-3-structural--where-may-a-document-change">
+<div class="sec-h"><a href="../book/2.3-structural.html">Where may a document change?</a></div>
+<p class="topic">DocAble supports several document formats through libraries powerful enough to alter their underlying structures.</p>
+</div>
+<div class="section s3" id="sec-2-3-structural--what-computations-depend-on-one-another">
+<div class="sec-h"><a href="../book/2.3-structural.html">What computations depend on one another?</a></div>
+<p class="topic">The document-mutation model identifies where changes belong.</p>
+</div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-4-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.4-behavioral.html" class="ch-link">2.4-behavioral</a> <span class="ch-slug">2.4-behavioral</span></h3>
 <div class="section s2" id="sec-2-4-behavioral--states-transitions-and-behavioral-analysis">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">States, Transitions, and Behavioral Analysis</a></div>
-<p class="topic">Suppose a service processes jobs that may be waiting, running, completed, or failed.</p>
+<p class="topic">As with structural models, we begin with a small example, then examine the properties and analyses it supports before turning to DocAble.</p>
 </div>
 <div class="section s3" id="sec-2-4-behavioral--constructing-a-behavioral-model">
 <div class="sec-h"><a href="../book/2.4-behavioral.html">Constructing a Behavioral Model</a></div>
@@ -260,12 +268,20 @@
 <div class="sec-h"><a href="../book/2.4-behavioral.html">DocAble: Job Lifecycles and Recovery</a></div>
 <p class="topic">DocAble distributes document accessibility work across workers that may fail or lose their assignments.</p>
 </div>
+<div class="section s3" id="sec-2-4-behavioral--publishing-a-recovered-result">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Publishing a recovered result</a></div>
+<p class="topic">A worker recovering a document job may have a corrected artifact available locally before uploading it to persistent storage.</p>
+</div>
+<div class="section s3" id="sec-2-4-behavioral--distinguishing-a-current-owner-from-a-returning-one">
+<div class="sec-h"><a href="../book/2.4-behavioral.html">Distinguishing a current owner from a returning one</a></div>
+<p class="topic">DocAble leases each in-flight job to one worker.</p>
+</div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-5-decision"><span class="tier-kick">Lesson</span><a href="../book/2.5-decision.html" class="ch-link">2.5-decision</a> <span class="ch-slug">2.5-decision</span></h3>
 <div class="section s2" id="sec-2-5-decision--conditions-alternatives-and-decision-analysis">
 <div class="sec-h"><a href="../book/2.5-decision.html">Conditions, Alternatives, and Decision Analysis</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+<p class="topic">We will again begin with a small example, examine the properties and analyses it supports, and then turn to DocAble.</p>
 </div>
 <div class="section s3" id="sec-2-5-decision--constructing-a-decision-model">
 <div class="sec-h"><a href="../book/2.5-decision.html">Constructing a Decision Model</a></div>
@@ -278,6 +294,18 @@
 <div class="section s2" id="sec-2-5-decision--docable-policies-and-decisions">
 <div class="sec-h"><a href="../book/2.5-decision.html">DocAble: Policies and Decisions</a></div>
 <p class="topic">DocAble uses decision models for several purposes: deciding whether an image needs a description, declaring which services may communicate, and determining whether a user may upload a document.</p>
+</div>
+<div class="section s3" id="sec-2-5-decision--when-is-an-image-decorative">
+<div class="sec-h"><a href="../book/2.5-decision.html">When is an image decorative?</a></div>
+<p class="topic">Accessibility remediation must distinguish images that convey information from those that are merely decorative.</p>
+</div>
+<div class="section s3" id="sec-2-5-decision--which-services-may-communicate">
+<div class="sec-h"><a href="../book/2.5-decision.html">Which services may communicate?</a></div>
+<p class="topic">DocAble distributes document remediation across several services.</p>
+</div>
+<div class="section s3" id="sec-2-5-decision--which-entitlement-authorizes-an-upload">
+<div class="sec-h"><a href="../book/2.5-decision.html">Which entitlement authorizes an upload?</a></div>
+<p class="topic">The service-flow model determines which calls are permitted.</p>
 </div>
 </div>
 <div class="chapter">
