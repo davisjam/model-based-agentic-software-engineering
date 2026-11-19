@@ -20,7 +20,8 @@
     headed ONE ATOMIC STEP, which reads: evaluate and cancel under one serialized view of the state, using
     a transaction, a row lock, or a conditional write. Three boxes sit inside that region. The first,
     LOAD r AND ITS OWNER, draws the reservation and its ownership from server-side state. An arrow runs
-    right from it to the second, EVALUATE MayCancel of u and r, which is Admin of u OR Owner of u and r.
+    right from it to the second, EVALUATE MayCancel of u and r, which holds when u owns r or administers
+    the room r is booked in.
     From that box two arrows leave. The arrow labeled YES runs right, still inside the region, to CANCEL
     RESERVATION. The arrow labeled NO runs down and OUT of the region to DENY, drawn in the failure color
     and annotated as the fail-safe default. CANCEL RESERVATION sends an arrow down to RECORD RESULT, which
@@ -82,9 +83,10 @@
 
   <!-- evaluate -->
   <rect x="508" y="176" width="140" height="62" rx="9" fill="#faf7f0" stroke="#2f5169" stroke-width="2"/>
-  <text x="578" y="197" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">EVALUATE</text>
-  <text x="578" y="213" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">MayCancel(u, r)</text>
-  <text x="578" y="229" text-anchor="middle" font-size="10.5" fill="#57534e">Admin(u) OR Owner(u, r)</text>
+  <text x="578" y="194" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">EVALUATE</text>
+  <text x="578" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169">MayCancel(u, r)</text>
+  <text x="578" y="222" text-anchor="middle" font-size="9.5" fill="#57534e">Owner(u, r) OR</text>
+  <text x="578" y="233" text-anchor="middle" font-size="9.5" fill="#57534e">AdminOf(u, Room(r))</text>
 
   <!-- yes -->
   <line x1="648" y1="207" x2="686" y2="207" stroke="#2f5169" stroke-width="2" marker-end="url(#auth-ah)"/>

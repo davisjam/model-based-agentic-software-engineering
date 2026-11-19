@@ -154,7 +154,7 @@ The discovery arrives when the specification is stated out loud. A reservation b
 
 One habit makes this kind of discussion productive. When a student answers "it depends," ask what it depends on. The answer is almost always a fact about the system that the analysis has not yet represented, which is to say that an honest "it depends" locates the next thing the model needs.
 
-The answer depends on something the sequence has not established: whether the authenticated student is authorized to cancel that particular reservation. Authentication establishes the caller's identity. It does not establish the relationship between the caller and the resource being modified. If reservation 17 belongs to another student, the cancellation violates the specification even though the authentication mechanism works correctly.
+Authentication establishes the caller's identity. It does not establish the relationship between the caller and the resource being modified, so if reservation 17 belongs to another student the cancellation violates the specification even though the authentication mechanism works correctly.
 
 The missing obligation is not merely to check permissions in general. The server must establish that the requesting principal owns the reservation or holds administrative authority over the room. The distinction matters because a student may legitimately cancel one reservation and be forbidden from canceling another. Written as a predicate, the obligation reads:
 
@@ -168,9 +168,7 @@ The enabling condition is especially important. "Unauthorized cancellation" desc
 
 ### One threat, several possible controls
 
-The most direct repair is to enforce the authorization predicate before cancellation. Enforcing it means more than inserting a check: the decision and the write must be applied to the same state, or the predicate can hold when it is evaluated and fail by the time the cancellation lands. But an organization may also consider other ways to reduce the threat. It could require confirmation from the reservation owner, restrict access to the campus network, make reservation identifiers difficult to discover, or use audit records and disciplinary procedures to deter misuse. These measures do not provide equivalent guarantees.
-
-![The direct repair, with the authorization decision and the cancellation held inside one atomic step and denial as the fail-safe default. The lower panel shows the interleaving that occurs when they are not.](figures/authorization-enforcement.svg)
+The direct repair is to enforce the authorization predicate on every path that reaches the cancellation operation. But an organization may also consider other ways to reduce the threat. It could require confirmation from the reservation owner, restrict access to the campus network, make reservation identifiers difficult to discover, or use audit records and disciplinary procedures to deter misuse. These measures do not provide equivalent guarantees.
 
 | Proposed measure | What it changes | Does it enforce the original authorization property? |
 |---|---|---|
@@ -217,7 +215,7 @@ The engineer must also consider the adversary's resources and motivation. An opp
 
 These are illustrative categories, not a ranking of inherent competence. An individual researcher may be more technically capable than a poorly resourced organization.
 
-Motivation, resources, and capability are related, and treating any one as a proxy for the others will mislead. An attacker can be highly motivated and poorly resourced, or well resourced and unwilling to spend much on a particular target. The consequence for analysis is that attack feasibility is not solely a property of the vulnerability. It depends on the adversary's access, knowledge, expertise, resources, and motivation, and a defect that is infeasible for one of these actors may be routine for another.
+Motivation, resources, and capability are related, and treating any one as a proxy for the others will mislead. Attack feasibility is therefore not a property of the vulnerability alone, and a defect that is infeasible for one of these actors may be routine for another.
 
 Knowledge is a separate dimension again. An attacker may know only the public interface, may inspect open-source dependencies, or may obtain internal source code and architecture information. A system whose security depends on the attacker remaining ignorant of an implementation detail is relying on an assumption that may fail, and that usually fails quietly. Security analyses should therefore state what the attacker is assumed to know, rather than treating undocumented behavior as inaccessible.
 
@@ -317,7 +315,7 @@ Models become particularly useful when their entities have identifiers that perm
 | malicious_student | student | `POST /api/reservations/{id}/cancel` |
 | room_admin | administrator | `POST /api/admin/cancel` |
 
-The administrative endpoint is in the model and it is not a finding. It restricts the operation to the administrator role and scopes it to the rooms that administrator administers, which is what `MayCancel` already admits. Recording a correct path is not wasted effort: an analysis that contains only suspected defects cannot distinguish a path that enforces the predicate from a path nobody examined.
+The administrative endpoint is in the model and it is not a finding. Its enforcement path checks both the administrator's identity and the room scope, admitting a cancellation only when the caller administers the room the reservation is booked in, which is what `MayCancel` already requires. Holding the administrator role is not by itself sufficient. Recording a correct path is not wasted effort: an analysis that contains only suspected defects cannot distinguish a path that enforces the predicate from a path nobody examined.
 
 The adversary model assumes that an authenticated student can reach the student cancellation endpoint with ordinary credentials, and cannot obtain a credential the administrative endpoint accepts. Both assumptions must be checked against the deployed system. If the administrative endpoint can be reached with a student credential, a capability row is missing and the query below will not report the path it opens.
 
@@ -355,17 +353,19 @@ This use of model joins is not unique to security. Performance analysis combines
 
 ### Extended analysis: validating the model
 
-The analysis has a failure mode of its own, and it is not a defect in the query. Suppose the deployed service exposes a cancellation path that nobody recorded in `Endpoints`. Nothing changes. The query runs, the join succeeds, and it reports what the relations contain; had every recorded endpoint enforced the predicate it would have returned no rows at all. An empty result establishes that the available models hold no matching violation. It does not establish that the service is secure, and the difference between those two statements is the whole of this section.
+The analysis has a failure mode of its own, and it is not a defect in the query. Suppose that `Endpoints` records `enforces_MayCancel = TRUE` for the student cancellation endpoint, because the engineer who filled the field traced the request into a shared service and concluded that the predicate was evaluated there. Run the same query and it returns no rows. Every relation it read was complete, the join succeeded, and the SQL expressed exactly the property intended. The result is empty because one recorded fact is false. The deployed endpoint still cancels reservations without checking ownership; the model has merely stopped saying so. An empty result establishes that the models hold no matching violation. It does not establish that the service is secure, and the difference between those two statements is the whole of this section.
 
 A model-based security argument therefore carries at least three obligations, and they fail in different ways.
 
-- **Correspondence.** The models describe the system that is actually deployed. This is the obligation that fails silently, because a relation short a row looks exactly like a relation that is complete.
-- **Sufficiency.** The models contain the information the decision requires. A model may correspond to the system perfectly and still omit the field on which the question turns.
+- **Correspondence.** Every fact the models record is true of the system that is actually deployed. This is the obligation the Boolean above violates, and it fails silently, because a field reading `TRUE` looks the same whether an engineer verified the enforcement path or assumed it.
+- **Sufficiency.** The models contain every element the decision requires. A model may record nothing false and still omit the path on which the question turns, and no query can report a row that no relation holds.
 - **Correctness.** The query expresses the intended property. This is the obligation most easily checked, and the one least often violated.
+
+Correspondence and sufficiency fail independently, and an empty result looks identical under both. A wrong fact and an absent path are different defects in the model, they are found by different activities, and treating either one as the other leaves the analysis trusting a conclusion it has not earned.
 
 A peer reviewer who discovers an unrecorded interface has therefore done more than improve a drawing. They have changed the set of conclusions the model can support, which means the conclusions already drawn must be revisited rather than extended, and any clean result obtained before the discovery establishes less than it appeared to. This is also why the obligations are worth writing down next to the analysis: a reader who can see what the model claims to contain can look for what it does not.
 
-A model can be internally consistent, correctly queried, and still omit the path that matters. That is not an argument against models. An informal review omits paths too, and leaves no record of which ones it considered, so the omission cannot be found later by anyone. It is an argument for stating what a model contains, because a stated boundary is the only kind that can be audited. The closing exercise perturbs one assumption at a time and asks which conclusions survive; the perturbation worth dwelling on is the one that adds a path the first diagram never held. See {exercise:threat-model-cancellation}.
+A stated boundary is the only kind a reader can audit, which is why the closing exercise perturbs one assumption at a time and asks which conclusions survive, and why the perturbation worth dwelling on is the one that adds a path the first diagram never held. See {exercise:threat-model-cancellation}.
 
 ## Lecture 2: Controls & Assurance
 
@@ -445,6 +445,10 @@ A different limit concerns the tools and components on which the assurance argum
 ![Rice's theorem limits general semantic analysis; Trusting Trust shows that source review depends on assumptions about the compiler.](figures/security-assurance-limits.svg)
 
 The reference-monitor tradition gives a practical counterpart to these limitations. A security control must mediate the relevant operations, resist tampering within the assumed threat model, and be sufficiently understandable to evaluate. A control that checks one API while another reaches the same operation does not provide complete mediation. Two checks that rely on the same stale authorization value do not constitute two independent defenses. These are not reasons to abandon controls. They are reasons to identify the assumptions on which their guarantees depend.
+
+The cancellation predicate left open in Lecture 1 is where those requirements become concrete. Enforcing `MayCancel` means more than inserting a check: the decision and the write must be applied to the same state, or the predicate can hold when it is evaluated and fail by the time the cancellation lands. The mechanism that closes the gap is ordinary, a transaction, a row lock, or a conditional write, and what it buys is a single serialized view under which the authorization decision and the operation it authorizes both observe the same ownership. Denial is the fail-safe default, because a path that cannot reach a decision must not fall through to the operation. The remaining assumption is the mediation one: that no interface reaches cancellation outside this path.
+
+![The direct repair, with the authorization decision and the cancellation held inside one atomic step and denial as the fail-safe default. The lower panel shows the interleaving that occurs when they are not.](figures/authorization-enforcement.svg)
 
 ### Obtaining security assurance
 
