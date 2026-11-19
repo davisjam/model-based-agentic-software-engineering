@@ -2,6 +2,14 @@
 // Run after the MkDocs build: node book/check_figure_layout.mjs http://127.0.0.1:8766/
 import assert from 'node:assert/strict';
 import puppeteer from 'puppeteer';
+import {readdirSync} from 'node:fs';
+
+// --all follows current generated source pages, avoiding stale redirect pages.
+const slugs = process.argv.includes('--all')
+  ? readdirSync(new URL('./web/docs/', import.meta.url))
+      .filter(name => /^(\d\.|part-|appendix-|colophon|about-the-author).*\.md$/.test(name))
+      .map(name => name.replace(/\.md$/, ''))
+  : ['2.2-constructing-and-using-engineering-models', '2.3-structural'];
 
 const base = process.argv[2];
 assert(base, 'Supply the URL of the built book site.');
@@ -14,7 +22,7 @@ try {
   const page = await browser.newPage();
   for (const width of [1600, 1100, 390]) {
     await page.setViewport({width, height: 1000});
-    for (const slug of ['2.2-constructing-and-using-engineering-models', '2.3-structural']) {
+    for (const slug of slugs) {
       await page.goto(new URL(`${slug}.html`, base).href, {waitUntil: 'networkidle0'});
       await page.evaluate(() => document.fonts.ready);
       const result = await page.evaluate(() => {
@@ -24,17 +32,20 @@ try {
         for (const figure of document.querySelectorAll('figure.book-figure')) {
           const svg = figure.querySelector('svg');
           if (!svg) continue;
-          if (rect(svg).width < Math.min(600, rect(figure).width) - 1) problems.push('undersized figure');
+          if (rect(svg).width < Math.min(34 * parseFloat(getComputedStyle(document.documentElement).fontSize), rect(figure).width) - 1) problems.push('undersized figure');
           if (rect(svg).width > rect(figure).width + 1) problems.push('figure overflows column');
-          if (rect(figure.querySelector('figcaption')).width < rect(svg).width - 1) problems.push('narrow caption');
+          const caption = figure.querySelector('figcaption');
+          if (caption && rect(caption).width < rect(svg).width - 1) problems.push('narrow caption');
+          if (caption && rect(caption).top - rect(svg).bottom > 40) problems.push('caption separates from figure');
+          if ([...svg.querySelectorAll('style')].some(s => !s.textContent.includes('@scope'))) problems.push('unscoped inline SVG stylesheet');
         }
         for (const inset of document.querySelectorAll('.concept-inset')) {
           const r = rect(inset), p = rect(inset.parentElement);
           if (Math.abs((r.left + r.right) - (p.left + p.right)) > 2) problems.push('off-center inset');
         }
-        const table = document.querySelector('[data-label="semantic-commitment-spectrum"]');
-        if (table) {
-          if (rect(table.tHead).top - rect(table.caption).bottom > 24) problems.push('caption separates from table');
+        for (const table of document.querySelectorAll('table.book-table')) {
+          if (!table.caption) continue;
+          if (table.tHead && rect(table.tHead).top - rect(table.caption).bottom > 24) problems.push('caption separates from table');
           for (const link of table.caption.querySelectorAll('sup.cite-ref a')) {
             if (!document.querySelector(link.getAttribute('href'))) problems.push('caption reference target missing');
             if (!rect(link).width) problems.push('caption reference hidden');

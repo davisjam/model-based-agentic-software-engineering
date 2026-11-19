@@ -1,12 +1,3 @@
-% mage-auto-heading: prevention-and-observation
-% mage-auto-heading: validators-and-gates
-% mage-auto-heading: constraining-document-changes
-% mage-auto-heading: tests-and-models-work-together
-% mage-auto-heading: one-obligation-several-ways-to-hold-it
-% mage-auto-heading: margin-and-engineering-freedom
-% mage-auto-heading: positive-and-negative-constraints
-% mage-auto-heading: the-freedom-a-control-preserves
-% mage-auto-heading: what-counts-as-a-mechanism
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Alignment -->
@@ -79,16 +70,9 @@ Effect
 \textbf{Gates} evaluate conditions and enforce decisions at boundaries. A continuous integration (CI) job may report test results; a merge gate uses required results to admit or refuse a change. Deployment gates can require a successful security check, and runtime authorization gates can permit or refuse requests under an access policy. One tool can perform several functions by collecting evidence, evaluating it, and enforcing the resulting decision.
 \end{bookbox}
 
-Let\textquotesingle s follow a proposed reporting change from implementation to merge. \autoref{constraint-vs-sensor} shows how module restrictions, test instrumentation, and a merge gate work together to preserve the billing boundary.
+\section{Constructing and Evaluating Governance Mechanisms}\label{heading:constructing-and-evaluating-governance-mechanisms}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/governance-proposed-change-16bfb894e7.pdf}
-\caption{\emph{Governance around a proposed change.} Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks\textquotesingle{} coverage limits the assurance they provide.}
-\label{constraint-vs-sensor}
-\end{figure}
-
-\section{Prevention and Observation}\label{heading:prevention-and-observation}
+\subsection{Prevention, Observation, and Admission}\label{heading:prevention-and-observation}
 
 % <!-- section-terms: constraints-and-sensors, constraint, sensor -->
 
@@ -112,16 +96,6 @@ Why observe a behavior when we could prevent it? Because we may not yet know whe
 
 An instruction to use the billing API can guide an agent, but it does not exclude a direct database connection. \textbf{A constraint instead limits the actions or states available to the implementation.}\mageaside{Types provide one familiar way to exclude invalid choices. Pierce describes type systems as syntactic methods for ruling out classes of erroneous behavior~\citep{pierce2002}. A closed enum with variants such as \texttt{IDLE}, \texttt{RUNNING}, and \texttt{DONE} excludes undeclared state names in checked code; external input must be validated when converted to the type. It does not by itself forbid a transition from \texttt{IDLE} directly to \texttt{DONE}. That transition requires its own constraint.} For the reporting change, a module boundary exposes the billing API client while keeping the database connector private. The language\textquotesingle s visibility rules prevent checked reporting code from importing that connector. The agent remains free to assemble the report but cannot use the private connector. Generic networking remains a possible route around this restriction.
 
-% <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
-
-Constraints can restrict an implementation after it is produced, or shape its construction so that selected violations cannot arise. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward~\citep{schmidt2006model,sendall2003model,czarnecki2006feature}.
-
-A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
-
-% <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
-
-Agents can also help construct the checking and enforcement machinery. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, or static analysis. Here the generated artifact checks or constrains another implementation. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it~\citep{bodden2018,bodden2023sosa}. The engineer remains responsible for the obligation and for validating what the resulting mechanism actually establishes.
-
 % <!-- point: a-sensor-observes-and-produces-evidence-and-costs-iterations | A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect. | terms: sensor, observability -->
 
 % <!-- index-def: sensor -->
@@ -136,8 +110,6 @@ Agents can also help construct the checking and enforcement machinery. Once an i
 
 \textbf{A sensor produces evidence about work or system behavior} through mechanisms such as logging, instrumentation, and static analysis, and so depends on \textbf{observability}: the relevant state or behavior must be exposed in a form the environment can inspect. For the reporting change, instrumented tests record the caller, destination, and outcome of attempted connections. A test exercising a direct database path through generic networking can expose a violation that the module restriction did not exclude. Recording the connection does not prevent it; the evidence informs the acceptance decision. The record must distinguish an API call from a direct database connection. ``Request succeeded'' is insufficient: the evidence must preserve the distinctions needed to evaluate the architectural obligation.
 
-\section{Gates: Evaluation and Enforcement}\label{heading:validators-and-gates}
-
 % <!-- section-terms: gate, validator, governance-mechanism -->
 
 % <!-- point: a-gate-supplies-the-consequence-and-a-gate-is-a-commitment | A gate evaluates whether an action or result may proceed, locally or through a delegated check, and enforces the decision; a blocking check can reject both genuine violations and false positives. | terms: gate, validator -->
@@ -148,7 +120,7 @@ Agents can also help construct the checking and enforcement machinery. Once an i
 
 % <!-- point: a-validator-turns-evidence-into-a-judgment | The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions. | terms: validator, gate -->
 
-A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
+A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. Policy-based access-control architectures distinguish the decision about whether access is permitted from the enforcement of that decision~\citep{rfc2753,oasis2017xacml}. The same distinction applies here: a correct verdict provides no barrier unless the admission mechanism acts on it. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
 
 % <!-- index-def: validator -->
 
@@ -158,6 +130,25 @@ A gate evaluates a condition and permits or refuses passage, drawing on evidence
 
 These categories describe functions rather than execution stages. A source scanner can act as a sensor, runtime permissions as constraints, and one tool may combine observation, evaluation, and refusal. Together, the module restriction and instrumented tests provide \emph{defense in depth}~\citep{ross2022trustworthysystems}: a connection that evades the former may be detected by the latter and rejected at merge. The gate does not independently detect violations; it enforces the test verdict. Engineers must still consider which paths escape both protections.
 
+\autoref{constraint-vs-sensor} brings these mechanisms together around a proposed reporting change. Module restrictions, test instrumentation, and a merge gate work together to preserve the billing boundary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-proposed-change-16bfb894e7.pdf}
+\caption{\emph{Governance around a proposed change.} Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks\textquotesingle{} coverage limits the assurance they provide.}
+\label{constraint-vs-sensor}
+\end{figure}
+
+% <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
+
+Constraints can restrict an implementation after it is produced, or shape its construction so that selected violations cannot arise. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward~\citep{schmidt2006model,sendall2003model,czarnecki2006feature}.
+
+A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
+
+% <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
+
+Agents can also help construct the checking and enforcement machinery. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, or static analysis. Here the generated artifact checks or constrains another implementation. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it~\citep{bodden2018,bodden2023sosa}. The engineer remains responsible for the obligation and for validating what the resulting mechanism actually establishes.
+
 % <!-- point: human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates | Human review can combine tacit context, evaluation, and approval; selected obligations in agentic work need explicit rules, evidence, and admission consequences. | terms: sensor, gate, constraint, validator -->
 
 A human reviewer might recognize the forbidden connection and refuse the merge using tacit knowledge of the architecture. With agents making repeated changes, engineers can instead record the permitted interaction, collect evidence, and make acceptance depend on the check. The engineer still decides which obligations warrant enforcement.
@@ -166,7 +157,7 @@ A human reviewer might recognize the forbidden connection and refuse the merge u
 
 Evidence must also correspond to the candidate being accepted. A release check can regenerate it rather than trust the producing agent's report or results from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This makes acceptance independent of the agent's account of its work.
 
-\subsection{Constraining Document Changes}\label{heading:constraining-document-changes}
+\textbf{DocAble: Constraining Document Changes.} The billing example uses a module restriction, observed interactions, and a merge gate to protect an architectural boundary. DocAble applies the same distinction to document repair: an agent may propose a change, while the environment determines which mutations can be expressed and which proposals may be applied.
 
 % <!-- point: typed-document-edits-separate-proposal-from-controlled-application | In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document. -->
 
@@ -176,34 +167,37 @@ The applier's refusals make that boundary concrete. An operation that marks a st
 
 The boundary also preserves freedom. A specialized pipeline and a general-purpose agent may use different methods to decide what to repair. Neither needs to reproduce the mechanics of applying a supported edit. Nor does either gain authority to bypass the restrictions imposed by the common interface. The architecture is therefore more than a convenient API: it separates the judgment that proposes a change from the mechanisms that determine which changes can be made and which results are acceptable.
 
-\section{Tests and Models Work Together}\label{heading:tests-and-models-work-together}
+\subsection{Testing Against Models}\label{heading:tests-and-models-work-together}
 
-The reporting-service boundary concerns relationships among components.
-The job-lifecycle state machine supplies a constructive account of behavior: it specifies how a job's state should change in response to events.
-That meaning can guide implementation and provide expected outcomes for tests.
-The testing task is to compare those expectations with what the implementation actually does.
+Tests can evaluate whether an implementation satisfies obligations expressed in a model. Different testing methods organize that evidence differently. A regression test preserves a particular case and makes a recurrence easier to diagnose. Such tests remain useful as a system acquires more explicit models~\citep{winters2020}. \emph{Property-based testing} evaluates an executable property over generated inputs. The engineer chooses the property and ensures that the generator exercises the cases that matter; QuickCheck provides a framework for this approach~\citep{claessen2000quickcheck}.
 
-Consider a more demanding job protocol in which workers claim queued jobs under expiring leases.
-Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one.
-A regression test can reproduce that sequence against the implementation and assert that B remains the owner.
-It preserves a concrete failure scenario and makes a recurrence easier to diagnose.
-Such tests remain useful as the system acquires more explicit models~\citep{winters2020}.
+\emph{Model-based testing} uses an explicit account of expected behavior to construct operations, evaluate their results, or both. A behavioral model can supply the test oracle---the rule for evaluating the result---across many sequences. It need not reproduce the entire implementation; it needs enough behavior to answer the engineering question~\citep{utting2012taxonomy}. Property-based and model-based testing can be combined. Hypothesis's stateful testing, for example, can generate sequences of actions and compare a real system with a simpler model. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.
 
-We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer must choose the property and ensure that the generator exercises the cases that matter, including stale releases. QuickCheck provides a framework for expressing and testing such executable properties~\citep{claessen2000quickcheck}.
-
-An explicit model adds a reusable account of the behavior those tests should expect. For this ownership question, the model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A model-based test can use that account to construct sequences of operations and compare the implementation's responses with the permitted outcomes. The model can help choose what to exercise, provide the test oracle---the rule for evaluating the result---or do both. This does not require a second implementation of the database. It requires enough behavior to answer the ownership question~\citep{utting2012taxonomy}.
-
-A test driver can issue each operation to both the ownership model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences. A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}.
-
-Hypothesis's stateful testing can generate sequences of actions and compare a real system with a simpler model, combining property-based and model-based testing. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.
-
-Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave ownership unasserted. Passing tests supports a claim only about the executions and properties checked~\citep{winters2020}.
+Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave the required property unasserted. Passing tests supports a claim only about the executions and properties checked~\citep{winters2020}.
 
 The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
 
-\section{Model and Exercise Failure Responses}\label{heading:model-and-exercise-failure-responses}
+\textbf{DocAble: Testing Ownership.} DocAble's ownership protocol provides a useful comparison. Workers claim queued jobs under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. The obligation is that A's stale release must not disturb B's current ownership. The behavioral model supplies expected outcomes; tests compare them with what the implementation actually does.
 
-Models can guide tests of failure handling as well as successful operation. Failure Mode and Effects Analysis (FMEA) provides an established approach: enumerate the ways a component or operation can fail, identify their causes and effects, and assess their consequences~\citep{iec60812_2018}. DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
+A regression test can reproduce that sequence against the implementation and assert that B remains the owner. Property-based testing can evaluate the broader rule that a release carrying an old generation must not clear the current claim, varying worker identities, claim generations, and relevant operations. The generator must actually exercise stale releases for these checks to supply the intended evidence.
+
+For a model-based test, the ownership model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A driver can issue each operation to both that model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences.
+
+A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}. Testing selected implementation executions also differs from analyzing all behavior admitted by a bounded model. We return to that distinction when choosing mechanisms for the recovery protocol.
+
+\subsection{Failure Models and Testing the Tests}\label{heading:model-and-exercise-failure-responses}
+
+Testing expected behavior is not enough when a system must also respond correctly to failures. A failure model identifies conditions worth exercising and the responses they require. Failure Mode and Effects Analysis (FMEA) provides an established approach: enumerate the ways a component or operation can fail, identify their causes and effects, and assess their consequences~\citep{iec60812_2018}.
+
+Fault injection exercises the required responses by introducing selected failures during execution. At a dependency boundary, for example, a test can make a dependency time out, return a malformed response, or become unavailable. The failure model identifies which conditions to exercise and what the receiving component must do. The purpose is not simply to demonstrate that the service encounters an error, but to establish whether its response satisfies the modeled obligation. Fault injection has long been used in dependability evaluation; an explicit failure model helps select experiments and interpret their results~\citep{hsueh1997fault}.
+
+A passing test establishes that the implementation satisfied the checks performed. It does not establish that those checks would detect a relevant defect. Software testing has developed techniques for examining this distinction directly. Mutation testing deliberately introduces small changes into a program and asks whether its tests detect them. A test suite that continues to pass after a relevant defect is introduced may be exercising the code without adequately checking its behavior. Mutation testing has a substantial research history, including work on mutation operators and measures of test adequacy~\citep{demillo1978hints,jia2011analysis}.
+
+Models can make these experiments more systematic. Rather than introducing arbitrary changes, engineers can derive candidate faults from the properties the model represents. For the job-ownership model in \autoref{3.3-constraints-sensors-validators-gates:heading:tests-and-models-work-together}, one mutation might remove the generation check from a release operation, allowing an expired worker to clear a newer worker's claim. A test intended to protect that obligation should reject the mutated implementation. If it does not, the failure is in the evidence used to establish Alignment, even if the original implementation happens to be correct. Model-based mutation testing develops this approach by using mutations of behavioral specifications to assess whether tests can distinguish the intended behavior from plausible alternatives~\citep{aichernig2015modelmutation}.
+
+The same reasoning applies to the engineering environment. A validator, sensor, or gate is itself software whose behavior may be incorrect. If a gate is intended to reject a forbidden dependency, deliberately introduce that dependency and verify that the actual gate refuses the change. If a validation result must distinguish success from incomplete execution, inject a checker failure and verify that the consumer does not accept it as success. These experiments test not only whether the check can produce a verdict, but whether the verdict has the required consequence.
+
+\textbf{DocAble: Failure Responses and Checking Failures.} DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
 
 DocAble uses the failure model to guide fault-injection tests. The tests inject modeled failures at dependency boundaries while exercising the real service implementation, then inspect the result returned to the caller and the response of downstream consumers. They also exercise healthy operation, so a test cannot pass merely because every request fails. Where a failure affects admission, the test checks whether the required consequence follows. Reproducing existing behavior does not establish that the behavior is acceptable.
 
@@ -211,19 +205,15 @@ The model also supports failure provenance. When a failure occurs, DocAble can r
 
 This approach exposed an incorrect interpretation of output from DocAble's accessibility checker. If the underlying validation program timed out or failed to run, the checker could report an informational issue while returning zero failed checks. A caller consulting only that count could mistake an incomplete evaluation for a clean document. The checker had reported the failure, but its consumer treated the absence of reported violations as evidence that validation had succeeded. The missing distinction was between ``no violations found'' and ``validation did not complete.'' Modeling these outcomes separately exposed the error in how the result was interpreted.
 
-\subsection{Testing the Tests: Mutation and Fault Injection}\label{heading:testing-the-tests-mutation-and-fault-injection}
-
-A passing test establishes that the implementation satisfied the checks performed. It does not establish that those checks would detect a relevant defect. Software testing has developed techniques for examining this distinction directly. Mutation testing deliberately introduces small changes into a program and asks whether its tests detect them. A test suite that continues to pass after a relevant defect is introduced may be exercising the code without adequately checking its behavior. Mutation testing has a substantial research history, including work on mutation operators and measures of test adequacy~\citep{demillo1978hints,jia2011analysis}.
-
-Models can make these experiments more systematic. Rather than introducing arbitrary changes, engineers can derive candidate faults from the properties the model represents. For the job-ownership model in \autoref{3.3-constraints-sensors-validators-gates:heading:tests-and-models-work-together}, one mutation might remove the generation check from a release operation, allowing an expired worker to clear a newer worker's claim. A test intended to protect that obligation should reject the mutated implementation. If it does not, the failure is in the evidence used to establish Alignment, even if the original implementation happens to be correct. Model-based mutation testing develops this approach by using mutations of behavioral specifications to assess whether tests can distinguish the intended behavior from plausible alternatives~\citep{aichernig2015modelmutation}.
-
-Fault injection addresses a related but different question. In these dependency-boundary experiments, it introduces a selected failure during execution: a dependency times out, a response is malformed, or a service becomes unavailable. The failure model identifies which conditions to exercise and what the receiving component must do. In DocAble, the web-layer failure model lets tests inject such conditions at dependency boundaries and examine their propagation. The purpose is not simply to demonstrate that the service encounters an error, but to establish whether its response satisfies the modeled obligation. Fault injection has long been used in dependability evaluation; an explicit failure model helps select experiments and interpret their results~\citep{hsueh1997fault}.
-
-The same reasoning applies to the engineering environment. A validator, sensor, or gate is itself software whose behavior may be incorrect. If a gate is intended to reject a forbidden dependency, deliberately introduce that dependency and verify that the actual gate refuses the change. If a validation result must distinguish success from incomplete execution, inject a checker failure and verify that the consumer does not accept it as success. These experiments test not only whether the check can produce a verdict, but whether the verdict has the required consequence. The incident in \autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates} provides a concrete example: DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
+A separate incident concerned the coverage of the checker itself (\autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates}): DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
 
 Agentic implementation changes the economics of this work. Agents can help construct mutants, fault-injection harnesses, and regression tests, making systematic challenges to the checking machinery less expensive. The engineer still decides which faults matter and whether the experiments adequately represent them. A mutation score is not a reliability guarantee: it depends on the mutations selected, and some mutants preserve the program's behavior. Fault injection likewise covers only the failure conditions and responses exercised. Both techniques provide something more useful than a larger test count: evidence that selected violations can actually be detected.
 
-\section{One Obligation, Several Ways to Hold It}\label{heading:one-obligation-several-ways-to-hold-it}
+Constraints, tests, and failure experiments can prevent selected violations or expose them before work is accepted. An obligation still does not determine a unique mechanism. Engineers must decide which form of enforcement is appropriate, what evidence it requires, and how much implementation freedom it should preserve.
+
+\section{Choosing and Calibrating Governance Mechanisms}\label{heading:choosing-and-calibrating-governance-mechanisms}
+
+\subsection{Matching Mechanisms to Obligations}\label{heading:one-obligation-several-ways-to-hold-it}
 
 % <!-- section-terms: constraint, validator, gate -->
 
@@ -242,6 +232,16 @@ If an invalid state can be excluded by the runtime operation itself, use that co
 % <!-- point: temporal-obligations-require-another-shape-of-evidence | A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it. -->
 
 The obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior~\citep{baier-katoen2008,lamport2002}.
+
+% <!-- section-terms: constraint -->
+
+% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form. | terms: constraint -->
+
+A negative constraint prohibits an action, such as accessing a document's internal representation except through a sanctioned interface. But an agent might find another route to the same effect without using that interface. A complementary positive constraint requires evidence that a protected operation passed through an authorized path. This resembles remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
+
+The receiving boundary can require such evidence without enumerating every possible bypass. Depending on the stakes, engineers may also need to establish its reliability. Requiring an attribution record does not establish that the record is authentic or accurately describes the operation.
+
+\textbf{DocAble: Protecting the Recovery Protocol.} The ownership tests considered earlier exercise the implementation. Here we examine how a runtime constraint and model analysis address related obligations in the recovery protocol.
 
 % <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
 
@@ -266,7 +266,7 @@ A further obligation concerns eventual completion. The system's state and recove
 
 A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
 
-\section{Margin and Engineering Freedom}\label{heading:margin-and-engineering-freedom}
+\subsection{Margins and Engineering Freedom}\label{heading:margin-and-engineering-freedom}
 
 % <!-- section-terms: tolerance, sensor, model -->
 
@@ -289,19 +289,7 @@ The evidence also informs the engineer. Shrinking margin may indicate that the c
 
 This reasoning applies where the model defines a meaningful quantitative boundary and the environment can measure the relevant behavior. Latency, memory consumption, cost, and capacity are familiar examples. The measured margin also depends on the workload and conditions under which it was obtained; headroom observed in one setting is not a guarantee under another. Many software obligations are discrete instead. A dependency is permitted or forbidden, and a state transition is legal or illegal. Such properties may admit measures of risk, but they do not necessarily have a useful distance to failure. For them, conformance may be the appropriate evaluation.
 
-The broader point is that Modeling and Alignment inform one another. Modeling establishes which variation is acceptable. Alignment evaluates actual behavior against that model and, where the property permits, measures the remaining margin. This makes quantitative models particularly useful: they can guide implementation choices even when no obligation has been violated. Engineers have reason to model such properties not only to reject unacceptable implementations, but also to make the remaining freedom visible. Measurements from one implementation can then inform the models and decisions governing the next engineering task.
-
-\section{Positive and Negative Constraints}\label{heading:positive-and-negative-constraints}
-
-% <!-- section-terms: constraint -->
-
-% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form. | terms: constraint -->
-
-A negative constraint prohibits an action, such as accessing a document's internal representation except through a sanctioned interface. But an agent might find another route to the same effect without using that interface. A complementary positive constraint requires evidence that a protected operation passed through an authorized path. This resembles remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
-
-The receiving boundary can require such evidence without enumerating every possible bypass. Depending on the stakes, engineers may also need to establish its reliability. Requiring an attribution record does not establish that the record is authentic or accurately describes the operation.
-
-\section{The Freedom a Control Preserves}\label{heading:the-freedom-a-control-preserves}
+Quantitative margin makes one aspect of implementation freedom visible: how far a measured result lies from an acceptable boundary. More generally, controls determine which realizations the environment permits. Comparing the acceptable and permitted realization spaces lets us examine which useful choices a control preserves or excludes.
 
 % <!-- section-terms: constraint, governance-mechanism -->
 
@@ -357,17 +345,7 @@ Underconstraint leaves unacceptable realizations permitted; it threatens correct
 
 Making \(\mathcal P\) coincide with \(\mathcal A\) is an idealization, not always a practical or even desirable goal. An engineer may deliberately exclude acceptable alternatives --- for operational simplicity, for consistency, or for assurance. Comparing the two regions helps engineers identify that restriction and decide whether its benefit justifies the lost freedom.
 
-\section{What Counts as a Mechanism}\label{heading:what-counts-as-a-mechanism}
-
 % <!-- section-terms: governance-mechanism, constraints-and-sensors -->
-
-% <!-- point: keep-policy-guidance-and-governance-mechanism-separate | Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts. | terms: governance-mechanism, model-as-map -->
-
-\textbf{Policy}, \textbf{guidance}, and \textbf{governance mechanisms} contribute different things to engineering work. A model can state a policy, and a playbook can explain how to follow it. Sensor evidence and check results can help engineers assess the work without changing what the environment permits. Enforcement requires a constraint on the relevant action or a gate that evaluates a condition and permits or refuses passage.
-
-% <!-- point: the-same-artifact-can-play-several-roles | One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions. | terms: governance-mechanism, model-as-map -->
-
-For the reporting service, an agent can consult the architectural model when choosing how to obtain billing data. The dependency validator uses the same model to check the relationships extracted from the code. A build gate can require that check to pass. A deployment tool can also derive network permissions from the model, allowing API calls while denying direct database connections. Each use needs its own implementation: supplying the model to the agent does not install the validator or the permissions.
 
 % <!-- point: implementations-bundle-roles-name-them-do-not-stretch-the-terms | A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence. | terms: governance-package, constraints-and-sensors -->
 
@@ -381,4 +359,4 @@ A \textbf{governance package} combines these mechanisms so they can be maintaine
 
 % <!-- point: represented-intent-becomes-enforceable-through-one-of-four-roles | Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from. | terms: governance-mechanism, alignment-principle -->
 
-Some mechanisms can be designed before the first autonomous change; others become visible only after the environment fails. The next section shows how those failures become durable structure.
+Some mechanisms can be designed before work begins; others become necessary when experience exposes a missing control. The next section examines how the governed environment grows through both routes.

@@ -1,8 +1,3 @@
-% mage-auto-heading: up-front-encode-what-you-already-know
-% mage-auto-heading: as-you-learn-convert-what-the-work-teaches
-% mage-auto-heading: correct-judgment-without-enforcement
-% mage-auto-heading: engineering-capital
-% mage-auto-heading: where-enforcement-stops
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Alignment -->
@@ -78,6 +73,14 @@ The conversion can land in one of five places:
   \textbf{Missing enforcement → add or strengthen a constraint or gate.} Make the verdict control the relevant action or admission.
 \end{itemize}
 
+A failure can expose missing enforcement even when the environment already identifies the violation. In that case, adding another validator may accomplish nothing; the missing structure is enforcement of the existing verdict.
+
+% <!-- point: correct-judgment-without-enforcement | A correct validation result does not protect the system unless an appropriate mechanism acts on it. | terms: governance-conversion, validator, gate -->
+
+Suppose a deployment pipeline checks that every required configuration value is present. The validator detects a missing value, but the pipeline records only a warning and continues deploying. The evidence and evaluation are adequate for that obligation; acceptance does not depend on the verdict. Adding another check for the same missing value would repeat the judgment without repairing the gap.
+
+The durable change is to make the deployment decision depend on that result, if the configuration really is required. In another case, the safer repair may remove an unsafe operation entirely and require review when it would have been used. Governance conversion should change the part of the environment that permitted the failure. It can add a mechanism, strengthen its consequence, or retire a capability whose risk no longer has a useful justification.
+
 These diagnoses are not mutually exclusive. In practice, one failure often exposes several missing pieces at once. A property that was never represented may also lack an explicit invariant and the sensor needed to observe it. The durable repair can therefore add a model, an obligation, and evidence together. The categories identify where engineering structure was missing; they do not require the repair to land in only one place.
 
 % <!-- point: modeling-and-alignment-form-a-feedback-loop | Agent work supplies evidence for engineering decisions about models, obligations, and controls; later work uses the revised environment and supplies further evidence. | terms: modeling-principle, alignment-principle, governance-conversion -->
@@ -90,14 +93,6 @@ Failures and surprises can reveal obligations that were previously implicit, inc
 \caption{\emph{Governance conversion.} When a failure exposes a recurring failure mode rooted in missing representation, obligation, evidence, evaluation, or enforcement, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when that durable structure continues to lower future cost or uncertainty.}
 \label{governance-conversion-fig}
 \end{figure}
-
-\section{Correct Judgment Without Enforcement}\label{heading:correct-judgment-without-enforcement}
-
-% <!-- point: correct-judgment-without-enforcement | A correct validation result does not protect the system unless an appropriate mechanism acts on it. | terms: governance-conversion, validator, gate -->
-
-Suppose a deployment pipeline checks that every required configuration value is present. The validator detects a missing value, but the pipeline records only a warning and continues deploying. The evidence and evaluation are adequate for that obligation; acceptance does not depend on the verdict. Adding another check for the same missing value would repeat the judgment without repairing the gap.
-
-The durable change is to make the deployment decision depend on that result, if the configuration really is required. In another case, the safer repair may remove an unsafe operation entirely and require review when it would have been used. Governance conversion should change the part of the environment that permitted the failure. It can add a mechanism, strengthen its consequence, or retire a capability whose risk no longer has a useful justification.
 
 \section{Engineering Capital}\label{heading:engineering-capital}
 
@@ -137,7 +132,7 @@ Debt makes future work pay again for today\textquotesingle s expedience; capital
 
 % <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
 
-Not every engineering obligation should be enforced mechanically. An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. \autoref{honest-gaps} shows these four possible stopping points.
+Not every engineering obligation should be enforced mechanically. An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These dispositions call for different engineering decisions; human review informed by adequate evidence may be more appropriate than enforcement of a poorly specified rule. \autoref{honest-gaps} shows these four possible stopping points.
 
 \begin{figure}[htbp]
 \centering
@@ -178,4 +173,4 @@ The mechanism that exposes a problem need not be the one that ultimately enforce
 
 % <!-- point: the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why | Governance conversion creates a portfolio of controls that can themselves become inconsistent, redundant, or orphaned. | terms: governance-conversion, residual, governed-environment -->
 
-Governance conversion also creates the next problem: the environment now contains an expanding portfolio of controls, and those controls can themselves become inconsistent, redundant, or orphaned.
+Governance conversion adds durable structure, but the accumulated mechanisms do not necessarily work well together. They may compete for resources, impose incompatible requirements, or remain in place after their obligations have changed. The next section examines how to model and maintain the controls themselves.

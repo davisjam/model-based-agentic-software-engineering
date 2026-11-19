@@ -1,6 +1,3 @@
-% mage-auto-heading: example-siemens-other
-% mage-auto-heading: the-semantic-gap
-% mage-auto-heading: the-earliest-decidable-boundary
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Alignment -->
@@ -10,6 +7,8 @@
 \chapter{From Engineering Intent to Enforceable Obligation}
 
 % <!-- section-terms: independent-obligation, semantic-gap, agreement-vs-correctness -->
+
+\section{Independent Obligations and Evidence}\label{heading:agreement-is-not-correctness}
 
 % <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
 
@@ -62,8 +61,6 @@ Where an obligation permits variation, the acceptable region must likewise come 
 
 A description and the implementation it describes can therefore agree while both violate the intended property. Placement matters as well: if an obligation is enforced at a boundary too small to make it legible, the checker may inspect the wrong thing.
 
-\section{Agreement Is Not Correctness}\label{heading:agreement-is-not-correctness}
-
 % <!-- section-terms: agreement-vs-correctness, independent-obligation -->
 
 % <!-- point: a-drift-check-establishes-agreement-not-that-the-correspondence-is-right | A drift check establishes agreement between two artifacts, not that the correspondence expresses the right intent. | terms: agreement-vs-correctness -->
@@ -105,40 +102,13 @@ For example, an engineer can require a queueing service to bring every accepted 
 \label{three-relations}
 \end{figure}
 
-% <!-- worked-examples: binds-model-to-territory -->
-
-\subsection{Example --- Siemens \{other\}}\label{heading:example-siemens-other}
-
-The Siemens reconstruction describes models, implementation, and engineering analyses kept in correspondence across a digital thread without making every disagreement a build-blocking event. In that account, a human confirms the bill of materials while physics solvers carry parts of the evaluation. The example is useful precisely because correspondence and gating are separate design choices: the coupling can hold without a hard gate deciding the instant the two diverge.
-
-% <!-- worked-examples-end -->
-
-% <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
-
-DocAble repairs accessibility problems in Office and PDF documents through a sequence of computations. A DOCX table-header repair, for example, establishes information needed by a later table-structure check. The scheduler must preserve that dependency even though the two operations have separate implementations. An explicit computation model records such relationships. The scheduler reads the model to determine what is ready to run, while each computation's implementation determines how it performs its work.\magefootnote{static-graph}{The computation model describes the pipeline rather than the history of any one remediation. Runtime telemetry can now be joined to computation identities for aggregate measurements such as latency and cost, but the per-session edit record still names realized document mutations rather than computation nodes. DocAble has not yet built a per-run execution graph joining that edit history to the computation model.}
-
-While building DocAble as a prototype, I asked several agents to develop support for different document formats concurrently. I wanted to know which parts of remediation the formats could usefully share. To judge that aright, I needed to learn how to work with each format myself. Once I had independent implementations, I asked agents to trace their computations and dependencies. Comparing the implementations revealed common patterns that we could capture in an explicit computation model.
-
-We developed a separate Python graph to inspect those relationships. In the version examined here, it contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume. The scheduler reads the computation model to order the work; the analytical graph lets us query and check those relationships.
-
-An audit exposed a gap: a live Office pass ran outside the registry entries that the correspondence checks examined. The checks could therefore report agreement even though they had missed a computation. At the time, the PDF checks blocked changes that failed them, while the Office checks only reported discrepancies. Making the Office checks blocking at that point would still have let the unregistered pass through.
-
-We followed the audit--drain--promote sequence described in \magevalue{sec:brownfield-engineering}. We brought the missing computations within the checks' coverage, verified the checks against the repaired surface, and cleared the findings before making the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission.
-
-The case illustrates the three judgments in \autoref{three-relations}:
-\begin{itemize}
-\item \textbf{Correspondence (model agreement).} The parity checks establish whether the analytical graph agrees with its sources over the relationships they examine. The audit asked a different question: which live computations had they missed?
-\item \textbf{Conformance (obligation satisfaction).} The scheduler must respect the computation model's dependency order. Agreement between the graph and its sources does not establish that execution preserves that order.
-\item \textbf{Acceptance (permission to proceed).} Once the Office checks became blocking, a discrepancy that previously produced an advisory finding could prevent admission. Promotion changed what happened to the finding; the earlier coverage repair changed what the checks could find.
-\end{itemize}
-
-Traceability can do more than help engineers locate the implementation of a modeled property. When model elements are linked to code and execution records, those relationships can be checked as the system changes. DocAble uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. Static checks can detect when a referenced implementation element is deleted or renamed. Dynamic checks can compare observed operations with the model, revealing modeled operations that were not observed or executions that cannot be associated with a modeled element. These checks complement guidance mechanisms such as dynamic context injection (\magevalue{sec:the-agent-stack}): agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes.
+Traceability can do more than help engineers locate the implementation of a modeled property. When model elements are linked to code and execution records, those relationships can be checked as the system changes. Static references can connect model elements to implementation declarations; runtime traces can identify the modeled operations being executed. Static checks can detect when a referenced implementation element is deleted or renamed. Dynamic checks can compare observed operations with the model, revealing modeled operations that were not observed or executions that cannot be associated with a modeled element. These checks complement guidance mechanisms such as dynamic context injection (\magevalue{sec:the-agent-stack}): agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes.
 
 The appropriate evidence depends on the model and the property being checked. Architectural models often admit static checks of dependencies, interfaces, and component boundaries. Behavioral models may require execution traces to establish which states or transitions actually occurred. These are not exclusive categories. Static analysis can check declared state-machine structure, while runtime instrumentation can expose architectural interactions that source-level checks miss. In each case, the traceability relationships make the relevant evidence available for comparison with the model.
 
 These checks turn traceability relationships into Alignment mechanisms. A change that breaks a model–implementation relationship can produce a finding without requiring an engineer to rediscover the relationship manually. Static references establish that implementation elements still exist, while runtime traces provide evidence about their execution. Neither establishes that the implementation still behaves as intended, nor that the traceability relationships cover every relevant operation. Where the evidence is adequate, a gate can require the checks to pass before accepting a change.
 
-\section{The Semantic Gap}\label{heading:the-semantic-gap}
+\section{The Semantic Gap and Earliest Decidable Boundary}\label{heading:the-semantic-gap}
 
 % <!-- section-terms: semantic-gap, earliest-legible-boundary, model-drift -->
 
@@ -174,8 +144,6 @@ A different obligation requires the assembled system to behave correctly. A depl
 % <!-- gloss: Epic | A tracked unit of work larger than one commit: a feature or effort with its own file, plan, and definition of done, carried out over several agent dispatches. -->
 
 % <!-- gloss: Definition of done (DoD) | The explicit list of conditions a unit of work must meet to count as finished — tests present, docs updated, the model in sync — checked at the end rather than assumed. -->
-
-\section{The Earliest Decidable Boundary}\label{heading:the-earliest-decidable-boundary}
 
 % <!-- section-terms: earliest-legible-boundary, semantic-gap -->
 
@@ -233,6 +201,37 @@ Choose the wrong abstraction in \magevalue{chapter:modeling} and the required pr
 
 Real boundaries sometimes require a margin for the mechanism to act. Suppose an agent must preserve a durable hand-off before its working context is compacted. Waiting until no room remains may leave too little capacity to write it. A practical trigger can act earlier, when context is becoming full and the durable record is stale. The trigger approximates the desired boundary while preserving enough time and capacity to complete the required action.
 
+An enforceable obligation needs more than a model and a checker. The obligation must be independent of the work being judged, the evidence must cover the relevant behavior, and the check must operate where that evidence is available. These requirements also leave engineers a separate decision about whether the result should control admission.
+
+% <!-- worked-examples: binds-model-to-territory -->
+
+The Siemens reconstruction describes models, implementation, and engineering analyses kept in correspondence across a digital thread without making every disagreement a build-blocking event. In that account, a human confirms the bill of materials while physics solvers carry parts of the evaluation. The example is useful precisely because correspondence and gating are separate design choices: the coupling can hold without a hard gate deciding the instant the two diverge.
+
+% <!-- worked-examples-end -->
+
+\section{DocAble: From Correspondence to Enforcement}\label{heading:docable-from-correspondence-to-enforcement}
+
+% <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
+
+DocAble repairs accessibility problems in Office and PDF documents through a sequence of computations. A DOCX table-header repair, for example, establishes information needed by a later table-structure check. The scheduler must preserve that dependency even though the two operations have separate implementations. An explicit computation model records such relationships. The scheduler reads the model to determine what is ready to run, while each computation's implementation determines how it performs its work.\magefootnote{static-graph}{The computation model describes the pipeline rather than the history of any one remediation. Runtime telemetry can now be joined to computation identities for aggregate measurements such as latency and cost, but the per-session edit record still names realized document mutations rather than computation nodes. DocAble has not yet built a per-run execution graph joining that edit history to the computation model.}
+
+While building DocAble as a prototype, I asked several agents to develop support for different document formats concurrently. I wanted to know which parts of remediation the formats could usefully share. To judge that aright, I needed to learn how to work with each format myself. Once I had independent implementations, I asked agents to trace their computations and dependencies. Comparing the implementations revealed common patterns that we could capture in an explicit computation model.
+
+We developed a separate Python graph to inspect those relationships. In the version examined here, it contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume. The scheduler reads the computation model to order the work; the analytical graph lets us query and check those relationships.
+
+An audit exposed a gap: a live Office pass ran outside the registry entries that the correspondence checks examined. The checks could therefore report agreement even though they had missed a computation. At the time, the PDF checks blocked changes that failed them, while the Office checks only reported discrepancies. Making the Office checks blocking at that point would still have let the unregistered pass through.
+
+We first brought the missing computations within the checks' coverage and verified that the repaired checks detected the relevant discrepancies. After clearing the findings, we made the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission. \magevalue{sec:brownfield-engineering} examines this progression from diagnosis to enforced control as a recurring engineering practice.
+
+The case illustrates the three judgments in \autoref{three-relations}:
+\begin{itemize}
+\item \textbf{Correspondence (model agreement).} The parity checks establish whether the analytical graph agrees with its sources over the relationships they examine. The audit asked a different question: which live computations had they missed?
+\item \textbf{Conformance (obligation satisfaction).} The scheduler must respect the computation model's dependency order. Agreement between the graph and its sources does not establish that execution preserves that order.
+\item \textbf{Acceptance (permission to proceed).} Once the Office checks became blocking, a discrepancy that previously produced an advisory finding could prevent admission. Promotion changed what happened to the finding; the earlier coverage repair changed what the checks could find.
+\end{itemize}
+
+DocAble also uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. These relationships let the environment check correspondence as the implementation changes, subject to the coverage limits described above.
+
 % <!-- point: the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does | The section has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does. | terms: independent-obligation, semantic-gap -->
 
-With an independent obligation and a boundary where it becomes legible, the next question is what the mechanism at that boundary actually does.
+The computation-model case distinguishes three tasks: establishing the intended obligation, obtaining adequate evidence, and making acceptance depend on the result. We now examine the mechanisms that perform these functions, and how engineers choose among them.

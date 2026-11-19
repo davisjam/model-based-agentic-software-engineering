@@ -1,7 +1,3 @@
-% mage-auto-heading: reasoning-input-action-work-unit-and-artifactruntime
-% mage-auto-heading: placement-and-strength-are-different-decisions
-% mage-auto-heading: return-evidence-at-the-earliest-useful-boundary
-% mage-auto-heading: example-docker
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Alignment -->
@@ -39,7 +35,7 @@ Where the environment intervenes determines what it can examine and control. \au
 \label{intervention-boundaries}
 \end{figure}
 
-\section{Reasoning Input, Action, Work Unit, and Artifact/Runtime}\label{heading:reasoning-input-action-work-unit-and-artifactruntime}
+\section{Intervention Boundaries}\label{heading:reasoning-input-action-work-unit-and-artifactruntime}
 
 % <!-- section-terms: intervention-boundary, reasoning-input, action-boundary, work-unit-boundary, artifact-runtime-boundary -->
 
@@ -47,24 +43,7 @@ Where the environment intervenes determines what it can examine and control. \au
 
 % <!-- index-def: reasoning-input -->
 
-The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do most of their work: a finite reasoner does better when the relevant system knowledge is already externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The model can misread, forget, or disregard what it was shown.
-
-The context supplied to an agent can change as the work becomes better understood. \autoref{docable-context-selection} illustrates dynamic context injection in two stages. At dispatch, anticipated files and components determine an initial selection of relevant engineering knowledge. After planning, the agent\textquotesingle s refined understanding of the work determines a second selection, which may add or remove relevant material. Standing instructions remain available throughout. This arrangement limits unnecessary context while allowing newly relevant obligations to be surfaced before implementation.
-
-An agent assigned to change DocAble's code needs the rules relevant to the files it expects to edit. DocAble is a document-remediation service developed with agents, and its engineering environment selects those rules for each task. Those rules include architectural invariants, ownership declarations, lint requirements, and links to design decisions. The engineering problem is to select that knowledge for a particular task without making every agent reconstruct it from the repository.
-
-DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change~\citep{davis2026docable}. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/deliver-context-two-layer-15d7b97afa.pdf}
-\caption{\emph{Dynamic context injection and enforcement.} A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.}
-\label{docable-context-selection}
-\end{figure}
-
-Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
-
-Completion requires a different view of the work. DocAble's definition-of-done audit recomputes evidence over the completed task instead of relying only on an earlier record. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} traces an actual dispatch through model selection, work-order construction, and completion checks.)
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do most of their work: a finite reasoner does better when the relevant system knowledge is already externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown.
 
 Guidance can make an acceptable realization more likely. A sound constraint or admission mechanism can instead rule a represented class of unacceptable realizations out of the surface it governs. Guidance improves the producer\textquotesingle s odds; enforcement changes what admission must trust.
 
@@ -103,7 +82,7 @@ The second enforcement boundary is the \textbf{work-unit boundary}, where many a
 
 The third enforcement boundary is the \textbf{artifact or runtime boundary}: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. For example, a service account may have permission to read production records but no permission to change them. The permission restricts what the running system can do, regardless of how the agent wrote its code.
 
-\section{Placement and Strength Are Different Decisions}\label{heading:placement-and-strength-are-different-decisions}
+\section{Placement, Strength, and Feedback}\label{heading:placement-and-strength-are-different-decisions}
 
 % <!-- section-terms: intervention-boundary, guidance-vs-enforcement -->
 
@@ -114,8 +93,6 @@ These locations do not form a monotonic scale from weak to strong. A narrowly sc
 % <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
 
 Richer models can expand the properties the environment is able to state and govern, but substantial enforcement can exist without them. A bounded execution sandbox, for example, can constrain actions without requiring a rich model of the system it contains.
-
-\section{Return Evidence at the Earliest Useful Boundary}\label{heading:return-evidence-at-the-earliest-useful-boundary}
 
 % <!-- section-terms: intervention-boundary, feedback -->
 
@@ -131,13 +108,32 @@ The boundaries also determine what feedback can return and when. An action hook 
 
 Controls within the GEE can also interact or conflict; \magevalue{sec:when-guardrails-collide} treats their growing portfolio as a system in its own right.
 
-% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it. | terms: alignment-principle, intervention-boundary -->
+\section{Enforcement Boundaries in Practice}\label{heading:enforcement-boundaries-in-practice}
 
-\textbf{The Alignment Principle:} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. Once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.
+The appropriate boundary depends on the obligation and the evidence needed to evaluate it. DocAble uses different boundaries to govern discovery and completed work; Docker and Spotify illustrate how other environments govern outbound requests and submission for review.
 
 % <!-- worked-examples: alignment-principle -->
 
-\subsection{Examples --- Docker and Spotify}\label{heading:example-docker}
+\subsection{DocAble: Dynamic Context Injection and Discovery}\label{heading:docable-dynamic-context-injection-and-discovery}
+
+DocAble's engineering environment must supply agents with the rules relevant to their tasks without requiring them to reconstruct every applicable obligation from the repository. It must also distinguish supplying those rules from establishing that required discovery occurred. Dynamic context injection addresses the first problem; a separate gate addresses the second. The selected knowledge includes architectural invariants, ownership declarations, lint requirements, and links to design decisions.
+
+DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change~\citep{davis2026docable}. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/deliver-context-two-layer-15d7b97afa.pdf}
+\caption{\emph{Dynamic context injection and enforcement.} A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.}
+\label{docable-context-selection}
+\end{figure}
+
+Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
+
+\subsection{DocAble: Completion Audits}\label{heading:docable-completion-audits}
+
+Completion requires a different view of the work. DocAble's definition-of-done audit recomputes evidence over the completed task instead of relying only on an earlier record. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} traces an actual dispatch through model selection, work-order construction, and completion checks.)
+
+\subsection{Other Environments: Docker and Spotify}\label{heading:example-docker}
 
 Docker Sandboxes routes outbound HTTP and HTTPS requests through a proxy on the host. Under a configured deny-by-default policy, the proxy checks the destination domain against an allowlist and blocks requests to unapproved domains. For example, suppose an agent tries to upload a diagnostic log to a domain absent from the allowlist. The proxy blocks that request before it reaches the destination, even if the agent considers the upload useful. This enforces the domain restriction; it does not establish that content sent to or obtained from an allowed domain is safe~\citep{mikhalev2026untrusted}.
 
@@ -151,6 +147,6 @@ Place the enforcing mechanism at a boundary where the obligation is legible and 
 
 % <!-- worked-examples-end -->
 
-% <!-- point: richer-representations-enlarge-the-surface-next-chapter-asks-what-deserves-enforcement | Richer representations enlarge the surface the environment can enforce; the next section asks what must be true before an obligation deserves enforcement. | terms: modeling-principle, alignment-principle, semantic-gap -->
+% <!-- point: richer-representations-enlarge-the-surface-next-chapter-asks-what-deserves-enforcement | Choosing a boundary also requires an independent obligation and evidence capable of establishing whether it holds; the next section develops those requirements. | terms: modeling-principle, alignment-principle, semantic-gap -->
 
-The next section asks what must be true before an obligation deserves enforcement.
+Choosing an enforcement boundary is only part of the problem. The environment also needs an obligation against which the work can be judged, and evidence capable of establishing whether that obligation holds. We turn to those requirements next.

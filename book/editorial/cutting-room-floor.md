@@ -21622,3 +21622,139 @@ Keeping those relations explicit lets engineers inspect the connection that an a
 ```latex
 Models can only be understood in context. Two important aspects of that context are \textbf{scope} and \textbf{assumptions}. Scope identifies what part of the system or its behavior the model represents; assumptions state conditions taken to hold when reasoning with it. For example, a worker-pool model might cover how jobs enter a queue, are assigned to workers, and complete, while omitting the work performed inside each job. An analysis of whether the queue will grow may assume a particular arrival pattern and distribution of service times. A conclusion derived under evenly spaced arrivals need not hold when requests arrive in bursts, even if the daily totals agree. Stating the scope and assumptions makes clear what the model can establish and where further evidence is needed.
 ```
+
+## Chapter 3 teaching restructure — 19 November 2026
+
+Source revision: `e172dedda6acd1f07b78431f2442c4721b570330`. Removal date: 2026-11-19. Removal revision: pending integration. Status: original passages preserved for author review; no relocation to another chapter authorized. Pure moves are not archived.
+
+### Replacement 1: 3.1-where-obligations-can-be-enforced.tex
+
+- Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 52–52.
+- Reason: Consolidated duplicated explanation of the two context selections into the DocAble application; no mechanism or caveat removed.
+
+```latex
+The context supplied to an agent can change as the work becomes better understood. \autoref{docable-context-selection} illustrates dynamic context injection in two stages. At dispatch, anticipated files and components determine an initial selection of relevant engineering knowledge. After planning, the agent\textquotesingle s refined understanding of the work determines a second selection, which may add or remove relevant material. Standing instructions remain available throughout. This arrangement limits unnecessary context while allowing newly relevant obligations to be surfaced before implementation.
+```
+
+### Replacement 2: 3.1-where-obligations-can-be-enforced.tex
+
+- Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 54–54.
+- Reason: Replaced application setup with the two engineering questions: selecting relevant knowledge and independently requiring discovery.
+
+```latex
+An agent assigned to change DocAble's code needs the rules relevant to the files it expects to edit. DocAble is a document-remediation service developed with agents, and its engineering environment selects those rules for each task. Those rules include architectural invariants, ownership declarations, lint requirements, and links to design decisions. The engineering problem is to select that knowledge for a particular task without making every agent reconstruct it from the repository.
+```
+
+### Replacement 3: 3.1-where-obligations-can-be-enforced.tex
+
+- Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 134–136.
+- Reason: Removed repeated formal Alignment Principle; canonical introduction and summary retain it. The mechanisms and application takeaway retain its consequence.
+
+```latex
+% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it. | terms: alignment-principle, intervention-boundary -->
+
+\textbf{The Alignment Principle:} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. Once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.
+```
+
+### Replacement 4: 3.2-models-and-the-semantic-gap.tex
+
+- Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, lines 135–135.
+- Reason: Moved general traceability explanation ahead of applications and removed the DocAble-specific attribution from this conceptual paragraph; the case and existing mechanisms remain.
+
+```latex
+Traceability can do more than help engineers locate the implementation of a modeled property. When model elements are linked to code and execution records, those relationships can be checked as the system changes. DocAble uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. Static checks can detect when a referenced implementation element is deleted or renamed. Dynamic checks can compare observed operations with the model, revealing modeled operations that were not observed or executions that cannot be associated with a modeled element. These checks complement guidance mechanisms such as dynamic context injection (\magevalue{sec:the-agent-stack}): agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes.
+```
+
+### Replacement 5: 3.2-models-and-the-semantic-gap.tex
+
+- Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, lines 126–126.
+- Reason: Made the historical coverage repair self-contained; retained a forward connection to Chapter 4 without requiring its audit–drain–promote vocabulary.
+
+```latex
+We followed the audit--drain--promote sequence described in \magevalue{sec:brownfield-engineering}. We brought the missing computations within the checks' coverage, verified the checks against the repaired surface, and cleared the findings before making the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission.
+```
+
+### Replacement 6: 3.3-constraints-sensors-validators-gates.tex
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 181–202.
+- Reason: Reorganized the testing unit into general distinctions followed by the ownership application. Preserved citations, coverage distinctions, model-maintenance cost, and the sequential-driver limitation. Test constructions remain possibilities, not new claims about implemented DocAble tests.
+
+```latex
+The reporting-service boundary concerns relationships among components.
+The job-lifecycle state machine supplies a constructive account of behavior: it specifies how a job's state should change in response to events.
+That meaning can guide implementation and provide expected outcomes for tests.
+The testing task is to compare those expectations with what the implementation actually does.
+
+Consider a more demanding job protocol in which workers claim queued jobs under expiring leases.
+Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one.
+A regression test can reproduce that sequence against the implementation and assert that B remains the owner.
+It preserves a concrete failure scenario and makes a recurrence easier to diagnose.
+Such tests remain useful as the system acquires more explicit models~\citep{winters2020}.
+
+We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer must choose the property and ensure that the generator exercises the cases that matter, including stale releases. QuickCheck provides a framework for expressing and testing such executable properties~\citep{claessen2000quickcheck}.
+
+An explicit model adds a reusable account of the behavior those tests should expect. For this ownership question, the model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A model-based test can use that account to construct sequences of operations and compare the implementation's responses with the permitted outcomes. The model can help choose what to exercise, provide the test oracle---the rule for evaluating the result---or do both. This does not require a second implementation of the database. It requires enough behavior to answer the ownership question~\citep{utting2012taxonomy}.
+
+A test driver can issue each operation to both the ownership model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences. A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}.
+
+Hypothesis's stateful testing can generate sequences of actions and compare a real system with a simpler model, combining property-based and model-based testing. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.
+
+Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave ownership unasserted. Passing tests supports a claim only about the executions and properties checked~\citep{winters2020}.
+
+The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
+```
+
+### Replacement 7: 3.3-constraints-sensors-validators-gates.tex
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 206–206.
+- Reason: Separated general failure-mode modeling from the DocAble web-layer application; retained the FMEA citation and the fields and distinctions in the case.
+
+```latex
+Models can guide tests of failure handling as well as successful operation. Failure Mode and Effects Analysis (FMEA) provides an established approach: enumerate the ways a component or operation can fail, identify their causes and effects, and assess their consequences~\citep{iec60812_2018}. DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
+```
+
+### Replacement 8: 3.3-constraints-sensors-validators-gates.tex
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 220–220.
+- Reason: Moved fault injection before the application and removed its repeated DocAble sentence; the retained case develops that implementation in full.
+
+```latex
+Fault injection addresses a related but different question. In these dependency-boundary experiments, it introduces a selected failure during execution: a dependency times out, a response is malformed, or a service becomes unavailable. The failure model identifies which conditions to exercise and what the receiving component must do. In DocAble, the web-layer failure model lets tests inject such conditions at dependency boundaries and examine their propagation. The purpose is not simply to demonstrate that the service encounters an error, but to establish whether its response satisfies the modeled obligation. Fault injection has long been used in dependability evaluation; an explicit failure model helps select experiments and interpret their results~\citep{hsueh1997fault}.
+```
+
+### Replacement 9: 3.3-constraints-sensors-validators-gates.tex
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 292–292.
+- Reason: Consolidated the repeated margin synthesis into a transition to acceptable and permitted realization sets; retained measured-margin qualifications and the Modeling–Alignment feedback paragraph.
+
+```latex
+The broader point is that Modeling and Alignment inform one another. Modeling establishes which variation is acceptable. Alignment evaluates actual behavior against that model and, where the property permits, measures the remaining margin. This makes quantitative models particularly useful: they can guide implementation choices even when no obligation has been violated. Engineers have reason to model such properties not only to reject unacceptable implementations, but also to make the remaining freedom visible. Measurements from one implementation can then inform the models and decisions governing the next engineering task.
+```
+
+### Replacement 10: 3.3-constraints-sensors-validators-gates.tex
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 364–370.
+- Reason: Removed repeated guidance/evidence/enforcement exposition and the repeated reporting-model walkthrough; these functions and generation are developed in the first teaching unit.
+
+```latex
+% <!-- point: keep-policy-guidance-and-governance-mechanism-separate | Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts. | terms: governance-mechanism, model-as-map -->
+
+\textbf{Policy}, \textbf{guidance}, and \textbf{governance mechanisms} contribute different things to engineering work. A model can state a policy, and a playbook can explain how to follow it. Sensor evidence and check results can help engineers assess the work without changing what the environment permits. Enforcement requires a constraint on the relevant action or a gate that evaluates a condition and permits or refuses passage.
+
+% <!-- point: the-same-artifact-can-play-several-roles | One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions. | terms: governance-mechanism, model-as-map -->
+
+For the reporting service, an agent can consult the architectural model when choosing how to obtain billing data. The dependency validator uses the same model to check the relationships extracted from the code. A build gate can require that check to pass. A deployment tool can also derive network permissions from the model, allowing API calls while denying direct database connections. Each use needs its own implementation: supplying the model to the agent does not install the validator or the permissions.
+```
+
+## Chapter 4 teaching hierarchy — 19 November 2026
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, former §4.2.10, The Resulting Model Family, line 249.
+- Source revision: `e172dedda6acd1f07b78431f2442c4721b570330`.
+- Removal date: 2026-11-19. Removal revision: pending integration.
+- Status: original wording retained for author review; no relocation authorized.
+
+Reason: The new transition after the ratcheteering inset already explains that the episode left a family of revisable models. Replaced the repeated lead-in with a direct introduction to the unchanged table. No technical claim removed or changed.
+
+```latex
+The large-file requirement produced a connected family of models, each answering a different engineering question. \autoref{interlude-model-family} collects them.
+```
