@@ -265,6 +265,21 @@ re-deriving these, so they live here:**
   - **All three modes share one root, which is worth stating once:** the gate runs BEFORE the
     transfer, so both the verdict and the credential age across a long window. That is why the exit
     code is never the check and `git log --oneline origin/main..HEAD` returning EMPTY always is.
+  - **A PUBLISH is not done when the push lands, and a CANCELLED run looks like a successful one
+    job-by-job.** Measured twice on 261119. Both runs showed `web-editions success`,
+    `site-gates success`, `book-editions success` — and concluded **`cancelled`**, with `assemble`
+    interrupted partway through `upload-pages-artifact` and `deploy` never starting. Nothing
+    published either time. The cause is benign and will recur in any shared checkout: a concurrent
+    writer pushed on top, and Pages cancels the superseded run in flight. It is NOT a failure of
+    your change, and the producer jobs passing is NOT evidence that anything shipped.
+    - **Read the RUN's `conclusion`, never the job list** — `success` / `failure` / `cancelled` are
+      three different outcomes and only the first published.
+    - **A superseding commit CONTAINS yours**, so the next uninterrupted run ships your work with
+      the other writer's. Do not re-push; check whether your sha is an ancestor of `origin/main`.
+    - **The honest end-to-end check is the PUBLISHED PAGE**, not the pipeline: `curl` the URL and
+      grep for something your change added. A job status describes the build; the page describes
+      what a reader gets.
+
   - **A SIXTH mode, 261118 — the gate PASSES and the hook then dies writing its own output, because
     you piped the push.** The log ends in a Python traceback from `hooks/pre-push` —
     `BlockingIOError: [Errno 35] write could not complete without blocking` at `sys.stderr.write` —
@@ -1413,6 +1428,14 @@ Three recurring symptoms that cost a session's time to re-derive each time:
   Re-run `python3 tools/check_print_toolchain.py` standalone; if it passes, retry the push once
   the tree is quiet.
 
+- **A green `catalog.py validate` does NOT predict a successful commit — the hook runs MORE checks
+  than validate does.** Measured 261119: validate went `0 issue(s)`, the commit was launched on the
+  strength of it, and `pre-commit` refused with `book-float-ref BLOCKED` — a numbered float whose
+  introducing `[ref:]` came after it, in a sibling's in-flight chapter. Waiting on validate alone
+  therefore reports a window that is not open. When another writer is sweeping, expect successive
+  attempts to trip DIFFERENT whole-tree checks as their edits move through; retry patiently rather
+  than diagnosing each one as a new problem, and never "fix" the sibling's half-finished file to
+  clear your own path.
 - **Every commit in the checkout fails with a `catalog.py validate` error in a file you did not
   touch.** `hooks/pre-commit` runs `validate` over the **whole working tree**, not over staged
   paths, so one agent's half-finished caption blocks *every* writer in the checkout. This is
