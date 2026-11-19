@@ -998,6 +998,17 @@ re-deriving these, so they live here:**
       quieter: a DIRECTORY pathspec over a figures dir commits only the files git already tracks and
       drops every new one without a word. `git add` the new paths first, and pre-flight with
       `git ls-files`, which is the only one of the three that answers the question being asked.
+      **And build the pathspec from `git status --porcelain`, NEVER from `git diff --name-only`.**
+      This failed a SECOND time on 261119, hours after the rule above was written, because the
+      pathspec came from `git diff`, which lists only TRACKED changes — so a newly authored figure
+      was silently dropped from the commit while the markdown that referenced it landed. The next
+      push would have published a broken image. `git status --porcelain` lists `??` entries;
+      `git diff` cannot. Knowing the rule is not the control; sourcing the path list from the
+      command that can see new files is.
+      **The cheap structural check for a page that references assets:** after committing, resolve
+      every `figures/*.svg` the page references and assert each is tracked
+      (`git ls-files --error-unmatch`). A reference whose target is untracked is a broken image
+      that no markdown lint will see.
     - **And build the pathspec as a zsh ARRAY.** `FILES=$(...)` then `git commit -- $FILES` passes
       all ten paths as ONE argument, because zsh does not word-split an unquoted expansion, and git
       reports one impossible filename. `FILES=(${(f)"$(...)"})` then `"${FILES[@]}"`, and echo
