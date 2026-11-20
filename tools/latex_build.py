@@ -122,7 +122,7 @@ def bold_table_headers(latex: str) -> str:
 
 def namespace_heading_links(latex: str, slug: str) -> str:
     """Keep same-chapter links attached when repeated heading IDs are qualified."""
-    pattern = r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})'
+    pattern = r'(\\(?:sub)*section\*?\{[^\n]+\}\\label\{)([^}]+)(\})'
     destinations = {}
     def heading(match):
         old = match[2]

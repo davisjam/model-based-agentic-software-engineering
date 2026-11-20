@@ -952,14 +952,14 @@
     {
       "source": "book/latex/sources/appendix-handbook/_opening.tex",
       "projection": "book/appendix-handbook/_opening.md",
-      "source_hash": "2402150eed1d4d9f38748114e4b16da38d2aa4eccf689f1f1457ed0270cdc30c",
-      "projection_hash": "20f3513dc7caac75a6166b312c0e45531e1a1cab512a19a34ea1a4c4441e7886"
+      "source_hash": "99ed7a2f0e64ab56976f3b6c885b4ad656d3ffed9455b6cf61788ca27d546631",
+      "projection_hash": "93aee9d89a56791acc9397b71a811be2983411fda20cceac9a9f56ade5f39902"
     },
     {
       "source": "book/latex/sources/appendix-handbook/engineering-moves.tex",
       "projection": "book/appendix-handbook/engineering-moves.md",
-      "source_hash": "973a276df251e18637d6fabb5a6e595b7e63935b2526a83b1f1662314c5f2088",
-      "projection_hash": "b2456872b1de620796f7ccc30c35e188591d84e7288e8d3ad00a8e99dc36b100"
+      "source_hash": "94e1174d2ac473cfe38d9ac4f029193f5729631094253428ac4201a8c4ad4ad9",
+      "projection_hash": "23f93029b45cb3cb0609828c25078fc4931ce8920a21ff1a10d0ee061f70cbf6"
     },
     {
       "source": "book/latex/sources/appendix-handbook/governance-conversion.tex",
@@ -972,8 +972,8 @@
     {
       "source": "book/latex/sources/appendix-handbook/governed-delegation.tex",
       "projection": "book/appendix-handbook/governed-delegation.md",
-      "source_hash": "0fb4e9cc027362f5baee7bfffed9fb87add520b6c16a15d40ebdecf0c58f9321",
-      "projection_hash": "4841dc4fa0b27069ce6d20d54eeaa9170c1960b156308339a4c27dc9a9ec8060"
+      "source_hash": "1ab3d04c28d8fa059beca776ba5161c7edd879e7d119ca494687089cbe6bad9c",
+      "projection_hash": "f5d5a24404fdeb3cf5161ebcd53d5f003a6dc8dc9c8e1a0b7752bedb32731175"
     },
     {
       "source": "book/latex/sources/appendix-handbook/model-coherence.tex",
@@ -1017,22 +1017,36 @@
       "source": "book/latex/sources/appendix-handbook/model-driven-deployment.tex",
       "projection": "book/appendix-handbook/model-driven-deployment.md",
       "publication_status": "published",
-      "source_hash": "0234a3c80483bf01efc5be7eedcf874643bcbfd74414b08902b13a1f5cf7cd48",
-      "projection_hash": "8806cde2459ee13be50c9b1a2a20b597fec00409da1b5a83da22a3b20954c850"
+      "source_hash": "227a2e987405a5030a5f48d67370acfcd8491a7035be9b23d3036b1599cede12",
+      "projection_hash": "84433c00885379c7d04c2d9937375a15e32f398b51a856987661ceccc2154983"
     },
     {
       "source": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
       "projection": "book/appendix-handbook/controlled-mutation.md",
       "publication_status": "published",
-      "source_hash": "1d25cae2e2c2b4534976aa8d5f54339f3c54ddac494d4c9425c65c073f744fdc",
-      "projection_hash": "dec4daf79e2c9d4e2d68e6e555cf3b2d2ac2897ef3326043a0419205b1c42acc"
+      "source_hash": "3e788ee5795bb57f6d15dc7bc72a0a60eae0e95083727556a100deb691b21551",
+      "projection_hash": "ea269515158c75e784aeaee8fa326d0079679c83c7f43469ebec2175beccd0ac"
     },
     {
       "source": "book/latex/sources/appendix-handbook/maintaining-the-machinery.tex",
       "projection": "book/appendix-handbook/maintaining-the-machinery.md",
       "publication_status": "published",
-      "source_hash": "fc8597d3f12d5cb41713db70679622a6970bbbafb03d6d7b2d9df1339d3c97fd",
-      "projection_hash": "6428f27d7c1850b02f82ff7a954f868dc92c5d5181049d1f38fc94be907e9a45"
+      "source_hash": "4dc66589345d470c168744cece362f19852e81b2de80d3d7e757673afc716ac9",
+      "projection_hash": "d539e333b468d4672d2ce72856a4aee37120b30e4d751ae1cb3ad5e085b700e0"
+    },
+    {
+      "source": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
+      "projection": "book/appendix-handbook/substitutable-reasoning.md",
+      "publication_status": "published",
+      "source_hash": "6f17e3eae70301aee21dcb90535331608970f6f50db2c705a2c68547135569cb",
+      "projection_hash": "036a0d251b66fd7641b3f76daeb8b5d489baee35910bec897fd2ca9e3b7153c3"
+    },
+    {
+      "source": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",
+      "projection": "book/appendix-handbook/model-based-test-selection.md",
+      "publication_status": "published",
+      "source_hash": "d5036b88a4e6f1480ff37657f9f67ea362535bb68d2246944ee3e510e22a433d",
+      "projection_hash": "2ad4dc9903caf7387e184859a743608d0454813053547da20b30cc257e0b8eff"
     }
   ],
   "engine_hash": "2c8b13bd5553ee4265caf0279fb166c8c23815e9eedf8923aaaee129e9dc789e",

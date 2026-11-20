@@ -872,8 +872,11 @@ def check_banned_terms() -> list[str]:
     # catalogue source — so a banned term named there (e.g. an internal ADATool model reference to the real
     # PDF library) must not redden the shared validate gate. The published surface (tracked book/ chapters,
     # entries) stays scanned, so a draft that names the real library is still caught when it folds into book/.
+    # Private, gitignored evidence preserves source records verbatim. Editorial vocabulary
+    # rules apply when claims enter the manuscript, not to the underlying records.
     _skip = (os.sep + "plugin" + os.sep, os.sep + "scratchpad" + os.sep,
-             os.sep + "book" + os.sep + "_design" + os.sep)
+             os.sep + "book" + os.sep + "_design" + os.sep,
+             os.sep + "book" + os.sep + "data" + os.sep + "local-evidence" + os.sep)
     sources = [f for f in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True)
                if not any(s in f for s in _skip)]
     sources += [os.path.join(ROOT, f) for f in figures]

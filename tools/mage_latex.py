@@ -202,7 +202,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
         return '\n\n'.join(result)
 
     native = '% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.\n\n' + render_blocks(raw)
-    native = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + 'heading:' + m[2] + m[3], native)
+    native = re.sub(r'(\\(?:sub)*section\*?\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + 'heading:' + m[2] + m[3], native)
     explicit = set(re.findall(r'\{#([A-Za-z0-9_-]+)\}', raw))
     auto = [label for label in re.findall(r'\\label\{heading:([^}]+)\}', native) if label not in explicit]
     native = '\n'.join('% mage-auto-heading: ' + label for label in auto) + '\n' + native
@@ -724,6 +724,11 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'practicing-established-metrics', (.24, .35, .41),
                                   row_gap_bp=3, row_stretch=1.05)
+    for model_inventory in ('handbook-deployment-models', 'handbook-mutation-models',
+                            'handbook-substitution-models', 'handbook-delegation-models',
+                            'handbook-selection-models'):
+        latex = layout_selected_table(latex, model_inventory, (.18, .24, .27, .31),
+                                      row_gap_bp=3, row_stretch=1.05)
     # Retain native rules for tagged tables, with clearance on the text sides.
     rule_padding = r'\noalign{\vskip 3pt}'
     rules = {'toprule': r'\hline' + rule_padding,

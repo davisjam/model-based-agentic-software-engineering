@@ -1,0 +1,13 @@
+{
+  "source": "book/assets/handbook-model-guided-delegation.svg",
+  "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+  "source_sha256": "cdf546c6fbc46e5db22705ba8957e61818381ae5f1a954abb1c7d865dbf3aa6b",
+  "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-model-guided-delegation.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "contracts": {},
+  "baseline_dimensions_bp": null
+}

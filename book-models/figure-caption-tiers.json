@@ -1265,13 +1265,13 @@
       "tier": "B",
       "kind": "engineering-blueprint",
       "location": "appendixA",
-      "rationale": "Supporting blueprint links concrete mechanisms and their authority/evidence limits; construction and verification developed in accompanying prose."
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
     },
     "assets/handbook-typed-changeset.svg": {
       "tier": "B",
       "kind": "engineering-blueprint",
       "location": "appendixA",
-      "rationale": "Supporting blueprint links concrete mechanisms and their authority/evidence limits; construction and verification developed in accompanying prose."
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
     },
     "assets/agentic-engineering-cycle.svg": {
       "tier": "B",
@@ -1326,6 +1326,48 @@
       "kind": "comparison-table",
       "location": "appendixB",
       "rationale": "Supporting comparison connects established delivery, structural, testing, productivity, and reliability metrics to MAGE questions."
+    },
+    "appendix-handbook/model-driven-deployment.md::Engineering models for deployment": {
+      "tier": "B",
+      "kind": "model-inventory",
+      "location": "appendix-handbook",
+      "rationale": "Maps the blueprint’s engineering questions to representations and the consumers or correspondence relationships that make them useful."
+    },
+    "appendix-handbook/controlled-mutation.md::Engineering models for controlled mutation": {
+      "tier": "B",
+      "kind": "model-inventory",
+      "location": "appendix-handbook",
+      "rationale": "Maps the blueprint’s engineering questions to representations and the consumers or correspondence relationships that make them useful."
+    },
+    "appendix-handbook/governed-delegation.md::Engineering models for delegated work": {
+      "tier": "B",
+      "kind": "model-inventory",
+      "location": "appendix-handbook",
+      "rationale": "Maps the blueprint’s engineering questions to representations and the consumers or correspondence relationships that make them useful."
+    },
+    "appendix-handbook/substitutable-reasoning.md::Engineering models for substitutable reasoning": {
+      "tier": "B",
+      "kind": "model-inventory",
+      "location": "appendix-handbook",
+      "rationale": "Maps the blueprint’s engineering questions to representations and the consumers or correspondence relationships that make them useful."
+    },
+    "appendix-handbook/model-based-test-selection.md::Engineering models for regression-test selection": {
+      "tier": "B",
+      "kind": "model-inventory",
+      "location": "appendix-handbook",
+      "rationale": "Maps the blueprint’s engineering questions to representations and the consumers or correspondence relationships that make them useful."
+    },
+    "assets/handbook-substitutable-reasoning.svg": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    },
+    "assets/handbook-model-based-test-selection.svg": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
     }
   },
   "historical_tiers": {

@@ -1,0 +1,128 @@
+<!-- GENERATED from book/latex/sources/appendix-handbook/substitutable-reasoning.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
+## Problem
+
+A system that relies on AI reasoning need not commit its architecture to a particular foundation model or reasoning strategy. Models differ in cost, latency, reliability, and capability, and these properties change as the technology advances. An engineering design that embeds one model, prompt, or orchestration strategy throughout the implementation makes alternatives expensive to evaluate. A better arrangement separates the reasoning that proposes work from the machinery that carries out and evaluates its effects.
+
+## Conceptual Design
+
+DocAble supplies examples for two distinct substitution decisions. Model selection chooses which foundation model performs a defined semantic task. Replacing the reasoning engine changes how the system decomposes and sequences work: a general-purpose agent can take over planning decisions made by a graph of specialized remediation passes. This blueprint separates both decisions from the domain contracts that define permitted changes and acceptable results.
+
+[ref:handbook-substitutable-reasoning] illustrates the proposed architecture. Each reasoning engine inspects the artifact and proposes supported changes through a typed operation interface. An application component resolves targets, checks applicable preconditions, performs mutations, and records their effects. Separate evaluators inspect the resulting artifact. Hold the permitted operations and acceptance requirements fixed when comparing engines, so differences in the results can be investigated as differences in reasoning rather than changes to the task.
+
+<!-- label: handbook-substitutable-reasoning -->
+<!-- figure: assets/handbook-substitutable-reasoning.svg | *Substitutable reasoning.* Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior. [short: Substitutable reasoning] -->
+
+## Engineering Models
+
+The models answer different engineering questions. The task model states the meaning of a requested judgment; the workflow model organizes the work used to answer it. Replacing a workflow need not redefine the task, and selecting a different foundation model need not change either one.
+
+The model relationships are summarized in [ref:handbook-substitution-models].
+
+<!-- label: handbook-substitution-models -->
+<!-- table: *Engineering models for substitutable reasoning.* Task, operation, and acceptance models state the domain obligations while the reasoning workflow and selected foundation models may vary. Shared task and target identities connect these representations to their consumers. [short: Engineering models for substitutable reasoning] -->
+| Model | Engineering question | Representation | Relationships / consumers |
+|---|---|---|---|
+| Task model | What judgment is required, and what makes its result acceptable? | Task identifiers, input/output shapes, semantic obligations, error consequences. | Joins the reasoning workflow to capability selection and task-specific evaluation. |
+| Capability and selection model | Which reasoning resources are eligible for a task? | Model capabilities, task requirements, input traits, measured performance, selection policy. | Task identity joins requirements to candidate models; the selector derives a model choice. |
+| Operation model | Which effects may the engine propose? | Typed operations, target references, arguments, preconditions, result meanings. | Targets refer to the domain artifact; the applier resolves and executes supported proposals. |
+| Reasoning workflow model | How is work decomposed, ordered, and assigned? | A pass graph with dependency edges and task assignments, or an agent's revisable plan. | Execution machinery consumes the workflow; its steps request tasks and propose operations. |
+| Acceptance model | What evidence is required to accept the artifact? | Obligations, evaluation criteria, required evidence, blocking and review conditions. | Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. |
+
+The operation, task, and acceptance contracts specify obligations through three of the models in the inventory. They do different work from the workflow that organizes reasoning and the capability model that supports selection.
+
+The **operation contract** defines the changes a reasoning engine may request. DocAble’s Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. A controlled application component resolves the target against the current document, checks applicable preconditions, and reports application, refusal, or failure. The PDF changeset in [ref:chapter:appendix-a-controlled-mutation] is an analogous interface for a different document model; it is not the Office operation vocabulary.
+
+The vocabulary must support legitimate work without becoming an unrestricted programming interface. A replacement engine can propose different operations or sequence them differently. To make this an enforcement boundary, the surrounding environment must also restrict mutation authority to the controlled application component. A typed interface alone does not prevent a reasoner with direct file access from bypassing it.
+
+The **task contract** defines a semantic judgment requested from a foundation model. DocAble identifies tasks such as image description, OCR transcription, reading-order inference, and heading adjudication, with declared output representations and capability requirements. Such definitions let a consumer request a task while a separate component handles model selection and invocation. They specify what the answer must mean, independently of which model supplies it.
+
+The contract must also express what makes an answer acceptable. For alternative text, the obligation is not simply to produce a nonempty string: the description must convey the image’s relevant information without inventing content. For decorative classification, an incorrect judgment may suppress meaningful content entirely. Such asymmetries influence model selection, validation, and the appropriate response to uncertainty.
+
+The **acceptance contract** specifies the evidence required to accept the result. Deterministic checks can identify missing accessibility properties or illegal document structures. Content-preservation checks can detect selected forms of unintended loss. Semantic evaluators or human reviewers assess properties that structural checks cannot decide, such as whether an alternative description accurately conveys an image. The contract must also identify which findings block acceptance and which require engineering judgment.
+
+These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
+
+The **reasoning workflow model** represents the process used to produce a result. DocAble organizes remediation as a graph of specialized passes. Some passes are algorithmic; others request structural judgments or descriptive content from foundation models. The graph represents dependencies among computations; execution machinery uses those dependencies to determine which work is ready as intermediate results are produced. A planning agent can instead maintain and revise a plan as it inspects the artifact. The workflow may change while task meanings and acceptance obligations remain fixed. A plan is guidance until an executor consumes it; an execution trace records what actually happened.
+
+Assign ownership to the obligations and to the observations used to evaluate them. The responsible engineer authorizes task meanings, permitted operations, and acceptance conditions; measured capability results describe behavior on an identified workload. A selection policy consumes those observations but does not turn them into universal quality guarantees. A selected model choice or a generated repair plan is derived from other representations. That describes its origin, not its authority.
+
+Task identifiers join workflow steps to selection requirements and evaluators. Target identifiers join operation proposals to the current domain artifact. Keep these meanings aligned as schemas, models, and artifacts change: a task renamed without updating its evaluator, or a target resolved against stale structure, breaks correspondence even when the request remains well typed. Check that the executor follows required workflow dependencies and that the gate consumes the evidence the acceptance model requires.
+
+The engine retains freedom to choose among admissible repairs, gather additional information, and revise their order where dependencies permit. Capability requirements and interface constraints restrict that freedom without prescribing every reasoning step. Whether the models describe the right task and the right acceptance conditions remains an engineering judgment.
+
+## Realization
+
+### Connect the Models to Their Consumers {.unnumbered}
+
+Begin with one bounded semantic task. Specify its inputs, output representation, applicable obligations, and evidence for evaluating success. Identify the errors that matter most, including errors whose consequences differ substantially.
+
+Next, establish the application interface. Give reasoning implementations a closed vocabulary of supported operations, with stable target identities, explicit preconditions, and results that distinguish application, refusal, and failure. Restrict mutation authority to the application component, and test that the reasoning engine cannot alter the governed artifact through another path.
+
+Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the required refusal or review occurs; a checker that detects an error but cannot affect admission does not enforce the obligation.
+
+Only then introduce an alternative reasoning engine. Run both engines against comparable inputs through the same application interface. Evaluate the artifacts rather than the engines’ accounts of their own success. Include failure cases: invalid targets, unsupported operations, incomplete repairs, interrupted execution, and plausible but semantically incorrect outputs.
+
+### Select Models for Fixed Tasks {.unnumbered}
+
+Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy. Meeting a capability requirement makes a model eligible; it does not guarantee an adequate answer.
+
+DocAble’s selector interface represents the result through this typed choice:
+
+``` csharp
+public sealed record ModelChoice(
+    AcceptedModel Model,
+    string Provider,
+    ModelCapability Caps,
+    int TierRank);
+```
+
+The choice exposes the selected model and supporting metadata. `TierRank` is documented for observability: callers should not reconstruct selection policy by branching on it.
+
+Selection can account for task-specific capability requirements, input difficulty, provider availability, and cost. A capability requirement is a constraint: a model that cannot process the required input is not made suitable by being inexpensive or available. Among eligible models, a policy may prefer higher-quality alternatives, distribute requests among providers, or select a lower-cost model when its measured performance is adequate.
+
+A model-selection policy should be evaluated against the errors that matter for each task. Average quality is not sufficient when different errors have substantially different consequences. For example, fabricating content in an alternative description and failing to recognize a decorative image are different failures, even if a benchmark combines them into one accuracy score.
+
+Model routing does not change the task or the surrounding remediation strategy. Replacing the reasoning engine does. The latter may change how work is decomposed, which information is gathered, how operations are ordered, and when the system decides that further repair is unnecessary.
+
+### Exercise an Alternative Engine {.unnumbered}
+
+An alternative is to give a general-purpose agent the document, the available operations, and the acceptance criteria. The agent can inspect the document, run checks, decide which repairs to attempt, request supported operations, and inspect the resulting findings. Within the operation vocabulary’s scope, it takes over planning and sequencing without requiring a new document-editing implementation.
+
+An October 2026 experiment exercised this arrangement on Office documents. A single hosted agent used DocAble’s existing command-line operations: `check` produced structured findings, `editor-edit` applied supported edits, and `validate` checked content preservation. The agent chose repairs and invoked these operations before checking the result again. The experiment required no changes to the deterministic operations themselves.
+
+The operation vocabulary covered 201 of 202 checker-reported issues classified as fixable in the pilot corpus. This measures the expressiveness of the editing interface, not the agent’s ability to resolve those issues correctly.
+
+In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25–29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker, so these results measure residual findings and completion, not semantic quality or equivalence to the specialized graph. They support further evaluation of agent-driven Office remediation and show that its effectiveness depended strongly on the reasoning model.
+
+The Office results do not establish that the same engine can replace a PDF remediation pipeline. An untagged or scanned PDF may require construction of a structure tree before operations targeting existing elements can be used. Substitution covers the work expressible through the selected interface, not every repair the domain might require.
+
+### Evaluate the Result {.unnumbered}
+
+A successful substitution must preserve the engineering obligations, not merely the interface.
+
+Consider alternative text for a scientific figure. A reasoning engine may propose a valid operation that inserts a description, and the document checker may confirm that the image now has alternative text. Yet the description may repeat the figure’s title without conveying its contents. The operation was valid and the structural finding was resolved, but the accessibility requirement was not satisfied.
+
+The same problem arises when deterministic heuristics stand in for a semantic judgment. In one DocAble investigation, a repair strategy documented as asking a language model whether existing alternative text was useful actually used a chain of deterministic heuristics. An inadequate description, “Heat Transfer 211,” survived for a physics diagram. The decision procedure did not evaluate the semantic property promised by the contract. Deterministic methods can be appropriate substitutes, but only where evidence supports the property they must decide.
+
+These examples show why evaluation must extend beyond interface compatibility. Structural and content-preservation checks supply evidence about the properties they inspect. Semantic judgments require evidence about meaning, which may come from another model or a human reviewer. Keeping the evaluator separate from the producer makes results easier to compare, but does not by itself make their errors independent. An evaluator that shares the producer’s model family or assumptions may confirm the same mistake.
+
+A comparison should therefore use the same inputs and acceptance criteria for each candidate engine. Record the remaining violations, semantic quality, execution failures, latency, and cost. Where the evaluation cannot establish a property, retain that limitation rather than interpreting a passing checker as evidence of complete correctness.
+
+The experiments in [ref:5.2-inside-docables-software-factory:heading:exploring-alternative-reasoning-engines] illustrate the importance of comparable measurements. A September 2026 comparison on one handwritten PDF measured approximately four cents of inference for the specialized pipeline against an estimated $2.29 for a general-purpose agent. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference structure, and its cost was reconstructed from an execution transcript. The result informed investigation of costs without establishing equivalent quality. A November evaluation on two PDFs found no additional checker findings closed by a coached repair loop; the harder document retained 15 findings while cost rose from $1.35 to $3.57.
+
+Such measurements can inform an architectural decision, but small experiments do not establish a universal ranking of reasoning strategies.
+
+For an end-to-end trial, introduce an unsupported operation, a stale target, a missing required evaluation result, and a plausible but inadequate description. Confirm the appropriate refusal or review, the artifact actually produced, and the evidence used for acceptance. A successful path must produce an acceptable artifact; a failed path must not acquire a success record merely because the engine declared completion.
+
+## Adaptation and Limits
+
+The distinction matters economically. A specialized graph requires construction and maintenance, but can divide work into smaller tasks that less expensive models perform adequately. A general-purpose agent may require less specialized orchestration while consuming more inference resources per document. Neither arrangement is necessarily preferable: the balance depends on task complexity, available model capability, quality requirements, and the number of documents over which the engineering investment is amortized.
+
+Compare total engineering cost at the required quality, using the construction, running, and carrying costs distinguished in [ref:6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately] Include inference, execution, diagnosis, and repair as well as maintenance of the models and checks. A more capable model may justify retiring specialized reasoning machinery; a stable, high-volume task may justify retaining it to reduce recurring inference costs.
+
+The same architecture applies beyond document remediation. A planning agent can propose operations against a structured workflow; a classifier can produce typed decisions consumed by a controlled application; a diagnostic agent can recommend repairs whose effects are checked independently. In each case, the engineer determines which decisions may vary with the reasoning implementation and which obligations must remain stable.
+
+The boundary need not be perfectly general. A small vocabulary supporting the operations a system actually requires is often more useful than a universal interface that restores unrestricted authority to the reasoner. Extend the vocabulary when new work justifies it, and evaluate each extension against the obligations already protected.
+
+The central benefit is architectural freedom. When the meaning of a task, the permitted effects, and the evidence for accepting results are explicit, engineers can change how reasoning is performed without rebuilding the rest of the system. That freedom has economic value as reasoning capabilities and costs change, provided the surrounding models and checks remain adequate to the work.

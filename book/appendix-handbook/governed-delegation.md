@@ -1,13 +1,29 @@
 <!-- GENERATED from book/latex/sources/appendix-handbook/governed-delegation.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
+## Problem
+
 An agent can receive a clear objective and still work from stale context, repeat a completed assignment, or leave useful changes stranded when its conversation ends. A delegated-work arrangement must connect authorized scope to the knowledge needed for the task, preserve durable results, and distinguish reported completion from evidence that the work can be accepted.
+
+## Conceptual Design
 
 [ref:handbook-model-guided-delegation] follows those connections. The work order gives the agent an assignment; maintained engineering models help select context; dispatch checks govern whether that assignment may proceed. Commits and other durable artifacts then support integration, completion review, and recovery. The completion boundary is separate from the dispatch boundary, and the figure does not prescribe one identical sequence for every task.
 
 <!-- label: handbook-model-guided-delegation -->
 <!-- figure: assets/handbook-model-guided-delegation.svg | *Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence.* Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned. [short: Governed delegation] -->
 
-## Make the Assignment a Usable Interface {#handbook-work-models}
+## Engineering Models {#handbook-work-models}
+
+The models in [ref:handbook-delegation-models] connect an assignment to its scope, lifecycle, results, and acceptance evidence.
+
+<!-- label: handbook-delegation-models -->
+<!-- table: *Engineering models for delegated work.* Assignment and phase identities connect scope, relevant knowledge, durable artifacts, and completion criteria. Lifecycle rules govern dispatch and reopening; evidence about landed work supports acceptance. [short: Engineering models for delegated work] -->
+| **Model** | **Engineering question** | **Representation** | **Relationships / consumers** |
+|---|---|---|---|
+| Work order | What work is authorized, and what would make it acceptable? | Objective, scope, named inputs and outputs, acceptance obligations, and non-goals. | Composition and dispatch consume the assignment; completion review evaluates its obligations. |
+| Component and constraint models | Which knowledge and obligations apply to the assignment? | Path-to-component relationships and registered constraints with scope and identity. | Context selection joins target paths to relevant records; enforcement remains with the applicable controls. |
+| Work lifecycle | Which transitions may proceed from the recorded state? | Assignment or phase identity, state, completion conditions, reopen rules, and authorized exceptions. | Dispatch consults reconciled state; completion and reopening update it under explicit policies. |
+| Work identity and provenance | Which durable results belong to an assignment? | Links among work orders, executors, worktrees, commits, artifacts, and inspection records. | Integration and recovery locate results without reconstructing a conversation. |
+| Completion criteria | What evidence permits acceptance and closure? | Promised effects, required checks or review, results, and unresolved obligations. | Completion review consumes independently inspectable artifacts and evidence; a producer report is one input. |
 
 A work order must carry enough structure for both people and machinery to use it. DocAble’s briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
 
@@ -27,9 +43,17 @@ These fields come from an actual November 2026 brief to add a standards-evidence
 
 The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project’s acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
 
-Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
+The work order states intended work; component records and provenance describe relationships the arrangement relies on. Derived context is a selective view of those records, not a new owner of their meaning. Stable assignment and phase identities connect dispatch, durable results, and completion. A history mentioning a phase does not establish that the current assignment belongs to it. When identities or state disagree, reconcile the records before treating the disagreement as evidence of completion.
 
-## Select Context Without Claiming Completeness
+A lifecycle model must distinguish the states needed by its consumers. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately from acceptance. Choose the states for the work unit and its consumers. The important requirements are that dispatch have a defined precondition, acceptance require the work-order evidence, and interruption not imply successful completion. DocAble’s completed-phase gate uses a narrower predicate: a positively resolved completed phase refuses a new dispatch. Reopening changes that phase state; a reasoned override permits a particular dispatch without redefining completion.
+
+The engineer retains authority over objectives, acceptance obligations, and exceptions. Agents can choose implementations and investigate alternatives within the declared scope. Context selection helps them find relevant knowledge, while permissions and gates independently restrict selected actions and admissions. The completion model must therefore connect an obligation to the evidence that evaluates it and the decision that consumes that evidence, rather than treating an agent’s final message as the accepted state.
+
+## Realization
+
+### Compose and Select Context {.unnumbered}
+
+Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
 
 Connect the assignment’s scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
 
@@ -45,11 +69,11 @@ def coverage_for_files(
 
 The aggregator deduplicates by registry and constraint identity, orders each registry’s contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
 
-The inspected implementation catches adapter exceptions and allows that adapter to contribute nothing; a test explicitly exercises this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. That visibility is a requirement for the new arrangement, not a claim that every DocAble extraction failure was already surfaced.
+DocAble’s adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. Make those outcomes visible to the caller so that extraction failure cannot be mistaken for absence of obligations.
 
 Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
 
-## Build Dispatch, Completion, and Recovery Together {#handbook-model-lifecycle}
+### Dispatch, Execute, and Evaluate Completion {#handbook-model-lifecycle .unnumbered}
 
 Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
 
@@ -61,7 +85,7 @@ Recovery should inspect durable artifacts before assigning replacement work or r
 
 For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
 
-## Refuse Repeated Work Without Blocking Rework {#handbook-conversion-episode}
+### Enforce Lifecycle Decisions {#handbook-conversion-episode .unnumbered}
 
 Add controls where recurring failures reveal a dependable decision. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
 
@@ -84,6 +108,10 @@ Verify both sides of this gate. A declared completed phase should be refused; a 
 
 Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control’s actual behavior still needs its own evidence.
 
-## Adapt the Work Unit and Durable Store
+### Verify the Arrangement {.unnumbered}
+
+Exercise the whole path from assignment to accepted or recoverable work. A valid work order should resolve its intended scope and instruction sources; missing inputs and extraction failures should receive the declared response. A completed-phase refusal, legitimate reopening, and authorized override should have distinguishable effects. Interrupt an executor before and after durable results, then verify that recovery finds the correct artifacts without accepting unfinished work. Finally, inject a failed acceptance obligation and confirm that a successful producer report cannot close it.
+
+## Adaptation and Limits
 
 An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor’s entire reasoning process. The [Operating a GEE section of Appendix B](appendix-b-operating-a-gee.html) develops the day-to-day decisions around these boundaries.

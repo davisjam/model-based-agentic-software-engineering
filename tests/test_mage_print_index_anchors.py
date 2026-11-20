@@ -15,6 +15,25 @@ import mage_latex as mage
 @unittest.skipUnless(shutil.which('pandoc') and shutil.which('rsvg-convert'),
                      'native projection toolchain required')
 class PrintInsetIndexTests(unittest.TestCase):
+    def test_repeated_unnumbered_headings_have_distinct_print_destinations(self):
+        from latex_build import namespace_heading_links
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / 'example.md'
+            target = root / 'example.tex'
+            source.write_text('# Example\n\n### Verify the Arrangement {.unnumbered}\n\n'
+                              '[Return](#verify-the-arrangement).\n')
+            mage.migrate(source, target, driver_enabled=False)
+            text = target.read_text()
+            left = namespace_heading_links(text, 'first-blueprint')
+            right = namespace_heading_links(text, 'second-blueprint')
+            for slug, result in [('first-blueprint', left), ('second-blueprint', right)]:
+                destination = slug + ':heading:verify-the-arrangement'
+                self.assertIn('\\label{' + destination + '}', result)
+                self.assertIn('\\hyperref[' + destination + ']', result)
+            labels = re.findall(r'\\label\{([^}]+)\}', left + right)
+            self.assertEqual(len(labels), len(set(labels)))
+
     def test_nested_index_anchor_preserves_inset_scope_and_later_figure(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -1,0 +1,18 @@
+{
+  "pdf": "/tmp/mage-appendix-a-model-centered/proof.pdf",
+  "pdf_sha256": "784ea4cf58b27a396081ab0d1fa828e172b53be4a5406cbf344a84ba1974826b",
+  "pages": 4,
+  "mode": "audit-only",
+  "counts": {},
+  "limitations": [
+    "Glyph cores approximate ink; mathematical layout and deliberate overlays may flag.",
+    "Complex clipping, nonzero winding holes and rotated glyph ink are not fully modeled.",
+    "Geometry cannot prove semantic fidelity, arrow meaning, or node ownership.",
+    "Terminal sensor covers filled Stealth/Latex-style arrowheads, straight shafts and rectangular text nodes only; 9pt floor, 12pt aim.",
+    "Peer equality is checked only for explicitly reviewed label groups, not inferred for arbitrary same-row panels."
+  ],
+  "findings": [],
+  "unresolved_count": 0,
+  "checked_terminal_approaches": 42,
+  "reviewed_peer_groups": 0
+}

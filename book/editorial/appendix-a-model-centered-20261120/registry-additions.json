@@ -1,0 +1,2139 @@
+[
+  {
+    "action": "append",
+    "source": "book/assets/handbook-substitutable-reasoning.svg",
+    "asset_mapping": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "pdf": "book/latex/assets/handbook-substitutable-reasoning-d5f7734f79.pdf"
+    },
+    "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+    "inventory": {
+      "chapter": "appendix-a-substitutable-reasoning",
+      "source": "assets/handbook-substitutable-reasoning.svg",
+      "caption": "Substitutable reasoning. Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior.",
+      "native_context": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
+      "d2_source": null,
+      "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+      "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+      "data": [],
+      "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "svg_title": "Substitutable reasoning with stable domain obligations",
+      "svg_description": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+      "native_source": "book/tikz/figures/handbook-substitutable-reasoning.tex"
+    },
+    "layout-review": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "contracts": {},
+      "baseline_dimensions_bp": null
+    },
+    "typography-review": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "checks": [
+        {
+          "text": "Alternative reasoning engines",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Task model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Workflow model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "pass graph / revisable plan",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Capability + selection model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Pass-graph executor",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Planning agent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Select a capable model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Typed proposals",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Controlled",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "application",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Resulting artifact",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Separate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "evaluation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Current artifact",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Operation model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Acceptance model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Accept?",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "Alternative reasoning engines",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Alternative reasoning engines",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "findings",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "findings",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Task model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Task model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Workflow model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Workflow model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "pass graph / revisable plan",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "pass graph / revisable plan",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Capability + selection model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Capability + selection model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Pass-graph executor",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Pass-graph executor",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Planning agent",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Planning agent",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Select a capable model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Select a capable model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Typed proposals",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Typed proposals",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Controlled",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Controlled",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "application",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "application",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Resulting artifact",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Resulting artifact",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Separate",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Separate",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "evaluation",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "evaluation",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Current artifact",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Current artifact",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Operation model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Operation model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Acceptance model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Acceptance model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Accept?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Accept?",
+          "candidate_style": "regular"
+        }
+      ]
+    },
+    "style-review": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+      "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+      "routing": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+      "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+      "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+      "book_references": []
+    },
+    "fidelity-review": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "links_and_groups": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+      "preserved": [
+        "Alternative reasoning engines",
+        "findings",
+        "Task model",
+        "Workflow model",
+        "pass graph / revisable plan",
+        "Capability + selection model",
+        "Pass-graph executor",
+        "Planning agent",
+        "Select a capable model",
+        "Typed proposals",
+        "Controlled",
+        "application",
+        "Resulting artifact",
+        "Separate",
+        "evaluation",
+        "Current artifact",
+        "Operation model",
+        "Acceptance model",
+        "Accept?"
+      ]
+    },
+    "grayscale-review": {
+      "source": "book/assets/handbook-substitutable-reasoning.svg",
+      "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+      "reviewed": true,
+      "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    },
+    "publication": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9"
+    },
+    "caption-tier": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    }
+  },
+  {
+    "action": "append",
+    "source": "book/assets/handbook-model-based-test-selection.svg",
+    "asset_mapping": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "pdf": "book/latex/assets/handbook-model-based-test-selection-3cbe737b13.pdf"
+    },
+    "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+    "inventory": {
+      "chapter": "appendix-a-model-based-test-selection",
+      "source": "assets/handbook-model-based-test-selection.svg",
+      "caption": "Model-based regression-test selection. Component and dependency models derive affected subsystems, and validation coverage maps them to checks. Execution records and findings feed an acceptance gate under an explicit policy. Dependency analyses and full-suite comparisons challenge the selection; conservative fallback covers recognized uncertainty, not every unmodeled dependency.",
+      "native_context": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",
+      "d2_source": null,
+      "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+      "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+      "data": [],
+      "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "svg_title": "Model-based regression-test selection",
+      "svg_description": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+      "native_source": "book/tikz/figures/handbook-model-based-test-selection.tex"
+    },
+    "layout-review": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "contracts": {},
+      "baseline_dimensions_bp": null
+    },
+    "typography-review": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "checks": [
+        {
+          "text": "recognized gaps:",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "run all",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "acceptance policy",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Component +",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "dependency models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Change record",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Validation coverage",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Derive impact",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Change-impact model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "affected subsystems",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Select checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Selected checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Execution model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "mode + policy",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Execute checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Execution records",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "+ findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Accept?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Dependency / coverage evidence",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "+ full-run comparisons",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Challenge",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "selection",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Revise models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "or broaden runs",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "recognized gaps:",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "recognized gaps:",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "run all",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "run all",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "acceptance policy",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "acceptance policy",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Component +",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Component +",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "dependency models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "dependency models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Change record",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Change record",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Validation coverage",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Validation coverage",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Derive impact",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Derive impact",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Change-impact model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Change-impact model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "affected subsystems",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "affected subsystems",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Select checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Select checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Selected checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Selected checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Execution model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Execution model",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "mode + policy",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "mode + policy",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Execute checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Execute checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Execution records",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Execution records",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "+ findings",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "+ findings",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Accept?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Accept?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Dependency / coverage evidence",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Dependency / coverage evidence",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "+ full-run comparisons",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "+ full-run comparisons",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Challenge",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Challenge",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "selection",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "selection",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Revise models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Revise models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "or broaden runs",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "or broaden runs",
+          "candidate_style": "regular"
+        }
+      ]
+    },
+    "style-review": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+      "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+      "routing": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+      "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+      "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+      "book_references": []
+    },
+    "fidelity-review": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "links_and_groups": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+      "preserved": [
+        "recognized gaps:",
+        "run all",
+        "acceptance policy",
+        "Component +",
+        "dependency models",
+        "Change record",
+        "Validation coverage",
+        "model",
+        "Derive impact",
+        "Change-impact model",
+        "affected subsystems",
+        "Select checks",
+        "Selected checks",
+        "Execution model",
+        "mode + policy",
+        "Execute checks",
+        "Execution records",
+        "+ findings",
+        "Accept?",
+        "Dependency / coverage evidence",
+        "+ full-run comparisons",
+        "Challenge",
+        "selection",
+        "Revise models",
+        "or broaden runs"
+      ]
+    },
+    "grayscale-review": {
+      "source": "book/assets/handbook-model-based-test-selection.svg",
+      "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+      "reviewed": true,
+      "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    },
+    "publication": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa"
+    },
+    "caption-tier": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    }
+  },
+  {
+    "action": "replace",
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "asset_mapping": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "pdf": "book/latex/assets/handbook-typed-changeset-c507d5112b.pdf"
+    },
+    "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+    "inventory": {
+      "chapter": "appendix-a-controlled-mutation",
+      "source": "assets/handbook-typed-changeset.svg",
+      "caption": "Controlled mutation separates a proposed edit from its effects. Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. A comparison affects admission only when its consumer refuses the prohibited edit; any direct write path lies outside this boundary.",
+      "native_context": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
+      "d2_source": null,
+      "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+      "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+      "data": [],
+      "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "svg_title": "Controlled mutation separates proposals from effects",
+      "svg_description": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+      "native_source": "book/tikz/figures/handbook-typed-changeset.tex"
+    },
+    "layout-review": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "contracts": {},
+      "baseline_dimensions_bp": null
+    },
+    "typography-review": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "checks": [
+        {
+          "text": "Controlled application boundary",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "pass",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "refuse",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "on mutation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Flexible producer",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "proposes edits",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Typed proposal",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "operation + target",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Document structure",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "model / current state",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Resolve current target",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Before-value compare",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "audit by default",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Supported operation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "vocabulary",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Selected",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "guards",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Apply mutation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Per-operation result",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "applied / refused / failed",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Session log",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "successful session ops only",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Pass attribution",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "remediation mutations",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "Controlled application boundary",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Controlled application boundary",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "pass",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "pass",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "refuse",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "refuse",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "on mutation",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "on mutation",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Flexible producer",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Flexible producer",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "proposes edits",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "proposes edits",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Typed proposal",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Typed proposal",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "operation + target",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "operation + target",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Document structure",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Document structure",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "model / current state",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "model / current state",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Resolve current target",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Resolve current target",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Before-value compare",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Before-value compare",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "audit by default",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "audit by default",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Supported operation",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Supported operation",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "vocabulary",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "vocabulary",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Selected",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Selected",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "guards",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "guards",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Apply mutation",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Apply mutation",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Per-operation result",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Per-operation result",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "applied / refused / failed",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "applied / refused / failed",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Session log",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Session log",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "successful session ops only",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "successful session ops only",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Pass attribution",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Pass attribution",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "remediation mutations",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "remediation mutations",
+          "candidate_style": "regular"
+        }
+      ]
+    },
+    "style-review": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+      "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+      "routing": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+      "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+      "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+      "book_references": []
+    },
+    "fidelity-review": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "links_and_groups": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+      "preserved": [
+        "Controlled application boundary",
+        "pass",
+        "refuse",
+        "on mutation",
+        "Flexible producer",
+        "proposes edits",
+        "Typed proposal",
+        "operation + target",
+        "Document structure",
+        "model / current state",
+        "Resolve current target",
+        "Before-value compare",
+        "audit by default",
+        "Supported operation",
+        "vocabulary",
+        "Selected",
+        "guards",
+        "Apply mutation",
+        "Per-operation result",
+        "applied / refused / failed",
+        "Session log",
+        "successful session ops only",
+        "Pass attribution",
+        "remediation mutations"
+      ]
+    },
+    "grayscale-review": {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+      "reviewed": true,
+      "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    },
+    "publication": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90"
+    },
+    "caption-tier": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    }
+  },
+  {
+    "action": "replace",
+    "source": "book/assets/handbook-model-guided-delegation.svg",
+    "asset_mapping": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "pdf": "book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf"
+    },
+    "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+    "inventory": {
+      "chapter": "appendix-a-governed-delegation",
+      "source": "assets/handbook-model-guided-delegation.svg",
+      "caption": "Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence. Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.",
+      "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+      "d2_source": null,
+      "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+      "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+      "data": [],
+      "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "svg_title": "Governed delegation with bounded guidance and separate admission",
+      "svg_description": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+      "native_source": "book/tikz/figures/handbook-model-guided-delegation.tex"
+    },
+    "layout-review": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "contracts": {},
+      "baseline_dimensions_bp": null
+    },
+    "typography-review": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "checks": [
+        {
+          "text": "Dispatch boundary",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "allow",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "refuse",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "complete",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "or partial",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "interrupted",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Work order",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "scope + declared phase",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Bounded context",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "selection",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Brief + selected",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "context",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Component +",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "constraint models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Lifecycle policy +",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "reconciled phase state",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Dispatch",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Absence is not DONE.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Implementing agent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "flexible reasoning",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Refuse assignment",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "invalid brief; or DONE",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "without valid override",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Independent checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "and review evidence",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Durable work",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "commits + artifacts",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Completion review",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Accepted completion",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "phase state updated",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Inspect / reconcile",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "before redispatch",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "Dispatch boundary",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Dispatch boundary",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "allow",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "allow",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "refuse",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "refuse",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "complete",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "complete",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "or partial",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "or partial",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "interrupted",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "interrupted",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Work order",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Work order",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "scope + declared phase",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "scope + declared phase",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Bounded context",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Bounded context",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "selection",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "selection",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Brief + selected",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Brief + selected",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "context",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "context",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Component +",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Component +",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "constraint models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "constraint models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Lifecycle policy +",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Lifecycle policy +",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "reconciled phase state",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "reconciled phase state",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Dispatch",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Dispatch",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Absence is not DONE.",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Absence is not DONE.",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Implementing agent",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Implementing agent",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "flexible reasoning",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "flexible reasoning",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Refuse assignment",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Refuse assignment",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "invalid brief; or DONE",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "invalid brief; or DONE",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "without valid override",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "without valid override",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Independent checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Independent checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "and review evidence",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "and review evidence",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Durable work",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Durable work",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "commits + artifacts",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "commits + artifacts",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Completion review",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Completion review",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Accepted completion",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Accepted completion",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "phase state updated",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "phase state updated",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Inspect / reconcile",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "Inspect / reconcile",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "before redispatch",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, artifact or relation label",
+          "candidate_text": "before redispatch",
+          "candidate_style": "regular"
+        }
+      ]
+    },
+    "style-review": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+      "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+      "routing": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+      "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+      "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+      "book_references": []
+    },
+    "fidelity-review": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "links_and_groups": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+      "preserved": [
+        "Dispatch boundary",
+        "allow",
+        "refuse",
+        "complete",
+        "or partial",
+        "interrupted",
+        "Work order",
+        "scope + declared phase",
+        "Bounded context",
+        "selection",
+        "Brief + selected",
+        "context",
+        "Component +",
+        "constraint models",
+        "Lifecycle policy +",
+        "reconciled phase state",
+        "Dispatch",
+        "checks",
+        "Absence is not DONE.",
+        "Implementing agent",
+        "flexible reasoning",
+        "Refuse assignment",
+        "invalid brief; or DONE",
+        "without valid override",
+        "Independent checks",
+        "and review evidence",
+        "Durable work",
+        "commits + artifacts",
+        "Completion review",
+        "Accepted completion",
+        "phase state updated",
+        "Inspect / reconcile",
+        "before redispatch"
+      ]
+    },
+    "grayscale-review": {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+      "reviewed": true,
+      "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    },
+    "publication": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75"
+    },
+    "caption-tier": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    }
+  }
+]

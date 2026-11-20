@@ -1,0 +1,14 @@
+{
+  "chapter": "appendix-a-controlled-mutation",
+  "source": "assets/handbook-typed-changeset.svg",
+  "caption": "Controlled mutation separates a proposed edit from its effects. Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. Before-value comparison is advisory by default, and unmigrated internal edits remain outside this route.",
+  "native_context": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
+  "d2_source": null,
+  "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+  "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
+  "data": [],
+  "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+  "svg_title": "Controlled mutation separates proposals from effects",
+  "svg_description": "A flexible producer emits a typed proposal. The resolver uses current document state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+  "native_source": "book/tikz/figures/handbook-typed-changeset.tex"
+}

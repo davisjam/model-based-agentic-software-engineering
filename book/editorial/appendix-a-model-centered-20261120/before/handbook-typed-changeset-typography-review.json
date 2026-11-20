@@ -1,0 +1,399 @@
+{
+  "source": "book/assets/handbook-typed-changeset.svg",
+  "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+  "source_sha256": "9aa975fdecaf9bdfb70f0541040e1ad4cc13454e82b16c5dfe63b487cf32714b",
+  "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-typed-changeset.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "checks": [
+    {
+      "text": "Controlled application boundary",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "pass",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "refuse",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "on mutation",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Flexible producer",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "proposes edits",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Typed proposal",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "operation + target",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Current document",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "state",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Resolve current target",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Before-value compare",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "audit by default",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Supported operation",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "vocabulary",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Selected",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "guards",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Apply mutation",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Per-operation result",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "applied / refused / failed",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Session log",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "successful session ops only",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Pass attribution",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "remediation mutations",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "source_text": "Controlled application boundary",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "Boundary heading",
+      "candidate_text": "Controlled application boundary",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "pass",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "pass",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "refuse",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "refuse",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "on mutation",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "on mutation",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Flexible producer",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Flexible producer",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "proposes edits",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "proposes edits",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Typed proposal",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Typed proposal",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "operation + target",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "operation + target",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Current document",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Current document",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "state",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "state",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Resolve current target",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Resolve current target",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Before-value compare",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Before-value compare",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "audit by default",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "audit by default",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Supported operation",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Supported operation",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "vocabulary",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "vocabulary",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Selected",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Selected",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "guards",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "guards",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Apply mutation",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Apply mutation",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Per-operation result",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Per-operation result",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "applied / refused / failed",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "applied / refused / failed",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Session log",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Session log",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "successful session ops only",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "successful session ops only",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Pass attribution",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Pass attribution",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "remediation mutations",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "remediation mutations",
+      "candidate_style": "regular"
+    }
+  ]
+}

@@ -23112,3 +23112,387 @@ Begin with one engineering surface: a recurring kind of change, an operational w
 
 The governing question is whether the environment makes future work more capable, trustworthy, or economical than it costs to maintain.
 ```
+
+
+## Appendix A model-centered blueprint restructuring — 2026-11-20
+
+Source revision: `375b65394d51fb71c388abf8cba23c90f7a26d4b`. Original complete sections retained below before reorganization, condensation of implementation-status commentary, relocation of the ten-move table, and relocation of the August selector episode to its new blueprint. Source fragments and empirical qualifications are retained or developed in the revised appendix; this snapshot preserves all displaced wording and metadata.
+
+### book/latex/sources/appendix-handbook/model-driven-deployment.tex
+
+Original lines 1–73.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A service can know a dependency's URL and still be unable to call it. DocAble encountered this failure when deployment wired service addresses without the corresponding invocation grants. Calls reached the cloud authorization boundary and failed before application code ran. Repairing one missing grant restores one call; deriving wiring and permissions from connected representations gives later changes a way to preserve their agreement.
+
+\autoref{handbook-derived-iam} shows the arrangement to construct. Follow the current deployment dependency map through environment-specific identity, grant planning, and application results. The typed architectural model is checked against that map while it remains a verified mirror. The figure keeps this correspondence relationship separate from the cloud permissions that actually admit calls.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-derived-iam-6f6672746f.pdf}
+\caption[Model-driven deployment]{\emph{Model-driven deployment with explicit authority boundaries.} The current dependency map and environment configuration supply a grant plan; application reports each binding's result, while cloud IAM enforces installed permissions. The typed call model remains a verified mirror checked against the map. Service-name correspondence checks a different property.}
+\label{handbook-derived-iam}
+\end{figure}
+
+\section{Components and Contracts}\label{heading:handbook-model-service-flow}
+
+The architectural contract identifies an intended caller, callee, API, and authentication obligation. Deployment configuration supplies different facts: the callee's environment-specific name, its URL wiring, and the principal under which the caller executes. Common service identities join these records. Keeping the representations separate lets the same architectural relation be used across environments without embedding every deployed name in the call model.
+
+This actual call declaration connects DocAble's accessibility-quality service to its GenAI service. The referenced authentication contract specifies the transport, token-audience requirement, and need for an invocation grant.
+
+% Evidence: system-models/interservice_edges.py:352-360 at 563cdae2316d; authentic declaration retained from prior handbook.
+% <!-- print-keep-with-next: 14 -->
+\begin{verbatim}
+SyncEdge(
+    caller=ComponentName("accessibility-quality-service"),
+    callee=ComponentName("genai-service"),
+    callee_api=ApiEntityName("genai-service-complete"),
+    callee_url_env=EnvVarName("ADA_TOOL_GENAI_SERVICE_URL"),
+    auth=_SOA_IAM_AUTH,
+    url_seam=UrlSeam.DOWNSTREAM_URL_DEPS,
+    expected_status=_SOA_STATUS_BASELINE,
+),
+\end{verbatim}
+
+The inspected grant planner consumes the existing deployment dependency map, not this edge declaration directly. For each selected caller it resolves the runtime service account and each environment-scoped callee, then constructs a command granting \texttt{roles/run.invoker}. Application deduplicates by principal and callee while retaining all logical callers in its report. DocAble's inspected configuration uses a shared runtime service account, so several logical callers can collapse to the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
+
+Separate planning from attempting the external effect. A deterministic planner can be exercised without cloud access; an application component needs credentials, a target environment, and a policy for failed operations. DocAble retains the following result for each distinct binding:
+
+% Evidence: deploy/cloud-run/deploy_cloudrun.py:808-815 at 563cdae2316d; docstring omitted (D02).
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+class DownstreamGrantResult(NamedTuple):
+    callee: str
+    member_sa: str
+    callers: tuple[str, ...]
+    status: str  # GRANTED / DRY-RUN / FAILED: <detail>
+    detail: str
+\end{verbatim}
+
+A dry run reports the intended command without applying it. A successful command records \texttt{GRANTED}; a nonzero result records \texttt{FAILED} and diagnostic detail. This result describes the application attempt. It is different from a later inspection of the live IAM binding or an authorized call through the deployed system. Cloud IAM, rather than the planning record, enforces the installed permission.
+
+\section{Construct the Path Before Transferring Authority}
+
+\textbf{Begin with the deployed arrangement.} Identify the configuration that currently drives URL wiring, service naming, and runtime identity. Give the selected call a stable identity and write down the authentication obligation. An address, a principal, and an intended permission must not be inferred from one another merely because their names resemble each other. Keep unrelated services outside the first migration.
+
+\textbf{Introduce a verified mirror.} Express the selected relationships in a typed model and project them into the form the current consumer expects. Compare that projection with the existing configuration. DocAble's parity test requires the projected dependency map to equal the maintained deployment map; an injected missing edge checks that disagreement is detected. While both declarations exist, this comparison carries the correspondence obligation. It does not decide which declaration is correct when they disagree.
+
+\textbf{Derive and inspect the plan.} Join the dependency to runtime identity and the deployed callee name. Keep the derivation deterministic, retain the logical callers behind a deduplicated binding, and expose a dry-run result. Review whether the resulting principal is as narrow as the intended architectural permission. A precise logical edge cannot compensate for an unnecessarily broad shared credential.
+
+\textbf{Exercise application and repair.} Apply grants only after the named service resources exist. Define what the caller of the application component must do with a failed result. DocAble runs grant application after the fleet deployment loop. Failed grants are reported for fix-forward repair; they do not unwind the promoted fleet. Reapplying the idempotent grant on a later deployment can restore a manually revoked binding. An analogous system may instead block promotion, but that is a different policy that must be implemented and tested, not inferred from the existence of a grant plan.
+
+\textbf{Transfer authority deliberately.} Once the model's consumers and checks are dependable, migrate the relevant consumer to the model-derived view and retire the duplicate literal. This is the reusable construction sequence. In the inspected DocAble source, the edge model still declares itself a verified mirror and retirement of the old deployment literal remains a later step. Calling that transfer complete would misstate the implemented arrangement.
+
+\section{Verify Distinct Failure Paths}
+
+Test the pure derivation with more than the successful example. Two callers sharing a principal and callee should produce one concrete application with both callers retained as reasons. A caller excluded from the selected deployment should not silently broaden the plan. A missing architectural edge should be detected by the correspondence check. A failed external command should remain a failed result, and a dry run should not be reported as an installed permission. These checks establish different contracts and should retain different diagnostics.
+
+Live observations require their own scope and freshness. DocAble separately compares declared service names with a stored snapshot of the deployed fleet. An August 2026 investigation found 49 deployed names across production and staging against 28 names in the declared set. The resulting comparison began in advisory mode while discrepancies were reconciled. Name-set parity can expose an undeclared or missing service; it does not inspect IAM bindings. Even equality can preserve an undesirable naming arrangement if the declaration itself is wrong.
+
+For an analogous deployment, choose evidence for the question actually being accepted. A unit test can check the planned binding, the application result can report whether the command succeeded, and a suitable live authorization probe can examine whether a selected call is admitted or refused. The blueprint does not make those observations interchangeable. Record the environment and observation time so that yesterday's successful probe cannot silently stand for today's deployment.
+
+\section{Adapt the Authority Boundary}\label{heading:handbook-maintaining-coherence}
+
+The reusable interface is a relation between intended communication, deployed identity, and concrete permission. Another system might derive network policy, database privileges, or message-broker access through the same arrangement. Choose stable join keys, preserve the distinction between a plan and its effects, and state the failure response at the application boundary. If existing configuration is already authoritative and economical to maintain, a checked analytical view may be sufficient; migration to a new source of authority needs a benefit of its own.
+
+```
+
+### book/latex/sources/appendix-handbook/controlled-mutation.tex
+
+Original lines 1–80.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A repairer may know that a document needs better alternative text without being entitled to change every part of its internal structure. Giving each producer unrestricted write access also makes it difficult to preserve the same restrictions, attribution, and failure behavior as reasoning strategies change. The engineering need is a common application boundary: producers express supported changes, and the machinery that performs them can resolve targets, refuse selected requests, and report what occurred.
+
+\autoref{handbook-typed-changeset} follows one proposal through that boundary. The arrangement permits flexible reasoning about what to change while concentrating supported mutations in a controlled writer. It also shows what the interface does not cover: some internal DocAble remediation still edits directly, and semantic adequacy remains an obligation beyond successful application.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-typed-changeset-c507d5112b.pdf}
+\caption[Controlled mutation]{\emph{Controlled mutation separates a proposed edit from its effects.} Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. Before-value comparison is advisory by default, and unmigrated internal edits remain outside this route.}
+\label{handbook-typed-changeset}
+\end{figure}
+
+\section{Separate the Proposal, the Writer, and the Record}\label{heading:handbook-model-document-changeset}
+
+The document model supplies a typed view of the artifact. An operation names a supported mutation, a target in that view, and the required payload. An ordered changeset collects operations before application. These are proposals: neither the producer's confidence nor the presence of an operation in the list establishes that it was applied. The applier returns per-operation results so that refused or failed requests remain distinguishable from changes that occurred.
+
+This excerpt from DocAble's \texttt{EditOp.cs} shows a replacement-description operation; optional fields are omitted. A structural identifier replaces a raw byte address, and the before- and after-values make the intended transition inspectable.
+
+% Evidence: backend/src/AdaTool.PdfModel/Model/EditOp.cs:133-138 at 563cdae2316d; optional fields follow; excerpt retained from B03.
+% <!-- print-keep-with-next: 13 -->
+\begin{verbatim}
+public sealed class SetAltOp : EditOp
+{
+    public override string WireKind => "set-alt-text";
+    public string StructId { get; init; } = "";
+    public string BeforeAlt { get; init; } = "";
+    public string AfterAlt { get; init; } = "";
+    // Optional fields omitted.
+}
+\end{verbatim}
+
+DocAble's shared applier operates on an already-open PDF document. The caller owns opening and closing the file; browser editing and migrated remediation passes can reuse the in-memory application engine without a file round-trip for every pass. After a successful tree mutation, the implementation rebuilds its structure reader before subsequent operations use the changed structure. Target resolution and indexing are therefore part of the writer's contract, not details every reasoning producer should reproduce.
+
+Attribution has two channels. A migrated remediation pass supplies its own pass name to the mutator-stamp machinery. An editor session instead uses a session operation log. The session log receives an entry only for a successfully applied operation when a session identifier is present; failed requests remain visible in operation results, not as applied-edit entries. A batch pass supplies no session identifier and does not thereby become an editor session. A history consumer must know which record it is reading and must not count the producer's entire proposal as a history of mutations.
+
+\section{Decide Which Conditions Refuse an Edit}\label{heading:handbook-model-accessibility-policy}
+
+Resolving a current target creates an opportunity to enforce obligations that the producer's text alone cannot settle. Consider a request to demote a PDF structure to a decorative artifact. In DocAble, the request must identify the source of the decorative verdict. The applier refuses missing verdict evidence, an unresolved target, and structurally informative content such as a heading, a formula, or an element carrying authored alternative or replacement text. These refusals occur before the requested demotion. A mutator's own conservative decline is also returned as a per-operation failure rather than silently disappearing from the result.
+
+The policy for interpreting uncertain evidence is a separate component. DocAble's decorative-confidence vocabulary distinguishes clearly decorative, uncertain, and informational results; only the clearly decorative result permits its internal decorative flag. An absent or unrecognized answer does not become permission to suppress content. That authored policy guides the use of a vision-language model's judgment, while the applier supplies selected structural refusals. Neither mechanism establishes every image's instructional importance. An apparently admissible operation may still need semantic evaluation.
+
+A before-value field requires another explicit policy. The inspected PDF pass runner offers three modes:
+
+% Evidence: PdfEditOpPassRunner.cs:21-33 at 563cdae2316d (D06); documentation comments omitted. Default/continuation:77-104; unsupported readers and diagnostic-only FailLoud:245-285, freshly inspected at the same pinned revision.
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+public enum PdfBeforeGateMode
+{
+    Off,
+    Audit,
+    FailLoud,
+}
+\end{verbatim}
+
+\texttt{Off} omits the comparison. \texttt{Audit}, the default argument on the inspected runner, compares supported before-values with current state, records mismatches, and applies the operations anyway; other operation kinds remain explicitly unchecked. The enum also names \texttt{FailLoud}, but in the inspected runner this changes the diagnostic wording: mismatches are returned and application still proceeds. Refusal requires a consumer that actually stops the operation on those findings. For another system, implement and test that path before relying on the comparison to prevent stale writes.
+
+\section{Construct and Migrate One Operation at a Time}
+
+Start with a consequential operation whose target and intended effect can be stated precisely. Define the operation vocabulary, the information needed to resolve its target, and a result that distinguishes success from refusal and failure. Keep the proposal serializable if it must cross a process boundary or be inspected before execution. Then implement the complete path for that operation: resolve current state, evaluate its guards, perform the mutation, and emit the evidence required by its consumers.
+
+Choose the comparison policy from the actual concurrency and failure model. A single-writer batch and a delayed proposal applied after another writer's changes have different hazards. Specify whether a stale target or before-value causes observation, rejection, retry, or engineering review. Preserve the difference between a refusal made before mutation and an operation that failed after attempting work, including any partial effects the target system permits.
+
+Migrate a producer only after naming the behavior that must remain stable. A structured pipeline, a general-purpose agent, or a human editor can propose the same operation vocabulary, but substituting their reasoning is a separate empirical comparison. During interface migration, check the resulting artifact, refusal behavior, attribution identity, and any consumers that classify the producer's mutation path. Record which producers remain direct writers so that the controlled interface's coverage is explicit.
+
+A November 8 DocAble port illustrates why this is necessary. Moving an alternative-text validation pass behind the runner would have added pass-attribution records absent from its previous output, violating the assignment's byte-identity criterion even if the intended text mutation stayed the same. Registry indirection also prevented the existing code-parity detector from recognizing the proposed route. The attempt stopped with a documented finding; no production port or model reclassification was claimed. An engineer continuing that work would need to decide whether the new attribution is an authorized behavior change and make the detector capable of evaluating the chosen implementation.
+
+\section{Verify the Boundary and Its Coverage}
+
+Exercise refusal paths with a known starting artifact. A missing verdict source, a protected heading, and an unresolved target should produce the expected failure without the prohibited mutation. A supported successful edit should produce both its result and the appropriate attribution. A failed session operation should not acquire a successful-session log entry. A tree-changing operation followed by another targeted operation should use the updated structure. Check these effects on the artifact and records rather than accepting the producer's report that the guard ran.
+
+Coverage requires a declared population. DocAble's stamp-wiring lint inspects selected production primitive directories, discovers public static methods with mutation-name prefixes, and looks for recognized stamp calls or a justified exemption. Its documented extraction heuristic skips a method whose body it cannot reliably extract. Test code is outside that scan. A clean result therefore concerns the enumerated methods and recognized wiring; it is not proof that every possible mutation in the product emits accurate provenance.
+
+The model projection and lint share their classification predicate. This prevents inconsistent classifications from two implementations of the same rule, but it does not independently establish that the rule discovers every relevant operation. When adding a new mutation pattern, test that the scanner includes it, that removing its stamp produces a finding, and that exemptions remain visible. The blocked port shows why updating the producer alone may leave the checking machinery unable to describe the new architecture.
+
+Finally, evaluate the document properties the interface cannot decide. Content preservation and mechanically testable accessibility conditions require evidence about the resulting artifact. The semantic quality of an alternative description may need a different evaluator or human review. A supported operation is permission to attempt a particular kind of change, not proof that the chosen change is correct.
+
+\section{Adapt the Mutation Vocabulary}
+
+The same arrangement can govern a configuration change, a database update, or an edit to another structured artifact. Choose domain operations that preserve the distinctions needed at the boundary; a generic ``run arbitrary code'' operation would hand those distinctions back to the producer. Keep the vocabulary small enough to maintain but expressive enough for legitimate work. Extend it when repeated unsupported requests reveal a useful operation, and test each addition against the result, attribution, and compatibility contracts already relied upon.
+
+```
+
+### book/latex/sources/appendix-handbook/governed-delegation.tex
+
+Original lines 1–93.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+An agent can receive a clear objective and still work from stale context, repeat a completed assignment, or leave useful changes stranded when its conversation ends. A delegated-work arrangement must connect authorized scope to the knowledge needed for the task, preserve durable results, and distinguish reported completion from evidence that the work can be accepted.
+
+\autoref{handbook-model-guided-delegation} follows those connections. The work order gives the agent an assignment; maintained engineering models help select context; dispatch checks govern whether that assignment may proceed. Commits and other durable artifacts then support integration, completion review, and recovery. The completion boundary is separate from the dispatch boundary, and the figure does not prescribe one identical sequence for every task.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Governed delegation]{\emph{Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence.} Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.}
+\label{handbook-model-guided-delegation}
+\end{figure}
+
+\section{Make the Assignment a Usable Interface}\label{heading:handbook-work-models}
+
+A work order must carry enough structure for both people and machinery to use it. DocAble's briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
+
+These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
+
+% Evidence: retained November brief excerpt from the prior handbook (archaeology B03).
+% <!-- print-keep-with-next: 12 -->
+\begin{verbatim}
+<!-- target-files:
+  tools/lint/lint_all/registrations/batch_d.py,
+  system-models/standards_universe.py -->
+<!-- new-files-to-create:
+  tools/lint/lint-standards-evidence-escape-admission.py -->
+<!-- compute-class: lint-all-on-commit -->
+<!-- brief-genre: lint -->
+\end{verbatim}
+
+The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project's acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
+
+Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
+
+\section{Select Context Without Claiming Completeness}
+
+Connect the assignment's scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
+
+The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
+
+% Evidence: tools/agents/_constraint_extractor.py:213-215 at 563cdae2316d (D15).
+% <!-- print-keep-with-next: 8 -->
+\begin{verbatim}
+def coverage_for_files(
+    self, files: list[str], *, repo_root: Path
+) -> list[Constraint]: ...
+\end{verbatim}
+
+The aggregator deduplicates by registry and constraint identity, orders each registry's contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
+
+The inspected implementation catches adapter exceptions and allows that adapter to contribute nothing; a test explicitly exercises this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. That visibility is a requirement for the new arrangement, not a claim that every DocAble extraction failure was already surfaced.
+
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
+
+\section{Build Dispatch, Completion, and Recovery Together}\label{heading:handbook-model-lifecycle}
+
+Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
+
+Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. The shared repository, worktree, assignment, and executor registry supply different evidence. Design their identities so that an operator can find the changes belonging to an assignment without recovering the agent's conversation.
+
+Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment's producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
+
+Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents' commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. This observed recovery supports a narrow but useful claim: committed results can survive loss of the conversational channel. It does not establish that every interrupted assignment is complete or safe to merge.
+
+For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
+
+\section{Refuse Repeated Work Without Blocking Rework}\label{heading:handbook-conversion-episode}
+
+Add controls where recurring failures reveal a dependable decision. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
+
+A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase's completion state.
+
+The control itself required repair. An October 10 investigation found that phase extraction first examined the declared \texttt{Epic} line but fell back to the first ``Phase N'' mention anywhere in the brief. Historical prose about a completed phase could then cause a new assignment to be refused. Four false refusals in one session prompted investigation. The corrected extractor, reproduced below from the field note, restricts identity extraction to the declared line:
+
+% Evidence: phase-done-gate-prose-false-fire-fix-261010.md:42-47 (D11); actual corrected implementation excerpt.
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+def extract_phase_from_brief(brief_text: str) -> str | None:
+    m_line = _EPIC_LINE_RE.search(brief_text)
+    if m_line is None:
+        return None
+    m_phase = _PHASE_IN_LINE_RE.search(m_line.group(0))
+    return m_phase.group(1) if m_phase else None
+\end{verbatim}
+
+Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
+
+Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control's actual behavior still needs its own evidence.
+
+\section{Adapt the Work Unit and Durable Store}
+
+An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor's entire reasoning process. The \href{appendix-b-operating-a-gee.html}{Operating a GEE section of Appendix B} develops the day-to-day decisions around these boundaries.
+
+```
+
+### book/latex/sources/appendix-handbook/_opening.tex
+
+Original lines 1–7.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A service has the right address but lacks permission to call its dependency. A document repairer needs freedom to choose a correction without unrestricted authority to rewrite the artifact. An engineering agent has completed work, but its report does not establish what landed or what can safely be recovered. These are three recognizable reasons to construct MAGE machinery.
+
+This appendix provides a blueprint for each arrangement. Each begins with the interacting components, then explains their contracts, an incremental construction sequence, and the evidence needed to check both success and failure. The examples are grounded in DocAble implementations; the construction advice is intended for engineers building analogous arrangements with other languages, deployment platforms, document formats, or agent frameworks.
+
+The blueprints preserve a common distinction: a reasoner proposes work, while other components control selected consequential effects and preserve evidence about them. Not every decision can or should be mechanized. The engineer chooses the obligations, establishes what each mechanism can decide, and retains the judgments for which the available evidence is insufficient. Appendix B complements these designs with a field guide to choosing where to begin, migrating an existing environment, operating it, and measuring whether it pays.
+
+```
+
+### book/latex/sources/appendix-handbook/engineering-moves.tex
+
+Original lines 1–46.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Read a blueprint by following the effect it governs. For deployment, the effect is an installed permission. For document editing, it is a mutation to the artifact. For delegation, it is accepted engineering work and the state from which later work proceeds. Ask which component may cause that effect, what information it needs, and what happens when the information is missing or the attempted action fails.
+
+The figures use a common vocabulary. Rectangles identify models or durable artifacts; rounded rectangles identify mechanisms or transformations; diamonds identify decisions. Solid arrows carry data or artifacts. Dashed arrows show correspondence or verification relationships, and a heavy boundary identifies where an action is constrained or refused. A path into a decision is not automatically evidence sufficient to justify it: the accompanying prose states what the check establishes. Pale gray identifies flexible reasoning; other components remain white. The flexible reasoning component remains distinct from the machinery governing its effects.
+
+State authority separately from representation. An authored contract specifies an obligation; a recovered model may initially describe existing configuration; a derived plan computes a consequence of other facts. A correct derivation from a mistaken obligation remains mistaken. A faithful model can also describe behavior that ought to change. In each blueprint, identify who owns the fact, which component consumes it, and who resolves a disagreement before making the representation authoritative.
+
+\section{Use the Engineering Moves Selectively}\label{heading:handbook-composition-procedure}
+
+The ten moves in \autoref{handbook-engineering-moves} are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
+
+{\footnotesize
+\begin{longtable}{@{}p{0.24\linewidth}p{0.28\linewidth}p{0.38\linewidth}@{}}
+\caption[Engineering moves at a glance]{Ten engineering moves, the problems that motivate them, and concrete realizations in DocAble.}\label{handbook-engineering-moves}\tabularnewline
+\toprule
+Recurring problem & Engineering move & DocAble example \\
+\midrule
+\endfirsthead
+\toprule
+Recurring problem & Engineering move & DocAble example \\
+\midrule
+\endhead
+Different consumers disagree about the same fact. & \textbf{Make one source authoritative.} Assign the fact an owner and name its consumers. & The component catalogue defines the zones used by repository accounting and agent audits. \\
+A copied declaration drifts from its source. & \textbf{Derive; do not copy.} Compute the second representation where a reliable transformation exists. & Deployment derives invocation-grant plans from service dependencies and runtime identity. \\
+A useful representation no longer describes its subject. & \textbf{Check correspondence.} Compare declared facts with independently obtained evidence. & A governance-graph check resolves modeled hooks against their configured events and implementing scripts. \\
+A collection of tests has no explicit account of what it must cover. & \textbf{Derive the obligation set.} Enumerate required evidence from represented properties. & Cross-service invariant declarations identify verification obligations and references to their checkers. \\
+A rule is checked where the necessary state is unavailable. & \textbf{Enforce where the property is legible.} Place the decision and its consequence at a suitable boundary. & The PDF applier resolves the target before deciding whether an artifact-demotion request is admissible. \\
+A protected operation remains available through ungoverned paths. & \textbf{Close the action surface.} Offer supported operations through a controlled interface. & External PDF editing uses typed operations; the applier can refuse a request before mutation. \\
+Relevant knowledge is discovered after the consequential choice. & \textbf{Deliver knowledge at the decision.} Join the work's scope to the representations it needs. & Dispatch context extraction selects constraints associated with the brief's target files. \\
+A result cannot be traced to the work that produced it. & \textbf{Carry cause with consequence.} Preserve identities and attribution across transformations. & PDF mutation records identify the responsible pass or editing session; applied results can be compared with proposed edits. \\
+The same operational judgment must be reconstructed repeatedly. & \textbf{Externalize recurring judgment.} Record states, evidence, and sanctioned responses. & Lifecycle descriptions and runbooks distinguish recovery work from ordinary completion and identify where judgment remains. \\
+Individually reasonable changes conflict when combined. & \textbf{Make dependencies queryable.} Represent the relationships needed to analyze the interaction. & The governance graph records firing events, resource use, and chosen resolutions among selected mechanisms. \\
+\bottomrule
+\end{longtable}
+}
+
+The third move, checking correspondence, has two possible responses. If a descriptive representation is stale, repair it to match the implementation. If an authoritative obligation is violated, repair the implementation or reconsider the obligation through the appropriate engineering decision. A check that reports disagreement cannot decide which side ought to change merely because it found a difference.
+
+The sixth move also has a scope. Closing the external PDF editing interface does not establish that every internal document mutation uses it. A useful control has a stated boundary and evidence that the relevant paths cross it. Extending that boundary is further engineering work, with its own compatibility and maintenance costs.
+
+\section{Read the Implementation Evidence}
+
+The code fragments are excerpts from actual implementations, with omissions identified. They expose consequential interfaces rather than provide complete programs to copy. The inspected DocAble source is pinned to a November 2026 snapshot; dated investigations describe what was observed or repaired at those times. Inspection of source and tests is distinct from rerunning those tests, querying a live deployment, or establishing that a migration subsequently finished. Proposed construction steps are stated as instructions to the reader, not as additional DocAble results.
+
+Before adapting a blueprint, choose one work unit and write down its required outcome. Then trace a successful case and a failed case through the components. A plan that cannot be applied, a refused edit, an unresolved assignment, and an interrupted executor each need an explicit disposition. Build the smallest complete path that supplies those dispositions, then extend it when another consumer or consequential failure justifies the cost. The blueprints omit local implementation detail where it does not change that reasoning.
+
+```
+
+### book/latex/sources/appendix-handbook/maintaining-the-machinery.tex
+
+Original lines 1–32.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A working control becomes part of the system later changes must preserve. Its inputs can drift, its consumer can move, and another control can interfere with it. The preceding blueprints therefore need maintenance beyond keeping their files present: engineers must examine interactions, correspondence, failure responses, and the work the machinery actually performs.
+
+\section{Analyze Interactions Before Adding Another Control}\label{heading:handbook-model-governance-graph}
+
+Start with a concrete interference question. Do two hooks write the same record? Must one inspect state before another consumes or changes it? Does a required property of a commit conflict with a different mechanism's transformation? Record only the distinctions needed to decide that question. A list of control names cannot answer it.
+
+DocAble's governance graph represents selected mechanisms with firing events, resource requirements, enforcement characteristics, and implementation anchors. Requirements distinguish reading, writing, requiring a property, and constraining a resource. Resources have hierarchical names: a coarse reference to \texttt{commit} can be refined to \texttt{commit.message} or \texttt{commit.body}. Apparent interference may disappear when the modeled subresources are disjoint. Genuine overlap may require an ordering or an engineering decision about incompatible requirements.
+
+The graph's analysis computes a declared order and detects cycles; tests include both a two-node cycle and a self-loop. This establishes properties of the represented relationships. The inspected implementation explicitly separates the model and query from a later proposed driver that would execute the computed order. A query returning an order is not an executing scheduler. If an analogous arrangement requires enforced ordering, install a consumer that actually uses the result and test its observed execution sequence.
+
+Correspondence has a similarly concrete boundary. The anchor check compares modeled commands, lifecycle events, scripts, and entry symbols with configured wiring. It can detect a missing command or a mismatched firing event within its inspected population. Finding the expected function name does not establish that its behavior remains suitable. When a control's meaning changes, review the represented requirements as well as its address.
+
+\section{Make Selection Govern the Work Executed}
+
+Cost can reveal a broken connection between components. An August 2026 DocAble investigation examined a small merge-check selection that still took roughly a minute. Profiling attributed 62.66 of 63.1 seconds to a full-tree walker executing 281 predicates. The selector narrowed the subprocess checks, but the in-process walker bypassed that selection. The same mismatch allowed findings outside the intended set to affect the gate's verdict.
+
+The repair connected the walker to the existing metadata-derived selection. Its helper has a three-way contract: no restriction preserves the full path; an explicitly empty intersection means no in-process checks were selected and permits skipping the walker; a nonempty intersection retains the full walk until finer selection can be executed safely. Keeping the fallback prevents an optimization from silently dropping a newly selected predicate. It also makes the remaining over-inclusion visible as unfinished work.
+
+% Evidence: lint-all-small-selection-fastpath-260802.md:120-139 (D17); retained helper/runner D18. Historical local benchmark, not rerun for this appendix.
+The historical replay used eleven batches reconstructed from one work window. The reported p95 fell from the 120-second timeout cap to 8.86 seconds after the repair. These local measurements describe that workload and implementation, not a current performance promise. Their reusable contribution is the diagnosis: the selected set must govern the work actually executed, rather than merely the list displayed as selected.
+
+When adapting a check selector, test the contract between selection and execution. Exercise an empty selection, a selection containing an in-process check, and the ordinary full mode. Inject a failure outside the selected set to determine whether it can affect a supposedly narrower gate. Retain the reason for each omission, the revision inspected, and enough timing detail to identify which component consumes the budget. A faster check is not an improvement if it silently changes the obligation being evaluated.
+
+\section{Repair, Reconsider, or Retire}
+
+A control's repeated use supplies evidence about its design. False refusals may reveal a bad identity extractor, as in the completed-phase gate. Missing attribution may reveal a mutation path the scanner cannot enumerate. Repeated manual reconstruction may identify a useful model; a frequently consulted model that never changes a decision may instead be unnecessary. Distinguish a defect in the mechanism from a deliberate exception to its policy before adding another override or check.
+
+Keep the maintenance path connected to the original obligation. Identify the failure class, the representation or mechanism changed, the consumer that must use the repair, and the evidence that exercises the repaired path. Retest both refusal and legitimate work. Then remove superseded declarations and controls when consumers no longer depend on them. Leaving both old and new machinery active can create conflicting authority, duplicate cost, or a misleading impression of independent protection.
+
+The endpoint is enough dependable machinery for the selected work. A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. The adoption and measurement procedures in Appendix B's \href{appendix-b-getting-started.html}{Getting Started} and \href{appendix-b-measuring-mage.html}{Measuring MAGE} sections support that decision as the engineering environment changes.
+
+```

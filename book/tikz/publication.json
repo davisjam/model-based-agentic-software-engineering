@@ -321,14 +321,14 @@
       "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7"
     },
     "book/assets/handbook-typed-changeset.svg": {
-      "approved_date": "2026-11-19",
-      "reason": "Author requested monochrome engineering blueprints using these consistent shapes, evidence paths, and enforcement boundaries; shared SVG/native geometry reviewed at print size.",
-      "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e"
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90"
     },
     "book/assets/handbook-model-guided-delegation.svg": {
-      "approved_date": "2026-11-19",
-      "reason": "Author requested monochrome engineering blueprints using these consistent shapes, evidence paths, and enforcement boundaries; shared SVG/native geometry reviewed at print size.",
-      "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07"
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75"
     },
     "book/assets/priority-to-accepted-work.svg": {
       "approved_date": "2026-11-20",
@@ -339,6 +339,16 @@
       "approved_date": "2026-11-20",
       "reason": "Author explicitly requested this new B&W triptych and its three named source adaptations.",
       "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435"
+    },
+    "book/assets/handbook-substitutable-reasoning.svg": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9"
+    },
+    "book/assets/handbook-model-based-test-selection.svg": {
+      "approved_date": "2026-11-20",
+      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
+      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa"
     }
   }
 }

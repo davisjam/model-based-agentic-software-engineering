@@ -1,14 +1,13 @@
 {
   "source": "book/assets/handbook-model-guided-delegation.svg",
   "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-  "source_sha256": "cdf546c6fbc46e5db22705ba8957e61818381ae5f1a954abb1c7d865dbf3aa6b",
-  "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07",
+  "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+  "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
   "decision": "revised",
-  "revision_date": "2026-11-19",
+  "revision_date": "2026-11-20",
   "reviewed_visually": true,
-  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-model-guided-delegation.json",
   "claim": "Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence. Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.",
-  "topology": "A work order supplies target scope and declared phase identity. Engineering models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Selected dispatch checks evaluate the brief and resolved phase state; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+  "topology": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
   "required_terms": [
     "Dispatch boundary",
     "allow",
@@ -22,9 +21,10 @@
     "selection",
     "Brief + selected",
     "context",
-    "Engineering models",
-    "Reconciled",
-    "phase state",
+    "Component +",
+    "constraint models",
+    "Lifecycle policy +",
+    "reconciled phase state",
     "Dispatch",
     "checks",
     "Absence is not DONE.",
@@ -43,10 +43,10 @@
     "Inspect / reconcile",
     "before redispatch"
   ],
-  "bw_encoding": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence.",
-  "redesign": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "bw_encoding": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+  "redesign": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
   "questions": [],
-  "alt": "A work order supplies target scope and declared phase identity. Engineering models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Selected dispatch checks evaluate the brief and resolved phase state; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
-  "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
-  "review_scope": "Standalone SVG/native proofs inspected; integrated audit recorded separately in generator directory."
+  "alt": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+  "review_scope": "Isolated four-figure native proof and source/visual review; parent integrates protected registries and compiles the full pool."
 }

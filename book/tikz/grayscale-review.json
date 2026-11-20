@@ -3424,28 +3424,26 @@
   {
     "source": "book/assets/handbook-typed-changeset.svg",
     "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
-    "source_sha256": "9aa975fdecaf9bdfb70f0541040e1ad4cc13454e82b16c5dfe63b487cf32714b",
-    "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e",
+    "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+    "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
     "decision": "revised",
-    "revision_date": "2026-11-19",
+    "revision_date": "2026-11-20",
     "reviewed_visually": true,
-    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-typed-changeset.json",
     "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
     "reviewed": true,
-    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
   },
   {
     "source": "book/assets/handbook-model-guided-delegation.svg",
     "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-    "source_sha256": "cdf546c6fbc46e5db22705ba8957e61818381ae5f1a954abb1c7d865dbf3aa6b",
-    "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07",
+    "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+    "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
     "decision": "revised",
-    "revision_date": "2026-11-19",
+    "revision_date": "2026-11-20",
     "reviewed_visually": true,
-    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-model-guided-delegation.json",
     "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
     "reviewed": true,
-    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
   },
   {
     "source": "book/assets/recovering-and-extending-governance.svg",
@@ -3458,5 +3456,29 @@
     "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
     "reviewed": true,
     "rationale": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular."
+  },
+  {
+    "source": "book/assets/handbook-substitutable-reasoning.svg",
+    "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+    "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+    "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+    "reviewed": true,
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+  },
+  {
+    "source": "book/assets/handbook-model-based-test-selection.svg",
+    "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+    "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+    "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+    "reviewed": true,
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
   }
 ]

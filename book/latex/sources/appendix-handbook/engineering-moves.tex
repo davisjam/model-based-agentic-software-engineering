@@ -1,46 +1,13 @@
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
-Read a blueprint by following the effect it governs. For deployment, the effect is an installed permission. For document editing, it is a mutation to the artifact. For delegation, it is accepted engineering work and the state from which later work proceeds. Ask which component may cause that effect, what information it needs, and what happens when the information is missing or the attempted action fails.
+The figures show how the representations and mechanisms interact. The model inventories identify the engineering questions that make those representations useful. Read the two together: a model is valuable not simply because it describes part of a system, but because it makes an engineering decision, analysis, or obligation tractable.
 
-The figures use a common vocabulary. Rectangles identify models or durable artifacts; rounded rectangles identify mechanisms or transformations; diamonds identify decisions. Solid arrows carry data or artifacts. Dashed arrows show correspondence or verification relationships, and a heavy boundary identifies where an action is constrained or refused. A path into a decision is not automatically evidence sufficient to justify it: the accompanying prose states what the check establishes. Pale gray identifies flexible reasoning; other components remain white. The flexible reasoning component remains distinct from the machinery governing its effects.
+Follow the consequential effect through the design: an installed permission, a changed artifact, an accepted work unit, or an omitted check. Identify the models that inform each decision and the components that consume them. Then ask what happens when an identity cannot be resolved, a required result is missing, or an attempted action fails. A representation that names an obligation does not establish that any component enforces it.
 
-State authority separately from representation. An authored contract specifies an obligation; a recovered model may initially describe existing configuration; a derived plan computes a consequence of other facts. A correct derivation from a mistaken obligation remains mistaken. A faithful model can also describe behavior that ought to change. In each blueprint, identify who owns the fact, which component consumes it, and who resolves a disagreement before making the representation authoritative.
+The figures use a common vocabulary. Rectangles identify models or durable artifacts; rounded rectangles identify mechanisms or transformations; diamonds identify decisions. Solid arrows carry data or artifacts. Dashed arrows show correspondence or verification relationships, and a heavy boundary identifies where an action is constrained or refused. Pale gray identifies flexible reasoning. A path into a decision does not by itself establish that the evidence is sufficient: the prose states what each check can decide and how its findings affect the outcome.
 
-\section{Use the Engineering Moves Selectively}\label{heading:handbook-composition-procedure}
+Distinguish authority from derivation. A descriptive model records what exists or has been observed; an authoritative model states properties the system must preserve. Either may be authored directly or derived from other representations. A correct derivation from a mistaken obligation remains mistaken, and a faithful description may record behavior that ought to change. Identify who owns each consequential fact, which identities connect the models, and what evidence establishes correspondence after a change.
 
-The ten moves in \autoref{handbook-engineering-moves} are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
+Apply Alignment at the boundary where the obligation can be decided. Constraints restrict admissible actions or states; sensors produce evidence; gates consume evidence and control whether work proceeds. Evaluation may occur within this arrangement without controlling acceptance: a validator\textquotesingle s finding has an enforcement consequence only when an effective consumer acts on it. The blueprint should leave both that consequence and the remaining human judgment visible.
 
-{\footnotesize
-\begin{longtable}{@{}p{0.24\linewidth}p{0.28\linewidth}p{0.38\linewidth}@{}}
-\caption[Engineering moves at a glance]{Ten engineering moves, the problems that motivate them, and concrete realizations in DocAble.}\label{handbook-engineering-moves}\tabularnewline
-\toprule
-Recurring problem & Engineering move & DocAble example \\
-\midrule
-\endfirsthead
-\toprule
-Recurring problem & Engineering move & DocAble example \\
-\midrule
-\endhead
-Different consumers disagree about the same fact. & \textbf{Make one source authoritative.} Assign the fact an owner and name its consumers. & The component catalogue defines the zones used by repository accounting and agent audits. \\
-A copied declaration drifts from its source. & \textbf{Derive; do not copy.} Compute the second representation where a reliable transformation exists. & Deployment derives invocation-grant plans from service dependencies and runtime identity. \\
-A useful representation no longer describes its subject. & \textbf{Check correspondence.} Compare declared facts with independently obtained evidence. & A governance-graph check resolves modeled hooks against their configured events and implementing scripts. \\
-A collection of tests has no explicit account of what it must cover. & \textbf{Derive the obligation set.} Enumerate required evidence from represented properties. & Cross-service invariant declarations identify verification obligations and references to their checkers. \\
-A rule is checked where the necessary state is unavailable. & \textbf{Enforce where the property is legible.} Place the decision and its consequence at a suitable boundary. & The PDF applier resolves the target before deciding whether an artifact-demotion request is admissible. \\
-A protected operation remains available through ungoverned paths. & \textbf{Close the action surface.} Offer supported operations through a controlled interface. & External PDF editing uses typed operations; the applier can refuse a request before mutation. \\
-Relevant knowledge is discovered after the consequential choice. & \textbf{Deliver knowledge at the decision.} Join the work's scope to the representations it needs. & Dispatch context extraction selects constraints associated with the brief's target files. \\
-A result cannot be traced to the work that produced it. & \textbf{Carry cause with consequence.} Preserve identities and attribution across transformations. & PDF mutation records identify the responsible pass or editing session; applied results can be compared with proposed edits. \\
-The same operational judgment must be reconstructed repeatedly. & \textbf{Externalize recurring judgment.} Record states, evidence, and sanctioned responses. & Lifecycle descriptions and runbooks distinguish recovery work from ordinary completion and identify where judgment remains. \\
-Individually reasonable changes conflict when combined. & \textbf{Make dependencies queryable.} Represent the relationships needed to analyze the interaction. & The governance graph records firing events, resource use, and chosen resolutions among selected mechanisms. \\
-\bottomrule
-\end{longtable}
-}
-
-The third move, checking correspondence, has two possible responses. If a descriptive representation is stale, repair it to match the implementation. If an authoritative obligation is violated, repair the implementation or reconsider the obligation through the appropriate engineering decision. A check that reports disagreement cannot decide which side ought to change merely because it found a difference.
-
-The sixth move also has a scope. Closing the external PDF editing interface does not establish that every internal document mutation uses it. A useful control has a stated boundary and evidence that the relevant paths cross it. Extending that boundary is further engineering work, with its own compatibility and maintenance costs.
-
-\section{Read the Implementation Evidence}
-
-The code fragments are excerpts from actual implementations, with omissions identified. They expose consequential interfaces rather than provide complete programs to copy. The inspected DocAble source is pinned to a November 2026 snapshot; dated investigations describe what was observed or repaired at those times. Inspection of source and tests is distinct from rerunning those tests, querying a live deployment, or establishing that a migration subsequently finished. Proposed construction steps are stated as instructions to the reader, not as additional DocAble results.
-
-Before adapting a blueprint, choose one work unit and write down its required outcome. Then trace a successful case and a failed case through the components. A plan that cannot be applied, a refused edit, an unresolved assignment, and an interrupted executor each need an explicit disposition. Build the smallest complete path that supplies those dispositions, then extend it when another consumer or consequential failure justifies the cost. The blueprints omit local implementation detail where it does not change that reasoning.
+The code fragments are excerpts from inspected implementations unless explicitly labeled as explanatory pseudocode. Dated experiments report observations from the stated workloads. Construction instructions describe how to build an analogous arrangement; they are not additional experimental results. Before adapting a blueprint, choose one work unit and trace both a successful case and a deliberately failing case through its models, mechanisms, artifacts, and evidence.

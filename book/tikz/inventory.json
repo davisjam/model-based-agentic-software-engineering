@@ -1779,25 +1779,25 @@
     "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
-    "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
+    "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
     "data": [],
-    "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+    "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
     "svg_title": "Governed delegation with bounded guidance and separate admission",
-    "svg_description": "A work order supplies target scope and declared phase identity. Engineering models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Selected dispatch checks evaluate the brief and resolved phase state; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+    "svg_description": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
     "native_source": "book/tikz/figures/handbook-model-guided-delegation.tex"
   },
   {
     "chapter": "appendix-a-controlled-mutation",
     "source": "assets/handbook-typed-changeset.svg",
-    "caption": "Controlled mutation separates a proposed edit from its effects. Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. Before-value comparison is advisory by default, and unmigrated internal edits remain outside this route.",
+    "caption": "Controlled mutation separates a proposed edit from its effects. Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. A comparison affects admission only when its consumer refuses the prohibited edit; any direct write path lies outside this boundary.",
     "native_context": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
-    "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
+    "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
     "data": [],
-    "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+    "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
     "svg_title": "Controlled mutation separates proposals from effects",
-    "svg_description": "A flexible producer emits a typed proposal. The resolver uses current document state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+    "svg_description": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
     "native_source": "book/tikz/figures/handbook-typed-changeset.tex"
   },
   {
@@ -1827,5 +1827,33 @@
     "svg_title": "Recovering and extending governance in an existing system",
     "svg_description": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
     "native_source": "book/tikz/figures/recovering-and-extending-governance.tex"
+  },
+  {
+    "chapter": "appendix-a-substitutable-reasoning",
+    "source": "assets/handbook-substitutable-reasoning.svg",
+    "caption": "Substitutable reasoning. Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior.",
+    "native_context": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+    "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+    "data": [],
+    "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+    "svg_title": "Substitutable reasoning with stable domain obligations",
+    "svg_description": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+    "native_source": "book/tikz/figures/handbook-substitutable-reasoning.tex"
+  },
+  {
+    "chapter": "appendix-a-model-based-test-selection",
+    "source": "assets/handbook-model-based-test-selection.svg",
+    "caption": "Model-based regression-test selection. Component and dependency models derive affected subsystems, and validation coverage maps them to checks. Execution records and findings feed an acceptance gate under an explicit policy. Dependency analyses and full-suite comparisons challenge the selection; conservative fallback covers recognized uncertainty, not every unmodeled dependency.",
+    "native_context": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+    "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+    "data": [],
+    "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+    "svg_title": "Model-based regression-test selection",
+    "svg_description": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+    "native_source": "book/tikz/figures/handbook-model-based-test-selection.tex"
   }
 ]

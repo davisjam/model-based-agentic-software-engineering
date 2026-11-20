@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/handbook-typed-changeset.svg",
+  "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+  "source_sha256": "9aa975fdecaf9bdfb70f0541040e1ad4cc13454e82b16c5dfe63b487cf32714b",
+  "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-typed-changeset.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "Pale gray only identifies the flexible reasoning component; other fills remain white.",
+  "bold": "Boundary labels are bold; node and edge labels regular.",
+  "routing": "A flexible producer emits a typed proposal. The resolver uses current document state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+  "shape": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence.",
+  "visual_review": "Inspected native-size and SVG proofs. Labels fit; independent evidence, authority and failure paths are distinct.",
+  "book_references": []
+}
