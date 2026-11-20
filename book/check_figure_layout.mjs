@@ -54,6 +54,10 @@ try {
           const r = rect(inset), p = rect(inset.parentElement);
           if (Math.abs((r.left + r.right) - (p.left + p.right)) > 2) problems.push('off-center inset');
         }
+        for (const code of document.querySelectorAll('blockquote:is(.concept-inset, .box-inset) pre:not(.mermaid)')) {
+          const style = getComputedStyle(code);
+          if (['borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'].some(side => parseFloat(style[side]) <= 0)) problems.push('inset listing lacks its grouping frame');
+        }
         for (const table of document.querySelectorAll('table.book-table')) {
           if (!table.caption) continue;
           if (table.tHead && rect(table.tHead).top - rect(table.caption).bottom > 24) problems.push('caption separates from table');

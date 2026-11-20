@@ -489,7 +489,7 @@ p.letter-signature { width: 50%; margin: 1.25em 0 0 auto; text-align: center; te
 }
 
 /* Match the print inset listing frame; preserve code whitespace on narrow screens. */
-.md-typeset blockquote.concept-inset pre:not(.mermaid){
+.md-typeset blockquote:is(.concept-inset, .box-inset) pre:not(.mermaid){
   border: 1px solid var(--muted);
   border-radius: 0;
   padding: 0.6rem;
