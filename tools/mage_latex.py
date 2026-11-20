@@ -742,6 +742,7 @@ def _prepare_record(task):
     title = inline(record['chapter_title'])
     source_heading = r'\chapter{' + title + '}'
     section_number = record.get('chapter', 0)
+    chapter_letter = re.match(r'Appendix ([A-Z]) [—–-]', record['part_title'])
     part_page = record.get('is_part_page')
     section_page = not (part_page or record.get('is_matter') or record.get('_group_start'))
     if section_page:
@@ -753,6 +754,15 @@ def _prepare_record(task):
         heading = (r'\setcounter{secnumdepth}{2}\section{' + title + '}'
                    + r'\label{chapter:' + slug + '}')
         latex += '\n' + r'\setcounter{secnumdepth}{0}' + '\n'
+        section_number -= 1
+    elif section_page and chapter_letter:
+        # Appendix titles already include their publication number. A starred
+        # heading alone leaves @currentlabel at the preceding numbered heading
+        # (or empty in a standalone appendix). Step the real section counter so
+        # symbolic references carry A.6/B.3 and a matching hyperlink destination.
+        heading = (r'\section*{' + title + '}\n'
+                   + r'\refstepcounter{section}\label{chapter:' + slug + '}\n'
+                   + r'\addcontentsline{toc}{chapter}{' + title + '}')
         section_number -= 1
     else:
         prefix = f"{record['part']}.{section_number} " if section_page and 0 < record['part'] < 9 and section_number else ''
@@ -766,7 +776,6 @@ def _prepare_record(task):
         heading = r'\Needspace{8\baselineskip}' + '\n' + heading
     latex = latex.replace(source_heading, heading, 1)
     counters = r'\setcounter{chapter}{' + str(record['part'] if isinstance(record['part'], int) else 0) + '}\n'
-    chapter_letter = re.match(r'Appendix ([A-Z]) [—–-]', record['part_title'])
     counters += r'\renewcommand{\thechapter}{' + (chapter_letter[1] if chapter_letter else r'\arabic{chapter}') + '}\n'
     counters += r'\setcounter{section}{' + str(section_number) + '}\n' + r'\setcounter{subsection}{0}' + '\n'
     if '_figure_start' in record:
