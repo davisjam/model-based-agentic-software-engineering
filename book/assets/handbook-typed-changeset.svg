@@ -1,34 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="446" height="218" viewBox="0 0 446 218" role="img" aria-labelledby="title desc" font-family="&quot;Source Sans 3&quot;, sans-serif">
-<title id="title">Supported typed edits cross a common controlled application boundary</title>
-<desc id="desc">A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly.</desc>
-<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#1c1917"/></marker><marker id="arrowstart" markerWidth="6" markerHeight="6" refX="0.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M6,0 L0,3 L6,6 Z" fill="#1c1917"/></marker></defs>
-<rect x="4" y="4" width="120" height="44" rx="3" fill="#f1f4f6" stroke="#2f5169" stroke-width="0.65"/>
-<text x="64" y="21" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">DOCUMENT MODEL</text>
-<text x="64" y="39" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Structure · semantics</text>
-<rect x="160" y="4" width="282" height="44" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="301" y="19" text-anchor="middle" font-size="11" font-weight="700" font-style="normal" fill="#1c1917">EDIT PRODUCERS</text>
-<text x="301" y="33" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Structured pipeline · agent · human editor</text>
-<text x="301" y="45" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Propose supported typed edits</text>
-<path d="M124,26 L160,26" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<text x="142" y="16" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">inspect</text>
-<path d="M301,48 L301,65 L64,65 L64,82" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<rect x="4" y="82" width="120" height="60" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="64" y="101" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">TYPED CHANGESET</text>
-<text x="64" y="119" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Kind · target</text>
-<text x="64" y="134" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Payload</text>
-<rect x="156" y="82" width="136" height="60" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="224" y="98" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">CONTROLLED APPLIER</text>
-<text x="224" y="117" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Resolve · check</text>
-<text x="224" y="134" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Apply or refuse</text>
-<path d="M124,112 L156,112" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<rect x="324" y="82" width="118" height="60" rx="3" fill="white" stroke="#086438" stroke-width="0.65"/>
-<text x="383" y="97" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">APPLICATION</text>
-<text x="383" y="109" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">EVIDENCE</text>
-<text x="383" y="125" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Per-operation results</text>
-<text x="383" y="138" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Applied-edit attribution</text>
-<path d="M292,112 L324,112" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<path d="M224,142 L224,164" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<rect x="156" y="164" width="136" height="30" rx="3" fill="white" stroke="#086438" stroke-width="0.65"/>
-<text x="224" y="183" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">UPDATED DOCUMENT</text>
-<text x="223" y="214" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">Controlled editing path; some internal mutations still bypass this interface.</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="996" viewBox="0 0 440 332" role="img" aria-labelledby="title desc"><title id="title">Controlled mutation separates proposals from effects</title><desc id="desc">A flexible producer emits a typed proposal. The resolver uses current document state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="440" height="332" fill="white"/>
+<rect x="0" y="125" width="440" height="143" rx="0" fill="white" stroke="black" stroke-width="1.6"/>
+<text x="5" y="121" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Controlled application boundary</text>
+<path d="M130,20 L165,20" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M225,40 L225,70" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M380,40 L380,90 L290,90" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M180,40 L180,55 L70,55 L70,70" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M165,90 L130,90" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M220,110 L220,135" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M130,165 L170,165" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M270,165 L325,165" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="297" y="158" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">pass</text>
+<path d="M220,195 L220,218" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="242" y="211" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">refuse</text>
+<path d="M377.5,185 L377.5,204 L285,204 L285,218" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M227.5,258 L227.5,278 L100,278 L100,292" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M405,185 L405,275 L340,275 L340,292" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="397" y="244" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">on mutation</text>
+<rect x="0" y="0" width="130" height="40" rx="8" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="65.0" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Flexible producer</text>
+<text x="65.0" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">proposes edits</text>
+<rect x="165" y="0" width="125" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="227.5" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Typed proposal</text>
+<text x="227.5" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">operation + target</text>
+<rect x="325" y="0" width="115" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="382.5" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Current document</text>
+<text x="382.5" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">state</text>
+<rect x="165" y="70" width="125" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="227.5" y="93.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Resolve current target</text>
+<rect x="5" y="70" width="125" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="67.5" y="87.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Before-value compare</text>
+<text x="67.5" y="99.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">audit by default</text>
+<rect x="5" y="145" width="125" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="67.5" y="162.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Supported operation</text>
+<text x="67.5" y="174.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">vocabulary</text>
+<polygon points="220,135.0 270.0,165 220,195.0 170.0,165" fill="white" stroke="black" stroke-width=".8"/>
+<text x="220" y="162.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Selected</text>
+<text x="220" y="174.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">guards</text>
+<rect x="325" y="145" width="105" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="377.5" y="168.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Apply mutation</text>
+<rect x="160" y="218" width="135" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="227.5" y="235.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Per-operation result</text>
+<text x="227.5" y="247.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">applied / refused / failed</text>
+<rect x="0" y="292" width="200" height="36" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="100.0" y="307.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Session log</text>
+<text x="100.0" y="319.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">successful session ops only</text>
+<rect x="240" y="292" width="200" height="36" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="340.0" y="307.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Pass attribution</text>
+<text x="340.0" y="319.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">remediation mutations</text></svg>

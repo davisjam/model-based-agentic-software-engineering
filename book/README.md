@@ -48,7 +48,7 @@ The generated compatibility tree **encodes the hierarchy**: a chapter lives at `
 part number and chapter number are explicit in the path. `build_book.py` walks the tree,
 derives PART.CHAPTER from the path, and reads the `<!-- part-title --> <!-- chapter-title -->`
 metadata from each file. It emits one flat `<slug>.html` per chapter plus `index.html`, and appends
-two authored appendices: MAGE Engineering Handbook and Practicing MAGE.
+two authored appendices: MAGE Engineering Blueprints and Practicing MAGE.
 
 ```
 book/

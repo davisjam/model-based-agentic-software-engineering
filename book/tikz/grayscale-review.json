@@ -3407,5 +3407,44 @@
     "receipt": "book/tikz/receipts/priority-to-accepted-work.json",
     "reviewed": true,
     "rationale": "Square boxes identify artifacts; rounded boxes identify activities; a diamond identifies the acceptance decision; double outline identifies independent evidence. All fills remain white."
+  },
+  {
+    "source": "book/assets/handbook-derived-iam.svg",
+    "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+    "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
+    "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+    "decision": "revised",
+    "revision_date": "2026-11-19",
+    "reviewed_visually": true,
+    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
+    "receipt": "book/tikz/receipts/handbook-derived-iam.json",
+    "reviewed": true,
+    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+  },
+  {
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+    "source_sha256": "9aa975fdecaf9bdfb70f0541040e1ad4cc13454e82b16c5dfe63b487cf32714b",
+    "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e",
+    "decision": "revised",
+    "revision_date": "2026-11-19",
+    "reviewed_visually": true,
+    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-typed-changeset.json",
+    "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+    "reviewed": true,
+    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+  },
+  {
+    "source": "book/assets/handbook-model-guided-delegation.svg",
+    "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+    "source_sha256": "cdf546c6fbc46e5db22705ba8957e61818381ae5f1a954abb1c7d865dbf3aa6b",
+    "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07",
+    "decision": "revised",
+    "revision_date": "2026-11-19",
+    "reviewed_visually": true,
+    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-model-guided-delegation.json",
+    "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+    "reviewed": true,
+    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
   }
 ]

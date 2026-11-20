@@ -1251,9 +1251,9 @@
     },
     "assets/handbook-derived-iam.svg": {
       "tier": "B",
-      "kind": "process-diagram",
-      "location": "appendix-handbook",
-      "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Supporting blueprint links concrete mechanisms and their authority/evidence limits; construction and verification developed in accompanying prose."
     },
     "assets/handbook-governance-conversion.svg": {
       "tier": "B",
@@ -1263,15 +1263,15 @@
     },
     "assets/handbook-model-guided-delegation.svg": {
       "tier": "B",
-      "kind": "process-diagram",
-      "location": "appendix-handbook",
-      "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Supporting blueprint links concrete mechanisms and their authority/evidence limits; construction and verification developed in accompanying prose."
     },
     "assets/handbook-typed-changeset.svg": {
       "tier": "B",
-      "kind": "architecture",
-      "location": "appendix-handbook",
-      "rationale": "Compact supporting diagram of the typed product editing boundary; caption distinguishes proposal, per-operation application evidence, and remaining direct paths."
+      "kind": "engineering-blueprint",
+      "location": "appendixA",
+      "rationale": "Supporting blueprint links concrete mechanisms and their authority/evidence limits; construction and verification developed in accompanying prose."
     },
     "assets/agentic-engineering-cycle.svg": {
       "tier": "B",

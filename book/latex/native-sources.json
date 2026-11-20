@@ -288,8 +288,8 @@
     {
       "source": "book/latex/sources/part7/7.1-reorganization-of-se.tex",
       "projection": "book/part7/7.1-reorganization-of-se.md",
-      "source_hash": "caaf2bf41cb95d23db33fe5bc3381fc61fe6b25e45a30c448db21e18cb210b21",
-      "projection_hash": "1ac0e87dae0e64d12eb8f2869e2bd2bcd2c08084536ac66b5f7bc626f246fd05"
+      "source_hash": "2768af4468dfbddc9083bc9c4c32f232138ffaf4078cb6407fd2af9f0ecd196c",
+      "projection_hash": "62673deec6cbfc34a82a1d29fcb7f603d3961262f8b990c01c06262492adf1d5"
     },
     {
       "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
@@ -952,38 +952,42 @@
     {
       "source": "book/latex/sources/appendix-handbook/_opening.tex",
       "projection": "book/appendix-handbook/_opening.md",
-      "source_hash": "1f6bf4a4dc96da79c76e5cc2d4439c79f51882638f3c75087d06f199163fb3f3",
-      "projection_hash": "e75d416c41d5e5646478bdf10b77447bdb3e7375412c4a448b6f1bfd3828a8d4"
+      "source_hash": "2402150eed1d4d9f38748114e4b16da38d2aa4eccf689f1f1457ed0270cdc30c",
+      "projection_hash": "20f3513dc7caac75a6166b312c0e45531e1a1cab512a19a34ea1a4c4441e7886"
     },
     {
       "source": "book/latex/sources/appendix-handbook/engineering-moves.tex",
       "projection": "book/appendix-handbook/engineering-moves.md",
-      "source_hash": "1c9747d0bc46101dbd6d53b5431bfb33bd1d4796c3c5f982566ff26eb08f46f4",
-      "projection_hash": "c334816d242903d3932564067b940b2e5b8cdc6958bbca7d33c4a5a729451d8c"
+      "source_hash": "973a276df251e18637d6fabb5a6e595b7e63935b2526a83b1f1662314c5f2088",
+      "projection_hash": "b2456872b1de620796f7ccc30c35e188591d84e7288e8d3ad00a8e99dc36b100"
     },
     {
       "source": "book/latex/sources/appendix-handbook/governance-conversion.tex",
       "projection": "book/appendix-handbook/governance-conversion.md",
       "source_hash": "1214ffa9eff34ad7e7fa5627c117118e010dff019379187d5eb8234d46a04f57",
-      "projection_hash": "f3fc08952f412adb7e42b4d365746b74ed2c76f2d736246ef130a65786efdfce"
+      "projection_hash": "f3fc08952f412adb7e42b4d365746b74ed2c76f2d736246ef130a65786efdfce",
+      "publication_status": "retired",
+      "retirement_reason": "Reorganized into three engineering blueprints and their maintenance treatment, November 19, 2026; retained for research."
     },
     {
       "source": "book/latex/sources/appendix-handbook/governed-delegation.tex",
       "projection": "book/appendix-handbook/governed-delegation.md",
-      "source_hash": "ac9b488bbfd91971ad0100fb3031bd26350544b3d18a20ccc1bb8a55f4012c39",
-      "projection_hash": "a6c3fa137a6a727350ab31f13d7e2de1c1b8af3a2dc3461af58e829a802c0ef5"
+      "source_hash": "0fb4e9cc027362f5baee7bfffed9fb87add520b6c16a15d40ebdecf0c58f9321",
+      "projection_hash": "4841dc4fa0b27069ce6d20d54eeaa9170c1960b156308339a4c27dc9a9ec8060"
     },
     {
       "source": "book/latex/sources/appendix-handbook/model-coherence.tex",
       "projection": "book/appendix-handbook/model-coherence.md",
       "source_hash": "7ab26685c9cd10448348f37cfdb1e1df71c38f9042bf0a8ccf09f29db3c59237",
-      "projection_hash": "fa4c228c816dd0c8fb0805121e83742abac2e590c1b7f7a7d7528a37a0008963"
+      "projection_hash": "fa4c228c816dd0c8fb0805121e83742abac2e590c1b7f7a7d7528a37a0008963",
+      "publication_status": "retired",
+      "retirement_reason": "Reorganized into three engineering blueprints and their maintenance treatment, November 19, 2026; retained for research."
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/_opening.tex",
       "projection": "book/appendix-practicing-mage/_opening.md",
-      "source_hash": "eac658bb99731e4ef1e67fbe0862c6aa0a4d7df105f5e50cb9e0284bee08cd7d",
-      "projection_hash": "96d4beb00eb2693fa2a6e700a0c0b42ed40cae58dd560c4418ad363b453ed8d6"
+      "source_hash": "91e234f24a6936e5beb750d667e6cfc0b530c2c7d00f8ef200a624a08d2aaae2",
+      "projection_hash": "79e779aed85a317da0c291935d6e80673165ca2488680d0b4877d17c6f66270b"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
@@ -1006,8 +1010,29 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
       "projection": "book/appendix-practicing-mage/operating-a-gee.md",
-      "source_hash": "5f08aea0e17e4d8582eb5eedfb21a8df344c371569bae4a3751cce498b29cfdd",
-      "projection_hash": "3f18e077ac29c7e1ee6d30e470be202ee9deb7f1d608016a66f84a4e17976a5f"
+      "source_hash": "3a98d4fa4709c5b48f8588f0b21c7c0d00f0356e743d0b4ab0252206daf1e8c0",
+      "projection_hash": "6ee2bca0a06773119578834060587898dfda594ff5a4ab3e18eb238b03551362"
+    },
+    {
+      "source": "book/latex/sources/appendix-handbook/model-driven-deployment.tex",
+      "projection": "book/appendix-handbook/model-driven-deployment.md",
+      "publication_status": "published",
+      "source_hash": "0234a3c80483bf01efc5be7eedcf874643bcbfd74414b08902b13a1f5cf7cd48",
+      "projection_hash": "8806cde2459ee13be50c9b1a2a20b597fec00409da1b5a83da22a3b20954c850"
+    },
+    {
+      "source": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
+      "projection": "book/appendix-handbook/controlled-mutation.md",
+      "publication_status": "published",
+      "source_hash": "1d25cae2e2c2b4534976aa8d5f54339f3c54ddac494d4c9425c65c073f744fdc",
+      "projection_hash": "dec4daf79e2c9d4e2d68e6e555cf3b2d2ac2897ef3326043a0419205b1c42acc"
+    },
+    {
+      "source": "book/latex/sources/appendix-handbook/maintaining-the-machinery.tex",
+      "projection": "book/appendix-handbook/maintaining-the-machinery.md",
+      "publication_status": "published",
+      "source_hash": "fc8597d3f12d5cb41713db70679622a6970bbbafb03d6d7b2d9df1339d3c97fd",
+      "projection_hash": "6428f27d7c1850b02f82ff7a954f868dc92c5d5181049d1f38fc94be907e9a45"
     }
   ],
   "engine_hash": "d4456ea5d47f78b1f0c91427ecc338c88550f6c23df9b4bb456ede3573170ea8",

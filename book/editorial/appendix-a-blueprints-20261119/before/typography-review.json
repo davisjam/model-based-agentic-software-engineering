@@ -1,0 +1,972 @@
+[
+  {
+    "source": "book/assets/handbook-derived-iam.svg",
+    "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+    "source_sha256": "9642d61dbcc5064775247ecc62d8476f9fa3bb129b22a24fbec1d9fabb2a6714",
+    "candidate_sha256": "192ee9abcbf71a0e164cecee711deaeb72d29d94ee7bb8744aad0f0de94dec10",
+    "decision": "revised",
+    "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+    "reviewed_visually": true,
+    "evidence": [
+      {
+        "source_text": "SERVICE-FLOW",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "SERVICE-FLOW",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "MODEL",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Verified mirror",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Verified mirror",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "RUNTIME IDENTITY",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "RUNTIME IDENTITY",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Accounts · resources",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Accounts · resources",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "parity check",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "parity check",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "DEPLOYMENT",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "DEPLOYMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "DEPENDENCY MAP",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "DEPENDENCY MAP",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Caller to callee",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Caller to callee",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "IAM GRANT PLAN",
+        "source_style": {
+          "font-size": "11",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "IAM GRANT PLAN",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Principal · service",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Principal · service",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "APPLY",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "APPLY",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "GRANTS",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "GRANTS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Per-grant result",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Per-grant result",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "DECLARED DEPLOYMENTS",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "DECLARED DEPLOYMENTS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Service names",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Service names",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "OBSERVED FLEET",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "OBSERVED FLEET",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Service names",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Service names",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "name-set check",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "name-set check",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "SERVICE-FLOW",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Verified mirror",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "RUNTIME IDENTITY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Accounts · resources",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "parity check",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "DEPLOYMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "DEPENDENCY MAP",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Caller to callee",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "IAM GRANT PLAN",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Principal · service",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "APPLY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "GRANTS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Per-grant result",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "DECLARED DEPLOYMENTS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Service names",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "OBSERVED FLEET",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Service names",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "name-set check",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 1,
+      "width_bp": 428.62298583984375,
+      "height_bp": 210.625,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    }
+  },
+  {
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+    "source_sha256": "341747c36214dfea3757a15dd550bf0becbae179a3da92ba22c29162d5e927f1",
+    "candidate_sha256": "21b6089f268e7db714ab99df97d2a95685c4409b51f9ae61db30718f6e4971b6",
+    "decision": "new",
+    "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+    "reviewed_visually": true,
+    "evidence": [
+      {
+        "source_text": "DOCUMENT MODEL",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "DOCUMENT MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Structure · semantics",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Structure · semantics",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "EDIT PRODUCERS",
+        "source_style": {
+          "font-size": "11",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "EDIT PRODUCERS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Structured pipeline · agent · human editor",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Structured pipeline · agent · human editor",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Propose supported typed edits",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Propose supported typed edits",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "inspect",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "inspect",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "TYPED CHANGESET",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "TYPED CHANGESET",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Kind · target",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Kind · target",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Payload",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Payload",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "CONTROLLED APPLIER",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "CONTROLLED APPLIER",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Resolve · check",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Resolve · check",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Apply or refuse",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Apply or refuse",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "APPLICATION",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "APPLICATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "EVIDENCE",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "EVIDENCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Per-operation results",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Per-operation results",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Applied-edit attribution",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Applied-edit attribution",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "UPDATED DOCUMENT",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "UPDATED DOCUMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "DOCUMENT MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Structure · semantics",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "EDIT PRODUCERS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Structured pipeline · agent · human editor",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Propose supported typed edits",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "inspect",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "TYPED CHANGESET",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Kind · target",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Payload",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "CONTROLLED APPLIER",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Resolve · check",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Apply or refuse",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "APPLICATION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "EVIDENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Per-operation results",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Applied-edit attribution",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "UPDATED DOCUMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 3,
+      "width_bp": 444.62200927734375,
+      "height_bp": 218.49200439453125,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 18,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    }
+  },
+  {
+    "source": "book/assets/handbook-model-guided-delegation.svg",
+    "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+    "source_sha256": "3c25aa6927a3c4289c34602cc8334399e611f92336543dc5fa8c59bb844248ec",
+    "candidate_sha256": "b3160ad7e69fb09465829762e6e0b7299d56be51ef7d26a997148e28a7e54292",
+    "decision": "revised",
+    "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+    "reviewed_visually": true,
+    "evidence": [
+      {
+        "source_text": "WORK ORDER",
+        "source_style": {
+          "font-size": "11",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "WORK ORDER",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Role · target paths",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Role · target paths",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Verification · acceptance",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Verification · acceptance",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "ENGINEERING MODELS",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "ENGINEERING MODELS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Components · constraints",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Components · constraints",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Procedures",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Procedures",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "select",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "select",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "ASSEMBLED BRIEF",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "ASSEMBLED BRIEF",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Selected knowledge",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Selected knowledge",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "and obligations",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "and obligations",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "AGENT",
+        "source_style": {
+          "font-size": "11",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "AGENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Implement",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Implement",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Commit",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Commit",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "validate",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "validate",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "COMPLETION EVIDENCE",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "COMPLETION EVIDENCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Landed changes",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Landed changes",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Independent checks",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Independent checks",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Review and update status",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "Review and update status",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "WORK ORDER",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Role · target paths",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Verification · acceptance",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "ENGINEERING MODELS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Components · constraints",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Procedures",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "select",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "ASSEMBLED BRIEF",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Selected knowledge",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and obligations",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "AGENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implement",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Commit",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "validate",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "COMPLETION EVIDENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Landed changes",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Independent checks",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Review and update status",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 4,
+      "width_bp": 440.62298583984375,
+      "height_bp": 150.62600708007812,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 18,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    }
+  }
+]

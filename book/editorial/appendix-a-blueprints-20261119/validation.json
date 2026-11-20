@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-19",
+  "proof": "latex/build/tikz/candidates.pdf",
+  "proof_sha256": "f3043d58e8bccd2be4df29946c972c6419bdee56e0f20daa46befce69d8df52e",
+  "figures": [
+    {
+      "source": "book/assets/handbook-derived-iam.svg",
+      "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+      "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
+      "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+      "page": 125,
+      "width_bp": 445.973,
+      "height_bp": 353.974,
+      "minimum_font_pt": 9.962639808654785,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ]
+    },
+    {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "9aa975fdecaf9bdfb70f0541040e1ad4cc13454e82b16c5dfe63b487cf32714b",
+      "candidate_sha256": "977c6198aa009ace1bb31afaa3930ea0c931e5f45481c1505e4bcb94605c9c4e",
+      "page": 128,
+      "width_bp": 445.973,
+      "height_bp": 337.974,
+      "minimum_font_pt": 9.962639808654785,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ]
+    },
+    {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "cdf546c6fbc46e5db22705ba8957e61818381ae5f1a954abb1c7d865dbf3aa6b",
+      "candidate_sha256": "ca6c9f83e12ac028fc9a151c99dad51c430200d3de366069fb215d040d15be07",
+      "page": 127,
+      "width_bp": 445.973,
+      "height_bp": 347.974,
+      "minimum_font_pt": 9.962639808654785,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ]
+    }
+  ],
+  "native_pool": {
+    "candidates": 136,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 1526,
+    "semantic_typography_findings": 0,
+    "unapproved_diagnostics": 0
+  },
+  "visual_review": "All three standalone native and SVG proofs inspected. Common monochrome shapes distinguish durable artifacts, mechanisms, decisions, flexible reasoning, verification and enforcement. Deployment preserves current map authority and separates service-name parity from live IAM. Mutation keeps before-value auditing advisory and actual applier guards separate, with mutator attribution distinct from successful session logging. Delegation distinguishes bounded advisory context, positive phase-state dispatch checks, durable work, independent completion evidence and interruption recovery.",
+  "standalone_proof": "/tmp/mage-appendix-a-figures/proof.pdf",
+  "standalone_proof_sha256": "33f69a14f9300ce8be9fcb83f1e85a062c10fc0a2b171ea1e6671126bf79adc8",
+  "previews": [
+    "/tmp/mage-appendix-a-figures/native-1.png",
+    "/tmp/mage-appendix-a-figures/native-2.png",
+    "/tmp/mage-appendix-a-figures/native-3.png"
+  ]
+}

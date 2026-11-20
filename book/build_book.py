@@ -4718,13 +4718,14 @@ def _brick_grid_html(group: str) -> str:
 # appendices above. All formats and native-source discovery use this one roster.
 _PUBLISHED_APPENDICES = (
     {
-        "letter": "A", "title": "MAGE Engineering Handbook",
+        "letter": "A", "title": "MAGE Engineering Blueprints",
         "slug": "appendix-handbook", "directory": "appendix-handbook",
         "pages": (
-            ("engineering-moves", "Engineering Moves: A Field Reference"),
-            ("model-coherence", "Model Coherence"),
-            ("governance-conversion", "Governance Conversion"),
-            ("governed-delegation", "Governed Delegation"),
+            ("engineering-moves", "Reading and Adapting the Blueprints"),
+            ("model-driven-deployment", "Blueprint: Model-Driven Deployment"),
+            ("controlled-mutation", "Blueprint: Controlled Mutation"),
+            ("governed-delegation", "Blueprint: Governed Delegation"),
+            ("maintaining-the-machinery", "Maintaining the Machinery"),
         ),
     },
     {

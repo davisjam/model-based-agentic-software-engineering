@@ -1746,17 +1746,18 @@
     "native_source": "book/tikz/figures/docable-human-evaluation-261109.tex"
   },
   {
-    "chapter": "model-coherence",
+    "chapter": "appendix-a-model-driven-deployment",
     "source": "assets/handbook-derived-iam.svg",
-    "caption": "The deployment dependency map and runtime identity determine the IAM grant plan; deployment reports each grant's application result. The service-flow model is checked for parity with the map. Declared/live service-name correspondence is a separate check, not verification of IAM bindings. [short: Grant derivation and separate correspondence checks]",
-    "native_context": "book/latex/sources/appendix-handbook/model-coherence.tex",
+    "caption": "Model-driven deployment with explicit authority boundaries. The current dependency map and environment configuration supply a grant plan; application reports each binding’s result, while cloud IAM enforces installed permissions. The typed call model remains a verified mirror checked against the map. Service-name correspondence checks a different property.",
+    "native_context": "book/latex/sources/appendix-handbook/model-driven-deployment.tex",
     "d2_source": null,
-    "receipt": null,
-    "generator": null,
+    "receipt": "book/tikz/receipts/handbook-derived-iam.json",
+    "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The implemented grant derivation and its separate correspondence checks",
-    "svg_description": "The service-flow model is a verified mirror compared with the deployment dependency map by a parity check. The deployment dependency map and runtime identity feed the IAM grant plan; deployment applies those grants for Cloud IAM enforcement. In a separate lane, a name-set check compares declared deployment names with the observed fleet. That comparison is not verification of IAM bindings."
+    "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+    "svg_title": "Model-driven deployment with explicit authority boundaries",
+    "svg_description": "Flexible engineering judgment selects intended calls. A typed call contract is checked by parity against the current authoritative dependency map. That map and environment-specific deployment identities feed deterministic grant derivation, a concrete grant plan, application, and per-grant results. Installed IAM bindings govern invocation at a separate runtime boundary. Service-name correspondence is not an IAM check. Moving model authority requires a separate consumer migration.",
+    "native_source": "book/tikz/figures/handbook-derived-iam.tex"
   },
   {
     "chapter": "governance-conversion",
@@ -1772,30 +1773,32 @@
     "svg_description": "A work order names its project and phase. Composition resolves that identity against reconciled phase state. A positive DONE match without a valid explicit override refuses the brief; otherwise composition continues subject to its other checks. Missing or unresolved state does not establish completion. Reopening changes the phase to queued; an explicit override permits one dispatch and attempts a best-effort audit write. Dispatch repeats the completed-phase check."
   },
   {
-    "chapter": "governed-delegation",
+    "chapter": "appendix-a-governed-delegation",
     "source": "assets/handbook-model-guided-delegation.svg",
-    "caption": "A structured work order selects applicable engineering knowledge from maintained models. Brief validation precedes dispatch; the agent implements and commits. Completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence]",
+    "caption": "Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence. Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.",
     "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
     "d2_source": null,
-    "receipt": null,
-    "generator": null,
+    "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+    "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Model-guided delegation and two different checks",
-    "svg_description": "A structured work order and maintained engineering models select a brief containing relevant knowledge and obligations. Brief validation precedes agent dispatch. The agent implements and commits. Completion review uses landed changes and independent checks to update work-order status; a completion message alone does not establish acceptance."
+    "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+    "svg_title": "Governed delegation with bounded guidance and separate admission",
+    "svg_description": "A work order supplies target scope and declared phase identity. Engineering models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Selected dispatch checks evaluate the brief and resolved phase state; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+    "native_source": "book/tikz/figures/handbook-model-guided-delegation.tex"
   },
   {
-    "chapter": "governed-delegation",
+    "chapter": "appendix-a-controlled-mutation",
     "source": "assets/handbook-typed-changeset.svg",
-    "caption": "Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly. [short: The controlled typed-editing path]",
-    "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+    "caption": "Controlled mutation separates a proposed edit from its effects. Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. Before-value comparison is advisory by default, and unmigrated internal edits remain outside this route.",
+    "native_context": "book/latex/sources/appendix-handbook/controlled-mutation.tex",
     "d2_source": null,
-    "receipt": null,
-    "generator": null,
+    "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+    "generator": "book/editorial/appendix-a-blueprints-20261119/build.py",
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Supported typed edits cross a common controlled application boundary",
-    "svg_description": "A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly."
+    "conversion": "Shared SVG/native blueprint geometry; documented historical authority boundaries",
+    "svg_title": "Controlled mutation separates proposals from effects",
+    "svg_description": "A flexible producer emits a typed proposal. The resolver uses current document state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
+    "native_source": "book/tikz/figures/handbook-typed-changeset.tex"
   },
   {
     "chapter": "appendix-b-operating-a-gee",

@@ -22108,3 +22108,788 @@ Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, origin
 ```latex
 \textbf{Durable throughput} counts accepted work that remains useful after the initial completion claim. Choose a window appropriate to the work and follow reopenings, rollbacks, and repeated repairs within it. Report recent work whose durability is not yet observable separately from work that has survived the window. A later change in requirements is not necessarily evidence that the original work failed; repeated repair of the original obligation is. Commit count and immediate ticket closure omit this distinction. The desired result is more accepted capability without a proportional increase in intervention.
 ```
+
+
+# Appendix A blueprint rewrite: displaced source
+
+The entries preserve replaced or retired substantive passages. Text retained verbatim elsewhere in the new appendix, including the ten-move table and authentic code fragments, is not duplicated here. No shared cutting-room file was edited by this lane.
+
+## Appendix A blueprint rewrite — model-coherence.tex:3
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 3–3, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Model Coherence keeps a useful representation connected to the system as both change. DocAble's engineering environment expresses architectural models in typed Python modules: records declare entities, closed vocabularies distinguish their kinds, and collections declare relationships. Component records identify repository zones; service-flow records describe communication; deployment representations supply resource names and runtime identities. They remain separate because they answer different questions.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:5
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 5–5, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Agents can query these representations through a repository command interface; tools can import them directly. The component query locates the owner of a path, while the service-flow query exposes a caller's dependencies. Tests and correspondence checks compare selected declarations with independently obtained facts. This supplies a modest modeling workbench using ordinary code and test tools, without requiring a second implementation of the product.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:9
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 9–9, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Question and representation.} The component model answers which parts of the system exist, which repository paths belong to each part, and which documentation and boundaries apply there. Its records distinguish leaf components, groups used for cross-component audits, and accounting categories. This distinction matters: a group can overlap several leaves without becoming another unit of source code to count.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:11
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 11–11, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The following declaration is an excerpt from \texttt{system-models/components.py}. It identifies the PDF model library and its repository location.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:13
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 13–23, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\begin{verbatim}
+Component(
+    name="pdf-model",
+    focus_dirs=(RepoRelPath("backend/src/AdaTool.PdfModel"),),
+    tags=frozenset({"model", "stamps"}),
+    kind="leaf",
+    boundary_kind="internal",
+    display_name="Remediation: PdfModel",
+    # Additional fields omitted.
+),
+\end{verbatim}
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:25
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 25–25, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Other fields support shared-directory partitions, exclusions, read-first documentation, deployment artifacts, and declared imports. These are consequential distinctions. Two components may share a directory while owning different files; a file exclusion and a directory exclusion are not interchangeable; documentation for a neighboring component may be useful background without being mandatory reading for this one.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:27
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 27–27, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Authority and consumers.} Engineers choose the catalogue’s component boundaries and groupings as an authored classification of the codebase. Repository accounting uses its component boundaries, while agent audits use its leaf and group zones. Documentation pointers give consumers an entry into the knowledge associated with a zone.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:29
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 29–29, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Correspondence and Alignment.} Checks can establish narrower facts about those decisions. Declared paths should exist; service deployment files should be represented; an import should respect a declared boundary where that boundary is enforced. A component's existence in the catalogue does not itself constrain imports. The import analysis and its configured admission consequence do that work.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:31
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 31–31, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Consider adding a new service. Its source directory, deployment files, and service catalogue entry are different artifacts. Naming the component gives them a common identity. A service-integration check compares the component's declared deployment paths with the repository and looks for service Dockerfiles that no service component claims. It can therefore expose a missing connection while the change is still being prepared. It cannot establish that the service's decomposition is a good design. That question remains with the engineer.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:35
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 35–35, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Question and representation.} A caller knowing a service's address does not imply that it may invoke that service. DocAble encountered this distinction when service URLs were wired but the corresponding invocation grants were absent. The resulting calls failed at the cloud authorization boundary before reaching application code.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:37
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 37–37, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The inter-service model represents a synchronous dependency as a typed edge. This actual edge connects the accessibility-quality service to the GenAI service:
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:51
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 51–51, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The referenced authentication contract records the transport, whether the token's audience must be the callee URL, and whether an invocation grant is required. The service catalogue separately describes the API. Deployment configuration supplies the runtime identity and environment-specific service name. These representations have different purposes; a common service identity lets tools join them.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:53
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 53–53, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{A worked join.} Start with the declared caller--callee edge. Resolve the environment variable that supplies the callee's URL. Resolve the caller's runtime service account and the deployed callee's name. The joined facts determine an invocation-grant plan: which principal needs which permission on which deployed service. The deployment tool then applies that plan. Several logical edges can require the same concrete binding, so the application step deduplicates by service account and callee.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:55
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 55–55, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+This is a useful example of derived information. Neither the architectural edge alone nor the runtime identity alone contains the resulting grant. The join answers a deployment question without requiring one enormous model containing every architectural and operational fact. It also exposes a limit: DocAble's inspected deployment configuration uses a shared runtime service account. Different logical callers can therefore collapse to the same cloud principal. The model must describe that actual authority arrangement rather than imply isolation that deployment does not provide.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:57
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 57–57, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\autoref{handbook-derived-iam} distinguishes the implemented grant path from its correspondence checks.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:59
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 59–64, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-derived-iam-6f6672746f.pdf}
+\caption[Grant derivation and separate correspondence checks]{The deployment dependency map and runtime identity determine the IAM grant plan; deployment reports each grant's application result. The service-flow model is checked for parity with the map. Declared/live service-name correspondence is a separate check, not verification of IAM bindings.}
+\label{handbook-derived-iam}
+\end{figure}
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:66
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 66–66, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Correspondence and enforcement.} The edge model currently acts as a verified mirror of the deployment dependency map. A test requires its projection to equal the live configuration; retirement of the independently maintained literal is a later step. A test that removes an edge from the model confirms that the comparison detects the disagreement. This is a useful brownfield sequence: establish correspondence first, move consumers to the representation, then retire the duplicate owner. Calling the new representation authoritative on its first day would skip the work that makes that transfer credible.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:68
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 68–68, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+A separate parity check connects service edges to the API catalogue. The grant planner consumes the deployment map and runtime identity; cloud IAM enforces the resulting permissions once applied. A declared edge, a generated grant plan, an applied binding, and a successful authorized call are different evidence. The deployment tool retains individual grant failures rather than treating the existence of a plan as proof that every grant was installed.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:70
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 70–70, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The deployed fleet also needs correspondence. An August 2026 investigation found 49 deployed service names across production and staging, while the declared deployment-name set accounted for 28. Nothing had been reconciling the two populations. The resulting check compares the declared service-name set with a stored snapshot of the live fleet; deployment-time observation refreshes that snapshot. It was introduced in advisory mode while existing discrepancies were resolved, so the new control could expose drift without making every unrelated change inherit an immediate blockage.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:72
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 72–72, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+These checks answer related but different questions. Name-set correspondence detects an undeclared or missing deployment; it does not inspect every IAM binding. The grant plan and its application results concern authorization. Keeping those responsibilities explicit gives the engineer a useful account of the deployment without pretending that one equality check establishes everything about it.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:76
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 76–76, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The essential path is short: assign a fact an authoritative representation, give it a consumer, and connect it to the relevant implementation. Derive secondary artifacts when the transformation is dependable. Where two independently authored representations must coexist, compare the facts they claim in common and name who resolves disagreement.
+```
+
+## Appendix A blueprint rewrite — model-coherence.tex:78
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, lines 78–79, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+This composition is worth maintaining when several tasks need the same knowledge or when disagreement would have a substantial consequence. It becomes less useful if the representation is too detailed to keep current, if no consumer uses it, or if its checks merely compare two copies derived from the same mistaken source. Local implementation details can remain outside the model. The component model leaves service calls to the service model; the service model leaves deployment identity to deployment configuration. Useful omission is part of the design.
+
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:3
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 3–3, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Governance Conversion changes what later work inherits after an engineer understands a failure. Its product may be a representation, a test, a constraint, a gate, or a better operating procedure. The difficult step is deciding which part of the failure should become durable. A prompt to reflect can start that work, but it cannot establish that the resulting control is adequate or that it has been installed.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:7
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 7–7, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+In October 2026, DocAble repeatedly dispatched, or nearly dispatched, agents against engineering phases whose work had already landed. The recorded phase status lagged behind the artifacts. Four encounters in one session required an operator to inspect the repository and discover that the proposed task was redundant. Repeating that inspection was a poor use of another agent.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:9
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 9–9, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The investigation found that the system already had ways to record completed phases. The missing protection was more specific: phase identity did not travel through every landing path, and the automated warning arrived only during dispatch, after the brief had been composed. The engineering obligation became: refuse a new assignment when the reconciled phase record positively establishes that the cited phase is complete, while retaining a deliberate route for genuine rework.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:11
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 11–11, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The repair reused the phase model. Briefs and commits carry a phase identity, allowing the landing machinery to update the corresponding record. A gate in work-order composition resolves the brief's cited project and phase, reads that record, and refuses to emit the brief on a positive completed-phase match. Dispatch repeats the relevant check. The gate prints the evidence and offers two ways forward: reopen the phase when more work is required, or supply an explicit override reason through the audit channel. Audit writing is best-effort; failure is reported rather than silently represented as a persisted record.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:13
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 13–13, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The positive-match boundary matters. An absent record or an unresolvable phase is not evidence that the work is complete, so it does not trigger this refusal. An earlier version also treated the existence of a phase document as completion evidence. That blocked legitimate multi-wave work and defeated reopening. The repair narrowed the gate to the reconciled phase state, leaving weaker Git evidence advisory. Tests exercise both the refusal and the reopened-phase case.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:15
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 15–15, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+This is a complete conversion: a recurring failure prompted diagnosis, the diagnosis selected an obligation and representation, implementation placed a gate where the decision could be made, and subsequent briefs inherited that restriction. The engineer still decides whether a new task is worthwhile and whether an override is justified. The environment remembers the part that can be decided from the phase record.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:17
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 17–17, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+A conversion ledger supplies supporting traceability. A failure-class identifier links the proposed intervention to the engineering phase that installs it; recorded phase transitions let the ledger derive that link's status. This gives an engineer a route from the original incident to the responsible change. The mechanism's behavior is established separately by its code, tests, and use.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:19
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 19–19, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\autoref{handbook-governance-conversion} shows the completed-phase control inherited by subsequent work orders.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:21
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 21–26, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-governance-conversion-e7b84d88d7.pdf}
+\caption[Refusing duplicate assignments from reconciled phase state]{A work order is refused when its resolved phase is recorded as DONE, unless a valid explicit override is supplied. Missing or unresolved state does not establish completion. Reopening sets the phase to queued; an override permits one dispatch and attempts a best-effort audit write. Dispatch repeats the check.}
+\label{handbook-governance-conversion}
+\end{figure}
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:30
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 30–30, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Question and representation.} Once several mechanisms participate in the same operation, the engineer needs to know how they interact. DocAble's governance graph records selected process mechanisms, their firing events, resource requirements, enforcement characteristics, and implementation anchors. The core record includes these fields:
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:32
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 32–41, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\begin{verbatim}
+id: str
+kind: MechanismKind
+lifecycles: frozenset[Lifecycle]
+firing_event: FiringEvent
+requirements: frozenset[Requirement]
+output_power: frozenset[OutputPower]
+enforcement: Enforcement
+anchor: MechanismAnchor
+\end{verbatim}
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:43
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 43–43, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+A requirement records whether a mechanism reads, writes, requires a property of, or constrains a named resource. An anchor identifies its configured command, lifecycle event, implementing script, and entry symbol. Conflict edges connect mechanism identities and record the shared resource, interaction type, and chosen resolution. These are implementation records; their categories of hook, mediator, or lint do not replace the book's functional distinction among constraints, sensors, and gates.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:45
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 45–45, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Authority and consumers.} The node census records existing mechanisms; interaction edges and their resolutions specify engineering choices. Queries compare firing events and resource paths to identify potential interference. A topological sort computes the declared order and rejects cycles. The proposed driver that would execute this computed order is a separate implementation step: a query returning an order does not itself schedule hooks. The graph also names soft mechanisms honestly. A reflection hook can inject a suggestion without blocking work.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:47
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 47–47, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Correspondence.} The anchor check compares modeled hooks with the configured lifecycle events and implementing scripts. It can report a modeled command that no longer resolves, a hook missing from the model within the inspected event set, or a mismatched firing event. Its coverage is scoped; it is not a census of every possible control in the repository. Nor does finding the expected function name establish that the function still has the intended semantics.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:49
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 49–49, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Chapter \magevalue{chapter:alignment|num}'s hook-ordering example is one application. A declared order can prevent an inspection from consuming the opportunity needed for reflection, but the resource-consumption reason is richer than a conventional read/write conflict. The model need only record enough to support the required ordering; it need not simulate every token of context consumption. Enlarging the model becomes worthwhile when the additional detail changes an engineering decision.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:53
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 53–53, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Question and representation.} The same conversion process applies inside the product. When should a possibly decorative image be omitted from the accessible reading experience? A visual appearance alone is insufficient: an abstract shape can be furniture in one document and the subject of instruction in another. A vision-language model (VLM) can supply contextual evidence, but the product still needs a policy for acting on uncertainty.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:55
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 55–55, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+DocAble represents that policy with a closed three-value vocabulary. These constants and the decision function come from \texttt{DecorativeConfidenceBand}; only the explicitly decorative result permits the internal decorative flag:
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:57
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 57–60, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\begin{verbatim}
+public const string ClearlyDecorative = "clearlyDecorative";
+public const string Uncertain = "uncertain";
+public const string Informational = "informational";
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:62
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 62–67, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+public static bool IsClearlyDecorative(string? decorativeConfidence) =>
+    string.Equals(
+        decorativeConfidence?.Trim(),
+        ClearlyDecorative,
+        StringComparison.OrdinalIgnoreCase);
+\end{verbatim}
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:69
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 69–69, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Authority and consumers.} The VLM's answer is an observation about the document, with the limitations of that inference. The mapping from answer to permitted action is an authored product decision. An uncertain, absent, or unrecognized answer does not become permission to suppress content. The shared vocabulary is consumed by description contracts and downstream code, so the conservative default need not be recreated independently by every caller.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:71
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 71–71, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+This policy developed through a failure investigation. Evaluation found content-bearing images being treated as decorative, including instructional material. The response strengthened the presumption that content should receive a description unless the evidence clearly supported treating it as ornament, and added checks around consumers that could otherwise broaden the exception. The important change was not a new adjective in a prompt. It was an explicit decision rule and its propagation through the relevant interfaces.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:73
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 73–73, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+\textbf{Alignment and its limit.} The typed PDF applier supplies a further boundary. An artifact-demotion request must name the source of its decorative verdict. The applier refuses certain structurally informative targets, including headings, formulas, and elements carrying authored alternative or replacement text. These refusals can prevent specific damaging actions even when the upstream judgment is wrong. They cannot determine every image's instructional importance. Content with no such structural protection may still require semantic review.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:75
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 75–75, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+The resulting composition therefore preserves several different responsibilities. The VLM interprets context, and the decision policy determines how uncertain evidence should affect action. The operation contract carries the proposal to the applier, which enforces selected restrictions. Subsequent evaluation looks for remaining harm. A failure can motivate a change at any of those points. Treating them separately makes it possible to repair the faulty part without claiming that one more check settles the entire accessibility problem.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:79
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 79–79, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Start from the capability, not the mechanisms. “Every supported edit can be attributed to its producer” identifies a result; “add a logging service” has already selected an implementation. Enumerate the failures that would defeat the result, then identify the evidence or restriction needed for each. Missing identity, a bypassing mutation path, and a log that cannot be joined to an artifact are different failures.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:81
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 81–81, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Next establish the dependencies among those protections. A provenance reader cannot recover a record the writer never emitted; a completeness check needs a defined population of operations. Separate these necessary dependencies from useful enhancements. A dashboard can improve diagnosis without being part of the guarantee itself.
+```
+
+## Appendix A blueprint rewrite — governance-conversion.tex:83
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`, lines 83–84, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse. Original source is retired from the publication roster, not deleted from the repository.
+
+```latex
+Finally, ask what the composition costs to build and carry, where it can still fail, and how its own correspondence will be checked. Once the required capability has adequate support, further mechanisms need a further purpose. Stop.
+
+```
+
+## Appendix A blueprint rewrite — _opening.tex:3
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 3–3, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+An engineer consulting a handbook usually has something to do. A rule keeps being forgotten; a representation has drifted; an agent has completed work that cannot yet be accepted. This appendix starts with a short reference to the engineering moves developed in the book, then shows how several moves work together in DocAble.
+```
+
+## Appendix A blueprint rewrite — _opening.tex:5
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 5–5, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The three worked compositions answer different questions. \emph{Model Coherence} connects representations to the implementation they describe or govern. \emph{Governance Conversion} turns a failure into something later work inherits. \emph{Governed Delegation} gives a reasoner useful freedom while preserving boundaries around its actions and the evidence needed to accept its work. The examples were selected because each shows a different way an explicit representation changes engineering work: supplying knowledge, deriving configuration, controlling an action, or preserving evidence. Their value depends on what consumes them and how their correspondence with the system is maintained.
+```
+
+## Appendix A blueprint rewrite — _opening.tex:7
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 7–7, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+Not every engineering decision belongs in a model. Local implementation details remain in code, operational procedures often remain in runbooks, and judgments that cannot be reliably mechanized remain with engineers. The aim is to preserve consequential distinctions at a useful level of abstraction. A model that duplicates every implementation detail has surrendered much of its purpose.
+```
+
+## Appendix A blueprint rewrite — _opening.tex:9
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 9–9, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Where to Find the Models}
+```
+
+## Appendix A blueprint rewrite — _opening.tex:11
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 11–11, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+Each example identifies an actual representation, its consumers, and the correspondence or enforcement machinery around it. The excerpts omit unrelated declarations. They are intended to show what the engineer made explicit, rather than provide a complete implementation to copy.
+```
+
+## Appendix A blueprint rewrite — _opening.tex:13
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 13–27, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+{\footnotesize
+\begin{longtable}{@{}p{0.25\linewidth}p{0.40\linewidth}p{0.25\linewidth}@{}}
+\toprule
+Model & Engineering question & Worked composition \\
+\midrule
+\endhead
+Component and zone catalogue & Which implementation belongs to a component, and which knowledge applies there? & Model Coherence \\
+Inter-service call contracts & Does a declared call have consistent wiring and the required invocation permission? & Model Coherence \\
+Governance graph & Which mechanisms can interfere, and does their recorded wiring still exist? & Governance Conversion \\
+Accessibility decision policy & How should uncertain evidence affect whether an image is described? & Governance Conversion \\
+Document and changeset contract & What can a reasoner inspect and propose, and which edits can the applier refuse? & Governed Delegation \\
+Work order and completion & Which knowledge applies to this assignment, and what establishes that its work arrived? & Governed Delegation \\
+\bottomrule
+\end{longtable}
+}
+```
+
+## Appendix A blueprint rewrite — _opening.tex:29
+
+Source: `book/latex/sources/appendix-handbook/_opening.tex`, lines 29–30, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+A representation's authority must be stated separately from its syntax. An authored contract specifies an obligation; an extracted view records what the implementation currently does; a derived plan computes a consequence of other facts. All three can be useful. A correct derivation from a mistaken obligation remains mistaken, and a faithful description can expose a system that should change.
+
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:3
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 3–3, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+Governed Delegation connects the knowledge needed to do work with the boundaries and evidence needed to accept it. DocAble provides two settings in which to inspect that connection: a reasoner repairing a document, and an agent changing the engineering environment. Their mechanisms differ, but both need a representation of the subject, a bounded assignment or action interface, and a way to distinguish a proposed result from an accepted one.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:7
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 7–7, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Question and representation.} A repairer needs to inspect the document's structure and propose a change without manipulating arbitrary format-library objects. The PDF model provides typed access to document elements. An editing operation records a supported change in that vocabulary: its kind, target, and payload. An ordered changeset collects those operations.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:9
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 9–9, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+This excerpt shows the essential fields of a replacement-description operation. It is taken from \texttt{EditOp.cs}; optional fields are omitted.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:22
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 22–22, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The target is expressed in the document model's terms, rather than as a byte offset. A request can be inspected before it is applied, compared with another proposal, or associated with the judgment that produced it. The before-value is useful evidence for comparison and reversal; its presence alone does not establish that every editing path rejects stale requests. That requires a separately configured comparison and refusal policy.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:24
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 24–24, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Authority and consumers.} The document view describes the current artifact. The operation schema specifies which requests the interface can express. The proposed changeset records a producer's intended intervention. The applied-result record reports what the applier accepted or refused. These are four related representations with different meanings. Keeping them distinct prevents a proposed edit from silently becoming a claim about the resulting document.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:26
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 26–26, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The wire vocabulary is shared with the browser editor, and schema-derived types help its clients agree about operation names and shapes. The PDF applier dispatches each supported operation to its handler, resolves targets against the document, and returns per-operation results. A failed operation can therefore be reported with its reason rather than silently counted as a completed repair.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:28
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 28–28, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Worked example: refusing a destructive proposal.} Suppose a producer classifies an element as decorative and proposes \texttt{mark-artifact}. First the applier requires an attributable verdict source. It then resolves the target and checks structural evidence. A heading, a formula, or authored replacement text can cause the request to be refused before mutation. The producer receives the failure and can reconsider its proposal. A plausible explanation from the producer does not bypass these conditions.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:30
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 30–30, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The applier is not proving that the image is decorative. It is enforcing a smaller set of obligations over information it can inspect. The contextual classification remains a semantic judgment, and subsequent checks provide evidence about the result. This division allows a useful hard restriction even when the broader problem cannot be reduced to a predicate.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:32
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 32–32, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\autoref{handbook-typed-changeset} shows the controlled editing path and the evidence its applier produces.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:34
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 34–39, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-typed-changeset-c507d5112b.pdf}
+\caption[The controlled typed-editing path]{Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly.}
+\label{handbook-typed-changeset}
+\end{figure}
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:41
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 41–41, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Correspondence and provenance.} The external editing route and migrated internal passes can use the same operation vocabulary and controlled application machinery. Applied edits have attribution records, while per-operation results identify refusals and failures. The two records must not be conflated: the producer's complete proposal may include changes that never occurred. A consumer reconstructing history must read evidence of application, not merely the proposed operation list.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:43
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 43–43, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+DocAble also models the boundary of this architecture. Remediation-graph nodes distinguish read-only work, direct editing, and production of typed patches. A code-parity analysis compares declared posture with implementation behavior. Some internal operations still mutate directly, so a picture of the common editing interface must not imply that every document change passes through it. The graph's migration account is useful precisely because it can name both the controlled path and its present limits.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:45
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 45–45, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The representation permits different producers to be compared without giving each one an independent writer. A structured pipeline, an agent, and a human editor may reason differently about the same document. Whether one strategy is sufficiently good or economical is an empirical question; Chapter \magevalue{chapter:software-factories|num} reports the measured comparisons. The architecture supplies a common place to inspect proposals and apply supported changes. It does not establish that the producers have equal competence.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:49
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 49–49, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Question and representation.} An agent working in a large repository needs the knowledge relevant to its assignment. DocAble's work order makes that assignment computable. Alongside the engineering objective, it declares target files, new files, the work's genre and role, verification, acceptance criteria, and non-goals. The generator emits a Markdown document with fields that dispatch and checking tools can read.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:63
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 63–63, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The two existing paths identify where the check must be registered and which model it consumes. The new-file declaration distinguishes a file that ought to exist from one the agent must create. The genre selects applicable authoring obligations. None of those fields specifies how to implement the check; the brief preserves freedom inside a consequential boundary.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:65
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 65–65, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\textbf{Authority and consumers.} The work order specifies the assigned scope and acceptance conditions. Its file list also keys a join to the environment's knowledge. The component catalogue relates paths to architectural zones; constraint registries relate paths and genres to applicable obligations; the assembled brief presents the selected information to the agent. Dispatch validation checks such facts as a registered project, resolvable paths, and required instruction markers. These checks establish a usable assignment structure, while review judges whether its objective and proposed evidence are adequate.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:67
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 67–67, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+Context reaches the agent in three ways:
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:69
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 69–76, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\begin{enumerate}
+\item
+\textbf{Standing knowledge selected during composition.} An include-when table associates instruction snippets with conditions on the assignment. A brief that creates a lint receives the policy for introducing new checks in advisory mode. A brief that invokes a particular build tool receives its serialization instructions. Checks look for the required markers in the composed brief.
+\item
+\textbf{File-specific constraints selected at dispatch.} The extractor matches declared paths against engineering registries. For the November brief above, the assembled record contains 47 entries: 25 from the lint registry and the rest from banned-API rules, architectural invariants, code style, test requirements, and project context. Each entry identifies its scope and a source or corrective action. This was one selection for one declared scope, rather than a recommendation to give every agent a fixed quantity of context.
+\item
+\textbf{Retrieval as the task develops.} The agent can query components, service flows, designs, and operating runbooks when it needs another representation. When the actual file list differs from the plan, a later constraint-selection step can repeat the join for the expanded scope. The selected prose guides the agent; the applicable checks and permissions supply any enforcement.
+\end{enumerate}
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:78
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 78–78, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The November brief had a concrete origin. A comparison of the standards project's acceptance criteria with the implementation found that the exception data existed but the rule admitting those exceptions lacked its checker. The work order named that obligation, the files involved, and the verification commands. Model-based context selection then supplied the rules relevant to building the missing check. The fresh investigation captured this task during execution; earlier waves supplied the observed completion path. The example demonstrates how a represented obligation becomes an assignment without treating an in-progress task as an observed success.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:80
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 80–80, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The extractor's usefulness depends on the representations it queries. It cannot recover an omitted design intention merely by matching paths. A no-match result should remain visible as a limit of the available knowledge, and an agent that changes scope needs to revisit the selection. This is also why local implementation details can remain in code: the work model needs to preserve scope and obligations, while repository inspection supplies details as they become relevant.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:82
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 82–82, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\autoref{handbook-model-guided-delegation} connects brief validation and agent implementation to the evidence used at completion.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:84
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 84–89, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Model-guided delegation and completion evidence]{A structured work order selects applicable engineering knowledge from maintained models. Brief validation precedes dispatch; the agent implements and commits. Completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion.}
+\label{handbook-model-guided-delegation}
+\end{figure}
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:93
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 93–93, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+A work order needs a corresponding account of completion. DocAble's agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. Landing checks compare the committed changes with the shared repository. A completion message can prompt that inspection; it does not establish that the requested work arrived. Tests and review must still evaluate the acceptance conditions.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:95
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 95–95, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The distinction mattered after an orchestrator restart on 9 November 2026. Background agents' completion notifications were lost, while their committed changes remained in Git worktrees. The operator inspected the branches, recovered and landed completed work, then released the affected slots. The session record and registry trace document that recovery. They support the practical claim that committed work can survive loss of the conversational channel, without requiring the agent to repeat its implementation.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:97
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 97–97, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The product has a related ownership problem on a different substrate. In the current whole-document worker path, a database compare-and-set changes a job from queued to remediating before the engine runs. A concurrent delivery that loses that claim returns without rerunning the engine. Finalization uploads the result before conditionally marking the job complete; if another terminal decision has already won, the completion path does not overwrite it. In the GEE, a pool-slot model records assignment and reset states, while the worktree and landing evidence establish what can safely be retained or released.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:99
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 99–99, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+\autoref{handbook-two-lifecycles} keeps the common engineering questions visible without imposing one recovery algorithm on both systems.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:101
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 101–120, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+{\footnotesize
+\begin{longtable}{@{}p{0.21\linewidth}p{0.345\linewidth}p{0.345\linewidth}@{}}
+\caption[Two delegated-work lifecycles]{Document processing and agent dispatch preserve ownership and completion through different durable records and operating mechanisms.}\label{handbook-two-lifecycles}\tabularnewline
+\toprule
+Concern & Whole-document processing & Agent dispatch \\
+\midrule
+\endfirsthead
+\toprule
+Concern & Whole-document processing & Agent dispatch \\
+\midrule
+\endhead
+Work unit & A document job with a database identity. & An engineering brief assigned to a worktree. \\
+Ownership & A conditional database claim admits one consumer. & A recorded slot assignment reserves the worktree before reset and handoff. \\
+Durable result & Uploaded document and persisted terminal job state. & Committed changes, then verified integration into the shared branch. \\
+Liveness & Job progress and process telemetry, considered separately from terminal status. & Registry, process, and repository observations; a stale signal prompts inspection. \\
+Failure response & The engine records a failed terminal outcome; redelivery cannot reclaim a nonqueued job. & Inspect existing commits, resume or recover work, and release the slot after safe integration or disposition. \\
+Completion evidence & Upload precedes the conditional completed-state update. & Landing evidence plus the assignment's verification and acceptance checks. \\
+\bottomrule
+\end{longtable}
+}
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:122
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 122–122, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The state representations have distinct consumers. The runtime's conditional database operations enforce ownership and terminal changes. The pool's transition table constrains slot management, while its registry records which executor is assigned. Neither a reported idle process nor a stale heartbeat establishes that an agent's work can be destroyed. DocAble's operating procedure asks for further inspection and recovery rather than making that inference automatically.
+```
+
+## Appendix A blueprint rewrite — governed-delegation.tex:124
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 124–125, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+The appropriate boundary is the durable result. Model the ownership and transitions that protect it, retain enough evidence to decide what happened, and leave the executor's internal reasoning outside the lifecycle unless an engineering question requires it. A job's output and an agent's commits need different mechanisms; both need to outlive the conversation with the actor that produced them.
+
+```
+
+## Appendix A blueprint rewrite — engineering-moves.tex:3
+
+Source: `book/latex/sources/appendix-handbook/engineering-moves.tex`, lines 3–3, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+Choose the move by the recurring problem. A mechanism is one implementation of the move; \autoref{handbook-engineering-moves} shows choices made in DocAble rather than prerequisites for practicing MAGE.
+```
+
+## Appendix A blueprint rewrite — engineering-moves.tex:34
+
+Source: `book/latex/sources/appendix-handbook/engineering-moves.tex`, lines 34–35, revision `cedd73903cae86ab33f91210d39672b3ef565c1a`. Removal date: 2026-11-19T21:31:22-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replaced by the blueprint construction, verification, and adaptation treatment; retain original detail for possible reuse.
+
+```latex
+When choosing among these moves, ask what the next task will inherit. Sometimes it needs a clearer representation; sometimes a generator, a check, or a smaller set of permitted operations. Sometimes the right response is to leave a local decision local. The worked compositions that follow show how those choices can reinforce one another.
+
+```

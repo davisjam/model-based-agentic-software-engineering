@@ -1,6 +1,14 @@
 <!-- GENERATED from book/latex/sources/appendix-handbook/engineering-moves.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-Choose the move by the recurring problem. A mechanism is one implementation of the move; [ref:handbook-engineering-moves] shows choices made in DocAble rather than prerequisites for practicing MAGE.
+Read a blueprint by following the effect it governs. For deployment, the effect is an installed permission. For document editing, it is a mutation to the artifact. For delegation, it is accepted engineering work and the state from which later work proceeds. Ask which component may cause that effect, what information it needs, and what happens when the information is missing or the attempted action fails.
+
+The figures use a common vocabulary. Rectangles identify models or durable artifacts; rounded rectangles identify mechanisms or transformations; diamonds identify decisions. Solid arrows carry data or artifacts. Dashed arrows show correspondence or verification relationships, and a heavy boundary identifies where an action is constrained or refused. A path into a decision is not automatically evidence sufficient to justify it: the accompanying prose states what the check establishes. Pale gray identifies flexible reasoning; other components remain white. The flexible reasoning component remains distinct from the machinery governing its effects.
+
+State authority separately from representation. An authored contract specifies an obligation; a recovered model may initially describe existing configuration; a derived plan computes a consequence of other facts. A correct derivation from a mistaken obligation remains mistaken. A faithful model can also describe behavior that ought to change. In each blueprint, identify who owns the fact, which component consumes it, and who resolves a disagreement before making the representation authoritative.
+
+## Use the Engineering Moves Selectively {#handbook-composition-procedure}
+
+The ten moves in [ref:handbook-engineering-moves] are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
 
 <!-- label: handbook-engineering-moves -->
 <!-- table: Ten engineering moves, the problems that motivate them, and concrete realizations in DocAble. [short: Engineering moves at a glance] -->
@@ -21,4 +29,8 @@ The third move, checking correspondence, has two possible responses. If a descri
 
 The sixth move also has a scope. Closing the external PDF editing interface does not establish that every internal document mutation uses it. A useful control has a stated boundary and evidence that the relevant paths cross it. Extending that boundary is further engineering work, with its own compatibility and maintenance costs.
 
-When choosing among these moves, ask what the next task will inherit. Sometimes it needs a clearer representation; sometimes a generator, a check, or a smaller set of permitted operations. Sometimes the right response is to leave a local decision local. The worked compositions that follow show how those choices can reinforce one another.
+## Read the Implementation Evidence
+
+The code fragments are excerpts from actual implementations, with omissions identified. They expose consequential interfaces rather than provide complete programs to copy. The inspected DocAble source is pinned to a November 2026 snapshot; dated investigations describe what was observed or repaired at those times. Inspection of source and tests is distinct from rerunning those tests, querying a live deployment, or establishing that a migration subsequently finished. Proposed construction steps are stated as instructions to the reader, not as additional DocAble results.
+
+Before adapting a blueprint, choose one work unit and write down its required outcome. Then trace a successful case and a failed case through the components. A plan that cannot be applied, a refused edit, an unresolved assignment, and an interrupted executor each need an explicit disposition. Build the smallest complete path that supplies those dispositions, then extend it when another consumer or consequential failure justifies the cost. The blueprints omit local implementation detail where it does not change that reasoning.

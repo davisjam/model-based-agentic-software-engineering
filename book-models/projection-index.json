@@ -176,19 +176,19 @@
             "occ": 4
           },
           {
+            "file": "book/web/docs/appendix-a-controlled-mutation.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 25
+            "occ": 11
           },
           {
-            "file": "book/web/docs/appendix-a-model-coherence.md",
+            "file": "book/web/docs/appendix-a-model-driven-deployment.md",
             "occ": 1
           },
           {
@@ -201,7 +201,7 @@
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/bibliography.md",
@@ -213,7 +213,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 62
+            "occ": 58
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1080,20 +1080,24 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-a-engineering-moves.md",
-            "occ": 15
+            "file": "book/web/docs/appendix-a-controlled-mutation.md",
+            "occ": 6
           },
           {
-            "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 9
+            "file": "book/web/docs/appendix-a-engineering-moves.md",
+            "occ": 12
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 13
+            "occ": 9
           },
           {
-            "file": "book/web/docs/appendix-a-model-coherence.md",
+            "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
             "occ": 6
+          },
+          {
+            "file": "book/web/docs/appendix-a-model-driven-deployment.md",
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
@@ -1113,7 +1117,7 @@
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
-            "occ": 13
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-practicing-mage.md",
@@ -1133,7 +1137,7 @@
           },
           {
             "file": "book/web/docs/contents.md",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/web/docs/figures.md",
@@ -1141,7 +1145,7 @@
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1179,7 +1183,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 70
+            "occ": 71
           }
         ]
       },
@@ -1616,20 +1620,24 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-a-engineering-moves.md",
-            "occ": 1
+            "file": "book/web/docs/appendix-a-controlled-mutation.md",
+            "occ": 5
           },
           {
-            "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 6
+            "file": "book/web/docs/appendix-a-engineering-moves.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 10
+            "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-model-coherence.md",
-            "occ": 21
+            "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/appendix-a-model-driven-deployment.md",
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
@@ -1648,10 +1656,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-handbook.md",
-            "occ": 6
-          },
-          {
             "file": "book/web/docs/bibliography.md",
             "occ": 12
           },
@@ -1664,16 +1668,8 @@
             "occ": 9
           },
           {
-            "file": "book/web/docs/contents.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/figures.md",
-            "occ": 128
-          },
-          {
-            "file": "book/web/docs/index.md",
-            "occ": 1
+            "occ": 123
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1711,7 +1707,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 60
+            "occ": 58
           }
         ]
       },
@@ -2560,8 +2556,12 @@
             "occ": 2
           },
           {
+            "file": "book/web/docs/appendix-a-controlled-mutation.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
@@ -2577,13 +2577,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 13
+            "occ": 9
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 17
+            "occ": 18
           }
         ]
       },

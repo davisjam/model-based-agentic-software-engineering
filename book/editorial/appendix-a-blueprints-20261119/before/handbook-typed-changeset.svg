@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="446" height="218" viewBox="0 0 446 218" role="img" aria-labelledby="title desc" font-family="&quot;Source Sans 3&quot;, sans-serif">
+<title id="title">Supported typed edits cross a common controlled application boundary</title>
+<desc id="desc">A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly.</desc>
+<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#1c1917"/></marker><marker id="arrowstart" markerWidth="6" markerHeight="6" refX="0.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M6,0 L0,3 L6,6 Z" fill="#1c1917"/></marker></defs>
+<rect x="4" y="4" width="120" height="44" rx="3" fill="#f1f4f6" stroke="#2f5169" stroke-width="0.65"/>
+<text x="64" y="21" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">DOCUMENT MODEL</text>
+<text x="64" y="39" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Structure · semantics</text>
+<rect x="160" y="4" width="282" height="44" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
+<text x="301" y="19" text-anchor="middle" font-size="11" font-weight="700" font-style="normal" fill="#1c1917">EDIT PRODUCERS</text>
+<text x="301" y="33" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Structured pipeline · agent · human editor</text>
+<text x="301" y="45" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Propose supported typed edits</text>
+<path d="M124,26 L160,26" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<text x="142" y="16" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">inspect</text>
+<path d="M301,48 L301,65 L64,65 L64,82" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<rect x="4" y="82" width="120" height="60" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
+<text x="64" y="101" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">TYPED CHANGESET</text>
+<text x="64" y="119" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Kind · target</text>
+<text x="64" y="134" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Payload</text>
+<rect x="156" y="82" width="136" height="60" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
+<text x="224" y="98" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">CONTROLLED APPLIER</text>
+<text x="224" y="117" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Resolve · check</text>
+<text x="224" y="134" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Apply or refuse</text>
+<path d="M124,112 L156,112" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<rect x="324" y="82" width="118" height="60" rx="3" fill="white" stroke="#086438" stroke-width="0.65"/>
+<text x="383" y="97" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">APPLICATION</text>
+<text x="383" y="109" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">EVIDENCE</text>
+<text x="383" y="125" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Per-operation results</text>
+<text x="383" y="138" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Applied-edit attribution</text>
+<path d="M292,112 L324,112" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<path d="M224,142 L224,164" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
+<rect x="156" y="164" width="136" height="30" rx="3" fill="white" stroke="#086438" stroke-width="0.65"/>
+<text x="224" y="183" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">UPDATED DOCUMENT</text>
+<text x="223" y="214" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">Controlled editing path; some internal mutations still bypass this interface.</text>
+</svg>

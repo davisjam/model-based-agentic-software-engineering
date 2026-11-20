@@ -1,55 +1,24 @@
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
-Governed Delegation connects the knowledge needed to do work with the boundaries and evidence needed to accept it. DocAble provides two settings in which to inspect that connection: a reasoner repairing a document, and an agent changing the engineering environment. Their mechanisms differ, but both need a representation of the subject, a bounded assignment or action interface, and a way to distinguish a proposed result from an accepted one.
+An agent can receive a clear objective and still work from stale context, repeat a completed assignment, or leave useful changes stranded when its conversation ends. A delegated-work arrangement must connect authorized scope to the knowledge needed for the task, preserve durable results, and distinguish reported completion from evidence that the work can be accepted.
 
-\section{Document Model and Typed Changeset}\label{heading:handbook-model-document-changeset}
-
-\textbf{Question and representation.} A repairer needs to inspect the document's structure and propose a change without manipulating arbitrary format-library objects. The PDF model provides typed access to document elements. An editing operation records a supported change in that vocabulary: its kind, target, and payload. An ordered changeset collects those operations.
-
-This excerpt shows the essential fields of a replacement-description operation. It is taken from \texttt{EditOp.cs}; optional fields are omitted.
-
-\begin{verbatim}
-public sealed class SetAltOp : EditOp
-{
-    public override string WireKind => "set-alt-text";
-    public string StructId { get; init; } = "";
-    public string BeforeAlt { get; init; } = "";
-    public string AfterAlt { get; init; } = "";
-    // Optional fields omitted.
-}
-\end{verbatim}
-
-The target is expressed in the document model's terms, rather than as a byte offset. A request can be inspected before it is applied, compared with another proposal, or associated with the judgment that produced it. The before-value is useful evidence for comparison and reversal; its presence alone does not establish that every editing path rejects stale requests. That requires a separately configured comparison and refusal policy.
-
-\textbf{Authority and consumers.} The document view describes the current artifact. The operation schema specifies which requests the interface can express. The proposed changeset records a producer's intended intervention. The applied-result record reports what the applier accepted or refused. These are four related representations with different meanings. Keeping them distinct prevents a proposed edit from silently becoming a claim about the resulting document.
-
-The wire vocabulary is shared with the browser editor, and schema-derived types help its clients agree about operation names and shapes. The PDF applier dispatches each supported operation to its handler, resolves targets against the document, and returns per-operation results. A failed operation can therefore be reported with its reason rather than silently counted as a completed repair.
-
-\textbf{Worked example: refusing a destructive proposal.} Suppose a producer classifies an element as decorative and proposes \texttt{mark-artifact}. First the applier requires an attributable verdict source. It then resolves the target and checks structural evidence. A heading, a formula, or authored replacement text can cause the request to be refused before mutation. The producer receives the failure and can reconsider its proposal. A plausible explanation from the producer does not bypass these conditions.
-
-The applier is not proving that the image is decorative. It is enforcing a smaller set of obligations over information it can inspect. The contextual classification remains a semantic judgment, and subsequent checks provide evidence about the result. This division allows a useful hard restriction even when the broader problem cannot be reduced to a predicate.
-
-\autoref{handbook-typed-changeset} shows the controlled editing path and the evidence its applier produces.
+\autoref{handbook-model-guided-delegation} follows those connections. The work order gives the agent an assignment; maintained engineering models help select context; dispatch checks govern whether that assignment may proceed. Commits and other durable artifacts then support integration, completion review, and recovery. The completion boundary is separate from the dispatch boundary, and the figure does not prescribe one identical sequence for every task.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{book/latex/assets/handbook-typed-changeset-c507d5112b.pdf}
-\caption[The controlled typed-editing path]{Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly.}
-\label{handbook-typed-changeset}
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Governed delegation]{\emph{Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence.} Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.}
+\label{handbook-model-guided-delegation}
 \end{figure}
 
-\textbf{Correspondence and provenance.} The external editing route and migrated internal passes can use the same operation vocabulary and controlled application machinery. Applied edits have attribution records, while per-operation results identify refusals and failures. The two records must not be conflated: the producer's complete proposal may include changes that never occurred. A consumer reconstructing history must read evidence of application, not merely the proposed operation list.
+\section{Make the Assignment a Usable Interface}\label{heading:handbook-work-models}
 
-DocAble also models the boundary of this architecture. Remediation-graph nodes distinguish read-only work, direct editing, and production of typed patches. A code-parity analysis compares declared posture with implementation behavior. Some internal operations still mutate directly, so a picture of the common editing interface must not imply that every document change passes through it. The graph's migration account is useful precisely because it can name both the controlled path and its present limits.
-
-The representation permits different producers to be compared without giving each one an independent writer. A structured pipeline, an agent, and a human editor may reason differently about the same document. Whether one strategy is sufficiently good or economical is an empirical question; Chapter \magevalue{chapter:software-factories|num} reports the measured comparisons. The architecture supplies a common place to inspect proposals and apply supported changes. It does not establish that the producers have equal competence.
-
-\section{Work Orders and Context Delivery}\label{heading:handbook-work-models}
-
-\textbf{Question and representation.} An agent working in a large repository needs the knowledge relevant to its assignment. DocAble's work order makes that assignment computable. Alongside the engineering objective, it declares target files, new files, the work's genre and role, verification, acceptance criteria, and non-goals. The generator emits a Markdown document with fields that dispatch and checking tools can read.
+A work order must carry enough structure for both people and machinery to use it. DocAble's briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
 
 These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
 
+% Evidence: retained November brief excerpt from the prior handbook (archaeology B03).
+% <!-- print-keep-with-next: 12 -->
 \begin{verbatim}
 <!-- target-files:
   tools/lint/lint_all/registrations/batch_d.py,
@@ -60,65 +29,65 @@ These fields come from an actual November 2026 brief to add a standards-evidence
 <!-- brief-genre: lint -->
 \end{verbatim}
 
-The two existing paths identify where the check must be registered and which model it consumes. The new-file declaration distinguishes a file that ought to exist from one the agent must create. The genre selects applicable authoring obligations. None of those fields specifies how to implement the check; the brief preserves freedom inside a consequential boundary.
+The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project's acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
 
-\textbf{Authority and consumers.} The work order specifies the assigned scope and acceptance conditions. Its file list also keys a join to the environment's knowledge. The component catalogue relates paths to architectural zones; constraint registries relate paths and genres to applicable obligations; the assembled brief presents the selected information to the agent. Dispatch validation checks such facts as a registered project, resolvable paths, and required instruction markers. These checks establish a usable assignment structure, while review judges whether its objective and proposed evidence are adequate.
+Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
 
-Context reaches the agent in three ways:
+\section{Select Context Without Claiming Completeness}
 
-\begin{enumerate}
-\item
-\textbf{Standing knowledge selected during composition.} An include-when table associates instruction snippets with conditions on the assignment. A brief that creates a lint receives the policy for introducing new checks in advisory mode. A brief that invokes a particular build tool receives its serialization instructions. Checks look for the required markers in the composed brief.
-\item
-\textbf{File-specific constraints selected at dispatch.} The extractor matches declared paths against engineering registries. For the November brief above, the assembled record contains 47 entries: 25 from the lint registry and the rest from banned-API rules, architectural invariants, code style, test requirements, and project context. Each entry identifies its scope and a source or corrective action. This was one selection for one declared scope, rather than a recommendation to give every agent a fixed quantity of context.
-\item
-\textbf{Retrieval as the task develops.} The agent can query components, service flows, designs, and operating runbooks when it needs another representation. When the actual file list differs from the plan, a later constraint-selection step can repeat the join for the expanded scope. The selected prose guides the agent; the applicable checks and permissions supply any enforcement.
-\end{enumerate}
+Connect the assignment's scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
 
-The November brief had a concrete origin. A comparison of the standards project's acceptance criteria with the implementation found that the exception data existed but the rule admitting those exceptions lacked its checker. The work order named that obligation, the files involved, and the verification commands. Model-based context selection then supplied the rules relevant to building the missing check. The fresh investigation captured this task during execution; earlier waves supplied the observed completion path. The example demonstrates how a represented obligation becomes an assignment without treating an in-progress task as an observed success.
+The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
 
-The extractor's usefulness depends on the representations it queries. It cannot recover an omitted design intention merely by matching paths. A no-match result should remain visible as a limit of the available knowledge, and an agent that changes scope needs to revisit the selection. This is also why local implementation details can remain in code: the work model needs to preserve scope and obligations, while repository inspection supplies details as they become relevant.
+% Evidence: tools/agents/_constraint_extractor.py:213-215 at 563cdae2316d (D15).
+% <!-- print-keep-with-next: 8 -->
+\begin{verbatim}
+def coverage_for_files(
+    self, files: list[str], *, repo_root: Path
+) -> list[Constraint]: ...
+\end{verbatim}
 
-\autoref{handbook-model-guided-delegation} connects brief validation and agent implementation to the evidence used at completion.
+The aggregator deduplicates by registry and constraint identity, orders each registry's contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
-\caption[Model-guided delegation and completion evidence]{A structured work order selects applicable engineering knowledge from maintained models. Brief validation precedes dispatch; the agent implements and commits. Completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion.}
-\label{handbook-model-guided-delegation}
-\end{figure}
+The inspected implementation catches adapter exceptions and allows that adapter to contribute nothing; a test explicitly exercises this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. That visibility is a requirement for the new arrangement, not a claim that every DocAble extraction failure was already surfaced.
 
-\section{Completion and Recovery}\label{heading:handbook-model-lifecycle}
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
 
-A work order needs a corresponding account of completion. DocAble's agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. Landing checks compare the committed changes with the shared repository. A completion message can prompt that inspection; it does not establish that the requested work arrived. Tests and review must still evaluate the acceptance conditions.
+\section{Build Dispatch, Completion, and Recovery Together}\label{heading:handbook-model-lifecycle}
 
-The distinction mattered after an orchestrator restart on 9 November 2026. Background agents' completion notifications were lost, while their committed changes remained in Git worktrees. The operator inspected the branches, recovered and landed completed work, then released the affected slots. The session record and registry trace document that recovery. They support the practical claim that committed work can survive loss of the conversational channel, without requiring the agent to repeat its implementation.
+Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
 
-The product has a related ownership problem on a different substrate. In the current whole-document worker path, a database compare-and-set changes a job from queued to remediating before the engine runs. A concurrent delivery that loses that claim returns without rerunning the engine. Finalization uploads the result before conditionally marking the job complete; if another terminal decision has already won, the completion path does not overwrite it. In the GEE, a pool-slot model records assignment and reset states, while the worktree and landing evidence establish what can safely be retained or released.
+Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. The shared repository, worktree, assignment, and executor registry supply different evidence. Design their identities so that an operator can find the changes belonging to an assignment without recovering the agent's conversation.
 
-\autoref{handbook-two-lifecycles} keeps the common engineering questions visible without imposing one recovery algorithm on both systems.
+Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment's producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
 
-{\footnotesize
-\begin{longtable}{@{}p{0.21\linewidth}p{0.345\linewidth}p{0.345\linewidth}@{}}
-\caption[Two delegated-work lifecycles]{Document processing and agent dispatch preserve ownership and completion through different durable records and operating mechanisms.}\label{handbook-two-lifecycles}\tabularnewline
-\toprule
-Concern & Whole-document processing & Agent dispatch \\
-\midrule
-\endfirsthead
-\toprule
-Concern & Whole-document processing & Agent dispatch \\
-\midrule
-\endhead
-Work unit & A document job with a database identity. & An engineering brief assigned to a worktree. \\
-Ownership & A conditional database claim admits one consumer. & A recorded slot assignment reserves the worktree before reset and handoff. \\
-Durable result & Uploaded document and persisted terminal job state. & Committed changes, then verified integration into the shared branch. \\
-Liveness & Job progress and process telemetry, considered separately from terminal status. & Registry, process, and repository observations; a stale signal prompts inspection. \\
-Failure response & The engine records a failed terminal outcome; redelivery cannot reclaim a nonqueued job. & Inspect existing commits, resume or recover work, and release the slot after safe integration or disposition. \\
-Completion evidence & Upload precedes the conditional completed-state update. & Landing evidence plus the assignment's verification and acceptance checks. \\
-\bottomrule
-\end{longtable}
-}
+Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents' commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. This observed recovery supports a narrow but useful claim: committed results can survive loss of the conversational channel. It does not establish that every interrupted assignment is complete or safe to merge.
 
-The state representations have distinct consumers. The runtime's conditional database operations enforce ownership and terminal changes. The pool's transition table constrains slot management, while its registry records which executor is assigned. Neither a reported idle process nor a stale heartbeat establishes that an agent's work can be destroyed. DocAble's operating procedure asks for further inspection and recovery rather than making that inference automatically.
+For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
 
-The appropriate boundary is the durable result. Model the ownership and transitions that protect it, retain enough evidence to decide what happened, and leave the executor's internal reasoning outside the lifecycle unless an engineering question requires it. A job's output and an agent's commits need different mechanisms; both need to outlive the conversation with the actor that produced them.
+\section{Refuse Repeated Work Without Blocking Rework}\label{heading:handbook-conversion-episode}
+
+Add controls where recurring failures reveal a dependable decision. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
+
+A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase's completion state.
+
+The control itself required repair. An October 10 investigation found that phase extraction first examined the declared \texttt{Epic} line but fell back to the first ``Phase N'' mention anywhere in the brief. Historical prose about a completed phase could then cause a new assignment to be refused. Four false refusals in one session prompted investigation. The corrected extractor, reproduced below from the field note, restricts identity extraction to the declared line:
+
+% Evidence: phase-done-gate-prose-false-fire-fix-261010.md:42-47 (D11); actual corrected implementation excerpt.
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+def extract_phase_from_brief(brief_text: str) -> str | None:
+    m_line = _EPIC_LINE_RE.search(brief_text)
+    if m_line is None:
+        return None
+    m_phase = _PHASE_IN_LINE_RE.search(m_line.group(0))
+    return m_phase.group(1) if m_phase else None
+\end{verbatim}
+
+Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
+
+Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control's actual behavior still needs its own evidence.
+
+\section{Adapt the Work Unit and Durable Store}
+
+An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor's entire reasoning process. The \href{appendix-b-operating-a-gee.html}{Operating a GEE section of Appendix B} develops the day-to-day decisions around these boundaries.

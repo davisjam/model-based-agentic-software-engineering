@@ -41,7 +41,7 @@ class AppendixPublicationTests(unittest.TestCase):
     def test_web_and_print_publish_exactly_two_appendices_without_dividers(self):
         web = self.assemble()
         self.assertEqual(web, self.assemble(for_print=True))
-        self.assertEqual(len(web), 10)
+        self.assertEqual(len(web), 11)
         self.assertEqual([r['slug'] for r in web if r['chapter'] == 0],
                          ['appendix-handbook', 'appendix-practicing-mage'])
         self.assertEqual({r['part'] for r in web}, {10, 11})
@@ -50,8 +50,8 @@ class AppendixPublicationTests(unittest.TestCase):
         self.assertTrue(all('17' in r['body_md'] and '{{' not in r['body_md'] for r in web))
 
     def test_missing_selected_source_fails_instead_of_renumbering_sections(self):
-        (self.book / 'appendix-handbook/model-coherence.md').unlink()
-        with self.assertRaisesRegex(SystemExit, 'model-coherence.md'):
+        (self.book / 'appendix-handbook/model-driven-deployment.md').unlink()
+        with self.assertRaisesRegex(SystemExit, 'model-driven-deployment.md'):
             self.assemble()
 
     def test_symbolic_links_and_float_locators_follow_the_two_appendices(self):
@@ -60,7 +60,7 @@ class AppendixPublicationTests(unittest.TestCase):
         text = bb._resolve_appendix_refs_md('[appendix: appendix-handbook] and [appendix: appendix-practicing-mage]', refs, {}, {})
         self.assertEqual(text, '[Appendix A](appendix-handbook.html) and [Appendix B](appendix-practicing-mage.html)')
         self.assertEqual([bb._chapter_id(r) for r in records],
-                         ['A', 'A.1', 'A.2', 'A.3', 'A.4', 'B', 'B.1', 'B.2', 'B.3', 'B.4'])
+                         ['A', 'A.1', 'A.2', 'A.3', 'A.4', 'A.5', 'B', 'B.1', 'B.2', 'B.3', 'B.4'])
         with self.assertRaises(SystemExit):
             bb._resolve_appendix_refs_md('[appendix: appendix-evidence-ledger]', refs, {}, {})
 
@@ -87,8 +87,8 @@ class AppendixPublicationTests(unittest.TestCase):
         with patch.object(ml, 'ROOT', self.root), patch.object(ml, 'MANIFEST', manifest), patch.object(ml, 'migrate') as migrate:
             ml.migrate_all()
         rows = json.loads(manifest.read_text())['sources']
-        self.assertEqual(len(rows), 11)
-        self.assertEqual(migrate.call_count, 10)
+        self.assertEqual(len(rows), 12)
+        self.assertEqual(migrate.call_count, 11)
         retired = next(r for r in rows if r['source'] == old['source'])
         self.assertEqual(retired['publication_status'], 'retired')
         self.assertEqual(retired['source_hash'], old['source_hash'])

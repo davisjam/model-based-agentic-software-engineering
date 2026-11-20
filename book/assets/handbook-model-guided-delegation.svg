@@ -1,33 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="446" height="154" viewBox="0 0 446 154" role="img" aria-labelledby="title desc" font-family="&quot;Source Sans 3&quot;, sans-serif">
-<title id="title">Model-guided delegation and two different checks</title>
-<desc id="desc">A structured work order and maintained engineering models select a brief containing relevant knowledge and obligations. Brief validation precedes agent dispatch. The agent implements and commits. Completion review uses landed changes and independent checks to update work-order status; a completion message alone does not establish acceptance.</desc>
-<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#1c1917"/></marker><marker id="arrowstart" markerWidth="6" markerHeight="6" refX="0.5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M6,0 L0,3 L6,6 Z" fill="#1c1917"/></marker></defs>
-<rect x="30" y="4" width="180" height="46" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="120" y="20" text-anchor="middle" font-size="11" font-weight="700" font-style="normal" fill="#1c1917">WORK ORDER</text>
-<text x="120" y="34" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Role · target paths</text>
-<text x="120" y="46" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Verification · acceptance</text>
-<rect x="236" y="4" width="180" height="46" rx="3" fill="#f1f4f6" stroke="#2f5169" stroke-width="0.65"/>
-<text x="326" y="20" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">ENGINEERING MODELS</text>
-<text x="326" y="34" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Components · constraints</text>
-<text x="326" y="46" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Procedures</text>
-<path d="M120,50 L120,62 L90,62 L90,80" fill="none" stroke="#1c1917" stroke-width="0.65"/>
-<path d="M326,50 L326,62 L90,62 L90,80" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<text x="213" y="75" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">select</text>
-<rect x="30" y="80" width="120" height="50" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="90" y="95" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">ASSEMBLED BRIEF</text>
-<text x="90" y="111" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Selected knowledge</text>
-<text x="90" y="124" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">and obligations</text>
-<rect x="200" y="80" width="75" height="50" rx="3" fill="white" stroke="#1c1917" stroke-width="0.65"/>
-<text x="237.5" y="95" text-anchor="middle" font-size="11" font-weight="700" font-style="normal" fill="#1c1917">AGENT</text>
-<text x="237.5" y="111" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Implement</text>
-<text x="237.5" y="124" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Commit</text>
-<path d="M150,106 L200,106" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<text x="175" y="98" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">validate</text>
-<rect x="310" y="80" width="132" height="50" rx="3" fill="white" stroke="#086438" stroke-width="0.65"/>
-<text x="376" y="95" text-anchor="middle" font-size="10.5" font-weight="700" font-style="normal" fill="#1c1917">COMPLETION EVIDENCE</text>
-<text x="376" y="111" text-anchor="middle" font-size="10.5" font-weight="400" font-style="normal" fill="#1c1917">Landed changes</text>
-<text x="376" y="124" text-anchor="middle" font-size="10" font-weight="400" font-style="normal" fill="#1c1917">Independent checks</text>
-<path d="M275,106 L310,106" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<path d="M376,130 L376,148 L8,148 L8,27 L30,27" fill="none" stroke="#1c1917" stroke-width="0.65" marker-end="url(#arrow)"/>
-<text x="218" y="143" text-anchor="middle" font-size="10" font-weight="400" font-style="italic" fill="#57534e">Review and update status</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1026" viewBox="0 0 440 342" role="img" aria-labelledby="title desc"><title id="title">Governed delegation with bounded guidance and separate admission</title><desc id="desc">A work order supplies target scope and declared phase identity. Engineering models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Selected dispatch checks evaluate the brief and resolved phase state; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="440" height="342" fill="white"/>
+<rect x="310" y="65" width="130" height="85" rx="0" fill="white" stroke="black" stroke-width="1.6"/>
+<text x="306" y="61" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Dispatch boundary</text>
+<rect x="150" y="237" width="150" height="61" rx="0" fill="white" stroke="black" stroke-width="1.6"/>
+<path d="M130,20 L165,20" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M130,90 L145,90 L145,32 L165,32" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M285,20 L325,20" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M380,40 L380,75" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M285,90 L355,90" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M380,135 L380,170" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="395" y="163" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">allow</text>
+<path d="M330,105 L300,105 L300,145 L225,145 L225,170" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="269" y="140" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">refuse</text>
+<path d="M380,210 L380,250" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="386" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">complete</text>
+<text x="386" y="241" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">or partial</text>
+<path d="M325,270 L285,270" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M165,270 L130,270" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M65,210 L65,225 L225,225 L225,250" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M380,290 L380,323 L285,323" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="337" y="316" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">interrupted</text>
+<path d="M225,290 L225,308" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<rect x="0" y="0" width="130" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="65.0" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Work order</text>
+<text x="65.0" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">scope + declared phase</text>
+<rect x="165" y="0" width="120" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="225.0" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Bounded context</text>
+<text x="225.0" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">selection</text>
+<rect x="325" y="0" width="110" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="380.0" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Brief + selected</text>
+<text x="380.0" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">context</text>
+<rect x="0" y="70" width="130" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="65.0" y="93.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Engineering models</text>
+<rect x="165" y="70" width="120" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="225.0" y="87.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Reconciled</text>
+<text x="225.0" y="99.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">phase state</text>
+<polygon points="380,75.0 430.0,105 380,135.0 330.0,105" fill="white" stroke="black" stroke-width=".8"/>
+<text x="380" y="102.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Dispatch</text>
+<text x="380" y="114.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">checks</text>
+<text x="225" y="126" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Absence is not DONE.</text>
+<rect x="325" y="170" width="110" height="40" rx="8" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="380.0" y="187.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Implementing agent</text>
+<text x="380.0" y="199.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">flexible reasoning</text>
+<rect x="165" y="170" width="120" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="225.0" y="181.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Refuse assignment</text>
+<text x="225.0" y="193.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">invalid brief; or DONE</text>
+<text x="225.0" y="205.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">without valid override</text>
+<rect x="0" y="170" width="130" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="65.0" y="187.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Independent checks</text>
+<text x="65.0" y="199.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">and review evidence</text>
+<rect x="325" y="250" width="110" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="380.0" y="267.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Durable work</text>
+<text x="380.0" y="279.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">commits + artifacts</text>
+<rect x="165" y="250" width="120" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="225.0" y="273.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Completion review</text>
+<rect x="0" y="250" width="130" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="65.0" y="267.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Accepted completion</text>
+<text x="65.0" y="279.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">phase state updated</text>
+<rect x="165" y="308" width="120" height="30" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="225.0" y="320.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Inspect / reconcile</text>
+<text x="225.0" y="332.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">before redispatch</text></svg>
