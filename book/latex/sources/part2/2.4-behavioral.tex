@@ -222,8 +222,7 @@ Take a behavioral illustration. A job carries two fields at once --- a \texttt{s
 reachable = exploreAll(jobModel)
 
 for state in reachable:
-    assert (state.status == "leased") ==
-           (state.lease_owner != None)
+    assert (state.status == "leased") == (state.lease_owner != None)
 \end{verbatim}
 
 Here \texttt{exploreAll} denotes exhaustive exploration of the model, not a particular programming API. A failed assertion identifies a reachable state that violates the invariant. The check establishes the property over the model's reachable states, not automatically over the implementation.

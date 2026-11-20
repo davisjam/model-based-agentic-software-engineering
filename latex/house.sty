@@ -155,9 +155,22 @@
   \ifstrequal{#1}{warning}{\definecolor{boxrule}{HTML}{B23B3B}\definecolor{boxfill}{HTML}{FBEAEA}}{}%
   \ifstrequal{#1}{exercise}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
 }
+% Inset listings share a quiet frame. Keep the ordinary verbatim environment
+% (and its Code tagging); frame decoration remains outside the reading order.
+\newif\ifbookinsetcode
+\newenvironment{bookcodeframe}{%
+  \bookboxtagbegin
+  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=.4pt,
+    colframe=bookmuted,colback=white,left=6pt,right=6pt,top=3pt,bottom=3pt,
+    before skip=5pt,after skip=5pt,
+    before upper={\bookboxtagtext},after upper={\bookboxtagpause}]%
+}{\end{tcolorbox}\bookboxtagend}
+\AddToHook{env/verbatim/before}{\ifbookinsetcode\begin{bookcodeframe}\fi}
+\AddToHook{env/verbatim/after}{\ifbookinsetcode\end{bookcodeframe}\fi}
 \newenvironment{bookbox}[2]{%
   \bookboxtagbegin
   \begingroup
+  \ifstrequal{#1}{inset}{\bookinsetcodetrue}{}%
   \def\bookboxtitle{#2}%
   \bookboxcolors{#1}%
   \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\ifmageedition\setlength{\parskip}{0.25\baselineskip}\else\setlength{\parskip}{0.45em}\fi\setlength{\parindent}{1.2em}}]

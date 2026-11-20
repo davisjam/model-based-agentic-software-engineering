@@ -23099,3 +23099,16 @@ Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, origin
 Review the readings at a cadence suited to the work and after a consequential incident. Investigate the explanations before prescribing another model or gate. A rise in attention may be temporary investment in new capability; declining throughput may be the deliberate cost of exposing previously hidden defects. Decide whether to repair an existing structure, extend coverage, retire unnecessary machinery, or keep the current arrangement. Measurement earns its place through those decisions and through the evidence that later shows whether they helped.
 
 ```
+
+
+## Appendix B opening replaced with a question-based guide
+
+Source: `book/latex/sources/appendix-practicing-mage/_opening.tex`, lines 3–7, revision `53f38983db31bfb1faaf45a540e0ad12885536c3`. Removal date: 2026-11-20. Reason: user-approved replacement introduces the four independent practical references; removes the redundant subtitle and repeated adoption advice.
+
+```latex
+\textbf{A practical reference for beginning, operating, and evaluating a Governed Engineering Environment}
+
+Begin with one engineering surface: a recurring kind of change, an operational workflow, or a consequential obligation. This appendix follows that surface from the first investment through brownfield migration, delegated work, and measurement. Use the section that addresses your current engineering question. The \href{appendix-handbook.html}{MAGE Engineering Blueprints} supplies concrete models and compositions of mechanisms; the main chapters develop the method behind them.
+
+The governing question is whether the environment makes future work more capable, trustworthy, or economical than it costs to maintain.
+```

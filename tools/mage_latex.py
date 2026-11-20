@@ -379,6 +379,10 @@ def compatibility(source: Path, output: Path):
                     else: result.append(clean(child))
                 return result
             if isinstance(value, dict):
+                # A language class makes Pandoc emit a fence. The HTML reader
+                # intentionally supports fenced listings, not indented Markdown.
+                if value.get('t') == 'CodeBlock' and not value['c'][0][1]:
+                    value['c'][0][1] = ['text']
                 if value.get('t') in ('RawInline', 'RawBlock') and value.get('c', ['', ''])[1].strip() in {r'\arraybackslash', r'\noalign{}', r'\endhead', r'\endlastfoot', r'\endfirsthead', r'\toprule', r'\midrule', r'\bottomrule', r'\raggedleft', r'\raggedright', r'\centering'}:
                     return dict(value, c=['html', ''])
                 if value.get('t') in ('RawInline', 'RawBlock'):

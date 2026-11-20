@@ -41,6 +41,20 @@ class VerbatimProjectionTests(unittest.TestCase):
         self.assertIn('A value', projected)
         self.assertNotIn('footnotesize', projected)
 
+    def test_inset_listing_stays_fenced_and_preserves_indentation_in_html(self):
+        code = 'reachable = exploreAll(jobModel)\n\nfor state in reachable:\n    assert state.valid'
+        body = (r'\begin{bookbox}{inset}{Invariant}' + '\n' +
+                r'\label{inset-example}' + '\nBefore.\n\n' +
+                r'\begin{verbatim}' + '\n' + code + '\n' +
+                r'\end{verbatim}' + '\n\nAfter.\n' + r'\end{bookbox}')
+        projected = self.project(body)
+        self.assertIn('> ``` text', projected)
+        self.assertIn('>     assert state.valid', projected)
+        html = ml.bb.md_to_html(projected)
+        self.assertIn('<pre><code', html)
+        self.assertIn(code, html)
+        self.assertIn('After.', html)
+
     def test_work_order_comments_remain_literal_code(self):
         code = '<!-- target-files: src/example.cs -->\n<!-- brief-genre: lint -->'
         projected = self.project(r'\begin{verbatim}' + '\n' + code + '\n' + r'\end{verbatim}' + '\n')

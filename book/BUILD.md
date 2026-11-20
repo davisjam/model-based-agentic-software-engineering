@@ -191,6 +191,8 @@ so they stay invisible if the markdown is read raw.
   `<!-- inline-quote -->` / `<!-- epigraph -->` for the main reading column, `<!-- sidenote -->` for a
   deliberate right-rail aside, on the line directly above the `>` block.
 
+Inset pseudocode uses an ordinary `verbatim` block in the canonical LaTeX source. The shared print style supplies a thin rectangular frame inside `bookbox` insets; the HTML inset code style supplies the same grouping. Keep short assertions on one line when they fit, and preserve meaningful indentation. Do not hand-draw per-example frames.
+
 ### The figure register — hand-SVG for the book proper, Mermaid for the appendix
 
 The book draws its figures two ways, split by where they sit:

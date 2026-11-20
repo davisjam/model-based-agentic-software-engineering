@@ -108,8 +108,8 @@
     {
       "source": "book/latex/sources/part2/2.4-behavioral.tex",
       "projection": "book/part2/2.4-behavioral.md",
-      "source_hash": "ddcee37744415a5d56311c3a5cf0767d84e343028897c7af97c30812c2a9064d",
-      "projection_hash": "40c2a3d4c2948ca07991e0ddaf649c7982c6a7aa34dd9383bdd2f6077465afab"
+      "source_hash": "fd3b85e53cd1bab6e12650befb8e011289ef03d9ab700e0e9a30fb20df5ed9a0",
+      "projection_hash": "c4847800fa1341c381469fd50497df1a336206e7657d93a82f2d79f52a8dbd3d"
     },
     {
       "source": "book/latex/sources/part2/2.5-decision.tex",
@@ -986,8 +986,8 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/_opening.tex",
       "projection": "book/appendix-practicing-mage/_opening.md",
-      "source_hash": "784993253fd77b1db5c3665d7bdf6ca4d36887a09e091e59d7e4d6ee025d9f69",
-      "projection_hash": "24200bd1b81e5a0bd5398b677d64ca80b5062f0516820f463988aefc963d71ea"
+      "source_hash": "3e22153163f51fdacb833e6c9a6481c8a3d8608822ade076480943caaefc347b",
+      "projection_hash": "281c3d44fbda68637d0f279dfa28db309aae0b26be97c8d7498ac7287af0433e"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
@@ -1035,6 +1035,6 @@
       "projection_hash": "6428f27d7c1850b02f82ff7a954f868dc92c5d5181049d1f38fc94be907e9a45"
     }
   ],
-  "engine_hash": "d4456ea5d47f78b1f0c91427ecc338c88550f6c23df9b4bb456ede3573170ea8",
+  "engine_hash": "cf153ebb3e06896c77d14cb322972614e107b1cd30a1d20d27c800da840a4ceb",
   "renderer_version": "pandoc 3.9.0.2"
 }

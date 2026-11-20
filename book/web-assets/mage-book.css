@@ -487,3 +487,12 @@ p.letter-signature { width: 50%; margin: 1.25em 0 0 auto; text-align: center; te
 @media (max-width: 40rem) {
   .md-typeset table.book-table :is(th, td) { overflow-wrap: anywhere; }
 }
+
+/* Match the print inset listing frame; preserve code whitespace on narrow screens. */
+.md-typeset blockquote.concept-inset pre:not(.mermaid){
+  border: 1px solid var(--muted);
+  border-radius: 0;
+  padding: 0.6rem;
+  background: var(--code-bg);
+  overflow-x: auto;
+}
