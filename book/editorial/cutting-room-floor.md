@@ -23000,3 +23000,102 @@ Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, 
 ```latex
 Their intended correspondence is explicit and credible.
 ```
+
+# Appendix B metrics revision: displaced prose
+
+Preserve the replaced opening, table, and paragraphs below. The baseline-units paragraph and observation-reliability paragraph move unchanged into the new structure and are not duplicated here. Heading renames are navigation changes.
+
+## measuring-mage.tex:3
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 3–3, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+Read outcomes before diagnostics. The operating question is whether delegated work produces durable, trustworthy progress at a cost the environment can sustain. The five primary readings in \autoref{practicing-primary-readings} keep that question visible. They are not a composite score: a gain in throughput does not cancel an unacceptable escape, and a large stock of models does not compensate for models that cannot answer their claimed questions.
+```
+
+## measuring-mage.tex:5
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 5–19, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+{\footnotesize
+\begin{longtable}[]{@{}p{.22\linewidth}p{.35\linewidth}p{.33\linewidth}@{}}
+\caption[Five primary operating readings]{Read outcomes and the condition of the environment together; use diagnostic counts to investigate changes in these readings.}\label{practicing-primary-readings}\\
+\toprule
+\textbf{Reading} & \textbf{Question} & \textbf{Record} \\
+\midrule
+\endhead
+\textbf{Durable throughput} & How much accepted work survives without reopening, rollback, or repeated repair? & Accepted units, observation window, and later repair. \\
+\textbf{Defect escape} & What incorrect or policy-violating work crosses the boundary intended to catch it? & The obligation, boundary, affected revision, and discovery. \\
+\textbf{Human-attention burden} & What attention does each durable unit require? & Reconstruction, review, exceptions, recovery, and deliberate judgment. \\
+\textbf{Representation health} & Can relied-upon models still answer their claimed questions? & Correspondence, relevant coverage, and unresolved drift. \\
+\textbf{Engineering-capital return} & Does inherited structure repay its construction and carrying cost? & Later uses, avoided work, maintenance, and retirement candidates. \\
+\bottomrule
+\end{longtable}
+}
+```
+
+## measuring-mage.tex:21
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 21–21, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Establish a Baseline.} Before changing the environment, record several comparable work units under the existing process. Preserve their acceptance criteria, completion evidence, human interventions, and subsequent repairs. Use the same unit and observation window after introducing a model or control. Where work differs materially in complexity or consequence, report those differences rather than attributing every change in throughput or attention to MAGE. A before-and-after comparison can suggest whether the investment helped; it does not by itself establish causation.
+```
+
+## measuring-mage.tex:27
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 27–27, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Durable throughput.} Choose an observation window appropriate to the work and track reopenings, rollbacks, and repeated repairs within it. Report recently accepted work whose durability is not yet observable separately from work that has survived the window. A later requirements change does not necessarily invalidate the original result; repeated repair of the original obligation does. Commit counts and immediate ticket closure omit this distinction.
+```
+
+## measuring-mage.tex:29
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 29–29, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Defect escape} concerns a particular obligation and boundary. Record what crossed, which mechanism was supposed to prevent it, and how it was eventually discovered. A failed test before admission demonstrates detection; the same defect found after the relevant boundary demonstrates an escape. Compare rates only when the governed obligations and opportunities for observation are sufficiently comparable. More reported defects may reflect better observation rather than worse production, and no reported defects may reflect weak observation. State the limits of the evidence instead of converting absence of reports into confidence.
+```
+
+## measuring-mage.tex:31
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 31–31, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Human-attention burden} includes the work hidden behind an apparently autonomous result. Record repeated reconstruction, routine inspection, exception handling, recovery, and consequential judgment, using time where it is practical and intervention records where it is not. Relate the burden to durable output rather than generated output. Keep intentional engineering decisions visible: choosing new obligations or interpreting ambiguous evidence is different from explaining the same repository convention again. A reduction is valuable when the work has been made unnecessary or carried reliably by the environment, not merely when it stops being recorded.
+```
+
+## measuring-mage.tex:33
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 33–33, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Representation health} depends on the claim each representation makes. A descriptive model must correspond to the system it describes; a normative model states intent the system must satisfy; a derived view depends on its source and transformation. Historical work records have the different lifetime described earlier. Examine drift findings, failed queries, missing consequential coverage, and the evidence used to reconcile them. Freshness means correspondence after relevant change, not simply a recent edit date. A synchronized filename and a valid link do not settle a disagreement about meaning.
+```
+
+## measuring-mage.tex:35
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 35–35, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+\textbf{Engineering-capital return} asks what later work inherits and what that inheritance costs. Retain concrete examples: a dependency no longer reconstructed, a recurring failure prevented, a larger task made tractable, or knowledge available after its original author has left. Account for construction, execution, understanding, reconciliation, and maintenance. A model may repay its cost without preventing a defect, just as a control may justify itself through a consequential risk rather than frequent use. Reuse counts alone cannot establish either return. Review structures whose carrying cost has outlived their purpose, and retire them when appropriate.
+```
+
+## measuring-mage.tex:39
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 39–39, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+Churn, model coverage, support ratio, control count, closure rate, and queue length can help explain a primary reading. Churn can reveal repeated repair or useful restructuring. Coverage can expose a consequential gap or merely code below the model's grain. A support ratio describes the amount of surrounding engineering machinery relative to implementation; it does not establish that the machinery pays. More controls can indicate greater protection or accumulated interference. Inspect the underlying work before treating any direction as healthy. The empirical observations in \magevalue{chapter:software-factories} are evidence from particular settings, not operating targets.
+```
+
+## measuring-mage.tex:43
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 43–44, revision `f9e804f7433e97a4f52e2fed6d76c11fbb07de24`. Removal date: 2026-11-20T09:54:41-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Reorganize the section around engineering metrics, measurement practice, costs, and governance conversion; retain technical qualifications in their new context.
+
+```latex
+Review the readings at a cadence suited to the work and after a consequential incident. Investigate the explanations before prescribing another model or gate. A rise in attention may be temporary investment in new capability; declining throughput may be the deliberate cost of exposing previously hidden defects. Decide whether to repair an existing structure, extend coverage, retire unnecessary machinery, or keep the current arrangement. Measurement earns its place through those decisions and through the evidence that later shows whether they helped.
+
+```
