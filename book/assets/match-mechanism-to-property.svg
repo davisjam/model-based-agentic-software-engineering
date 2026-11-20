@@ -1,56 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 242" width="450" height="242" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 197" width="450" height="197" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Two protections in DocAble’s job-recovery protocol</title>
 <desc id="desc">DocAble job-recovery protocol with two obligations and two protections. At left, only one worker may acquire an effect claim; atomic compare-and-set restricts acquisition to the required stored state. At right, a stale release must not clear a newer claim; an explicit-state checker explores bounded interleavings. The lower boxes distinguish runtime constraint from model analysis.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
-<rect x="91" y="2" width="268" height="34" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<text x="225" y="16" text-anchor="middle" font-size="12" font-weight="700">DocAble: Job-Recovery Protocol</text>
-<text x="225" y="29" text-anchor="middle" font-size="10" font-style="italic">Two obligations and how DocAble addresses them</text>
-<path d="M225 36 L225 49 L110.5 49" fill="none" stroke="#111111" stroke-width="0.8"/>
-<path d="M110.5 49 L110.5 63" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M225 49 L338.5 49 L338.5 63" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="3" y="63" width="215" height="36" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<rect x="231" y="63" width="215" height="36" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<text x="110.5" y="78" text-anchor="middle" font-size="12" font-weight="700">Prevent duplicate claims</text>
-<text x="110.5" y="92" text-anchor="middle" font-size="9.5" font-style="italic">Only one worker may acquire an effect claim.</text>
-<text x="338.5" y="78" text-anchor="middle" font-size="12" font-weight="700">Preserve correct recovery</text>
-<text x="338.5" y="92" text-anchor="middle" font-size="9.5" font-style="italic">A stale release must not clear a newer claim.</text>
-<path d="M110.5 99 L110.5 115" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M338.5 99 L338.5 115" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="3" y="115" width="215" height="69" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<rect x="231" y="115" width="215" height="69" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<path d="M68 121 L68 178" fill="none" stroke="#111111" stroke-width="0.8"/>
-<path d="M296 121 L296 178" fill="none" stroke="#111111" stroke-width="0.8"/>
-<text x="76" y="133" text-anchor="start" font-size="10.2" font-weight="700">ATOMIC COMPARE-AND-SET</text>
-<text x="76" y="148" text-anchor="start" font-size="9.5">Acquire the claim only if the stored</text>
-<text x="76" y="160" text-anchor="start" font-size="9.5">state matches the expected state.</text>
-<text x="304" y="129" text-anchor="start" font-size="10.2" font-weight="700">EXPLICIT-STATE CHECKER</text>
-<text x="304" y="143" text-anchor="start" font-size="9.5">Explore bounded interleavings</text>
-<text x="304" y="154" text-anchor="start" font-size="9.5">of claims and releases to verify</text>
-<text x="304" y="165" text-anchor="start" font-size="9.5">that a stale release cannot</text>
-<text x="304" y="176" text-anchor="start" font-size="9.5">invalidate ownership.</text>
-<rect x="18" y="132" width="30" height="11" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<rect x="18" y="144" width="30" height="11" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<circle cx="22" cy="137.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<circle cx="26.5" cy="137.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<circle cx="22" cy="149.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<circle cx="26.5" cy="149.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<rect x="39" y="153" width="16" height="15" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<path d="M42 153 V148 C42 141 52 141 52 148 V153" fill="none" stroke="#111111" stroke-width="1"/>
-<circle cx="47" cy="159" r="1.1" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<path d="M47 159 L47 163" fill="none" stroke="#111111" stroke-width="1"/>
-<path d="M250 157 L261 142" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M271 142 L282 157" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M254 166 L278 166" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<circle cx="246" cy="166" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9"/>
-<circle cx="266" cy="135" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9"/>
-<circle cx="286" cy="166" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9"/>
-<path d="M110.5 184 L110.5 201" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M338.5 184 L338.5 201" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="8" y="201" width="207" height="35" rx="3" fill="#f0f0f0" stroke="#111111" stroke-width=".8"/>
-<rect x="234" y="201" width="207" height="35" rx="3" fill="#f0f0f0" stroke="#111111" stroke-width=".8"/>
-<text x="111.5" y="216" text-anchor="middle" font-size="12" font-weight="700">Runtime constraint</text>
-<text x="111.5" y="230" text-anchor="middle" font-size="10" font-style="italic">(excludes the invalid transition)</text>
-<text x="337.5" y="216" text-anchor="middle" font-size="12" font-weight="700">Model analysis</text>
-<text x="337.5" y="230" text-anchor="middle" font-size="10" font-style="italic">(checks the protocol’s behavior)</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" /></marker></defs>
+<rect x="91" y="1.778" width="268" height="30.222" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<text x="225" y="14.222" text-anchor="middle" font-size="10.5" font-weight="700">DocAble: Job-Recovery Protocol</text>
+<text x="225" y="25.778" text-anchor="middle" font-size="10" font-style="italic">Two obligations and how DocAble addresses them</text>
+<path d="M225 32 L225 37.778 L110.5 37.778" fill="none" stroke="#111111" stroke-width="0.8" />
+<path d="M110.5 37.778 L110.5 44" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<path d="M225 37.778 L338.5 37.778 L338.5 44" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<rect x="3" y="44" width="215" height="32" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<rect x="231" y="44" width="215" height="32" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<text x="110.5" y="57.333" text-anchor="middle" font-size="10.5" font-weight="700">Prevent duplicate claims</text>
+<text x="110.5" y="69.778" text-anchor="middle" font-size="9.5" font-style="italic">Only one worker may acquire an effect claim.</text>
+<text x="338.5" y="57.333" text-anchor="middle" font-size="10.5" font-weight="700">Preserve correct recovery</text>
+<text x="338.5" y="69.778" text-anchor="middle" font-size="9.5" font-style="italic">A stale release must not clear a newer claim.</text>
+<path d="M110.5 76 L110.5 84" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<path d="M338.5 76 L338.5 84" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<rect x="3" y="84" width="215" height="69" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<rect x="231" y="84" width="215" height="69" rx="3" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<path d="M68 90 L68 147" fill="none" stroke="#111111" stroke-width="0.8" />
+<path d="M296 90 L296 147" fill="none" stroke="#111111" stroke-width="0.8" />
+<text x="76" y="102" text-anchor="start" font-size="10.2" font-weight="700">ATOMIC COMPARE-AND-SET</text>
+<text x="76" y="117" text-anchor="start" font-size="9.5">Acquire the claim only if the stored</text>
+<text x="76" y="129" text-anchor="start" font-size="9.5">state matches the expected state.</text>
+<text x="304" y="98" text-anchor="start" font-size="10.2" font-weight="700">EXPLICIT-STATE CHECKER</text>
+<text x="304" y="112" text-anchor="start" font-size="9.5">Explore bounded interleavings</text>
+<text x="304" y="123" text-anchor="start" font-size="9.5">of claims and releases to verify</text>
+<text x="304" y="134" text-anchor="start" font-size="9.5">that a stale release cannot</text>
+<text x="304" y="145" text-anchor="start" font-size="9.5">invalidate ownership.</text>
+<rect x="18" y="101" width="30" height="11" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<rect x="18" y="113" width="30" height="11" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<circle cx="22" cy="106.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9" />
+<circle cx="26.5" cy="106.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9" />
+<circle cx="22" cy="118.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9" />
+<circle cx="26.5" cy="118.5" r="0.65" fill="#111111" stroke="#111111" stroke-width=".9" />
+<rect x="39" y="122" width="16" height="15" rx="2" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<path d="M42 122 V117 C42 110 52 110 52 117 V122" fill="none" stroke="#111111" stroke-width="1" />
+<circle cx="47" cy="128" r="1.1" fill="#111111" stroke="#111111" stroke-width=".9" />
+<path d="M47 128 L47 132" fill="none" stroke="#111111" stroke-width="1" />
+<path d="M250 126 L261 111" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<path d="M271 111 L282 126" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<path d="M254 135 L278 135" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<circle cx="246" cy="135" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9" />
+<circle cx="266" cy="104" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9" />
+<circle cx="286" cy="135" r="7" fill="#ffffff" stroke="#111111" stroke-width=".9" />
+<path d="M110.5 153 L110.5 161" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<path d="M338.5 153 L338.5 161" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" />
+<rect x="8" y="161" width="207" height="30" rx="3" fill="#f0f0f0" stroke="#111111" stroke-width=".8" />
+<rect x="234" y="161" width="207" height="30" rx="3" fill="#f0f0f0" stroke="#111111" stroke-width=".8" />
+<text x="111.5" y="173.857" text-anchor="middle" font-size="10.5" font-weight="700">Runtime constraint</text>
+<text x="111.5" y="185.857" text-anchor="middle" font-size="10" font-style="italic">(excludes the invalid transition)</text>
+<text x="337.5" y="173.857" text-anchor="middle" font-size="10.5" font-weight="700">Model analysis</text>
+<text x="337.5" y="185.857" text-anchor="middle" font-size="10" font-style="italic">(checks the protocol’s behavior)</text>
 </svg>

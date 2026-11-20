@@ -29,10 +29,10 @@ That shift arrives whenever a property has to hold across a whole class of thing
 
 | Move | Role |
 |---|---|
-| **SPEC** | State the obligation. |
-| **CENSUS** | Establish the population to which it applies. |
-| **DISCHARGE** | Apply tests, lints, proofs, or other evidence appropriate to the property. |
-| **COVER** | Join obligations back to evidence so omissions become visible. |
+| SPEC | State the obligation. |
+| CENSUS | Establish the population to which it applies. |
+| DISCHARGE | Apply tests, lints, proofs, or other evidence appropriate to the property. |
+| COVER | Join obligations back to evidence so omissions become visible. |
 
 ## Why These Travel Together
 

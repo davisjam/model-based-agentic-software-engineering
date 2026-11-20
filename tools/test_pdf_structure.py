@@ -15,6 +15,16 @@ class StructureTests(unittest.TestCase):
             element('Figure', **{'/Alt': 'Data flow between parser and renderer'})]}}
         self.expected = dict(headings=1, sections=1, tables=1, figures=1)
 
+    def test_table_page_boundary(self):
+        first, second = {}, {}
+        table = self.catalog['/StructTreeRoot']['/K'][3]
+        table['/K'] = [element('TR', [element('TD', **{'/Pg': first}),
+                                    element('TD', **{'/Pg': second})])]
+        self.assertTrue(any('spans multiple pages' in f for f in
+            inspect_catalog(self.catalog, single_page_tables=True)[1]))
+        table['/K'][0]['/K'][1]['/Pg'] = first
+        self.assertFalse(inspect_catalog(self.catalog, single_page_tables=True)[1])
+
     def test_all_semantics_present(self):
         self.assertEqual(inspect_catalog(self.catalog, **self.expected)[1], [])
 

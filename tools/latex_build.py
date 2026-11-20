@@ -58,6 +58,81 @@ def single_page_tables(latex: str, labels: set[str], *, placement: str = "p",
     return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', convert, latex, flags=re.S)
 
 
+def plain_table_bodies(latex: str) -> str:
+    """Reserve bold type for column headings in native longtable bodies."""
+    def table(match):
+        head, marker, body = match[0].partition(r'\endhead')
+        if not marker:
+            raise ValueError('Table has no explicit header/body boundary')
+        while (start := body.find(r'\textbf{')) >= 0:
+            opening = start + len(r'\textbf')
+            end = opening + 1
+            depth = 1
+            while end < len(body) and depth:
+                if body[end] in '{}' and body[end-1] != '\\':
+                    depth += 1 if body[end] == '{' else -1
+                end += 1
+            if depth:
+                raise ValueError('Unbalanced bold table cell')
+            body = body[:start] + body[opening+1:end-1] + body[end:]
+        body = re.sub(r'\\bfseries\b\s*', '', body)
+        return head + marker + body
+    return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', table, latex, flags=re.S)
+
+
+def keep_tables_together(latex: str) -> str:
+    """Keep each caption and table together, using native floats outside insets.
+
+    Preserve reading order, column geometry, row content and the first header.
+    Oversize blocks must be redesigned; the strict overfull-box gate rejects them.
+    This also works inside a breakable inset, where a table float would be lost.
+    """
+    def table(match):
+        header, marker, remainder = match[0].partition(r'\endhead')
+        if not marker:
+            raise ValueError('Table has no explicit header/body boundary')
+        header = header.split(r'\endfirsthead', 1)[0]
+        footer, boundary, body = remainder.partition(r'\endlastfoot')
+        if not boundary:
+            footer, body = '', remainder
+        body = body.removesuffix(r'\end{longtable}')
+        caption = ''
+        cap = re.search(r'\\caption(?:\[[^]]*\])?\{', header)
+        if cap:
+            end = cap.end()
+            depth = 1
+            while end < len(header) and depth:
+                if header[end] in '{}' and header[end-1] != '\\':
+                    depth += 1 if header[end] == '{' else -1
+                end += 1
+            if depth:
+                raise ValueError('Unbalanced table caption')
+            suffix = re.match(r'\s*(?:\\label\{[^}]+\})?\s*(?:\\tabularnewline|\\\\)', header[end:])
+            if not suffix:
+                raise ValueError('Table caption lacks row terminator')
+            cap_end = end + suffix.end()
+            caption = header[cap.start():cap_end]
+            caption = re.sub(r'(?:\\tabularnewline|\\\\)$', '', caption)
+            caption = caption.replace(r'\caption', r'\captionof{table}', 1)
+            header = header[:cap.start()] + header[cap_end:]
+        header = re.sub(r'\\begin\{longtable\}(?:\[[^]]*\])?',
+                        lambda _: r'\begin{tabular}', header, count=1)
+        # Ordinary tables use LaTeX's native float placement. Insets cannot
+        # contain floats, so keep their tables in a nonfloating minipage.
+        before = latex[:match.start()]
+        inset = any(before.count(r'\begin{' + env + '}') > before.count(r'\end{' + env + '}')
+                    for env in ('quote', 'bookbox', 'bookinset', 'tcolorbox', 'minipage'))
+        content = caption + '\n' + header + body + footer + r'\end{tabular}'
+        if inset:
+            return ('\\par\\addvspace{\\baselineskip}\\noindent\n'
+                    '\\begin{minipage}{\\linewidth}\\centering\n'
+                    '\\booktablecaptionstyle\\captionsetup{hypcap=false}\n' + content +
+                    '\n\\end{minipage}\\par\n\\addvspace{\\baselineskip}')
+        return ('\\begin{table}[!htbp]\n\\centering\\footnotesize\\booktablecaptionstyle\n' +
+                content.replace(r'\captionof{table}', r'\caption', 1) + '\n\\end{table}')
+    return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', table, latex, flags=re.S)
+
+
 def layout_selected_table(latex: str, label: str, proportions: tuple[float, ...],
                           *, row_gap_bp: float = 4, row_stretch: float = 1.2) -> str:
     """Give a reviewed table content-appropriate columns and readable row spacing.

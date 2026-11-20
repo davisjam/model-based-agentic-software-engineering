@@ -21,11 +21,11 @@ Reach for it when:
 
 | Move | Role |
 |---|---|
-| **STANDING** | Supply compact policy that applies broadly. |
-| **SLICE** | Retrieve the task-relevant model and engineering context. |
-| **DELIVER** | Make that context available to the actor for the next decision. |
-| **REINFORCE** | *(strengthens)* Reassert important obligations at the point of action where useful. |
-| **GATE** | For critical decidable obligations, do not rely on delivery at all — enforce them. |
+| STANDING | Supply compact policy that applies broadly. |
+| SLICE | Retrieve the task-relevant model and engineering context. |
+| DELIVER | Make that context available to the actor for the next decision. |
+| REINFORCE | *(strengthens)* Reassert important obligations at the point of action where useful. |
+| GATE | For critical decidable obligations, do not rely on delivery at all — enforce them. |
 
 ## Why These Travel Together
 

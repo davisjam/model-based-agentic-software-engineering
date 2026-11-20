@@ -10,11 +10,11 @@ MAGE aims to increase the reliable engineering work accomplished with a given in
 <!-- table: *Metrics for evaluating MAGE.* The metrics connect engineering outcomes to the book’s account of Modeling, Alignment, and engineering capital. They measure different properties and should be interpreted together rather than combined into a single score. [short: Metrics for evaluating MAGE] -->
 | **Metric** | **Measurement** | **Engineering significance** |
 |---|---|---|
-| **Durable throughput** | Accepted work units per unit time, distinguishing work that survives a defined observation period from work requiring subsequent repair or rollback. | Measures cumulative progress rather than implementation activity. |
-| **Defect escape rate** | Violations discovered after the enforcement boundary intended to prevent them, relative to relevant accepted work. | Evaluates whether Alignment mechanisms prevent unacceptable work from proceeding. |
-| **Human engineering effort** | Human time spent specifying, reviewing, investigating, correcting, and supervising work, relative to durable output. | Measures how much scarce human effort delegated implementation continues to require. |
-| **Model quality and coverage** | Coverage of selected engineering questions and obligations; correspondence failures, unresolved drift, and validation results. | Evaluates whether models provide trustworthy representations of consequential system properties. |
-| **Return on engineering capital** | Subsequent engineering effort or losses avoided through reusable models and controls, compared with their construction and maintenance costs. | Evaluates whether governance conversion produces lasting economic value. |
+| Durable throughput | Accepted work units per unit time, distinguishing work that survives a defined observation period from work requiring subsequent repair or rollback. | Measures cumulative progress rather than implementation activity. |
+| Defect escape rate | Violations discovered after the enforcement boundary intended to prevent them, relative to relevant accepted work. | Evaluates whether Alignment mechanisms prevent unacceptable work from proceeding. |
+| Human engineering effort | Human time spent specifying, reviewing, investigating, correcting, and supervising work, relative to durable output. | Measures how much scarce human effort delegated implementation continues to require. |
+| Model quality and coverage | Coverage of selected engineering questions and obligations; correspondence failures, unresolved drift, and validation results. | Evaluates whether models provide trustworthy representations of consequential system properties. |
+| Return on engineering capital | Subsequent engineering effort or losses avoided through reusable models and controls, compared with their construction and maintenance costs. | Evaluates whether governance conversion produces lasting economic value. |
 
 **Establish a baseline.** Before changing the environment, record comparable work units, their acceptance criteria, completion evidence, human interventions, and subsequent repairs. Use the same unit and observation window afterward. Report differences in complexity or consequence rather than attributing every change to MAGE. A before-and-after comparison can suggest whether the investment helped; it does not by itself establish causation.
 
@@ -30,11 +30,11 @@ Retain existing measurements where they answer the question, and use [ref:practi
 <!-- table: *MAGE measurements complement established engineering metrics.* Existing measures describe delivery, quality, productivity, and operational performance. MAGE adds questions about engineering models, enforcement, human effort, and the continuing value of engineering infrastructure. [short: Relationship to established engineering metrics] -->
 | **Established metrics** | **What they measure** | **Additional questions for MAGE** |
 |---|---|---|
-| **DORA delivery metrics** | Deployment frequency, change lead time, change fail rate, failed deployment recovery time, and deployment rework rate. | Is delivery producing durable, acceptable work? What human effort and governance costs does it require? |
-| **Code quality and structural metrics** | Coupling, complexity, dependency violations, and change propagation. | Does the implementation conform to intended architecture? Are consequential relationships represented and checked? |
-| **Testing and defect metrics** | Test coverage, mutation scores, escaped defects, and regression frequency. | Which engineering obligations are checked? Do findings prevent unacceptable changes from being admitted? |
-| **Developer productivity metrics** | Cycle time, review time, throughput, and developer experience [cite: forsgren2021space]. | How much human engineering effort is required per durable result? Which investments reduce repeated work? |
-| **Operational reliability metrics** | Availability, incidents, recovery time, and error-budget consumption. | Did missing models or ineffective controls contribute to failures? Did the relevant operational mechanisms execute? |
+| DORA delivery metrics | Deployment frequency, change lead time, change fail rate, failed deployment recovery time, and deployment rework rate. | Is delivery producing durable, acceptable work? What human effort and governance costs does it require? |
+| Code quality and structural metrics | Coupling, complexity, dependency violations, and change propagation. | Does the implementation conform to intended architecture? Are consequential relationships represented and checked? |
+| Testing and defect metrics | Test coverage, mutation scores, escaped defects, and regression frequency. | Which engineering obligations are checked? Do findings prevent unacceptable changes from being admitted? |
+| Developer productivity metrics | Cycle time, review time, throughput, and developer experience [cite: forsgren2021space]. | How much human engineering effort is required per durable result? Which investments reduce repeated work? |
+| Operational reliability metrics | Availability, incidents, recovery time, and error-budget consumption. | Did missing models or ineffective controls contribute to failures? Did the relevant operational mechanisms execute? |
 
 ### Evaluating Outcomes and Costs {#evaluating-outcomes-and-costs}
 

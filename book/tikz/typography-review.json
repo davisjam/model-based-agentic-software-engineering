@@ -2,7 +2,7 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 139,
+  "candidate_count": 140,
   "refined_count": 122,
   "check_count": 1078,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
@@ -33783,6 +33783,37 @@
         }
       ],
       "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json"
+    },
+    {
+      "source": "book/assets/mage-in-practice-map.svg",
+      "candidate": "book/tikz/figures/mage-in-practice-map.tex",
+      "decision": "author-directed chapter map",
+      "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+      "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+      "evidence": [],
+      "questions": [],
+      "checks": [
+        {
+          "text": "Model",
+          "bold": true
+        },
+        {
+          "text": "Realize",
+          "bold": true
+        },
+        {
+          "text": "Evaluate",
+          "bold": true
+        },
+        {
+          "text": "MAGE",
+          "bold": true
+        },
+        {
+          "text": "in Practice",
+          "italic": true
+        }
+      ]
     }
   ],
   "historical_figures": [

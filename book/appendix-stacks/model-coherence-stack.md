@@ -22,12 +22,12 @@ Reach for it when:
 
 | Move | Role |
 |---|---|
-| **MODEL** | Put the engineering fact in an explicit representation. |
-| **CONSUME** | Read the authoritative representation instead of copying its facts. |
-| **CORRESPOND** | Compare model and implementation wherever an independent join exists. |
-| **DERIVE** | Compute correspondence from stable identities where possible. |
-| **EMIT** | Generate downstream artifacts when the model can own the fact. |
-| **GATE** | Reject disagreement where the modeled property warrants enforcement. |
+| MODEL | Put the engineering fact in an explicit representation. |
+| CONSUME | Read the authoritative representation instead of copying its facts. |
+| CORRESPOND | Compare model and implementation wherever an independent join exists. |
+| DERIVE | Compute correspondence from stable identities where possible. |
+| EMIT | Generate downstream artifacts when the model can own the fact. |
+| GATE | Reject disagreement where the modeled property warrants enforcement. |
 
 ## Why These Travel Together
 

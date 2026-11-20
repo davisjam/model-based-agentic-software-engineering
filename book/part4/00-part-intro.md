@@ -16,4 +16,9 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 >
 > You can enter this cycle at any point. Recall [ref:multiple-routes-to-engineering-models] in {{chapter:modeling}}: engineering may begin with requirements, an existing system, an observed failure, or exploratory agent implementation.
 
+[ref:mage-in-practice-map] maps these activities to the sections that follow.
+
+<!-- label: mage-in-practice-map -->
+<!-- figure: assets/mage-in-practice-map.svg | *MAGE in practice.* Engineering proceeds through repeated Modeling, Realization, and Evaluation. This chapter develops four complementary activities: establishing and revising alignment, developing models as new questions arise, recovering and governing knowledge in existing systems, and maintaining the engineering environment. The activities overlap; their results inform subsequent work. -->
+
 {{sec:the-dynamics-of-mage}} explains how engineers introduce models incrementally and protect established properties while exploring change. {{sec:interlude-one-problem-many-models}} follows that process through DocAble’s memory and execution problems; {{sec:brownfield-engineering}} shows how to recover useful models from an existing system. {{sec:engineering-the-environment}} turns to equipping, evaluating, operating, and maintaining the environment that later work inherits.

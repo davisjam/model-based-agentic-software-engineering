@@ -6735,9 +6735,9 @@ def build_pdf() -> int:
         driver_text, chapters, _ = mage_latex.pdf_sources(driver)
         source = driver_text + "\n" + "\n".join(chapters)
         from mage_inset_print import count_print_figures
-        check_pdf(pdf_out, headings=_expected_chapter_headings(source),
+        check_pdf(pdf_out, single_page_tables=True, headings=_expected_chapter_headings(source),
                   sections=len(re.findall(r"\\section\*?\{", source)),
-                  tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}"),
+                  tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}") + source.count(r"\captionof{table}"),
                   figures=count_print_figures(source))
         import mage_tikz_links
         figure_manifest = json.loads((driver.parent / 'grayscale-figures.json').read_text())
@@ -6983,7 +6983,7 @@ def build_pdf_split() -> int:
                 return suffix, (f"Section PDF: {destination.name} "
                                 f"({_pdf_page_count(destination)} pages) — reused, inputs unchanged"), None
             pdf = compile_tex(driver, texmf_cache=_my_cache())
-            check_pdf(pdf, headings=_expected_chapter_headings(source),
+            check_pdf(pdf, single_page_tables=True, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
             mage_tikz_links.verify_book(pdf, driver.with_suffix('.aux'), active_figures,
                                         anchor_prefix='tikz-figure:')

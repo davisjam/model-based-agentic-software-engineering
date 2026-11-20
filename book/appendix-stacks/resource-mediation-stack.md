@@ -21,9 +21,9 @@ Reach for it when:
 
 | Move | Role |
 |---|---|
-| **DECLARE** | State which resource is scarce and what capacity is acceptable. |
-| **MEDIATE** | Route access through one admission point. |
-| **ADAPT** | *(strengthens)* Modify effective capacity from live pressure where justified. |
+| DECLARE | State which resource is scarce and what capacity is acceptable. |
+| MEDIATE | Route access through one admission point. |
+| ADAPT | *(strengthens)* Modify effective capacity from live pressure where justified. |
 
 ## Why These Travel Together
 

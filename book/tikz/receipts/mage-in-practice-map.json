@@ -1,0 +1,29 @@
+{
+  "source": "book/assets/mage-in-practice-map.svg",
+  "candidate": "book/tikz/figures/mage-in-practice-map.tex",
+  "generator": "tools/mage_practice_map.py",
+  "data": "book/data/mage-practice-map.json",
+  "alt": "Four equal section panels surround a Model, Realize, Evaluate cycle. Section titles and numbers come from the book source. The panels describe alignment dynamics, related models, brownfield recovery, and maintenance of the engineering environment. These activities overlap rather than form a fixed sequence.",
+  "required_terms": [
+    "Model",
+    "Realize",
+    "Evaluate",
+    "MAGE",
+    "in Practice"
+  ],
+  "questions": [],
+  "author_direction": "2026-11-20: implement approved second reference image in black and white with equally sized boxes and top headings; caption outside artwork; derive titles from the book.",
+  "current_layout_validation": {
+    "date": "2026-11-20",
+    "proof": "book/latex/build/figure-proofs-20261120/mage-in-practice-map.pdf",
+    "proof_sha256": "f3550c0a8250ee0ba3254e8fc625ce03a022027d2e769d6cef51c32a437a3b1a",
+    "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+    "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+    "width_bp": 448.67,
+    "height_bp": 330.671,
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true,
+    "scope": "Standalone figure proof; whole-book layout verified separately."
+  }
+}

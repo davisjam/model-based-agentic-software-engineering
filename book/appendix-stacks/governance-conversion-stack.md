@@ -21,10 +21,10 @@ Reach for it when:
 
 | Move | Role |
 |---|---|
-| **MODEL** | Make the control machinery explicit — rules, gates, models, sensors. |
-| **EXPOSE** | Query the machinery for gaps, staleness, and coupling. |
-| **CONVERT** | Interpret a recurring failure class into a new or strengthened control. |
-| **UPDATE** | Fold the control back into the machinery; the model changes with it. |
+| MODEL | Make the control machinery explicit — rules, gates, models, sensors. |
+| EXPOSE | Query the machinery for gaps, staleness, and coupling. |
+| CONVERT | Interpret a recurring failure class into a new or strengthened control. |
+| UPDATE | Fold the control back into the machinery; the model changes with it. |
 
 ## Why These Travel Together
 

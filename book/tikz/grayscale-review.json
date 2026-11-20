@@ -1478,8 +1478,8 @@
   {
     "source": "book/assets/match-mechanism-to-property.svg",
     "candidate": "book/tikz/figures/match-mechanism-to-property.tex",
-    "source_sha256": "47c6245067c833db567e48b04130fb3eb073672d2303a666e0bb9940598149eb",
-    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9",
+    "source_sha256": "f513159c611cdc19f6f28201140dfbcf01e6584cc061fdb2561975695099b2f4",
+    "candidate_sha256": "63e029bc7f8afe0afebd18a97851e1a7cd37b9342ef1c0051be66e7ebc9b0d50",
     "decision": "author-reference redraw",
     "reviewed_visually": true,
     "reason": "Follow the author reference: protocol root, two parallel obligations, mechanism panels with storage/lock and state-graph icons, and lightly shaded runtime-constraint/model-analysis conclusions. Correct the left obligation to a protected-effect claim as required by the attached notes.",
@@ -1508,6 +1508,26 @@
       "approved_date": "2026-11-13",
       "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
       "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
+    },
+    "compact_layout_review": {
+      "date": "2026-11-20",
+      "request": "Reduce Figure 3.7 height by approximately 20 percent; preserve contents and connections.",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "page": 37,
+      "width_bp": 449.769,
+      "height_bp": 195.994,
+      "previous_height_bp": 240.772,
+      "body_font_pt": 9.5,
+      "heading_font_pt": 10.5,
+      "source_sha256": "f513159c611cdc19f6f28201140dfbcf01e6584cc061fdb2561975695099b2f4",
+      "candidate_sha256": "63e029bc7f8afe0afebd18a97851e1a7cd37b9342ef1c0051be66e7ebc9b0d50",
+      "reviewed_visually": true,
+      "notes": "Reduced row gaps and node padding; retained mechanism-panel body text size and all labels, icons, arrow directions and fills.",
+      "proof_sha256": "ec3b46b1d4ad62500471d5ff4fb410ed799834f0f48b304a20a840aee4faec44",
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "geometry_audit_sha256": "8cc4dbf0fcdbfbe379fcfb65e5d19689714410e5c09a85441757c856401a2b24",
+      "typography_audit_sha256": "1419fcf58a0c7c7f15eeac499d2ba1a53c8c4791b049e12cb8cad982e5f446cd"
     }
   },
   {
@@ -3523,5 +3543,27 @@
     "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
     "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json",
     "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles."
+  },
+  {
+    "source": "book/assets/mage-in-practice-map.svg",
+    "candidate": "book/tikz/figures/mage-in-practice-map.tex",
+    "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+    "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+    "decision": "author-approved four-panel chapter map",
+    "reviewed_visually": true,
+    "rationale": "Black-and-white map with equal panels and top headings; content generated once for SVG and TikZ; caption remains in manuscript.",
+    "validation": {
+      "date": "2026-11-20",
+      "proof": "book/latex/build/figure-proofs-20261120/mage-in-practice-map.pdf",
+      "proof_sha256": "f3550c0a8250ee0ba3254e8fc625ce03a022027d2e769d6cef51c32a437a3b1a",
+      "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+      "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+      "width_bp": 448.67,
+      "height_bp": 330.671,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "scope": "Standalone figure proof; whole-book layout verified separately."
+    }
   }
 ]

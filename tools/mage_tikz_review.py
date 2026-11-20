@@ -498,9 +498,9 @@ def review_book(pool,manifest):
     from pdf_structure import check_pdf
     from mage_inset_print import count_print_figures
     source = driver_text + '\n' + '\n'.join(chapters)
-    check_pdf(pdf, headings=mage_latex.bb._expected_chapter_headings(source),
+    check_pdf(pdf, single_page_tables=True, headings=mage_latex.bb._expected_chapter_headings(source),
               sections=len(re.findall(r'\\section\*?\{', source)),
-              tables=source.count(r'\begin{longtable}') + source.count(r'\begin{table}'),
+              tables=source.count(r'\begin{longtable}') + source.count(r'\begin{table}') + source.count(r'\captionof{table}'),
               figures=count_print_figures(source))
     mage_tikz_links.verify_book(pdf,driver.with_suffix('.aux'),active)
     output=ROOT/'latex/build/mage-figure-review.pdf';shutil.copy2(pdf,output)

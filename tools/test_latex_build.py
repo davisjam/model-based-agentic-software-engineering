@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 import tempfile
 
-from latex_build import (diagnostics, bold_table_headers, single_page_tables,
+from latex_build import (plain_table_bodies, keep_tables_together, diagnostics, bold_table_headers, single_page_tables,
                          namespace_heading_links, restore_chapter_heading_links)
 
 
@@ -125,6 +125,38 @@ class DiagnosticPolicy(unittest.TestCase):
 
 
 class TableHeaderStyle(unittest.TestCase):
+    def test_all_tables_keep_caption_header_and_body_together(self):
+        source = r"""\begin{longtable}[]{ll}
+\caption[Short]{Caption with \emph{meaning}}\label{example}\tabularnewline
+\hline
+\textbf{Kind} & Meaning \\
+\hline
+\endfirsthead
+Kind & Meaning \\
+\endhead
+\hline
+\endlastfoot
+\textbf{First \emph{nested}} & Example \\
+Second & Another \\
+\end{longtable}"""
+        output = keep_tables_together(r'\begin{quote}' + plain_table_bodies(source) + r'\end{quote}')
+        self.assertNotIn('longtable', output)
+        self.assertNotIn(r'\begin{table}', output)
+        self.assertIn(r'\begin{minipage}{\linewidth}', output)
+        self.assertIn(r'\captionof{table}[Short]{Caption with \emph{meaning}}\label{example}', output)
+        self.assertEqual(output.count(r'\textbf{Kind}'), 1)
+        self.assertIn(r'First \emph{nested} & Example', output)
+        self.assertLess(output.index('Caption with'), output.index(r'\begin{tabular}'))
+        self.assertEqual(output.count(r'\hline'), 3)
+
+    def test_uncaptioned_single_header_table(self):
+        source = r'\begin{longtable}{ll}A & B \\ \endhead One & Two \\ \end{longtable}'
+        output = keep_tables_together(source)
+        self.assertIn('One & Two', output)
+        self.assertNotIn('captionof', output)
+        self.assertIn(r'\begin{table}[!htbp]', output)
+        self.assertNotIn('longtable', output)
+
     def test_single_page_comparison_preserves_caption_rows_and_rules(self):
         source = r"""\begin{longtable}[]{ll}
 \caption[Short]{Caption}\label{comparison}\tabularnewline

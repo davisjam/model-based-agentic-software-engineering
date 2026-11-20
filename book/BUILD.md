@@ -526,3 +526,24 @@ concept registry.
 - New index concept → register in `index-terms.md`; annotate per §6 once the tags are implemented.
 - Rebuild with `python3 catalog.py build` (runs the reachability gate); commit both the source and the
   generated HTML.
+
+### Tables: one page, column headings only in bold
+
+Keep every table together with its caption and column headings on one page. The
+shared MAGE print projection converts native longtables into table floats (or
+unbreakable blocks within insets);
+the PDF structure gate rejects tables whose marked content spans pages. If a
+table exceeds the available page height, revise its geometry or divide its content
+into separately captioned, meaningful tables. Do not shrink text indiscriminately.
+Use bold for column headings, not body cells or first-column row labels. Native
+sources and HTML/EPUB projections follow the same emphasis policy.
+
+### Chapter 4 map: generated SVG and TikZ
+
+`tools/mage_practice_map.py` renders both editions from
+`book/data/mage-practice-map.json`. The data stores stable section identities and
+topic summaries, never copied section titles or numbers. Titles resolve from the
+canonical native manuscript through `book/latex/native-sources.json`; numbers
+resolve through `book-models/chapter_identity_declared.json`. `mage_latex.py sync`
+regenerates the drawings; `sync --check` rejects stale output. Edit the data or
+generator rather than either generated drawing. Keep the caption in the manuscript.

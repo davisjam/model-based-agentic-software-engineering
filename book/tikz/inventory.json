@@ -591,7 +591,7 @@
     "svg_description": "Control machinery supplies the catalogue, interaction graph, and coverage view. Independently identified obligations also feed coverage. The squash rule and diff-size guard share the commit set. Atomic delivery traces to the squash rule, bounded change scope to the diff-size guard. A cost ceiling lacks coverage, and a legacy export check lacks a recorded justification."
   },
   {
-    "chapter": "4.1-the-dynamics-of-mage",
+    "chapter": "part-3-intro",
     "source": "assets/engineer-agent-interaction.svg",
     "caption": "*Engineer–agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -1855,5 +1855,18 @@
     "svg_title": "Model-based regression-test selection",
     "svg_description": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
     "native_source": "book/tikz/figures/handbook-model-based-test-selection.tex"
+  },
+  {
+    "chapter": "part-4-intro",
+    "source": "assets/mage-in-practice-map.svg",
+    "caption": "MAGE in practice.",
+    "native_context": "book/latex/sources/part4/00-part-intro.tex",
+    "receipt": "book/tikz/receipts/mage-in-practice-map.json",
+    "generator": "tools/mage_practice_map.py",
+    "data": [
+      "book/data/mage-practice-map.json",
+      "book-models/chapter_identity_declared.json"
+    ],
+    "conversion": "Generated SVG and native TikZ from shared chapter map; titles resolve from canonical manuscript."
   }
 ]

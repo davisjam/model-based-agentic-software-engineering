@@ -132,8 +132,8 @@
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "ec12528fd3f3d4e2e7f3c4b6c864206bfaf8decc0c4f95d40dca9d175ab70446",
-      "projection_hash": "15a068912d8733380cc7bb629932e59dee253e20c7d5af551e1d20390f966a75"
+      "source_hash": "90b880fbd84d8d85f3be1c0f6c8592e81c87dff5ca35f1d96161f94de2f56c90",
+      "projection_hash": "356e6ea26b756be07288df5e4f558dafcd9b305cce439c8a7743cbdf135460ad"
     },
     {
       "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
@@ -150,8 +150,8 @@
     {
       "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
       "projection": "book/part3/3.3-constraints-sensors-validators-gates.md",
-      "source_hash": "12755c56b2f472bdd43a16e6a5cfb1f412d7dcafb963b37195152a4245646b77",
-      "projection_hash": "809ee8299513798909e125a2ef43df2d86e27f0568191ff47d095671a1665d4b"
+      "source_hash": "f144dc832c6aec93e7b75600c54776823b8ab8043ba5237dac4d9ed420102bb2",
+      "projection_hash": "5e51d43a2ba451c712fefbc9a3b6d183a7604a5fa364e4a4ebeae8d9fc423e95"
     },
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
@@ -174,14 +174,14 @@
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
       "projection": "book/part4/00-part-intro.md",
-      "source_hash": "3c3d17e4053141d73b7d27bc96932eefefa55d26db30ad55e941cda6f6596742",
-      "projection_hash": "f3e62d21a2995af2a14f2a5791f3b496d6a088e05fd7982703dd9f2ed1415cf0"
+      "source_hash": "5457e0cfc106c57be36e0de8350c13abde9de53a5dff5d3fa86878b7be64c401",
+      "projection_hash": "c9ca095349b4535428e561c150fb267314c067b5f491c246bb34e149005b9b6d"
     },
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "ac490285c27d0d3076f02167a9c1f3879d5356d8243407c37365f610ac92b9dd",
-      "projection_hash": "7f2b77b81b2d0ffee9a20811f5cc148fbde112b9045378c564d299834a51eeac"
+      "source_hash": "ef2041e2da91865668aaa79930c6c14e6b44f13b30a5223cbf83bb7a64208c55",
+      "projection_hash": "8220a2782f66b539858ed71d2aa1f33c9198e3dc242cd1a94d6a8ccffd1d08e1"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
@@ -198,8 +198,8 @@
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "56b483e327e68de06de826e18669753185d30ee687f4e61d1176d20b02d5d90b",
-      "projection_hash": "585cfb7f7ff31c6b1dd5d942adcc3fac546633364ccc6333ffa04543001ee64b"
+      "source_hash": "4c254a1c266c0eae1bd21f7fc802433b5a76a87f0909bc06724891eb9c4cab29",
+      "projection_hash": "31ab50aec41b444bd3df8c6f71303ccf2c33dbf41a450f8c9aca42eb974c93f9"
     },
     {
       "source": "book/latex/sources/part4/4.5-mage-in-motion-summary.tex",
@@ -252,14 +252,14 @@
     {
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
-      "source_hash": "ff05154810549dc7c4510e9d6867a35aa76af36be1377c327563370ace0b2011",
-      "projection_hash": "c3aca7d91e9d020d6fb23cad75cef36652fd41a5cffaef9abae7342cfafd4f85"
+      "source_hash": "b2d6e97cb1f4c44d5992fbfb954541ffc7904b6e2e5a93bf10342e1b1613f0f1",
+      "projection_hash": "e84678e0e4ec9ce42d511eb14f26091069438f7f2e8801f51d3a70e8c6719d5e"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
       "projection": "book/part6/6.2-what-the-theory-predicts.md",
-      "source_hash": "b56d2373b584d701822c6795068aeba110df5eb844b2a8b3f172dd7f57fdf7ea",
-      "projection_hash": "9e623282f808b9ece2002b2e25d7a71486fb88e52662e92248cecfca88ce94a3"
+      "source_hash": "5f8095f03bcb9ef22cd522ccce28d06ba1fbbb0dc0f424a2db2696c713d71c59",
+      "projection_hash": "098049fc9c8c82ddfe94c58b50e735a461e3154fdf372a350c73e0ea086b179b"
     },
     {
       "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
@@ -352,16 +352,16 @@
     {
       "source": "book/latex/sources/appendix-stacks/assurance-stack.tex",
       "projection": "book/appendix-stacks/assurance-stack.md",
-      "source_hash": "daf589812b0d12f1f187d0cdd880a8fd21f5222c9cad05a61de39a8aca6d325f",
-      "projection_hash": "28ee384458c0448d84b180837745b02beadaff68e2a8b1e7f556e00f2bcb2f3e",
+      "source_hash": "34ddb6bd2ce29acb2ded58e5976accdc527922cbb90ff10077b30b580ad14cb6",
+      "projection_hash": "12853d96557d12640627589f015b49f0286fdfaf320f65265099898e817ee013",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
     {
       "source": "book/latex/sources/appendix-stacks/auditable-transformation-stack.tex",
       "projection": "book/appendix-stacks/auditable-transformation-stack.md",
-      "source_hash": "07cec9da4ad452ad0d80468b6790fc135c277e3a80bfba1725507b2d248e03b8",
-      "projection_hash": "35cd6a4d4717c0d28a3510482e37b8d074f97ba755c0d557ddc272eb08c75416",
+      "source_hash": "6f85c52062e8f349597b6c599093e66d797282499f4f305d7f5d77b822761e11",
+      "projection_hash": "5b033bd7c3c3303abb4a6aaf60ab2f2427f62308a1392f49db8e4c0d12e96fdb",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -376,40 +376,40 @@
     {
       "source": "book/latex/sources/appendix-stacks/context-delivery-stack.tex",
       "projection": "book/appendix-stacks/context-delivery-stack.md",
-      "source_hash": "ebb4584d77c262fe0331808dae9dd9e73ca2f2d9ae9e26dd0c8c6dc0860ac07c",
-      "projection_hash": "ad28f97fa9c87bf51496e39e687dab3cb683d046ef38ce2995fa2bc06108d51c",
+      "source_hash": "48301af8aebdc9e9678d9eb5f9a11e6cfecfe7684012592e3939e03a2b6b3427",
+      "projection_hash": "d8a6d2c14188f17f41637f431d6904edacc26d8d3d9b64312e087381fc7f72da",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
     {
       "source": "book/latex/sources/appendix-stacks/governance-conversion-stack.tex",
       "projection": "book/appendix-stacks/governance-conversion-stack.md",
-      "source_hash": "56137285b9cba05e0e6b6d06217ce04d316572218bed5ef4c9fc72508f8c81a3",
-      "projection_hash": "f8f2b6860ddfae5cd8975c68959b30b9097339067a9f58e4c0dbc6cdc5b64a11",
+      "source_hash": "ee7696f1c32e99f59bb591f2b9298fada160361c3cdb114988c544220dc82ce0",
+      "projection_hash": "3e9b0605fc20385c8c935f37bd1446456b791a25dca254201f2daa3d082947ae",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
     {
       "source": "book/latex/sources/appendix-stacks/model-coherence-stack.tex",
       "projection": "book/appendix-stacks/model-coherence-stack.md",
-      "source_hash": "d4919d694097f559626c8e57a76e2f12a920efef8f097b170961ac21e02dd0fa",
-      "projection_hash": "e1cad82e0b69f6673c3adc50f175407ccfa293d2ffbb8a6a4d0f7c23fb065d84",
+      "source_hash": "8d28bf48c2f6dc60c98342f7f5004837b9a43a491ee9e09126dafd00756a1872",
+      "projection_hash": "d44ef06beaaa7fa73aff0a84e2c71f70cf1bb6160633dc283a3cfc14ef92f795",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
     {
       "source": "book/latex/sources/appendix-stacks/observe-react-stack.tex",
       "projection": "book/appendix-stacks/observe-react-stack.md",
-      "source_hash": "464b1c79ce794f421903dd6d3ade44065d9a77bc61c4a1f4c638b5776e32a88d",
-      "projection_hash": "3b006fedcc95d8633b66c557518814db6d749a80db46e73ce63bd15c74bff689",
+      "source_hash": "f13525a744111bd11b6c19c765b9dcd190160822048a3597002b3209684121fd",
+      "projection_hash": "e1c3e070aa41cdd60d3b4844e93040588ea332fa141a3e184d20f01ad7afc052",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
     {
       "source": "book/latex/sources/appendix-stacks/resource-mediation-stack.tex",
       "projection": "book/appendix-stacks/resource-mediation-stack.md",
-      "source_hash": "dc0563f7f880b1853ba4d4e341db23791306f84bf3d9dc55a4d2e596a35dc0eb",
-      "projection_hash": "25d8f6a4f345aa1cbdcb640f52458b42a68c55cfae53355fb8b5d568752f3ec3",
+      "source_hash": "41dca026c8f13b33e6a4f32b8db9a8dcac525f4adc830eac9bd11605810a277f",
+      "projection_hash": "9835f5aa54487514a7d30d9cf28bf4f6033bdff7d938e04ff01a10c3f4874bde",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -864,8 +864,8 @@
     {
       "source": "book/latex/sources/appendix-operators-reference/from-drifted-wiki-to-trusted-model.tex",
       "projection": "book/appendix-operators-reference/from-drifted-wiki-to-trusted-model.md",
-      "source_hash": "8d26debdff1dcf6bcbf6ea23dd28667104175b960d6500865d1e9a4b1ccd5d16",
-      "projection_hash": "7d2f3b764ed181550ec49b6a90e94e7cb70a268246c54d941f426c596b182b66",
+      "source_hash": "84a581613df8f2b597e9b655820f51dd7db8e04492dcb566bf56c17fdde4558b",
+      "projection_hash": "29925e26bb8860fabc365d267313df006c4fa882de747ed43712dc4080d0c245",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -904,8 +904,8 @@
     {
       "source": "book/latex/sources/appendix-operators-reference/operators-dashboard.tex",
       "projection": "book/appendix-operators-reference/operators-dashboard.md",
-      "source_hash": "6136533159995baac8f2ff6e2c03dece8138311688cc1a292bb249209ed44eaa",
-      "projection_hash": "1d188f7cd938f1c66236a0221c2b7add591722b9e63bc2b15dc3e1f3afe7c37b",
+      "source_hash": "a9c5ba9f5e09a15d7e063c4c4544b4d9cfa6081d45c4002a328be21e370377cd",
+      "projection_hash": "e765a8a5d57b87725b4027d6dd1c0318c68f0d63f7b447c6fd2ed54ec855034e",
       "publication_status": "retired",
       "retirement_reason": "Retained research/catalogue source; outside the current publication selection."
     },
@@ -992,8 +992,8 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
       "projection": "book/appendix-practicing-mage/brownfield-migration.md",
-      "source_hash": "9cb34f283555dcedcf9974760b0c49b10d0f70329e510baec0e94c204e870dfa",
-      "projection_hash": "9531d1a692716ae9c8d9fe447efbb5d43910eff8f0b5c6eaf4fd3d244a5ff4dd"
+      "source_hash": "3a006790b886e0dda173c915c8f1a4a21a8ed9ccb638a408d614be6a7c800256",
+      "projection_hash": "78c8ec877935224c1eac89a5fd96b1bdd85fa660938aa4fa7ec867455e14bc0e"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/getting-started.tex",
@@ -1004,8 +1004,8 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/measuring-mage.tex",
       "projection": "book/appendix-practicing-mage/measuring-mage.md",
-      "source_hash": "7775691dd9a1c76fa6203ec8431c1b688bec2a8d5285ad65a3797abdca3a60bd",
-      "projection_hash": "63f39e2768899df508be029e0ab51e4a9294781679ad6b08b2d077c8a01af33b"
+      "source_hash": "a0fa7fec08b4d3d5b8c257c4883895f6afcdeb97c98a76dc3ea5aba7ab2ab344",
+      "projection_hash": "ae4a7298428684f3f9248ffada8cad44e8fc163aaec280ede48a9569aff62b58"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
@@ -1031,8 +1031,8 @@
       "source": "book/latex/sources/appendix-handbook/maintaining-the-machinery.tex",
       "projection": "book/appendix-handbook/maintaining-the-machinery.md",
       "publication_status": "published",
-      "source_hash": "c2bab01b8cf135cb1398e441b0ebf62667701ec4e6bf79e8d8bfaf2b1c01f76b",
-      "projection_hash": "ed5c937710f542f9691d2ab508b8cc541372c75416d81d108bdb92ea6210167a"
+      "source_hash": "5a46661b6004a916660a5d94bb90a6604e6130ec6bb7c9e4f3a714eb5df645de",
+      "projection_hash": "f2c9fdd35db85d28a666215aa590c222562f6b450655097834b164c8f20b6dd8"
     },
     {
       "source": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
@@ -1056,6 +1056,6 @@
       "projection_hash": "f7a71bb58e87a19d499fb8c0af78583db10a10c69a3308bc51055e77ec4703d4"
     }
   ],
-  "engine_hash": "2c8b13bd5553ee4265caf0279fb166c8c23815e9eedf8923aaaee129e9dc789e",
+  "engine_hash": "91559c0b2c71e7a339e97f81d3ebb697a736654d4f439f31db33a03273b2ae04",
   "renderer_version": "pandoc 3.9.0.2"
 }

@@ -1,0 +1,8 @@
+{
+  "panels": [
+    {"section": "the-dynamics-of-mage", "intent": "Establish and revise alignment.", "bullets": ["Active and passive alignment", "The alignment kernel", "Iterative Modeling, Realization, and Evaluation"]},
+    {"section": "interlude-one-problem-many-models", "intent": "Follow the engineering questions.", "bullets": ["One problem exposes others", "Develop related models", "Example: residency, execution, latency, and measurement"]},
+    {"section": "brownfield-engineering", "intent": "Recover and govern existing knowledge.", "bullets": ["Discover latent models", "Distinguish useful structure from accidental complexity", "Migrate consumers and establish controls"]},
+    {"section": "engineering-the-environment", "intent": "Maintain the machinery.", "bullets": ["Equip agents with models and controls", "Evaluate their work", "Operate and maintain the environment"]}
+  ]
+}

@@ -273,6 +273,8 @@ def compatibility(source: Path, output: Path):
     """Project native source into legacy Markdown for existing model/web consumers."""
     source = source.resolve()
     text = source.read_text().replace(r'\mbox{}', '')
+    from latex_build import plain_table_bodies
+    text = plain_table_bodies(text)
     # Print heading anchors are chapter-qualified; web/EPUB chapters are separate
     # pages. Preserve the same destination when projecting a cross-chapter link.
     text = re.sub(r'\\hyperref\[([^\]:]+):heading:([^\]]+)\]',
@@ -536,10 +538,13 @@ def migrate_all():
 
 
 def sync(check=False):
+    from mage_practice_map import generate
+    from latex_build import plain_table_bodies
+    generate(check=check)
     manifest = json.loads(MANIFEST.read_text())
     stale = []
     renderer_version = subprocess.check_output(['pandoc', '--version'], text=True).splitlines()[0]
-    engine_hash = hashlib.sha256((renderer_version + ''.join(inspect.getsource(function) for function in (pandoc, argument, guard_native, strip_noops, compatibility))).encode()).hexdigest()
+    engine_hash = hashlib.sha256((renderer_version + ''.join(inspect.getsource(function) for function in (pandoc, argument, guard_native, strip_noops, compatibility, plain_table_bodies))).encode()).hexdigest()
     for record in manifest['sources']:
         source, projection = ROOT / record['source'], ROOT / record['projection']
         # The generated provenance header includes the paths. A rename must
@@ -705,9 +710,9 @@ def _prepare_record(task):
     latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels(),
                                   inline_labels=inset_inline_labels())
 
-    from latex_build import (bold_table_headers, layout_selected_table,
+    from latex_build import (bold_table_headers, layout_selected_table, plain_table_bodies, keep_tables_together,
                              namespace_heading_links, restore_chapter_heading_links)
-    latex = bold_table_headers(latex)
+    latex = bold_table_headers(plain_table_bodies(latex))
     from mage_figure_layout import theory_perspectives_columns
     latex = theory_perspectives_columns(latex)
     latex = layout_selected_table(latex, 'engineering-questions-and-candidate-models',
@@ -736,6 +741,7 @@ def _prepare_record(task):
              'bottomrule': rule_padding + r'\hline'}
     latex = re.sub(r'\\(toprule|midrule|bottomrule)(?:\\noalign\{\})?',
                    lambda m: rules[m[1]], latex)
+    latex = keep_tables_together(latex)
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

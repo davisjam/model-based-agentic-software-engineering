@@ -350,6 +350,10 @@
       "approved_date": "2026-11-20",
       "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles.",
       "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b"
+    },
+    "book/assets/mage-in-practice-map.svg": {
+      "approved_date": "2026-11-20",
+      "reason": "Author approved four-quadrant chapter map with central cycle, equal boxes, top headings, and separate caption."
     }
   }
 }

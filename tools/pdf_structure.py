@@ -16,7 +16,7 @@ def _object(value):
     return value.get_object() if hasattr(value, "get_object") else value
 
 
-def inspect_catalog(catalog, *, headings=1, sections=0, tables=0, figures=0):
+def inspect_catalog(catalog, *, headings=1, sections=0, tables=0, figures=0, single_page_tables=False):
     """Return role counts and findings; usable with pypdf dictionaries or test fixtures."""
     catalog = _object(catalog)
     tree = _object(catalog.get("/StructTreeRoot"))
@@ -63,6 +63,25 @@ def inspect_catalog(catalog, *, headings=1, sections=0, tables=0, figures=0):
                 pending.append(item.get("/K"))
         return False
 
+    def content_pages(node):
+        pages = set()
+        pending = [(node, None)]
+        seen = set()
+        while pending:
+            value, inherited = pending.pop()
+            value = _object(value)
+            if isinstance(value, list):
+                pending.extend((child, inherited) for child in value)
+            elif isinstance(value, dict) and id(value) not in seen:
+                seen.add(id(value))
+                page = value.get('/Pg', inherited)
+                if '/MCID' in value and page is not None:
+                    pages.add(page.idnum if hasattr(page, 'idnum') else id(_object(page)))
+                pending.append((value.get('/K'), page))
+            elif isinstance(value, int) and value >= 0 and inherited is not None:
+                pages.add(inherited.idnum if hasattr(inherited, 'idnum') else id(_object(inherited)))
+        return pages
+
     pending, seen = [tree.get("/K")], set()
     while pending:
         node = _object(pending.pop())
@@ -77,6 +96,8 @@ def inspect_catalog(catalog, *, headings=1, sections=0, tables=0, figures=0):
         seen.add(id(node))
         kind = role(node)
         counts[kind] += 1
+        if kind == "Table" and single_page_tables and len(content_pages(node)) > 1:
+            findings.append(f"Table {counts[kind]} spans multiple pages")
         if kind == "Document":
             kids = _object(node.get("/K"))
             for child in kids if isinstance(kids, list) else [kids]:
@@ -124,5 +145,6 @@ if __name__ == "__main__":
     parser.add_argument("pdf", type=Path)
     for feature, default in (("headings", 1), ("sections", 0), ("tables", 0), ("figures", 0)):
         parser.add_argument(f"--{feature}", type=int, default=default)
+    parser.add_argument("--single-page-tables", action="store_true")
     args = vars(parser.parse_args())
     check_pdf(args.pop("pdf"), **args)

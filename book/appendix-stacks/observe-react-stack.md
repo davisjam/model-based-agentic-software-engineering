@@ -21,10 +21,10 @@ Reach for it when:
 
 | Move | Role |
 |---|---|
-| **WATCH** | Read runtime state against the operating model, so divergence surfaces as a signal. |
-| **RESPOND** | Connect each signal to a bounded recovery action. |
-| **BEAT** | *(strengthens)* Emit periodic liveness so a wedged process reads differently from a slow one. |
-| **BLOCK** | *(strengthens)* Refuse unsafe progress where continuing is worse than stopping. |
+| WATCH | Read runtime state against the operating model, so divergence surfaces as a signal. |
+| RESPOND | Connect each signal to a bounded recovery action. |
+| BEAT | *(strengthens)* Emit periodic liveness so a wedged process reads differently from a slow one. |
+| BLOCK | *(strengthens)* Refuse unsafe progress where continuing is worse than stopping. |
 
 ## Why These Travel Together
 

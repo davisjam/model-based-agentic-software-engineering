@@ -952,7 +952,7 @@
     "assets/engineer-agent-interaction.svg": {
       "tier": "B",
       "kind": "flow",
-      "location": "part4",
+      "location": "part3",
       "rationale": "the engineer's two interfaces with delegated realization — intent and knowledge out through natural language / specification / models, evidence back through review / testing / analysis, one shared implementation node as the hinge; supporting caption on channels complementary rather than sequential"
     },
     "assets/active-passive-alignment.svg": {
@@ -1368,6 +1368,12 @@
       "kind": "engineering-blueprint",
       "location": "appendixA",
       "rationale": "Four-sentence supporting architecture caption names model consumers, consequential boundaries and limits; model inventories and prose develop the details."
+    },
+    "assets/mage-in-practice-map.svg": {
+      "tier": "B",
+      "kind": "chapter-map",
+      "location": "part4",
+      "rationale": "Names the four complementary activities around the recurring engineering cycle without treating the sections as phases."
     }
   },
   "historical_tiers": {

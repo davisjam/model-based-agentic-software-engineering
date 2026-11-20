@@ -22,11 +22,11 @@ Reach for it where:
 
 | Move | Role |
 |---|---|
-| **MARK** | Attach identity and context to the mutation. |
-| **EMIT** | Persist a structured record. |
-| **COVER** | Detect mutations that escaped attribution. |
-| **READ** | Reconstruct the transformation history. |
-| **FIDELITY** | Check that the transformed artifact retained its required semantics. |
+| MARK | Attach identity and context to the mutation. |
+| EMIT | Persist a structured record. |
+| COVER | Detect mutations that escaped attribution. |
+| READ | Reconstruct the transformation history. |
+| FIDELITY | Check that the transformed artifact retained its required semantics. |
 
 ## Why These Travel Together
 

@@ -19,10 +19,10 @@ Agents can perform much of this work. They can inventory existing representation
 <!-- table: The brownfield migration path. Advance when the selected surface meets its exit criterion. [short: Brownfield migration exit criteria] -->
 | **Stage** | **Work** | **Exit criterion** |
 |---|---|---|
-| **Audit** | Inventory claims, their subjects, and existing mechanisms; classify gaps. | Claims needed for the selected work have been checked; consequential discrepancies have an owner and a next action. |
-| **Synchronize** | Reconcile the representations that upcoming work will rely upon. | Required correspondences are established through review or independently checked evidence. |
-| **Govern** | Enforce selected obligations where sufficient evidence is available. | The selected obligations no longer depend primarily on someone remembering to inspect them. |
-| **Extend** | Add capability where expected reuse or consequence justifies its cost. | Each addition has a named consumer or engineering question and a reason to exist. |
+| Audit | Inventory claims, their subjects, and existing mechanisms; classify gaps. | Claims needed for the selected work have been checked; consequential discrepancies have an owner and a next action. |
+| Synchronize | Reconcile the representations that upcoming work will rely upon. | Required correspondences are established through review or independently checked evidence. |
+| Govern | Enforce selected obligations where sufficient evidence is available. | The selected obligations no longer depend primarily on someone remembering to inspect them. |
+| Extend | Add capability where expected reuse or consequence justifies its cost. | Each addition has a named consumer or engineering question and a reason to exist. |
 
 **Audit.** Trace the claims needed for the selected work to their subjects and consumers, and identify which discrepancies require attention. A wiki may declare that only one service can call an external API; inspect the implementation, deployment policy, and any check that relies on that declaration. Record whether the claim describes current behavior or intended behavior. A disagreement does not tell you which side should change. Keep the audit advisory while those decisions remain unresolved; making a recovered mistake authoritative would make the system harder to repair.
 
