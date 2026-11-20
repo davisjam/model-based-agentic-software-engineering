@@ -759,6 +759,11 @@ def _prepare_record(task):
         command = r'\section*{' if section_page else r'\chapter*{'
         heading = (command + prefix + title + '}\n' + r'\phantomsection\label{chapter:' + slug
                    + '}\n' + r'\addcontentsline{toc}{chapter}{' + title + '}')
+    # A title immediately followed by a subheading needs room for both and some
+    # prose; LaTeX's ordinary keep-with-next can break between stacked headings.
+    opening = re.sub(r'^\s*(?:<!--.*?-->\s*)*', '', raw, flags=re.S)
+    if section_page and re.match(r'#{2,6}\s', opening):
+        heading = r'\Needspace{8\baselineskip}' + '\n' + heading
     latex = latex.replace(source_heading, heading, 1)
     counters = r'\setcounter{chapter}{' + str(record['part'] if isinstance(record['part'], int) else 0) + '}\n'
     chapter_letter = re.match(r'Appendix ([A-Z]) [—–-]', record['part_title'])
