@@ -26,11 +26,14 @@ const browser = await puppeteer.launch({
 });
 try {
   const page = await browser.newPage();
+  // Revisit every page at each viewport without conditional 304 responses
+  // from the local artifact server obscuring the missing-page assertion.
+  await page.setCacheEnabled(false);
   for (const width of [1600, 1100, 390]) {
     await page.setViewport({width, height: 1000});
     for (const slug of slugs) {
       const response = await page.goto(new URL(`${slug}.html`, base).href, {waitUntil: 'networkidle0'});
-      assert(response && response.ok(), `Missing book page: ${slug}`);
+      assert(response && response.ok(), `Missing book page: ${slug} (HTTP ${response?.status() ?? "no response"})`);
       assert(await page.$('article'), `Missing article on ${slug}`);
       await page.evaluate(() => document.fonts.ready);
       const result = await page.evaluate(() => {
