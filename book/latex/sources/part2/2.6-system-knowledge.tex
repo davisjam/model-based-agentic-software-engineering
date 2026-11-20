@@ -190,8 +190,4 @@ A permitted interservice call requires several models to agree. A typed edge rec
 
 DocAble introduced the join after service URLs were wired correctly but the matching invocation grant was absent, taking staging down with authorization errors. The repair made URL wiring and authorization two consequences of the same modeled edge, so a later change could derive them together rather than requiring another bespoke grant.
 
-% <!-- point: connections-can-create-information | Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist. | terms: derive-and-join, join-key -->
-
-Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
-
 Each connection has a specific purpose. Resource declarations supply a dependency, computation identities connect measured cost to a pass, an edit record explains a document change, and a call joined to a deployment identity determines a permission. Keeping these relationships explicit lets engineers inspect the evidence behind each analysis and detect disagreements between representations.

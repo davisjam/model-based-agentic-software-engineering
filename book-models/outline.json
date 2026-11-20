@@ -7,7 +7,7 @@
     "derived_ids": 93,
     "missing_topic_sentence": 10,
     "sections_drained": 118,
-    "paragraph_points": 529
+    "paragraph_points": 528
   },
   "chapters": [
     {
@@ -1226,11 +1226,6 @@
               "slug": "the-interservice-edge-is-a-worked-join",
               "text": "One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains.",
               "block_index": 72
-            },
-            {
-              "slug": "connections-can-create-information",
-              "text": "Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist.",
-              "block_index": 75
             }
           ]
         }

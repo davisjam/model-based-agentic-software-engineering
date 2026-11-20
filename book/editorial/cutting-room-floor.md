@@ -22036,3 +22036,14 @@ Source: `book/latex/sources/part7/7.4-the-engineer.tex:85`, revision `7a8315186`
 ```latex
 Engineering has always required moving between levels of abstraction:
 ```
+
+
+## Chapter 2 redundant join explanation — 19 November 2026
+
+Source: `book/latex/sources/part2/2.6-system-knowledge.tex`, revision `f501c8821`. Deleted at the author’s request: the preceding deployment-permission example already demonstrates the point. Retained the closing comparison beginning “Each connection has a specific purpose.”
+
+```latex
+% <!-- point: connections-can-create-information | Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist. | terms: derive-and-join, join-key -->
+
+Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
+```
