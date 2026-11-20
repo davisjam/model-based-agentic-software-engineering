@@ -8,6 +8,7 @@ Applied the author’s approved Chapter 3 plan and selective-mechanization frami
 - §3.2 develops independent obligations, correspondence, evidence limitations, and the semantic gap before the computation-model case. Coverage repair remains distinct from promoting checks to blocking.
 - §3.3 now has two numbered subsections: constructing/evaluating mechanisms and choosing/calibrating them. Five internal teaching units separate general techniques from applications, place positive/negative constraints beside mechanism selection, and join margins with the freedom controls preserve.
 - §3.4 integrates the enforcement-gap example into governance conversion; §3.5 distinguishes general control models from DocAble’s implemented analysis and portfolio maintenance.
+- The named Alignment Principle remains immediately before §3.1’s practice examples, with its stable point retained for the canonical-statement check.
 - The introduction asks why engineering should not be mechanized exhaustively. The summary resolves that question through selective enforcement, retained implementation freedom, and the engineer’s responsibility. All five numbered takeaways and the final transition remain unchanged.
 
 ## Chapter 4
@@ -26,4 +27,6 @@ Superseded substantive passages are preserved with provenance in `cutting-room-f
 
 ## Render review
 
-The whole-book PDF remains 281 pages. Inspected 19 rendered pages covering the revised openings, teaching units, summary, and Chapter 4 memory narrative. The six memory subheadings remain useful at their new level; no further heading cuts were needed. The full HTML regression passed all 192 page/viewport combinations after regeneration.
+The initial Chapter 3–4 whole-book render was 281 pages. After restoring the canonical principle and incorporating the later Chapter 5–6 transition edits, the full book is 282 pages. Inspected 19 rendered pages covering the revised openings, teaching units, summary, and Chapter 4 memory narrative. The six memory subheadings remain useful at their new level; no further heading cuts were needed. The full HTML regression passed all 192 page/viewport combinations after regeneration.
+
+The final combined batch also inspected eight rendered pages covering the restored Chapter 3 statement and all modified Chapter 5–6 passages. All figures, tables, equations, citation keys, and reference targets in the Chapter 5–6 source changes were mechanically compared with their preceding revision and preserved.

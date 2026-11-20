@@ -7,7 +7,7 @@
     "derived_ids": 94,
     "missing_topic_sentence": 11,
     "sections_drained": 119,
-    "paragraph_points": 528
+    "paragraph_points": 529
   },
   "chapters": [
     {
@@ -1316,6 +1316,11 @@
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
               "block_index": 43
+            },
+            {
+              "slug": "the-alignment-principle-stated-whole",
+              "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.",
+              "block_index": 45
             }
           ]
         },
@@ -1325,7 +1330,7 @@
           "heading_text": "Enforcement Boundaries in Practice",
           "topic_sentence": "The appropriate boundary depends on the obligation and the evidence needed to evaluate it.",
           "id_source": "explicit",
-          "block_index": 45,
+          "block_index": 47,
           "points": []
         }
       ],
@@ -2618,7 +2623,7 @@
           "section_id": "the-build-measured-weekly",
           "level": 3,
           "heading_text": "The Build, Measured Weekly",
-          "topic_sentence": "The repository reconstruction covers 31 complete seven-day weeks from March 12 through October 14, 2026 [cite: davis2026docable].",
+          "topic_sentence": "The preceding account describes how the engineering problem changed as DocAble developed.",
           "id_source": "derived",
           "block_index": 47,
           "points": [
@@ -2753,7 +2758,7 @@
           "section_id": "exploring-alternative-reasoning-engines",
           "level": 3,
           "heading_text": "Substituting the Reasoning Engine",
-          "topic_sentence": "DocAble separates the reasoning that proposes a repair from the machinery that changes the document.",
+          "topic_sentence": "The factory’s models and controlled operations also make it possible to change how remediation decisions are made.",
           "id_source": "explicit",
           "block_index": 95,
           "points": [
@@ -2822,7 +2827,7 @@
           "section_id": "what-escalated-failures-became",
           "level": 3,
           "heading_text": "What Escalated Failures Became",
-          "topic_sentence": "Some of DocAble’s engineering models were designed from known requirements.",
+          "topic_sentence": "The workflow organized routine changes, but it also exposed failures that required changes to the factory itself.",
           "id_source": "derived",
           "block_index": 123,
           "points": [
@@ -3283,7 +3288,7 @@
           "section_id": "cost-and-failure-separately",
           "level": 2,
           "heading_text": "What Makes Production Economical?",
-          "topic_sentence": "The engineering question is what useful delivery costs.",
+          "topic_sentence": "Faithful production is necessary, but it does not tell us whether an engineering arrangement is economical.",
           "id_source": "explicit",
           "block_index": 31,
           "points": [
@@ -3666,9 +3671,9 @@
           ]
         },
         {
-          "section_id": "the-expanding-frontier-of-explicit-engineering",
+          "section_id": "value-and-mechanizability",
           "level": 2,
-          "heading_text": "The Expanding Frontier of Explicit Engineering",
+          "heading_text": "Value and Mechanizability",
           "topic_sentence": "Consequence does not imply governability.",
           "id_source": "derived",
           "block_index": 20,
@@ -3709,7 +3714,7 @@
           "section_id": "scope-beyond-software",
           "level": 2,
           "heading_text": "Scope Beyond Software",
-          "topic_sentence": "The mechanisms described here do not intrinsically require software.",
+          "topic_sentence": "The preceding limits concern which obligations can be governed economically and adequately.",
           "id_source": "derived",
           "block_index": 38,
           "points": [
@@ -3817,7 +3822,7 @@
           "section_id": "research-optimizing-the-engineering-environment",
           "level": 2,
           "heading_text": "Optimizing the Engineering Environment",
-          "topic_sentence": "These comparisons could eventually inform **engineering routing**: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms.",
+          "topic_sentence": "The preceding comparisons would estimate how representations, controls, and agent capabilities affect engineering outcomes.",
           "id_source": "explicit",
           "block_index": 35,
           "points": [

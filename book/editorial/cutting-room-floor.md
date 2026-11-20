@@ -21758,3 +21758,80 @@ Reason: The new transition after the ratcheteering inset already explains that t
 ```latex
 The large-file requirement produced a connected family of models, each answering a different engineering question. \autoref{interlude-model-family} collects them.
 ```
+
+
+## Chapter 5 transitions — 19 November 2026
+
+The author approved three transition replacements in §5.2. These preserve the claims and supporting material while connecting chronology to measurement, factory models to reasoning substitution, and routine operation to factory improvement. The optional heading and limitations edits were not applied.
+
+### The Build, Measured Weekly
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 161, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 transition pass; no technical claim removed.
+
+```latex
+The repository reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026~\citep{davis2026docable}.
+```
+
+### Substituting the Reasoning Engine
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 317, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 transition pass; no technical claim removed.
+
+```latex
+DocAble separates the reasoning that proposes a repair from the machinery that changes the document. The separation preserves much of the engineering investment when the reasoning strategy changes: a new strategy can reuse the document models, controlled operations, and validation machinery rather than reconstructing them. It also lets us ask whether more general reasoning earns its additional cost.
+```
+
+### What Escalated Failures Became
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 385, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 transition pass; no technical claim removed.
+
+```latex
+Some of DocAble's engineering models were designed from known requirements. Others arose when failures exposed missing distinctions or controls. Three episodes illustrate the latter process, involving document mutation, instructions to foundation models, and integration of concurrent development work.
+```
+
+
+Editorial correction: the canonical `the-alignment-principle-stated-whole` statement archived in the Chapter 3 restructuring has been restored immediately before the practice subsection in §3.1. It remains the named formal statement at the end of the general teaching, before the cases; the publication canon guard requires this body-chapter statement and stable point.
+
+
+## Chapter 6 transitions and scope heading — 19 November 2026
+
+Applied the five recommended edits, retaining the existing major structure and all equations, figures, tables, and technical qualifications. The optional P1-to-P2 transition was not added. The central experimental difficulty remains in the revised research-agenda opening.
+
+### What Makes Production Economical?
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, line 97, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 copyedit; empirical scope and technical meaning retained.
+
+```latex
+The engineering question is what useful delivery costs. A cheap attempt may leave an engineer with hours of repair; an expensive model may support hundreds of later changes. To compare those arrangements, we need to count the work that went into delivery, including the work that never produced an acceptable result.
+```
+
+### Value and Mechanizability
+
+Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, line 51, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 copyedit; empirical scope and technical meaning retained.
+
+```latex
+\section{The Expanding Frontier of Explicit Engineering}
+```
+
+### Scope Beyond Software
+
+Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, line 105, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 copyedit; empirical scope and technical meaning retained.
+
+```latex
+The mechanisms described here do not intrinsically require software.
+```
+
+### Research Agenda introduction
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex`, line 14, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 copyedit; empirical scope and technical meaning retained.
+
+```latex
+The next step is to find out when these mechanisms matter, by how much, and at what cost. The central experimental difficulty is to distinguish improvements in the reasoning engine from improvements in the engineering environment through which it works. Three research directions organize that problem: representation engineering, governance and engineering capital, and the interaction between capacity and environment.
+```
+
+### Optimizing the Engineering Environment
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex`, line 126, revision `21c6966ae215d9aa71812a1dfd141c5d8845ffeb`. Superseded during the 19 November 2026 copyedit; empirical scope and technical meaning retained.
+
+```latex
+These comparisons could eventually inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms.
+```
