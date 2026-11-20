@@ -39,7 +39,7 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
     for label, rule in data.items():
         if rule.get('inset_placement') not in (None, 'flow', 'inline'):
             raise ValueError('Invalid inset placement for ' + label)
-        if rule.get('float_placement') not in (None, '!htb', 'p'):
+        if rule.get('float_placement') not in (None, '!htb'):
             raise ValueError('Invalid scoped float placement for ' + label)
         if rule.get('float_placement'):
             if rule.get('inset_placement'):
@@ -56,7 +56,12 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
         widths[label] = width
 
     def figure(match):
-        content = match[0]
+        # Figures belong with explanatory prose, not on a default float-only
+        # page. Native artwork substitution preserves this placement unchanged.
+        # ! relaxes fraction/count limits while keeping the artwork at its
+        # reviewed size; geometry and captions still have to fit the page.
+        content = re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?',
+                         lambda _: r'\begin{figure}[!htb]', match[0], count=1)
         label = re.search(r'\\label\{([^}]+)\}', content)
         if label is None or label[1] not in widths:
             return content

@@ -2711,44 +2711,36 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "804d18118d4605694220d128bcc305e790c169834e5cd110f23f6ccdc7dcda75",
-      "candidate_sha256": "d868d3c067b40154c02601a8164630e9092caa84f1df1b934dd6be46dae8da0e",
+      "source_sha256": "9c455a22d3faa1766f1f1ddd6a8410d5f31a675cf2a9340df1a02bf952565cc9",
+      "candidate_sha256": "b041cab0fe8b2b0fd8bb1aafcfb42ebb1524b95f027af163f5ff95165e1b2f22",
       "fill": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
       "bold": "Panel titles and Worker labels are bold. Other labels and bullet explanations are regular.",
       "routing": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
       "shape": "Modestly rounded worker and document boxes; nested structure/media rectangles distinguish residency.",
       "visual_review": "Fit correction after the aggregate SVG-plus-caption float exceeded a page by1.44pt: remove12bp of unused space below the panel headers and lift diagram content and notes together. Retain all font sizes, labels, internal box sizes, topology, three-panel equality, and pending author-review status.",
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
-        "proof_sha256": "58b7b68f530ace5f2b97ee6ba1a1abfbad6fe52256c8194ccab7a7bc24afae9f",
-        "page": 1,
+        "date": "2026-11-19",
         "width_bp": 449.972,
-        "height_bp": 541.971,
+        "height_bp": 437.973,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "minimum_prose_font_pt": 10.162,
-        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "maximum_rgb_channel_delta": 0,
-        "semantic_typography_checks": 43,
-        "geometry_audit_sha256": "bd727e5d32f74350944bedecf88df84275f7bcd974b1ad00517f64c4b96318a4",
-        "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+        "status": "passed",
         "source_geometry_checks": [
-          "three equal142×534bp panels",
-          "three equal108×62bp page workers"
+          "three equal142×430bp panels",
+          "three equal108×45bp page workers"
         ],
-        "status": "passed"
+        "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
+        "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
       },
       "book_references": [],
       "routing_exceptions": "None: simple straight or orthogonal connectors; no crossed edges.",
       "color_source_revision": {
         "date": "2026-11-09",
         "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
-        "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
+        "source_sha256": "9c455a22d3faa1766f1f1ddd6a8410d5f31a675cf2a9340df1a02bf952565cc9",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
       },

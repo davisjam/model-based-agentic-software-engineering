@@ -22018,3 +22018,21 @@ Source: `book/latex/sources/part5/5.3-evaluating-docable.tex:97`, revision `3ceb
 ```latex
 The evidence has clear limits. This is one longitudinal production case led by one primary engineer directing an agent fleet, using one contemporary model ecosystem, without a controlled comparison against another engineering process.
 ```
+
+
+## Chapter 6 routing transition — 19 November 2026
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex:126`, revision `7a8315186`. Replaced at the author’s request to remove the repeated decision question while retaining the routing definition and all economic qualifications.
+
+```latex
+Those estimates could eventually inform a decision problem: which engineering arrangement should be selected for a task, and which investments in the environment are worth making for later work? The task-level choice is \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms.
+```
+
+
+## Chapter 7 individual-competence segue — 19 November 2026
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex:85`, revision `7a8315186`. Replaced at the author’s request to connect societal resilience back to individual practice. The remainder of the paragraph is unchanged. Bibliography renderer explanations were moved to non-rendering comments in their source entries.
+
+```latex
+Engineering has always required moving between levels of abstraction:
+```

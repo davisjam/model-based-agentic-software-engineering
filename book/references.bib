@@ -2761,23 +2761,29 @@
   note        = {Market incentives favor lowest-cost, just-in-time purchasing, which raises shortage risk; more resilient just-in-case capacity carries cost and may require deliberate incentives.},
 }
 
+% Renderer implementation note (not bibliographic content):
+% Entry type online (not misc) so the dateless legal citation renders without the appended n.d.; the C.F.R. cite occupies the publisher slot (lightweight legal-hybrid style, no year).
 @online{cfr-211-25,
   author    = {{U.S. Food and Drug Administration}},
   title     = {Personnel Qualifications},
   publisher = {21 C.F.R. § 211.25},
-  note      = {Current Good Manufacturing Practice for Finished Pharmaceuticals. Requires an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product. Entry type online (not misc) so the dateless legal citation renders without the appended n.d.; the C.F.R. cite occupies the publisher slot (lightweight legal-hybrid style, no year).},
+  note      = {Current Good Manufacturing Practice for Finished Pharmaceuticals. Requires an adequate number of qualified personnel to perform and supervise the manufacture, processing, packing, or holding of each drug product.},
 }
 
+% Renderer implementation note (not bibliographic content):
+% Both halves of the statutory citation (popular-name section and U.S. Code parallel cite) live in one author token: the renderer's engine (Typst/Hayagriva chicago-notes) joins author and publisher with a period in bibliography position but a comma in note position, so a two-field encoding punctuates inconsistently — a single token preserves the legal comma in both. Entry type online so the dateless statutory citation renders without the appended n.d.
 @online{fdc-506c-redundancy,
   author    = {{Federal Food, Drug, and Cosmetic Act § 506C(j), 21 U.S.C. § 356c(j)}},
-  note      = {Redundancy risk management plans: manufacturers of certain drugs and related products must develop, maintain, and implement a plan identifying and evaluating risks to the supply of the drug. Both halves of the statutory citation (popular-name section and U.S. Code parallel cite) live in one author token: the renderer's engine (Typst/Hayagriva chicago-notes) joins author and publisher with a period in bibliography position but a comma in note position, so a two-field encoding punctuates inconsistently — a single token preserves the legal comma in both. Entry type online so the dateless statutory citation renders without the appended n.d.},
+  note      = {Redundancy risk management plans: manufacturers of certain drugs and related products must develop, maintain, and implement a plan identifying and evaluating risks to the supply of the drug.},
 }
 
+% Renderer implementation note (not bibliographic content):
+% The access date occupies the publisher slot because the renderer emits an accessed date only alongside a URL, and this citation deliberately carries none; the style engine renders it lowercase in note position and capitalized in bibliography position, matching Chicago.
 @online{fda-device-supply-chain-guidance,
   author    = {{U.S. Food and Drug Administration}},
   title     = {Emergency Preparedness and Medical Devices: Supply Chain Recommendations for Health Care Providers and Medical Device Manufacturers},
   publisher = {accessed September 11, 2026},
-  note      = {FDA web guidance recommending that device manufacturers plan for continuity, including ensuring additional production capacity and identifying alternative suppliers and sources. The access date occupies the publisher slot because the renderer emits an accessed date only alongside a URL, and this citation deliberately carries none; the style engine renders it lowercase in note position and capitalized in bibliography position, matching Chicago.},
+  note      = {FDA web guidance recommending that device manufacturers plan for continuity, including ensuring additional production capacity and identifying alternative suppliers and sources.},
 }
 
 @misc{fli-pause-open-letter,

@@ -10,11 +10,11 @@ import argparse, subprocess
 ROOT=Path(__file__).resolve().parents[3]
 OUT=Path(__file__).resolve().parent
 KEY='interlude-execution-unit'
-W,H=444,536
+W,H=444,432
 
 def compact_y(y):
     """Remove12bp of unused space below the panel headers; preserve type sizes."""
-    return y-12 if y>=65 else y
+    return y-12 if y>=47 else y
 
 def tex(s):
     return ''.join({'&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}','\\':r'\textbackslash{}'}.get(c,c) for c in s)
@@ -59,53 +59,54 @@ def build():
     f=Figure()
     # Equal panels; no internal overall heading, which belongs in the caption.
     for x,top,bottom in [(1,'(a) Whole-document','execution'),(151,'(b) Page-chunked','execution'),(301,'(c) Skeletonized','execution')]:
-        f.rect(x,1,142,534,0,4)
+        f.rect(x,1,142,430,0,4)
         f.rect(x+1,2,140,42,4,2,False)
-        f.rect(x+1,420,140,126,3,2,False)
+        f.rect(x+1,316,140,126,3,2,False)
         f.text(x+71,18,top,11.2,True,'middle');f.text(x+71,32,bottom,11.2,True,'middle')
     # (a) Whole document; input and output reflowed vertically for type size.
-    f.box(38,81,68,26,['Document'])
-    f.line([(72,107),(72,151)])
-    f.rect(18,152,108,127)
-    f.text(72,171,'Worker',11.2,True,'middle')
-    f.box(26,183,92,29,['Structure'])
-    f.box(26,223,92,42,['Media','(all resident)'],18)
-    f.line([(72,279),(72,349)])
-    f.box(38,350,68,26,['Output'])
+    f.box(38,59,68,26,['Document'])
+    f.line([(72,85),(72,109)])
+    f.rect(18,110,108,127)
+    f.text(72,129,'Worker',11.2,True,'middle')
+    f.box(26,141,92,29,['Structure'])
+    f.box(26,181,92,42,['Media','(all resident)'],18)
+    f.line([(72,237),(72,262)])
+    f.box(38,263,68,26,['Output'])
     # (b) Three workers retain chunk structure and media. Shared buses preserve
     # the reference's fan-out and merge without a false inter-worker sequence.
-    f.box(190,65,66,26,['Document'])
-    f.line([(223,91),(223,104),(163,104),(163,297)],False)
-    for y,pages in [(118,'Pages 1–10'),(192,'Pages 11–20'),(266,'Pages 21–30')]:
-        f.rect(174,y,108,62)
-        f.text(228,y+14,'Worker',11.2,True,'middle');f.text(228,y+27,pages,10.4,anchor='middle')
-        f.box(179,y+34,53,22,['Structure'])
-        f.box(237,y+34,40,22,['Media'],18)
+    f.rect(190,59,66,20)
+    f.text(223,73.4,'Document',10.4,anchor='middle')
+    f.line([(223,79),(223,82),(163,82),(163,219)],False)
+    for y,pages in [(86,'Pages 1–10'),(137,'Pages 11–20'),(188,'Pages 21–30')]:
+        f.rect(174,y,108,45)
+        f.text(194,y+14,'Worker',11.2,True,'middle');f.text(249,y+14,pages,10.4,anchor='middle')
+        f.box(179,y+20,53,22,['Structure'])
+        f.box(237,y+20,40,22,['Media'],18)
         f.line([(163,y+31),(174,y+31)])
         f.line([(282,y+31),(291,y+31)],False)
-    f.line([(291,149),(291,338),(223,338),(223,348)])
-    f.box(192,349,62,24,['Merge'])
-    f.line([(223,373),(223,390)])
-    f.box(192,391,62,24,['Output'])
+    f.line([(291,117),(291,234),(223,234),(223,246)])
+    f.box(192,247,62,24,['Merge'])
+    f.line([(223,271),(223,282)])
+    f.box(192,283,62,24,['Output'])
     # (c) Residency changes independently of execution partitioning.
-    f.box(338,81,68,26,['Document'])
-    f.line([(372,107),(372,151)])
-    f.rect(319,152,106,113)
-    f.text(372,170,'Worker',11.2,True,'middle')
-    f.text(372,184,'(skeletonized)',10.4,anchor='middle')
-    f.box(326,194,92,25,['Structure'])
-    f.box(326,231,92,25,['Media references'],18)
-    f.box(307,333,66,43,['GenAI','service'])
-    f.box(383,333,53,43,['External','media'],18)
-    f.line([(340,265),(340,333)],both=True)
+    f.box(338,59,68,26,['Document'])
+    f.line([(372,85),(372,109)])
+    f.rect(319,110,106,113)
+    f.text(372,128,'Worker',11.2,True,'middle')
+    f.text(372,142,'(skeletonized)',10.4,anchor='middle')
+    f.box(326,152,92,25,['Structure'])
+    f.box(326,189,92,25,['Media references'],18)
+    f.box(307,254,66,43,['GenAI','service'])
+    f.box(383,254,53,43,['External','media'],18)
+    f.line([(340,223),(340,254)],both=True)
     # Separate, continuous request and return paths replace the broken arrow
     # in the supplied reference. They are media access, not persistent residency.
-    f.line([(416,265),(416,333)],dashed=True)
-    f.line([(397,333),(397,265)],dashed=True)
+    f.line([(416,223),(416,254)],dashed=True)
+    f.line([(397,254),(397,223)],dashed=True)
     # Exact reference bullet wording; explicit line breaks maintain 10pt+ text.
-    f.bullets(8,436,[['One worker retains the','complete document.'],['Structure and all media','are resident.'],['Memory scales with the','document payload.']])
-    f.bullets(158,432,[['The document is','partitioned into page','chunks.'],['Each worker retains','the chunk’s structure','and media.'],['A smaller working set','per worker reduces','memory.']])
-    f.bullets(308,436,[['The worker retains','structure and media','references.'],['Media is not resident,','but streamed on demand.'],['Media is processed by a','GenAI service.']])
+    f.bullets(8,332,[['One worker retains the','complete document.'],['Structure and all media','are resident.'],['Memory scales with the','document payload.']])
+    f.bullets(158,328,[['The document is','partitioned into page','chunks.'],['Each worker retains','the chunk’s structure','and media.'],['A smaller working set','per worker reduces','memory.']])
+    f.bullets(308,332,[['The worker retains','structure and media','references.'],['Media is not resident,','but streamed on demand.'],['Media is processed by a','GenAI service.']])
     return f.save()
 
 if __name__=='__main__':

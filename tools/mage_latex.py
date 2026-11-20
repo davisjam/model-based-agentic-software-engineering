@@ -16,9 +16,10 @@ sys.path.insert(0, str(ROOT / 'book'))
 import book_ir
 import build_book as bb
 
-# MAGE's 450 × 648 bp text area leaves 88 bp for a caption and float spacing.
-# Dense illustrations may use a full figure page; native TikZ uses this same
-# envelope rather than inheriting the earlier two-thirds-page height cap.
+# Safety envelope for artwork compilation, shared with the native TikZ audit.
+# This is not a layout target: teaching figures must share pages with prose.
+# The print-layout pass controls placement; dense sources need compact geometry
+# rather than automatic font shrinking to meet that editorial requirement.
 FIGURE_WIDTH_BP = 450
 FIGURE_HEIGHT_BP = 560
 FIGURE_HEIGHT_OPTION = f'height={FIGURE_HEIGHT_BP}bp'

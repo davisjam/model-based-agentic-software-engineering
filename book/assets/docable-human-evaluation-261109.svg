@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="450pt" height="532.8pt" viewBox="0 0 450 532.8" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="docable-human-evaluation-261109-title docable-human-evaluation-261109-desc">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="450pt" height="439.2pt" viewBox="0 0 450 439.2" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="docable-human-evaluation-261109-title docable-human-evaluation-261109-desc">
 <title id="docable-human-evaluation-261109-title">Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions.</title>
 <desc id="docable-human-evaluation-261109-desc">Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.</desc>
  <title>Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.</title>
@@ -25,8 +25,8 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 532.8 
-L 450 532.8 
+   <path d="M 0 439.2 
+L 450 439.2 
 L 450 0 
 L 0 0 
 z
@@ -34,45 +34,45 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 63 204.776151 
-L 208.384615 204.776151 
-L 208.384615 47.952 
-L 63 47.952 
+    <path d="M 63 196.551074 
+L 208.384615 196.551074 
+L 208.384615 65.88 
+L 63 65.88 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
-      <path d="M 63 204.776151 
-L 63 47.952 
-" clip-path="url(#p4114e3af7b)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 63 196.551074 
+L 63 65.88 
+" clip-path="url(#p08b87844b6)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_2"/>
      <g id="text_1">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="63" y="215.608495" transform="rotate(-0 63 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="63" y="207.383418" transform="rotate(-0 63 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0%</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
-      <path d="M 114.923077 204.776151 
-L 114.923077 47.952 
-" clip-path="url(#p4114e3af7b)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 114.923077 196.551074 
+L 114.923077 65.88 
+" clip-path="url(#p08b87844b6)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_4"/>
      <g id="text_2">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="114.923077" y="215.608495" transform="rotate(-0 114.923077 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">50%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="114.923077" y="207.383418" transform="rotate(-0 114.923077 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">50%</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
-      <path d="M 166.846154 204.776151 
-L 166.846154 47.952 
-" clip-path="url(#p4114e3af7b)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 166.846154 196.551074 
+L 166.846154 65.88 
+" clip-path="url(#p08b87844b6)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_6"/>
      <g id="text_3">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="166.846154" y="215.608495" transform="rotate(-0 166.846154 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">100%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="166.846154" y="207.383418" transform="rotate(-0 166.846154 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">100%</text>
      </g>
     </g>
    </g>
@@ -80,162 +80,162 @@ L 166.846154 47.952
     <g id="ytick_1">
      <g id="line2d_7"/>
      <g id="text_4">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(41.575 68.662206)" font-size="11px" font-family="'Source Sans 3'">PDF</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 80.316019)" font-size="11px" font-family="'Source Sans 3'">(n=10)</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(41.575 82.9484)" font-size="11px" font-family="'Source Sans 3'">PDF</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 94.602212)" font-size="11px" font-family="'Source Sans 3'">(n=10)</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_8"/>
      <g id="text_5">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(34.007344 106.378452)" font-size="11px" font-family="'Source Sans 3'">DOCX</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 118.032265)" font-size="11px" font-family="'Source Sans 3'">(n=25)</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(34.007344 114.374825)" font-size="11px" font-family="'Source Sans 3'">DOCX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 126.028637)" font-size="11px" font-family="'Source Sans 3'">(n=25)</text>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_9"/>
      <g id="text_6">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(36.011406 144.094698)" font-size="11px" font-family="'Source Sans 3'">PPTX</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 155.748511)" font-size="11px" font-family="'Source Sans 3'">(n=21)</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(36.011406 145.80125)" font-size="11px" font-family="'Source Sans 3'">PPTX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(30.915313 157.455062)" font-size="11px" font-family="'Source Sans 3'">(n=21)</text>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_10"/>
      <g id="text_7">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(37.494688 181.810944)" font-size="11px" font-family="'Source Sans 3'">XLSX</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(36.382656 193.464757)" font-size="11px" font-family="'Source Sans 3'">(n=0)</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(37.494688 177.227674)" font-size="11px" font-family="'Source Sans 3'">XLSX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(36.382656 188.881487)" font-size="11px" font-family="'Source Sans 3'">(n=0)</text>
      </g>
     </g>
    </g>
    <g id="patch_3">
-    <path d="M 63 55.08037 
-L 126.079503 55.08037 
-L 126.079503 68.658219 
-L 63 68.658219 
+    <path d="M 63 71.819594 
+L 126.079503 71.819594 
+L 126.079503 83.133107 
+L 63 83.133107 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
-    <path d="M 63 92.796617 
-L 132.230769 92.796617 
-L 132.230769 106.374465 
-L 63 106.374465 
+    <path d="M 63 103.246019 
+L 132.230769 103.246019 
+L 132.230769 114.559532 
+L 63 114.559532 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
-    <path d="M 63 130.512863 
-L 151.043478 130.512863 
-L 151.043478 144.090711 
-L 63 144.090711 
+    <path d="M 63 134.672444 
+L 151.043478 134.672444 
+L 151.043478 145.985957 
+L 63 145.985957 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
-    <path d="M 63 168.229109 
-L 63 168.229109 
-L 63 181.806957 
-L 63 181.806957 
+    <path d="M 63 166.098869 
+L 63 166.098869 
+L 63 177.412382 
+L 63 177.412382 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
-    <path d="M 63 70.921194 
-L 160.718674 70.921194 
-L 160.718674 84.499042 
-L 63 84.499042 
+    <path d="M 63 85.018693 
+L 160.718674 85.018693 
+L 160.718674 96.332206 
+L 63 96.332206 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
-    <path d="M 63 108.63744 
-L 140.884615 108.63744 
-L 140.884615 122.215288 
-L 63 122.215288 
+    <path d="M 63 116.445118 
+L 140.884615 116.445118 
+L 140.884615 127.75863 
+L 63 127.75863 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
-    <path d="M 63 146.353686 
-L 98.604396 146.353686 
-L 98.604396 159.931534 
-L 63 159.931534 
+    <path d="M 63 147.871542 
+L 98.604396 147.871542 
+L 98.604396 159.185055 
+L 63 159.185055 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
-    <path d="M 63 184.069932 
-L 63 184.069932 
-L 63 197.64778 
-L 63 197.64778 
+    <path d="M 63 179.297967 
+L 63 179.297967 
+L 63 190.61148 
+L 63 190.61148 
 z
-" clip-path="url(#p4114e3af7b)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p08b87844b6)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_8">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="128.156426" y="64.404451" transform="rotate(-0 128.156426 64.404451)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 60.7</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="128.156426" y="80.011507" transform="rotate(-0 128.156426 80.011507)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 60.7</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="134.307692" y="102.120697" transform="rotate(-0 134.307692 102.120697)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 66.7</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="134.307692" y="111.437932" transform="rotate(-0 134.307692 111.437932)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 66.7</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="153.120401" y="139.836943" transform="rotate(-0 153.120401 139.836943)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 84.8</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="153.120401" y="142.864357" transform="rotate(-0 153.120401 142.864357)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 84.8</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="162.795597" y="80.245274" transform="rotate(-0 162.795597 80.245274)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 94.1</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="162.795597" y="93.210605" transform="rotate(-0 162.795597 93.210605)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 94.1</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="142.961538" y="117.96152" transform="rotate(-0 142.961538 117.96152)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 75.0</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="142.961538" y="124.63703" transform="rotate(-0 142.961538 124.63703)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 75.0</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="100.681319" y="155.677766" transform="rotate(-0 100.681319 155.677766)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 34.3</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="100.681319" y="156.063455" transform="rotate(-0 100.681319 156.063455)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 34.3</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="65.076923" y="185.473601" transform="rotate(-0 65.076923 185.473601)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Undefined</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="65.076923" y="180.890331" transform="rotate(-0 65.076923 180.890331)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Undefined</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="35.952" transform="rotate(-0 63 35.952)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(a) Checker reduction</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="53.88" transform="rotate(-0 63 53.88)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(a) Checker reduction</text>
    </g>
   </g>
   <g id="axes_2">
    <g id="patch_11">
-    <path d="M 295.615385 204.776151 
-L 441 204.776151 
-L 441 47.952 
-L 295.615385 47.952 
+    <path d="M 295.615385 196.551074 
+L 441 196.551074 
+L 441 65.88 
+L 295.615385 65.88 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_4">
      <g id="line2d_11">
-      <path d="M 295.615385 204.776151 
-L 295.615385 47.952 
-" clip-path="url(#pc9259f1449)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 295.615385 196.551074 
+L 295.615385 65.88 
+" clip-path="url(#p557c0b2f71)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_12"/>
      <g id="text_16">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="295.615385" y="215.608495" transform="rotate(-0 295.615385 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="295.615385" y="207.383418" transform="rotate(-0 295.615385 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0%</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_13">
-      <path d="M 344.076923 204.776151 
-L 344.076923 47.952 
-" clip-path="url(#pc9259f1449)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 344.076923 196.551074 
+L 344.076923 65.88 
+" clip-path="url(#p557c0b2f71)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_14"/>
      <g id="text_17">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="344.076923" y="215.608495" transform="rotate(-0 344.076923 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">3%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="344.076923" y="207.383418" transform="rotate(-0 344.076923 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">3%</text>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_15">
-      <path d="M 392.538462 204.776151 
-L 392.538462 47.952 
-" clip-path="url(#pc9259f1449)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 392.538462 196.551074 
+L 392.538462 65.88 
+" clip-path="url(#p557c0b2f71)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_16"/>
      <g id="text_18">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="392.538462" y="215.608495" transform="rotate(-0 392.538462 215.608495)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">6%</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="392.538462" y="207.383418" transform="rotate(-0 392.538462 207.383418)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">6%</text>
      </g>
     </g>
    </g>
@@ -243,161 +243,161 @@ L 392.538462 47.952
     <g id="ytick_5">
      <g id="line2d_17"/>
      <g id="text_19">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="73.705878" transform="rotate(-0 292.615385 73.705878)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">PDF</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="87.992072" transform="rotate(-0 292.615385 87.992072)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">PDF</text>
      </g>
     </g>
     <g id="ytick_6">
      <g id="line2d_18"/>
      <g id="text_20">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="111.422124" transform="rotate(-0 292.615385 111.422124)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">DOCX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="119.418497" transform="rotate(-0 292.615385 119.418497)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">DOCX</text>
      </g>
     </g>
     <g id="ytick_7">
      <g id="line2d_19"/>
      <g id="text_21">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="149.13837" transform="rotate(-0 292.615385 149.13837)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">PPTX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="150.844921" transform="rotate(-0 292.615385 150.844921)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">PPTX</text>
      </g>
     </g>
     <g id="ytick_8">
      <g id="line2d_20"/>
      <g id="text_22">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="186.854616" transform="rotate(-0 292.615385 186.854616)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">XLSX</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.615385" y="182.271346" transform="rotate(-0 292.615385 182.271346)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">XLSX</text>
      </g>
     </g>
    </g>
    <g id="patch_12">
-    <path d="M 295.615385 55.08037 
-L 295.615385 55.08037 
-L 295.615385 68.658219 
-L 295.615385 68.658219 
+    <path d="M 295.615385 71.819594 
+L 295.615385 71.819594 
+L 295.615385 83.133107 
+L 295.615385 83.133107 
 z
-" clip-path="url(#pc9259f1449)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
-    <path d="M 295.615385 92.796617 
-L 295.615385 92.796617 
-L 295.615385 106.374465 
-L 295.615385 106.374465 
+    <path d="M 295.615385 103.246019 
+L 295.615385 103.246019 
+L 295.615385 114.559532 
+L 295.615385 114.559532 
 z
-" clip-path="url(#pc9259f1449)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
-    <path d="M 295.615385 130.512863 
-L 369.041958 130.512863 
-L 369.041958 144.090711 
-L 295.615385 144.090711 
+    <path d="M 295.615385 134.672444 
+L 369.041958 134.672444 
+L 369.041958 145.985957 
+L 295.615385 145.985957 
 z
-" clip-path="url(#pc9259f1449)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_15">
-    <path d="M 295.615385 168.229109 
-L 295.615385 168.229109 
-L 295.615385 181.806957 
-L 295.615385 181.806957 
+    <path d="M 295.615385 166.098869 
+L 295.615385 166.098869 
+L 295.615385 177.412382 
+L 295.615385 177.412382 
 z
-" clip-path="url(#pc9259f1449)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
-    <path d="M 295.615385 70.921194 
-L 295.615385 70.921194 
-L 295.615385 84.499042 
-L 295.615385 84.499042 
+    <path d="M 295.615385 85.018693 
+L 295.615385 85.018693 
+L 295.615385 96.332206 
+L 295.615385 96.332206 
 z
-" clip-path="url(#pc9259f1449)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
-    <path d="M 295.615385 108.63744 
-L 295.615385 108.63744 
-L 295.615385 122.215288 
-L 295.615385 122.215288 
+    <path d="M 295.615385 116.445118 
+L 295.615385 116.445118 
+L 295.615385 127.75863 
+L 295.615385 127.75863 
 z
-" clip-path="url(#pc9259f1449)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
-    <path d="M 295.615385 146.353686 
-L 369.041958 146.353686 
-L 369.041958 159.931534 
-L 295.615385 159.931534 
+    <path d="M 295.615385 147.871542 
+L 369.041958 147.871542 
+L 369.041958 159.185055 
+L 295.615385 159.185055 
 z
-" clip-path="url(#pc9259f1449)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
-    <path d="M 295.615385 184.069932 
-L 295.615385 184.069932 
-L 295.615385 197.64778 
-L 295.615385 197.64778 
+    <path d="M 295.615385 179.297967 
+L 295.615385 179.297967 
+L 295.615385 190.61148 
+L 295.615385 190.61148 
 z
-" clip-path="url(#pc9259f1449)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p557c0b2f71)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_23">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="64.404451" transform="rotate(-0 297.230769 64.404451)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/10</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="80.011507" transform="rotate(-0 297.230769 80.011507)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/10</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="102.120697" transform="rotate(-0 297.230769 102.120697)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/29</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="111.437932" transform="rotate(-0 297.230769 111.437932)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/29</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="370.657343" y="139.836943" transform="rotate(-0 370.657343 139.836943)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 1/22</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="370.657343" y="142.864357" transform="rotate(-0 370.657343 142.864357)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 1/22</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="177.553189" transform="rotate(-0 297.230769 177.553189)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/1</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="174.290781" transform="rotate(-0 297.230769 174.290781)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0/1</text>
    </g>
    <g id="text_27">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="80.245274" transform="rotate(-0 297.230769 80.245274)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/10</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="93.210605" transform="rotate(-0 297.230769 93.210605)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/10</text>
    </g>
    <g id="text_28">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="117.96152" transform="rotate(-0 297.230769 117.96152)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/29</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="124.63703" transform="rotate(-0 297.230769 124.63703)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/29</text>
    </g>
    <g id="text_29">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="370.657343" y="155.677766" transform="rotate(-0 370.657343 155.677766)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 1/22</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="370.657343" y="156.063455" transform="rotate(-0 370.657343 156.063455)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 1/22</text>
    </g>
    <g id="text_30">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="193.394012" transform="rotate(-0 297.230769 193.394012)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/1</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.230769" y="187.48988" transform="rotate(-0 297.230769 187.48988)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D 0/1</text>
    </g>
    <g id="text_31">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="295.615385" y="35.952" transform="rotate(-0 295.615385 35.952)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(b) Increased findings</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="295.615385" y="53.88" transform="rotate(-0 295.615385 53.88)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(b) Increased findings</text>
    </g>
   </g>
   <g id="axes_3">
    <g id="patch_20">
-    <path d="M 63 463.536 
-L 208.384615 463.536 
-L 208.384615 306.711849 
-L 63 306.711849 
+    <path d="M 63 382.104 
+L 208.384615 382.104 
+L 208.384615 251.432926 
+L 63 251.432926 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="matplotlib.axis_5">
     <g id="xtick_7">
      <g id="line2d_21">
-      <path d="M 63 463.536 
-L 63 306.711849 
-" clip-path="url(#pdd092be0b3)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 63 382.104 
+L 63 251.432926 
+" clip-path="url(#p2486547868)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_22"/>
      <g id="text_32">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="63" y="474.868344" transform="rotate(-0 63 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="63" y="393.436344" transform="rotate(-0 63 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0</text>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_23">
-      <path d="M 135.692308 463.536 
-L 135.692308 306.711849 
-" clip-path="url(#pdd092be0b3)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 135.692308 382.104 
+L 135.692308 251.432926 
+" clip-path="url(#p2486547868)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_24"/>
      <g id="text_33">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="135.692308" y="474.868344" transform="rotate(-0 135.692308 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">31</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="135.692308" y="393.436344" transform="rotate(-0 135.692308 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">31</text>
      </g>
     </g>
     <g id="xtick_9">
      <g id="line2d_25">
-      <path d="M 208.384615 463.536 
-L 208.384615 306.711849 
-" clip-path="url(#pdd092be0b3)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 208.384615 382.104 
+L 208.384615 251.432926 
+" clip-path="url(#p2486547868)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_26"/>
      <g id="text_34">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="208.384615" y="474.868344" transform="rotate(-0 208.384615 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">62</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="208.384615" y="393.436344" transform="rotate(-0 208.384615 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">62</text>
      </g>
     </g>
    </g>
@@ -405,114 +405,114 @@ L 208.384615 306.711849
     <g id="ytick_9">
      <g id="line2d_27"/>
      <g id="text_35">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="338.123164" transform="rotate(-0 59.5 338.123164)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Better</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="278.258961" transform="rotate(-0 59.5 278.258961)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Better</text>
      </g>
     </g>
     <g id="ytick_10">
      <g id="line2d_28"/>
      <g id="text_36">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="389.040096" transform="rotate(-0 59.5 389.040096)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Within band</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="320.684635" transform="rotate(-0 59.5 320.684635)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Within band</text>
      </g>
     </g>
     <g id="ytick_11">
      <g id="line2d_29"/>
      <g id="text_37">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="439.957029" transform="rotate(-0 59.5 439.957029)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Worse</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="59.5" y="363.110308" transform="rotate(-0 59.5 363.110308)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Worse</text>
      </g>
     </g>
    </g>
    <g id="patch_21">
-    <path d="M 63 313.84022 
-L 109.898263 313.84022 
-L 109.898263 354.573765 
-L 63 354.573765 
+    <path d="M 63 257.37252 
+L 109.898263 257.37252 
+L 109.898263 291.313059 
+L 63 291.313059 
 z
-" clip-path="url(#pdd092be0b3)" style="fill: #4c4c4c; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p2486547868)" style="fill: #4c4c4c; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_22">
-    <path d="M 63 364.757152 
-L 159.141439 364.757152 
-L 159.141439 405.490697 
-L 63 405.490697 
+    <path d="M 63 299.798193 
+L 159.141439 299.798193 
+L 159.141439 333.738732 
+L 63 333.738732 
 z
-" clip-path="url(#pdd092be0b3)" style="fill: #b2b2b2; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p2486547868)" style="fill: #b2b2b2; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_23">
-    <path d="M 63 415.674084 
-L 65.344913 415.674084 
-L 65.344913 456.40763 
-L 63 456.40763 
+    <path d="M 63 342.223867 
+L 65.344913 342.223867 
+L 65.344913 376.164406 
+L 63 376.164406 
 z
-" clip-path="url(#pdd092be0b3)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p2486547868)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_38">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="112.243176" y="336.995664" transform="rotate(-0 112.243176 336.995664)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">20</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="112.243176" y="277.131461" transform="rotate(-0 112.243176 277.131461)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">20</text>
    </g>
    <g id="text_39">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="161.486352" y="387.912596" transform="rotate(-0 161.486352 387.912596)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">41</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="161.486352" y="319.557135" transform="rotate(-0 161.486352 319.557135)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">41</text>
    </g>
    <g id="text_40">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="67.689826" y="438.829529" transform="rotate(-0 67.689826 438.829529)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">1</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="67.689826" y="361.982808" transform="rotate(-0 67.689826 361.982808)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">1</text>
    </g>
    <g id="text_41">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="502.742038" transform="rotate(-0 63 502.742038)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">62 outputs; ±1 point parity</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="414.771769" transform="rotate(-0 63 414.771769)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">62 outputs; ±1 point parity</text>
    </g>
    <g id="text_42">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="294.711849" transform="rotate(-0 63 294.711849)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(c) Semantic comparison</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="63" y="239.432926" transform="rotate(-0 63 239.432926)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(c) Semantic comparison</text>
    </g>
   </g>
   <g id="axes_4">
    <g id="patch_24">
-    <path d="M 295.615385 463.536 
-L 441 463.536 
-L 441 306.711849 
-L 295.615385 306.711849 
+    <path d="M 295.615385 382.104 
+L 441 382.104 
+L 441 251.432926 
+L 295.615385 251.432926 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="matplotlib.axis_7">
     <g id="xtick_10">
      <g id="line2d_30">
-      <path d="M 299.653846 463.536 
-L 299.653846 306.711849 
-" clip-path="url(#p9a8b613094)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 299.653846 382.104 
+L 299.653846 251.432926 
+" clip-path="url(#p5ceb9b1857)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_31"/>
      <g id="text_43">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="299.653846" y="474.868344" transform="rotate(-0 299.653846 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">−10</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="299.653846" y="393.436344" transform="rotate(-0 299.653846 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">−10</text>
      </g>
     </g>
     <g id="xtick_11">
      <g id="line2d_32">
-      <path d="M 319.846154 463.536 
-L 319.846154 306.711849 
-" clip-path="url(#p9a8b613094)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 319.846154 382.104 
+L 319.846154 251.432926 
+" clip-path="url(#p5ceb9b1857)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_33"/>
      <g id="text_44">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="319.846154" y="474.868344" transform="rotate(-0 319.846154 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="319.846154" y="393.436344" transform="rotate(-0 319.846154 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">0</text>
      </g>
     </g>
     <g id="xtick_12">
      <g id="line2d_34">
-      <path d="M 360.230769 463.536 
-L 360.230769 306.711849 
-" clip-path="url(#p9a8b613094)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 360.230769 382.104 
+L 360.230769 251.432926 
+" clip-path="url(#p5ceb9b1857)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_35"/>
      <g id="text_45">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="360.230769" y="474.868344" transform="rotate(-0 360.230769 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">20</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="360.230769" y="393.436344" transform="rotate(-0 360.230769 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">20</text>
      </g>
     </g>
     <g id="xtick_13">
      <g id="line2d_36">
-      <path d="M 400.615385 463.536 
-L 400.615385 306.711849 
-" clip-path="url(#p9a8b613094)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
+      <path d="M 400.615385 382.104 
+L 400.615385 251.432926 
+" clip-path="url(#p5ceb9b1857)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #cccccc; stroke-width: 0.8"/>
      </g>
      <g id="line2d_37"/>
      <g id="text_46">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="400.615385" y="474.868344" transform="rotate(-0 400.615385 474.868344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">40</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: middle" x="400.615385" y="393.436344" transform="rotate(-0 400.615385 393.436344)" font-size="11px" font-family="'Source Sans 3'" text-anchor="middle">40</text>
      </g>
     </g>
    </g>
@@ -520,288 +520,288 @@ L 400.615385 306.711849
     <g id="ytick_12">
      <g id="line2d_38"/>
      <g id="text_47">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="329.38846" transform="rotate(-0 292.115385 329.38846)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Alt text</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="270.980917" transform="rotate(-0 292.115385 270.980917)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Alt text</text>
      </g>
     </g>
     <g id="ytick_13">
      <g id="line2d_39"/>
      <g id="text_48">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(251.482416 354.269435)" font-size="11px" font-family="'Source Sans 3'">Complex</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(259.13601 365.923247)" font-size="11px" font-family="'Source Sans 3'">images</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(251.482416 290.887932)" font-size="11px" font-family="'Source Sans 3'">Complex</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(259.13601 302.541744)" font-size="11px" font-family="'Source Sans 3'">images</text>
      </g>
     </g>
     <g id="ytick_14">
      <g id="line2d_40"/>
      <g id="text_49">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(254.483353 383.891581)" font-size="11px" font-family="'Source Sans 3'">Reading</text>
-      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(266.958041 395.755081)" font-size="11px" font-family="'Source Sans 3'">order</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(254.483353 315.536119)" font-size="11px" font-family="'Source Sans 3'">Reading</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'" transform="translate(266.958041 327.399619)" font-size="11px" font-family="'Source Sans 3'">order</text>
      </g>
     </g>
     <g id="ytick_15">
      <g id="line2d_41"/>
      <g id="text_50">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="418.865914" transform="rotate(-0 292.115385 418.865914)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Headings</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="345.536494" transform="rotate(-0 292.115385 345.536494)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Headings</text>
      </g>
     </g>
     <g id="ytick_16">
      <g id="line2d_42"/>
      <g id="text_51">
-      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="448.691732" transform="rotate(-0 292.115385 448.691732)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Other</text>
+      <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: end" x="292.115385" y="370.388353" transform="rotate(-0 292.115385 370.388353)" font-size="11px" font-family="'Source Sans 3'" text-anchor="end">Other</text>
      </g>
     </g>
    </g>
    <g id="patch_25">
-    <path d="M 319.846154 313.84022 
-L 378.403846 313.84022 
-L 378.403846 324.577514 
-L 319.846154 324.577514 
+    <path d="M 319.846154 257.37252 
+L 378.403846 257.37252 
+L 378.403846 266.319189 
+L 319.846154 266.319189 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_26">
-    <path d="M 319.846154 343.666038 
-L 354.173077 343.666038 
-L 354.173077 354.403332 
-L 319.846154 354.403332 
+    <path d="M 319.846154 282.224379 
+L 354.173077 282.224379 
+L 354.173077 291.171048 
+L 319.846154 291.171048 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_27">
-    <path d="M 319.846154 373.491856 
-L 323.884615 373.491856 
-L 323.884615 384.22915 
-L 319.846154 384.22915 
+    <path d="M 319.846154 307.076238 
+L 323.884615 307.076238 
+L 323.884615 316.022907 
+L 319.846154 316.022907 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_28">
-    <path d="M 319.846154 403.317673 
-L 319.846154 403.317673 
-L 319.846154 414.054968 
-L 319.846154 414.054968 
+    <path d="M 319.846154 331.928097 
+L 319.846154 331.928097 
+L 319.846154 340.874766 
+L 319.846154 340.874766 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_29">
-    <path d="M 319.846154 433.143491 
-L 360.230769 433.143491 
-L 360.230769 443.880786 
-L 319.846154 443.880786 
+    <path d="M 319.846154 356.779956 
+L 360.230769 356.779956 
+L 360.230769 365.726625 
+L 319.846154 365.726625 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_30">
-    <path d="M 319.846154 313.84022 
-L 319.846154 313.84022 
-L 319.846154 324.577514 
-L 319.846154 324.577514 
+    <path d="M 319.846154 257.37252 
+L 319.846154 257.37252 
+L 319.846154 266.319189 
+L 319.846154 266.319189 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_31">
-    <path d="M 319.846154 343.666038 
-L 319.846154 343.666038 
-L 319.846154 354.403332 
-L 319.846154 354.403332 
+    <path d="M 319.846154 282.224379 
+L 319.846154 282.224379 
+L 319.846154 291.171048 
+L 319.846154 291.171048 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_32">
-    <path d="M 319.846154 373.491856 
-L 313.788462 373.491856 
-L 313.788462 384.22915 
-L 319.846154 384.22915 
+    <path d="M 319.846154 307.076238 
+L 313.788462 307.076238 
+L 313.788462 316.022907 
+L 319.846154 316.022907 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_33">
-    <path d="M 319.846154 403.317673 
-L 319.846154 403.317673 
-L 319.846154 414.054968 
-L 319.846154 414.054968 
+    <path d="M 319.846154 331.928097 
+L 319.846154 331.928097 
+L 319.846154 340.874766 
+L 319.846154 340.874766 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_34">
-    <path d="M 319.846154 433.143491 
-L 315.807692 433.143491 
-L 315.807692 443.880786 
-L 319.846154 443.880786 
+    <path d="M 319.846154 356.779956 
+L 315.807692 356.779956 
+L 315.807692 365.726625 
+L 319.846154 365.726625 
 z
-" clip-path="url(#p9a8b613094)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_35">
-    <path d="M 319.846154 326.367063 
-L 384.461538 326.367063 
-L 384.461538 337.104358 
-L 319.846154 337.104358 
+    <path d="M 319.846154 267.810301 
+L 384.461538 267.810301 
+L 384.461538 276.75697 
+L 319.846154 276.75697 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_36">
-    <path d="M 319.846154 356.192881 
-L 396.576923 356.192881 
-L 396.576923 366.930176 
-L 319.846154 366.930176 
+    <path d="M 319.846154 292.66216 
+L 396.576923 292.66216 
+L 396.576923 301.608829 
+L 319.846154 301.608829 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_37">
-    <path d="M 319.846154 386.018699 
-L 323.884615 386.018699 
-L 323.884615 396.755994 
-L 319.846154 396.755994 
+    <path d="M 319.846154 317.514019 
+L 323.884615 317.514019 
+L 323.884615 326.460688 
+L 319.846154 326.460688 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_38">
-    <path d="M 319.846154 415.844517 
-L 321.865385 415.844517 
-L 321.865385 426.581812 
-L 319.846154 426.581812 
+    <path d="M 319.846154 342.365878 
+L 321.865385 342.365878 
+L 321.865385 351.312547 
+L 319.846154 351.312547 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_39">
-    <path d="M 319.846154 445.670335 
-L 406.673077 445.670335 
-L 406.673077 456.40763 
-L 319.846154 456.40763 
+    <path d="M 319.846154 367.217736 
+L 406.673077 367.217736 
+L 406.673077 376.164406 
+L 319.846154 376.164406 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_40">
-    <path d="M 319.846154 326.367063 
-L 319.846154 326.367063 
-L 319.846154 337.104358 
-L 319.846154 337.104358 
+    <path d="M 319.846154 267.810301 
+L 319.846154 267.810301 
+L 319.846154 276.75697 
+L 319.846154 276.75697 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_41">
-    <path d="M 319.846154 356.192881 
-L 319.846154 356.192881 
-L 319.846154 366.930176 
-L 319.846154 366.930176 
+    <path d="M 319.846154 292.66216 
+L 319.846154 292.66216 
+L 319.846154 301.608829 
+L 319.846154 301.608829 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_42">
-    <path d="M 319.846154 386.018699 
-L 317.826923 386.018699 
-L 317.826923 396.755994 
-L 319.846154 396.755994 
+    <path d="M 319.846154 317.514019 
+L 317.826923 317.514019 
+L 317.826923 326.460688 
+L 319.846154 326.460688 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_43">
-    <path d="M 319.846154 415.844517 
-L 315.807692 415.844517 
-L 315.807692 426.581812 
-L 319.846154 426.581812 
+    <path d="M 319.846154 342.365878 
+L 315.807692 342.365878 
+L 315.807692 351.312547 
+L 319.846154 351.312547 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_44">
-    <path d="M 319.846154 445.670335 
-L 319.846154 445.670335 
-L 319.846154 456.40763 
-L 319.846154 456.40763 
+    <path d="M 319.846154 367.217736 
+L 319.846154 367.217736 
+L 319.846154 376.164406 
+L 319.846154 376.164406 
 z
-" clip-path="url(#p9a8b613094)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p5ceb9b1857)" style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_43">
-    <path d="M 319.846154 463.536 
-L 319.846154 306.711849 
-" clip-path="url(#p9a8b613094)" style="fill: none; stroke: #000000; stroke-width: 1.1; stroke-linecap: square"/>
+    <path d="M 319.846154 382.104 
+L 319.846154 251.432926 
+" clip-path="url(#p5ceb9b1857)" style="fill: none; stroke: #000000; stroke-width: 1.1; stroke-linecap: square"/>
    </g>
    <g id="text_52">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="380.423077" y="321.744023" transform="rotate(-0 380.423077 321.744023)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +29</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="380.423077" y="264.381011" transform="rotate(-0 380.423077 264.381011)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +29</text>
    </g>
    <g id="text_53">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="356.192308" y="351.569841" transform="rotate(-0 356.192308 351.569841)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +17</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="356.192308" y="289.23287" transform="rotate(-0 356.192308 289.23287)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +17</text>
    </g>
    <g id="text_54">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="325.903846" y="381.395659" transform="rotate(-0 325.903846 381.395659)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +2</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="325.903846" y="314.084729" transform="rotate(-0 325.903846 314.084729)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +2</text>
    </g>
    <g id="text_55">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="311.769231" y="381.395659" transform="rotate(-0 311.769231 381.395659)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-3</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="311.769231" y="314.084729" transform="rotate(-0 311.769231 314.084729)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-3</text>
    </g>
    <g id="text_56">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="321.865385" y="411.221477" transform="rotate(-0 321.865385 411.221477)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="321.865385" y="338.936588" transform="rotate(-0 321.865385 338.936588)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H 0</text>
    </g>
    <g id="text_57">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="362.25" y="441.047295" transform="rotate(-0 362.25 441.047295)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +20</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="362.25" y="363.788447" transform="rotate(-0 362.25 363.788447)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">H +20</text>
    </g>
    <g id="text_58">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="313.788462" y="441.047295" transform="rotate(-0 313.788462 441.047295)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-2</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="313.788462" y="363.788447" transform="rotate(-0 313.788462 363.788447)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-2</text>
    </g>
    <g id="text_59">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="386.480769" y="334.270867" transform="rotate(-0 386.480769 334.270867)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +32</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="386.480769" y="274.818792" transform="rotate(-0 386.480769 274.818792)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +32</text>
    </g>
    <g id="text_60">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="398.596154" y="364.096685" transform="rotate(-0 398.596154 364.096685)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +38</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="398.596154" y="299.67065" transform="rotate(-0 398.596154 299.67065)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +38</text>
    </g>
    <g id="text_61">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="325.903846" y="393.922503" transform="rotate(-0 325.903846 393.922503)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +2</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="325.903846" y="324.522509" transform="rotate(-0 325.903846 324.522509)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +2</text>
    </g>
    <g id="text_62">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="315.807692" y="393.922503" transform="rotate(-0 315.807692 393.922503)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-1</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="315.807692" y="324.522509" transform="rotate(-0 315.807692 324.522509)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-1</text>
    </g>
    <g id="text_63">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="323.884615" y="423.748321" transform="rotate(-0 323.884615 423.748321)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +1</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="323.884615" y="349.374368" transform="rotate(-0 323.884615 349.374368)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +1</text>
    </g>
    <g id="text_64">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="313.788462" y="423.748321" transform="rotate(-0 313.788462 423.748321)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-2</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: end" x="313.788462" y="349.374368" transform="rotate(-0 313.788462 349.374368)" font-size="10px" font-family="'Source Sans 3'" text-anchor="end">-2</text>
    </g>
    <g id="text_65">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="408.692308" y="453.574139" transform="rotate(-0 408.692308 453.574139)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +43</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="408.692308" y="374.226227" transform="rotate(-0 408.692308 374.226227)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">D +43</text>
    </g>
    <g id="text_66">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(295.615385 492.147663)" font-size="10px" font-family="'Source Sans 3'">Losses ← 0 → Gains</text>
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(295.615385 502.742038)" font-size="10px" font-family="'Source Sans 3'">Document–criterion changes</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(295.615385 404.177394)" font-size="10px" font-family="'Source Sans 3'">Losses ← 0 → Gains</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(295.615385 414.771769)" font-size="10px" font-family="'Source Sans 3'">Document–criterion changes</text>
    </g>
    <g id="text_67">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="295.615385" y="294.711849" transform="rotate(-0 295.615385 294.711849)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(d) Semantic changes</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="295.615385" y="239.432926" transform="rotate(-0 295.615385 239.432926)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(d) Semantic changes</text>
    </g>
   </g>
   <g id="legend_1">
    <g id="patch_45">
-    <path d="M 138.211484 25.269 
-L 162.411484 25.269 
-L 162.411484 12.564 
-L 138.211484 12.564 
+    <path d="M 138.211484 24.801 
+L 162.411484 24.801 
+L 162.411484 12.096 
+L 138.211484 12.096 
 z
 " style="fill: url(#hb799a737c0); stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_68">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="171.211484" y="22.574" transform="rotate(-0 171.211484 22.574)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Human (H)</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="171.211484" y="22.106" transform="rotate(-0 171.211484 22.106)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">Human (H)</text>
    </g>
    <g id="patch_46">
-    <path d="M 243.087891 25.269 
-L 267.287891 25.269 
-L 267.287891 12.564 
-L 243.087891 12.564 
+    <path d="M 243.087891 24.801 
+L 267.287891 24.801 
+L 267.287891 12.096 
+L 243.087891 12.096 
 z
 " style="fill: #333333; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_69">
-    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="276.087891" y="22.574" transform="rotate(-0 276.087891 22.574)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">DocAble (D)</text>
+    <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="276.087891" y="22.106" transform="rotate(-0 276.087891 22.106)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">DocAble (D)</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p4114e3af7b">
-   <rect x="63" y="47.952" width="145.384615" height="156.824151"/>
+  <clipPath id="p08b87844b6">
+   <rect x="63" y="65.88" width="145.384615" height="130.671074"/>
   </clipPath>
-  <clipPath id="pc9259f1449">
-   <rect x="295.615385" y="47.952" width="145.384615" height="156.824151"/>
+  <clipPath id="p557c0b2f71">
+   <rect x="295.615385" y="65.88" width="145.384615" height="130.671074"/>
   </clipPath>
-  <clipPath id="pdd092be0b3">
-   <rect x="63" y="306.711849" width="145.384615" height="156.824151"/>
+  <clipPath id="p2486547868">
+   <rect x="63" y="251.432926" width="145.384615" height="130.671074"/>
   </clipPath>
-  <clipPath id="p9a8b613094">
-   <rect x="295.615385" y="306.711849" width="145.384615" height="156.824151"/>
+  <clipPath id="p5ceb9b1857">
+   <rect x="295.615385" y="251.432926" width="145.384615" height="130.671074"/>
   </clipPath>
  </defs>
  <defs>

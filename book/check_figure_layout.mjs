@@ -2,14 +2,20 @@
 // Run after the MkDocs build: node book/check_figure_layout.mjs http://127.0.0.1:8766/
 import assert from 'node:assert/strict';
 import puppeteer from 'puppeteer';
-import {readdirSync} from 'node:fs';
+import {readdirSync, readFileSync} from 'node:fs';
 
-// --all follows current generated source pages, avoiding stale redirect pages.
+// Check actual published pages, excluding legacy redirect stubs. The artifact
+// mode lets CI consume the producer's HTML without rebuilding a different tree.
+const built = process.argv.includes('--built-artifact');
+const directory = new URL(built ? './web/site/' : './web/docs/', import.meta.url);
+const extension = built ? '.html' : '.md';
 const slugs = process.argv.includes('--all')
-  ? readdirSync(new URL('./web/docs/', import.meta.url))
-      .filter(name => /^(\d\.|part-|appendix-|colophon|about-the-author).*\.md$/.test(name))
-      .map(name => name.replace(/\.md$/, ''))
+  ? readdirSync(directory)
+      .filter(name => name.endsWith(extension) && (built ? name !== '404.html' : /^(\d\.|part-|appendix-|colophon|about-the-author)/.test(name)))
+      .filter(name => !built || !/http-equiv=["']refresh["']/i.test(readFileSync(new URL(name, directory), 'utf8')))
+      .map(name => name.slice(0, -extension.length))
   : ['2.2-constructing-and-using-engineering-models', '2.3-structural'];
+assert(slugs.length > 0, 'No book pages selected: refusing an empty layout check.');
 
 const base = process.argv[2];
 assert(base, 'Supply the URL of the built book site.');
@@ -23,7 +29,9 @@ try {
   for (const width of [1600, 1100, 390]) {
     await page.setViewport({width, height: 1000});
     for (const slug of slugs) {
-      await page.goto(new URL(`${slug}.html`, base).href, {waitUntil: 'networkidle0'});
+      const response = await page.goto(new URL(`${slug}.html`, base).href, {waitUntil: 'networkidle0'});
+      assert(response && response.ok(), `Missing book page: ${slug}`);
+      assert(await page.$('article'), `Missing article on ${slug}`);
       await page.evaluate(() => document.fonts.ready);
       const result = await page.evaluate(() => {
         const problems = [];
@@ -68,6 +76,7 @@ try {
       console.log(`PASS ${slug} at ${width}px`);
     }
   }
+  console.log(`Book layout passed: ${slugs.length} pages × 3 viewport widths = ${slugs.length * 3} checks.`);
 } finally {
   await browser.close();
 }

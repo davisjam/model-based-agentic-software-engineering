@@ -27,7 +27,7 @@ class ClaimsSpreadTests(unittest.TestCase):
         self.assertIn(r'\ifodd\value{page}', text)
         self.assertIn(r'\end{bookclaims}' + '\n\\clearpage\n', text)
         self.assertEqual(text.count(r'\begin{bookinlinefigure}'), 1)
-        self.assertIn(r'\includegraphics[page=2,alt={Description}]{pool.pdf}', text)
+        self.assertIn(r'\includegraphics[scale=.94,page=2,alt={Description}]{pool.pdf}', text)
         self.assertIn('Recto transition.', text)
         self.assertNotIn(r'\small', text)
 
@@ -129,11 +129,16 @@ class FigurePrintLayoutTests(unittest.TestCase):
 
     def test_compact_width_preserves_caption_label_alt_and_float(self):
         self.assertEqual(self.render(self.figure),
-                         self.figure.replace(r'width=\linewidth', 'width=300bp'))
+                         self.figure.replace('[htbp]', '[!htb]').replace(r'width=\linewidth', 'width=300bp'))
 
     def test_unlisted_complex_figure_remains_full_width(self):
         figure = self.figure.replace('{compact}', '{complex}')
-        self.assertEqual(self.render(figure), figure)
+        self.assertEqual(self.render(figure), figure.replace('[htbp]', '[!htb]'))
+
+    def test_figure_only_page_policy_is_rejected(self):
+        self.rule['figures']['compact']['float_placement'] = 'p'
+        with self.assertRaisesRegex(ValueError, 'float placement'):
+            self.render(self.figure)
 
     def test_does_not_touch_inline_navigation_or_native_pool_graphics(self):
         native = r'\includegraphics[page=3,alt={Native}]{pool.pdf}'

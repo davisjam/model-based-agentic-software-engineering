@@ -33,6 +33,38 @@ every entity the tool happened to enumerate and drops the one thing a reader nee
 exists to answer. Pasting the dump doesn't just look worse; it violates, on the page, the argument the page
 is supposed to be teaching.
 
+## HTML figure and inset layout
+
+HTML and PDF are peer outputs. Use the PDF’s relative figure sizing as a reference,
+then verify the actual HTML at desktop, tablet, and phone widths. Fix common
+renderer/CSS rules instead of adding per-page size patches. Preserve each SVG’s
+viewBox and aspect ratio; print-point dimensions must not become tiny web widths.
+Keep SVG styles scoped to their own graphic so generic `text`, `.edge`, or `.node`
+rules cannot alter neighboring diagrams. Center inset containers within the reading
+column, and keep figure captions at least as wide as their artwork. Table-caption
+citations must not create sidebar floats that separate the table from its caption.
+
+After a change to figure rendering, CSS, captions, or inset layout, build the HTML
+and run `python3 tools/check_book_web_layout.py`. It checks every published book
+page at three viewport widths; the `book-web-layout` CI job runs against the
+producer’s exact HTML artifact. Do not treat a clean PDF as evidence of clean HTML.
+
+## Printed footprint: figures share pages with prose
+
+Keep figures close to the explanation and let them share the printed page with
+body text. Do not reserve a full page for an ordinary figure or use a float-only
+placement merely because the artwork is wide. Inspect the rendered PDF before
+changing geometry: a moderate drawing stranded on its own page needs a placement
+fix, not smaller labels. The common print renderer uses text-page placement for
+ordinary figures; native monochrome replacement must preserve it.
+
+When artwork plus caption leaves no useful room for prose, compact the source:
+reduce excess node padding, connector runs, panel spacing, or chart height while
+preserving readable type, labels, values, edge meanings, and all substantive
+content. Do not impose one diagram height by scaling every figure down. Check the
+complete figure and caption at final print size, including numeric annotations
+and small negative values. Apply this review to appendices as well as chapters.
+
 ## Redraw everything — no pasted tool output
 
 Never paste, or lightly clean up, and ship as a figure:

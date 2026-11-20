@@ -64,7 +64,7 @@ for ax,g,title in zip(axs,['production','apparatus'],['(a) Production implementa
  ax.set_ylim(0,1050000 if g=='production' else 4400000);ax.set_yticks([0,300000,600000] if g=='production' else [0,1000000,2000000])
 fig.text(.12,.025,'Apparatus / production:  Week 11 2.6×  ·  Week 21 3.6×  ·  Week 31 3.8×',fontsize=11)
 save(fig,'docable-seip-composition-261109','Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.')
-fig,axs=plt.subplots(2,2,figsize=(6.25,7.4));fig.subplots_adjust(left=.14,right=.98,bottom=.13,top=.91,wspace=.60,hspace=.65)
+fig,axs=plt.subplots(2,2,figsize=(6.25,6.1));fig.subplots_adjust(left=.14,right=.98,bottom=.13,top=.85,wspace=.60,hspace=.42)
 labels=[r['format'].upper() for r in ed['checker_rows']];positions=list(range(4))
 for i,(ax,title) in enumerate(zip(axs[0],['(a) Checker reduction','(b) Increased findings'])):
  for arm,offset,color,hatch in [('human',-.21,'white','///'),('docable',.21,'.2','')]:
