@@ -23905,3 +23905,56 @@ A primitive-heavy external protocol adapter may faithfully express its interface
 ```latex
 Recovering a model requires more than recognizing repeated structure. \autoref{discovering-latent-models} shows the process. Weak signals identify places worth investigating; engineers then distinguish legitimate implementation structures, mechanical cleanup, and concepts worth modeling. The first two may need only an exemption or a local fix. The third calls for a change in how the system represents the concept.
 ```
+
+
+## 2026-11-20 — Figure-reading captions and dynamic-model example
+
+Source revision: `785521daa949e10788c3ddb1b94bc6072fcfd9b9`. Replaced at the author’s request; retained here for editorial recovery.
+
+### book/latex/sources/part2/2.6-system-knowledge.tex (source line 140)
+
+A self-contained question-driven investigation joins service identity to deployment and relevant measurements; the revision qualification bounds the evidence.
+
+```latex
+\caption{\emph{Connecting models---service identity, deployment, and measurements.} An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.}
+```
+
+### book/latex/sources/part3/3.5-when-guardrails-collide.tex (source line 28)
+
+The conflict example connects three analytical views and their different engineering decisions, including gaps and unjustified controls.
+
+```latex
+\caption{\emph{Three views of the control machinery.} A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex (source line 111)
+
+A hypothetical change is traced through multiple models to affected obligations, required evidence and an admission limit; guide avoids claiming complete automatic selection.
+
+```latex
+\caption{\emph{Model-aware change impact.} A proposed concurrency change leads through related execution, memory, and latency models to potentially affected obligations and the evidence needed to evaluate them. These relationships guide validation effort; incomplete or stale relationships can require broader checks before admission.}
+```
+
+### book/latex/sources/part2/2.6-system-knowledge.tex (source line 133)
+
+Move question/traversal/revision explanation into caption; retain a brief linking sentence without duplicating the walkthrough.
+
+```latex
+Shared identities let an engineer move among these records as a question requires. Suppose a service is responding slowly. Which service is it, where is it deployed, and what resources does that deployment have? \autoref{modeling-substrate} traces the investigation from the service registry to deployment topology and then to performance measurements. The joins must identify the relevant deployment and revision: measurements from another revision of the same service may describe a different system.
+```
+
+### book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex (source line 191)
+
+Integrate the observed duplicate-dispatch/false-refusal repair into existing theoretical feedback paragraph; retain conditional recurrence benefit and authority/retirement distinctions. Caption unchanged.
+
+```latex
+The corrective feedback path begins when attempted work exposes recurring failures, escaped defects, repeated human intervention, or friction from existing controls. Engineers diagnose whether the problem is local to an implementation or reflects a deficiency in the GEE. A structural problem may warrant a new representation, stronger enforcement, reconciliation of conflicting mechanisms, or retirement of an obsolete control. Improving the GEE’s fit may require removing machinery rather than adding it. When such changes address the underlying cause, subsequent work can avoid repeating the same failure. Without diagnosis and authority to revise the shared environment, the organization may instead repeat local repairs indefinitely.
+```
+
+### book/latex/sources/part6/6.2-what-the-theory-predicts.tex (source line 147)
+
+Replace repeated episode with an economic callback. Existing E57 comment stays; full return-on-capital comparisons later in P3 remain untouched.
+
+```latex
+The duplicate-dispatch episode illustrates both sides of this process (\autoref{chapter:appendix-a-governed-delegation}). A recurring coordination failure motivated a completed-phase gate, allowing later assignments to reuse a decision that previously required intervention. When the gate began rejecting legitimate work, its phase-identity extractor had to be corrected. The engineering asset was valuable only insofar as it continued to express the intended obligation.
+```

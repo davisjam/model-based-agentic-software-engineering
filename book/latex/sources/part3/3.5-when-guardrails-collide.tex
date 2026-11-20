@@ -25,7 +25,7 @@ As governance mechanisms accumulate, they become control machinery: the constrai
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/census-trio-ab9995bb33.pdf}
-\caption{\emph{Three views of the control machinery.} A catalogue identifies controls; an interaction graph relates controls through shared resources and exposes potential conflicts; and a coverage view relates controls to independently identified engineering obligations. The same control identities appear across all three views. Coverage analysis can reveal obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
+\caption{\emph{Three views of the control machinery.} A catalogue identifies controls, an interaction graph exposes potential conflicts through shared resources, and a coverage view relates controls to independently identified engineering obligations. For example, if the squash rule and diff-size guard cannot both be satisfied, the engineer can inspect their shared commit-set requirements and decide which obligation or mechanism needs revision. The coverage view separately identifies obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
 \label{census-trio}
 \end{figure}
 

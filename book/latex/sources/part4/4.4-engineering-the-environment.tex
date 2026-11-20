@@ -107,8 +107,7 @@ Consider a proposed increase in DocAble's worker concurrency. The changed code m
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
-% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
-\caption{\emph{Model-aware change impact.} A proposed concurrency change leads through related execution, memory, and latency models to potentially affected obligations and the evidence needed to evaluate them. These relationships guide validation effort; incomplete or stale relationships can require broader checks before admission.}
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
 \label{model-aware-change-impact}
 \end{figure}
 
