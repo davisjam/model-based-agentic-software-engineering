@@ -23496,3 +23496,40 @@ Keep the maintenance path connected to the original obligation. Identify the fai
 The endpoint is enough dependable machinery for the selected work. A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. The adoption and measurement procedures in Appendix B's \href{appendix-b-getting-started.html}{Getting Started} and \href{appendix-b-measuring-mage.html}{Measuring MAGE} sections support that decision as the engineering environment changes.
 
 ```
+
+
+## Methodology framing — author-directed replacements, 2026-11-20
+
+Preserved before applying the author’s exact replacement copy. The conclusion receives an addition; none of its existing prose is removed.
+
+### book/latex/sources/frontmatter/0.3-authors-note.tex:17–17
+
+Source revision: `eb7b5bc157367af60754a791524c97728236d719`. Replacement date: 2026-11-20. Reason: Author-supplied replacement establishes the instructional purpose while retaining the intellectual lineage.
+
+```latex
+I share what I learned in the tradition of books on software engineering methodologies. My own understanding of how to engineer was shaped by Dijkstra, Ousterhout, McConnell, Meyer, Uncle Bob, Martin Fowler, Kent Beck, the Gang of Four, and others. Their books taught me how to reason about software, organize its construction, and recognize good engineering. But none of them trained me to delegate implementation to an eager and capable subordinate who could produce extraordinary amounts of code without necessarily understanding what I wanted. This book is my account of learning how to do that.
+```
+
+### book/latex/sources/frontmatter/0.5-preface.tex:125–133
+
+Source revision: `eb7b5bc157367af60754a791524c97728236d719`. Replacement date: 2026-11-20. Reason: Author-supplied replacement identifies the methodology as the subject and DocAble as its principal worked example.
+
+```latex
+DocAble provides the book's deepest worked example: a system developed
+over several months and used in production at Purdue. I also reconstruct
+published industrial accounts to examine related mechanisms in other
+organizations. DocAble provides depth about engineering decisions and
+their consequences; the industrial accounts provide breadth across
+production environments. \magevalue{chapter:software-factories} presents both sources of evidence and
+their limitations. \magevalue{chapter:theory} develops the theoretical account, and
+\magevalue{chapter:profession} asks what may transfer beyond software.
+{[}appendix: appendix-handbook{]} provides five engineering blueprints drawn from DocAble, while {[}appendix: appendix-practicing-mage{]} offers guidance for adopting, operating, and evaluating MAGE in other environments.
+```
+
+### book/latex/sources/part1/1.3-mage-by-example.tex:13–13
+
+Source revision: `eb7b5bc157367af60754a791524c97728236d719`. Replacement date: 2026-11-20. Reason: Author-supplied introduction explains the teaching approach and makes both appendices discoverable.
+
+```latex
+\magevalue{chapter:software-factories} examines the system and its development in detail. For now, a few facts about DocAble are in order.
+```
