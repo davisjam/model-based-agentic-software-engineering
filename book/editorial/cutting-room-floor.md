@@ -21835,3 +21835,186 @@ Source: `book/latex/sources/part6/6.4-research-agenda.tex`, line 126, revision `
 ```latex
 These comparisons could eventually inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms.
 ```
+
+
+## Chapter 7 essay openings and education heading — 19 November 2026
+
+Applied the three opening copyedits and the broader §7.4.1 heading from the author’s review. The author’s later instruction supersedes the attachment’s recommendation to keep both education questions as headings: remove the second heading while preserving every paragraph of the skeptical argument and its reply. No new subsections or insets were added.
+
+### §7.1 opening
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, line 15, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced to improve entry into the argument or remove the heading interrupting its rhetorical turn.
+
+```latex
+\textbf{In software, MAGE is software engineering under changed economics.} The analysis in \magevalue{chapter:theory} leaves a practical question: how should the profession reorganize its work when implementation and routine analysis become cheaper?
+```
+
+### §7.4.1 heading
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 32, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced to improve entry into the argument or remove the heading interrupting its rhetorical turn.
+
+```latex
+\section{Authority Follows Competence and Responsibility}
+```
+
+### §7.4.1 opening
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 36, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced to improve entry into the argument or remove the heading interrupting its rhetorical turn.
+
+```latex
+MAGE increases both the leverage of engineering knowledge and the consequences of getting it wrong. An agent can increasingly carry much of the method itself: recognize a modeling opportunity, choose among known model families, construct a state machine, query a dependency graph, propose an invariant, or suggest that recurring inspection become machinery. As the repertoire becomes machine-readable, the engineer is distinguished less by recalling the available moves than by judging where they apply.
+```
+
+### §7.4.4 opening
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 268, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced to improve entry into the argument or remove the heading interrupting its rhetorical turn.
+
+```latex
+If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly. This book is not an education study, so the argument is a professional hypothesis rather than a curricular finding.
+```
+
+### §7.4.4 rhetorical pivot
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 288, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced to improve entry into the argument or remove the heading interrupting its rhetorical turn.
+
+```latex
+\subsection{What shouldn\textquotesingle t software engineers have to figure out for themselves?}\label{heading:what-shouldnt-software-engineers-have-to-figure-out-for-themselves}
+```
+
+
+## Chapter 3 selective readability pass — 19 November 2026
+
+Source revision: `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced at the author’s request following the structural and linear-readability audit. The DocAble changeset application is moved intact, not cut.
+
+### book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex:148
+
+Remove repeated boundary-selection conclusion; retain the following transition to obligations and evidence.
+
+```latex
+% <!-- takeaway -->
+
+Place the enforcing mechanism at a boundary where the obligation is legible and the environment can evaluate or constrain the relevant work. The appropriate boundary depends on the obligation.
+
+
+```
+
+### book/latex/sources/part3/3.5-when-guardrails-collide.tex:40
+
+Clarify that shared-resource analysis is useful but not exhaustive.
+
+```latex
+Controls need not call one another to interact; they only need to make potentially incompatible demands on the same modeled resource.
+```
+
+
+
+
+## Chapter 3 selective readability pass — 20 November 2026
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`. Source revision: `3ceb827fde82aa51555309b8f38a56b89301f261`. Removal date: 2026-11-20 UTC. Removal revision: pending integration. Status: superseded wording preserved for author review; no relocation to another chapter authorized. Pure moves are not archived.
+
+### §3.2 replacement 1
+
+Source lines 84–84.
+
+Reason: Moved the three judgments before traceability and named correspondence explicitly. Preserved drift checking, conformance to independent obligations, and acceptance based on broader controls and evidence.
+
+```latex
+Drift checking therefore has a precise job: preserve a declared correspondence between model and implementation. If they diverge, surface the disagreement. Conformance asks whether the implementation satisfies an independent engineering obligation, which may be represented in that same model. Acceptance is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model.
+```
+
+### §3.2 replacement 2
+
+Source lines 54–54.
+
+Reason: Consolidated the traceability/enforcement recap after the earlier definitions; retained both examples and the distinction between relationships and admission decisions.
+
+```latex
+Traceability can connect an obligation, its realization, and its evidence without any mechanism enforcing the obligation. A requirement may trace cleanly to a test whose failure is merely reported. Conversely, a permission boundary may enforce firmly without a rich traceability model. Alignment therefore separates the relation among intent, realization, and evidence from the decision to enforce the resulting judgment.
+```
+
+### §3.2 replacement 3
+
+Source lines 74–74.
+
+Reason: The authenticated-endpoint example now carries the agreement/correctness distinction without repeating the newly preceding definition of correspondence. The full example remains unchanged.
+
+```latex
+A drift check can establish a declared correspondence between an engineering model and its implementation. It cannot establish that the correspondence expresses the right intent. Suppose an endpoint is required to be authenticated. If an independently authored policy says so, a check can compare the implementation against that obligation and flag an open endpoint. If instead the representation is derived only from the implementation, it may faithfully record the endpoint as open. Model and code agree; the security obligation is still violated.
+```
+
+### §3.2 replacement 4
+
+Source lines 80–80.
+
+Reason: Shortened the repeated description/obligation explanation while retaining the is/ought distinction and the caution that hand authorship does not establish independence.
+
+```latex
+The distinction is between description and independent obligation. A model extracted from code can supply the current \emph{is}; an independently authored invariant can supply the governing \emph{ought}. Authorship alone establishes neither role: a hand-authored model may merely repeat the implementation\textquotesingle s assumptions, while a derived model can faithfully describe its present behavior. Enforcement requires an obligation against which the work can actually be wrong.
+```
+
+### §3.2 replacement 5
+
+Source lines 60–62.
+
+Reason: Removed the repeated agreement/correctness and premature placement recap. The endpoint example supplies the former; the semantic-gap subsection immediately following develops placement. Retained its stable point ID with an updated summary at the evidence-limit conclusion.
+
+```latex
+% <!-- point: those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics | Two lessons: agreement is not correctness, and placement must follow the meaning of the obligation. | terms: agreement-vs-correctness, semantic-gap -->
+
+A description and the implementation it describes can therefore agree while both violate the intended property. Placement matters as well: if an obligation is enforced at a boundary too small to make it legible, the checker may inspect the wrong thing.
+```
+
+### §3.2 replacement 6
+
+Source lines 119–123.
+
+Reason: Integrated the end-to-end connection into main prose after the semantic-gap definition, removing the footnote framing and quote/sidenote wrapper. Retained the citation and distinction between functionality placement and enforcement placement.
+
+```latex
+% <!-- sidenote -->
+
+\begin{quote}
+\emph{A footnote on where the placement rule comes from.} It echoes the end-to-end argument in system design: a function that needs end-to-end knowledge cannot in general be implemented completely at a lower layer that lacks that knowledge~\citep{saltzerreedclark1984e2e}. Their setting was where to place \emph{functionality} in a distributed system; the setting here is where to place \emph{enforcement} over engineering work. The design instinct is the same --- put the deciding mechanism where the semantics needed to decide the property are available.
+\end{quote}
+```
+
+
+## Chapter 4 selective readability pass — 19 November 2026
+
+Source revision: `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced at the author’s request following the November 20 assessment. The SDD/TDD inset moves intact from the chapter opening into §4.1.4 before the cycle figure; it is not cut.
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex:151
+
+Make the heading a peer of the subsequent analytical topics; retain its stable label.
+
+```latex
+\subsection{Analyze Before You Build}
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex:210
+
+Remove repeated prediction-error recap; retain the question that leads into model preservation.
+
+```latex
+The models now supported predictions about execution, but those predictions remained hypotheses to test. Measurements could confirm their usefulness or expose assumptions that needed revision. The next question was what should remain durable when the models themselves changed.
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex:13
+
+Remove redundant heading under Equip the Reasoner; all paragraphs remain.
+
+```latex
+\subsection{Improving the Conditions for Reasoning}\label{heading:improving-the-conditions-for-reasoning}
+
+
+```
+
+
+## Chapter 5 maintenance and evidence transition — 19 November 2026
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex:97`, revision `3ceb827fde82aa51555309b8f38a56b89301f261`. Replaced at the author’s request to distinguish economic carrying costs from inferential limits; all subsequent qualifications remain.
+
+```latex
+The evidence has clear limits. This is one longitudinal production case led by one primary engineer directing an agent fleet, using one contemporary model ecosystem, without a controlled comparison against another engineering process.
+```

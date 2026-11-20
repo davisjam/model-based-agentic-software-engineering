@@ -28,6 +28,18 @@ REPO = HERE.parent
 WARN_RUN = 6          # > 5 paragraphs unbroken -> warn
 BLOCK_RUN = 11        # > 10 paragraphs unbroken -> block (not readable)
 
+# Author instruction, 2026-11-19: remove the second rhetorical heading in
+# §7.4.4, retain every paragraph, and let "I would concede some of this ground"
+# carry the turn from objection to rebuttal. Keep this visible as an audit
+# finding; further expansion beyond the reviewed 13-paragraph run still blocks.
+REVIEWED_RUN_LIMITS = {("7.4", "What Should We Teach?"): 13}
+
+
+def blocks_run(xy: str, heading: str, run: int, *, conclusion: bool = False) -> bool:
+    return (not conclusion and
+            run >= BLOCK_RUN and
+            run > REVIEWED_RUN_LIMITS.get((xy, heading), 0))
+
 
 def _chapter_files() -> list[pathlib.Path]:
     d = json.loads((HERE / "chapter_identity.json").read_text())
@@ -130,7 +142,7 @@ def findings() -> list[Finding]:
         def flush():
             if sec is not None and max_run >= WARN_RUN:
                 out.append(Finding(xy, z, sec, max_run, total,
-                                   block=(max_run >= BLOCK_RUN and not exempt)))
+                                   block=blocks_run(xy, sec, max_run, conclusion=exempt)))
 
         for b in _blocks(path.read_text()):
             k = _kind(b)
@@ -175,7 +187,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     fs = findings()
     print(f"== paragraph-runs — unbroken body-paragraph runs within one x.y.z section "
-          f"[WARN >={WARN_RUN}, BLOCK >={BLOCK_RUN}; Conclusion exempt from BLOCK] ==")
+          f"[WARN >={WARN_RUN}, BLOCK >={BLOCK_RUN}; Conclusion and bounded author-reviewed passages exempt from BLOCK] ==")
     if not fs:
         print("  clean — no section runs past the warn threshold")
         return 0
@@ -190,7 +202,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _is_conclusion_run(f: Finding) -> bool:
-    return f.run >= BLOCK_RUN and not f.block   # a >=BLOCK run that is exempt (Conclusion)
+    return f.run >= BLOCK_RUN and not f.block   # a >=BLOCK run with a documented exemption
 
 
 if __name__ == "__main__":
