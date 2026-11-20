@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-20",
+  "source": "book/assets/recovering-and-extending-governance.svg",
+  "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+  "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+  "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+  "proof": "/tmp/mage-appendix-b-recovery-strip/proof.pdf",
+  "proof_sha256": "560a2e7c1d9c00a4a8db2410605cebff4da0ebfe0a48515b5ad090d05414a1ea",
+  "width_bp": 449.97198486328125,
+  "height_bp": 229.97500610351562,
+  "minimum_font_pt": 9.962639808654785,
+  "fonts": [
+    "SourceSans3-Bold",
+    "SourceSans3-Regular"
+  ],
+  "colored_pixels": 0,
+  "geometry_findings": 0,
+  "typography_checks": 27,
+  "typography_findings": 0,
+  "unapproved_diagnostics": 0,
+  "source_overflow": 0,
+  "source_strain": 0,
+  "adapted_from": [
+    "discovering-models-migration",
+    "active-passive-alignment",
+    "alignment-kernel"
+  ],
+  "visual_review": "Compared source-native diagrams with their rendered proofs. Final compact triptych retains all three classification outcomes, active repetition then passive preservation, and nested kernel expansion. Parent reviewed and approved geometry. SVG/native share authored coordinates.",
+  "svg_font_limitation": "Local rsvg conversion resolves the declared Source Sans 3,Arial,sans-serif list to Times New Roman despite the book font context; native proof uses Source Sans 3. Parent informed; HTML font configuration should be inspected.",
+  "shared_registries_modified": false,
+  "html_verification": {
+    "date": "2026-11-20",
+    "viewports_px": [
+      1100,
+      390
+    ],
+    "book_font_loaded": true,
+    "svg_text_bounds": "all labels within viewBox",
+    "caption_adaptation_references": 3,
+    "horizontal_page_overflow": false,
+    "preview": "/tmp/mage-b-recap-html.png"
+  }
+}

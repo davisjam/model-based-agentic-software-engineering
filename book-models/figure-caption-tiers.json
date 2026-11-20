@@ -1314,6 +1314,18 @@
       "kind": "workflow",
       "location": "appendixB",
       "rationale": "Supporting workflow connects bounded assignments to independent acceptance evidence, repair, and recoverable partial work."
+    },
+    "assets/recovering-and-extending-governance.svg": {
+      "tier": "B",
+      "kind": "process-triptych",
+      "location": "appendixB",
+      "rationale": "Supporting three-panel reminder of established recovery, alignment and kernel-growth concepts; four-sentence caption identifies each adaptation."
+    },
+    "appendix-practicing-mage/measuring-mage.md::Relationship to established engineering metrics": {
+      "tier": "B",
+      "kind": "comparison-table",
+      "location": "appendixB",
+      "rationale": "Supporting comparison connects established delivery, structural, testing, productivity, and reliability metrics to MAGE questions."
     }
   },
   "historical_tiers": {

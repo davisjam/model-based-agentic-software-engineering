@@ -2,7 +2,7 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 136,
+  "candidate_count": 137,
   "refined_count": 122,
   "check_count": 1022,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
@@ -31315,6 +31315,452 @@
           "italic": false
         }
       ]
+    },
+    {
+      "source": "book/assets/recovering-and-extending-governance.svg",
+      "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+      "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+      "checks": [
+        {
+          "text": "(a) Recover models",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(b) Establish alignment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(c) Expand governance",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Implementation patterns",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "+ engineering knowledge",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Classify findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Legitimate patterns",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "retain / exempt",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Latent concepts",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "represent explicitly",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Mechanical cleanup",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "local fix / codemod",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "repeat",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "once aligned",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "retain checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Models + obligations",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Active alignment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Modify and evaluate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "until obligations hold",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Passive alignment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Check later changes",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "admit or reject",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "New models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Prior models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Kernel",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Expand under",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "existing constraints.",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "(a) Recover models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "(a) Recover models",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "(b) Establish alignment",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "(b) Establish alignment",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "(c) Expand governance",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "(c) Expand governance",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Implementation patterns",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Implementation patterns",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "+ engineering knowledge",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "+ engineering knowledge",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Classify findings",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Classify findings",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Legitimate patterns",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Legitimate patterns",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "retain / exempt",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "retain / exempt",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Latent concepts",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Latent concepts",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "represent explicitly",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "represent explicitly",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Mechanical cleanup",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Mechanical cleanup",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "local fix / codemod",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "local fix / codemod",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "repeat",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "repeat",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "once aligned",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "once aligned",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "retain checks",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "retain checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Models + obligations",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Models + obligations",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Active alignment",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Active alignment",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Modify and evaluate",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Modify and evaluate",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "until obligations hold",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "until obligations hold",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Passive alignment",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Passive alignment",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Check later changes",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Check later changes",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "admit or reject",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "admit or reject",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "New models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "New models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Prior models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Prior models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Kernel",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Kernel",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Expand under",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "Expand under",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "existing constraints.",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship explanation",
+          "candidate_text": "existing constraints.",
+          "candidate_style": "regular"
+        }
+      ]
     }
   ],
   "historical_figures": [
@@ -33142,5 +33588,5 @@
     "validation_scope": "Integrated whole-pool compile, native envelope, geometry and semantic typography checks rerun after the three Chapter 1 revisions. The revised drawings were separately inspected in native and web proofs.",
     "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
   },
-  "last_revised_date": "2026-11-19"
+  "last_revised_date": "2026-11-20"
 }

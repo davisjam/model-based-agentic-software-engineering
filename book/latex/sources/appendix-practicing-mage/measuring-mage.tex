@@ -26,6 +26,28 @@ MAGE aims to increase the reliable engineering work accomplished with a given in
 
 Agree on the unit, boundary, and observation window before interpreting a trend. A landed change, completed work order, and released capability are different units. Keep their denominators visible and distinguish changes in the workload from changes in the machinery. Retain the revisions and evidence behind consequential observations. A dashboard can help locate a change in behavior; it cannot supply a comparison that the underlying records do not support.
 
+\subsection{Relationship to Established Engineering Metrics}\label{heading:relationship-to-established-engineering-metrics}
+
+Use established engineering metrics alongside the five metrics in \autoref{practicing-primary-readings}. DORA measures delivery performance through deployment frequency, change lead time, change fail rate, failed deployment recovery time, and deployment rework rate~\citep{dora-metrics}. Structural metrics such as coupling describe relationships in an implementation~\citep{chidamber1994metrics}; test coverage generally records which code a test suite exercises, without establishing that the tests adequately check the required behavior. Defect escape rate is already a conventional quality measure. The five metrics above organize such evidence around MAGE's engineering and economic questions: the first three concern outcomes and human effort; model quality and coverage assess the machinery supporting those outcomes; return on engineering capital evaluates whether the investment is justified.
+
+Retain existing measurements where they answer the question, and use \autoref{practicing-established-metrics} to identify complementary investigations. A team can examine whether faster delivery accompanies more rework or human supervision. A coupling measure might report that one component depends on six others; an architectural model specifies which dependencies are permitted, and static analysis can compare the implementation with that model. The dependency count alone does not establish whether those relationships are appropriate. Likewise, a test result supplies evidence about the obligation it checks, while a gate determines whether that evidence affects admission, as distinguished in \autoref{chapter:3.3-constraints-sensors-validators-gates}. These connections help explain changes in engineering performance and identify investments whose subsequent benefits can be evaluated.
+
+{\footnotesize
+\begin{longtable}[]{@{}p{.25\linewidth}p{.32\linewidth}p{.33\linewidth}@{}}
+\caption[Relationship to established engineering metrics]{\emph{MAGE measurements complement established engineering metrics.} Existing measures describe delivery, quality, productivity, and operational performance. MAGE adds questions about engineering models, enforcement, human effort, and the continuing value of engineering infrastructure.}\label{practicing-established-metrics}\\
+\toprule
+\textbf{Established metrics} & \textbf{What they measure} & \textbf{Additional questions for MAGE} \\
+\midrule
+\endhead
+\textbf{DORA delivery metrics} & Deployment frequency, change lead time, change fail rate, failed deployment recovery time, and deployment rework rate. & Is delivery producing durable, acceptable work? What human effort and governance costs does it require? \\
+\textbf{Code quality and structural metrics} & Coupling, complexity, dependency violations, and change propagation. & Does the implementation conform to intended architecture? Are consequential relationships represented and checked? \\
+\textbf{Testing and defect metrics} & Test coverage, mutation scores, escaped defects, and regression frequency. & Which engineering obligations are checked? Do findings prevent unacceptable changes from being admitted? \\
+\textbf{Developer productivity metrics} & Cycle time, review time, throughput, and developer experience~\citep{forsgren2021space}. & How much human engineering effort is required per durable result? Which investments reduce repeated work? \\
+\textbf{Operational reliability metrics} & Availability, incidents, recovery time, and error-budget consumption. & Did missing models or ineffective controls contribute to failures? Did the relevant operational mechanisms execute? \\
+\bottomrule
+\end{longtable}
+}
+
 \subsection{Evaluating Outcomes and Costs}\label{heading:evaluating-outcomes-and-costs}
 
 \textbf{Durable throughput.} Track reopenings, rollbacks, and repeated repairs within the observation window. Report recently accepted work whose durability is not yet observable separately from work that has survived the window. A later requirements change does not necessarily invalidate the original result; repeated repair of the original obligation does. Commit counts and immediate ticket closure omit this distinction. This measures the cumulative progress distinguished from implementation activity in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model}.

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="672" viewBox="0 0 444 224" role="img" aria-labelledby="title desc"><title id="title">Recovering and extending governance in an existing system</title><desc id="desc">Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="444" height="224" fill="white"/>
+<text x="73" y="13" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">(a) Recover models</text>
+<text x="222" y="13" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">(b) Establish alignment</text>
+<text x="373" y="13" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">(c) Expand governance</text>
+<path d="M148,25 L148,224" fill="none" stroke="black" stroke-width="0.8"/>
+<path d="M297,25 L297,224" fill="none" stroke="black" stroke-width="0.8"/>
+<path d="M74,58 L74,70" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M24,82 L10,82 L10,205" fill="none" stroke="black" stroke-width="0.8"/>
+<path d="M10,121 L24,121" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M10,163 L24,163" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M10,205 L24,205" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<rect x="5" y="28" width="138" height="30" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="74.0" y="40.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Implementation patterns</text>
+<text x="74.0" y="52.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">+ engineering knowledge</text>
+<rect x="24" y="70" width="112" height="24" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="80.0" y="85.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Classify findings</text>
+<rect x="24" y="106" width="112" height="30" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="80.0" y="118.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Legitimate patterns</text>
+<text x="80.0" y="130.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">retain / exempt</text>
+<rect x="24" y="148" width="112" height="30" rx="0" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="80.0" y="160.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Latent concepts</text>
+<text x="80.0" y="172.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">represent explicitly</text>
+<rect x="24" y="190" width="112" height="30" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="80.0" y="202.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Mechanical cleanup</text>
+<text x="80.0" y="214.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">local fix / codemod</text>
+<path d="M222,58 L222,74" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M280,99 L289,99 L289,145 L270,145 L270,124" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="263" y="138" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">repeat</text>
+<path d="M222,124 L222,172" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="214" y="153" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">once aligned</text>
+<text x="214" y="165" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">retain checks</text>
+<rect x="164" y="28" width="116" height="30" rx="0" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="222.0" y="46.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Models + obligations</text>
+<rect x="164" y="74" width="116" height="50" rx="3" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="222" y="89" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Active alignment</text>
+<text x="222" y="105" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Modify and evaluate</text>
+<text x="222" y="117" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">until obligations hold</text>
+<rect x="164" y="172" width="116" height="48" rx="3" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="222" y="185" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Passive alignment</text>
+<text x="222" y="201" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Check later changes</text>
+<text x="222" y="213" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">admit or reject</text>
+<circle cx="372" cy="124" r="58" fill="white" stroke="black" stroke-width=".8"/>
+<circle cx="372" cy="124" r="38" fill="white" stroke="black" stroke-width=".8"/>
+<circle cx="372" cy="124" r="18" fill="#eaeaea" stroke="black" stroke-width=".8"/>
+<text x="372" y="82" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">New models</text>
+<text x="372" y="104" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Prior models</text>
+<text x="372" y="128" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Kernel</text>
+<text x="372" y="202" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Expand under</text>
+<text x="372" y="214" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">existing constraints.</text></svg>

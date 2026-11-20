@@ -3446,5 +3446,17 @@
     "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
     "reviewed": true,
     "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+  },
+  {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+    "reviewed": true,
+    "rationale": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular."
   }
 ]

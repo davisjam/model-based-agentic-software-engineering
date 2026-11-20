@@ -1,0 +1,568 @@
+{
+  "inventory": {
+    "chapter": "appendix-b-brownfield-migration",
+    "source": "assets/recovering-and-extending-governance.svg",
+    "caption": "Recovering and extending governance in an existing system. (a) Recover useful models from implementation patterns and existing engineering knowledge (adapted from Figure 4.10). (b) Establish correspondence through active alignment, then preserve it through passive alignment (adapted from Figure 4.2). (c) Extend the alignment kernel incrementally, protecting established obligations as new models enter governance (adapted from Figure 4.3).",
+    "native_context": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+    "generator": "book/editorial/appendix-b-recovery-strip-20261120/build.py",
+    "data": [],
+    "conversion": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "svg_title": "Recovering and extending governance in an existing system",
+    "svg_description": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+    "native_source": "book/tikz/figures/recovering-and-extending-governance.tex"
+  },
+  "layout-review": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "contracts": {},
+    "baseline_dimensions_bp": null
+  },
+  "typography-review": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "checks": [
+      {
+        "text": "(a) Recover models",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(b) Establish alignment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(c) Expand governance",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation patterns",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "+ engineering knowledge",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Classify findings",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Legitimate patterns",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "retain / exempt",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Latent concepts",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "represent explicitly",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Mechanical cleanup",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "local fix / codemod",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "repeat",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "once aligned",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "retain checks",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Models + obligations",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Active alignment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Modify and evaluate",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "until obligations hold",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Passive alignment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Check later changes",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "admit or reject",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "New models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Prior models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Kernel",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Expand under",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "existing constraints.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "evidence": [
+      {
+        "source_text": "(a) Recover models",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "(a) Recover models",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "(b) Establish alignment",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "(b) Establish alignment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "(c) Expand governance",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "(c) Expand governance",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Implementation patterns",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Implementation patterns",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "+ engineering knowledge",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "+ engineering knowledge",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Classify findings",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Classify findings",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Legitimate patterns",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Legitimate patterns",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "retain / exempt",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "retain / exempt",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Latent concepts",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Latent concepts",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "represent explicitly",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "represent explicitly",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Mechanical cleanup",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Mechanical cleanup",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "local fix / codemod",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "local fix / codemod",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "repeat",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "repeat",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "once aligned",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "once aligned",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "retain checks",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "retain checks",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Models + obligations",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Models + obligations",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Active alignment",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "Active alignment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Modify and evaluate",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Modify and evaluate",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "until obligations hold",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "until obligations hold",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Passive alignment",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "Passive alignment",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Check later changes",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Check later changes",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "admit or reject",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "admit or reject",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "New models",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "New models",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Prior models",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Prior models",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Kernel",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "heading",
+        "candidate_text": "Kernel",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Expand under",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "Expand under",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "existing constraints.",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "node or relationship explanation",
+        "candidate_text": "existing constraints.",
+        "candidate_style": "regular"
+      }
+    ]
+  },
+  "style-review": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular.",
+    "bold": "Panel and alignment headings plus Kernel are bold; remaining labels regular.",
+    "routing": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+    "shape": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular.",
+    "visual_review": "Read the source-native diagrams and inspected their rendered forms alongside the new native triptych. Independent classification outcomes, active repetition, passive checks and retained nested governance remain visible.",
+    "book_references": []
+  },
+  "fidelity-review": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "links_and_groups": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+    "preserved": [
+      "(a) Recover models",
+      "(b) Establish alignment",
+      "(c) Expand governance",
+      "Implementation patterns",
+      "+ engineering knowledge",
+      "Classify findings",
+      "Legitimate patterns",
+      "retain / exempt",
+      "Latent concepts",
+      "represent explicitly",
+      "Mechanical cleanup",
+      "local fix / codemod",
+      "repeat",
+      "once aligned",
+      "retain checks",
+      "Models + obligations",
+      "Active alignment",
+      "Modify and evaluate",
+      "until obligations hold",
+      "Passive alignment",
+      "Check later changes",
+      "admit or reject",
+      "New models",
+      "Prior models",
+      "Kernel",
+      "Expand under",
+      "existing constraints."
+    ],
+    "adapted_from": [
+      "book/assets/discovering-models-migration.svg",
+      "book/assets/active-passive-alignment.svg",
+      "book/assets/alignment-kernel.svg"
+    ]
+  },
+  "grayscale-review": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "decision": "new",
+    "revision_date": "2026-11-20",
+    "reviewed_visually": true,
+    "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+    "reviewed": true,
+    "rationale": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular."
+  },
+  "publication": {
+    "source": "book/assets/recovering-and-extending-governance.svg",
+    "entry": {
+      "approved_date": "2026-11-20",
+      "reason": "Author explicitly requested this new B&W triptych and its three named source adaptations.",
+      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435"
+    }
+  },
+  "caption-tier": {
+    "key": "assets/recovering-and-extending-governance.svg",
+    "entry": {
+      "tier": "B",
+      "kind": "process-triptych",
+      "location": "appendixB",
+      "rationale": "Supporting three-panel reminder of established recovery, alignment and kernel-growth concepts; four-sentence caption identifies each adaptation."
+    }
+  }
+}

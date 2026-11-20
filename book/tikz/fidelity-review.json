@@ -5003,7 +5003,52 @@
         "Inspect / reconcile",
         "before redispatch"
       ]
+    },
+    {
+      "source": "book/assets/recovering-and-extending-governance.svg",
+      "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+      "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+      "links_and_groups": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+      "preserved": [
+        "(a) Recover models",
+        "(b) Establish alignment",
+        "(c) Expand governance",
+        "Implementation patterns",
+        "+ engineering knowledge",
+        "Classify findings",
+        "Legitimate patterns",
+        "retain / exempt",
+        "Latent concepts",
+        "represent explicitly",
+        "Mechanical cleanup",
+        "local fix / codemod",
+        "repeat",
+        "once aligned",
+        "retain checks",
+        "Models + obligations",
+        "Active alignment",
+        "Modify and evaluate",
+        "until obligations hold",
+        "Passive alignment",
+        "Check later changes",
+        "admit or reject",
+        "New models",
+        "Prior models",
+        "Kernel",
+        "Expand under",
+        "existing constraints."
+      ],
+      "adapted_from": [
+        "book/assets/discovering-models-migration.svg",
+        "book/assets/active-passive-alignment.svg",
+        "book/assets/alignment-kernel.svg"
+      ]
     }
   ],
-  "last_revised_date": "2026-11-19"
+  "last_revised_date": "2026-11-20"
 }

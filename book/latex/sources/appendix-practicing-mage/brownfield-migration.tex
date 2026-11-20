@@ -4,6 +4,15 @@ An existing system already contains parts of its engineering environment: tests,
 
 Keep model coverage and enforcement separate. A system may have extensive models but few mechanisms that enforce their obligations. Conversely, tests, permissions, and other existing controls may enforce important properties even where explicit system models are sparse. Assess model coverage against the engineering questions the selected work requires, and identify which obligations are enforced, merely evaluated, or still depend on human judgment. Neither comprehensive modeling nor universal enforcement is the objective; address the gaps that matter to the work.
 
+\cref{recovering-and-extending-governance} recalls the techniques from \magevalue{chapter:one-problem-many-models} used in the migration procedure below.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/recovering-and-extending-governance-389d21c46b.pdf}
+\caption[Recovering and extending governance]{\emph{Recovering and extending governance in an existing system.} (a) Recover useful models from implementation patterns and existing engineering knowledge (adapted from \cref{discovering-latent-models}). (b) Establish correspondence through active alignment, then preserve it through passive alignment (adapted from \cref{active-passive-alignment}). (c) Extend the alignment kernel incrementally, protecting established obligations as new models enter governance (adapted from \cref{alignment-kernel}).}
+\label{recovering-and-extending-governance}
+\end{figure}
+
 \subsection{Audit, Synchronize, Govern, Extend}\label{heading:audit-synchronize-govern-extend}
 
 Apply the four stages in \autoref{practicing-brownfield-exits} to one surface at a time. Their exit criteria describe what must become dependable before the next investment can rely on it. They are not dates in a rollout plan. A new discrepancy can send one obligation back to reconciliation while other parts of the environment continue to operate.

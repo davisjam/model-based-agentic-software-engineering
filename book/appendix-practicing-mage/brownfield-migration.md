@@ -4,6 +4,11 @@ An existing system already contains parts of its engineering environment: tests,
 
 Keep model coverage and enforcement separate. A system may have extensive models but few mechanisms that enforce their obligations. Conversely, tests, permissions, and other existing controls may enforce important properties even where explicit system models are sparse. Assess model coverage against the engineering questions the selected work requires, and identify which obligations are enforced, merely evaluated, or still depend on human judgment. Neither comprehensive modeling nor universal enforcement is the objective; address the gaps that matter to the work.
 
+[ref:recovering-and-extending-governance] recalls the techniques from {{chapter:one-problem-many-models}} used in the migration procedure below.
+
+<!-- label: recovering-and-extending-governance -->
+<!-- figure: assets/recovering-and-extending-governance.svg | *Recovering and extending governance in an existing system.* (a) Recover useful models from implementation patterns and existing engineering knowledge (adapted from [ref:discovering-latent-models]). (b) Establish correspondence through active alignment, then preserve it through passive alignment (adapted from [ref:active-passive-alignment]). (c) Extend the alignment kernel incrementally, protecting established obligations as new models enter governance (adapted from [ref:alignment-kernel]). [short: Recovering and extending governance] -->
+
 ### Audit, Synchronize, Govern, Extend {#audit-synchronize-govern-extend}
 
 Apply the four stages in [ref:practicing-brownfield-exits] to one surface at a time. Their exit criteria describe what must become dependable before the next investment can rely on it. They are not dates in a rollout plan. A new discrepancy can send one obligation back to reconciliation while other parts of the environment continue to operate.

@@ -55,6 +55,10 @@ class VerbatimProjectionTests(unittest.TestCase):
         self.assertIn(code, html)
         self.assertIn('After.', html)
 
+    def test_cref_projects_as_a_symbolic_reference(self):
+        projected = self.project(r'Adapted from \cref{alignment-kernel}.')
+        self.assertIn('Adapted from [ref:alignment-kernel].', projected)
+
     def test_work_order_comments_remain_literal_code(self):
         code = '<!-- target-files: src/example.cs -->\n<!-- brief-genre: lint -->'
         projected = self.project(r'\begin{verbatim}' + '\n' + code + '\n' + r'\end{verbatim}' + '\n')

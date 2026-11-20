@@ -1,7 +1,7 @@
 {
   "review": "Sparse grayscale, typography, routing, shape and explicit-reference pass",
   "date": "2026-10-17",
-  "candidate_count": 135,
+  "candidate_count": 136,
   "refined_count": 130,
   "linked_regions": 46,
   "figure_link_count": 15,
@@ -6277,6 +6277,26 @@
       "shape": "Light-gray rounded model cards identify engineering models and their derived obligations, matching the model surface in three-relations and model-induction-general. Ordinary workflow stages including Design remain white; activities have modest rounded corners, durable artifacts square corners, acceptance a diamond, and independent evidence a double outline. Solid arrows carry progression, repair and recovery; dashed arrows supply model information or evidence.",
       "visual_review": "Primary stages remain on one row. Model and independent-evidence inputs use separate gate ports; repair, interruption/recovery and human revision routes do not cross.",
       "book_references": []
+    },
+    {
+      "source": "book/assets/recovering-and-extending-governance.svg",
+      "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
+      "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
+      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+      "decision": "new",
+      "revision_date": "2026-11-20",
+      "reviewed_visually": true,
+      "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+      "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular.",
+      "bold": "Panel and alignment headings plus Kernel are bold; remaining labels regular.",
+      "routing": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+      "shape": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular.",
+      "visual_review": "Read the source-native diagrams and inspected their rendered forms alongside the new native triptych. Independent classification outcomes, active repetition, passive checks and retained nested governance remain visible.",
+      "book_references": []
     }
   ],
   "semantic_typography_review": "book/tikz/typography-review.json",
@@ -6427,5 +6447,5 @@
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
     }
   ],
-  "last_revised_date": "2026-11-19"
+  "last_revised_date": "2026-11-20"
 }

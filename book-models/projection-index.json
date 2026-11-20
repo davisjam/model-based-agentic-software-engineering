@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 644,
+    "total_sites": 645,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 309,
+      "book-web": 310,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -1105,7 +1105,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
@@ -1113,7 +1113,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 18
+            "occ": 31
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
@@ -1129,7 +1129,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 140
+            "occ": 141
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1145,7 +1145,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 166
+            "occ": 168
           },
           {
             "file": "book/web/docs/index.md",
@@ -1153,7 +1153,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1371,7 +1371,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1657,7 +1657,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
@@ -2430,8 +2430,12 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-b-measuring-mage.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/bibliography.md",
-            "occ": 39
+            "occ": 40
           },
           {
             "file": "book/web/docs/figures.md",
@@ -2473,7 +2477,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 38
+            "occ": 39
           }
         ]
       },

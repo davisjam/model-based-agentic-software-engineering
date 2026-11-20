@@ -1813,5 +1813,19 @@
     "svg_title": "From priority to accepted work",
     "svg_description": "Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.",
     "native_source": "book/tikz/figures/priority-to-accepted-work.tex"
+  },
+  {
+    "chapter": "appendix-b-brownfield-migration",
+    "source": "assets/recovering-and-extending-governance.svg",
+    "caption": "*Recovering and extending governance in an existing system.* (a) Recover useful models from implementation patterns and existing engineering knowledge (adapted from [ref:discovering-latent-models]). (b) Establish correspondence through active alignment, then preserve it through passive alignment (adapted from [ref:active-passive-alignment]). (c) Extend the alignment kernel incrementally, protecting established obligations as new models enter governance (adapted from [ref:alignment-kernel]). [short: Recovering and extending governance]",
+    "native_context": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
+    "generator": "book/editorial/appendix-b-recovery-strip-20261120/build.py",
+    "data": [],
+    "conversion": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+    "svg_title": "Recovering and extending governance in an existing system",
+    "svg_description": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
+    "native_source": "book/tikz/figures/recovering-and-extending-governance.tex"
   }
 ]

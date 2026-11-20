@@ -334,6 +334,11 @@
       "approved_date": "2026-11-20",
       "reason": "Author requested a dominant left-to-right workflow with separate model/evidence inputs and subordinate recovery. Previous source/native figure and selected active review rows archived in book/editorial/appendix-b-workflow-20261120/before.",
       "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57"
+    },
+    "book/assets/recovering-and-extending-governance.svg": {
+      "approved_date": "2026-11-20",
+      "reason": "Author explicitly requested this new B&W triptych and its three named source adaptations.",
+      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435"
     }
   }
 }

@@ -396,7 +396,7 @@ def compatibility(source: Path, output: Path):
         retain_authored_heading_ids(ast)
         return pandoc(json.dumps(ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables-auto_identifiers', '--markdown-headings=atx')
     text = re.sub(r'\\magevalue\{([^}]+)\}', lambda m: token('{{' + m[1] + '}}'), text)
-    text = re.sub(r'\\autoref\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
+    text = re.sub(r'\\(?:autoref|cref)\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
     text = re.sub(r'\\cite[pt]\{([^}]+)\}', lambda m: token('[cite: ' + m[1].replace(',', ';') + ']'), text)
     footnotes = {}
     while r'\magefootnote{' in text:
@@ -421,7 +421,7 @@ def compatibility(source: Path, output: Path):
         latex = re.sub(r'\s*\n\s*', ' ', match[1].strip()).replace(r'\$', '$')
         return '\n\n' + token('<!-- eq: ' + latex + ' -->') + '\n\n'
     text = re.sub(r'\\\[(.*?)\\\]', equation, text, flags=re.S)
-    text = re.sub(r'\\autoref\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
+    text = re.sub(r'\\(?:autoref|cref)\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
     text = re.sub(r'\\cite[pt]\{([^}]+)\}', lambda m: token('[cite: ' + m[1].replace(',', ';') + ']'), text)
     assets = {a['pdf']:a['source'].removeprefix('book/') for a in json.loads(source.with_suffix('.assets.json').read_text())}
     def figure(match):
@@ -721,6 +721,8 @@ def _prepare_record(task):
     latex = layout_selected_table(latex, 'practicing-modeling-approaches', (.25, .34, .41),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'practicing-primary-readings', (.23, .43, .34),
+                                  row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'practicing-established-metrics', (.24, .35, .41),
                                   row_gap_bp=3, row_stretch=1.05)
     # Retain native rules for tagged tables, with clearance on the text sides.
     rule_padding = r'\noalign{\vskip 3pt}'
