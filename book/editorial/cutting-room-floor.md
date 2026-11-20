@@ -22047,3 +22047,64 @@ Source: `book/latex/sources/part2/2.6-system-knowledge.tex`, revision `f501c8821
 
 Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
 ```
+
+# Appendix B field-guide copyedit: displaced prose
+
+The four stage-label changes are typographic and are not archived as substantive cuts. New headings add navigation without moving prose.
+
+### getting-started.tex: State the bounded assignment the reader should establish.
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 3–3, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: State the bounded assignment the reader should establish.
+
+```latex
+Choose a recurring unit of work that an agent can usefully perform and whose result you can inspect. A service change, a document transformation, or a deployment procedure is a more useful starting point than an organization-wide commitment to autonomy. Name the artifact being changed, the expected outcome, the point at which it can affect someone else, and the engineer responsible for accepting that consequence. A bounded first attempt makes both failure and improvement easier to interpret.
+```
+
+### getting-started.tex: Connect the first model to the preceding inventory while preserving the defect-diagnosis qualification.
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 11–11, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Connect the first model to the preceding inventory while preserving the defect-diagnosis qualification.
+
+```latex
+A structured ticket can preserve desired behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. When it carries enough information to reason about one requested change, it functions as a purposeful change-scoped model. It should connect the change to longer-lived system knowledge rather than repeat that knowledge in a growing collection of tickets. For a defect, record the observed discrepancy and the intended correction; diagnosis may still be the difficult part of the work.
+```
+
+### getting-started.tex: Replace repeated stopping imperatives with an explicit expansion decision.
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 25–26, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Replace repeated stopping imperatives with an explicit expansion decision.
+
+```latex
+Then stop. Once the selected capability has adequate representations, evidence, and enforcement, further machinery needs a new reason to exist. Stop when additional representation costs more to maintain than the reasoning it saves. A useful first result can be modest: one dependency that stops being rediscovered, one recurring review decision made explicit, or one acceptance condition that no longer depends on memory.
+
+```
+
+### brownfield-migration.tex: Make the selected work and migration decisions explicit; retain the recovery-techniques reference.
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 3–3, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Make the selected work and migration decisions explicit; retain the recovery-techniques reference.
+
+```latex
+An existing system usually has fragments of the desired environment: documentation, tests, review rules, ownership records, deployment policy, runbooks, and expert knowledge. Begin by finding which of these the selected work already relies on. The problem is to make consequential knowledge and obligations dependable without first documenting or redesigning the whole system. \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}} explains the recovery techniques; the procedure here supplies operating decisions and exit criteria.
+```
+
+### operating-a-gee.tex: Introduce the operating problem before the DocAble document taxonomy.
+
+Source: `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex`, original lines 5–5, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Introduce the operating problem before the DocAble document taxonomy.
+
+```latex
+A GEE has to turn an engineering priority into bounded work, preserve the evidence needed to judge the result, and recover when the work stops short. DocAble's November 2026 workflow provides one concrete arrangement. Its strategy, epic, design, and dispatch documents have different consumers; they can be combined in another organization without losing the distinctions. The important connections are from priority to authorized scope, from scope to obligations, and from the resulting work to acceptance evidence.
+```
+
+### operating-a-gee.tex: Connect acceptance to the operational reliability of checking.
+
+Source: `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex`, original lines 29–29, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Connect acceptance to the operational reliability of checking.
+
+```latex
+The factory's own controls need the same scrutiny.
+```
+
+### measuring-mage.tex: Focus the reading on measurement practice instead of repeating the table definition.
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`, original lines 27–27, revision `9f8409374ebfd5d3081f057ae80ca6d1a6b81b30`. Removed on 2026-11-19 in the Appendix B field-guide revision. Reason: Focus the reading on measurement practice instead of repeating the table definition.
+
+```latex
+\textbf{Durable throughput} counts accepted work that remains useful after the initial completion claim. Choose a window appropriate to the work and follow reopenings, rollbacks, and repeated repairs within it. Report recent work whose durability is not yet observable separately from work that has survived the window. A later change in requirements is not necessarily evidence that the original work failed; repeated repair of the original obligation is. Commit count and immediate ticket closure omit this distinction. The desired result is more accepted capability without a proportional increase in intervention.
+```

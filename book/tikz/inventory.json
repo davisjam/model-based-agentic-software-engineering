@@ -1796,5 +1796,19 @@
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Supported typed edits cross a common controlled application boundary",
     "svg_description": "A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly."
+  },
+  {
+    "chapter": "appendix-b-operating-a-gee",
+    "source": "assets/priority-to-accepted-work.svg",
+    "caption": "From priority to accepted work. Engineering models inform the assignment and its acceptance conditions. An agent produces changes, but independent evidence determines whether they can be accepted. Interrupted or rejected work returns to repair or recovery without discarding durable results.",
+    "native_context": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/priority-to-accepted-work.json",
+    "generator": "book/editorial/appendix-b-workflow-20261119/build.py",
+    "data": [],
+    "conversion": "Shared geometry emits monochrome SVG and native TikZ",
+    "svg_title": "From priority to accepted work",
+    "svg_description": "An illustrative workflow progresses from priority to design, work order, agent implementation, acceptance gate, and integrated work. Engineering models supply scope and context to the work order and obligations to the gate. Independent acceptance evidence feeds the gate separately. Rejected work returns for repair; unresolved judgment goes to a human. An interrupted agent preserves durable commits and partial artifacts for recovery to inspect before resuming.",
+    "native_source": "book/tikz/figures/priority-to-accepted-work.tex"
   }
 ]

@@ -2,11 +2,20 @@
 % Evidence: appendix-operators-reference/a-worked-factory-workflow.tex at 507bbaeb5739569d81a21523b77191e0799d051b.
 % The PDF-heading assignment is illustrative, not an additional measured project episode.
 
-A GEE has to turn an engineering priority into bounded work, preserve the evidence needed to judge the result, and recover when the work stops short. DocAble's November 2026 workflow provides one concrete arrangement. Its strategy, epic, design, and dispatch documents have different consumers; they can be combined in another organization without losing the distinctions. The important connections are from priority to authorized scope, from scope to obligations, and from the resulting work to acceptance evidence.
+How does an engineering priority become work that an agent can perform and an engineer can accept? The environment must turn a priority into a bounded assignment, supply the relevant engineering knowledge, and establish whether the resulting work satisfies its obligations. It must also preserve partial work when execution is interrupted. DocAble's November 2026 workflow provides one implementation of this process; its particular document formats are less important than the relationships among them.
 
 In DocAble, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains the strategy document from my instructions. An epic develops a selected effort into scope, rationale, risks, relevant models, and a Definition of Done. Its machine-parseable phase table exposes dependencies and required reasoning capability to the scheduler. If review changes those dependencies, the schedulable plan must change too. Selecting a priority authorizes planning; it does not establish that the proposed decomposition is sound.
 
 The design develops the engineering argument. It identifies the motivating failure or requirement, considers alternatives, and explains the proposed components and interactions. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit. A dispatch brief then assigns one ready phase, with a role, scope, time budget, relevant source, verification work, and expected hand-back. DocAble's brief linter can reject missing structure and selected dispatch errors. It cannot decide whether the engineering premise is right.
+
+\autoref{practicing-priority-to-accepted-work} brings these relationships together at an integration-admission boundary. The stages can be combined or revisited, and later completion or release checks may impose additional obligations.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/priority-to-accepted-work-d9bddb56c0.pdf}
+\caption[From priority to accepted work]{\emph{From priority to accepted work.} Engineering models inform the assignment and its acceptance conditions. An agent produces changes, but independent evidence determines whether they can be accepted. Interrupted or rejected work returns to repair or recovery without discarding durable results.}
+\label{practicing-priority-to-accepted-work}
+\end{figure}
 
 \subsection{From a Brief to Accepted Work}\label{heading:from-a-brief-to-accepted-work}
 
@@ -26,7 +35,7 @@ Completion review follows the work back into the repository. Check that the prom
 
 \subsection{Keep the Checking Process Operational}\label{heading:keep-the-checking-process-operational}
 
-The factory's own controls need the same scrutiny. In November, I retained cheap synchronous checks at merge and moved expensive validation into a periodic sweep. An intermediate design launched that sweep after every merge, so bursts of completed work still caused bursts of expensive validation and overloaded the host. Background execution had changed who waited without removing the coupling that caused the overload. The replacement gave the sweep its own schedule and lock, inspected the main branch in a disposable worktree, and allowed one sweep at a time. Broader validation remained part of release.
+Acceptance depends on checks that must themselves be scheduled, executed, and observed reliably. In November, I retained cheap synchronous checks at merge and moved expensive validation into a periodic sweep. An intermediate design launched that sweep after every merge, so bursts of completed work still caused bursts of expensive validation and overloaded the host. Background execution had changed who waited without removing the coupling that caused the overload. The replacement gave the sweep its own schedule and lock, inspected the main branch in a disposable worktree, and allowed one sweep at a time. Broader validation remained part of release.
 
 A configured schedule is not evidence that a check runs. The November 3 investigation found the timer in the configuration manifest but not installed. Checks had been running through a debounced post-merge hook, masking the missing schedule. Installation and inspection of the live schedule corrected that gap. Another failure concerned closure: an alert was marked resolved while its lint still failed. Rechecking before closure, or reopening the alert when the next sweep finds the condition again, was identified as necessary follow-up work.
 

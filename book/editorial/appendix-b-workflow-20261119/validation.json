@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-19",
+  "source": "book/assets/priority-to-accepted-work.svg",
+  "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
+  "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
+  "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
+  "proof": "latex/build/tikz/candidates.pdf",
+  "proof_sha256": "33f24407fcdaae60094006a98f27c68735ea84aea969cc1841a85633bdc2994a",
+  "page": 129,
+  "width_bp": 449.972,
+  "height_bp": 323.974,
+  "minimum_font_pt": 9.962639808654785,
+  "fonts": [
+    "SourceSans3-Regular"
+  ],
+  "native_pool": {
+    "candidates": 136,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 1501,
+    "semantic_typography_findings": 0,
+    "unapproved_diagnostics": 0
+  },
+  "visual_review": "Standalone native and SVG proofs inspected. All labels fit, semantic shapes and edge styles remain distinct, and repair/escalation/interruption paths stay separate. Diagram is illustrative at a selected admission boundary, not a fixed schedule for every task.",
+  "proof_previews": [
+    "/tmp/mage-appendix-b-figure/native.png",
+    "/tmp/mage-appendix-b-figure/svg.png"
+  ]
+}

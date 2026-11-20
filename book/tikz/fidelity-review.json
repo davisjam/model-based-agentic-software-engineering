@@ -4838,7 +4838,47 @@
         "minimum": 9,
         "final_size_no_scaling": true
       }
+    },
+    {
+      "source": "book/assets/priority-to-accepted-work.svg",
+      "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
+      "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
+      "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
+      "decision": "new",
+      "revision_date": "2026-11-19",
+      "reviewed_visually": true,
+      "reason": "Author-requested illustrative workflow at a selected integration-admission boundary, not a universal DocAble schedule. Separate independent acceptance evidence from the producer, retain repair and judgment outcomes, and preserve interrupted work for recovery.",
+      "links_and_groups": "Authored to the user request rather than a prior figure. A branch from engineering models supplies assignment context and acceptance obligations; work and independent evidence enter the gate separately.",
+      "preserved": [
+        "scope + context",
+        "obligations",
+        "accept",
+        "repair",
+        "escalate",
+        "check the work",
+        "if interrupted",
+        "Engineering models",
+        "Priority",
+        "Design",
+        "Work order",
+        "Agent",
+        "implementation",
+        "Acceptance",
+        "gate",
+        "Integrated",
+        "work",
+        "Human judgment",
+        "(unresolved)",
+        "Independent",
+        "acceptance evidence",
+        "Durable commits",
+        "+ partial artifacts",
+        "Recovery: inspect",
+        "before resuming",
+        "work progression",
+        "context or evidence"
+      ]
     }
   ],
-  "last_revised_date": "2026-11-10"
+  "last_revised_date": "2026-11-19"
 }

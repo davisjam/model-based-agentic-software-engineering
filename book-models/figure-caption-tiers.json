@@ -1308,6 +1308,12 @@
       "kind": "reference-table",
       "location": "part2",
       "rationale": "Brief identifying caption for a comparative reference table; the rows and surrounding prose explain the three overlapping analytical uses."
+    },
+    "assets/priority-to-accepted-work.svg": {
+      "tier": "B",
+      "kind": "workflow",
+      "location": "appendixB",
+      "rationale": "Supporting workflow connects bounded assignments to independent acceptance evidence, repair, and recoverable partial work."
     }
   },
   "historical_tiers": {

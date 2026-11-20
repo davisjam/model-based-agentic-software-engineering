@@ -3,7 +3,7 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 154,
+  "candidate_count": 136,
   "refined_count": 69,
   "reviewed_peer_groups": 94,
   "figures": [
@@ -11931,6 +11931,18 @@
         "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
         "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
       }
+    },
+    {
+      "source": "book/assets/priority-to-accepted-work.svg",
+      "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
+      "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
+      "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
+      "decision": "new",
+      "revision_date": "2026-11-19",
+      "reviewed_visually": true,
+      "reason": "Author-requested illustrative workflow at a selected integration-admission boundary, not a universal DocAble schedule. Separate independent acceptance evidence from the producer, retain repair and judgment outcomes, and preserve interrupted work for recovery.",
+      "contracts": {},
+      "baseline_dimensions_bp": null
     }
   ],
   "page_layout_review": {
@@ -12477,5 +12489,5 @@
     "validation_scope": "Integrated whole-pool compile, native envelope, geometry and semantic typography checks rerun after the three Chapter 1 revisions. The revised drawings were separately inspected in native and web proofs.",
     "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
   },
-  "last_revised_date": "2026-11-10"
+  "last_revised_date": "2026-11-19"
 }

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="954" viewBox="0 0 444 318" role="img" aria-labelledby="title desc"><title id="title">From priority to accepted work</title><desc id="desc">An illustrative workflow progresses from priority to design, work order, agent implementation, acceptance gate, and integrated work. Engineering models supply scope and context to the work order and obligations to the gate. Independent acceptance evidence feeds the gate separately. Rejected work returns for repair; unresolved judgment goes to a human. An interrupted agent preserves durable commits and partial artifacts for recovery to inspect before resuming.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="444" height="318" fill="white"/>
+<path d="M195,25 L195,35 L270,35" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2"/>
+<path d="M270,35 L370,35 L370,54" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<text x="337" y="29" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">scope + context</text>
+<path d="M270,35 L270,96 L190,96 L190,111" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<circle cx="270" cy="35" r="1.5" fill="black"/>
+<text x="265" y="119" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">obligations</text>
+<path d="M100,70 L145,70" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M245,70 L310,70" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M370,86 L370,121" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M310,141 L240,141" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M140,141 L110,141" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="125" y="131" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">accept</text>
+<path d="M215,157 L230,174 L340,174 L340,161" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="277" y="168" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">repair</text>
+<path d="M165,156 L120,185 L60,185 L60,222" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="80" y="179" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">escalate</text>
+<path d="M405,161 L405,195 L250,195 L250,217" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="329" y="190" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">check the work</text>
+<path d="M190,217 L190,171" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M430,141 L441,141 L441,240 L430,240" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="370" y="211" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">if interrupted</text>
+<path d="M370,259 L370,277" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="145" y="1" width="100" height="24" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="195.0" y="16.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Engineering models</text>
+<rect x="10" y="54" width="90" height="32" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="55.0" y="73.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Priority</text>
+<rect x="145" y="54" width="100" height="32" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="195.0" y="73.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Design</text>
+<rect x="310" y="54" width="120" height="32" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="370.0" y="73.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Work order</text>
+<rect x="310" y="121" width="120" height="40" rx="8" fill="white" stroke="black" stroke-width=".8"/>
+<text x="370.0" y="138.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Agent</text>
+<text x="370.0" y="150.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">implementation</text>
+<polygon points="190,111.0 240.0,141 190,171.0 140.0,141" fill="white" stroke="black" stroke-width=".8"/>
+<text x="190" y="138.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Acceptance</text>
+<text x="190" y="150.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">gate</text>
+<rect x="10" y="121" width="100" height="40" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="60.0" y="138.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Integrated</text>
+<text x="60.0" y="150.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">work</text>
+<rect x="10" y="222" width="100" height="38" rx="8" fill="white" stroke="black" stroke-width=".8"/>
+<text x="60.0" y="238.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Human judgment</text>
+<text x="60.0" y="250.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">(unresolved)</text>
+<rect x="125" y="217" width="145" height="45" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<rect x="128" y="220" width="139" height="39" fill="white" stroke="black" stroke-width=".5"/>
+<text x="197.5" y="236.9" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Independent</text>
+<text x="197.5" y="248.9" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">acceptance evidence</text>
+<rect x="310" y="221" width="120" height="38" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="370.0" y="237.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Durable commits</text>
+<text x="370.0" y="249.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">+ partial artifacts</text>
+<rect x="310" y="277" width="120" height="30" rx="8" fill="white" stroke="black" stroke-width=".8"/>
+<text x="370.0" y="289.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Recovery: inspect</text>
+<text x="370.0" y="301.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">before resuming</text>
+<path d="M10,294 L35,294" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="42" y="297" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">work progression</text>
+<path d="M10,311 L35,311" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<text x="42" y="314" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">context or evidence</text></svg>
