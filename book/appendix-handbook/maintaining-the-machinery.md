@@ -16,13 +16,7 @@ Correspondence has a similarly concrete boundary. The anchor check compares mode
 
 A check selector must remain connected to the machinery it controls. The merge-check incident in [ref:chapter:appendix-a-model-based-test-selection] illustrates how a correctly derived selection can fail to govern execution and acceptance. Maintenance should therefore examine not only whether the selection remains appropriate, but whether the selected checks actually run, whether their findings determine the intended verdict, and whether changes to the validation machinery have invalidated those relationships.
 
-## Repair, Reconsider, or Retire
-
-A control’s repeated use supplies evidence about its design. False refusals may reveal a bad identity extractor, as in the completed-phase gate. Missing attribution may reveal a mutation path the scanner cannot enumerate. Repeated manual reconstruction may identify a useful model; a frequently consulted model that never changes a decision may instead be unnecessary. Distinguish a defect in the mechanism from a deliberate exception to its policy before adding another override or check.
-
-Keep the maintenance path connected to the original obligation. Identify the failure class, the representation or mechanism changed, the consumer that must use the repair, and the evidence that exercises the repaired path. Retest both refusal and legitimate work. Then remove superseded declarations and controls when consumers no longer depend on them. Leaving both old and new machinery active can create conflicting authority, duplicate cost, or a misleading impression of independent protection.
-
-## Use the Engineering Moves Selectively {#handbook-composition-procedure}
+## Recurring Engineering Moves {#handbook-composition-procedure}
 
 The ten moves in [ref:handbook-engineering-moves] are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
 
@@ -41,8 +35,10 @@ The ten moves in [ref:handbook-engineering-moves] are construction choices. A bl
 | The same operational judgment must be reconstructed repeatedly. | **Externalize recurring judgment.** Record states, evidence, and sanctioned responses. | Lifecycle descriptions and runbooks distinguish recovery work from ordinary completion and identify where judgment remains. |
 | Individually reasonable changes conflict when combined. | **Make dependencies queryable.** Represent the relationships needed to analyze the interaction. | The governance graph records firing events, resource use, and chosen resolutions among selected mechanisms. |
 
-The third move, checking correspondence, has two possible responses. If a descriptive representation is stale, repair it to match the implementation. If an authoritative obligation is violated, repair the implementation or reconsider the obligation through the appropriate engineering decision. A check that reports disagreement cannot decide which side ought to change merely because it found a difference.
+When correspondence fails, a stale descriptive model needs repair; a violated authoritative obligation requires repair of the implementation or an engineering decision to revise the obligation. The check alone cannot choose. Closing an external editing interface likewise does not establish control over internal mutation paths: state the boundary and test whether the relevant paths cross it.
 
-The sixth move also has a scope. Closing the external PDF editing interface does not establish that every internal document mutation uses it. A useful control has a stated boundary and evidence that the relevant paths cross it. Extending that boundary is further engineering work, with its own compatibility and maintenance costs.
+## Repair, Reconsider, or Retire
 
-The endpoint is enough dependable machinery for the selected work. A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. The adoption and measurement procedures in Appendix B’s [Getting Started](appendix-b-getting-started.html) and [Measuring MAGE](appendix-b-measuring-mage.html) sections support that decision as the engineering environment changes.
+A control’s repeated use supplies evidence about its design. False refusals may reveal a bad identity extractor, as in the completed-phase gate. Missing attribution may reveal a mutation path the scanner cannot enumerate. Repeated manual reconstruction may identify a useful model; a frequently consulted model that never changes a decision may instead be unnecessary. Distinguish a defect in the mechanism from a deliberate exception to its policy before adding another override or check.
+
+Keep the maintenance path connected to the original obligation. Identify the failure class, the representation or mechanism changed, the consumer that must use the repair, and the evidence that exercises the repaired path. Retest both refusal and legitimate work. Then remove superseded declarations and controls when consumers no longer depend on them. Leaving both old and new machinery active can create conflicting authority, duplicate cost, or a misleading impression of independent protection.

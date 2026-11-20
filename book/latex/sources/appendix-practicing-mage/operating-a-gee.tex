@@ -13,8 +13,12 @@ How does an engineering priority become work that an agent can perform and an en
 \label{practicing-priority-to-accepted-work}
 \end{figure}
 
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 In DocAble, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains the strategy document from my instructions. An epic develops a selected effort into scope, rationale, risks, relevant models, and a Definition of Done. Its machine-parseable phase table exposes dependencies and required reasoning capability to the scheduler. If review changes those dependencies, the schedulable plan must change too. Selecting a priority authorizes planning; it does not establish that the proposed decomposition is sound.
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 DocAble's design document records the motivating failure or requirement, the alternatives considered, and the proposed components and interactions. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit. A dispatch brief then assigns one ready phase, with a role, scope, time budget, relevant source, verification work, and expected hand-back. DocAble's brief linter can reject missing structure and selected dispatch errors. It cannot decide whether the engineering premise is right.
 
 \subsection{From a Brief to Accepted Work}\label{heading:from-a-brief-to-accepted-work}
@@ -29,6 +33,7 @@ As an illustration, consider an assignment to improve PDF heading detection. Pre
 \item \textbf{Budget and hand-back.} State when to stop and what to preserve: commits, completed checks, partial results, unresolved questions, and unmet obligations. An honest partial result supports a decision about further work; an unsupported completion claim hides that decision.
 \end{itemize}
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 In DocAble, the agent records its refined plan in the first commit and progress in later commit metadata. A sentinel check verifies selected prerequisites early: the expected worktree, branch, working directory, and registration marker. These checks can discover an unusable working environment before substantial effort is spent. They establish those prerequisites at that boundary; later integration still needs its own evidence. The companion \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/EPIC-TEMPLATE-starter.md}{epic}, \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/design-doc-template-starter.md}{design-document}, and \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/agent-brief-starter.md}{dispatch-brief} starters supply field structures that can be adapted to these consumers.
 
 Completion review follows the work back into the repository. Check that the promised change exists, was integrated, and has evidence supporting closure. A complete sequence of commit markers helps locate unfinished work but cannot establish semantic correctness. If the work is incomplete, preserve what the next agent or engineer needs to resume it. Reconcile partial commits and current ownership before launching replacement work; otherwise recovery can create a second competing attempt while the first remains stranded.
@@ -45,6 +50,7 @@ Distinguish detection, acknowledgment, and repair in the operating record. The o
 
 After recovery, ask what subsequent work should inherit. Was the problem missing knowledge, a stale representation, an implicit obligation, late evidence, or a mechanism that failed to act? The answer determines whether to improve a model, move a check, restrict an action, change the procedure, or retain deliberate human judgment. Record the obligation and intended consumer of the repair, then verify that the consumer actually uses it. This is the practical handoff from incident response to governance conversion.
 
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
 The duplicate-dispatch incident in {[}appendix: appendix-a-governed-delegation{]} illustrates this handoff. Its repair placed a completed-phase gate in work-order composition, so later assignments inherit the refusal automatically. The gate acts on recorded completion rather than inferring it from arbitrary repository changes; that boundary defines which recurrence the repair prevents.
 
 Price that inheritance. A rare, inexpensive failure may not justify permanent machinery; a repeated reconstruction or recurring loss may justify it readily. Remove the superseded procedure or control when its replacement makes it unnecessary. Otherwise every repair adds another thing that later work must understand. The next run should inherit a better starting point, with the evidence needed to tell whether the repair worked.

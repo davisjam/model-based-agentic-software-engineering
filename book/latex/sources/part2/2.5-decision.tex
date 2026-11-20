@@ -63,6 +63,7 @@ A permission graph is useful when the decision concerns a relationship. In \auto
 
 % <!-- point: image-purpose-and-uncertainty-govern-the-decorative-decision | An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain. -->
 
+% Evidence: E03 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E03.md | kind: illustration
 Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore~\citep{w3c2018wcag21}. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection~\citep{moma-blue-monochrome}.} What matters is the image's contribution to the document, not merely what it depicts. A classifier can supply evidence about that role. The decision rule must say when the evidence warrants omitting a description and what to do when the role is uncertain.
 
 \subsection{Properties and Analyses}\label{heading:decision-properties-and-analyses}
@@ -85,15 +86,18 @@ DocAble uses decision models for several purposes: deciding whether an image nee
 
 \subsection{When is an image decorative?}\label{heading:when-is-an-image-decorative}
 
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
 Accessibility remediation must distinguish images that convey information from those that are merely decorative. As \hyperref[2.5-decision:heading:conditions-alternatives-and-decision-analysis]{the worked example} illustrated, the same image can serve either purpose depending on its context. DocAble supplies a rendered slide to a vision-language model (VLM), which classifies each image or shape as clearly decorative, uncertain, or informational. The classification supplies evidence; the decision policy determines what to do with it. Only a clearly decorative verdict permits suppressing a description. An uncertain or missing verdict preserves the image's informational role. This asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
 
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
 The need for an explicit uncertainty policy emerged from evaluation. Earlier classifiers had marked content-bearing images as decorative, particularly in visualization-heavy documents. We tightened the policy by representing uncertainty explicitly and making its conservative interpretation common to the classification paths. The decision model now states how uncertain evidence affects remediation without prescribing which VLM must supply that evidence. A different VLM can make the semantic judgment; it does not redefine the policy for acting on it.
 
 The remaining two DocAble examples concern permission. The system accepts documents for accessibility remediation, sends work among internal services, and returns corrected artifacts. Two decisions arise at different boundaries: which service may call another, and whether a user\textquotesingle s entitlement permits a requested upload. Both can be modeled as permission, but they need different representations.
 
 \subsection{Which services may communicate?}\label{heading:which-services-may-communicate}
 
-DocAble distributes document remediation across several services. The public web tier receives requests, while internal services perform document editing, generation, rendering, OCR, and other work. Rather than specifying the permitted connections independently in deployment configuration, DocAble records them in a service-flow model. Each directed edge declares that one service may invoke another; an absent edge excludes that relationship from the declared policy.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+DocAble distributes document remediation across several services. The public web tier receives requests, while internal services perform document editing, generation, rendering, OCR, and other work. A typed service-flow model declares the permitted connections and is checked against the dependency map consumed by deployment. Each directed edge declares that one service may invoke another; an absent edge excludes that relationship from the declared policy.
 
 \textbf{Service-flow model · Decision}
 
@@ -106,7 +110,8 @@ DocAble distributes document remediation across several services. The public web
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Model} --- a declared graph of services and the permitted edges between them; the deployment is wired from the graph rather than the graph inferred from the deployment.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+  \textbf{Model} --- a declared graph of services and the permitted edges between them, checked for correspondence with the dependency map consumed by deployment.
 \end{itemize}
 
 \begin{itemize}
@@ -121,27 +126,33 @@ DocAble distributes document remediation across several services. The public web
   \textbf{Quality attribute} --- least privilege; architectural integrity; security.
 \end{itemize}
 
-% <!-- point: the-service-flow-model-is-a-declared-source-of-truth-not-a-firewall | The declared graph is the single source of truth for permitted inter-service edges, with one node declared publicly reachable and every other edge authenticated; a completeness check requires each gated edge to be fully specified, and the deployment config is generated from the graph. | terms: soft-vs-hard-governance -->
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: the-service-flow-model-is-a-declared-source-of-truth-not-a-firewall | The typed graph declares permitted inter-service edges and is checked against the dependency map consumed by deployment; completeness checks concern the declaration, while runtime permission depends on installed controls. | terms: soft-vs-hard-governance -->
 
 \autoref{service-flow-model} shows a reduced view of the service-invocation policy. The web tier is the only publicly reachable service. Its declared outgoing edges permit calls to selected internal services. Separately, the worker may invoke generation, rendering, and OCR services. The arrows express permissions, not observed traffic or a requirement that every permitted call occur. Asynchronous job dispatch is omitted from this selected view; absence here does not imply prohibition by the full policy.
 
-The declared graph answers whether a proposed service invocation is permitted: look for the corresponding directed edge. It also supports reachability questions, such as which services the public web tier can reach through permitted calls. DocAble treats this graph as the source of truth for service-flow relationships and generates deployment configuration from its declared edges. A completeness check requires each gated edge to contain the information needed for deployment. These checks establish properties of the declaration and its generated configuration, not whether runtime traffic follows the intended policy.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+The declared graph answers whether a proposed service invocation is permitted: look for the corresponding directed edge. It also supports reachability questions, such as which services the public web tier can reach through permitted calls. DocAble checks this typed graph against the dependency map consumed by deployment. A completeness check requires each gated edge to contain its declared connection and authentication information. These checks establish properties of the declarations and their correspondence, not whether runtime traffic follows the intended policy.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/service-flow-model-7634fa9071.pdf}
-\caption{\emph{DocAble's service-flow model.} Arrows show selected permitted service invocations; asynchronous job dispatch is omitted. The web tier is the sole public entry point. Deployment configuration is generated from the full model, while runtime conformance requires separate enforcement.}
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\caption{\emph{DocAble's service-flow model.} Arrows show selected permitted service invocations; asynchronous job dispatch is omitted. The web tier is the sole public entry point. The typed graph is checked against the deployment dependency map, while runtime conformance requires separate enforcement.}
 \label{service-flow-model}
 \end{figure}
 
-% <!-- point: docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question | DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question. -->
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question | DocAble checks the typed graph against the deployment dependency map but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question. -->
 
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
 The declared graph can also serve as the policy against which observed service calls are checked. DocAble does not currently reconcile runtime traffic against that declaration. Whether to add such a check, and what consequences a violation should have, are Alignment decisions taken up in \magevalue{chapter:alignment}.
 
 \subsection{Which entitlement authorizes an upload?}\label{heading:which-entitlement-authorizes-an-upload}
 
 % <!-- point: the-entitlement-model-was-born-from-a-production-failure | The service-flow policy was declared in advance; DocAble's upload-admission decision acquired its model in the opposite order, after a production failure exposed a representation that could no longer express the decision. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 The service-flow model determines which calls are permitted. Upload admission presents a different decision: whether a user's entitlements authorize a particular document. This became a modeling problem when DocAble added unlimited-use groups to a system originally designed around finite credits.
 
 % <!-- point: upload-entitlement-flows-through-groups | A user receives upload entitlement through groups — finite-credit or unlimited — so the admission decision depends on two facts: how many credits remain and whether any entitlement is unlimited. -->
@@ -151,22 +162,27 @@ The service-flow model determines which calls are permitted. Upload admission pr
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/entitlement-domain-14ff87d0d6.pdf}
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: implementation
 \caption{\emph{The upload-entitlement domain.} A finite balance alone cannot determine admission: the model must also preserve whether any applicable group grants unlimited use.}
 \label{entitlement-domain}
 \end{figure}
 
 % <!-- point: the-scalar-was-adequate-until-the-domain-changed | The original credit comparison was understandable directly in code; unlimited entitlement made the policy harder to follow across implementation sites and motivated a separate decision model. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 The original client upload rule was easy to understand from the code: if the user's credits covered the upload cost, allow the upload; otherwise, reject it. Box (1) in \autoref{entitlement-model-evolution} shows this balance-based check. A separate decision model would have added little to understanding that simple rule.
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 Unlimited groups changed what the upload decision had to account for. As box (2) shows, a group could authorize an upload without contributing finite credits to the balance. The server's balance calculation, the client's check before sending an upload, and the server admission gate represented entitlement in different ways. Understanding and updating the intended policy now required checking how each part of the implementation handled both finite and unlimited entitlement.
 
 % <!-- point: the-old-reduction-observed-the-distinction-and-discarded-it | The finite-credit reduction excluded unlimited groups, while the client upload check ignored a separate unlimited-status signal and rejected the upload before the correct server gate was reached. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 Box (3) traces the production failure. In August 2026, a user whose personal group provided unlimited use was blocked from uploading a thirty-eight-page presentation: \emph{the upload needs 38 credits, and you have 0}. The legacy server function read each group's unlimited flag twice: once to exclude unlimited groups from the credit sum, and once to compute a display class. For this user it returned zero credits and the class \emph{individual}. The login response omitted the detailed group records but carried a separate unlimited-status flag. The client upload check ignored that flag, compared the zero balance with the required 38 credits, and rejected the upload before sending the file. The server's admission logic, which handled this entitlement correctly, was never reached. The failure came from using the finite-credit total as an admission decision even though other system representations retained the unlimited entitlement.
 
 % <!-- point: the-production-failure-produced-the-model | After fixing the client to read the existing unlimited signal, the team made the more complex entitlement policy explicit in a decision model and checked it with property tests, shared policy cases, and a shape check. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 The immediate fix made the client consult the unlimited-status flag it had been ignoring. That repaired the observed failure, but left the admission policy represented separately across the client and server. We therefore introduced the entitlement decision model shown in box (4): given the user's group entitlements and the requested work, should the upload be admitted, and under which entitlement? Property tests checked the model, a cross-runtime parity corpus checked shared policy cases in the server and client, and another check validated the model's shape. The display code derived its values from the model, while server admission delegated the policy decision to it.
 
 \textbf{Entitlement decision model · Decision}
@@ -197,6 +213,7 @@ The immediate fix made the client consult the unlimited-status flag it had been 
 
 % <!-- point: the-repair-was-model-to-model | The revised model yields a structured admission decision and a separate display projection; unlimited use produces an admitting decision and a display sentinel, even though the group has zero finite credits. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 The repaired model preserves the distinction that the earlier admission check lost. For the same uncapped unlimited group and 38-page request, it admits the upload and records the authorizing group and an \emph{admit\_unlimited} plan step, even though the finite credit balance remains zero. The display projection answers a different question: it returns a special numeric value for unlimited use, or a finite credit sum when all groups are finite. That display value cannot determine admission. The model can therefore be tested against cases involving finite credits, unlimited entitlement, and their combinations without treating a display value as the decision itself.
 
 \begin{figure}[htbp]
@@ -208,6 +225,7 @@ The repaired model preserves the distinction that the earlier admission check lo
 
 % <!-- point: an-explicit-model-would-have-made-the-obligation-visible | The author changed the domain in one place and did not carry the change into every representation of the same decision; when the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 A note in the first person: I changed the domain in one place --- groups could now be unlimited --- and did not carry the change into every representation of the same decision. An explicit model would not have made the change automatically correct; it would have made the inconsistency visible as an engineering obligation. When the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. \magevalue{chapter:alignment} gives the recurring pattern here --- a failure converted into explicit structure that later work inherits --- a name.
 
 The three decision models preserve different kinds of information: evidence about an image's role, permitted relationships between services, and the entitlements that authorize an upload. Each makes a decision inspectable by separating the information used to make it from the criteria governing the outcome. That separation also makes it possible to revise a classifier, service topology, or entitlement scheme without silently redefining the decision policy.

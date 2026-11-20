@@ -16,6 +16,7 @@ A system that relies on AI reasoning need not commit its architecture to a parti
 
 \section{Conceptual Design}\label{heading:conceptual-design}
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 DocAble supplies examples for two distinct substitution decisions. Model selection chooses which foundation model performs a defined semantic task. Replacing the reasoning engine changes how the system decomposes and sequences work: a general-purpose agent can take over planning decisions made by a graph of specialized remediation passes. This blueprint separates both decisions from the domain contracts that define permitted changes and acceptable results.
 
 \autoref{handbook-substitutable-reasoning} illustrates the proposed architecture. Each reasoning engine inspects the artifact and proposes supported changes through a typed operation interface. An application component resolves targets, checks applicable preconditions, performs mutations, and records their effects. Separate evaluators inspect the resulting artifact. Hold the permitted operations and acceptance requirements fixed when comparing engines, so differences in the results can be investigated as differences in reasoning rather than changes to the task.
@@ -76,10 +77,12 @@ Acceptance model & What evidence is required to accept the artifact? & Obligatio
 
 The operation, task, and acceptance contracts specify obligations through three of the models in the inventory. They do different work from the workflow that organizes reasoning and the capability model that supports selection.
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{operation contract} defines the changes a reasoning engine may request. DocAble's Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. A controlled application component resolves the target against the current document, checks applicable preconditions, and reports application, refusal, or failure. The PDF changeset in \autoref{chapter:appendix-a-controlled-mutation} is an analogous interface for a different document model; it is not the Office operation vocabulary.
 
 The vocabulary must support legitimate work without becoming an unrestricted programming interface. A replacement engine can propose different operations or sequence them differently. To make this an enforcement boundary, the surrounding environment must also restrict mutation authority to the controlled application component. A typed interface alone does not prevent a reasoner with direct file access from bypassing it.
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{task contract} defines a semantic judgment requested from a foundation model. DocAble identifies tasks such as image description, OCR transcription, reading-order inference, and heading adjudication, with declared output representations and capability requirements. Such definitions let a consumer request a task while a separate component handles model selection and invocation. They specify what the answer must mean, independently of which model supplies it.
 
 The contract must also express what makes an answer acceptable. For alternative text, the obligation is not simply to produce a nonempty string: the description must convey the image's relevant information without inventing content. For decorative classification, an incorrect judgment may suppress meaningful content entirely. Such asymmetries influence model selection, validation, and the appropriate response to uncertainty.
@@ -88,6 +91,7 @@ The \textbf{acceptance contract} specifies the evidence required to accept the r
 
 These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{reasoning workflow model} represents the process used to produce a result. DocAble organizes remediation as a graph of specialized passes. Some passes are algorithmic; others request structural judgments or descriptive content from foundation models. The graph represents dependencies among computations; execution machinery uses those dependencies to determine which work is ready as intermediate results are produced. A planning agent can instead maintain and revise a plan as it inspects the artifact. The workflow may change while task meanings and acceptance obligations remain fixed. A plan is guidance until an executor consumes it; an execution trace records what actually happened.
 
 Assign ownership to the obligations and to the observations used to evaluate them. The responsible engineer authorizes task meanings, permitted operations, and acceptance conditions; measured capability results describe behavior on an identified workload. A selection policy consumes those observations but does not turn them into universal quality guarantees. A selected model choice or a generated repair plan is derived from other representations. That describes its origin, not its authority.
@@ -112,6 +116,7 @@ Only then introduce an alternative reasoning engine. Run both engines against co
 
 Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy. Meeting a capability requirement makes a model eligible; it does not guarantee an adequate answer.
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 DocAble's selector interface represents the result through this typed choice:
 
 % mage-code-language: csharp
@@ -123,6 +128,7 @@ public sealed record ModelChoice(
     int TierRank);
 \end{verbatim}
 
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The choice exposes the selected model and supporting metadata. \texttt{TierRank} is documented for observability: callers should not reconstruct selection policy by branching on it.
 
 Selection can account for task-specific capability requirements, input difficulty, provider availability, and cost. A capability requirement is a constraint: a model that cannot process the required input is not made suitable by being inexpensive or available. Among eligible models, a policy may prefer higher-quality alternatives, distribute requests among providers, or select a lower-cost model when its measured performance is adequate.
@@ -135,18 +141,23 @@ Model routing does not change the task or the surrounding remediation strategy. 
 
 An alternative is to give a general-purpose agent the document, the available operations, and the acceptance criteria. The agent can inspect the document, run checks, decide which repairs to attempt, request supported operations, and inspect the resulting findings. Within the operation vocabulary's scope, it takes over planning and sequencing without requiring a new document-editing implementation.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 An October 2026 experiment exercised this arrangement on Office documents. A single hosted agent used DocAble's existing command-line operations: \texttt{check} produced structured findings, \texttt{editor-edit} applied supported edits, and \texttt{validate} checked content preservation. The agent chose repairs and invoked these operations before checking the result again. The experiment required no changes to the deterministic operations themselves.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The operation vocabulary covered 201 of 202 checker-reported issues classified as fixable in the pilot corpus. This measures the expressiveness of the editing interface, not the agent's ability to resolve those issues correctly.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25--29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker, so these results measure residual findings and completion, not semantic quality or equivalence to the specialized graph. They support further evaluation of agent-driven Office remediation and show that its effectiveness depended strongly on the reasoning model.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The Office results do not establish that the same engine can replace a PDF remediation pipeline. An untagged or scanned PDF may require construction of a structure tree before operations targeting existing elements can be used. Substitution covers the work expressible through the selected interface, not every repair the domain might require.
 
 \subsection*{Evaluate the Result}\label{heading:evaluate-the-result}
 
 A successful substitution must preserve the engineering obligations, not merely the interface.
 
+% Evidence: E46 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E46.md | kind: illustration
 Consider alternative text for a scientific figure. A reasoning engine may propose a valid operation that inserts a description, and the document checker may confirm that the image now has alternative text. Yet the description may repeat the figure's title without conveying its contents. The operation was valid and the structural finding was resolved, but the accessibility requirement was not satisfied.
 
 The same problem arises when deterministic heuristics stand in for a semantic judgment. In one DocAble investigation, a repair strategy documented as asking a language model whether existing alternative text was useful actually used a chain of deterministic heuristics. An inadequate description, ``Heat Transfer 211,'' survived for a physics diagram. The decision procedure did not evaluate the semantic property promised by the contract. Deterministic methods can be appropriate substitutes, but only where evidence supports the property they must decide.
@@ -155,6 +166,7 @@ These examples show why evaluation must extend beyond interface compatibility. S
 
 A comparison should therefore use the same inputs and acceptance criteria for each candidate engine. Record the remaining violations, semantic quality, execution failures, latency, and cost. Where the evaluation cannot establish a property, retain that limitation rather than interpreting a passing checker as evidence of complete correctness.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The experiments in \autoref{chapter:5.2-inside-docables-software-factory} illustrate the importance of comparable measurements. A September 2026 comparison on one handwritten PDF measured approximately four cents of inference for the specialized pipeline against an estimated \$2.29 for a general-purpose agent. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference structure, and its cost was reconstructed from an execution transcript. The result informed investigation of costs without establishing equivalent quality. A November evaluation on two PDFs found no additional checker findings closed by a coached repair loop; the harder document retained 15 findings while cost rose from \$1.35 to \$3.57.
 
 Such measurements can inform an architectural decision, but small experiments do not establish a universal ranking of reasoning strategies.

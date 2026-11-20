@@ -33,8 +33,10 @@ Completion criteria & What evidence permits acceptance and closure? & Promised e
 \bottomrule\end{longtable}
 }
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 A work order must carry enough structure for both people and machinery to use it. DocAble's briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
 
 % Evidence: retained November brief excerpt from the prior handbook (archaeology B03).
@@ -49,10 +51,12 @@ These fields come from an actual November 2026 brief to add a standards-evidence
 <!-- brief-genre: lint -->
 \end{verbatim}
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project's acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
 
 The work order states intended work; component records and provenance describe relationships the arrangement relies on. Derived context is a selective view of those records, not a new owner of their meaning. Stable assignment and phase identities connect dispatch, durable results, and completion. A history mentioning a phase does not establish that the current assignment belongs to it. When identities or state disagree, reconcile the records before treating the disagreement as evidence of completion.
 
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 A lifecycle model must distinguish the states needed by its consumers. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately from acceptance. Choose the states for the work unit and its consumers. The important requirements are that dispatch have a defined precondition, acceptance require the work-order evidence, and interruption not imply successful completion. DocAble's completed-phase gate uses a narrower predicate: a positively resolved completed phase refuses a new dispatch. Reopening changes that phase state; a reasoned override permits a particular dispatch without redefining completion.
 
 The engineer retains authority over objectives, acceptance obligations, and exceptions. Agents can choose implementations and investigate alternatives within the declared scope. Context selection helps them find relevant knowledge, while permissions and gates independently restrict selected actions and admissions. The completion model must therefore connect an obligation to the evidence that evaluates it and the decision that consumes that evidence, rather than treating an agent's final message as the accepted state.
@@ -65,6 +69,8 @@ Assignment validation can check structure, registered identities, paths, and req
 
 Connect the assignment's scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
 The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
 
 % Evidence: tools/agents/_constraint_extractor.py:213-215 at 563cdae2316d (D15).
@@ -75,10 +81,16 @@ def coverage_for_files(
 ) -> list[Constraint]: ...
 \end{verbatim}
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
 The aggregator deduplicates by registry and constraint identity, orders each registry's contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
 DocAble's adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. Make those outcomes visible to the caller so that extraction failure cannot be mistaken for absence of obligations.
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
 Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
 
 \subsection*{Dispatch, Execute, and Evaluate Completion}
@@ -87,8 +99,11 @@ Selected prose guides the reasoner. The applicable tests, permissions, and gates
 
 Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. The shared repository, worktree, assignment, and executor registry supply different evidence. Design their identities so that an operator can find the changes belonging to an assignment without recovering the agent's conversation.
 
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment's producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
 
 Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents' commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. This observed recovery supports a narrow but useful claim: committed results can survive loss of the conversational channel. It does not establish that every interrupted assignment is complete or safe to merge.
@@ -99,10 +114,13 @@ For a new arrangement, test interruption before the first durable result, after 
 
 \label{heading:handbook-conversion-episode}
 
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
 Add controls where recurring failures reveal a dependable decision. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
 
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
 A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase's completion state.
 
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
 The control itself required repair. An October 10 investigation found that phase extraction first examined the declared \texttt{Epic} line but fell back to the first ``Phase N'' mention anywhere in the brief. Historical prose about a completed phase could then cause a new assignment to be refused. Four false refusals in one session prompted investigation. The corrected extractor, reproduced below from the field note, restricts identity extraction to the declared line:
 
 % Evidence: phase-done-gate-prose-false-fire-fix-261010.md:42-47 (D11); actual corrected implementation excerpt.
@@ -118,6 +136,7 @@ def extract_phase_from_brief(brief_text: str) -> str | None:
 
 Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
 
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
 Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control's actual behavior still needs its own evidence.
 
 \subsection*{Verify the Arrangement}

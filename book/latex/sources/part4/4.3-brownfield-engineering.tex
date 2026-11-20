@@ -63,6 +63,7 @@ These techniques produce candidate representations for engineering review. Engin
 
 Repeated implementation structures offer another source of candidates. A detector can narrow the search, but repetition may reflect a missing domain concept, an external protocol, test scaffolding, or ordinary cleanup. Its findings need interpretation in their architectural context.
 
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
 DocAble encountered this problem through a primitive-density detector, which identifies interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Primitive density is intentionally a weak signal: such interfaces sometimes indicate that a concept is being repeatedly reconstructed rather than represented explicitly, but they are also common in perfectly legitimate code. The detector therefore produced hundreds of findings without claiming that hundreds of models were missing. Most findings needed ordinary annotations or local cleanup, or occurred in test fixtures and protocol adapters where primitive-heavy interfaces were appropriate.
 
 A smaller subset behaved differently. Across related document mutators, the same parameter shapes recurred: language mutations repeatedly carried the same language and provenance concepts; alt-text mutations repeatedly carried description and attribution state. Looking across those instances revealed something that no individual finding established on its own. The repeated primitives expressed recurring domain concepts that the implementation had never named.
@@ -86,6 +87,7 @@ Recovering a model also creates an obligation to maintain its correspondence wit
 
 % <!-- box-family: evidence -->
 
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
 \begin{quote}
 \mbox{}%
 \subsection{Field record --- Primitive-density recovery}\label{heading:field-record-primitive-density}
@@ -95,8 +97,10 @@ During the June 8--10 recovery work, findings were repeatedly reclassified as en
 
 A recovered model need not immediately govern execution or require previously separate implementations to be combined.
 
+% Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
 DocAble's four document-processing pipelines use different engines for good reasons. PDF processing often requires inferring structure that an Office document already records. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
 
+% Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
 As a preliminary step, we introduced a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let us compare policies, explain legitimate differences, and identify choices worth reconsidering. We did not merge the engines or make the model execute their policies. As we evaluate those differences, we can revise the model to reflect our engineering decisions and determine which correspondences warrant enforcement.
 
 \section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}
@@ -154,7 +158,8 @@ Cloudflare reports a similar practice: introduce policy checks in advisory mode,
 
 
 
-The check used to discover a problem is not always suitable for enforcement. In DocAble, primitive density helped identify code worth examining, but primitive-heavy code was not necessarily wrong. Investigation revealed more specific problems that could be prevented with types, constraints, or lints. The primitive-density detector remained advisory; the narrower checks enforced the actual obligations.
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+The check used to discover a problem is not always suitable for enforcement. In DocAble, primitive density helped identify code worth examining, but primitive-heavy code was not necessarily wrong. Investigation revealed more specific problems that could be prevented with types, constraints, or lints. The density threshold could block a change with an internal-boundary finding, but deciding whether it warranted an exemption, cleanup, or a recovered model still required review.
 
 \section{Invest Where It Pays}\label{heading:invest-where-it-pays}
 

@@ -1,0 +1,21 @@
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The five blueprints show how engineering models and mechanisms can be arranged around a needed capability. To construct an arrangement for a different problem, work backward from the capability to its obligations, then forward through the representations and mechanisms that can support them. Consider agents modifying database schemas while preserving compatibility with deployed clients.
+
+\begin{enumerate}
+\item \textbf{State the capability and its scope.} Specify which clients must continue to work as the schema changes and during which deployment stages. This is the engineering requirement. A schema registry, migration tool, or deployment platform is a possible means of satisfying it, not the starting requirement.
+
+\item \textbf{Identify failures and the obligations they expose.} An agent might remove a field still in use, propose a migration that cannot handle existing data, or deploy a schema before the corresponding application changes are ready. These failures require different evidence: client compatibility, migration validity, and a safe deployment sequence.
+
+\item \textbf{Choose models that answer those questions.} A schema model distinguishes the deployed structure from the proposed structure. A dependency model identifies clients and the fields they use. A migration model represents transitions between schema versions and their prerequisites. Shared field, client, and version identities let an analysis connect a proposed removal to the clients that must change before it takes effect.
+
+\item \textbf{Assign authority and check correspondence.} Decide which representation owns each fact and name its consumers. Compare the declared deployed schema with the database, and check the client-dependency model against evidence from the relevant implementations. A representation of current use and a decision about permitted future use make different claims. Disagreement requires an engineering decision about which should change.
+
+\item \textbf{Connect obligations to mechanisms and consequences.} A compatibility analysis can identify affected clients; a migration validator can exercise a transition against representative data. A deployment gate can refuse promotion until it receives the required findings and evidence of client readiness. Account for each check's limits: static analysis may miss dynamically constructed queries, and sampled data may miss a production record that breaks the migration. Broader tests, staged deployment, or review may be needed.
+
+\item \textbf{Exercise the composition.} Trace a valid change and deliberate violations through the complete arrangement. Does a failed compatibility check actually prevent promotion? What happens if migration evidence is missing, stale, or for another schema version? Can an agent bypass the intended path? Individual checks can work correctly while their composition fails to protect the capability.
+
+\item \textbf{Choose sufficient machinery and maintain it.} A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. Begin with the essential obligations, preserve legitimate implementation choices, and add machinery when experience exposes a gap worth closing. The adoption and measurement procedures in Appendix B's \href{appendix-b-getting-started.html}{Getting Started} and \href{appendix-b-measuring-mage.html}{Measuring MAGE} support that decision as the environment changes.
+\end{enumerate}
+
+The sequence is iterative. A failed composition test may require a different representation; new evidence may justify revising an obligation or retiring a control. The engineer remains responsible for deciding which obligations and residual uncertainties are acceptable for the selected work.

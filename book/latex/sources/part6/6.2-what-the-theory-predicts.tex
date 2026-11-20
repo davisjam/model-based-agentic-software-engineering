@@ -25,9 +25,11 @@ These are theoretical relationships, informed by the cases rather than establish
 % <!-- point: reconstruction-precedes-reasoning-about-the-question | DocAble’s large-document representation exposes the choice between purchasing more context and reducing what each judgment requires. -->
 
 
-% <!-- point: context-postpones-but-a-model-changes-the-problem | DocAble’s roughly 590,000-token document exceeded a 272,000-token context; windowing and compression reduced the information required for each judgment. -->
+% Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: implementation
+% <!-- point: context-postpones-but-a-model-changes-the-problem | DocAble’s HTML/CSS export was estimated at roughly 590,000 tokens against a 272,000-token context; windowing and compression reduced the information required for each judgment. -->
 
-DocAble encountered this problem when representing large documents for remediation. One document produced roughly 590,000 tokens of reasoning representation against a 272,000-token context window. A more costly foundation model with a larger context window was one possible response. Another was to change the representation: windowing and whole-document compression reduced the information required for each judgment. The engineering choice was not simply how much context to purchase, but how much reasoning the representation could save.
+% Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: historical-report
+DocAble encountered this problem when representing large documents for remediation. In September 2026, one document's HTML/CSS export was estimated at roughly 590,000 tokens using a characters-divided-by-four heuristic, against a 272,000-token context window. A more costly foundation model with a larger context window was one possible response. Another was to change the representation: windowing and whole-document compression reduced the information required for each judgment. The engineering choice was not simply how much context to purchase, but how much reasoning the representation could save.
 
 % <!-- point: the-general-move-presents-consequential-structure | A representation can change the reasoning required, a mechanism established in external-representation research and applied here to maintained engineering models. -->
 
@@ -127,6 +129,7 @@ The \textbf{determinization frontier} separates judgments that require fresh int
 
 % <!-- point: determinization-retains-judgment-at-the-boundary | Some judgments yield checkable properties while others remain semantic; the determinization frontier moves through representation and adequate evidence, not assertion. -->
 
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
 DocAble illustrates the distinction. Determining what an image means and writing an adequate description require semantic judgment. Once a description is attached to an object in the document model, checking its presence and placement can be mechanical. That check does not establish that the description is adequate. Modeling has made a narrower property decidable, and Alignment can enforce it without repeating the original semantic judgment.
 
 The frontier does not imply that every judgment can become mechanical. Better representations may improve human or agent evaluation even when no definitive predicate is available. Where a property does become mechanically decidable, the question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.

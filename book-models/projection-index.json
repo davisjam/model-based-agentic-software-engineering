@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 653,
+    "total_sites": 656,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 318,
+      "book-web": 321,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -180,6 +180,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-a-designing-your-own-blueprint.md",
+            "occ": 2
+          },
+          {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
             "occ": 11
           },
@@ -205,7 +209,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
@@ -247,7 +251,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 56
+            "occ": 57
           }
         ]
       },
@@ -1096,6 +1100,10 @@
             "occ": 12
           },
           {
+            "file": "book/web/docs/appendix-a-designing-your-own-blueprint.md",
+            "occ": 7
+          },
+          {
             "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 7
           },
@@ -1105,7 +1113,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/web/docs/appendix-a-model-based-test-selection.md",
@@ -1125,7 +1133,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 14
+            "occ": 16
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
@@ -1137,7 +1145,7 @@
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/web/docs/appendix-practicing-mage.md",
@@ -1203,7 +1211,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 73
+            "occ": 74
           }
         ]
       },
@@ -1541,11 +1549,11 @@
           },
           {
             "file": "book/web/docs/2.5-decision.md",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/web/docs/2.6-system-knowledge.md",
-            "occ": 33
+            "occ": 34
           },
           {
             "file": "book/web/docs/2.7-modeling-summary.md",
@@ -1585,7 +1593,7 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 37
+            "occ": 38
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
@@ -1597,7 +1605,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 49
+            "occ": 48
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -1648,6 +1656,10 @@
             "occ": 8
           },
           {
+            "file": "book/web/docs/appendix-a-designing-your-own-blueprint.md",
+            "occ": 4
+          },
+          {
             "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 4
           },
@@ -1657,7 +1669,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/appendix-a-model-based-test-selection.md",
@@ -1677,7 +1689,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 14
+            "occ": 16
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
@@ -1705,7 +1717,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 142
+            "occ": 141
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1743,7 +1755,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 61
+            "occ": 62
           }
         ]
       },

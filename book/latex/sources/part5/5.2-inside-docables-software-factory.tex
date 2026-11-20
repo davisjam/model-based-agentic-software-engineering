@@ -30,12 +30,16 @@
 
 % <!-- point: one-engineer-directed-a-fleet | One engineer directed coding agents while engineering both the remediation product and its factory; the final snapshot records production source, supporting source, and model modules. | terms: fleet-scale -->
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 DocAble was built by one engineer (me) directing a fleet of coding agents. The product was a document-accessibility remediation service; the factory was the production system through which I directed changes to that service. I was engineering both. The product had to improve accessibility while preserving the document properties its users depended on. The factory had to organize implementation and preserve consequential engineering decisions as agents changed the system.
 
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The record examined here spans \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. At the final snapshot, DocAble contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of supporting source, including tests, checks, tools, infrastructure, models, and indexed documentation. The history identified \magevalue{seip_models} model modules. These measurements describe the resulting system and its engineering environment; they do not measure how much useful work each line or model represents.
 
 % <!-- point: the-engineers-role-was-engineering-not-implementation | Goals, users, production failures, standards and institutional use supplied engineering work; the engineer made consequential decisions while coding agents wrote every implementation line. | terms: governed-engineering-environment -->
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 New work came from my goals for the system, user feedback, production failures, accessibility standards, public guidance from advocacy groups~\citep{nfb-accessible-documents-2014}, and the demands of institutional use. I decided which pressures warranted engineering work and made consequential decisions about requirements, architecture, validation, and deployment. Coding agents wrote every line of the implementation. I inspected almost none of the code they produced.
 
 % <!-- point: product-decisions-became-factory-obligations | Process design organized work and tolerance preserved consequential requirements while agents retained implementation freedom; failures could require changes to both the product and its factory. -->
@@ -109,6 +113,7 @@ These requirements explain why the resulting system grew large. Semantic reasoni
 
 % <!-- point: the-probe-tested-the-uncertain-part-first | The probe supplied initial evidence of semantic reasoning on equations, technical slides and handwritten notes. | terms: feasibility-probe, vision-language-model -->
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 I tested the uncertain capability first. I gave a multimodal foundation model pictures of mathematical equations, technical slides, and handwritten notes. On those examples it produced useful transcriptions and alternative text. The results supplied initial evidence that generative AI could perform some of the semantic reasoning needed for remediation; they did not establish that it could reliably remediate arbitrary documents.
 
 % <!-- point: cost-was-only-one-reason-not-to-hand-the-document-to-the-model | The initial semantic capability supported building a remediation system around the foundation model; preservation, reviewability, conformance, dependable operation, and practical cost remained engineering obligations. -->
@@ -139,6 +144,7 @@ A fast factory producing poor software would fail the test. So would a high-qual
 
 % <!-- point: the-build-moved-under-concrete-pressures | Format expansion, deployment, user failures and changed deadline pressure drove successive development stages. -->
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 I began with PowerPoint, then generalized the system to Word and Excel and added PDF support as colleagues brought other documents (R1). Each new format tested assumptions that my own files had not exposed. Putting \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} online introduced authentication, deployment, institutional use, and unfamiliar workloads (R8). Users then found outputs that passed existing checkers while losing semantic equivalence, prompting validation grounded more directly in accessibility standards (R4). When the Department of Justice extended the deadline, I shifted more attention toward production hardening (R7).
 
 \autoref{build-stages-timeline} records the sequence. The stages mark changes in the engineering problem, not merely larger quantities of implementation. Supporting another format could reveal a weakness in the shared architecture; serving users could reveal a missing obligation that no development fixture had exercised.
@@ -146,20 +152,26 @@ I began with PowerPoint, then generalized the system to Word and Excel and added
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/build-stages-timeline-a24e34269b.pdf}
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 \caption[DocAble's development stages]{\emph{The build, in stages.} DocAble expanded from a feasibility probe through format support, institutional operation, and hardening. Each stage introduced obligations that changed the product and the environment governing its implementation.}
 \label{build-stages-timeline}
 \end{figure}
 
+% Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
 One operational surprise came from Google Cloud. I had asked Claude to deploy DocAble, and it did. What I had not specified was the full deployment lifecycle, including how obsolete deployments should be retired. Eventually I noticed that the service was costing roughly \$40 per day when I expected something closer to \$5. I asked Claude to investigate. It reported approximately 2,000 obsolete deployments that had accumulated without being cleaned up. The cloud bill was about \$1,000.
 
+% Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
 The repair was to complete the lifecycle model by adding a cleanup step for obsolete deployments. Claude had done what I asked---and had neglected what I had omitted.
 
 \subsection{The Build, Measured Weekly}\label{heading:the-build-measured-weekly}
 
 % <!-- point: four-traces-read-in-sequence | The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures. -->
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The preceding account describes how the engineering problem changed as DocAble developed. Repository history provides a different view: how implementation activity and the supporting engineering machinery changed over time. The reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026~\citep{davis2026docable}. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
 
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 An \emph{Epic} represented a substantial engineering intention with a rationale, design, relevant invariants, phases, and acceptance criteria. Nontrivial designs received separate review using another foundation model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. Across the complete window, the reconstruction recovers \magevalue{seip_commits} work commits, \magevalue{seip_dispatches} dispatches, and \magevalue{seip_completions} affirmative completion claims.
 
 \begin{figure}[htbp]
@@ -171,14 +183,18 @@ An \emph{Epic} represented a substantial engineering intention with a rationale,
 
 % <!-- point: the-control-count-is-evidence-of-investment | Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution. | terms: governance-conversion -->
 
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The final snapshot identifies \magevalue{seip_models} model modules, \magevalue{seip_consumers} consumers of at least two models, and \magevalue{seip_static} static and \magevalue{seip_dynamic} dynamic verifier files. The inventory records an increasing investment in representations and checks; the examples below examine their engineering roles and consumers.
 
 % <!-- point: week-eleven-records-a-practice-change | Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices. -->
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 Week 11 marks a deliberate change in my engineering practice. Notes from May 22 and 24 describe replacing repeated agent audits with deterministic checks, supported by typing, lint-authoring, and repair campaigns. The commit subjects and emerging formal Epic records agree with that account. They support an interpretation of a hardening campaign; the first surviving Epic or dispatch record does not establish when I first used agents, planning, or checks.
 
 % <!-- point: longitudinal-methods-bound-the-inference | Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish. -->
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The series require some care. Work commits are reconstructed from direct and expanded squash landings, with duplicates, empty commits, and integration bookkeeping excluded. Completion records are affirmative claims rather than independent outcome audits, and dispatch retention is uneven. Earlier model existence is traced by path so a later declaration convention does not create a false growth spike. Registered verifier files establish an available checking apparatus, not that every check ran.
 
 \subsection{The Support Ratio}\label{heading:support-ratio-curve}
@@ -187,8 +203,10 @@ The series require some care. Work commits are reconstructed from direct and exp
 
 % <!-- point: the-environment-outgrew-the-product | Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return. | terms: support-ratio, governance-target-product -->
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The source composition gives a different view of the investment (\autoref{support-ratio-curve}). Production includes remediation, web processing, the frontend, and shared services. The supporting apparatus includes tests, lints, tools, agent infrastructure, infrastructure-as-code, models, and indexed documentation. Historical snapshots and generated copies are excluded.
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21, and 31 it was approximately 2.6, 3.6, and \magevalue{seip_support_ratio}, respectively; it reached about 4.5 at week 17. The last snapshot contains \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. These are measurements at ten sampled revisions, with interpolation between them. A larger ratio is not a target. Tests, models, and operating tools carry different obligations, and supporting source earns its upkeep only while later work benefits from it.
 
 \begin{figure}[htbp]
@@ -200,6 +218,7 @@ Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21
 
 % <!-- point: the-exhibits-measure-what-the-requirements-cost | The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment. | terms: governance-target-product -->
 
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 Together, the measurements show sustained implementation accompanied by an expanding engineering environment. They do not isolate the cost of a requirement or the causal contribution of a control. They also leave a question for engineering judgment: would this project have been feasible under the same constraints without generative AI or the machinery built around it?
 
 % <!-- box-family: evidence -->
@@ -225,6 +244,8 @@ As DocAble grew, source code alone stopped being an adequate engineering interfa
 
 % <!-- point: the-census-is-live-not-frozen | The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory. | terms: modeling-principle -->
 
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. The factory represents both the software it produces and the process that produces it.
 
 % <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
@@ -265,12 +286,21 @@ Supervisory consequence
 \bottomrule\noalign{}
 \endlastfoot
 
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: implementation-and-analysis
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation-and-analysis
 Can a job always terminate legally? & Composed cross-service state-machine model with per-invariant facts & Exhaustive-state checkers; the workers\textquotesingle{} own transition tables & Legal progress and termination are reasoned over states and transitions, not a multi-thousand-line worker \\
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model-and-measurement
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: model-and-measurement
 How much memory can a job need? & Peak-memory sizing model that upper-bounds a job and derives the deployment memory tier & Deployment configuration; regression tests on the bound & A resource bound is inspected directly rather than reconstructed from allocation behavior \\
-Which services exist, and what may call what? & Deployment topology plus a typed inter-service call-edge model & Deploy machinery; agents localizing changes & Ownership and boundaries are read from the map, not rediscovered per change \\
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+Which services exist, and what may call what? & Deployment dependency map plus a checked typed call-edge mirror & Grant planner; correspondence checks; agents localizing changes & Ownership and boundaries are read from the map, not rediscovered per change \\
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: implementation
 May this user submit this document? & Entitlement decision table --- the single policy authority for the admission decision & The front door at upload time & The admission rule is one table; changing policy is editing a model, not hunting scattered conditionals \\
-What may touch a document format\textquotesingle s internals? & Registry of external seams plus typed format models owning all mutation & Build-time ban checks on raw library access & Raw library access outside the typed boundary is rejected at build time \\
-Which step changed this document element? & Per-mutation provenance stamps projected into a derived changelog & The customer-facing changelog; forensic queries & Diagnosis is a lookup over evidence, not a cross-file investigation \\
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: implementation-scope
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation-scope
+What may touch a document format\textquotesingle s internals? & Registry of external seams plus structured-document mutation interfaces & Format-specific static restrictions and runtime write-authority checks & Selected mutation paths are constrained by designated boundaries \\
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+Which step changed this document element? & Recorded remediation-pass provenance stamps projected into a derived changelog & The customer-facing changelog; forensic queries & Diagnosis is a lookup over evidence, not a cross-file investigation \\
 \end{longtable}
 }
 
@@ -282,15 +312,19 @@ In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-mode
 
 % <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
 
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: dated-case-evidence
 \textbf{Property facts → verification tier → required checker → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts: how many concurrent lanes touch it, whether it is a safety or a liveness property, what state it ranges over. From those facts the model \emph{derives} a verification tier --- an invariant crossing multiple concurrent lanes demands exhaustive state-space exploration; a single-lane invariant demands a property test; a temporal obligation demands a model checker run. The tier is not advice: a check walks the model and fails when a mandated checker does not exist on disk. The supervisor need not choose a checker class afresh for every invariant. The encoded rule derives that requirement from the declared property facts, and the environment rejects a missing checker.
 
-% <!-- point: the-iam-join-derives-grants | The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time. | terms: alignment-principle -->
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: the-iam-join-derives-grants | The IAM join: deployment dependencies × deployed service names × runtime identity derive the invoker-grant plan; application results and live authorization provide different evidence. | terms: alignment-principle -->
 
-\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} The typed inter-service edge model declares which service calls which, over which plane, under which identity. Deployment machinery consumes those edges and derives the invoker grants and token audiences each service needs --- and a coherence gate asserts at deploy time that the granted permissions match the modeled relationships. Least-privilege wiring is not a checklist a human re-audits; it is a projection of the service graph.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} DocAble records caller--callee dependencies in its deployment map and checks that the typed inter-service model agrees with that map. The grant planner joins deployment dependencies to runtime service accounts and environment-specific service names. Application collapses grants sharing a principal and callee, retains their logical callers, and reports each grant command\textquotesingle s result; this is separate from inspecting installed permissions or testing an authorized call. The join makes the intended wiring inspectable without making a declaration or a successful command proof of runtime least privilege.
 
-% <!-- point: the-provenance-join-derives-the-changelog | The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp. | terms: alignment-principle -->
+% <!-- point: the-provenance-join-derives-the-changelog | The provenance join derives a changelog from recorded remediation-pass stamps; a wiring validator checks selected mutator populations for missing attribution. | terms: alignment-principle -->
 
-\textbf{Mutation → stamp → derived account.} Every mutating operation in the remediation core writes a provenance stamp --- the verb, the pass, the visibility of the change --- and the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator identifies mutating paths that fail to stamp their work. The derived changelog provides structured evidence of the recorded mutations; the wiring check guards the obligation to record them.
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+\textbf{Mutation → stamp → derived account.} Remediation-pass provenance stamps record the verb, pass, and visibility of recorded changes; the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator examines selected production mutators for recognized stamp calls or justified exemptions, with blocking checks for its public-static population and advisory checks for public-instance methods. The derived changelog provides structured evidence of recorded mutations; the wiring check exposes gaps within its declared coverage.
 
 % <!-- pullquote -->
 
@@ -304,24 +338,33 @@ Modeling changed what the factory could know. Alignment changed what that knowle
 
 The remediation graph makes a further connection: its representation determines execution. Each pass declares typed input and output relationships; the graph derives dependencies from those declarations, and execution machinery uses the dependencies to determine when work is ready. A blocking parity check holds the declarations and projected graph together. Composition therefore need not be reconstructed from behavior scattered across pass bodies.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 \magevalue{sec:interlude-one-problem-many-models} develops the architectural history, including the large presentation that exceeded page-chunked execution. Here the consequence is the mature capability: the same stable computation identities support execution and analytical views of critical paths, mutation boundedness, cost, and coverage. An analytical view can answer a question execution itself does not need to answer.
 
 % <!-- point: explicit-models-changed-what-was-checkable | Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return. | terms: modeling-principle -->
 
-Explicit models expanded the questions the environment could answer. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was written as small temporal specifications and checked mechanically; with recovery disabled, the checker produced exactly the stranded execution the property was meant to exclude. Checking the model created a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercised production operations against the executable model, and when one such test drifted red for days after production changed, the durable response was correspondence machinery --- model-to-implementation checks selected automatically when modeled surfaces change. The factory then added machinery to keep the map true.
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+Explicit models expanded the questions the environment could answer. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was expressed in a bounded TLA+ model of serverless push recovery. Its TLC configurations contrast recovery enabled and disabled under stated delivery and sweep fairness assumptions. Checking the model creates a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercise production operations against the executable model, while model-to-implementation checks are selected when modeled surfaces change. These mechanisms supply separate evidence about correspondence.
 
 \subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
 
 % <!-- point: reasoning-substitution-reuses-engineered-operations | Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass. -->
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The factory's models and controlled operations also make it possible to change how remediation decisions are made. DocAble separates the reasoning that proposes a repair from the machinery that changes the document. A new reasoning strategy can therefore reuse document models, supported operations, and validation machinery rather than reconstructing them. This separation also lets us ask whether more general reasoning earns its additional cost.
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 Substitution occurs at two levels. For individual tasks, ModelSelector assigns a foundation model using task-specific configuration and capability requirements. The remediation graph stays the same while the model supplying a judgment changes. A per-task benchmark compares candidate models on quality, cost, and latency. At a coarser level, a general-purpose agent can choose and sequence repairs instead of following the production graph's orchestration.
 
 % <!-- point: model-selection-was-an-engineering-decision | Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator. -->
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost --- the cheapest-adequate-judge rule of \magevalue{sec:engineering-the-environment} applied to the fabricator rather than to the validator.
 
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The PDF changeset interface gives these strategies a common way to request supported mutations. A proposed operation names its target and intended change; the applier resolves it against the current document, checks its preconditions, and records the outcome. The structured pipeline and an experimental agent can therefore reuse typed document operations, independent validation, and provenance while deciding differently what to repair. Human-directed editing uses the same operation vocabulary. \autoref{docable-reasoning-substitution} shows these architectural alternatives; the experiments below concern automated strategies.
 
 
@@ -333,18 +376,24 @@ The PDF changeset interface gives these strategies a common way to request suppo
 \end{figure}
 
 
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+% Evidence: E55 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E55.md | kind: dated-case-evidence
 This interface was still incomplete in November 2026. Dozens of PDF remediation passes retained direct-mutation paths, including repairs whose effects required additional operation types or more substantial restructuring. The common interface made some reasoning interchangeable; it did not make the entire pipeline replaceable. Extending the operation vocabulary was itself engineering work, especially where an edit changed several related structures or depended on targets created by an earlier edit.
 
 % <!-- point: engineering-set-the-price-of-the-reasoning | Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures. -->
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 Experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make~\citep{davis2026docable}?
 
 % <!-- point: reasoning-substitution-cost-depends-on-context-and-quality | A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution. -->
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 I had expected that a more capable agent might sometimes lower total cost by inspecting the document more broadly and avoiding repeated specialized calls. An experiment in September 2026 compared the pipeline with an agent using DocAble's document tools on one handwritten PDF. It pointed the other way on cost. The pipeline's metered inference cost was about \$0.0419; the estimated agent execution cost was \$2.29.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of the agent's accumulated context accounted for much of the estimate. Both approaches had produced outputs with no failures on the evaluated veraPDF checks. The agent recovered more of the reference document structure, but had seen the reference sequence; this cost experiment could not establish an unbiased quality comparison.
 
 % <!-- point: a-completed-coached-loop-did-not-improve-the-measured-documents | In a November 2026 two-PDF evaluation, a completed second coached pass closed no additional findings on the harder document and cost $3.57 versus $1.35 for one pass; the clean document stopped after one pass in both arms. -->
 
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 A November evaluation tested a narrower question: could a coached repair loop improve an agent's result? The loop inspected remaining findings and could request another repair pass. On two PDFs, it closed no additional findings beyond the single-pass agent. The harder document completed a second pass but retained the same 15 findings; its cost rose from \$1.35 to \$3.57. The other document had no remaining findings after one pass, so the loop stopped. The result did not justify promoting the loop to production. Both configurations already shared recently added document operations; a second round of reasoning supplied no measured benefit on this pair.
 
 The unresolved question is where additional reasoning earns its cost. Difficult semantic cases may justify a frontier agent, and an agent can help investigate failures or test what the specialized pipeline misses. Those uses require evidence about the quality gained as well as the inference bill. DocAble's architecture lets us investigate them while retaining the document representations, supported operations, and validation machinery already built. That retained work is engineering capital: a new reasoning strategy can inherit it without reproducing the engineering decisions it embodies.
@@ -357,14 +406,21 @@ The unresolved question is where additional reasoning earns its cost. Difficult 
 
 % <!-- point: the-mature-production-flow | The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion. -->
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements ending October 14. I record priorities and deployment prerequisites in a strategy document. An orchestrating agent selects ready work and coordinates its planning, implementation, and evaluation.
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 A planning agent develops an \emph{epic}: a persistent work order recording the change's purpose, scope, phases, dependencies, and completion criteria. Its design document identifies consequential properties and the tests or analyses required for them. A separate agent reviews the plan; unresolved engineering decisions return to me. The work order preserves decisions across dispatches while leaving implementation choices within the stated requirements to the agents.
 
 % <!-- point: task-scoped-context-connects-models-to-dispatch | An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred. -->
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 The phase dependencies determine which agents can work concurrently, as \autoref{docable-work-order-flow} shows. The orchestrator dispatches ready phases into isolated Git worktrees. Each agent first inspects its assigned component and records a refined plan, including target files, in its first commit. Before changing the implementation, it supplies those files to \emph{Query Repo}, which retrieves the associated models, invariants, tests, and static checks. A pre-commit check requires a record that this discovery occurred. Known obligations can therefore inform the agent's implementation choices from the outset.
 
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/docable-work-order-flow-de15c91f19.pdf}
@@ -372,10 +428,14 @@ The phase dependencies determine which agents can work concurrently, as \autoref
 \label{docable-work-order-flow}
 \end{figure}
 
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 Completed changes pass inexpensive checks before integration. Broader validation runs periodically against the combined code, and the deployment process reruns the full validation suite. Two changes may each work in isolation and still fail when combined, so separate worktrees do not remove the need to check the integrated result. \magevalue{sec:engineering-the-environment} explains the bottleneck that motivated this arrangement and the cost of delaying some checks.
 
 % <!-- point: repair-is-cheap-escalation-is-the-signal | Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer. -->
 
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
 Finally, an independent agent audits the epic against its completion criteria. It checks that the expected changes landed and that the required evidence supports completion. Missing work or failed checks lead to repair and another review. Problems the agents cannot resolve, including defects in the factory itself, return to me. The work order closes after the audit accepts the result.
 
 \subsection{What Escalated Failures Became}\label{heading:what-escalated-failures-became}
@@ -384,20 +444,30 @@ Finally, an independent agent audits the epic against its completion criteria. I
 
 The workflow organized routine changes, but it also exposed failures that required changes to the factory itself. Some engineering models came from known requirements; others arose when failures revealed missing distinctions or controls. Three episodes illustrate the latter process: preserving document structure during mutation, governing instructions to foundation models, and safely integrating concurrent development work.
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E40 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E40.md | kind: historical-report
 Preserving document structure required a controlled mutation boundary. An early PDF-slicing operation used PyMuPDF to copy pages into smaller documents. The resulting pages rendered correctly, but the operation discarded the PDF's accessibility tag tree, including \texttt{/StructTreeRoot} and the page-to-structure relationships. A library call that preserved visible content had silently destroyed information essential to accessibility.
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E40 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E40.md | kind: historical-report
 The immediate repair replaced the slicing operation with one that preserved the tags. I then established a canonical-library policy and concentrated PDF mutations in typed operations under \texttt{AdaTool.PdfModel}. For example, structure insertion passes through \texttt{PdfStructInserter} rather than allowing arbitrary calls to the canonical PDF library's tag-manipulation APIs. A blocking direct-access lint rejects those calls outside designated modules. The architectural model identifies where PDF structure may be changed; the lint checks that subsequent implementations preserve the boundary.
 
-Semantic instructions required their own engineering model. Agents developing DocAble's image-description prompts introduced numerical requirements, including a demand for at least three specific facts and a minimum description length. Some source images did not contain enough legible information to satisfy those requirements. In several evaluated cases, the foundation model invented plausible values or padded descriptions to meet the prescribed quantity. The problem was not the particular threshold: an unconditional demand for information absent from the source could produce the same failure.
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: historical-report
+Semantic instructions required their own engineering model. Agents developing DocAble's image-description prompts introduced numerical requirements, including a demand for at least three specific facts and a minimum description length. Some source images did not contain enough legible information to satisfy those requirements. The investigation identified padded descriptions and a plot description that asserted unsupported values. The problem was not the particular threshold: an unconditional demand for information absent from the source could produce the same failure.
 
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: implementation
 I responded with a typed prompt-governance model. It classifies prompts by purpose, such as describing, transcribing, or extracting information, and classifies their instructions by the demands they impose. A decision table determines which combinations are permitted. For example, a minimum fact count is prohibited in a description prompt, while an extraction requirement may be permitted when conditioned on information actually present in the source. The model distinguishes requirements appropriate to a task from requirements that could make faithful completion impossible.
 
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: implementation
 A deterministic lint checks registered prompt definitions against this model and blocks illegal combinations. An agent introducing another unconditional fact minimum into a description prompt encounters a failed check rather than relying on a reviewer to recognize the mistake. The lint governs the instructions, not the descriptions produced from them; it cannot establish that an individual output contains no fabricated content. It prevents a recurring class of inappropriate requirements from entering the remediation system~\citep{davis2026docable}.
 
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
 Integration automation required a model of safe conflict resolution. DocAble's agents worked concurrently in separate Git worktrees, often changing overlapping files. The integration machinery ordinarily rebased completed work onto the current repository. When a rebase encountered a conflict, an automatic retry used Git's \texttt{-X theirs} option, favoring one side of each conflicting hunk. In June 2026, concurrent modifications to the integration machinery itself produced an incompatible combination of edits. The resulting Python code failed to load, disabling scheduled integration.
 
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
 The failure exposed a decision that the automation had been making without an adequate policy: which conflicts may be resolved automatically? I distinguished three cases. A clean rebase can proceed. Certain narrowly defined additive conflicts can use an established resolution procedure. Other conflicts require escalation because the integration machinery cannot establish that combining the changes preserves their intended effects. This decision model separates the presence of a conflict from permission to resolve it automatically. A conflict is evidence that further work may be needed, not authorization to discard one side.
 
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
 I removed the \texttt{-X theirs} retry and changed the integration procedure to follow this policy. Clean integrations and permitted additive resolutions could proceed automatically; unresolved conflicts produced a \texttt{conflict-need-help} disposition. That disposition made the remaining work suitable for delegation. Rather than having Git select a resolution without understanding the changes, the disposition provided a defined task that I could assign to an agent: examine the conflicting contributions, reconcile their intended effects, and produce a candidate for validation. The agent could perform the repair, but the integration procedure would not accept an arbitrary conflict resolution merely because it had been generated. The model thus governed both what the automation could decide on its own and how unresolved work could be handed back to an agent.
 
 Across these episodes, I repeatedly observed that coding agents could diagnose defects and implement repairs but seldom proposed the larger changes to models, architecture, or controls that would prevent similar failures. Claude suggested replacing the offending library call, not establishing a controlled mutation boundary. Claude suggested revising the prompt, not modeling which instructions were appropriate to different semantic tasks. Claude suggested repairing the integration script, not reconsidering which conflicts the factory should resolve automatically. I generally had to identify and direct these larger changes, although agents could implement the resulting machinery. Once the decisions were represented explicitly, agents could also undertake work that the new structure made delegable, such as reconciling conflicts identified by the integration policy. Bui and Evangelopoulos distinguish this capacity to execute assigned work from the proactivity needed to recognize worthwhile work independently~\citep{bui2026agentic}. My experience illustrates that distinction, although it does not establish a general limitation of coding agents.
@@ -408,8 +478,10 @@ Across these episodes, I repeatedly observed that coding agents could diagnose d
 
 % <!-- point: the-preceding-subsections-recorded-substitutions | Three supervisory stages summarize how accumulated GEE capability supported more abstract supervision, not a prescribed maturity model. | terms: governance-conversion -->
 
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
 As DocAble's engineering environment developed, my role changed with it. \autoref{mage-staircase} summarizes that progression in three stages: co-coder, tech lead, and architect. The staircase represents two related developments: the models and controls available to govern agent work accumulated, allowing me to supervise implementation at increasing levels of abstraction.
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 Initially, I read, judged, and merged agents' changes. As implementation outpaced my attention, I delegated evaluation to other agents, then replaced recurring decidable findings with deterministic checks. Specialized reviewers, named ownership zones, and boundary rules allowed me to direct work without inspecting every change. Eventually, architectural, behavioral, and ownership models provided system-level views for planning and evaluation. I could make decisions about the system without routinely reconstructing its implementation.
 
 \begin{figure}[htbp]
@@ -421,4 +493,5 @@ Initially, I read, judged, and merged agents' changes. As implementation outpace
 
 For example, a cross-format migration touching \magevalue{refactor_files} files and rewriting \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. My decision was that those files should change; the agents performed the migration. I rarely needed to inspect the implementation, although model drift still required correspondence checks, and failures in the engineering environment could return me to direct inspection.
 
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
 My attention shifted toward deciding what should change, which properties required representation or enforcement, and what anomalous evidence meant. The environment took over more of the routine work of directing and evaluating implementation, but decisions about system structure, acceptable risk, and unresolved failures remained mine.

@@ -32,8 +32,10 @@ Mutation evidence & What was attempted and what actually changed? & Operation re
 \bottomrule\end{longtable}
 }
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
 The document model supplies a typed view of the artifact. An operation names a supported mutation, a target in that view, and the required payload. An ordered changeset collects operations before application. These are proposals: neither the producer's confidence nor the presence of an operation in the list establishes that it was applied. The applier returns per-operation results so that refused or failed requests remain distinguishable from changes that occurred.
 
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 This excerpt from DocAble's \texttt{EditOp.cs} shows a replacement-description operation; optional fields are omitted. A structural identifier replaces a raw byte address, and the before- and after-values make the intended transition inspectable.
 
 % Evidence: backend/src/AdaTool.PdfModel/Model/EditOp.cs:133-138 at 563cdae2316d; optional fields follow; excerpt retained from B03.
@@ -57,18 +59,27 @@ The operation vocabulary deliberately leaves repair decisions open while limitin
 
 \subsection*{Resolve, Apply, and Record}
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 DocAble's shared applier operates on an already-open PDF document. The caller owns opening and closing the file; browser editing and migrated remediation passes can reuse the in-memory application engine without a file round-trip for every pass. After a successful tree mutation, the implementation rebuilds its structure reader before subsequent operations use the changed structure. Target resolution and indexing are therefore part of the writer's contract, not details every reasoning producer should reproduce.
 
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 Attribution has two channels. A migrated remediation pass supplies its own pass name to the mutator-stamp machinery. An editor session instead uses a session operation log. The session log receives an entry only for a successfully applied operation when a session identifier is present; failed requests remain visible in operation results, not as applied-edit entries. A batch pass supplies no session identifier and does not thereby become an editor session. A history consumer must know which record it is reading and must not count the producer's entire proposal as a history of mutations.
 
 \subsection*{Enforce Admissibility}
 
 \label{heading:handbook-model-accessibility-policy}
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 Resolving a current target creates an opportunity to enforce obligations that the producer's text alone cannot settle. Consider a request to demote a PDF structure to a decorative artifact. In DocAble, the request must identify the source of the decorative verdict. The applier refuses missing verdict evidence, an unresolved target, and structurally informative content such as a heading, a formula, or an element carrying authored alternative or replacement text. These refusals occur before the requested demotion. A mutator's own conservative decline is also returned as a per-operation failure rather than silently disappearing from the result.
 
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
 The policy for interpreting uncertain evidence is a separate component. DocAble's decorative-confidence vocabulary distinguishes clearly decorative, uncertain, and informational results; only the clearly decorative result permits its internal decorative flag. An absent or unrecognized answer does not become permission to suppress content. That authored policy guides the use of a vision-language model's judgment, while the applier supplies selected structural refusals. Neither mechanism establishes every image's instructional importance. An apparently admissible operation may still need semantic evaluation.
 
+% Evidence: E54 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E54.md | kind: dated-case-evidence
 A before-value field requires an explicit interpretation policy. A mismatch shows that the proposal's expected prior value differs from current state. Observation, refusal, retry, and engineering review are different possible responses. In DocAble's inspected runner, even the mode named \texttt{FailLoud} returned mismatch diagnostics while continuing application. The name of a diagnostic mode does not establish enforcement: test whether the consumer actually stops the prohibited operation.
 
 \subsection*{Construct One Complete Operation}
@@ -79,13 +90,16 @@ Choose the comparison policy from the actual concurrency and failure model. A si
 
 Migrate a producer only after naming the behavior that must remain stable. A structured pipeline, a general-purpose agent, or a human editor can propose the same operation vocabulary, but substituting their reasoning is a separate empirical comparison. During interface migration, check the resulting artifact, refusal behavior, attribution identity, and any consumers that classify the producer's mutation path. Identify any direct write paths when assessing the boundary's coverage.
 
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E55 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E55.md | kind: dated-case-evidence
 A November 8 DocAble port illustrates why this is necessary. Moving an alternative-text validation pass behind the runner would have added pass-attribution records absent from its previous output, violating the assignment's byte-identity criterion even if the intended text mutation stayed the same. Registry indirection also prevented the existing code-parity detector from recognizing the proposed route. The engineering decision is whether the additional attribution is an authorized behavior change. The correspondence check must also recognize the chosen implementation before it can establish the intended route.
 
 \subsection*{Verify the Arrangement}
 
 Exercise refusal paths with a known starting artifact. A missing verdict source, a protected heading, and an unresolved target should produce the expected failure without the prohibited mutation. A supported successful edit should produce both its result and the appropriate attribution. A failed session operation should not acquire a successful-session log entry. A tree-changing operation followed by another targeted operation should use the updated structure. Check these effects on the artifact and records rather than accepting the producer's report that the guard ran.
 
-Coverage requires a declared population. DocAble's stamp-wiring lint inspects selected production primitive directories, discovers public static methods with mutation-name prefixes, and looks for recognized stamp calls or a justified exemption. Its documented extraction heuristic skips a method whose body it cannot reliably extract. Test code is outside that scan. A clean result therefore concerns the enumerated methods and recognized wiring; it is not proof that every possible mutation in the product emits accurate provenance.
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+Coverage requires a declared population. DocAble's stamp-wiring lint inspects selected production primitive directories, discovers public static and public instance methods with mutation-name prefixes, and looks for recognized stamp calls or a justified exemption. Findings for the static-method population are blocking; those for instance methods are advisory. Its documented extraction heuristic skips a method whose body it cannot reliably extract. Test code is outside that scan. A clean result therefore concerns the enumerated methods and recognized wiring; it is not proof that every possible mutation in the product emits accurate provenance.
 
 The model projection and lint share their classification predicate. This prevents inconsistent classifications from two implementations of the same rule, but it does not independently establish that the rule discovers every relevant operation. When adding a new mutation pattern, test that the scanner includes it, that removing its stamp produces a finding, and that exemptions remain visible. The attribution example shows why updating the producer alone may leave the checking machinery unable to describe the new architecture.
 

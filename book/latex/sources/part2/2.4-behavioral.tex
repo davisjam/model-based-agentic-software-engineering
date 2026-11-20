@@ -69,16 +69,20 @@ Linear Temporal Logic (LTL) provides notation for properties over executions~\ci
 \]
 Here \(\mathrm{G}\) means ``always'' and \(\mathrm{F}\) means ``eventually'': whenever the start marker holds, the same job must eventually succeed or fail. For this interpretation, a finite execution that cannot continue remains in its final state. Whether the formula holds depends on the transitions and environmental assumptions represented in the model. For a more complex lifecycle, statecharts can organize related states hierarchically and represent concurrent activity~\citep{harel1987}.
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 We now turn to two behavioral models from DocAble: one specifies the order in which a recovered artifact may be published, and the other distinguishes a worker\textquotesingle s current claim from one that has expired.
 
 \section{DocAble: Job Lifecycles and Recovery}\label{heading:docable-job-lifecycles-and-recovery}
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 DocAble distributes document accessibility work across workers that may fail or lose their assignments. Recovery raises two behavioral questions beyond the simple job lifecycle in \hyperref[2.4-behavioral:heading:states-transitions-and-behavioral-analysis]{the preceding subsection}. Can a worker publish a recovered result in an unsafe order? Can a former owner return and interfere with a newer assignment? The first requires a model of publication states; the second requires a model of ownership across competing workers.
 
 \subsection{Publishing a recovered result}\label{heading:publishing-a-recovered-result}
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 A worker recovering a document job may have a corrected artifact available locally before uploading it to persistent storage. If the worker updates the database record first and then crashes, the record can point to an artifact that other workers cannot retrieve. What ordering of publication and database updates prevents this failure?
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 \textbf{Recovery-ordering model · Behavioral}
 
 \begin{itemize}
@@ -93,6 +97,7 @@ A worker recovering a document job may have a corrected artifact available local
   \textbf{Model} --- a transition system over the recovery lifecycle; the decisive fact is a transition that does \emph{not} exist.
 \end{itemize}
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 \begin{itemize}
 \tightlist
 \item
@@ -107,8 +112,10 @@ A worker recovering a document job may have a corrected artifact available local
 
 % <!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 \autoref{recovery-ordering-model} represents the recovery operation using three states. In \texttt{FALLBACK\_STAGED}, the corrected artifact exists locally; in \texttt{FALLBACK\_UPLOADED}, it has been published to durable storage; and in \texttt{DB\_UPDATED}, the database refers to it. The permitted path passes through all three states. The prohibited transition from \texttt{FALLBACK\_STAGED} directly to \texttt{DB\_UPDATED} represents the unsafe ordering: the database would refer to an artifact that had not yet been published.
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/recovery-ordering-model-70e2639fc3.pdf}
@@ -116,16 +123,19 @@ A worker recovering a document job may have a corrected artifact available local
 \label{recovery-ordering-model}
 \end{figure}
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 To check the ordering property, search for an execution that reaches \texttt{DB\_UPDATED} without first visiting \texttt{FALLBACK\_UPLOADED}. The three-state model has no such execution. In a larger lifecycle, checking only for the direct forbidden transition would be insufficient: another sequence of transitions might reach \texttt{DB\_UPDATED} while bypassing publication. This is a safety property, not a liveness guarantee. A worker could wait or retry indefinitely without violating the ordering requirement.
 
 % <!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | The recovery model keeps the states needed to check publication order; a fuller job lifecycle can support broader workflow questions when it includes the relevant transitions. -->
 
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: mechanism
 The three-state recovery model is a reduction for checking publication order. DocAble's fuller job lifecycle includes queued, leased, remediating, and completed or failed states. That model can address broader workflow questions when it includes the relevant transitions; the smaller recovery model keeps only what the ordering question needs.
 
 \subsection{Distinguishing a current owner from a returning one}\label{heading:distinguishing-a-current-owner-from-a-returning-one}
 
 % <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 DocAble leases each in-flight job to one worker. Suppose worker A stalls and its lease expires. Worker B acquires the job, but A later returns and attempts to release its old assignment. How can the system distinguish A's obsolete claim from B's current one? \autoref{ownership-constructs} distinguishes several constructs for representing access and ownership. DocAble combines two: a claim records the assignment, and a lease limits its lifetime.
 
 {\footnotesize
@@ -152,8 +162,10 @@ Claim & Records a worker's assignment to a job and the conditions under which th
 
 % <!-- point: leased-iff-owner-is-the-models-definition | A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what "leased" means, and it sets up the invariant that follows. -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 The model represents ownership through a current claim relating a worker to a job. A job is leased exactly when it has such a claim; ownership and lease status are not separate facts that can disagree within this model. Each claim also records a generation and a lifetime. Expiry makes the job available for reassignment, and a new assignment advances the generation. The generation distinguishes successive claims even when they concern the same job.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 \textbf{In-flight lease · Ownership}
 
 \begin{itemize}
@@ -168,6 +180,7 @@ The model represents ownership through a current claim relating a worker to a jo
   \textbf{Model} --- a claim relating a worker to a job, stamped with a generation and a lifetime; reclaim advances the generation.
 \end{itemize}
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 \begin{itemize}
 \tightlist
 \item
@@ -182,8 +195,10 @@ The model represents ownership through a current claim relating a worker to a jo
 
 % <!-- point: the-epoch-generation-makes-a-stale-release-inapplicable | Suppose A holds generation 7, stalls, and is reclaimed; the job is re-leased to B at generation 8; a late release from A carrying generation 7 must not clear B's generation-8 claim, and the generation makes that decidable. | terms: soft-vs-hard-governance -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 \autoref{in-flight-ownership-states} follows one possible execution. Worker A acquires generation 7, then stalls until its lease expires. Worker B reclaims the job at generation 8. When A returns and attempts to release generation 7, the operation must not clear B's current claim. The job remains owned by B at generation 8. The generation number makes the stale operation distinguishable from a release by the current owner. Without that distinction, A's delayed release could clear B's valid assignment.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/in-flight-ownership-states-01b169485d.pdf}
@@ -193,13 +208,15 @@ The model represents ownership through a current claim relating a worker to a jo
 
 % <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 The illustrated execution is only one possible ordering of events. To investigate the invariant, explore the interleavings of lease expiry, reassignment, and delayed release. At each reachable configuration, check whether a release from an earlier generation can clear or supersede the current claim. A counterexample would identify an event sequence that violates ownership; checking the reachable configurations establishes the property within the model's declared scope.
 
 The publication model separates a local artifact from a durably stored one. The ownership model separates a current claim from a superseded one. In each case, the useful addition is a distinction that changes whether a state change is acceptable. The models make those distinctions available for analysis; the later Alignment chapter examines the mechanisms that enforce them.
 
-% <!-- point: the-lease-model-omits-the-processing-topology | The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model. -->
+% <!-- point: the-lease-model-omits-the-processing-topology | The model omits processing topology while preserving ownership, generation, lifetime, and reclamation; a changed implementation must be checked for correspondence with those semantics. -->
 
-Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. DocAble\textquotesingle s implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset shows how a relationship built into the model can become an invariant when an implementation stores its parts separately.
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. An implementation can change how it partitions work while preserving these ownership semantics. Its correspondence with the model must then be checked against the changed code. The inset shows how a relationship built into the model can become an invariant when an implementation stores its parts separately.
 
 % <!-- index-def: invariant -->
 
@@ -230,6 +247,7 @@ Here \texttt{exploreAll} denotes exhaustive exploration of the model, not a part
 
 % <!-- point: the-lease-answers-ownership-behavioral-and-measurement-questions-at-once | Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions. -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 A lease illustrates how one representation can answer several classes of question. Its owner identifies who currently controls a job. Its generation and lifetime distinguish current claims from stale ones and support reasoning about expiry and reclamation. Counting the current claims across jobs gives a measurement of how much work is in flight. These questions concern ownership, behavior, and capacity, yet they draw on the same represented facts.
 
 % <!-- point: overlap-confirms-the-classes-sort-questions-not-data-structures | The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models. -->

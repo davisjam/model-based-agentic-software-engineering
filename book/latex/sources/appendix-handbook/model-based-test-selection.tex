@@ -76,8 +76,10 @@ Validation execution model & What must run, and how do findings govern acceptanc
 \end{longtable}
 }
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 A change-impact model relates implementation elements to the subsystems and obligations they may affect. DocAble's component model identifies ownership and structural relationships within its codebase. A validation model groups components into subsystems, including PDF processing, Office document processing, the web application, and deployment infrastructure. The selector reuses the component model's path resolver rather than maintaining a second account of component membership.
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 Given a set of changed files, the selector resolves each file to its component and derives the declared affected subsystems. Each validation unit declares the subsystems it evaluates. The selection rule includes a unit when its scope intersects the affected set. This is a decision about what should execute; the executor must consume it.
 
 For example, a change confined to the PDF editing model may require PDF-specific validation without requiring the spreadsheet checker. The decision depends on the maintained component relationships, not merely on the names of the modified files. A change to a shared dependency may affect several subsystems even when the modified file belongs to only one component.
@@ -110,6 +112,7 @@ def decide_unit(unit_labels, affected, forced_full):
 
 The two unconditional branches constrain which checks the selector may omit. If the selector cannot adequately classify a change, it must not interpret missing information as evidence that no checks are necessary. Likewise, a validation unit without a trustworthy scope declaration should run rather than be silently excluded.
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 DocAble's selector returns a full-validation requirement for unmapped or cross-cutting files and dependency-manifest changes. The latter deserve special treatment because a project dependency can affect the assembled product beyond the component containing the manifest. Optional impact hints can enlarge the declared affected set, but cannot remove checks required by the models. These fallbacks protect against recognized uncertainty; an unrecognized dependency can still cause an omission.
 
 The resulting selection is a claim about possible impact. Its adequacy depends on the completeness and correctness of the relationships from which it was derived.
@@ -118,10 +121,13 @@ The resulting selection is a claim about possible impact. Its adequacy depends o
 
 A selector is useful only when its decisions reach the machinery that performs validation.
 
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
 An August 2026 investigation exposed this problem in DocAble's merge checks. This was a separate mechanism from the change-impact selector: it selected inexpensive lints relevant to merging work. The merge gate selected between one and four lints, yet the validation command still took approximately one minute. In one warm profiled run, a full-tree walker consumed 62.66 of the 63.1 seconds. It executed 281 predicates independently of the selected lint set.
 
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
 The problem extended beyond wasted computation. Findings produced by predicates outside the selected set could contribute to the gate's failure verdict. The selection therefore governed neither all the work executed nor all the evidence interpreted.
 
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
 The repair connected the walker to the same derived selection used by the other lint processes. It distinguished three cases for the walker's own cohort of checks:
 
 \begin{itemize}
@@ -134,8 +140,10 @@ The repair connected the walker to the same derived selection used by the other 
   \textbf{Nonempty intersection:} at least one walker check is selected, so execute the full predicate cohort.
 \end{itemize}
 
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
 The third case deliberately retained extra checks rather than risk omitting a selected predicate. The empty-intersection branch removed both the unnecessary walk and its contributions to the gate verdict. A nonempty intersection still ran the whole cohort; the repair did not implement predicate-by-predicate filtering.
 
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
 A historical replay used eleven merge batches reconstructed from one work window. All eleven runs of the previous configuration reached the 120-second execution limit; the revised configuration completed with a measured p95 of 8.86 seconds. The earlier durations were censored at the timeout, so 120 seconds is not a measured completion-time p95. This replay demonstrates the benefit of reconnecting selection to execution for that workload, not a current or general performance rate.
 
 This incident identifies three responsibilities. \textbf{Selection} names the required checks. \textbf{Execution} performs them, or a deliberately broader set. \textbf{Interpretation} determines how findings affect acceptance. If execution runs extra checks, record that broader scope and define how their findings are handled. Do not silently let them change the gate's policy or discard a consequential failure merely because it fell outside the selection. Preserve the finding, investigate the discrepancy, and apply the declared blocking, escalation, or review policy. Test all three responsibilities together.
@@ -148,6 +156,7 @@ The principal requirement is that the selected checks supply the required eviden
 
 DocAble's validation machinery compares the selector's declarations with several sources of evidence.
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 Static dependency analysis constructs a separate estimate of potentially affected subsystems. For C\# code, it follows reverse project references; for Python, it follows reverse module imports. The validation condition requires the subsystems reached by this analysis to be included in the selector's declaration:
 
 \[
@@ -158,12 +167,14 @@ Here, both sets contain \textbf{validation subsystems} for a proposed change C; 
 
 The direction of this relation matters. The reachable set under-approximates potential impact: the analyzed graphs may omit reflection, dynamic dispatch, configuration-dependent behavior, or other consequential relationships. Passing the subset check establishes consistency with the dependencies that analysis found, not completeness of the declaration. The two calculations also share the component model, so a common classification error can escape this comparison.
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 Additional model relationships provide another source of counterexamples. DocAble's validator compares the declared subsystems with maintained relationships among controls, mutations, and other engineering mechanisms. These checks can expose dependencies not visible in ordinary project-reference or import graphs.
 
 Coverage evidence provides a third perspective. If an observed execution associates a validation unit with implementation affected by the change, but the selector would omit that unit, the disagreement warrants investigation. Coverage evidence is also incomplete: an unobserved execution path cannot establish that no dependency exists.
 
 Finally, full-suite execution provides an empirical comparison. Run the selector alongside ordinary validation and record which checks it would omit. A failure in an omitted subsystem exposes a possible under-declaration. Investigate whether the change caused the failure, whether the check's scope is declared correctly, and whether the result is reproducible. This comparison can challenge the selector's models without treating every pre-existing or intermittent failure as evidence of a new dependency.
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 The historical evidence illustrates the limits of corpus validation. Across 200 historical change windows, the analysis reported 28 under-declaration findings arising from six root causes. Widening the modeled relationships reduced those findings to zero on that corpus. A subsequent evaluation reported 111 under-declaration findings across 797 historical change windows. A window may produce several findings, and findings may share a cause; these totals do not count distinct failing changes or distinct root causes.
 
 These results do not establish a universal error rate or correctness over future changes. They show that eliminating findings on one corpus does not establish adequacy on a broader population. Additional methods and more varied changes can expose relationships that an earlier evaluation did not challenge.

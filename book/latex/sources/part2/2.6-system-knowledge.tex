@@ -63,6 +63,7 @@ Behavioral models can also be connected, but sharing identifiers does not determ
 
 % <!-- point: joins-are-also-where-information-is-lost | A join can preserve entity identity while losing a distinction needed by the decision; shared identity does not establish semantic adequacy. | terms: derive-and-join, model-drift -->
 
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
 A join only works if it preserves the distinctions the decision needs. A record may use the correct user identifier and still reduce an unlimited entitlement to a finite-credit balance. Shared identity makes the connection explicit; it does not guarantee that the information passed across it is adequate.
 
 Models can be connected across different concerns or across levels of abstraction. A service catalog, deployment model, and measurement record provide different views of the same service; joining them connects information that no individual view contains. A service-level architecture and a module-level dependency graph instead describe related structure at different levels of detail. The latter introduces classes, interfaces, and dependencies omitted from the former, but must preserve any architectural boundaries established by the higher-level model.
@@ -126,7 +127,8 @@ DocAble uses connections among engineering models to answer questions about its 
 
 % <!-- point: a-heterogeneous-substrate-of-structured-records | DocAble's models differ in shape on purpose: roughly 130 structured model records plus data dialects share identities, derivations, query surfaces, and traceability where useful, are represented as data so map and territory stay separable, and nothing forces them into a single representation. | terms: representation-form, map-and-territory -->
 
-DocAble uses different representations for different engineering questions. Roughly 130 structured model records and several data dialects describe components, deployment, data flow, behavior, and governance. Shared identities let an engineer move among these records as a question requires. \autoref{modeling-substrate} follows the slow service from its registry entry to its deployment and then to performance measurements.
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+DocAble uses different representations for different engineering questions. A September 2026 census counted roughly 130 structured models in \texttt{system-models/}; these records and several data dialects describe components, deployment, data flow, behavior, and governance. Shared identities let an engineer move among these records as a question requires. \autoref{modeling-substrate} follows the slow service from its registry entry to its deployment and then to performance measurements.
 
 The models are represented as data rather than importing the implementation they describe. Keeping the representations separate lets engineers check their correspondence. Where a model is intended to provide independent evidence about an artifact, the model must remain distinguishable from that artifact. \magevalue{chapter:software-factories} shows how these models are maintained and used in the governed engineering environment.
 
@@ -139,34 +141,48 @@ The models are represented as data rather than importing the implementation they
 
 \subsection{One Dependency for Execution and Analysis}
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 Suppose we change a remediation pass. Which later computations depend on its output, and will they still execute in the required order? In \autoref{chapter:2.3-structural}, we introduced DocAble\textquotesingle s remediation-computation graph for investigating dependencies. Connecting those dependencies to the execution declarations lets us examine their scheduling consequences without reconstructing the pipeline from code. For a DOCX job with table-header repair enabled, one pass marks table headers and another checks the table\textquotesingle s structure. The registry declares that the repair pass writes table-header information and that the structure check reads it.
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 Matching that write to that read gives a dependency: repair must precede the check. The scheduler uses the dependency to order the work, so the check examines the table after the header pass has run.
 
 % <!-- point: a-separate-python-view-projects-the-model-for-analysis | The Office analytical graph projects resource edges from the same registry read/write metadata used by scheduling; the PDF projection uses parallel typed declarations held in correspondence by blocking checks. -->
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 The Office registry also emits its resource dependencies for a separate Python graph view. The edge from table-header repair to the structure check therefore comes from the same read/write metadata used by scheduling. An engineer can inspect which computations depend on table-header information, or join their identities to measurements, without executing the remediation pipeline. The Python graph provides the analytical view; the execution machinery does not schedule from it.
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 PDF uses a different connection. Its analytical edges are projected from parallel typed declarations of what each pass produces and consumes, including information consulted only to decide whether a pass runs. Blocking checks hold those declared relationships in correspondence with the executable pipeline.
 
 % <!-- point: one-source-of-truth-supports-both-directions | One set of Office read/write declarations supplies both scheduling and analysis; PDF analytical relations instead depend on checked correspondence with parallel declarations. -->
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 The Office example makes the same dependency available for execution and analysis; it does not derive a new relationship by joining independent models. The execution machinery uses the declared relationships to schedule work; the analytical view exposes the structure needed for queries and checks. The important question is which representation owns each fact and how each consumer remains connected to that source. Where separate declarations are necessary, as in the PDF view, checked correspondence carries that connection.
 
 \subsection{What One Document Run Changed}
 
-% <!-- point: event-grain-is-part-of-the-provenance-model | DocAble records consequential document mutations as typed operations; the selected grain supports audit, debugging, and a changelog. -->
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% <!-- point: event-grain-is-part-of-the-provenance-model | Remediation-pass stamps and typed editor-session operations are distinct records whose selected grain supports audit, debugging, and derived history. -->
 
-A static computation graph does not record the mutations performed during a particular run. DocAble records consequential document changes as typed operations: each operation names its target, the mutation made, the responsible remediation pass, and the retained evidence. That history supports audit, debugging, and a changelog. Recording only ``document modified'' would lose the very distinctions those uses need.
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+A static computation graph does not record the mutations performed during a particular run. DocAble retains different records for different consumers: remediation-pass stamps identify the pass responsible for a recorded change, while typed editor operations identify their targets and requested mutations. The derived changelog and editor-session history support audit and debugging, but they are distinct records. Recording only ``document modified'' would lose the distinctions those uses need.
 
-% <!-- point: a-typed-edit-record-replays-deterministically | Typed PDF edit values form a per-session log that a replay engine can apply deterministically while omitting the reasoning that produced them. -->
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% <!-- point: a-typed-edit-record-replays-deterministically | The applied-operation history and the lower-level PDF edit log are distinct; the replay engine applies supported pending edits, while both records omit the reasoning that produced them. -->
 
-During a PDF remediation session, typed edit values form a per-session log. A replay engine can apply the same sequence deterministically. This record preserves the mutations while omitting the reasoning, analyses, control decisions, and retries that produced them. The computation graph asks what may compose; the edit record asks what happened to this artifact. \autoref{two-reductions-static-realized} contrasts these two reductions.
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+During a PDF editing session, successful operations are recorded when a session identifier is present. That applied-operation history is distinct from the PDF model's lower-level edit log, whose replay engine applies supported pending edits in dependency order and rejects unsupported pending edit types. These records preserve mutation information while omitting the reasoning, analyses, control decisions, and retries that produced it. The computation graph asks what may compose; the edit record asks what happened to this artifact. \autoref{two-reductions-static-realized} contrasts these two reductions.
 
 % <!-- point: proposed-edits-and-applied-history-are-different-representations | A typed changeset represents intended PDF mutations before application; per-operation results and attribution distinguish proposed changes from what was actually applied, independently of the producer's reasoning strategy. -->
 
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 DocAble's PDF changeset interface also represents edits before they happen. A changeset is an ordered collection of typed operations, each naming a target and a supported mutation, such as assigning alternative text or changing a structural tag. The proposing computation does not manipulate PDF objects directly. An applier resolves the targets against the current document and returns a result for each operation. The proposal expresses intended mutations; the results and attribution record show what was actually applied.
 
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 A specialized remediation pass, a general-purpose agent, or a human editor can propose operations using the same vocabulary. The interface preserves the information needed to apply and inspect the change while leaving its producer's reasoning unspecified. \magevalue{chapter:alignment} examines the constraints on applying such proposals; \magevalue{chapter:software-factories} returns to the reasoning strategies that can produce them.
 
 % <!-- point: record-and-replay-separate-three-questions | Declared computations, recorded mutations, and replay answer what may compose, what happened in a run, and whether its recorded mutations can be reproduced. -->
@@ -174,20 +190,29 @@ A specialized remediation pass, a general-purpose agent, or a human editor can p
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/two-reductions-static-realized-a3b7edfa06.pdf}
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: design-and-implementation-scope
 \caption{\emph{Computation structure versus recorded history.} Declared computations and a run's actual mutations answer different questions. A shared computation identity can join the recorded edits to the static model when needed, while preserving the distinction between what was declared and what happened.}
 \label{two-reductions-static-realized}
 \end{figure}
 
-% <!-- point: provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps | Structural checks require attribution records but do not establish the semantic correctness of their content. | terms: soft-vs-hard-governance -->
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% <!-- point: provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps | Structural checks examine selected mutator populations for attribution wiring; they do not establish universal coverage or the semantic correctness of records. | terms: soft-vs-hard-governance -->
 
-DocAble joins staged-run latency and cost to stable computation identities, so measurements can be queried alongside the static graph. The per-session edit log remains a separate provenance record; it is not a per-run execution graph over computation nodes. Recording attribution is also distinct from ensuring that every mutation records it. A structural check requires typed mutation operations to emit attribution, but it cannot establish that the semantic explanation inside the record is correct.
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+DocAble joins staged-run latency and cost to stable computation identities, so measurements can be queried alongside the static graph. The per-session edit log remains a separate provenance record; it is not a per-run execution graph over computation nodes. Recording attribution is also distinct from ensuring that every mutation records it. A structural check examines selected production mutators for recognized attribution wiring, with blocking and advisory populations. It cannot establish that every mutation is covered or that the semantic explanation inside a record is correct.
 
 \subsection{Joining a Call to Its Deployment Permission}
 
-% <!-- point: the-interservice-edge-is-a-worked-join | One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains. | terms: derive-and-join, join-key -->
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: the-interservice-edge-is-a-worked-join | The deployment dependency map joins to runtime identity and deployed service names to derive invocation grants; typed call declarations are checked against that map, and shared principals can collapse several logical callers into one binding. | terms: derive-and-join, join-key -->
 
-A permitted interservice call requires several models to agree. A typed edge records that one service may call another. Deployment configuration identifies the environment variable carrying the callee\textquotesingle s URL. The caller\textquotesingle s runtime identity determines which invocation grant the cloud\textquotesingle s access-control configuration must contain. Joining the edge to these records determines both how to reach the callee and who is permitted to invoke it; a further comparison checks agreement with the service catalog\textquotesingle s documented topology. Twenty-eight modeled call edges produce ten distinct invocation grants once shared runtime identities are accounted for. No single source artifact contains that deployment plan.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+A permitted interservice call requires several models to agree. The typed edge model records that one service may call another and is checked against the deployment dependency map. Deployment configuration identifies the environment variable carrying the callee\textquotesingle s URL. The caller\textquotesingle s runtime identity determines which invocation grant the cloud\textquotesingle s access-control configuration must contain. The grant planner joins the deployment dependency to the runtime identity and deployed callee name. Several logical callers can require the same binding when they share a runtime identity. No single source artifact contains that deployment plan.
 
-DocAble introduced the join after service URLs were wired correctly but the matching invocation grant was absent, taking staging down with authorization errors. The repair made URL wiring and authorization two consequences of the same modeled edge, so a later change could derive them together rather than requiring another bespoke grant.
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+DocAble introduced the join after service URLs were wired correctly but the matching invocation grant was absent, taking staging down with authorization errors. The repair made URL wiring and authorization two consumers of the same deployment dependency, so a later change could derive them together rather than requiring another bespoke grant.
 
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
 Each connection has a specific purpose. Resource declarations supply a dependency, computation identities connect measured cost to a pass, an edit record explains a document change, and a call joined to a deployment identity determines a permission. Keeping these relationships explicit lets engineers inspect the evidence behind each analysis and detect disagreements between representations.

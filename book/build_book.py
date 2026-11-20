@@ -2133,7 +2133,16 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
             _emit(_render_unordered_list(block))
             continue
         if kind is _ir.BlockKind.ORDERED_LIST:
-            _emit(_render_ordered_list(block))
+            # Pandoc separates developed list items with blank lines. They are
+            # still one list; rendering each block independently restarts at 1.
+            items = [block]
+            for following in range(_bi + 1, len(blocks)):
+                candidate = blocks[following].strip("\n")
+                if _ir.classify_render_block(candidate) is not _ir.BlockKind.ORDERED_LIST:
+                    break
+                items.append(candidate)
+                skip_blocks.add(following)
+            _emit(_render_ordered_list("\n".join(items)))
             continue
         # Paragraph (the IR's PARA fall-through).
         paragraph = _render_paragraph(block)
@@ -2462,6 +2471,8 @@ def _render_ordered_list(block: str) -> str:
     """An ordered list — items open with `N. `; wrapped continuations fold into the current item (same as
     the unordered case)."""
     oli: list[str] = []
+    first = re.match(r"^\s*(\d+)\.\s", block)
+    start = int(first.group(1)) if first else 1
     for ln in block.splitlines():
         s = ln.strip()
         if re.match(r"^\d+\.\s", s):
@@ -2471,7 +2482,8 @@ def _render_ordered_list(block: str) -> str:
         else:
             oli.append(s)
     items = "".join(f"<li>{inline(t)}</li>" for t in oli)
-    return f"<ol>{items}</ol>"
+    start_attr = f' start="{start}"' if start != 1 else ""
+    return f"<ol{start_attr}>{items}</ol>"
 
 
 def _render_paragraph(block: str) -> str:
@@ -4728,6 +4740,7 @@ _PUBLISHED_APPENDICES = (
             ("governed-delegation", "Blueprint: Governed Delegation"),
             ("model-based-test-selection", "Blueprint: Model-Based Regression-Test Selection"),
             ("maintaining-the-machinery", "Maintaining the Machinery"),
+            ("designing-your-own-blueprint", "Designing Your Own Blueprint"),
         ),
     },
     {

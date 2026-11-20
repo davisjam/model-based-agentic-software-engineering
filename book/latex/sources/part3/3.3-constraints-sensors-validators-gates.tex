@@ -141,10 +141,14 @@ These categories describe functions rather than execution stages. A source scann
 
 % <!-- point: typed-document-edits-separate-proposal-from-controlled-application | In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document. -->
 
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 DocAble's PDF changeset interface provides an action boundary for document repair. A reasoning component may decide that an image needs alternative text without receiving unrestricted access to the PDF's internal representation. It proposes a typed operation naming the target and intended change. The operation vocabulary constrains which mutations can be expressed through this interface; the applier determines whether a supported operation can proceed against the current document.
 
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 The applier's refusals make that boundary concrete. An operation that marks a structure as decorative must identify the source of the classification. The applier refuses it if the classification source is missing, or if the target is a heading, a formula, or content carrying authored alternative text. These are checks with enforced outcomes. Subsequent validation supplies evidence about selected properties of the resulting document, including content preservation and mechanically testable accessibility requirements. A well-formed proposal does not establish that its description is educationally appropriate, and successful application does not establish complete accessibility.
 
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
 The boundary also preserves freedom. A specialized pipeline and a general-purpose agent may use different methods to decide what to repair. Neither needs to reproduce the mechanics of applying a supported edit. Nor does either gain authority to bypass the restrictions imposed by the common interface. The architecture is therefore more than a convenient API: it separates the judgment that proposes a change from the mechanisms that determine which changes can be made and which results are acceptable.
 
 % <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
@@ -177,10 +181,13 @@ Model coverage, code coverage, and the properties checked answer different quest
 
 The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 \textbf{DocAble: Testing Ownership.} DocAble's ownership protocol provides a useful comparison. Workers claim queued jobs under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. The obligation is that A's stale release must not disturb B's current ownership. The behavioral model supplies expected outcomes; tests compare them with what the implementation actually does.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 A regression test can reproduce that sequence against the implementation and assert that B remains the owner. Property-based testing can evaluate the broader rule that a release carrying an old generation must not clear the current claim, varying worker identities, claim generations, and relevant operations. The generator must actually exercise stale releases for these checks to supply the intended evidence.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 For a model-based test, the ownership model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A driver can issue each operation to both that model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences.
 
 A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}. Testing selected implementation executions also differs from analyzing all behavior admitted by a bounded model. We return to that distinction when choosing mechanisms for the recovery protocol.
@@ -199,12 +206,16 @@ The same reasoning applies to the engineering environment. A validator, sensor, 
 
 \textbf{DocAble: Failure Responses and Checking Failures.} DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
 
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
 DocAble uses the failure model to guide fault-injection tests. The tests inject modeled failures at dependency boundaries while exercising the real service implementation, then inspect the result returned to the caller and the response of downstream consumers. They also exercise healthy operation, so a test cannot pass merely because every request fails. Where a failure affects admission, the test checks whether the required consequence follows. Reproducing existing behavior does not establish that the behavior is acceptable.
 
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
 The model also supports failure provenance. When a failure occurs, DocAble can record where it originated, where it was observed, and how it propagated through subsequent operations. These records let engineers trace a failed request through the affected services rather than reconstructing its history from unrelated error messages. The model need not enumerate every possible fault; DocAble concentrates on failures affecting recovery, correctness, and the trustworthiness of evidence, extending the representation when new cases emerge.
 
+% Evidence: E22 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E22.md | kind: dated-case-evidence
 This approach exposed an incorrect interpretation of output from DocAble's accessibility checker. If the underlying validation program timed out or failed to run, the checker could report an informational issue while returning zero failed checks. A caller consulting only that count could mistake an incomplete evaluation for a clean document. The checker had reported the failure, but its consumer treated the absence of reported violations as evidence that validation had succeeded. The missing distinction was between ``no violations found'' and ``validation did not complete.'' Modeling these outcomes separately exposed the error in how the result was interpreted.
 
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
 A separate incident concerned the coverage of the checker itself (\autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates}): DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
 
 Agentic implementation changes the economics of this work. Agents can help construct mutants, fault-injection harnesses, and regression tests, making systematic challenges to the checking machinery less expensive. The engineer still decides which faults matter and whether the experiments adequately represent them. A mutation score is not a reliability guarantee: it depends on the mutations selected, and some mutants preserve the program's behavior. Fault injection likewise covers only the failure conditions and responses exercised. Both techniques provide something more useful than a larger test count: evidence that selected violations can actually be detected.
@@ -245,6 +256,7 @@ The receiving boundary can require such evidence without enumerating every possi
 
 % <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 DocAble's document-remediation jobs can outlive a worker attempt. A worker may crash, become slow, or lose contact while another attempt becomes eligible to continue the work. A lease makes current ownership visible and allows apparently abandoned work to be recovered. Its expiry cannot establish that the old worker stopped: a delayed worker may still return. The design therefore distinguishes eligibility to recover the work from permission to perform its protected side effect.
 
 \autoref{match-mechanism-to-property} shows how DocAble addresses two obligations in this recovery protocol. A runtime constraint prevents competing workers from acquiring the same claim for a protected effect. A separate analysis checks whether the modeled recovery sequence permits a stale worker to invalidate a newer claim. The first restricts what the implementation can do; the second examines behavior that depends on the ordering of several operations.
@@ -252,15 +264,20 @@ DocAble's document-remediation jobs can outlive a worker attempt. A worker may c
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/match-mechanism-to-property-2c4d8f0003.pdf}
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
 \caption{\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.}
 \label{match-mechanism-to-property}
 \end{figure}
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 DocAble uses a durable compare-and-set to protect the claim for an effect. The operation succeeds only while the stored state matches the required prior state, so competing workers cannot both acquire the same claim. An expired lease or repeated delivery does not bypass this restriction. The constraint governs a particular effect; it does not guarantee that every part of the job executes exactly once.
 
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 The recovery protocol also has obligations that depend on the sequence of operations. Suppose worker A's lease expires, worker B acquires a newer claim, and A subsequently attempts to release its old claim. The release must not clear B's ownership. DocAble uses a purpose-built explicit-state checker to explore interleavings of its ownership model within stated bounds and search for violations of this property.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The analysis establishes a property of the represented protocol, not of every possible implementation. Tests or other evidence must separately establish that the implementation follows it.
 
-A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification checked with TLC was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it.
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it.
 
 % <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
 

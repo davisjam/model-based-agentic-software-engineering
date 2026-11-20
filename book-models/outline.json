@@ -913,7 +913,7 @@
             },
             {
               "slug": "the-lease-model-omits-the-processing-topology",
-              "text": "The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model.",
+              "text": "The model omits processing topology while preserving ownership, generation, lifetime, and reclamation; a changed implementation must be checked for correspondence with those semantics.",
               "block_index": 67
             },
             {
@@ -1012,12 +1012,12 @@
           "points": [
             {
               "slug": "the-service-flow-model-is-a-declared-source-of-truth-not-a-firewall",
-              "text": "The declared graph is the single source of truth for permitted inter-service edges, with one node declared publicly reachable and every other edge authenticated; a completeness check requires each gated edge to be fully specified, and the deployment config is generated from the graph.",
+              "text": "The typed graph declares permitted inter-service edges and is checked against the dependency map consumed by deployment; completeness checks concern the declaration, while runtime permission depends on installed controls.",
               "block_index": 40
             },
             {
               "slug": "docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question",
-              "text": "DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question.",
+              "text": "DocAble checks the typed graph against the deployment dependency map but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question.",
               "block_index": 44
             }
           ]
@@ -1189,12 +1189,12 @@
           "points": [
             {
               "slug": "event-grain-is-part-of-the-provenance-model",
-              "text": "DocAble records consequential document mutations as typed operations; the selected grain supports audit, debugging, and a changelog.",
+              "text": "Remediation-pass stamps and typed editor-session operations are distinct records whose selected grain supports audit, debugging, and derived history.",
               "block_index": 60
             },
             {
               "slug": "a-typed-edit-record-replays-deterministically",
-              "text": "Typed PDF edit values form a per-session log that a replay engine can apply deterministically while omitting the reasoning that produced them.",
+              "text": "The applied-operation history and the lower-level PDF edit log are distinct; the replay engine applies supported pending edits, while both records omit the reasoning that produced them.",
               "block_index": 62
             },
             {
@@ -1209,7 +1209,7 @@
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
-              "text": "Structural checks require attribution records but do not establish the semantic correctness of their content.",
+              "text": "Structural checks examine selected mutator populations for attribution wiring; they do not establish universal coverage or the semantic correctness of records.",
               "block_index": 69
             }
           ]
@@ -1224,7 +1224,7 @@
           "points": [
             {
               "slug": "the-interservice-edge-is-a-worked-join",
-              "text": "One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains.",
+              "text": "The deployment dependency map joins to runtime identity and deployed service names to derive invocation grants; typed call declarations are checked against that map, and shared principals can collapse several logical callers into one binding.",
               "block_index": 72
             }
           ]
@@ -2710,12 +2710,12 @@
             },
             {
               "slug": "the-iam-join-derives-grants",
-              "text": "The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time.",
+              "text": "The IAM join: deployment dependencies × deployed service names × runtime identity derive the invoker-grant plan; application results and live authorization provide different evidence.",
               "block_index": 83
             },
             {
               "slug": "the-provenance-join-derives-the-changelog",
-              "text": "The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp.",
+              "text": "The provenance join derives a changelog from recorded remediation-pass stamps; a wiring validator checks selected mutator populations for missing attribution.",
               "block_index": 85
             }
           ]
@@ -3418,7 +3418,7 @@
             },
             {
               "slug": "context-postpones-but-a-model-changes-the-problem",
-              "text": "DocAble’s roughly 590,000-token document exceeded a 272,000-token context; windowing and compression reduced the information required for each judgment.",
+              "text": "DocAble’s HTML/CSS export was estimated at roughly 590,000 tokens against a 272,000-token context; windowing and compression reduced the information required for each judgment.",
               "block_index": 8
             },
             {

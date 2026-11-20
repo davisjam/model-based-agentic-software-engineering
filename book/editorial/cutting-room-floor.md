@@ -23533,3 +23533,261 @@ Source revision: `eb7b5bc157367af60754a791524c97728236d719`. Replacement date: 2
 ```latex
 \magevalue{chapter:software-factories} examines the system and its development in detail. For now, a few facts about DocAble are in order.
 ```
+
+## Evidentiary basis reconciliation — 2026-11-20
+
+Source revision: `4a80cb1f40e67cecbcb07bc0ad4efef5294750b3`. Narrow corrections from the completed 32-ID evidence reconciliation; no general rewrite. Private receipts remain in the ignored local evidence directory.
+
+### E10: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:289
+
+Replace unsupported consumer/enforcement chain, preserving the join.
+
+```latex
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} The typed inter-service edge model declares which service calls which, over which plane, under which identity. Deployment machinery consumes those edges and derives the invoker grants and token audiences each service needs --- and a coherence gate asserts at deploy time that the granted permissions match the modeled relationships. Least-privilege wiring is not a checklist a human re-audits; it is a projection of the service graph.
+```
+
+### E10: book/latex/sources/part2/2.5-decision.tex:96
+
+Actual map remains deployment input.
+
+```latex
+DocAble distributes document remediation across several services. The public web tier receives requests, while internal services perform document editing, generation, rendering, OCR, and other work. Rather than specifying the permitted connections independently in deployment configuration, DocAble records them in a service-flow model. Each directed edge declares that one service may invoke another; an absent edge excludes that relationship from the declared policy.
+```
+
+### E10: book/latex/sources/part2/2.5-decision.tex:109
+
+Correct model card.
+
+```latex
+  \textbf{Model} --- a declared graph of services and the permitted edges between them; the deployment is wired from the graph rather than the graph inferred from the deployment.
+```
+
+### E10: book/latex/sources/part2/2.5-decision.tex:128
+
+Preserve policy example; avoid false generation claim.
+
+```latex
+The declared graph answers whether a proposed service invocation is permitted: look for the corresponding directed edge. It also supports reachability questions, such as which services the public web tier can reach through permitted calls. DocAble treats this graph as the source of truth for service-flow relationships and generates deployment configuration from its declared edges. A completeness check requires each gated edge to contain the information needed for deployment. These checks establish properties of the declaration and its generated configuration, not whether runtime traffic follows the intended policy.
+```
+
+### E10: book/latex/sources/part2/2.5-decision.tex:133
+
+Caption must agree with actual consumer; figure geometry unchanged.
+
+```latex
+\caption{\emph{DocAble's service-flow model.} Arrows show selected permitted service invocations; asynchronous job dispatch is omitted. The web tier is the sole public entry point. Deployment configuration is generated from the full model, while runtime conformance requires separate enforcement.}
+```
+
+### E10: book/latex/sources/part2/2.6-system-knowledge.tex:189
+
+Remove unsupported count; preserve concrete join and deduplication.
+
+```latex
+A permitted interservice call requires several models to agree. A typed edge records that one service may call another. Deployment configuration identifies the environment variable carrying the callee\textquotesingle s URL. The caller\textquotesingle s runtime identity determines which invocation grant the cloud\textquotesingle s access-control configuration must contain. Joining the edge to these records determines both how to reach the callee and who is permitted to invoke it; a further comparison checks agreement with the service catalog\textquotesingle s documented topology. Twenty-eight modeled call edges produce ten distinct invocation grants once shared runtime identities are accounted for. No single source artifact contains that deployment plan.
+```
+
+### E10: book/latex/sources/part2/2.6-system-knowledge.tex:191
+
+Historical outage remains author account; distinguish dependency map from typed mirror.
+
+```latex
+DocAble introduced the join after service URLs were wired correctly but the matching invocation grant was absent, taking staging down with authorization errors. The repair made URL wiring and authorization two consequences of the same modeled edge, so a later change could derive them together rather than requiring another bespoke grant.
+```
+
+### E10: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:270
+
+Align metadata/model-card/table claim with its corrected body while preserving stable identifiers.
+
+```latex
+Which services exist, and what may call what? & Deployment topology plus a typed inter-service call-edge model & Deploy machinery; agents localizing changes & Ownership and boundaries are read from the map, not rediscovered per change \\
+```
+
+### E14: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:293
+
+Do not replace universal assertion with equally unsupported universal assertion about covered population.
+
+```latex
+\textbf{Mutation → stamp → derived account.} Every mutating operation in the remediation core writes a provenance stamp --- the verb, the pass, the visibility of the change --- and the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator identifies mutating paths that fail to stamp their work. The derived changelog provides structured evidence of the recorded mutations; the wiring check guards the obligation to record them.
+```
+
+### E14: book/latex/sources/part2/2.6-system-knowledge.tex:160
+
+Keep machinery in causal order, distinguish provenance channels.
+
+```latex
+A static computation graph does not record the mutations performed during a particular run. DocAble records consequential document changes as typed operations: each operation names its target, the mutation made, the responsible remediation pass, and the retained evidence. That history supports audit, debugging, and a changelog. Recording only ``document modified'' would lose the very distinctions those uses need.
+```
+
+### E14: book/latex/sources/part2/2.6-system-knowledge.tex:164
+
+Correct session scope. Preserve existing replay sentence, but its separate replay receipts should be retained by parent; E14 code alone is not a replay validation.
+
+```latex
+During a PDF remediation session, typed edit values form a per-session log. A replay engine can apply the same sequence deterministically. This record preserves the mutations while omitting the reasoning, analyses, control decisions, and retries that produced them. The computation graph asks what may compose; the edit record asks what happened to this artifact. \autoref{two-reductions-static-realized} contrasts these two reductions.
+```
+
+### E14: book/latex/sources/part2/2.6-system-knowledge.tex:183
+
+Bound enforcement and semantic evidence.
+
+```latex
+DocAble joins staged-run latency and cost to stable computation identities, so measurements can be queried alongside the static graph. The per-session edit log remains a separate provenance record; it is not a per-run execution graph over computation nodes. Recording attribution is also distinct from ensuring that every mutation records it. A structural check requires typed mutation operations to emit attribution, but it cannot establish that the semantic explanation inside the record is correct.
+```
+
+### E14: book/latex/sources/appendix-handbook/controlled-mutation.tex:88
+
+Current pinned scanner has both populations; preserve existing extraction and test exclusions.
+
+```latex
+Coverage requires a declared population. DocAble's stamp-wiring lint inspects selected production primitive directories, discovers public static methods with mutation-name prefixes, and looks for recognized stamp calls or a justified exemption. Its documented extraction heuristic skips a method whose body it cannot reliably extract. Test code is outside that scan. A clean result therefore concerns the enumerated methods and recognized wiring; it is not proof that every possible mutation in the product emits accurate provenance.
+```
+
+### E14: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:273
+
+Align metadata/model-card/table claim with its corrected body while preserving stable identifiers.
+
+```latex
+Which step changed this document element? & Per-mutation provenance stamps projected into a derived changelog & The customer-facing changelog; forensic queries & Diagnosis is a lookup over evidence, not a cross-file investigation \\
+```
+
+### E05: book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex:216
+
+Make retained historical denominator explicit.
+
+```latex
+We developed a separate Python graph to inspect those relationships. In the version examined here, it contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume. The scheduler reads the computation model to order the work; the analytical graph lets us query and check those relationships.
+```
+
+### E05: book/latex/sources/part2/2.3-structural.tex:137
+
+Date fanout without replacing it with total graph counts.
+
+```latex
+DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} gives an example of each kind of \emph{typed composition}: the classifier determines which repair passes run, while the repair passes produce patches that the patch applier consumes. The first relationship governs execution and the second carries data. Recording the edge type preserves that distinction. These distinctions make impact questions straightforward to investigate: the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
+```
+
+### E37: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex:263
+
+Retain purpose and chronology without claiming observed TLC execution.
+
+```latex
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification checked with TLC was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it.
+```
+
+### E37: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:311
+
+Preserve lifecycle/ownership teaching; remove unreceipted observed counterexample and multi-day incident. Four-step bound retained privately; bounded stated publicly.
+
+```latex
+Explicit models expanded the questions the environment could answer. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was written as small temporal specifications and checked mechanically; with recovery disabled, the checker produced exactly the stranded execution the property was meant to exclude. Checking the model created a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercised production operations against the executable model, and when one such test drifted red for days after production changed, the durable response was correspondence machinery --- model-to-implementation checks selected automatically when modeled surfaces change. The factory then added machinery to keep the map true.
+```
+
+### E33: book/latex/sources/part4/4.4-engineering-the-environment.tex:168
+
+State policy rather than execution guarantee.
+
+```latex
+The redesign separated broad validation from the arrival of individual changes, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks ran every thirty minutes against the main branch, in an isolated worktree, with a lock permitting only one sweep at a time. Several merges could therefore be evaluated together. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
+```
+
+### E41: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:391
+
+Preserve concrete failure without unsupported frequency or proven causal attribution.
+
+```latex
+Semantic instructions required their own engineering model. Agents developing DocAble's image-description prompts introduced numerical requirements, including a demand for at least three specific facts and a minimum description length. Some source images did not contain enough legible information to satisfy those requirements. In several evaluated cases, the foundation model invented plausible values or padded descriptions to meet the prescribed quantity. The problem was not the particular threshold: an unconditional demand for information absent from the source could produce the same failure.
+```
+
+### E52: book/latex/sources/part6/6.2-what-the-theory-predicts.tex:30
+
+Disclose estimate basis without weakening economics lesson.
+
+```latex
+DocAble encountered this problem when representing large documents for remediation. One document produced roughly 590,000 tokens of reasoning representation against a 272,000-token context window. A more costly foundation model with a larger context window was one possible response. Another was to change the representation: windowing and whole-document compression reduced the information required for each judgment. The engineering choice was not simply how much context to purchase, but how much reasoning the representation could save.
+```
+
+### E46: book/latex/sources/part5/5.3-evaluating-docable.tex:47
+
+Remove only unsupported balancing anecdote; preserve explicit evaluation limitation.
+
+```latex
+One presentation makes the distinction concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order. In the same presentation, the human version transcribed mathematical content that DocAble missed. These author-inspected examples explain disagreements between the measures; they are not systematic expert adjudication.
+```
+
+### E12: book/latex/sources/part2/2.6-system-knowledge.tex:129
+
+Name historic population, not current live-loader result.
+
+```latex
+Roughly 130 structured model records and several data dialects describe components, deployment, data flow, behavior, and governance.
+```
+
+### E08: book/latex/sources/part2/2.4-behavioral.tex:202
+
+Preserve portability lesson as engineering condition; no migration receipt. Update adjacent point metadata too.
+
+```latex
+DocAble\textquotesingle s implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes.
+```
+
+### E20: book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex:138
+
+Separate evidence-refresh practice from mechanically checked closure condition; present includes ancestry or equivalent patch.
+
+```latex
+DocAble's definition-of-done audit recomputes evidence over the completed task instead of relying only on an earlier record.
+```
+
+### E20: book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex:138
+
+Current Appendix A is design guidance, not a complete historical dispatch transcript.
+
+```latex
+traces an actual dispatch through model selection, work-order construction, and completion checks
+```
+
+### E29: book/latex/sources/part4/4.2-one-problem-many-models.tex:216
+
+Name actual test consumer and distinguish justification discipline.
+
+```latex
+Each is counted deterministically on a fixed fixture. A change may lower these quantities freely; raising one requires a named justification recorded beside the baseline.
+```
+
+### E32: book/latex/sources/part4/4.4-engineering-the-environment.tex:128
+
+Use exact receipted incident and recovery operation.
+
+```latex
+DocAble learned this when agents used a destructive Git escape during stuck merges: the durable rule named both the forbidden action and the recovery that preserved already-applied work.
+```
+
+### E30: book/latex/sources/part4/4.3-brownfield-engineering.tex:157
+
+Pinned lint returns failure for BLOCKING internal-boundary findings; retain diagnostic-versus-semantic distinction.
+
+```latex
+The primitive-density detector remained advisory; the narrower checks enforced the actual obligations.
+```
+
+## Appendix construction guidance — 2026-11-20
+
+### book/latex/sources/appendix-handbook/maintaining-the-machinery.tex:58
+
+Source revision: `4a80cb1f40e67cecbcb07bc0ad4efef5294750b3`. First two paragraphs condensed with both substantive distinctions retained; cost/benefit close transferred into A.8 stage7. Archive replacements, not pure movement of intact blocks.
+
+```latex
+The third move, checking correspondence, has two possible responses. If a descriptive representation is stale, repair it to match the implementation. If an authoritative obligation is violated, repair the implementation or reconsider the obligation through the appropriate engineering decision. A check that reports disagreement cannot decide which side ought to change merely because it found a difference.
+
+The sixth move also has a scope. Closing the external PDF editing interface does not establish that every internal document mutation uses it. A useful control has a stated boundary and evidence that the relevant paths cross it. Extending that boundary is further engineering work, with its own compatibility and maintenance costs.
+
+The endpoint is enough dependable machinery for the selected work. A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. The adoption and measurement procedures in Appendix B's \href{appendix-b-getting-started.html}{Getting Started} and \href{appendix-b-measuring-mage.html}{Measuring MAGE} sections support that decision as the engineering environment changes.
+```
+
+### Evidence callback: book/latex/sources/part5/5.2-inside-docables-software-factory.tex:273
+
+Source revision: `4a80cb1f40e67cecbcb07bc0ad4efef5294750b3`. The census row must preserve the format-specific scope already stated in the structural-model example; avoid claiming universal mutation coverage.
+
+```latex
+What may touch a document format\textquotesingle s internals? & Registry of external seams plus typed format models owning all mutation & Build-time ban checks on raw library access & Raw library access outside the typed boundary is rejected at build time \\
+```

@@ -135,6 +135,30 @@ Do not silently generalize one case into a universal law.
 
 Organize the book around the engineering ideas, not the chronology of how DocAble discovered them.
 
+### Trace claims to their evidence
+
+At every substantive use of private case evidence, attach an editorial reference beside the
+claim in the canonical LaTeX source, including independently reused claims, tables, captions,
+and blueprint examples. Use a raw comment, which does not enter the published editions:
+
+```latex
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+```
+
+The referenced record must identify the preserved sources, their dates or revisions, the
+claim's scope, and any remaining limitations. Keep private source material under the ignored
+`book/data/local-evidence/` directory; do not force-add it or substitute a broken public link.
+Use ordinary bibliographic citations for published sources. A fresh checkout may lack private
+evidence; report that absence instead of treating a reference as verification.
+
+Distinguish implementation definitions, recorded executions, measurements, author accounts,
+illustrations, and prescriptions. Source code can establish how a mechanism is defined; a
+test definition is not a historical run receipt, and a derived plan is not evidence of its
+external effect. When revising a claim, inspect its evidence record and update its other book
+occurrences. Preserve the source date and population of numerical claims. Do not turn a
+blueprint recommendation into an implementation assertion, or add implementation-status
+disclaimers where the passage already clearly describes a design.
+
 ---
 
 # 4. Write an engineering book

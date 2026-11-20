@@ -44,6 +44,16 @@ For the first trial, state what the agent may change, what evidence will support
 
 Run a small number of comparable work units and retain the interventions they required. Distinguish time spent creating new intent from time spent reconstructing known facts, checking routine conditions, or recovering from a recurring failure. These observations tell you what the next investment should address. A repeated escalation can indicate an appropriate human judgment boundary; it does not automatically justify a new evaluator or permission.
 
+### Choose the Engineering Activity {#choose-the-engineering-activity}
+
+MAGE can support different activities across the product lifecycle, each with different engineering questions. Coding agents and repository controls are possible starting points, but requirements, design, and operation also involve repeated work and consequential uncertainty.
+
+During requirements development, a model may represent stakeholder needs, conflicting constraints, and acceptance criteria. Agents can help identify ambiguities and compare alternatives, while engineers decide which requirements to adopt. During design, architectural and behavioral models support analysis of dependencies, resource limits, and failure scenarios. Agents can explore candidate designs; the models state the properties those designs must satisfy.
+
+During implementation, those obligations may become checks on code, configuration, and integration. During operation, deployment models, runtime measurements, and incident records support decisions about whether the system continues to satisfy its requirements. An incident may reveal an assumption missing from the design or a property that should become an enforceable obligation.
+
+These activities need dependable relationships where their decisions intersect. A requirement may identify the property a design must preserve; the design may identify the implementation elements involved; tests and operational measurements provide evidence about the resulting system. This does not require one comprehensive model or a common agent workflow. Start where the expected benefit justifies the investment, and connect other activities as the need arises.
+
 ### From Local Practice to Shared Engineering Infrastructure {#from-local-practice-to-shared-engineering-infrastructure}
 
 MAGE can be applied at different scales. An engineer might begin with a model of one component, a behavioral specification for one feature, or a gate protecting one consequential obligation. Such investments are relatively inexpensive and can provide immediate benefits. Broader adoption requires more coordination: shared modeling conventions, stable component identities, common interfaces, and agreement about which obligations the engineering environment should enforce. The additional overhead can be substantial, but so can the return. When engineers and agents work from consistent models and controls, they can modify different components without repeatedly negotiating their relationships or rediscovering the rules governing their integration.

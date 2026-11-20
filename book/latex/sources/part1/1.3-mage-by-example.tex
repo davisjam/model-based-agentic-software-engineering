@@ -10,6 +10,7 @@
 
 % <!-- point: teaser-grounds-the-abstractions | MAGE emerged from developing and studying DocAble; the case introduces the engineering experience behind the methodology. | terms: running-example -->
 
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 The engineering methodology described in this book emerged from six months of developing and studying a production document-accessibility system called \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble}. I directed the development, but coding agents wrote every line of its implementation. My role was to exercise engineering judgment, direct the agents, and develop the models and controls governing their work. The following chapters teach MAGE through engineering principles and worked examples, many drawn from DocAble. \magevalue{chapter:software-factories} examines the system and its development in detail. {[}appendix: appendix-handbook{]} provides engineering blueprints for constructing the machinery, while {[}appendix: appendix-practicing-mage{]} offers guidance for adopting and practicing MAGE. For now, a few facts about DocAble are in order.
 
 \section{The Accessibility Problem}\label{heading:the-accessibility-problem}
@@ -68,6 +69,7 @@ Purdue had licensed tools that could identify accessibility problems in course m
 
 % <!-- point: upload-in-remediated-file-plus-evidence-out | The user supplies an inaccessible document and receives a remediated document and a changelog. | terms: governance-target-product -->
 
+% Evidence: E02 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E02.md | kind: author-account
 In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to discover what software engineering would look like if I delegated implementation to agents. Accessibility remediation provided a real problem on which to find out. From the user's perspective, the intended service was simple: upload an inaccessible document; receive a remediated document and a changelog. DocAble would support Word, PowerPoint, Excel, their LibreOffice equivalents, PDF, and text-based formats including LaTeX and Typst. Where possible, it would describe figures, repair reading order, and restore structural accessibility while preserving the original content and presentation. \autoref{docable-glimpse} shows the intended result.
 
 \begin{figure}[htbp]
@@ -79,6 +81,7 @@ In early 2026, coding agents had also become capable enough to make a different 
 
 % <!-- point: accessibility-depends-on-educational-context | Art, language instruction, and handwritten mathematics illustrate why accessible output depends on the document's educational purpose. | terms: document-accessibility -->
 
+% Evidence: E03 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E03.md | kind: illustration
 Deciding what to change requires understanding what the content contributes to the lesson. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art. The same visual object calls for different treatment because its purpose differs. Foreign-language materials pose another problem. Language tagging can help a screen reader pronounce a French passage correctly, but supplying a translation that students are supposed to produce themselves would undermine the assignment. A scanned page of handwritten mathematics presents yet another challenge: making it accessible may require recovering notation in a form assistive technology can interpret, while preserving its mathematical meaning.
 
 % <!-- point: semantic-interpretation-and-evidence-serve-different-obligations | Semantic interpretation helps propose changes; reliable document processing and suitable evidence are needed to establish whether the result satisfies the obligations. | terms: document-accessibility, governance-target-product -->

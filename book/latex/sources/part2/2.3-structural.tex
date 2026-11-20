@@ -45,10 +45,13 @@ For structural modeling, the procedure is to identify the entities and relations
 
 \section{DocAble: Architecture and Computation Dependencies}\label{heading:docable-architecture-and-computation-dependencies}
 
+% Evidence: E02 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E02.md | kind: author-account
 DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order. The same operation may need a different implementation for a Word document and a PDF. Its structural models let engineers separate two questions: where format-specific changes belong, and how the repair computations depend on one another.
 
 \subsection{Where may a document change?}\label{heading:where-may-a-document-change}
 
+% Evidence: E02 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E02.md | kind: author-account
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
 DocAble supports several document formats through libraries powerful enough to alter their underlying structures. Its architecture separates ordinary remediation logic from format-specific mutation through structured-document models. The Office formats use three models over a shared OpenXML foundation; PDF uses a separate model. The boundary is enforced differently across these implementations, but the architectural intent is common: document changes should pass through sanctioned mutation interfaces rather than arbitrary calls into format libraries.
 
 \textbf{Document-mutation model · Structural}
@@ -84,12 +87,14 @@ The necessary model is small. \autoref{document-mutation-model} draws it: remedi
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/document-mutation-model-450f92b9ce.pdf}
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: design-and-implementation
 \caption{\emph{Document-mutation structural model.} The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.}
 \label{document-mutation-model}
 \end{figure}
 
 % <!-- point: a-model-precedes-the-constraint-that-protects-it | The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble protects the boundary using format-specific static restrictions and runtime write-authority checks. | terms: soft-vs-hard-governance -->
 
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
 The principal property is the mandatory-traversal constraint introduced in \autoref{canonical-structural}: every ordinary route to format-specific mutation must cross a sanctioned seam. In a sufficiently detailed dependency graph, we could remove that seam and ask whether remediation logic can still reach a raw mutation facility. Any remaining path would identify a bypass. DocAble instead uses format-specific static restrictions and runtime write-authority checks to protect these boundaries. \magevalue{chapter:alignment} examines those controls.
 
 % <!-- point: a-structural-model-can-drift-from-the-system-it-describes | A structural model can become stale as implementation changes — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing. -->
@@ -134,7 +139,8 @@ A repair pass may edit a document directly or produce a \textbf{typed patch}: a 
 
 % <!-- point: the-computation-model-distinguishes-data-flow-from-control-composition | DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run). -->
 
-DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} gives an example of each kind of \emph{typed composition}: the classifier determines which repair passes run, while the repair passes produce patches that the patch applier consumes. The first relationship governs execution and the second carries data. Recording the edge type preserves that distinction. These distinctions make impact questions straightforward to investigate: the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} gives an example of each kind of \emph{typed composition}: the classifier determines which repair passes run, while the repair passes produce patches that the patch applier consumes. The first relationship governs execution and the second carries data. Recording the edge type preserves that distinction. These distinctions make impact questions straightforward to investigate: in the November 2026 graph, the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
 
 \begin{figure}[htbp]
 \centering
@@ -145,10 +151,12 @@ DocAble\textquotesingle s remediation-computation model distinguishes two relati
 
 % <!-- point: the-model-also-records-how-bounded-each-effect-is | The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly. -->
 
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
 The model also declares each computation\textquotesingle s mutation behavior. Some computations only inspect the document, some produce typed patches, some produce patches for part of their work and edit directly for the rest, and most edit document state directly. Patch producers also declare the seam through which their patches are applied. These attributes let an engineer ask which computations can modify a document directly and which produce patches for an applier. They describe the intended behavior of each computation; separate checks establish how closely the implementation follows those declarations.
 
 % <!-- point: the-static-graph-is-not-one-execution-of-it | The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log. -->
 
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
 The computation model describes the declared computations and dependencies. Per-job invocations and retries belong to execution records. Other views can nevertheless attach observations to its stable computation identities. DocAble joins staged-run telemetry to those identities, so measured latency and cost can be queried alongside the structural model without turning the structural graph into an execution log. The per-session mutation record remains separate: it records what happened to one artifact, not the execution history of the computation graph.
 
 % <!-- point: the-identity-spine-supports-added-views-without-enlarging-the-schema | Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero. -->

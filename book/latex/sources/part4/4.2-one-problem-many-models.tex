@@ -6,6 +6,7 @@
 
 \chapter{One Problem, Many Models}
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 A large PowerPoint presentation exposed a memory problem in DocAble. The system handled ordinary documents, but this input exceeded the worker\textquotesingle s memory budget. I needed to understand why memory consumption grew with document size before deciding how to change the implementation.
 
 Several familiar techniques were available: reduce the working set, separate structure from media, partition execution, or change where data resides. Each could reduce memory consumption, but each would also affect other properties of the system. The engineering question was which relationship needed to change.
@@ -18,6 +19,7 @@ We follow this episode in three parts. First, a model of media residency changes
 
 \subsection{One Document, One Worker}\label{heading:one-document-one-worker}
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces the architectural progression from whole-document execution through page chunking to skeletonized residency.
 
 \begin{figure}[htbp]
@@ -27,24 +29,31 @@ DocAble originally treated an entire document as one unit of execution. A long-r
 \label{interlude-execution-unit}
 \end{figure}
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The document therefore served as both the user\textquotesingle s artifact and the worker\textquotesingle s in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the foundation model as needed.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable. The resulting architecture worked on ordinary inputs. Larger documents exposed the omission. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
 
 \subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 DocAble\textquotesingle s response was ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b).
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The new representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.
 
 This architecture accommodated the inputs encountered so far. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed. A roughly 250 MB media-heavy presentation eventually exceeded that operating regime.
 
 Smaller chunks could reduce memory consumption further, but they would also reduce the context available for semantic judgments and increase coordination costs. Chunking therefore presented a tradeoff between memory use and the information available to each operation.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The 250 MB presentation made me question the tradeoff itself. Most of the file consisted of media, but many remediation operations needed only the document\textquotesingle s structure. Why was the worker retaining all that media?
 
 That question led to a different representation rather than another reduction in chunk size.
@@ -57,18 +66,23 @@ Modern Office documents use Office Open XML (OOXML). A \texttt{.pptx}, \texttt{.
 
 The structural portion is comparatively small. It is largely text, and even an unusually large Office document may require only low megabytes to represent its semantic skeleton. The media payload can be hundreds of megabytes. Most remediation operations need only the structural portion; they may reach into the media, but not every media byte need be resident at once.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required reconsidering the arrangement itself.
 
 The existing representation coupled the two. \autoref{interlude-execution-unit}, panel c, shows how skeletonization separated them.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The architecture therefore carried an implicit scaling relation: total media size drove resident worker state. Finer chunking could reduce that state, at the cost of more coordination and less semantic context, but could not eliminate the relationship. The new file made that limitation consequential.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 A residency model made the alternative visible (\autoref{interlude-execution-unit}, panel c): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
 
 \subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The memory problem came from coupling document structure to media residency: total media size increased the worker\textquotesingle s persistent working set even though most remediation operations needed only the document\textquotesingle s structural skeleton. Skeletonization removes that coupling. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Remediation then operates on the skeleton (\autoref{interlude-execution-unit}, panel c). If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document\textquotesingle s complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.
 
 The corresponding memory invariant states the property directly:
@@ -91,10 +105,13 @@ C =
 
 and C is independent of aggregate media payload size within that envelope.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Chunking had shown that the observed documents worked. Skeletonization supports a structural claim over a declared class of inputs: peak worker memory is bounded independently of total media size, provided the modeled path never retains the complete payload.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 That claim depends on bounded streaming buffers, a structural skeleton whose size remains inside the declared envelope, and bounded active state at each media consumer. The write path must stream too; buffering the complete payload before writing would merely move the memory spike. Pathological structure, oversized individual objects, excessive concurrency, or an unmodeled resource can still exhaust memory.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.
 
 While this architecture was being developed, agents sometimes proposed removing operations or state that looked expensive but were essential to correct remediation. The fixtures available at the time would not necessarily have exposed every resulting semantic failure. The engineering model supplied a distinction the surface objective did not: which relationships the system depends on, and which resource costs follow from the current realization. Agents could use that structure to correct their account of the system before changing it.
@@ -107,6 +124,7 @@ Changing the architecture to satisfy the residency model is active alignment. On
 
 An end-to-end measurement says whether the outcome moved. It does not say why it moved. Peak worker memory is the outcome; media residency is the mechanism that produces it. A model of the mechanism answers the further question: which relationship generated the improvement, and whether that explanation is compatible with the work the system must still perform.
 
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
 Measurement tests the residency model\textquotesingle s explanation. A peak-memory figure reports what happened on the inputs in one sweep; the model predicts which changes to those inputs should change the result. Comparing the two can expose a missing relationship, as a later sweep did in this case. The engineer needs both: measurements to test the account, and an account of memory growth to assess the next unfamiliar document.
 
 Ousterhout puts the same instruction compactly: measure one level deeper~\citep{ousterhout2018}. One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
@@ -117,6 +135,7 @@ Bringing memory under governance did not make memory disappear. It changed the c
 
 Memory came first because the two failures differ in kind: out-of-memory failure prevented processing altogether, whereas inefficient execution increased latency and cost while still producing a result. The later service-sizing model recorded that priority in a one-sided safety margin: exhausting memory kills the process, while over-provisioning costs money. Another domain might prioritize safety, latency, or numerical accuracy; the ordering must follow the consequences.
 
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 That coupling became explicit in the engineering machinery. Concurrency models delegated memory feasibility to the memory model of record rather than doing memory arithmetic of their own. Fan-out width was represented as a peak-memory multiplier, so a throughput author had to size the width against a memory budget. Some throughput changes carried fail-loud guards that refused to run a fan-out whose estimated memory exceeded its budget. A batched-rendering design was chosen over a concurrent one partly because the concurrent alternative measured past the service\textquotesingle s memory ceiling. And in one latency campaign a memory sweep blocked the production deploy altogether. The earlier resource model had become part of the environment within which the later one operated.
 
 The memory model also changed which execution choices were worth reconsidering. We turn next to the dependencies that determine how remediation work can be scheduled.
@@ -136,6 +155,7 @@ The same graph admits different execution policies. \autoref{interlude-graph-two
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-graph-two-partitions-8ab535d9c3.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: design-and-implementation
 \caption{\emph{Two execution policies over the same remediation graph.} The graph contains actions---page analysis, construction of document context, and GenAI queries---and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes --- so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.}
 \label{interlude-graph-two-partitions}
 \end{figure}
@@ -155,6 +175,7 @@ Representing remediation as a dependency graph does more than provide an executi
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-analysis-before-build-1d6121ea6a.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: illustration-and-case
 \caption{\emph{Analyzing dependency graphs to redesign execution.} (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.}
 \label{interlude-analysis-before-build}
 \end{figure}
@@ -184,6 +205,7 @@ Critical-path analysis also supports quantitative latency predictions when opera
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-latency-floor-818a3f4133.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
 \caption{\emph{The GenAI critical path in a schematic fragment of DocAble’s remediation graph.} Independent remediation computations can execute concurrently, but section summarization, document summarization, and alt-text generation form a dependent chain. For the modeled workload, their estimated and measured durations contribute approximately 7.7 seconds of serial latency, which additional workers alone cannot eliminate.}
 \label{interlude-latency-floor}
 \end{figure}
@@ -213,16 +235,21 @@ What should remain durable when the models themselves change?
 
 \subsection{What Carries Forward}\label{heading:what-carries-forward}
 
-DocAble did not turn observed wall-clock time into the durable control. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Each is counted deterministically on a fixed fixture. A change may lower these quantities freely; raising one requires a named justification recorded beside the baseline. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
+DocAble did not turn observed wall-clock time into the durable control. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
 
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
 A fifth quantity, the number of GenAI hops, was observed without blocking while its behavior was still being characterized. The distinction is worth keeping: a counter that gates and a counter that only reports are different mechanisms, and a new one usually begins as the second.
 
 \subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}
 
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
 A ratchet does not make the current model true forever. Several memory hypotheses in this episode were later falsified. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
 
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
 The measurements carried their own provenance. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it. A process-level measurement may omit memory included in the container\textquotesingle s total. Recording the measurement\textquotesingle s origin makes that difference visible and helps engineers decide which parameters need to be measured again.
 
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
 Nor was the memory work finished before the execution-time work began. A memory front was still open while the time models were being built. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The ratchet preserves the engineering question and the obligation to answer it, even when the answer changes.
 
 % <!-- index-def: ratcheteering -->
@@ -269,12 +296,22 @@ Question
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: model
 Media residency & What must reside in worker memory? How should memory scale with media size? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
 Batch execution & How do batch size and concurrency affect latency, cost, and truncation risk? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
 Critical path & What sets the latency floor? Which nodes are optimization targets? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
 Distribution & Where should ready work execute? What coordination costs does that introduce? \\
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: model
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: model
 Remediation graph & What work exists, and what depends on what? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
 Fact / IR catalogue & Which derived facts feed later computations? How deep is the information-dependency chain? \\
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
 Image fidelity & What representation of media is required, and what does rendering it cost? \\
 \end{longtable}
 }

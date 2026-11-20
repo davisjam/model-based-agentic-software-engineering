@@ -107,6 +107,7 @@ Consider a proposed increase in DocAble's worker concurrency. The changed code m
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
 \caption{\emph{Model-aware change impact.} A proposed concurrency change leads through related execution, memory, and latency models to potentially affected obligations and the evidence needed to evaluate them. These relationships guide validation effort; incomplete or stale relationships can require broader checks before admission.}
 \label{model-aware-change-impact}
 \end{figure}
@@ -125,7 +126,8 @@ A method has to survive terrible, horrible, no good, very bad days, too. Full di
 
 Lifecycle models represent healthy progress and important failure states. Events make consequential transitions observable. Runbooks preserve sanctioned reactions, including where judgment remains. Metrics expose the quantities needed to judge whether the loop is healthy. Together they support an operating loop: recognize the state, surface the right reaction, take the appropriate action, and observe what happened next.
 
-A lifecycle model starts with the healthy path of a recurring activity --- how a bug moves from reported to fixed, how an agent moves from dispatched to landed --- then names the failure states that matter and the sanctioned recovery from each. Pair prohibitions with recovery paths. "Never use this destructive merge command" leaves a stuck agent with a prohibition and no exit; "when this state occurs, do not use X; use Y because it preserves the already-applied work" supplies the missing path. DocAble learned this when agents used a destructive Git escape during stuck merges: the durable rule named both the forbidden action and the recovery that preserved already-applied work.
+% Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: incident
+A lifecycle model starts with the healthy path of a recurring activity --- how a bug moves from reported to fixed, how an agent moves from dispatched to landed --- then names the failure states that matter and the sanctioned recovery from each. Pair prohibitions with recovery paths. "Never use this destructive merge command" leaves a stuck agent with a prohibition and no exit; "when this state occurs, do not use X; use Y because it preserves the already-applied work" supplies the missing path. In one DocAble incident, the orchestrator aborted a partly completed cherry-pick sequence and discarded earlier successful picks. The resulting rule specified \texttt{git cherry-pick --quit} for leaving that sequence without undoing those picks.
 
 % <!-- index-def: deterministic-firing -->
 
@@ -161,17 +163,20 @@ The validation machinery itself also needs operational management.
 
 Model-aware change-impact analysis addresses which evaluations a change requires. A separate problem is how to execute those evaluations without unnecessarily delaying engineering work. Even when the right checks have been selected, they consume time and computational resources. Running them synchronously can delay dispatch of subsequent development work---underutilizing agent capacity---while running them asynchronously can overwhelm the available infrastructure. The engineering environment must therefore determine when evaluations run, how they share resources, and which results must block further work.
 
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report
 DocAble's agents eventually outpaced the infrastructure that checked their work. Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
 
 An initial asynchronous arrangement launched expensive checks in the background after each merge. That removed the wait before the next merge, but it did not reduce the work being requested. Each merge still started another expensive run. A burst of merges therefore launched a burst of validation workers and overloaded the host. Moving validation off the critical path had exchanged waiting for resource contention.
 
-The redesign separated broad validation from the arrival of individual changes, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks ran every thirty minutes against the main branch, in an isolated worktree, with a lock permitting only one sweep at a time. Several merges could therefore be evaluated together. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
+The redesign separated broad validation from the arrival of individual changes, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks were scheduled every thirty minutes against new commits on the main branch, in an isolated worktree, with a lock permitting only one sweep at a time. Several merges could therefore be evaluated together. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
 
 The arrangement distinguishes three enforcement boundaries. Per-merge checks protect rapid integration, scheduled checks examine the accumulated changes without blocking each merge, and predeployment validation protects the released artifact. Asynchronous evaluation does not mean that its results are ignored: a scheduled failure can still interrupt subsequent work. The engineer chooses which obligations require immediate evidence and which can tolerate delayed evaluation, taking account of the consequences of failure.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/docable-validation-scheduling.pdf}
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
 \caption{\emph{Separating integration from broad validation.} Shaded boxes identify validation work; initially, full validation delayed subsequent changes. The redesigned pipeline runs inexpensive checks before each merge, broad checks periodically against accumulated changes, and full validation before deployment. Separating these schedules reduces repeated computation and blocking latency, but delays detection of failures that escape the per-merge checks.}
 \label{docable-validation-scheduling}
 \end{figure}
@@ -222,8 +227,10 @@ A stronger reasoner does not settle an unknown requirement; another validator do
 
 As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate. Keeping this engineering capital useful requires maintenance. A model may drift from the implementation, while a gate continues to enforce an obsolete policy. Noisy controls and broken evidence pipelines can make their verdicts difficult to trust; skills can preserve procedures whose assumptions have expired. Engineers therefore need to observe, reconcile, repair, and sometimes retire these structures, just as they do for the system those structures govern.
 
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
 An audit of DocAble's models found that ten providers appeared to have the required uniqueness checks. Every test passed. Closer inspection showed that all ten checks examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to each provider. Duplicate source records could therefore overwrite one another without triggering a failure. The checks established a true property of the wrong collection.
 
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
 The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This suggests a general maintenance practice: \textbf{construct a violation of an obligation, run the actual check, and establish that it detects the violation.} Where enforcement is intended, also test whether the resulting verdict prevents the work from proceeding. A passing control should have evidence that it can fail for the right reason. In \href{3.3-constraints-sensors-validators-gates.html}{\magevalue{sec:constraints-sensors-validators-gates}}, the consumer mistook an incomplete validation for a clean result; here, the uniqueness checks examined the wrong records.
 
 Audit models, mechanisms, procedures, and evidence pipelines together:

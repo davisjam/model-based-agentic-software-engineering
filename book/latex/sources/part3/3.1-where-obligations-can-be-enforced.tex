@@ -120,8 +120,11 @@ The appropriate boundary depends on the obligation and the evidence needed to ev
 
 \subsection{DocAble: Dynamic Context Injection and Discovery}\label{heading:docable-dynamic-context-injection-and-discovery}
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
 DocAble's engineering environment must supply agents with the rules relevant to their tasks without requiring them to reconstruct every applicable obligation from the repository. It must also distinguish supplying those rules from establishing that required discovery occurred. Dynamic context injection addresses the first problem; a separate gate addresses the second. The selected knowledge includes architectural invariants, ownership declarations, lint requirements, and links to design decisions.
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
 DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change~\citep{davis2026docable}. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
 
 \begin{figure}[htbp]
@@ -131,11 +134,16 @@ DocAble selects context twice. At dispatch, an agent hook matches the work order
 \label{docable-context-selection}
 \end{figure}
 
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
 
 \subsection{DocAble: Completion Audits}\label{heading:docable-completion-audits}
 
-Completion requires a different view of the work. DocAble's definition-of-done audit recomputes evidence over the completed task instead of relying only on an earlier record. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} traces an actual dispatch through model selection, work-order construction, and completion checks.)
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+Completion requires a different view of the work. DocAble's definition-of-done review asks a reviewer agent to rerun the task's tests and lints against the completed work rather than trust earlier status records. A separate closing gate checks that the declared commits are present on the main branch. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} develops a blueprint for model selection, work-order construction, and completion checks.)
 
 \subsection{Other Environments: Docker and Spotify}\label{heading:example-docker}
 
