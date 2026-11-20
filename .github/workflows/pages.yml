@@ -360,7 +360,8 @@ jobs:
           pandoc --version
       - name: Verify LaTeX compatibility projections before consumers
         run: |
-          python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-projections.txt
+          python3 tools/test_mage_practice_map.py
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
       - name: Check frozen print toolchain and cover tagging before full builds
@@ -476,7 +477,8 @@ jobs:
           pandoc --version
       - name: Verify LaTeX compatibility projections before consumers
         run: |
-          python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-projections.txt
+          python3 tools/test_mage_practice_map.py
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
       - name: Check frozen print toolchain and cover tagging before full builds
@@ -684,7 +686,8 @@ jobs:
           pandoc --version
       - name: Verify LaTeX compatibility projections before consumers
         run: |
-          python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-projections.txt
+          python3 tools/test_mage_practice_map.py
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
       - name: Check frozen print toolchain and cover tagging before full builds
@@ -768,7 +771,8 @@ jobs:
           pandoc --version
       - name: Verify LaTeX compatibility projections before consumers
         run: |
-          python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-projections.txt
+          python3 tools/test_mage_practice_map.py
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
       - name: Check frozen print toolchain and cover tagging before full builds
@@ -904,7 +908,8 @@ jobs:
           pandoc --version
       - name: Verify LaTeX compatibility projections before consumers
         run: |
-          python3 -m pip install "pyyaml>=6,<7"
+          python3 -m pip install -r book/requirements-projections.txt
+          python3 tools/test_mage_practice_map.py
           python3 tools/mage_latex.py sync --check
           python3 handbook/scripts/latex_source.py sync --check
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4

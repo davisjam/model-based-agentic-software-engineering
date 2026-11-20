@@ -1,0 +1,4 @@
+# Dependencies needed before checking native-LaTeX compatibility projections.
+pyyaml>=6,<7
+# The chapter map measures its text using the bundled Source Sans fonts.
+pymupdf>=1.24,<2

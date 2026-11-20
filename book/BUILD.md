@@ -547,3 +547,9 @@ canonical native manuscript through `book/latex/native-sources.json`; numbers
 resolve through `book-models/chapter_identity_declared.json`. `mage_latex.py sync`
 regenerates the drawings; `sync --check` rejects stale output. Edit the data or
 generator rather than either generated drawing. Keep the caption in the manuscript.
+
+The native projection check also regenerates chapter-map geometry. Install
+`python3 -m pip install -r book/requirements-projections.txt` before running
+`python3 tools/mage_latex.py sync --check`; this includes the font-metric
+reader used to wrap map labels. CI installs this prerequisite before every
+projection consumer and runs the map regeneration tests at that boundary.
