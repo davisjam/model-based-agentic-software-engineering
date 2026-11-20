@@ -3547,23 +3547,46 @@
   {
     "source": "book/assets/mage-in-practice-map.svg",
     "candidate": "book/tikz/figures/mage-in-practice-map.tex",
-    "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
-    "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+    "source_sha256": "59d45ac8b35d0c29427444b816f6f8582226de44773bebc956f2b18f77b1c394",
+    "candidate_sha256": "2a1b3ffe01ec7d1762640bdaa87214786b90c7371513e65ee0c4e04e5e5c69f4",
     "decision": "author-approved four-panel chapter map",
     "reviewed_visually": true,
     "rationale": "Black-and-white map with equal panels and top headings; content generated once for SVG and TikZ; caption remains in manuscript.",
     "validation": {
       "date": "2026-11-20",
-      "proof": "book/latex/build/figure-proofs-20261120/mage-in-practice-map.pdf",
-      "proof_sha256": "f3550c0a8250ee0ba3254e8fc625ce03a022027d2e769d6cef51c32a437a3b1a",
-      "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
-      "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
-      "width_bp": 448.67,
-      "height_bp": 330.671,
+      "proof": "book/latex/build/opening-figure-followup/mage-in-practice-map.pdf",
+      "proof_sha256": "f528c0564ea4890fc838df4f984229cbb9f6282d1c757daeb5e69fce29e13ccf",
+      "source_sha256": "59d45ac8b35d0c29427444b816f6f8582226de44773bebc956f2b18f77b1c394",
+      "candidate_sha256": "2a1b3ffe01ec7d1762640bdaa87214786b90c7371513e65ee0c4e04e5e5c69f4",
+      "width_bp": 404.67,
+      "height_bp": 404.67,
       "geometry_findings": 0,
       "typography_findings": 0,
       "reviewed_visually": true,
-      "scope": "Standalone figure proof; whole-book layout verified separately."
-    }
+      "scope": "Standalone proof inspected at final print dimensions; panel text retained at 9.5pt, cycle labels 11.5pt."
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-20",
+        "before": {
+          "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+          "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+          "validation": {
+            "date": "2026-11-20",
+            "proof": "book/latex/build/figure-proofs-20261120/mage-in-practice-map.pdf",
+            "proof_sha256": "f3550c0a8250ee0ba3254e8fc625ce03a022027d2e769d6cef51c32a437a3b1a",
+            "source_sha256": "ec5a7009a1e4963994fe4350a505afea2a4f4b0cda76ea2343fbbc2f5965404c",
+            "candidate_sha256": "b4cdff8176ea8e67b1996f6225e5c1b368eb465f598d1f4d9ed7f752c8c73da6",
+            "width_bp": 448.67,
+            "height_bp": 330.671,
+            "geometry_findings": 0,
+            "typography_findings": 0,
+            "reviewed_visually": true,
+            "scope": "Standalone figure proof; whole-book layout verified separately."
+          }
+        },
+        "change": "Author-directed follow-up: enlarge cycle 38%, leave all panel headings unobscured, clip gray header fills inside continuous rounded outlines, and author 405bp artwork for a centered 90% print width."
+      }
+    ]
   }
 ]

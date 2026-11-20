@@ -24078,3 +24078,21 @@ Original source line 228.
 
 Moving review toward models and evidence does not reduce the expertise required of the engineer. It changes the questions that expertise must answer.
 ```
+
+
+## 2026-11-20 — Chapter-opening figure follow-up
+
+Source revision: `753b676c477e0bbdbeb838565f29f435df77435a`. The author requested a clearer evaluation/Alignment distinction and less duplication of the Chapter 4 map. Replaced passages follow.
+
+### Chapter 4 opening roadmap
+
+```latex
+\magevalue{sec:the-dynamics-of-mage} explains how engineers introduce models incrementally and protect established properties while exploring change. \magevalue{sec:interlude-one-problem-many-models} follows that process through DocAble's memory and execution problems; \magevalue{sec:brownfield-engineering} shows how to recover useful models from an existing system. \magevalue{sec:engineering-the-environment} turns to equipping, evaluating, operating, and maintaining the environment that later work inherits.
+
+```
+
+### Chapter 3 interaction-figure caption
+
+```latex
+\caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.}
+```

@@ -28,7 +28,7 @@ class ChapterMapTests(unittest.TestCase):
             (root/'book-models/chapter_identity_declared.json').write_text(json.dumps(identities))
             (root/'book/latex/native-sources.json').write_text(json.dumps(manifest))
             for output in m.render(m.panels(root)):
-                self.assertIn('§4.9  Revised Dynamics',output)
+                self.assertIn('§4.9 Revised Dynamics', ' '.join(output.split()))
                 self.assertNotIn('§4.1',output)
 
 if __name__=='__main__':unittest.main()

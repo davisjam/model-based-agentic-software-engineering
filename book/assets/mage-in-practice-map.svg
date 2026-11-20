@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="444" height="326" viewBox="0 0 444 326" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
 <title id="title">MAGE in practice: Chapter 4</title>
 <desc id="desc">Four section panels surround a Model, Realize, Evaluate cycle. The panels describe establishing alignment, following engineering questions, recovering existing knowledge, and maintaining the environment. These are related activities, not sequential phases.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>
-<rect x="1" y="1" width="214" height="122" rx="4" fill="white" stroke="black" stroke-width=".7"/>
-<path d="M5 1 H211 Q215 1 215 5 V25 H1 V5 Q1 1 5 1" fill="#eeeeee"/>
-<text x="10" y="17" font-size="9.5" text-anchor="start" font-weight="700">§4.1  The Dynamics of MAGE</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>
+<defs><clipPath id="panel-0"><rect x="1" y="1" width="192" height="130" rx="4"/></clipPath></defs>
+<rect x="1" y="1" width="192" height="130" rx="4" fill="white"/>
+<rect x="1" y="1" width="192" height="24" fill="#eeeeee" clip-path="url(#panel-0)"/>
+<rect x="1" y="1" width="192" height="130" rx="4" fill="none" stroke="black" stroke-width=".7"/>
+<text x="10" y="17" font-size="9.5" text-anchor="start" font-weight="700">§4.1 The Dynamics of MAGE</text>
 <text x="10" y="40" font-size="9.5" text-anchor="start" font-style="italic">Establish and revise alignment.</text>
 <text x="11" y="57.5" font-size="9.5" text-anchor="start">•</text>
 <text x="21" y="57.5" font-size="9.5" text-anchor="start">Active and passive alignment</text>
@@ -14,48 +16,55 @@
 <text x="11" y="86.5" font-size="9.5" text-anchor="start">•</text>
 <text x="21" y="86.5" font-size="9.5" text-anchor="start">Iterative Modeling, Realization, and</text>
 <text x="21" y="98.0" font-size="9.5" text-anchor="start">Evaluation</text>
-<rect x="229" y="1" width="214" height="122" rx="4" fill="white" stroke="black" stroke-width=".7"/>
-<path d="M233 1 H439 Q443 1 443 5 V25 H229 V5 Q229 1 233 1" fill="#eeeeee"/>
-<text x="238" y="17" font-size="9.5" text-anchor="start" font-weight="700">§4.2  One Problem, Many Models</text>
-<text x="238" y="40" font-size="9.5" text-anchor="start" font-style="italic">Follow the engineering questions.</text>
-<text x="239" y="57.5" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="57.5" font-size="9.5" text-anchor="start">One problem exposes others</text>
-<text x="239" y="72.0" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="72.0" font-size="9.5" text-anchor="start">Develop related models</text>
-<text x="239" y="86.5" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="86.5" font-size="9.5" text-anchor="start">Example: residency, execution, latency, and</text>
-<text x="249" y="98.0" font-size="9.5" text-anchor="start">measurement</text>
-<rect x="1" y="203" width="214" height="122" rx="4" fill="white" stroke="black" stroke-width=".7"/>
-<path d="M5 203 H211 Q215 203 215 207 V227 H1 V207 Q1 203 5 203" fill="#eeeeee"/>
-<text x="10" y="219" font-size="9.5" text-anchor="start" font-weight="700">§4.3  Brownfield Engineering</text>
-<text x="10" y="242" font-size="9.5" text-anchor="start" font-style="italic">Recover and govern existing knowledge.</text>
-<text x="11" y="259.5" font-size="9.5" text-anchor="start">•</text>
-<text x="21" y="259.5" font-size="9.5" text-anchor="start">Discover latent models</text>
-<text x="11" y="274.0" font-size="9.5" text-anchor="start">•</text>
-<text x="21" y="274.0" font-size="9.5" text-anchor="start">Distinguish useful structure from accidental</text>
-<text x="21" y="285.5" font-size="9.5" text-anchor="start">complexity</text>
-<text x="11" y="300.0" font-size="9.5" text-anchor="start">•</text>
-<text x="21" y="300.0" font-size="9.5" text-anchor="start">Migrate consumers and establish controls</text>
-<rect x="229" y="203" width="214" height="122" rx="4" fill="white" stroke="black" stroke-width=".7"/>
-<path d="M233 203 H439 Q443 203 443 207 V227 H229 V207 Q229 203 233 203" fill="#eeeeee"/>
-<text x="238" y="219" font-size="9.5" text-anchor="start" font-weight="700">§4.4  Engineering the Environment</text>
-<text x="238" y="242" font-size="9.5" text-anchor="start" font-style="italic">Maintain the machinery.</text>
-<text x="239" y="259.5" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="259.5" font-size="9.5" text-anchor="start">Equip agents with models and controls</text>
-<text x="239" y="274.0" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="274.0" font-size="9.5" text-anchor="start">Evaluate their work</text>
-<text x="239" y="288.5" font-size="9.5" text-anchor="start">•</text>
-<text x="249" y="288.5" font-size="9.5" text-anchor="start">Operate and maintain the environment</text>
-<circle cx="222" cy="163" r="49" fill="#f3f3f3" stroke="black" stroke-width=".8"/>
-<path d="M241 133 C262 143 268 160 255 173" fill="none" stroke="black" stroke-width="1" marker-end="url(#arrow)"/>
-<path d="M242 190 C232 206 208 206 197 190" fill="none" stroke="black" stroke-width="1" marker-end="url(#arrow)"/>
-<path d="M189 173 C177 155 187 139 201 133" fill="none" stroke="black" stroke-width="1" marker-end="url(#arrow)"/>
-<text x="222" y="157" font-size="9.5" text-anchor="middle" font-weight="700">MAGE</text>
-<text x="222" y="169" font-size="9.5" text-anchor="middle" font-style="italic">in Practice</text>
-<rect x="200" y="121" width="44" height="20" rx="3" fill="white" stroke="black" stroke-width=".7"/>
-<text x="222" y="134" font-size="9.5" text-anchor="middle" font-weight="700">Model</text>
-<rect x="224" y="173" width="44" height="20" rx="3" fill="white" stroke="black" stroke-width=".7"/>
-<text x="246" y="186" font-size="9.5" text-anchor="middle" font-weight="700">Realize</text>
-<rect x="176" y="173" width="44" height="20" rx="3" fill="white" stroke="black" stroke-width=".7"/>
-<text x="198" y="186" font-size="9.5" text-anchor="middle" font-weight="700">Evaluate</text>
+<defs><clipPath id="panel-1"><rect x="207" y="1" width="192" height="130" rx="4"/></clipPath></defs>
+<rect x="207" y="1" width="192" height="130" rx="4" fill="white"/>
+<rect x="207" y="1" width="192" height="24" fill="#eeeeee" clip-path="url(#panel-1)"/>
+<rect x="207" y="1" width="192" height="130" rx="4" fill="none" stroke="black" stroke-width=".7"/>
+<text x="216" y="17" font-size="9.5" text-anchor="start" font-weight="700">§4.2 One Problem, Many Models</text>
+<text x="216" y="40" font-size="9.5" text-anchor="start" font-style="italic">Follow the engineering questions.</text>
+<text x="217" y="57.5" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="57.5" font-size="9.5" text-anchor="start">One problem exposes others</text>
+<text x="217" y="72.0" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="72.0" font-size="9.5" text-anchor="start">Develop related models</text>
+<text x="217" y="86.5" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="86.5" font-size="9.5" text-anchor="start">Example: residency, execution, latency,</text>
+<text x="227" y="98.0" font-size="9.5" text-anchor="start">and measurement</text>
+<defs><clipPath id="panel-2"><rect x="1" y="269" width="192" height="130" rx="4"/></clipPath></defs>
+<rect x="1" y="269" width="192" height="130" rx="4" fill="white"/>
+<rect x="1" y="269" width="192" height="24" fill="#eeeeee" clip-path="url(#panel-2)"/>
+<rect x="1" y="269" width="192" height="130" rx="4" fill="none" stroke="black" stroke-width=".7"/>
+<text x="10" y="285" font-size="9.5" text-anchor="start" font-weight="700">§4.3 Brownfield Engineering</text>
+<text x="10" y="308" font-size="9.5" text-anchor="start" font-style="italic">Recover and govern existing knowledge.</text>
+<text x="11" y="325.5" font-size="9.5" text-anchor="start">•</text>
+<text x="21" y="325.5" font-size="9.5" text-anchor="start">Discover latent models</text>
+<text x="11" y="340.0" font-size="9.5" text-anchor="start">•</text>
+<text x="21" y="340.0" font-size="9.5" text-anchor="start">Distinguish useful structure from</text>
+<text x="21" y="351.5" font-size="9.5" text-anchor="start">accidental complexity</text>
+<text x="11" y="366.0" font-size="9.5" text-anchor="start">•</text>
+<text x="21" y="366.0" font-size="9.5" text-anchor="start">Migrate consumers and establish</text>
+<text x="21" y="377.5" font-size="9.5" text-anchor="start">controls</text>
+<defs><clipPath id="panel-3"><rect x="207" y="269" width="192" height="130" rx="4"/></clipPath></defs>
+<rect x="207" y="269" width="192" height="130" rx="4" fill="white"/>
+<rect x="207" y="269" width="192" height="24" fill="#eeeeee" clip-path="url(#panel-3)"/>
+<rect x="207" y="269" width="192" height="130" rx="4" fill="none" stroke="black" stroke-width=".7"/>
+<text x="216" y="285" font-size="9.5" text-anchor="start" font-weight="700">§4.4 Engineering the Environment</text>
+<text x="216" y="308" font-size="9.5" text-anchor="start" font-style="italic">Equip, evaluate, operate, and maintain.</text>
+<text x="217" y="325.5" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="325.5" font-size="9.5" text-anchor="start">Equip agents with models and controls</text>
+<text x="217" y="340.0" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="340.0" font-size="9.5" text-anchor="start">Evaluate their work</text>
+<text x="217" y="354.5" font-size="9.5" text-anchor="start">•</text>
+<text x="227" y="354.5" font-size="9.5" text-anchor="start">Operate and maintain the environment</text>
+<circle cx="200" cy="200" r="67.62" fill="#f3f3f3" stroke="black" stroke-width=".8"/>
+<path d="M230.36 155.84 C260.72 164.12 269.0 190.34 244.16 213.8" fill="none" stroke="black" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M233.12 241.4 C222.08 264.86 179.3 264.86 166.88 241.4" fill="none" stroke="black" stroke-width="1.3" marker-end="url(#arrow)"/>
+<path d="M136.52 224.84 C125.48 186.2 146.18 162.74 169.64 155.84" fill="none" stroke="black" stroke-width="1.3" marker-end="url(#arrow)"/>
+<text x="200" y="191" font-size="11.5" text-anchor="middle" font-weight="700">MAGE</text>
+<text x="200" y="208" font-size="11.5" text-anchor="middle" font-style="italic">in Practice</text>
+<rect x="169.64" y="142.04" width="60.72" height="27.599999999999998" rx="3" fill="white" stroke="black" stroke-width=".7"/>
+<text x="200.0" y="160.04" font-size="11.5" text-anchor="middle" font-weight="700">Model</text>
+<rect x="202.76" y="213.8" width="60.72" height="27.599999999999998" rx="3" fill="white" stroke="black" stroke-width=".7"/>
+<text x="233.12" y="231.8" font-size="11.5" text-anchor="middle" font-weight="700">Realize</text>
+<rect x="136.52" y="213.8" width="60.72" height="27.599999999999998" rx="3" fill="white" stroke="black" stroke-width=".7"/>
+<text x="166.88" y="231.8" font-size="11.5" text-anchor="middle" font-weight="700">Evaluate</text>
 </svg>

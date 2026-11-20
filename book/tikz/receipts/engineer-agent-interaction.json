@@ -1,6 +1,6 @@
 {
   "source": "book/assets/engineer-agent-interaction.svg",
-  "claim": "*Engineer–agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.",
+  "claim": "*Engineer–agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.",
   "topology": "Two parallel channel fans joined by a single implementation hinge; intent descends and evidence returns.",
   "required_terms": [
     "MODELING / COMMUNICATING",
