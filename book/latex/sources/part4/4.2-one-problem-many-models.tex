@@ -69,13 +69,8 @@ The structural portion is comparatively small. It is largely text, and even an u
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required reconsidering the arrangement itself.
 
-The existing representation coupled the two. \autoref{interlude-execution-unit}, panel c, shows how skeletonization separated them.
-
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-The architecture therefore carried an implicit scaling relation: total media size drove resident worker state. Finer chunking could reduce that state, at the cost of more coordination and less semantic context, but could not eliminate the relationship. The new file made that limitation consequential.
-
-% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-A residency model made the alternative visible (\autoref{interlude-execution-unit}, panel c): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
+Chunking reduced the amount of media resident in each worker, but memory consumption still depended on the media contained in that chunk. The residency model exposed a different possibility: retain the document's structure while keeping its media outside the worker's persistent working set (\autoref{interlude-execution-unit}, panel c).
 
 \subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}
 

@@ -2,9 +2,9 @@
 % Evidence: appendix-operators-reference/a-worked-factory-workflow.tex at 507bbaeb5739569d81a21523b77191e0799d051b.
 % The PDF-heading assignment is illustrative, not an additional measured project episode.
 
-How does an engineering priority become work that an agent can perform and an engineer can accept? The environment must turn a priority into a bounded assignment, supply the relevant engineering knowledge, and establish whether the resulting work satisfies its obligations. It must also preserve partial work when execution is interrupted. DocAble's November 2026 workflow provides one implementation of this process; its particular document formats are less important than the relationships among them.
+How does an engineering priority become work that an agent can perform and an engineer can accept? As an illustration, consider a request to improve PDF heading detection in DocAble. The objective is straightforward, but assigning it to an agent requires several engineering decisions. Which heading behaviors should improve? What existing behavior must remain unchanged? Which components may the agent modify? What evidence would establish that the change is acceptable?
 
-\autoref{practicing-priority-to-accepted-work} brings these relationships together at an integration-admission boundary. The stages can be combined or revisited, and later completion or release checks may impose additional obligations.
+\autoref{practicing-priority-to-accepted-work} follows this assignment from priority to integrated work. The stages distinguish decisions that are easily conflated when an engineer simply asks an agent to implement a feature. The figure places acceptance at an integration-admission boundary; later completion or release checks may impose additional obligations.
 
 \begin{figure}[!htb]
 \centering
@@ -16,14 +16,26 @@ How does an engineering priority become work that an agent can perform and an en
 % Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
 % Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 % Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
-In DocAble, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains the strategy document from my instructions. An epic develops a selected effort into scope, rationale, risks, relevant models, and a Definition of Done. Its machine-parseable phase table exposes dependencies and required reasoning capability to the scheduler. If review changes those dependencies, the schedulable plan must change too. Selecting a priority authorizes planning; it does not establish that the proposed decomposition is sound.
+The priority identifies the desired improvement. In DocAble's November 2026 workflow, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains a strategy document from my instructions. Selecting a priority authorizes further planning; it does not determine how the work should be implemented.
 
 % Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
-DocAble's design document records the motivating failure or requirement, the alternatives considered, and the proposed components and interactions. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit. A dispatch brief then assigns one ready phase, with a role, scope, time budget, relevant source, verification work, and expected hand-back. DocAble's brief linter can reject missing structure and selected dispatch errors. It cannot decide whether the engineering premise is right.
+The design establishes the proposed approach. An epic develops the effort into scope, rationale, risks, relevant models, and a Definition of Done. A design document records the motivating failure or requirement, alternatives considered, and proposed components and interactions. For heading detection, this means identifying the representations and computations involved, the intended behavioral change, and the properties that must survive it. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+The work order turns an approved part of that design into a bounded assignment. DocAble's machine-parseable phase table records dependencies and required reasoning capability, allowing the scheduler to identify ready work. A dispatch brief specifies one phase's role, scope, time budget, relevant sources, verification requirements, and expected hand-back. If design review changes a dependency, the schedulable plan must change too. The brief linter can reject missing structure and selected dispatch errors; it cannot determine whether the design is sound.
+
+During implementation, the agent uses the supplied context and may inspect additional code and models as its understanding improves. It remains free to choose implementation details within the established obligations. The work order should not prescribe every edit, but neither should the agent have to infer which existing behaviors it must preserve.
+
+At acceptance, the question changes from whether the agent completed its assignment to whether the resulting implementation satisfies the obligations. Tests, analyses, and other evidence must concern the actual revision being accepted. For heading detection, a successful demonstration of the new behavior would be insufficient if the change also damaged unrelated document structure. The illustrated acceptance gate must consume evidence for the applicable preservation requirements as well as the intended improvement; it cannot substitute for review of a property the available checks do not settle.
+
+Finally, recovery preserves work that cannot yet be accepted. If the agent is interrupted, or its change fails acceptance, the environment must identify which commits and artifacts remain usable, what obligations are unresolved, and what work a subsequent attempt should undertake. Repeating the original assignment without examining those artifacts can duplicate work or introduce conflicting changes.
+
+The workflow need not execute as a rigid sequence. A failed acceptance check may require a local repair or a revised design. A newly discovered dependency may change the work order. \autoref{practicing-priority-to-accepted-work} identifies the relationships that must remain coherent as the work moves among these activities.
 
 \subsection{From a Brief to Accepted Work}\label{heading:from-a-brief-to-accepted-work}
 
-As an illustration, consider an assignment to improve PDF heading detection. Prepare the brief from the current repository, not from a remembered account of the component. Four kinds of information make it usable:
+The heading-detection assignment illustrates what the dispatch brief must preserve. Prepare it from the current repository, not from a remembered account of the component. Four kinds of information make it usable:
 
 \begin{itemize}
 \tightlist
@@ -36,7 +48,7 @@ As an illustration, consider an assignment to improve PDF heading detection. Pre
 % Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
 In DocAble, the agent records its refined plan in the first commit and progress in later commit metadata. A sentinel check verifies selected prerequisites early: the expected worktree, branch, working directory, and registration marker. These checks can discover an unusable working environment before substantial effort is spent. They establish those prerequisites at that boundary; later integration still needs its own evidence. The companion \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/EPIC-TEMPLATE-starter.md}{epic}, \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/design-doc-template-starter.md}{design-document}, and \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/agent-brief-starter.md}{dispatch-brief} starters supply field structures that can be adapted to these consumers.
 
-Completion review follows the work back into the repository. Check that the promised change exists, was integrated, and has evidence supporting closure. A complete sequence of commit markers helps locate unfinished work but cannot establish semantic correctness. If the work is incomplete, preserve what the next agent or engineer needs to resume it. Reconcile partial commits and current ownership before launching replacement work; otherwise recovery can create a second competing attempt while the first remains stranded.
+Completion review follows the work back into the repository. For the heading-detection assignment, the reviewer must establish that the promised change was integrated and that the required checks support its acceptance. Commit markers help locate the work, but do not establish that the new behavior is correct or that existing behavior was preserved. If the evidence is inadequate, the work returns for repair rather than being declared complete. If execution was interrupted, inspect the existing commits, partial artifacts, and current ownership before redispatching the assignment. Recovery should resume from the durable result, not repeat work that has already been completed.
 
 \subsection{Keep the Checking Process Operational}\label{heading:keep-the-checking-process-operational}
 

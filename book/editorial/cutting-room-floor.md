@@ -23791,3 +23791,117 @@ Source revision: `4a80cb1f40e67cecbcb07bc0ad4efef5294750b3`. The census row must
 ```latex
 What may touch a document format\textquotesingle s internals? & Registry of external seams plus typed format models owning all mutation & Build-time ban checks on raw library access & Raw library access outside the typed boundary is rejected at build time \\
 ```
+
+## Figure walkthroughs and conceptual transitions — 2026-11-20
+
+Source revision: `65c966bf6`. Replaced compressed transitions and duplicated edge explanations with the author-requested worked traces. The Chapter 4 kernel example moved intact; it is not a deletion.
+
+### book/latex/sources/part2/2.3-structural.tex (source lines 143–150)
+
+```latex
+\autoref{from-nodes-to-composition} gives an example of each kind of \emph{typed composition}: the classifier determines which repair passes run, while the repair passes produce patches that the patch applier consumes. The first relationship governs execution and the second carries data. Recording the edge type preserves that distinction.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex (source lines 309–323)
+
+```latex
+Quantitative margin makes one aspect of implementation freedom visible: how far a measured result lies from an acceptable boundary. More generally, controls determine which realizations the environment permits. Comparing the acceptable and permitted realization spaces lets us examine which useful choices a control preserves or excludes.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex (source lines 309–323)
+
+```latex
+We can describe this tradeoff with sets.
+```
+
+### book/latex/sources/part3/3.5-when-guardrails-collide.tex (source lines 36–36)
+
+```latex
+The squash rule and diff-size guard in \autoref{census-trio} both act on the commit set. If a task's changes exceed the size limit for a single commit, neither order of execution can satisfy both requirements.
+```
+
+## Appendix figure walkthroughs — 2026-11-20
+
+Source revision: `65c966bf6`. Replace B.3's compact overview with the author-requested heading-detection walkthrough. Retain evidence-backed details, the figure, and the subsequent brief and operational guidance.
+
+### book/latex/sources/appendix-practicing-mage/operating-a-gee.tex (source lines 5–24)
+
+```latex
+How does an engineering priority become work that an agent can perform and an engineer can accept? The environment must turn a priority into a bounded assignment, supply the relevant engineering knowledge, and establish whether the resulting work satisfies its obligations. It must also preserve partial work when execution is interrupted. DocAble's November 2026 workflow provides one implementation of this process; its particular document formats are less important than the relationships among them.
+
+\autoref{practicing-priority-to-accepted-work} brings these relationships together at an integration-admission boundary. The stages can be combined or revisited, and later completion or release checks may impose additional obligations.
+
+[Figure retained unchanged.]
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+In DocAble, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains the strategy document from my instructions. An epic develops a selected effort into scope, rationale, risks, relevant models, and a Definition of Done. Its machine-parseable phase table exposes dependencies and required reasoning capability to the scheduler. If review changes those dependencies, the schedulable plan must change too. Selecting a priority authorizes planning; it does not establish that the proposed decomposition is sound.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+DocAble's design document records the motivating failure or requirement, the alternatives considered, and the proposed components and interactions. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit. A dispatch brief then assigns one ready phase, with a role, scope, time budget, relevant source, verification work, and expected hand-back. DocAble's brief linter can reject missing structure and selected dispatch errors. It cannot decide whether the engineering premise is right.
+
+
+```
+
+### book/latex/sources/appendix-practicing-mage/operating-a-gee.tex (source lines 26–26)
+
+```latex
+As an illustration, consider an assignment to improve PDF heading detection. Prepare the brief from the current repository, not from a remembered account of the component. Four kinds of information make it usable:
+```
+
+### book/latex/sources/appendix-practicing-mage/operating-a-gee.tex (source lines 39–39)
+
+```latex
+Completion review follows the work back into the repository. Check that the promised change exists, was integrated, and has evidence supporting closure. A complete sequence of commit markers helps locate unfinished work but cannot establish semantic correctness. If the work is incomplete, preserve what the next agent or engineer needs to resume it. Reconcile partial commits and current ownership before launching replacement work; otherwise recovery can create a second competing attempt while the first remains stranded.
+```
+
+## Reliability, model joins, and model-recovery transitions — 2026-11-20
+
+Source revision: `65c966bf6`. Apply the author's follow-up copy; retain the original memory-residency setup (Edit3A rejected). Replace the full redundant model-recovery transition before the state-machine example. Preserve symbolic figure references and evidence annotations.
+
+### book/latex/sources/part1/1.4-the-agentic-substrate.tex (source lines 121–121)
+
+```latex
+Commodity intelligence is probabilistic. This book focuses on the implications for engineering.
+```
+
+### book/latex/sources/part1/1.4-the-agentic-substrate.tex (source lines 125–125)
+
+```latex
+A simple model illustrates why reliability on individual features does not guarantee reliability across a product.
+```
+
+### book/latex/sources/part2/2.6-system-knowledge.tex (source lines 131–131)
+
+```latex
+Shared identities let an engineer move among these records as a question requires. \autoref{modeling-substrate} follows the slow service from its registry entry to its deployment and then to performance measurements.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex (source lines 72–80)
+
+```latex
+The existing representation coupled the two. \autoref{interlude-execution-unit}, panel c, shows how skeletonization separated them.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The architecture therefore carried an implicit scaling relation: total media size drove resident worker state. Finer chunking could reduce that state, at the cost of more coordination and less semantic context, but could not eliminate the relationship. The new file made that limitation consequential.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+A residency model made the alternative visible (\autoref{interlude-execution-unit}, panel c): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
+```
+
+### book/latex/sources/part4/4.3-brownfield-engineering.tex (source lines 67–73)
+
+```latex
+DocAble encountered this problem through a primitive-density detector, which identifies interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Primitive density is intentionally a weak signal: such interfaces sometimes indicate that a concept is being repeatedly reconstructed rather than represented explicitly, but they are also common in perfectly legitimate code. The detector therefore produced hundreds of findings without claiming that hundreds of models were missing. Most findings needed ordinary annotations or local cleanup, or occurred in test fixtures and protocol adapters where primitive-heavy interfaces were appropriate.
+
+A smaller subset behaved differently. Across related document mutators, the same parameter shapes recurred: language mutations repeatedly carried the same language and provenance concepts; alt-text mutations repeatedly carried description and attribution state. Looking across those instances revealed something that no individual finding established on its own. The repeated primitives expressed recurring domain concepts that the implementation had never named.
+
+A primitive-heavy external protocol adapter may faithfully express its interface; similar primitives in internal domain code may force every consumer to reconstruct a shared concept. The question is what explains the repetition and whether naming its meaning would improve later reasoning.
+```
+
+### book/latex/sources/part4/4.3-brownfield-engineering.tex (source lines 73–75)
+
+```latex
+Recovering a model requires more than recognizing repeated structure. \autoref{discovering-latent-models} shows the process. Weak signals identify places worth investigating; engineers then distinguish legitimate implementation structures, mechanical cleanup, and concepts worth modeling. The first two may need only an exemption or a local fix. The third calls for a change in how the system represents the concept.
+```

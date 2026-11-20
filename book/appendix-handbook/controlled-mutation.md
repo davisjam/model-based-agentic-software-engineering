@@ -11,6 +11,8 @@ A repairer may know that a document needs better alternative text without being 
 <!-- label: handbook-typed-changeset -->
 <!-- figure: assets/handbook-typed-changeset.svg | *Controlled mutation separates a proposed edit from its effects.* Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. A comparison affects admission only when its consumer refuses the prohibited edit; any direct write path lies outside this boundary. [short: Controlled mutation] -->
 
+Suppose a reasoning component determines that an image needs alternative text. It proposes a typed operation naming the image’s structure element and the intended description. The applier resolves that target against the current document, checks the operation against its supported vocabulary and applicable guards, and performs the mutation if those checks permit it. The result records application, refusal, or failure. Subsequent validation evaluates properties of the changed document. The proposal, applied operation, and validation result are different artifacts: each establishes something the others cannot.
+
 ## Engineering Models {#handbook-model-document-changeset}
 
 The operation boundary depends on the four models in [ref:handbook-mutation-models].

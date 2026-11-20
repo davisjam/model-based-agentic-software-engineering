@@ -29,6 +29,11 @@ The engineering opportunity is to derive validation from models of change impact
 \label{handbook-model-based-test-selection}
 \end{figure}
 
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-illustration
+Suppose an agent changes the component responsible for editing PDF structure. The selector first resolves the modified files to their modeled components. It uses their declared subsystem memberships and any rules that broaden the affected set to identify potentially affected subsystems, then consults the validation-coverage model to determine which checks evaluate those subsystems. For a change whose modeled impact is confined to PDF processing, PDF-specific checks may be selected while unrelated spreadsheet checks are omitted. The executor must honor that selection, and the acceptance gate must interpret the results of the checks actually required.
+
+The decision is only as reliable as the relationships behind it. If the changed component also affects a shared document abstraction, the selection must cover the affected consumers, whether through a widened declaration or a broader run. An unmapped dependency must not be interpreted as proof that no additional checks are needed. Separately recovered dependency relationships and comparisons with full-suite execution can expose omissions in the selection model. The blueprint therefore governs not only which checks run, but how engineers establish confidence that the selection remains adequate.
+
 \section{Engineering Models}\label{heading:engineering-models}
 
 Five models connect a change to validation. Their outputs have different types: changed files identify implementation elements; impact analysis declares subsystems; coverage declarations map subsystems to validation units. Keeping these distinctions explicit prevents a plausible dependency analysis from being mistaken for an adequate test selection.

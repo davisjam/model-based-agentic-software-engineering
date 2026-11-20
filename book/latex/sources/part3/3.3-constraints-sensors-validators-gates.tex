@@ -306,8 +306,6 @@ The evidence also informs the engineer. Shrinking margin may indicate that the c
 
 This reasoning applies where the model defines a meaningful quantitative boundary and the environment can measure the relevant behavior. Latency, memory consumption, cost, and capacity are familiar examples. The measured margin also depends on the workload and conditions under which it was obtained; headroom observed in one setting is not a guarantee under another. Many software obligations are discrete instead. A dependency is permitted or forbidden, and a state transition is legal or illegal. Such properties may admit measures of risk, but they do not necessarily have a useful distance to failure. For them, conformance may be the appropriate evaluation.
 
-Quantitative margin makes one aspect of implementation freedom visible: how far a measured result lies from an acceptable boundary. More generally, controls determine which realizations the environment permits. Comparing the acceptable and permitted realization spaces lets us examine which useful choices a control preserves or excludes.
-
 % <!-- section-terms: constraint, governance-mechanism -->
 
 % <!-- point: preserving-freedom-has-positive-value | Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring. | terms: constraint, governance-mechanism -->
@@ -320,7 +318,7 @@ For consequential choices whose effects are still uncertain, engineers can defer
 
 % <!-- point: realization-space-underconstraint-vs-overconstraint | Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P. | terms: constraint, governance-mechanism -->
 
-We can describe this tradeoff with sets. Let \(\mathcal R\) be the possible realizations of the work. Each obligation \(O_i \subseteq \mathcal R\) is the set of realizations satisfying it, so the acceptable realizations are \(\mathcal A = O_1 \cap \ldots \cap O_n\).
+The latency example measures how much room an implementation has within one obligation. A broader question is whether the environment permits every implementation that would satisfy the applicable obligations, or unnecessarily excludes some of them. We can describe this distinction with sets. Let \(\mathcal R\) be the possible realizations of the work. Each obligation \(O_i \subseteq \mathcal R\) is the set of realizations satisfying it, so the acceptable realizations are \(\mathcal A = O_1 \cap \ldots \cap O_n\).
 
 For a fixed control configuration and decision context, let \(C_j \subseteq \mathcal R\) be the set of realizations permitted by enforcing control \(j\), whether a direct constraint or a gate. When every applicable control must permit a realization, the environment permits \(\mathcal P = C_1 \cap \ldots \cap C_m\). A gate can exclude a realization that satisfies all direct constraints, for example because required evidence is missing. Sensors can supply evidence for that decision without themselves restricting \(\mathcal P\). The permitted region can change as the evidence or controls change. Two kinds of mismatch appear as set differences:
 

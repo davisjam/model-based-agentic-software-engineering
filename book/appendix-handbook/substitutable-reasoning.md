@@ -13,6 +13,8 @@ DocAble supplies examples for two distinct substitution decisions. Model selecti
 <!-- label: handbook-substitutable-reasoning -->
 <!-- figure: assets/handbook-substitutable-reasoning.svg | *Substitutable reasoning.* Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior. [short: Substitutable reasoning] -->
 
+Consider an image-description task in the illustrated design. At the narrower substitution boundary, select a different foundation model while retaining the same task, permitted operations, and acceptance conditions. The surrounding workflow remains unchanged; only the component supplying the semantic judgment differs. At the broader boundary, a general-purpose agent may replace several specialized reasoning passes. It can choose which analyses to perform and in what order, but the design requires its proposed document changes to use the supported operation vocabulary and the resulting artifact to satisfy the applicable acceptance conditions. The first substitution changes a reasoner within a workflow; the second changes the workflow itself. Neither grants the replacement authority to redefine what constitutes an acceptable document.
+
 ## Engineering Models
 
 The models answer different engineering questions. The task model states the meaning of a requested judgment; the workflow model organizes the work used to answer it. Replacing a workflow need not redefine the task, and selecting a different foundation model need not change either one.

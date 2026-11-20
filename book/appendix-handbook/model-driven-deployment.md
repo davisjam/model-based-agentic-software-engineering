@@ -11,6 +11,8 @@ A service can know a dependency’s URL and still be unable to call it. DocAble 
 <!-- label: handbook-derived-iam -->
 <!-- figure: assets/handbook-derived-iam.svg | *Model-driven deployment with explicit authority boundaries.* The current dependency map and environment configuration supply a grant plan; application reports each binding’s result, while cloud IAM enforces installed permissions. The typed call model remains a verified mirror checked against the map. Service-name correspondence checks a different property. [short: Model-driven deployment] -->
 
+Consider the accessibility-quality service calling DocAble’s GenAI service. The architectural model declares the invocation and its authentication requirements, and a parity check compares that declaration with the deployment dependency map. The dependency map supplies the GenAI service’s address in the selected environment. Runtime-identity configuration identifies the principal under which accessibility-quality executes. Joining the deployment dependency to that principal and the deployed GenAI service name produces the invocation-grant plan. Deployment must install the grant; its application result and a call accepted by the cloud authorization boundary provide different evidence. A correct URL without the grant reproduces the original failure.
+
 ## Engineering Models {#handbook-model-service-flow}
 
 Shared identities connect the representations in [ref:handbook-deployment-models].

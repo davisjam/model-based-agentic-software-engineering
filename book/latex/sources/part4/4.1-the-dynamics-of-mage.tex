@@ -53,14 +53,14 @@ The first models brought into governance should protect the properties that subs
 
 \magevalue{chapter:modeling} organized models by the properties they represent. The kernel instead concerns their order of introduction: protect the properties that an upcoming transformation must preserve, then expand the governed surface under those existing constraints (\autoref{alignment-kernel}).
 
+The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/alignment-kernel-e0de0325d8.pdf}
 \caption{\emph{Incrementally extending the alignment kernel.} The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in \magevalue{chapter:modeling} becoming governing constraints over time.}
 \label{alignment-kernel}
 \end{figure}
-
-The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
 
 This ordering is a form of risk-driven engineering. Boehm's spiral model organized development around identifying and resolving risks, while risk-driven software architecture similarly asks engineers to invest in architectural knowledge where uncertainty threatens consequential decisions~\citep{boehm1988spiral,fairbanks2010}. The alignment kernel applies that judgment to the properties that must survive an upcoming transformation. An engineer should consider what the transformation might damage, the consequences of that damage, and whether the available evidence would detect it. A property that is expensive to recover, difficult to observe, or capable of invalidating subsequent work may warrant protection before other models are introduced.
 

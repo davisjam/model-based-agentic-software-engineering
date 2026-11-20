@@ -19,6 +19,10 @@ A service can know a dependency's URL and still be unable to call it. DocAble en
 \label{handbook-derived-iam}
 \end{figure}
 
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+Consider the accessibility-quality service calling DocAble's GenAI service. The architectural model declares the invocation and its authentication requirements, and a parity check compares that declaration with the deployment dependency map. The dependency map supplies the GenAI service's address in the selected environment. Runtime-identity configuration identifies the principal under which accessibility-quality executes. Joining the deployment dependency to that principal and the deployed GenAI service name produces the invocation-grant plan. Deployment must install the grant; its application result and a call accepted by the cloud authorization boundary provide different evidence. A correct URL without the grant reproduces the original failure.
+
 \section{Engineering Models}\label{heading:handbook-model-service-flow}
 
 Shared identities connect the representations in \autoref{handbook-deployment-models}.
