@@ -1,0 +1,20 @@
+% Compact navigation diagram; descriptive subtitles belong in the reading guide.
+\begin{tikzpicture}[font=\magefigurefont\fontsize{10}{11.5}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=2pt,fill=white,align=center,inner xsep=3pt,inner ysep=3pt,text width=5.7cm},
+note/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont},
+edge/.style={-Stealth,line width=.55pt}]
+\node[n] (s0) {\textbf{Preface}\\\textit{How do we safely grant autonomy\\to commodity intelligence?}};
+\node[n,below=13pt of s0] (s1) {\textbf{\magebookref{part:1}{1  The New Engineering Problem}}};
+\node[n,below=27pt of s1] (s2) {\textbf{\magebookref{part:2}{2  Modeling}}};
+\node[n,below=13pt of s2] (s3) {\textbf{\magebookref{part:3}{3  Alignment}}};
+\node[n,below=13pt of s3] (s4) {\textbf{\magebookref{part:4}{4  MAGE in Motion}}};
+\node[n,below=13pt of s4] (s5) {\textbf{\magebookref{part:5}{5  DocAble Among Other\\Software Factories}}};
+\node[n,below=27pt of s5] (s6) {\textbf{\magebookref{part:6}{6  The Theory}}};
+\node[n,below=13pt of s6] (s7) {\textbf{\magebookref{part:7}{7  The Profession}}};
+\node[n,below=13pt of s7] (s8) {\textbf{Conclusion}\\\textit{What cannot be delegated?}};
+\foreach \a/\b in {0/1,1/2,2/3,3/4,4/5,5/6,6/7,7/8} {\draw[edge] (s\a) -- (s\b);}
+\begin{scope}[on background layer]
+\node[draw,fill=black!10,inner xsep=4pt,inner ysep=13pt,fit=(s2)(s3)(s4)(s5)] (case) {};
+\end{scope}
+\node[note,rotate=90,anchor=south] at ([xshift=-3pt]case.west) {\textbf{SOFTWARE-ENGINEERING CASE}};
+\end{tikzpicture}

@@ -1,8 +1,8 @@
 {
   "source": "book/assets/handbook-typed-changeset.svg",
   "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
-  "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
-  "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+  "source_sha256": "4a368ac5fc2fbec571c91751b81610aa599f144b8ad6d28c6e33b65235d5892d",
+  "candidate_sha256": "38b394ed58b33a536eba307f20ff4ce669ab472705c23310b6e4e0ce83792a74",
   "decision": "revised",
   "revision_date": "2026-11-20",
   "reviewed_visually": true,
@@ -10,6 +10,8 @@
   "topology": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
   "required_terms": [
     "Controlled application boundary",
+    "diagnostic",
+    "evidence",
     "pass",
     "refuse",
     "on mutation",
@@ -35,9 +37,10 @@
     "remediation mutations"
   ],
   "bw_encoding": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
-  "redesign": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "redesign": "Author-approved diagnostic-evidence label distinguishes advisory before-value comparison from selected admission guards; target-resolution width adjusts to give the edge label room.",
   "questions": [],
   "alt": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
-  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
-  "review_scope": "Isolated four-figure native proof and source/visual review; parent integrates protected registries and compiles the full pool."
+  "generator": "book/editorial/appendix-a-figure-followup-20261120/build.py",
+  "review_scope": "Isolated five-page native proof, source SVG check and visual inspection; parent performs integrated pool and book builds.",
+  "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-typed-changeset.json"
 }

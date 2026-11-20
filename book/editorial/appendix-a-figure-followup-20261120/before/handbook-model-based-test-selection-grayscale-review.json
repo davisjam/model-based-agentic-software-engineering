@@ -1,0 +1,12 @@
+{
+  "source": "book/assets/handbook-model-based-test-selection.svg",
+  "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+  "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+  "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+  "reviewed": true,
+  "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+}

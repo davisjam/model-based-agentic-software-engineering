@@ -109,7 +109,9 @@ def reading_guide_columns(latex: str) -> str:
     artwork = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0])
     artwork = artwork.removesuffix(r'\end{figure}')
     alt = ('The Preface and seven chapters lead to the Conclusion. '
-           'Chapters 2--5 form the software-engineering case.')
+           'Chapters 2--5 form the software-engineering case. '
+           'Two separate reference destinations are Appendix A, Engineering Blueprints, '
+           'and Appendix B, Practicing MAGE.')
     return (prefix + marker + '\n\n' + introduction + '\n\n' +
             r'\noindent\begin{minipage}[t]{.53\linewidth}\vspace{0pt}' +
             r'\raggedright\setlength{\parskip}{0.25\baselineskip}' + '\n' + navigation + '\n' +

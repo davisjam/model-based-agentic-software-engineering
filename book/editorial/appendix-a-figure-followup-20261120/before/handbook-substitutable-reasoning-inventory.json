@@ -1,0 +1,14 @@
+{
+  "chapter": "appendix-a-substitutable-reasoning",
+  "source": "assets/handbook-substitutable-reasoning.svg",
+  "caption": "Substitutable reasoning. Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior.",
+  "native_context": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
+  "d2_source": null,
+  "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+  "data": [],
+  "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "svg_title": "Substitutable reasoning with stable domain obligations",
+  "svg_description": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+  "native_source": "book/tikz/figures/handbook-substitutable-reasoning.tex"
+}

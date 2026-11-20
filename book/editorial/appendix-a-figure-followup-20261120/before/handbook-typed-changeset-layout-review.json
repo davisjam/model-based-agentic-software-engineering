@@ -1,0 +1,12 @@
+{
+  "source": "book/assets/handbook-typed-changeset.svg",
+  "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+  "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
+  "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+  "decision": "revised",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "contracts": {},
+  "baseline_dimensions_bp": null
+}

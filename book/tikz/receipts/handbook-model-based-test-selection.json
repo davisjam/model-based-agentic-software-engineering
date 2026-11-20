@@ -1,9 +1,9 @@
 {
   "source": "book/assets/handbook-model-based-test-selection.svg",
   "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
-  "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
-  "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
-  "decision": "new",
+  "source_sha256": "a9b8785550b3363f0c0832a982123e430e7d2cc093d86a2028e7f7b945460c90",
+  "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b",
+  "decision": "revised",
   "revision_date": "2026-11-20",
   "reviewed_visually": true,
   "claim": "Model-based regression-test selection. Component and dependency models derive affected subsystems, and validation coverage maps them to checks. Execution records and findings feed an acceptance gate under an explicit policy. Dependency analyses and full-suite comparisons challenge the selection; conservative fallback covers recognized uncertainty, not every unmodeled dependency.",
@@ -36,9 +36,10 @@
     "or broaden runs"
   ],
   "bw_encoding": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
-  "redesign": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "redesign": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles.",
   "questions": [],
   "alt": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
-  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
-  "review_scope": "Isolated four-figure native proof and source/visual review; parent integrates protected registries and compiles the full pool."
+  "generator": "book/editorial/appendix-a-figure-followup-20261120/build.py",
+  "review_scope": "Isolated five-page native proof, source SVG check and visual inspection; parent performs integrated pool and book builds.",
+  "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json"
 }

@@ -4,8 +4,9 @@
   "pdf_default": "paired",
   "approved_monochrome": {
     "book/assets/book-map.svg": {
-      "approved_date": "2026-11-05",
-      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2–5 enclosure and the optional appendix branches removed."
+      "approved_date": "2026-11-20",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454"
     },
     "book/assets/mage-method.svg": {
       "approved_date": "2026-11-09",
@@ -316,19 +317,19 @@
       "reason": "Author approved the revised MAGE dynamic model showing corrective feedback and the expanding task frontier."
     },
     "book/assets/handbook-derived-iam.svg": {
-      "approved_date": "2026-11-19",
-      "reason": "Author requested monochrome engineering blueprints using these consistent shapes, evidence paths, and enforcement boundaries; shared SVG/native geometry reviewed at print size.",
-      "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7"
+      "approved_date": "2026-11-20",
+      "reason": "Author-approved simplification removes only the future authority-migration note; parity, live IAM and fix-forward distinctions remain.",
+      "candidate_sha256": "5b233e14a4f5e45aa5e850d9495099ac9d48ebc2cbc40f3a932eda56aae0a43e"
     },
     "book/assets/handbook-typed-changeset.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
-      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90"
+      "reason": "Author-approved diagnostic-evidence label distinguishes advisory before-value comparison from selected admission guards; target-resolution width adjusts to give the edge label room.",
+      "candidate_sha256": "38b394ed58b33a536eba307f20ff4ce669ab472705c23310b6e4e0ce83792a74"
     },
     "book/assets/handbook-model-guided-delegation.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
-      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75"
+      "reason": "Author-approved moderate redraw aligns the two governance decisions with equal heavy diamonds. Independent checks produce review evidence; durable work also reaches completion review. Refusal, positive DONE and recovery semantics remain.",
+      "candidate_sha256": "e7ba0493966dc62804c9347a12b3d896243cbdbf85ccabd68345375799e5c1ba"
     },
     "book/assets/priority-to-accepted-work.svg": {
       "approved_date": "2026-11-20",
@@ -342,13 +343,13 @@
     },
     "book/assets/handbook-substitutable-reasoning.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
-      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9"
+      "reason": "Author-approved cleanup groups exactly two engines and places shared model selection outside that group. The capability input is prominent; acceptance visibly consumes findings and policy.",
+      "candidate_sha256": "aff32a9aa3a5a99ee641a0a5acc4a0e50d64d0ea2951d9285a2ce9f4562b7cd6"
     },
     "book/assets/handbook-model-based-test-selection.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested these two new native monochrome blueprints and targeted model-role updates; model inventories settled before artwork.",
-      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa"
+      "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles.",
+      "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b"
     }
   }
 }

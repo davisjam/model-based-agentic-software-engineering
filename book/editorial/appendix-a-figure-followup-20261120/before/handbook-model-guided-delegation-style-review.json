@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/handbook-model-guided-delegation.svg",
+  "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+  "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+  "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+  "decision": "revised",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+  "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+  "routing": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+  "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+  "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+  "book_references": []
+}

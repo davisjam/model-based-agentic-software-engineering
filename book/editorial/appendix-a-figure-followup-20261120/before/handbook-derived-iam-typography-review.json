@@ -1,0 +1,399 @@
+{
+  "source": "book/assets/handbook-derived-iam.svg",
+  "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+  "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
+  "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "checks": [
+    {
+      "text": "Cloud IAM boundary",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "parity",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Engineer / agent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "selects intended calls",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Typed call contract",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "verified mirror",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Dependency map",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "current authority",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Deployment identities",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "and service names",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Derive concrete grants",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Grant plan",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Apply grants",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Per-grant results",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "granted / failed / dry-run",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Installed bindings",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Allow call?",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "allow / refuse",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Later: migrate consumers,",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "then transfer authority.",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Service-name parity",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "does not verify IAM.",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Failed application:",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "report and fix forward.",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "source_text": "Cloud IAM boundary",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "Boundary heading",
+      "candidate_text": "Cloud IAM boundary",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "parity",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "parity",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Engineer / agent",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Engineer / agent",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "selects intended calls",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "selects intended calls",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Typed call contract",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Typed call contract",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "verified mirror",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "verified mirror",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Dependency map",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Dependency map",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "current authority",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "current authority",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Deployment identities",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Deployment identities",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "and service names",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "and service names",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Derive concrete grants",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Derive concrete grants",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Grant plan",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Grant plan",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Apply grants",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Apply grants",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Per-grant results",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Per-grant results",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "granted / failed / dry-run",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "granted / failed / dry-run",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Installed bindings",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Installed bindings",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Allow call?",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Allow call?",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "allow / refuse",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "allow / refuse",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Later: migrate consumers,",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Later: migrate consumers,",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "then transfer authority.",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "then transfer authority.",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Service-name parity",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Service-name parity",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "does not verify IAM.",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "does not verify IAM.",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Failed application:",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "Failed application:",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "report and fix forward.",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "artifact, mechanism, decision or relationship",
+      "candidate_text": "report and fix forward.",
+      "candidate_style": "regular"
+    }
+  ]
+}

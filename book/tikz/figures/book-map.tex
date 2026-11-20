@@ -17,4 +17,9 @@ edge/.style={-Stealth,line width=.55pt}]
 \node[draw,fill=black!10,inner xsep=4pt,inner ysep=13pt,fit=(s2)(s3)(s4)(s5)] (case) {};
 \end{scope}
 \node[note,rotate=90,anchor=south] at ([xshift=-3pt]case.west) {\textbf{SOFTWARE-ENGINEERING CASE}};
+% Subordinate reference destinations, separate from the chapter sequence.
+\node[n,text width=2.8cm,minimum height=39pt,below=21pt of s8,xshift=-46pt] (appA) {\magebookref{chapter:appendix-handbook}{Appendix A}\\Engineering\\Blueprints};
+\node[n,text width=2.8cm,minimum height=39pt,below=21pt of s8,xshift=46pt] (appB) {\magebookref{chapter:appendix-practicing-mage}{Appendix B}\\Practicing MAGE};
+\draw[dashed,line width=.55pt] (s8.south) -- ++(0,-9pt) -| (appA.north);
+\draw[dashed,line width=.55pt] ([yshift=-9pt]s8.south) -| (appB.north);
 \end{tikzpicture}

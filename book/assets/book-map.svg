@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (label: book-map). Three movements: the engineering question,
      the software-engineering case in Chapters 2–5, and its theory and implications.
-     The centered main argument is the complete figure; optional appendices are omitted. -->
+     The centered main argument remains a sequence; two subordinate appendix destinations follow as reference material. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 942" width="920" height="942"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1038" width="920" height="1038"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle">The book's argument in three movements — the engineering question, the nested software-engineering case, and the engineering argument it substantiates, from the Preface's question to the Conclusion's answer</title>
@@ -17,7 +17,7 @@
     those factories: dynamics, economics, predictions, and scope conditions. Then Chapter 7, The Profession — how
     software work reorganizes, agentic engineering beyond software, and the responsibility that remains the engineer's.
     The descent ends at the Conclusion, which returns to the Preface's question and asks its converse: what cannot be
-    delegated? Responsibility.</desc>
+    delegated? Responsibility. Dashed branches beneath the main argument lead to Appendix A, Engineering Blueprints, and Appendix B, Practicing MAGE; these are reference destinations rather than steps in the central sequence.</desc>
 
   <defs>
     <marker id="bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -25,7 +25,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="942" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="1038" fill="#fdfcf9"/>
 
   <g transform="translate(192 0)">
   <!-- THE SOFTWARE ENGINEERING CASE — the shaded region nesting Chapters 2-5 (renders beneath
@@ -100,5 +100,13 @@
   <text x="268" y="858" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
   <text x="268" y="882" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
   <text x="268" y="901" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  <!-- REFERENCE DESTINATIONS — dashed relationships, not further argument steps -->
+  <path d="M268,912 V934 H140 V952 M268,934 H396 V952" fill="none" stroke="#57534e" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect id="appendix-a" x="24" y="952" width="232" height="64" rx="6" fill="white" stroke="#57534e" stroke-width="1.5"/>
+  <text x="140" y="977" text-anchor="middle" font-size="19" fill="#1c1917">Appendix A</text>
+  <text x="140" y="1001" text-anchor="middle" font-size="19" fill="#1c1917">Engineering Blueprints</text>
+  <rect id="appendix-b" x="280" y="952" width="232" height="64" rx="6" fill="white" stroke="#57534e" stroke-width="1.5"/>
+  <text x="396" y="977" text-anchor="middle" font-size="19" fill="#1c1917">Appendix B</text>
+  <text x="396" y="1001" text-anchor="middle" font-size="19" fill="#1c1917">Practicing MAGE</text>
   </g>
 </svg>

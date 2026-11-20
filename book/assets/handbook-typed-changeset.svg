@@ -5,7 +5,9 @@
 <path d="M225,40 L225,70" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M380,40 L380,90 L290,90" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M180,40 L180,55 L70,55 L70,70" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
-<path d="M165,90 L130,90" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M180,100 L130,100" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<text x="155" y="77" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">diagnostic</text>
+<text x="155" y="89" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">evidence</text>
 <path d="M220,110 L220,135" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M130,165 L170,165" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M270,165 L325,165" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
@@ -25,8 +27,8 @@
 <rect x="325" y="0" width="115" height="40" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="382.5" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Document structure</text>
 <text x="382.5" y="29.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">model / current state</text>
-<rect x="165" y="70" width="125" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
-<text x="227.5" y="93.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Resolve current target</text>
+<rect x="180" y="70" width="110" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="235.0" y="93.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Resolve current target</text>
 <rect x="5" y="70" width="125" height="40" rx="8" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="67.5" y="87.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Before-value compare</text>
 <text x="67.5" y="99.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">audit by default</text>

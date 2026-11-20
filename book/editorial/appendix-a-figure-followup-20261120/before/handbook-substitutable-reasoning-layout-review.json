@@ -1,0 +1,12 @@
+{
+  "source": "book/assets/handbook-substitutable-reasoning.svg",
+  "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+  "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+  "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "contracts": {},
+  "baseline_dimensions_bp": null
+}

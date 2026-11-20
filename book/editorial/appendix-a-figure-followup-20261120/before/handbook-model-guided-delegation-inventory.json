@@ -1,0 +1,14 @@
+{
+  "chapter": "appendix-a-governed-delegation",
+  "source": "assets/handbook-model-guided-delegation.svg",
+  "caption": "Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence. Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.",
+  "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+  "d2_source": null,
+  "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+  "data": [],
+  "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "svg_title": "Governed delegation with bounded guidance and separate admission",
+  "svg_description": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+  "native_source": "book/tikz/figures/handbook-model-guided-delegation.tex"
+}

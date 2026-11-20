@@ -1,0 +1,21 @@
+{
+  "source": "book/assets/handbook-derived-iam.svg",
+  "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+  "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
+  "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "receipt": "book/tikz/receipts/handbook-derived-iam.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "Pale gray only identifies the flexible reasoning component; other fills remain white.",
+  "bold": "Boundary labels are bold; node and edge labels regular.",
+  "routing": "Flexible engineering judgment selects intended calls. A typed call contract is checked by parity against the current authoritative dependency map. That map and environment-specific deployment identities feed deterministic grant derivation, a concrete grant plan, application, and per-grant results. Installed IAM bindings govern invocation at a separate runtime boundary. Service-name correspondence is not an IAM check. Moving model authority requires a separate consumer migration.",
+  "shape": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence.",
+  "visual_review": "Inspected native-size and SVG proofs. Labels fit; independent evidence, authority and failure paths are distinct.",
+  "book_references": []
+}

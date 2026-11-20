@@ -1,0 +1,542 @@
+{
+  "source": "book/assets/handbook-model-guided-delegation.svg",
+  "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+  "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+  "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+  "decision": "revised",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "checks": [
+    {
+      "text": "Dispatch boundary",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "allow",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "refuse",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "complete",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "or partial",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "interrupted",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Work order",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "scope + declared phase",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Bounded context",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "selection",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Brief + selected",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "context",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Component +",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "constraint models",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Lifecycle policy +",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "reconciled phase state",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Dispatch",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "checks",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Absence is not DONE.",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Implementing agent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "flexible reasoning",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Refuse assignment",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "invalid brief; or DONE",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "without valid override",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Independent checks",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "and review evidence",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Durable work",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "commits + artifacts",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Completion review",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Accepted completion",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "phase state updated",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Inspect / reconcile",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "before redispatch",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "source_text": "Dispatch boundary",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "heading",
+      "candidate_text": "Dispatch boundary",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "allow",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "allow",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "refuse",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "refuse",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "complete",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "complete",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "or partial",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "or partial",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "interrupted",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "interrupted",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Work order",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Work order",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "scope + declared phase",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "scope + declared phase",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Bounded context",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Bounded context",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "selection",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "selection",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Brief + selected",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Brief + selected",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "context",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "context",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Component +",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Component +",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "constraint models",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "constraint models",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Lifecycle policy +",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Lifecycle policy +",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "reconciled phase state",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "reconciled phase state",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Dispatch",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Dispatch",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "checks",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "checks",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Absence is not DONE.",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Absence is not DONE.",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Implementing agent",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Implementing agent",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "flexible reasoning",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "flexible reasoning",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Refuse assignment",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Refuse assignment",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "invalid brief; or DONE",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "invalid brief; or DONE",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "without valid override",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "without valid override",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Independent checks",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Independent checks",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "and review evidence",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "and review evidence",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Durable work",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Durable work",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "commits + artifacts",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "commits + artifacts",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Completion review",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Completion review",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Accepted completion",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Accepted completion",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "phase state updated",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "phase state updated",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Inspect / reconcile",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Inspect / reconcile",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "before redispatch",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "before redispatch",
+      "candidate_style": "regular"
+    }
+  ]
+}

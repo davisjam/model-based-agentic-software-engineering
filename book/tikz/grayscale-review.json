@@ -5,9 +5,43 @@
     "receipt": "book/tikz/receipts/book-map.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links. Rotated case label moved clear of enclosing border.",
-    "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-    "candidate_sha256": "634f3ac06d0729718111220ca6babfdbe7cb8660923a4c3e3721d7ebd8f34821"
+    "rationale": "White destination boxes; light gray only groups the software-engineering case. Main argument destinations and case label remain bold. Appendix reference destinations use regular weight.",
+    "source_sha256": "98b839e863f25ccb486083ed6583f029838d446dc06816cb72b37ac32e20c8e2",
+    "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454",
+    "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-20",
+      "proof": "/tmp/mage-navigation-followup/proof.pdf",
+      "proof_sha256": "366c1ec9796fe6b5efdf16c1f9860f7cb83477cc4e30cfd28c2b290636277f39",
+      "page": 1,
+      "width_bp": 192.761,
+      "height_bp": 378.142,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 16,
+      "monochrome_pixels": true,
+      "audit_sha256": "936558a4384ca2d468edd20205651eabe9dd005cc712a4ebfdcef45f46b0035d",
+      "typography_audit_sha256": "1d1fb270fb3df8986e58a9d85fbf1550ca2e9b4907eddb0b0cf79266c9591de7",
+      "status": "passed",
+      "visual_review": "Inspected native 2x raster and source SVG: appendix boxes are subordinate, readable, separately connected by dashed lines below Conclusion. No overlap or clipping. Native width192.761bp fits existing narrow reading-guide column without scaling."
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-20",
+        "reason": "Added appendix reference destinations",
+        "review": {
+          "source": "book/assets/book-map.svg",
+          "candidate": "book/tikz/figures/book-map.tex",
+          "receipt": "book/tikz/receipts/book-map.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Restored differentiated chapter families through gray fills; retained argument spine, case enclosure and dotted appendix links. Rotated case label moved clear of enclosing border.",
+          "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+          "candidate_sha256": "634f3ac06d0729718111220ca6babfdbe7cb8660923a4c3e3721d7ebd8f34821"
+        }
+      }
+    ]
   },
   {
     "source": "book/assets/mage-method.svg",
@@ -3411,39 +3445,44 @@
   {
     "source": "book/assets/handbook-derived-iam.svg",
     "candidate": "book/tikz/figures/handbook-derived-iam.tex",
-    "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
-    "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+    "source_sha256": "c2beac1458195c54b44d2e2419a3e16cb367e975846d5bc0f014f0648eb1652d",
+    "candidate_sha256": "5b233e14a4f5e45aa5e850d9495099ac9d48ebc2cbc40f3a932eda56aae0a43e",
     "decision": "revised",
-    "revision_date": "2026-11-19",
+    "revision_date": "2026-11-20",
     "reviewed_visually": true,
-    "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
+    "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-derived-iam.json",
     "receipt": "book/tikz/receipts/handbook-derived-iam.json",
     "reviewed": true,
-    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence."
+    "rationale": "Rectangles are models or durable artifacts, rounded rectangles mechanisms or flexible reasoning, and diamonds decisions. Heavy outlines mark selected enforcement boundaries; gray identifies flexible reasoning. Solid arrows carry data/artifacts; dashed edges carry verification or correspondence.",
+    "reason": "Author-approved simplification removes only the future authority-migration note; parity, live IAM and fix-forward distinctions remain."
   },
   {
     "source": "book/assets/handbook-typed-changeset.svg",
     "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
-    "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
-    "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+    "source_sha256": "4a368ac5fc2fbec571c91751b81610aa599f144b8ad6d28c6e33b65235d5892d",
+    "candidate_sha256": "38b394ed58b33a536eba307f20ff4ce669ab472705c23310b6e4e0ce83792a74",
     "decision": "revised",
     "revision_date": "2026-11-20",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
     "reviewed": true,
-    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+    "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-typed-changeset.json",
+    "reason": "Author-approved diagnostic-evidence label distinguishes advisory before-value comparison from selected admission guards; target-resolution width adjusts to give the edge label room."
   },
   {
     "source": "book/assets/handbook-model-guided-delegation.svg",
     "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-    "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
-    "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+    "source_sha256": "8035d64950c9daff274615eb22925bec5c7c8d446ab53dc116af09787d0d10cf",
+    "candidate_sha256": "e7ba0493966dc62804c9347a12b3d896243cbdbf85ccabd68345375799e5c1ba",
     "decision": "revised",
     "revision_date": "2026-11-20",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
     "reviewed": true,
-    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+    "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-guided-delegation.json",
+    "reason": "Author-approved moderate redraw aligns the two governance decisions with equal heavy diamonds. Independent checks produce review evidence; durable work also reaches completion review. Refusal, positive DONE and recovery semantics remain."
   },
   {
     "source": "book/assets/recovering-and-extending-governance.svg",
@@ -3460,25 +3499,29 @@
   {
     "source": "book/assets/handbook-substitutable-reasoning.svg",
     "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
-    "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
-    "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
-    "decision": "new",
+    "source_sha256": "b6332b21d2172f9428b89223f65e722378330c18dc986e8a38075f2391416ffe",
+    "candidate_sha256": "aff32a9aa3a5a99ee641a0a5acc4a0e50d64d0ea2951d9285a2ce9f4562b7cd6",
+    "decision": "revised",
     "revision_date": "2026-11-20",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
     "reviewed": true,
-    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+    "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-substitutable-reasoning.json",
+    "reason": "Author-approved cleanup groups exactly two engines and places shared model selection outside that group. The capability input is prominent; acceptance visibly consumes findings and policy."
   },
   {
     "source": "book/assets/handbook-model-based-test-selection.svg",
     "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
-    "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
-    "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
-    "decision": "new",
+    "source_sha256": "a9b8785550b3363f0c0832a982123e430e7d2cc093d86a2028e7f7b945460c90",
+    "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b",
+    "decision": "revised",
     "revision_date": "2026-11-20",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
     "reviewed": true,
-    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations."
+    "rationale": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+    "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json",
+    "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles."
   }
 ]

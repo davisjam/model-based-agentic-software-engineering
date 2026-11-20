@@ -1,0 +1,18 @@
+{
+  "pdf": "/tmp/mage-navigation-followup/proof.pdf",
+  "pdf_sha256": "366c1ec9796fe6b5efdf16c1f9860f7cb83477cc4e30cfd28c2b290636277f39",
+  "pages": 1,
+  "mode": "audit-only",
+  "counts": {},
+  "limitations": [
+    "Glyph cores approximate ink; mathematical layout and deliberate overlays may flag.",
+    "Complex clipping, nonzero winding holes and rotated glyph ink are not fully modeled.",
+    "Geometry cannot prove semantic fidelity, arrow meaning, or node ownership.",
+    "Terminal sensor covers filled Stealth/Latex-style arrowheads, straight shafts and rectangular text nodes only; 9pt floor, 12pt aim.",
+    "Peer equality is checked only for explicitly reviewed label groups, not inferred for arbitrary same-row panels."
+  ],
+  "findings": [],
+  "unresolved_count": 0,
+  "checked_terminal_approaches": 8,
+  "reviewed_peer_groups": 0
+}

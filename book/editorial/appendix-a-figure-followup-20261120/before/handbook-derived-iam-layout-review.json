@@ -1,0 +1,13 @@
+{
+  "source": "book/assets/handbook-derived-iam.svg",
+  "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+  "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
+  "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+  "decision": "revised",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
+  "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+  "contracts": {},
+  "baseline_dimensions_bp": null
+}

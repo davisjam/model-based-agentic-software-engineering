@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/handbook-model-based-test-selection.svg",
+  "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+  "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+  "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+  "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+  "routing": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+  "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+  "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+  "book_references": []
+}

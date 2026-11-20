@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1332" height="702" viewBox="0 0 444 234" role="img" aria-labelledby="title desc"><title id="title">Substitutable reasoning with stable domain obligations</title><desc id="desc">Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="444" height="234" fill="white"/>
-<rect x="0" y="44" width="440" height="88" rx="3" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
-<text x="147" y="57" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Alternative reasoning engines</text>
+<rect x="0" y="44" width="290" height="88" rx="3" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="145" y="57" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Two alternative engines</text>
+<text x="370" y="123" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">Shared model selection</text>
 <path d="M50,28 L50,44" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M175,28 L175,44" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M370,28 L370,78" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M370,28 L370,78" fill="none" stroke="black" stroke-width="1.8" marker-end="url(#arrow)"/>
 <path d="M312,92 L299,92 L299,65 L78,65 L78,78" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
 <path d="M222,65 L222,78" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
 <path d="M78,106 L78,122 L50,122 L50,145" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
@@ -15,8 +16,9 @@
 <path d="M177.5,200 L177.5,175" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <path d="M392.5,175 L392.5,198" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <text x="401" y="189" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">findings</text>
-<path d="M330,216 L347.5,216" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M282.5,200 L282.5,187 L360,187 L360,175" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M320,216 L347.5,216" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="333.5" y="209" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">policy</text>
+<path d="M275,200 L275,187 L360,187 L360,175" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#arrow)"/>
 <rect x="0" y="0" width="100" height="28" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="50.0" y="17.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Task model</text>
 <rect x="115" y="0" width="135" height="28" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
@@ -44,7 +46,8 @@
 <text x="50.0" y="219.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Current artifact</text>
 <rect x="125" y="200" width="105" height="32" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="177.5" y="219.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Operation model</text>
-<rect x="235" y="200" width="95" height="32" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
-<text x="282.5" y="219.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Acceptance model</text>
+<rect x="235" y="200" width="85" height="32" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="277.5" y="213.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Acceptance</text>
+<text x="277.5" y="225.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">model</text>
 <polygon points="392.5,198.0 437.5,216 392.5,234.0 347.5,216" fill="white" stroke="black" stroke-width="1.6"/>
 <text x="392.5" y="219.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Accept?</text></svg>

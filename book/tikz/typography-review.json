@@ -4,15 +4,15 @@
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
   "candidate_count": 139,
   "refined_count": 122,
-  "check_count": 1067,
+  "check_count": 1078,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
   "figures": [
     {
       "source": "book/assets/book-map.svg",
       "candidate": "book/tikz/figures/book-map.tex",
       "decision": "refined",
-      "source_sha256": "7348e5c194fb29c170695a0bc70838855894781cdd356d0428344ad9fe602fc8",
-      "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
+      "source_sha256": "98b839e863f25ccb486083ed6583f029838d446dc06816cb72b37ac32e20c8e2",
+      "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454",
       "evidence": [
         {
           "candidate_text": "Preface",
@@ -85,9 +85,33 @@
           "candidate_style": "italic",
           "semantic_role": "Navigation destination or governing question",
           "source_style": "Author-approved compact navigation revision"
+        },
+        {
+          "candidate_text": "Appendix A",
+          "candidate_style": "regular",
+          "semantic_role": "Subordinate appendix reference destination",
+          "source_style": "Regular-weight reference box"
+        },
+        {
+          "candidate_text": "Engineering Blueprints",
+          "candidate_style": "regular",
+          "semantic_role": "Subordinate appendix reference destination",
+          "source_style": "Regular-weight reference box"
+        },
+        {
+          "candidate_text": "Appendix B",
+          "candidate_style": "regular",
+          "semantic_role": "Subordinate appendix reference destination",
+          "source_style": "Regular-weight reference box"
+        },
+        {
+          "candidate_text": "Practicing MAGE",
+          "candidate_style": "regular",
+          "semantic_role": "Subordinate appendix reference destination",
+          "source_style": "Regular-weight reference box"
         }
       ],
-      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "checks": [
         {
           "text": "Preface",
@@ -136,6 +160,26 @@
         {
           "text": "What cannot be delegated?",
           "italic": true
+        },
+        {
+          "text": "Appendix A",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Engineering Blueprints",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Appendix B",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Practicing MAGE",
+          "bold": false,
+          "italic": false
         }
       ],
       "revision_history": [
@@ -1099,24 +1143,1140 @@
               "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
             }
           }
+        },
+        {
+          "superseded_date": "2026-11-20",
+          "reason": "Added appendix reference destinations",
+          "review": {
+            "source": "book/assets/book-map.svg",
+            "candidate": "book/tikz/figures/book-map.tex",
+            "decision": "refined",
+            "source_sha256": "7348e5c194fb29c170695a0bc70838855894781cdd356d0428344ad9fe602fc8",
+            "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
+            "evidence": [
+              {
+                "candidate_text": "Preface",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "1 The New Engineering Problem",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "2 Modeling",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "3 Alignment",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "4 MAGE in Motion",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "5 DocAble Among Other Software Factories",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "6 The Theory",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "7 The Profession",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "Conclusion",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "SOFTWARE-ENGINEERING CASE",
+                "candidate_style": "bold",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "How do we safely grant autonomy to commodity intelligence?",
+                "candidate_style": "italic",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              },
+              {
+                "candidate_text": "What cannot be delegated?",
+                "candidate_style": "italic",
+                "semantic_role": "Navigation destination or governing question",
+                "source_style": "Author-approved compact navigation revision"
+              }
+            ],
+            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+            "checks": [
+              {
+                "text": "Preface",
+                "bold": true
+              },
+              {
+                "text": "1 The New Engineering Problem",
+                "bold": true
+              },
+              {
+                "text": "2 Modeling",
+                "bold": true
+              },
+              {
+                "text": "3 Alignment",
+                "bold": true
+              },
+              {
+                "text": "4 MAGE in Motion",
+                "bold": true
+              },
+              {
+                "text": "5 DocAble Among Other Software Factories",
+                "bold": true
+              },
+              {
+                "text": "6 The Theory",
+                "bold": true
+              },
+              {
+                "text": "7 The Profession",
+                "bold": true
+              },
+              {
+                "text": "Conclusion",
+                "bold": true
+              },
+              {
+                "text": "SOFTWARE-ENGINEERING CASE",
+                "bold": true
+              },
+              {
+                "text": "How do we safely grant autonomy to commodity intelligence?",
+                "italic": true
+              },
+              {
+                "text": "What cannot be delegated?",
+                "italic": true
+              }
+            ],
+            "revision_history": [
+              {
+                "superseded_date": "2026-11-05",
+                "review": {
+                  "source": "book/assets/book-map.svg",
+                  "candidate": "book/tikz/figures/book-map.tex",
+                  "decision": "refined",
+                  "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+                  "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
+                  "evidence": [
+                    {
+                      "source_text": "Preface",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Preface",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Preface",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "80"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Conclusion",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Conclusion",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Conclusion",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "858"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 1 · The New Engineering Problem",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "1 The New Engineering Problem",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 1 · The New Engineering Problem",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "187"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 2 · Modeling",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "2 Modeling",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 2 · Modeling",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "329"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 3 · Alignment",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "3 Alignment",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 3 · Alignment",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "401"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 4 · MAGE in Motion",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "4 MAGE in Motion",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 4 · MAGE in Motion",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 5 · Agentic Software Factories",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "5 Agentic Software Factories",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 5 · Agentic Software Factories",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "589"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 6 · The Theory",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "6 The Theory",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 6 · The Theory",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "707"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 7 · The Profession",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "7 The Profession",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 7 · The Profession",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "779"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Appendix Part I",
+                      "source_style": "weight 600, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Appendix Part I",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Appendix Part I",
+                          "weight": "600",
+                          "style": "normal",
+                          "x": "752",
+                          "y": "503"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Appendix Part II",
+                      "source_style": "weight 600, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Appendix Part II",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Appendix Part II",
+                          "weight": "600",
+                          "style": "normal",
+                          "x": "752",
+                          "y": "589"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "How do we safely grant autonomy to commodity intelligence?",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "How do we safely grant autonomy to commodity intelligence?",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "How do we safely grant autonomy",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "104"
+                        },
+                        {
+                          "text": "to commodity intelligence?",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "122"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "changed economics",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Changed economics",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "changed economics",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "207"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "make knowledge + intent explicit",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Make knowledge and intent explicit",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "make knowledge + intent explicit",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "349"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "enforce selected obligations",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Enforce selected obligations",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "enforce selected obligations",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "421"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "dynamics · economics · predictions · scope",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Dynamics · economics · predictions · scope",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "dynamics · economics · predictions · scope",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "727"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "software work · broader engineering · responsibility",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Software work · broader engineering responsibility",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "software work · broader engineering · responsibility",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "799"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "abstract from the factories",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "abstract from the factories",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "abstract from the factories",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "284",
+                          "y": "672"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "use + extend",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Use and extend",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "use + extend",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "752",
+                          "y": "523"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "inspect the empirical record",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Inspect the empirical record",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "inspect the empirical record",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "752",
+                          "y": "609"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "responsibility",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Concluding nondelegable obligation",
+                      "candidate_text": "RESPONSIBILITY.",
+                      "candidate_style": "bold capitals",
+                      "source_fragments": [
+                        {
+                          "text": "responsibility",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "799"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "THE SOFTWARE ENGINEERING CASE",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Scope of central group",
+                      "candidate_text": "SOFTWARE-ENGINEERING CASE",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "THE SOFTWARE ENGINEERING CASE",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "36",
+                          "y": "264"
+                        }
+                      ]
+                    }
+                  ],
+                  "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+                  "checks": [
+                    {
+                      "text": "Preface",
+                      "bold": true
+                    },
+                    {
+                      "text": "Conclusion",
+                      "bold": true
+                    },
+                    {
+                      "text": "1 The New Engineering Problem",
+                      "bold": true
+                    },
+                    {
+                      "text": "2 Modeling",
+                      "bold": true
+                    },
+                    {
+                      "text": "3 Alignment",
+                      "bold": true
+                    },
+                    {
+                      "text": "4 MAGE in Motion",
+                      "bold": true
+                    },
+                    {
+                      "text": "5 Agentic Software Factories",
+                      "bold": true
+                    },
+                    {
+                      "text": "6 The Theory",
+                      "bold": true
+                    },
+                    {
+                      "text": "7 The Profession",
+                      "bold": true
+                    },
+                    {
+                      "text": "Appendix Part I",
+                      "bold": true
+                    },
+                    {
+                      "text": "Appendix Part II",
+                      "bold": true
+                    },
+                    {
+                      "text": "How do we safely grant autonomy to commodity intelligence?",
+                      "italic": true
+                    },
+                    {
+                      "text": "Changed economics",
+                      "italic": true
+                    },
+                    {
+                      "text": "Make knowledge and intent explicit",
+                      "italic": true
+                    },
+                    {
+                      "text": "Enforce selected obligations",
+                      "italic": true
+                    },
+                    {
+                      "text": "Dynamics · economics · predictions · scope",
+                      "italic": true
+                    },
+                    {
+                      "text": "Software work · broader engineering responsibility",
+                      "italic": true
+                    },
+                    {
+                      "text": "abstract from the factories",
+                      "italic": true
+                    },
+                    {
+                      "text": "Use and extend",
+                      "italic": true
+                    },
+                    {
+                      "text": "Inspect the empirical record",
+                      "italic": true
+                    },
+                    {
+                      "text": "RESPONSIBILITY.",
+                      "bold": true
+                    },
+                    {
+                      "text": "SOFTWARE-ENGINEERING CASE",
+                      "bold": true
+                    },
+                    {
+                      "text": "Model · align · work · convert",
+                      "bold": false
+                    }
+                  ],
+                  "validation": {
+                    "proof": "latex/build/tikz/candidates.pdf",
+                    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                    "page": 1,
+                    "width_bp": 362.345,
+                    "height_bp": 503.79,
+                    "minimum_prose_font_pt": 10.0,
+                    "unapproved_compile_diagnostics": 0,
+                    "geometry_findings": 0,
+                    "monochrome_pixels": true,
+                    "semantic_typography_checks": 23
+                  }
+                }
+              },
+              {
+                "superseded_date": "2026-11-05",
+                "reason": "Author removed appendix branches",
+                "review": {
+                  "source": "book/assets/book-map.svg",
+                  "candidate": "book/tikz/figures/book-map.tex",
+                  "decision": "refined",
+                  "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+                  "candidate_sha256": "e0e488a816536137faae76449690a4cd69bf67b5c2c87571e299139de706c522",
+                  "evidence": [
+                    {
+                      "source_text": "Preface",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Preface",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Preface",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "80"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Conclusion",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Conclusion",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Conclusion",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "858"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 1 · The New Engineering Problem",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "1 The New Engineering Problem",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 1 · The New Engineering Problem",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "187"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 2 · Modeling",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "2 Modeling",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 2 · Modeling",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "329"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 3 · Alignment",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "3 Alignment",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 3 · Alignment",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "401"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 4 · MAGE in Motion",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "4 MAGE in Motion",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 4 · MAGE in Motion",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 5 · Agentic Software Factories",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "5 Agentic Software Factories",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 5 · Agentic Software Factories",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "589"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 6 · The Theory",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "6 The Theory",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 6 · The Theory",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "707"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Chapter 7 · The Profession",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "7 The Profession",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Chapter 7 · The Profession",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "268",
+                          "y": "779"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Appendix Part I",
+                      "source_style": "weight 600, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Appendix Part I",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Appendix Part I",
+                          "weight": "600",
+                          "style": "normal",
+                          "x": "752",
+                          "y": "503"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "Appendix Part II",
+                      "source_style": "weight 600, normal",
+                      "semantic_role": "Book destination heading",
+                      "candidate_text": "Appendix Part II",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "Appendix Part II",
+                          "weight": "600",
+                          "style": "normal",
+                          "x": "752",
+                          "y": "589"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "How do we safely grant autonomy to commodity intelligence?",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "How do we safely grant autonomy to commodity intelligence?",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "How do we safely grant autonomy",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "104"
+                        },
+                        {
+                          "text": "to commodity intelligence?",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "122"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "changed economics",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Changed economics",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "changed economics",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "207"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "make knowledge + intent explicit",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Make knowledge and intent explicit",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "make knowledge + intent explicit",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "349"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "enforce selected obligations",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Enforce selected obligations",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "enforce selected obligations",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "421"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "dynamics · economics · predictions · scope",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Dynamics · economics · predictions · scope",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "dynamics · economics · predictions · scope",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "727"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "software work · broader engineering · responsibility",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Software work · broader engineering responsibility",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "software work · broader engineering · responsibility",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "799"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "abstract from the factories",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "abstract from the factories",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "abstract from the factories",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "284",
+                          "y": "672"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "use + extend",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Use and extend",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "use + extend",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "752",
+                          "y": "523"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "inspect the empirical record",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Explanatory subtitle or question",
+                      "candidate_text": "Inspect the empirical record",
+                      "candidate_style": "italic ",
+                      "source_fragments": [
+                        {
+                          "text": "inspect the empirical record",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "752",
+                          "y": "609"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "responsibility",
+                      "source_style": "weight normal, italic",
+                      "semantic_role": "Concluding nondelegable obligation",
+                      "candidate_text": "RESPONSIBILITY.",
+                      "candidate_style": "bold capitals",
+                      "source_fragments": [
+                        {
+                          "text": "responsibility",
+                          "weight": "normal",
+                          "style": "italic",
+                          "x": "268",
+                          "y": "799"
+                        }
+                      ]
+                    },
+                    {
+                      "source_text": "THE SOFTWARE ENGINEERING CASE",
+                      "source_style": "weight 700, normal",
+                      "semantic_role": "Scope of central group",
+                      "candidate_text": "SOFTWARE-ENGINEERING CASE",
+                      "candidate_style": "bold ",
+                      "source_fragments": [
+                        {
+                          "text": "THE SOFTWARE ENGINEERING CASE",
+                          "weight": "700",
+                          "style": "normal",
+                          "x": "36",
+                          "y": "264"
+                        }
+                      ]
+                    }
+                  ],
+                  "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+                  "checks": [
+                    {
+                      "text": "Preface",
+                      "bold": true
+                    },
+                    {
+                      "text": "Conclusion",
+                      "bold": true
+                    },
+                    {
+                      "text": "1 The New Engineering Problem",
+                      "bold": true
+                    },
+                    {
+                      "text": "2 Modeling",
+                      "bold": true
+                    },
+                    {
+                      "text": "3 Alignment",
+                      "bold": true
+                    },
+                    {
+                      "text": "4 MAGE in Motion",
+                      "bold": true
+                    },
+                    {
+                      "text": "5 Agentic Software Factories",
+                      "bold": true
+                    },
+                    {
+                      "text": "6 The Theory",
+                      "bold": true
+                    },
+                    {
+                      "text": "7 The Profession",
+                      "bold": true
+                    },
+                    {
+                      "text": "Appendix Part I",
+                      "bold": true
+                    },
+                    {
+                      "text": "Appendix Part II",
+                      "bold": true
+                    },
+                    {
+                      "text": "How do we safely grant autonomy to commodity intelligence?",
+                      "italic": true
+                    },
+                    {
+                      "text": "Changed economics",
+                      "italic": true
+                    },
+                    {
+                      "text": "Make knowledge and intent explicit",
+                      "italic": true
+                    },
+                    {
+                      "text": "Enforce selected obligations",
+                      "italic": true
+                    },
+                    {
+                      "text": "Dynamics · economics · predictions · scope",
+                      "italic": true
+                    },
+                    {
+                      "text": "Software work · broader engineering responsibility",
+                      "italic": true
+                    },
+                    {
+                      "text": "abstract from the factories",
+                      "italic": true
+                    },
+                    {
+                      "text": "Use and extend",
+                      "italic": true
+                    },
+                    {
+                      "text": "Inspect the empirical record",
+                      "italic": true
+                    },
+                    {
+                      "text": "RESPONSIBILITY.",
+                      "bold": true
+                    },
+                    {
+                      "text": "SOFTWARE-ENGINEERING CASE",
+                      "bold": true
+                    },
+                    {
+                      "text": "Model · align · work · convert",
+                      "bold": false
+                    }
+                  ],
+                  "validation": {
+                    "date": "2026-11-05",
+                    "proof": "latex/build/tikz/candidates.pdf",
+                    "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+                    "page": 1,
+                    "width_bp": 362.345,
+                    "height_bp": 503.79,
+                    "unapproved_compile_diagnostics": 0,
+                    "geometry_findings": 0,
+                    "monochrome_pixels": true,
+                    "semantic_typography_checks": 23,
+                    "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+                    "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+                    "status": "passed",
+                    "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
+                  }
+                }
+              }
+            ],
+            "reviewed_visually": true,
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "84509075d333f94b97d16c26881301407c0fa1682f3427c03849d53c53a7eeb7",
+              "page": 1,
+              "width_bp": 192.22,
+              "height_bp": 317.967,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 12,
+              "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
+              "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
+              "status": "passed",
+              "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
+            }
+          }
         }
       ],
       "reviewed_visually": true,
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "84509075d333f94b97d16c26881301407c0fa1682f3427c03849d53c53a7eeb7",
+        "date": "2026-11-20",
+        "proof": "/tmp/mage-navigation-followup/proof.pdf",
+        "proof_sha256": "366c1ec9796fe6b5efdf16c1f9860f7cb83477cc4e30cfd28c2b290636277f39",
         "page": 1,
-        "width_bp": 192.22,
-        "height_bp": 317.967,
+        "width_bp": 192.761,
+        "height_bp": 378.142,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "semantic_typography_checks": 16,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 12,
-        "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
-        "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
+        "audit_sha256": "936558a4384ca2d468edd20205651eabe9dd005cc712a4ebfdcef45f46b0035d",
+        "typography_audit_sha256": "1d1fb270fb3df8986e58a9d85fbf1550ca2e9b4907eddb0b0cf79266c9591de7",
         "status": "passed",
-        "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
+        "visual_review": "Inspected native 2x raster and source SVG: appendix boxes are subordinate, readable, separately connected by dashed lines below Conclusion. No overlap or clipping. Native width192.761bp fits existing narrow reading-guide column without scaling."
       }
     },
     {
@@ -28957,13 +30117,13 @@
     {
       "source": "book/assets/handbook-derived-iam.svg",
       "candidate": "book/tikz/figures/handbook-derived-iam.tex",
-      "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
-      "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+      "source_sha256": "c2beac1458195c54b44d2e2419a3e16cb367e975846d5bc0f014f0648eb1652d",
+      "candidate_sha256": "5b233e14a4f5e45aa5e850d9495099ac9d48ebc2cbc40f3a932eda56aae0a43e",
       "decision": "revised",
-      "revision_date": "2026-11-19",
+      "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
-      "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-derived-iam.json",
+      "reason": "Author-approved simplification removes only the future authority-migration note; parity, live IAM and fix-forward distinctions remain.",
       "checks": [
         {
           "text": "Cloud IAM boundary",
@@ -29056,16 +30216,6 @@
           "italic": false
         },
         {
-          "text": "Later: migrate consumers,",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "then transfer authority.",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Service-name parity",
           "bold": false,
           "italic": false
@@ -29094,7 +30244,7 @@
             "font-weight": "700",
             "font-style": "normal"
           },
-          "semantic_role": "Boundary heading",
+          "semantic_role": "heading",
           "candidate_text": "Cloud IAM boundary",
           "candidate_style": "bold"
         },
@@ -29105,7 +30255,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "parity",
           "candidate_style": "regular"
         },
@@ -29116,7 +30266,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Engineer / agent",
           "candidate_style": "regular"
         },
@@ -29127,7 +30277,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "selects intended calls",
           "candidate_style": "regular"
         },
@@ -29138,7 +30288,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Typed call contract",
           "candidate_style": "regular"
         },
@@ -29149,7 +30299,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "verified mirror",
           "candidate_style": "regular"
         },
@@ -29160,7 +30310,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Dependency map",
           "candidate_style": "regular"
         },
@@ -29171,7 +30321,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "current authority",
           "candidate_style": "regular"
         },
@@ -29182,7 +30332,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Deployment identities",
           "candidate_style": "regular"
         },
@@ -29193,7 +30343,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "and service names",
           "candidate_style": "regular"
         },
@@ -29204,7 +30354,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Derive concrete grants",
           "candidate_style": "regular"
         },
@@ -29215,7 +30365,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Grant plan",
           "candidate_style": "regular"
         },
@@ -29226,7 +30376,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Apply grants",
           "candidate_style": "regular"
         },
@@ -29237,7 +30387,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Per-grant results",
           "candidate_style": "regular"
         },
@@ -29248,7 +30398,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "granted / failed / dry-run",
           "candidate_style": "regular"
         },
@@ -29259,7 +30409,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Installed bindings",
           "candidate_style": "regular"
         },
@@ -29270,7 +30420,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Allow call?",
           "candidate_style": "regular"
         },
@@ -29281,30 +30431,8 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "allow / refuse",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Later: migrate consumers,",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, mechanism, decision or relationship",
-          "candidate_text": "Later: migrate consumers,",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "then transfer authority.",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, mechanism, decision or relationship",
-          "candidate_text": "then transfer authority.",
           "candidate_style": "regular"
         },
         {
@@ -29314,7 +30442,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Service-name parity",
           "candidate_style": "regular"
         },
@@ -29325,7 +30453,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "does not verify IAM.",
           "candidate_style": "regular"
         },
@@ -29336,7 +30464,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Failed application:",
           "candidate_style": "regular"
         },
@@ -29347,7 +30475,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, mechanism, decision or relationship",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "report and fix forward.",
           "candidate_style": "regular"
         }
@@ -29594,18 +30722,13 @@
     {
       "source": "book/assets/handbook-model-guided-delegation.svg",
       "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
-      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "source_sha256": "8035d64950c9daff274615eb22925bec5c7c8d446ab53dc116af09787d0d10cf",
+      "candidate_sha256": "e7ba0493966dc62804c9347a12b3d896243cbdbf85ccabd68345375799e5c1ba",
       "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved moderate redraw aligns the two governance decisions with equal heavy diamonds. Independent checks produce review evidence; durable work also reaches completion review. Refusal, positive DONE and recovery semantics remain.",
       "checks": [
-        {
-          "text": "Dispatch boundary",
-          "bold": true,
-          "italic": false
-        },
         {
           "text": "allow",
           "bold": false,
@@ -29627,6 +30750,21 @@
           "italic": false
         },
         {
+          "text": "produce",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "accept",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "unresolved",
+          "bold": false,
+          "italic": false
+        },
+        {
           "text": "interrupted",
           "bold": false,
           "italic": false
@@ -29638,26 +30776,6 @@
         },
         {
           "text": "scope + declared phase",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Bounded context",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "selection",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Brief + selected",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "context",
           "bold": false,
           "italic": false
         },
@@ -29682,17 +30800,37 @@
           "italic": false
         },
         {
-          "text": "Dispatch",
+          "text": "Bounded context",
           "bold": false,
           "italic": false
         },
         {
-          "text": "checks",
+          "text": "selection",
           "bold": false,
           "italic": false
         },
         {
           "text": "Absence is not DONE.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Brief + selected",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "context",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Dispatch?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "authorized?",
           "bold": false,
           "italic": false
         },
@@ -29722,16 +30860,6 @@
           "italic": false
         },
         {
-          "text": "Independent checks",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "and review evidence",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Durable work",
           "bold": false,
           "italic": false
@@ -29742,7 +30870,27 @@
           "italic": false
         },
         {
-          "text": "Completion review",
+          "text": "Independent checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Review evidence",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "checks + other findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Completion?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "obligations met?",
           "bold": false,
           "italic": false
         },
@@ -29769,24 +30917,13 @@
       ],
       "evidence": [
         {
-          "source_text": "Dispatch boundary",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "700",
-            "font-style": "normal"
-          },
-          "semantic_role": "heading",
-          "candidate_text": "Dispatch boundary",
-          "candidate_style": "bold"
-        },
-        {
           "source_text": "allow",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "allow",
           "candidate_style": "regular"
         },
@@ -29797,7 +30934,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "refuse",
           "candidate_style": "regular"
         },
@@ -29808,7 +30945,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "complete",
           "candidate_style": "regular"
         },
@@ -29819,8 +30956,41 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "or partial",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "produce",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "produce",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "accept",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "accept",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "unresolved",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "unresolved",
           "candidate_style": "regular"
         },
         {
@@ -29830,7 +31000,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "interrupted",
           "candidate_style": "regular"
         },
@@ -29841,7 +31011,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Work order",
           "candidate_style": "regular"
         },
@@ -29852,52 +31022,8 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "scope + declared phase",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Bounded context",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Bounded context",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "selection",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "selection",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Brief + selected",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Brief + selected",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "context",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "context",
           "candidate_style": "regular"
         },
         {
@@ -29907,7 +31033,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Component +",
           "candidate_style": "regular"
         },
@@ -29918,7 +31044,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "constraint models",
           "candidate_style": "regular"
         },
@@ -29929,7 +31055,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Lifecycle policy +",
           "candidate_style": "regular"
         },
@@ -29940,30 +31066,30 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "reconciled phase state",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Dispatch",
+          "source_text": "Bounded context",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Dispatch",
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Bounded context",
           "candidate_style": "regular"
         },
         {
-          "source_text": "checks",
+          "source_text": "selection",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "checks",
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "selection",
           "candidate_style": "regular"
         },
         {
@@ -29973,8 +31099,52 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Absence is not DONE.",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Brief + selected",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Brief + selected",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "context",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "context",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Dispatch?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Dispatch?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "authorized?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "authorized?",
           "candidate_style": "regular"
         },
         {
@@ -29984,7 +31154,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Implementing agent",
           "candidate_style": "regular"
         },
@@ -29995,7 +31165,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "flexible reasoning",
           "candidate_style": "regular"
         },
@@ -30006,7 +31176,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Refuse assignment",
           "candidate_style": "regular"
         },
@@ -30017,7 +31187,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "invalid brief; or DONE",
           "candidate_style": "regular"
         },
@@ -30028,30 +31198,8 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "without valid override",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Independent checks",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Independent checks",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "and review evidence",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "and review evidence",
           "candidate_style": "regular"
         },
         {
@@ -30061,7 +31209,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Durable work",
           "candidate_style": "regular"
         },
@@ -30072,19 +31220,63 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "commits + artifacts",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Completion review",
+          "source_text": "Independent checks",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Completion review",
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Independent checks",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Review evidence",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Review evidence",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "checks + other findings",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "checks + other findings",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Completion?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Completion?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "obligations met?",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "obligations met?",
           "candidate_style": "regular"
         },
         {
@@ -30094,7 +31286,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Accepted completion",
           "candidate_style": "regular"
         },
@@ -30105,7 +31297,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "phase state updated",
           "candidate_style": "regular"
         },
@@ -30116,7 +31308,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Inspect / reconcile",
           "candidate_style": "regular"
         },
@@ -30127,25 +31319,36 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "before redispatch",
           "candidate_style": "regular"
         }
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-guided-delegation.json"
     },
     {
       "source": "book/assets/handbook-typed-changeset.svg",
       "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
-      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
-      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "source_sha256": "4a368ac5fc2fbec571c91751b81610aa599f144b8ad6d28c6e33b65235d5892d",
+      "candidate_sha256": "38b394ed58b33a536eba307f20ff4ce669ab472705c23310b6e4e0ce83792a74",
       "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved diagnostic-evidence label distinguishes advisory before-value comparison from selected admission guards; target-resolution width adjusts to give the edge label room.",
       "checks": [
         {
           "text": "Controlled application boundary",
           "bold": true,
+          "italic": false
+        },
+        {
+          "text": "diagnostic",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "evidence",
+          "bold": false,
           "italic": false
         },
         {
@@ -30277,13 +31480,35 @@
           "candidate_style": "bold"
         },
         {
+          "source_text": "diagnostic",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "diagnostic",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "evidence",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "evidence",
+          "candidate_style": "regular"
+        },
+        {
           "source_text": "pass",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "pass",
           "candidate_style": "regular"
         },
@@ -30294,7 +31519,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "refuse",
           "candidate_style": "regular"
         },
@@ -30305,7 +31530,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "on mutation",
           "candidate_style": "regular"
         },
@@ -30316,7 +31541,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Flexible producer",
           "candidate_style": "regular"
         },
@@ -30327,7 +31552,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "proposes edits",
           "candidate_style": "regular"
         },
@@ -30338,7 +31563,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Typed proposal",
           "candidate_style": "regular"
         },
@@ -30349,7 +31574,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "operation + target",
           "candidate_style": "regular"
         },
@@ -30360,7 +31585,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Document structure",
           "candidate_style": "regular"
         },
@@ -30371,7 +31596,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "model / current state",
           "candidate_style": "regular"
         },
@@ -30382,7 +31607,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Resolve current target",
           "candidate_style": "regular"
         },
@@ -30393,7 +31618,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Before-value compare",
           "candidate_style": "regular"
         },
@@ -30404,7 +31629,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "audit by default",
           "candidate_style": "regular"
         },
@@ -30415,7 +31640,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Supported operation",
           "candidate_style": "regular"
         },
@@ -30426,7 +31651,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "vocabulary",
           "candidate_style": "regular"
         },
@@ -30437,7 +31662,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Selected",
           "candidate_style": "regular"
         },
@@ -30448,7 +31673,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "guards",
           "candidate_style": "regular"
         },
@@ -30459,7 +31684,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Apply mutation",
           "candidate_style": "regular"
         },
@@ -30470,7 +31695,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Per-operation result",
           "candidate_style": "regular"
         },
@@ -30481,7 +31706,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "applied / refused / failed",
           "candidate_style": "regular"
         },
@@ -30492,7 +31717,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Session log",
           "candidate_style": "regular"
         },
@@ -30503,7 +31728,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "successful session ops only",
           "candidate_style": "regular"
         },
@@ -30514,7 +31739,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Pass attribution",
           "candidate_style": "regular"
         },
@@ -30525,11 +31750,12 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "remediation mutations",
           "candidate_style": "regular"
         }
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-typed-changeset.json"
     },
     {
       "source": "book/assets/alignment-overview.svg",
@@ -31779,20 +33005,30 @@
     {
       "source": "book/assets/handbook-substitutable-reasoning.svg",
       "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
-      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
-      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
-      "decision": "new",
+      "source_sha256": "b6332b21d2172f9428b89223f65e722378330c18dc986e8a38075f2391416ffe",
+      "candidate_sha256": "aff32a9aa3a5a99ee641a0a5acc4a0e50d64d0ea2951d9285a2ce9f4562b7cd6",
+      "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved cleanup groups exactly two engines and places shared model selection outside that group. The capability input is prominent; acceptance visibly consumes findings and policy.",
       "checks": [
         {
-          "text": "Alternative reasoning engines",
+          "text": "Two alternative engines",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Shared model selection",
           "bold": true,
           "italic": false
         },
         {
           "text": "findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "policy",
           "bold": false,
           "italic": false
         },
@@ -31872,7 +33108,12 @@
           "italic": false
         },
         {
-          "text": "Acceptance model",
+          "text": "Acceptance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "model",
           "bold": false,
           "italic": false
         },
@@ -31884,14 +33125,25 @@
       ],
       "evidence": [
         {
-          "source_text": "Alternative reasoning engines",
+          "source_text": "Two alternative engines",
           "source_style": {
             "font-size": "10",
             "font-weight": "700",
             "font-style": "normal"
           },
           "semantic_role": "heading",
-          "candidate_text": "Alternative reasoning engines",
+          "candidate_text": "Two alternative engines",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Shared model selection",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "700",
+            "font-style": "normal"
+          },
+          "semantic_role": "heading",
+          "candidate_text": "Shared model selection",
           "candidate_style": "bold"
         },
         {
@@ -31901,8 +33153,19 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "findings",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "policy",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "policy",
           "candidate_style": "regular"
         },
         {
@@ -31912,7 +33175,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Task model",
           "candidate_style": "regular"
         },
@@ -31923,7 +33186,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Workflow model",
           "candidate_style": "regular"
         },
@@ -31934,7 +33197,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "pass graph / revisable plan",
           "candidate_style": "regular"
         },
@@ -31945,7 +33208,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Capability + selection model",
           "candidate_style": "regular"
         },
@@ -31956,7 +33219,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Pass-graph executor",
           "candidate_style": "regular"
         },
@@ -31967,7 +33230,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Planning agent",
           "candidate_style": "regular"
         },
@@ -31978,7 +33241,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Select a capable model",
           "candidate_style": "regular"
         },
@@ -31989,7 +33252,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Typed proposals",
           "candidate_style": "regular"
         },
@@ -32000,7 +33263,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Controlled",
           "candidate_style": "regular"
         },
@@ -32011,7 +33274,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "application",
           "candidate_style": "regular"
         },
@@ -32022,7 +33285,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Resulting artifact",
           "candidate_style": "regular"
         },
@@ -32033,7 +33296,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Separate",
           "candidate_style": "regular"
         },
@@ -32044,7 +33307,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "evaluation",
           "candidate_style": "regular"
         },
@@ -32055,7 +33318,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Current artifact",
           "candidate_style": "regular"
         },
@@ -32066,19 +33329,30 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Operation model",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Acceptance model",
+          "source_text": "Acceptance",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
-          "candidate_text": "Acceptance model",
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "Acceptance",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "model",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "model, mechanism, evidence or relation label",
+          "candidate_text": "model",
           "candidate_style": "regular"
         },
         {
@@ -32088,21 +33362,22 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Accept?",
           "candidate_style": "regular"
         }
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-substitutable-reasoning.json"
     },
     {
       "source": "book/assets/handbook-model-based-test-selection.svg",
       "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
-      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
-      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
-      "decision": "new",
+      "source_sha256": "a9b8785550b3363f0c0832a982123e430e7d2cc093d86a2028e7f7b945460c90",
+      "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b",
+      "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles.",
       "checks": [
         {
           "text": "recognized gaps:",
@@ -32238,7 +33513,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "recognized gaps:",
           "candidate_style": "regular"
         },
@@ -32249,7 +33524,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "run all",
           "candidate_style": "regular"
         },
@@ -32260,7 +33535,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "acceptance policy",
           "candidate_style": "regular"
         },
@@ -32271,7 +33546,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Component +",
           "candidate_style": "regular"
         },
@@ -32282,7 +33557,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "dependency models",
           "candidate_style": "regular"
         },
@@ -32293,7 +33568,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Change record",
           "candidate_style": "regular"
         },
@@ -32304,7 +33579,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Validation coverage",
           "candidate_style": "regular"
         },
@@ -32315,7 +33590,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "model",
           "candidate_style": "regular"
         },
@@ -32326,7 +33601,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Derive impact",
           "candidate_style": "regular"
         },
@@ -32337,7 +33612,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Change-impact model",
           "candidate_style": "regular"
         },
@@ -32348,7 +33623,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "affected subsystems",
           "candidate_style": "regular"
         },
@@ -32359,7 +33634,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Select checks",
           "candidate_style": "regular"
         },
@@ -32370,7 +33645,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Selected checks",
           "candidate_style": "regular"
         },
@@ -32381,7 +33656,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Execution model",
           "candidate_style": "regular"
         },
@@ -32392,7 +33667,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "mode + policy",
           "candidate_style": "regular"
         },
@@ -32403,7 +33678,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Execute checks",
           "candidate_style": "regular"
         },
@@ -32414,7 +33689,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Execution records",
           "candidate_style": "regular"
         },
@@ -32425,7 +33700,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "+ findings",
           "candidate_style": "regular"
         },
@@ -32436,7 +33711,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Accept?",
           "candidate_style": "regular"
         },
@@ -32447,7 +33722,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Dependency / coverage evidence",
           "candidate_style": "regular"
         },
@@ -32458,7 +33733,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "+ full-run comparisons",
           "candidate_style": "regular"
         },
@@ -32469,7 +33744,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Challenge",
           "candidate_style": "regular"
         },
@@ -32480,7 +33755,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "selection",
           "candidate_style": "regular"
         },
@@ -32491,7 +33766,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "Revise models",
           "candidate_style": "regular"
         },
@@ -32502,11 +33777,12 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "model, mechanism, artifact or relation label",
+          "semantic_role": "model, mechanism, evidence or relation label",
           "candidate_text": "or broaden runs",
           "candidate_style": "regular"
         }
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json"
     }
   ],
   "historical_figures": [

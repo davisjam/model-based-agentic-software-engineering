@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/handbook-substitutable-reasoning.svg",
+  "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+  "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+  "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "receipt": "book/tikz/receipts/handbook-substitutable-reasoning.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "Gray only distinguishes flexible reasoning; models, artifacts and ordinary mechanisms remain white.",
+  "bold": "Container/boundary headings are bold; all ordinary labels remain regular.",
+  "routing": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
+  "shape": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
+  "visual_review": "Inspected at print size. New figures distinguish explicit model representations from their consumers and selected enforcement boundaries. Existing figures retain geometry and receive targeted model-role labels.",
+  "book_references": []
+}

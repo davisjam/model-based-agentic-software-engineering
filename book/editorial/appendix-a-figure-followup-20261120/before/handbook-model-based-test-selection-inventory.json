@@ -1,0 +1,14 @@
+{
+  "chapter": "appendix-a-model-based-test-selection",
+  "source": "assets/handbook-model-based-test-selection.svg",
+  "caption": "Model-based regression-test selection. Component and dependency models derive affected subsystems, and validation coverage maps them to checks. Execution records and findings feed an acceptance gate under an explicit policy. Dependency analyses and full-suite comparisons challenge the selection; conservative fallback covers recognized uncertainty, not every unmodeled dependency.",
+  "native_context": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",
+  "d2_source": null,
+  "receipt": "book/tikz/receipts/handbook-model-based-test-selection.json",
+  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
+  "data": [],
+  "conversion": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "svg_title": "Model-based regression-test selection",
+  "svg_description": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
+  "native_source": "book/tikz/figures/handbook-model-based-test-selection.tex"
+}

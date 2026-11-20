@@ -446,6 +446,17 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             for label in ('multiple-routes-to-engineering-models', 'modeling-repertoire'):
                 alt = json.loads((BASE / 'receipts' / (label + '.json')).read_text())['alt']
                 text = keep_opening_figure(text, label, alt, reserve_heading_space=False)
+        blueprint_openers = {
+            'appendix-a-substitutable-reasoning': 'handbook-substitutable-reasoning',
+            'appendix-a-model-based-test-selection': 'handbook-model-based-test-selection',
+        }
+        if chapter.stem in blueprint_openers:
+            # These compact conceptual designs precede the model inventories.
+            # Keep their reading order without reserving a page or shrinking type.
+            from mage_figure_layout import keep_opening_figure
+            label = blueprint_openers[chapter.stem]
+            alt = json.loads((BASE / 'receipts' / (label + '.json')).read_text())['alt']
+            text = keep_opening_figure(text, label, alt, reserve_heading_space=False)
         if chapter.stem == '0.1-how-to-read-this-book':
             from mage_figure_layout import reading_guide_columns
             text = reading_guide_columns(text)

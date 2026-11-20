@@ -1,0 +1,414 @@
+{
+  "source": "book/assets/handbook-model-based-test-selection.svg",
+  "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
+  "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
+  "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "checks": [
+    {
+      "text": "recognized gaps:",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "run all",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "acceptance policy",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Component +",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "dependency models",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Change record",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Validation coverage",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Derive impact",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Change-impact model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "affected subsystems",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Select checks",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Selected checks",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Execution model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "mode + policy",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Execute checks",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Execution records",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "+ findings",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Accept?",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Dependency / coverage evidence",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "+ full-run comparisons",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Challenge",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "selection",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Revise models",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "or broaden runs",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "source_text": "recognized gaps:",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "recognized gaps:",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "run all",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "run all",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "acceptance policy",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "acceptance policy",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Component +",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Component +",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "dependency models",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "dependency models",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Change record",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Change record",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Validation coverage",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Validation coverage",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Derive impact",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Derive impact",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Change-impact model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Change-impact model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "affected subsystems",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "affected subsystems",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Select checks",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Select checks",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Selected checks",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Selected checks",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Execution model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Execution model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "mode + policy",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "mode + policy",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Execute checks",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Execute checks",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Execution records",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Execution records",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "+ findings",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "+ findings",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Accept?",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Accept?",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Dependency / coverage evidence",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Dependency / coverage evidence",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "+ full-run comparisons",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "+ full-run comparisons",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Challenge",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Challenge",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "selection",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "selection",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Revise models",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Revise models",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "or broaden runs",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "or broaden runs",
+      "candidate_style": "regular"
+    }
+  ]
+}

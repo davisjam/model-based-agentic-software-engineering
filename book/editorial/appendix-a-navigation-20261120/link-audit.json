@@ -1,0 +1,101 @@
+{
+  "proof": "/tmp/mage-navigation-followup/proof.pdf",
+  "links": [
+    {
+      "target": "part:1",
+      "rect_bp": [
+        27.596,
+        310.127,
+        174.547,
+        321.424
+      ]
+    },
+    {
+      "target": "part:2",
+      "rect_bp": [
+        75.481,
+        267.547,
+        126.662,
+        278.844
+      ]
+    },
+    {
+      "target": "part:3",
+      "rect_bp": [
+        73.015,
+        238.914,
+        129.128,
+        250.212
+      ]
+    },
+    {
+      "target": "part:4",
+      "rect_bp": [
+        60.404,
+        212.264,
+        141.738,
+        221.579
+      ]
+    },
+    {
+      "target": "part:5",
+      "rect_bp": [
+        46.377,
+        183.85,
+        182.855,
+        194.929
+      ]
+    },
+    {
+      "target": "part:5",
+      "rect_bp": [
+        20.284,
+        175.372,
+        142.672,
+        182.695
+      ]
+    },
+    {
+      "target": "part:6",
+      "rect_bp": [
+        70.358,
+        132.184,
+        131.784,
+        143.093
+      ]
+    },
+    {
+      "target": "part:7",
+      "rect_bp": [
+        62.657,
+        105.534,
+        139.485,
+        114.849
+      ]
+    },
+    {
+      "target": "chapter:appendix-handbook",
+      "rect_bp": [
+        30.23,
+        28.508,
+        80.256,
+        39.636
+      ]
+    },
+    {
+      "target": "chapter:appendix-practicing-mage",
+      "rect_bp": [
+        121.668,
+        22.874,
+        172.131,
+        34.002
+      ]
+    }
+  ],
+  "verified_appendix_targets": [
+    "chapter:appendix-handbook",
+    "chapter:appendix-practicing-mage"
+  ],
+  "source_check": "passed",
+  "aux_target_check": "passed"
+}

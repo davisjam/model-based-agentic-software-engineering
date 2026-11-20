@@ -34,11 +34,9 @@
 <text x="72.5" y="289.9" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">granted / failed / dry-run</text>
 <rect x="325" y="244" width="110" height="34" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="380.0" y="264.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Installed bindings</text>
-<polygon points="380,294.0 432.0,312 380,330.0 328.0,312" fill="white" stroke="black" stroke-width=".8"/>
+<polygon points="380,294.0 432.0,312 380,330.0 328.0,312" fill="white" stroke="black" stroke-width="0.8"/>
 <text x="380" y="315.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Allow call?</text>
 <text x="380" y="338" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">allow / refuse</text>
-<text x="70" y="133" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Later: migrate consumers,</text>
-<text x="70" y="145" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">then transfer authority.</text>
 <text x="70" y="196" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Service-name parity</text>
 <text x="70" y="208" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">does not verify IAM.</text>
 <text x="72.5" y="321" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Failed application:</text>

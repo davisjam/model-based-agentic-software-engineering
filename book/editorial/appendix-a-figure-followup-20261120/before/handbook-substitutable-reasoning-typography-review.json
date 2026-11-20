@@ -1,0 +1,318 @@
+{
+  "source": "book/assets/handbook-substitutable-reasoning.svg",
+  "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
+  "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
+  "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
+  "decision": "new",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "checks": [
+    {
+      "text": "Alternative reasoning engines",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "findings",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Task model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Workflow model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "pass graph / revisable plan",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Capability + selection model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Pass-graph executor",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Planning agent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Select a capable model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Typed proposals",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Controlled",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "application",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Resulting artifact",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Separate",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "evaluation",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Current artifact",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Operation model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Acceptance model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Accept?",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "source_text": "Alternative reasoning engines",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "heading",
+      "candidate_text": "Alternative reasoning engines",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "findings",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "findings",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Task model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Task model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Workflow model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Workflow model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "pass graph / revisable plan",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "pass graph / revisable plan",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Capability + selection model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Capability + selection model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Pass-graph executor",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Pass-graph executor",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Planning agent",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Planning agent",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Select a capable model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Select a capable model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Typed proposals",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Typed proposals",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Controlled",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Controlled",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "application",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "application",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Resulting artifact",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Resulting artifact",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Separate",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Separate",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "evaluation",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "evaluation",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Current artifact",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Current artifact",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Operation model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Operation model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Acceptance model",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Acceptance model",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Accept?",
+      "source_style": {
+        "font-size": "10",
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "model, mechanism, artifact or relation label",
+      "candidate_text": "Accept?",
+      "candidate_style": "regular"
+    }
+  ]
+}

@@ -1,16 +1,18 @@
 {
   "source": "book/assets/handbook-substitutable-reasoning.svg",
   "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
-  "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
-  "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
-  "decision": "new",
+  "source_sha256": "b6332b21d2172f9428b89223f65e722378330c18dc986e8a38075f2391416ffe",
+  "candidate_sha256": "aff32a9aa3a5a99ee641a0a5acc4a0e50d64d0ea2951d9285a2ce9f4562b7cd6",
+  "decision": "revised",
   "revision_date": "2026-11-20",
   "reviewed_visually": true,
   "claim": "Substitutable reasoning. Two alternative engines use a domain’s task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior.",
   "topology": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
   "required_terms": [
-    "Alternative reasoning engines",
+    "Two alternative engines",
+    "Shared model selection",
     "findings",
+    "policy",
     "Task model",
     "Workflow model",
     "pass graph / revisable plan",
@@ -26,13 +28,15 @@
     "evaluation",
     "Current artifact",
     "Operation model",
-    "Acceptance model",
+    "Acceptance",
+    "model",
     "Accept?"
   ],
   "bw_encoding": "Rectangles identify models and artifacts; rounded boxes identify mechanisms, and diamonds mark admission decisions. Gray identifies flexible reasoning only. Heavy outlines mark consequential application/admission boundaries. Solid arrows carry data, models or results; dashed arrows carry verification/challenge or subordinate selection relations.",
-  "redesign": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "redesign": "Author-approved cleanup groups exactly two engines and places shared model selection outside that group. The capability input is prominent; acceptance visibly consumes findings and policy.",
   "questions": [],
   "alt": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
-  "generator": "book/editorial/appendix-a-model-centered-20261120/build.py",
-  "review_scope": "Isolated four-figure native proof and source/visual review; parent integrates protected registries and compiles the full pool."
+  "generator": "book/editorial/appendix-a-figure-followup-20261120/build.py",
+  "review_scope": "Isolated five-page native proof, source SVG check and visual inspection; parent performs integrated pool and book builds.",
+  "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-substitutable-reasoning.json"
 }

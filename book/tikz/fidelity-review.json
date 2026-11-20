@@ -8,17 +8,55 @@
     {
       "source": "book/assets/book-map.svg",
       "candidate": "book/tikz/figures/book-map.tex",
-      "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-      "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
+      "source_sha256": "98b839e863f25ccb486083ed6583f029838d446dc06816cb72b37ac32e20c8e2",
+      "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454",
       "decision": "refined",
-      "review": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "review": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "checks": "Source SVG and native raster inspected; chapter sequence and grouping retained; both new appendix destinations verified; native geometry and16 semantic typography checks passed.",
       "dimensions_cm": [
-        12.7806,
-        13.9292
+        6.8002,
+        13.34
       ],
       "strict_compile_diagnostics": [],
-      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling."
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "reviewed_visually": true,
+      "validation": {
+        "date": "2026-11-20",
+        "proof": "/tmp/mage-navigation-followup/proof.pdf",
+        "proof_sha256": "366c1ec9796fe6b5efdf16c1f9860f7cb83477cc4e30cfd28c2b290636277f39",
+        "page": 1,
+        "width_bp": 192.761,
+        "height_bp": 378.142,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 16,
+        "monochrome_pixels": true,
+        "audit_sha256": "936558a4384ca2d468edd20205651eabe9dd005cc712a4ebfdcef45f46b0035d",
+        "typography_audit_sha256": "1d1fb270fb3df8986e58a9d85fbf1550ca2e9b4907eddb0b0cf79266c9591de7",
+        "status": "passed",
+        "visual_review": "Inspected native 2x raster and source SVG: appendix boxes are subordinate, readable, separately connected by dashed lines below Conclusion. No overlap or clipping. Native width192.761bp fits existing narrow reading-guide column without scaling."
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-20",
+          "reason": "Added appendix reference destinations",
+          "review": {
+            "source": "book/assets/book-map.svg",
+            "candidate": "book/tikz/figures/book-map.tex",
+            "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
+            "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
+            "decision": "refined",
+            "review": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              12.7806,
+              13.9292
+            ],
+            "strict_compile_diagnostics": [],
+            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/mage-method.svg",
@@ -4885,13 +4923,13 @@
     {
       "source": "book/assets/handbook-derived-iam.svg",
       "candidate": "book/tikz/figures/handbook-derived-iam.tex",
-      "source_sha256": "98f86e8de14839b2e2ec030e8be30cc8effdd137acd050a2d5c44cf6d95f6644",
-      "candidate_sha256": "48b3c17fb49d4a1e41c37d35a472bf2c512b9a733beb5ed6363ab6fe6cc9f0b7",
+      "source_sha256": "c2beac1458195c54b44d2e2419a3e16cb367e975846d5bc0f014f0648eb1652d",
+      "candidate_sha256": "5b233e14a4f5e45aa5e850d9495099ac9d48ebc2cbc40f3a932eda56aae0a43e",
       "decision": "revised",
-      "revision_date": "2026-11-19",
+      "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "previous_review": "book/editorial/appendix-a-blueprints-20261119/before/handbook-derived-iam.json",
-      "reason": "Replace the implementation inventory with an adaptable engineering blueprint while preserving the researched authority, evidence, and failure limits. Old figure and active review records archived in book/editorial/appendix-a-blueprints-20261119/before.",
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-derived-iam.json",
+      "reason": "Author-approved simplification removes only the future authority-migration note; parity, live IAM and fix-forward distinctions remain.",
       "links_and_groups": "Flexible engineering judgment selects intended calls. A typed call contract is checked by parity against the current authoritative dependency map. That map and environment-specific deployment identities feed deterministic grant derivation, a concrete grant plan, application, and per-grant results. Installed IAM bindings govern invocation at a separate runtime boundary. Service-name correspondence is not an IAM check. Moving model authority requires a separate consumer migration.",
       "preserved": [
         "Cloud IAM boundary",
@@ -4912,8 +4950,6 @@
         "Installed bindings",
         "Allow call?",
         "allow / refuse",
-        "Later: migrate consumers,",
-        "then transfer authority.",
         "Service-name parity",
         "does not verify IAM.",
         "Failed application:",
@@ -4923,15 +4959,17 @@
     {
       "source": "book/assets/handbook-typed-changeset.svg",
       "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
-      "source_sha256": "d835d99f8b860961210af3fe980d61dbdc43b176735d6f411e951993962c78bf",
-      "candidate_sha256": "df704cbd8d108d8b5ca8882f0865e28b0a2b554d42ae8cf8412e0a860a27ee90",
+      "source_sha256": "4a368ac5fc2fbec571c91751b81610aa599f144b8ad6d28c6e33b65235d5892d",
+      "candidate_sha256": "38b394ed58b33a536eba307f20ff4ce669ab472705c23310b6e4e0ce83792a74",
       "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved diagnostic-evidence label distinguishes advisory before-value comparison from selected admission guards; target-resolution width adjusts to give the edge label room.",
       "links_and_groups": "A flexible producer emits a typed proposal. The resolver uses the document structure model of current artifact state. A before-value comparison reports mismatches by default; it is not the hard admission gate. Within the controlled application boundary, the supported operation vocabulary and selected guards determine whether the applier may mutate the resolved target. Per-operation results include refusal and failure. Successful session edits and remediation-pass mutations produce distinct attribution records. Unmigrated direct edits remain outside this route.",
       "preserved": [
         "Controlled application boundary",
+        "diagnostic",
+        "evidence",
         "pass",
         "refuse",
         "on mutation",
@@ -4955,53 +4993,59 @@
         "successful session ops only",
         "Pass attribution",
         "remediation mutations"
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-typed-changeset.json"
     },
     {
       "source": "book/assets/handbook-model-guided-delegation.svg",
       "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-      "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
-      "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+      "source_sha256": "8035d64950c9daff274615eb22925bec5c7c8d446ab53dc116af09787d0d10cf",
+      "candidate_sha256": "e7ba0493966dc62804c9347a12b3d896243cbdbf85ccabd68345375799e5c1ba",
       "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
-      "links_and_groups": "A work order supplies target scope and declared phase identity. Component and constraint models and target scope feed bounded context selection, which guides an agent but does not enforce every obligation. Lifecycle policy and reconciled observed phase state remain distinct inputs to selected dispatch checks; absence of completion evidence is not a positive DONE match. The implementing agent preserves durable artifacts. Completion review evaluates landed work and independent evidence before recording acceptance. Interrupted or unresolved work is inspected before reassignment.",
+      "reason": "Author-approved moderate redraw aligns the two governance decisions with equal heavy diamonds. Independent checks produce review evidence; durable work also reaches completion review. Refusal, positive DONE and recovery semantics remain.",
+      "links_and_groups": "The work order and component/constraint models feed bounded context selection. Lifecycle policy and reconciled phase state feed the dispatch decision: is the assignment authorized? A refused assignment does not execute without repair or a valid override. An authorized agent preserves durable work, which is both inspected at completion and evaluated by independent checks. Checks produce review evidence; the completion decision asks whether obligations are satisfied. Interrupted or unresolved work is inspected and reconciled before redispatch. Absence of state is not evidence of DONE.",
       "preserved": [
-        "Dispatch boundary",
         "allow",
         "refuse",
         "complete",
         "or partial",
+        "produce",
+        "accept",
+        "unresolved",
         "interrupted",
         "Work order",
         "scope + declared phase",
-        "Bounded context",
-        "selection",
-        "Brief + selected",
-        "context",
         "Component +",
         "constraint models",
         "Lifecycle policy +",
         "reconciled phase state",
-        "Dispatch",
-        "checks",
+        "Bounded context",
+        "selection",
         "Absence is not DONE.",
+        "Brief + selected",
+        "context",
+        "Dispatch?",
+        "authorized?",
         "Implementing agent",
         "flexible reasoning",
         "Refuse assignment",
         "invalid brief; or DONE",
         "without valid override",
-        "Independent checks",
-        "and review evidence",
         "Durable work",
         "commits + artifacts",
-        "Completion review",
+        "Independent checks",
+        "Review evidence",
+        "checks + other findings",
+        "Completion?",
+        "obligations met?",
         "Accepted completion",
         "phase state updated",
         "Inspect / reconcile",
         "before redispatch"
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-guided-delegation.json"
     },
     {
       "source": "book/assets/recovering-and-extending-governance.svg",
@@ -5051,16 +5095,18 @@
     {
       "source": "book/assets/handbook-substitutable-reasoning.svg",
       "candidate": "book/tikz/figures/handbook-substitutable-reasoning.tex",
-      "source_sha256": "a27596b6ebf3ace89ec0a9f3f85a3b515fcdf258bf1aaac5f7274848ebb69c33",
-      "candidate_sha256": "5c5f078603f9cc80433928a290060d2b254eaf284b97dad50705ec00d7a3a1c9",
-      "decision": "new",
+      "source_sha256": "b6332b21d2172f9428b89223f65e722378330c18dc986e8a38075f2391416ffe",
+      "candidate_sha256": "aff32a9aa3a5a99ee641a0a5acc4a0e50d64d0ea2951d9285a2ce9f4562b7cd6",
+      "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved cleanup groups exactly two engines and places shared model selection outside that group. The capability input is prominent; acceptance visibly consumes findings and policy.",
       "links_and_groups": "Task and workflow models guide two alternative engines: a pass-graph executor or a planning agent. Capability and selection knowledge informs model choice within an engine. Both engines produce typed proposals governed by an operation model and applied to the current artifact through a controlled application boundary. Separate evaluation and an acceptance model guide acceptance. Restricting mutation authority requires more than a typed request interface.",
       "preserved": [
-        "Alternative reasoning engines",
+        "Two alternative engines",
+        "Shared model selection",
         "findings",
+        "policy",
         "Task model",
         "Workflow model",
         "pass graph / revisable plan",
@@ -5076,19 +5122,21 @@
         "evaluation",
         "Current artifact",
         "Operation model",
-        "Acceptance model",
+        "Acceptance",
+        "model",
         "Accept?"
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-substitutable-reasoning.json"
     },
     {
       "source": "book/assets/handbook-model-based-test-selection.svg",
       "candidate": "book/tikz/figures/handbook-model-based-test-selection.tex",
-      "source_sha256": "bad7aae067b4f1695c1a78faf2ec2cd9c2863f4cdb58bc27117cd391e871abdc",
-      "candidate_sha256": "ef2e85c58ac3d7e2448ad9d25b848868e026c2652628ad647d66b495faadddfa",
-      "decision": "new",
+      "source_sha256": "a9b8785550b3363f0c0832a982123e430e7d2cc093d86a2028e7f7b945460c90",
+      "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b",
+      "decision": "revised",
       "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+      "reason": "Author-approved dashed feedback returns model revision to component/dependency and validation-coverage models; recognized-gap fallback and challenge evidence retain their distinct roles.",
       "links_and_groups": "Component and declared dependency models derive a change-impact model: the affected subsystems. Validation coverage maps the affected set to selected checks. The validation execution model supplies modes and interpretation policy; actual execution produces records and findings for acceptance. Recognized gaps widen execution to the full suite. Separate dependency and coverage evidence plus full-run comparisons challenge selection, leading to revised models or broader validation; these observations do not prove universal completeness.",
       "preserved": [
         "recognized gaps:",
@@ -5116,7 +5164,8 @@
         "selection",
         "Revise models",
         "or broaden runs"
-      ]
+      ],
+      "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json"
     }
   ],
   "last_revised_date": "2026-11-20"

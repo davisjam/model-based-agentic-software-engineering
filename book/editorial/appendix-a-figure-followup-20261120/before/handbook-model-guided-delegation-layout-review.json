@@ -1,0 +1,12 @@
+{
+  "source": "book/assets/handbook-model-guided-delegation.svg",
+  "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+  "source_sha256": "eb9abd2001eebab3fe25a69e6d8bc4e7de6918c27280c79b1fbddf469fe683fa",
+  "candidate_sha256": "6d9cb06deb72d6728ea0921230738b858fbde4a6adde3f650a82b9a1471b1b75",
+  "decision": "revised",
+  "revision_date": "2026-11-20",
+  "reviewed_visually": true,
+  "reason": "Author-approved model-centered appendix revision: two new compact architecture figures aligned with settled five-model inventories, plus targeted model-role clarifications in the existing mutation and delegation figures.",
+  "contracts": {},
+  "baseline_dimensions_bp": null
+}

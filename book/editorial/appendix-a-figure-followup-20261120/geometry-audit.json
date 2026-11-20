@@ -1,0 +1,18 @@
+{
+  "pdf": "/tmp/mage-appendix-a-figure-followup/proof.pdf",
+  "pdf_sha256": "a7f7d417a985e825aa64d724028fb071051541a008c66534824a13b5ff32ecea",
+  "pages": 5,
+  "mode": "audit-only",
+  "counts": {},
+  "limitations": [
+    "Glyph cores approximate ink; mathematical layout and deliberate overlays may flag.",
+    "Complex clipping, nonzero winding holes and rotated glyph ink are not fully modeled.",
+    "Geometry cannot prove semantic fidelity, arrow meaning, or node ownership.",
+    "Terminal sensor covers filled Stealth/Latex-style arrowheads, straight shafts and rectangular text nodes only; 9pt floor, 12pt aim.",
+    "Peer equality is checked only for explicitly reviewed label groups, not inferred for arbitrary same-row panels."
+  ],
+  "findings": [],
+  "unresolved_count": 0,
+  "checked_terminal_approaches": 51,
+  "reviewed_peer_groups": 0
+}
