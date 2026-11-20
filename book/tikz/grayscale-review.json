@@ -3399,14 +3399,14 @@
   {
     "source": "book/assets/priority-to-accepted-work.svg",
     "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
-    "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
-    "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
-    "decision": "new",
-    "revision_date": "2026-11-19",
+    "source_sha256": "45103c1c59e1068da56c3affbca98e2937543a8ab24f86c630747faedf2d7681",
+    "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57",
+    "decision": "revised",
+    "revision_date": "2026-11-20",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/priority-to-accepted-work.json",
     "reviewed": true,
-    "rationale": "Square boxes identify artifacts; rounded boxes identify activities; a diamond identifies the acceptance decision; double outline identifies independent evidence. All fills remain white."
+    "rationale": "Light-gray rounded model cards identify engineering models and their derived obligations, matching the model surface in three-relations and model-induction-general. Ordinary workflow stages including Design remain white; activities have modest rounded corners, durable artifacts square corners, acceptance a diamond, and independent evidence a double outline. Solid arrows carry progression, repair and recovery; dashed arrows supply model information or evidence."
   },
   {
     "source": "book/assets/handbook-derived-iam.svg",

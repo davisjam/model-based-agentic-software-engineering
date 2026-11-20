@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-20",
+  "source": "book/assets/priority-to-accepted-work.svg",
+  "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
+  "source_sha256": "45103c1c59e1068da56c3affbca98e2937543a8ab24f86c630747faedf2d7681",
+  "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57",
+  "proof": "/tmp/mage-appendix-b-revision/proof.pdf",
+  "proof_sha256": "8edf0a6fa28254bd27dfd81457611cb28e1496c3bad33f9c8bf4a44f8cc71950",
+  "width_bp": 449.97198486328125,
+  "height_bp": 321.9739990234375,
+  "minimum_font_pt": 9.962639808654785,
+  "fonts": [
+    "SourceSans3-Regular"
+  ],
+  "geometry_findings": 0,
+  "semantic_typography_checks": 30,
+  "semantic_typography_findings": 0,
+  "unapproved_diagnostics": 0,
+  "colored_pixels": 0,
+  "source_overflow": {
+    "figure_overflow": 0,
+    "figure_strain": 0,
+    "bookwide_overflow": 0,
+    "bookwide_existing_strain": 82
+  },
+  "visual_review": "Inspected native proof at full print size. The six main stages remain on one left-to-right row. Both model surfaces reuse light gray and the Chapter 3 node-link pictogram; Design is ordinary white workflow. Model obligations and independent evidence enter separate upper gate ports. Repair, interruption/recovery and human design revision remain separate non-crossing routes. Durable artifacts are a recovery resource, and human judgment returns to Design rather than bypassing admission. Caption unchanged.",
+  "previews": [
+    "/tmp/mage-appendix-b-revision/native.png"
+  ]
+}

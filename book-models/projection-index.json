@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 641,
+    "total_sites": 642,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 306,
+      "book-web": 307,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -192,12 +192,16 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-b-brownfield-migration.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
@@ -213,7 +217,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 58
+            "occ": 57
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -235,7 +239,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 53
+            "occ": 54
           }
         ]
       },
@@ -1101,11 +1105,11 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 6
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
@@ -1113,7 +1117,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
@@ -1121,7 +1125,7 @@
           },
           {
             "file": "book/web/docs/appendix-practicing-mage.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/bibliography.md",
@@ -1641,11 +1645,11 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 5
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 4
+            "occ": 12
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",

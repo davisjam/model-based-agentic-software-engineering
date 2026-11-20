@@ -1,0 +1,20 @@
+{
+  "source": "book/assets/priority-to-accepted-work.svg",
+  "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
+  "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
+  "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
+  "decision": "new",
+  "revision_date": "2026-11-19",
+  "reviewed_visually": true,
+  "reason": "Author-requested illustrative workflow at a selected integration-admission boundary, not a universal DocAble schedule. Separate independent acceptance evidence from the producer, retain repair and judgment outcomes, and preserve interrupted work for recovery.",
+  "receipt": "book/tikz/receipts/priority-to-accepted-work.json",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+  "status": "reviewed",
+  "fill": "All fills white; no decorative shading.",
+  "bold": "Regular type throughout. Semantic shape and edge treatment distinguish roles.",
+  "routing": "An illustrative workflow progresses from priority to design, work order, agent implementation, acceptance gate, and integrated work. Engineering models supply scope and context to the work order and obligations to the gate. Independent acceptance evidence feeds the gate separately. Rejected work returns for repair; unresolved judgment goes to a human. An interrupted agent preserves durable commits and partial artifacts for recovery to inspect before resuming.",
+  "shape": "Square boxes identify artifacts; rounded boxes identify activities; a diamond identifies the acceptance decision; double outline identifies independent evidence. All fills remain white.",
+  "visual_review": "Inspected SVG and native single-page proofs for text fit, arrow attachment, separate acceptance evidence, and preserved failure paths.",
+  "book_references": []
+}

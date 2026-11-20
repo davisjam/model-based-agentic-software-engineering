@@ -444,3 +444,7 @@ The reader should be better able to:
 - and recognize when recurring judgment should become durable engineering structure.
 
 That is the book’s job.
+
+## Appendix terminology
+
+The appendices apply the vocabulary established in the main chapters. Introduce a new term only when it names a genuinely new concept, not a renamed version of an existing distinction. Before naming such a concept, consider whether readers also need it in the main text; prefer introducing consequential concepts there, without treating this as mandatory relocation. Reuse established terms such as model coverage, evaluation, and enforcement, qualified by the relevant engineering question and scope. Do not invent additional coverage measures or maturity axes merely to organize practical guidance.

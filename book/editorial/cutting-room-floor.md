@@ -22893,3 +22893,110 @@ Source: `book/latex/sources/appendix-handbook/engineering-moves.tex`, lines 34�
 When choosing among these moves, ask what the next task will inherit. Sometimes it needs a clearer representation; sometimes a generator, a check, or a smaller set of permitted operations. Sometimes the right response is to leave a local decision local. The worked compositions that follow show how those choices can reinforce one another.
 
 ```
+
+# Appendix B targeted follow-up: displaced prose
+
+Single draft for parent integration. Heading wording changed to “Model the Change” with the existing anchor preserved; that navigation-only change is not a substantive cut. The figure and existing lead-in moved before the DocAble taxonomy without text changes, so that pure move is not archived.
+
+## _opening.tex:5
+
+Source: `book/latex/sources/appendix-practicing-mage/_opening.tex`, original lines 5–5, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replace an unnatural question/decision formulation.
+
+```latex
+Use the section that answers the decision in front of you.
+```
+
+## getting-started.tex:3
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 3–5, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Apply the user’s exact three-paragraph model-first opening in place of the first two paragraphs.
+
+```latex
+Start with one recurring kind of engineering work, not an organization-wide commitment to autonomy. Choose a service change, document transformation, or operational procedure whose result can be inspected. Identify what the work is meant to accomplish, which properties must survive the change, and who can accept the result. The first objective is modest: establish a bounded assignment that an agent can perform and that the engineering environment can evaluate.
+
+Before building machinery, watch how the work is done now. What must someone reconstruct from source, documents, or conversations? Which decisions recur? What must remain true while the implementation changes? Preserve the requirements and decisions that matter to acceptance, including qualitative obligations that still require judgment. Also identify choices that can safely remain open. A brief that specifies every implementation decision can consume the very engineering effort delegation was meant to save.
+```
+
+## getting-started.tex:7
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 7–7, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Clarify cost-effectiveness rather than imply cheap enforcement alone is sufficient.
+
+```latex
+Where the obligation is already enforced economically, additional system modeling may contribute little.
+```
+
+## getting-started.tex:11
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 11–11, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Connect the ticket example to the new model-first opening without claiming it is the first model.
+
+```latex
+The first useful representation may already be familiar: a structured engineering ticket.
+```
+
+## getting-started.tex:13
+
+Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex`, original lines 13–13, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Name the actor and use of ticket connections directly.
+
+```latex
+Give those connections a consumer.
+```
+
+## brownfield-migration.tex:18
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 18–18, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Make the Audit exit criterion actionable and bounded by the selected work.
+
+```latex
+Important gaps are classified rather than merely counted.
+```
+
+## brownfield-migration.tex:26
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 26–26, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Distinguish discovery and triage during Audit from repair during Synchronize.
+
+```latex
+\textbf{Audit.} Trace a few consequential claims all the way to their subjects and consumers.
+```
+
+## brownfield-migration.tex:39
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 39–39, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Make resolution and dependable correspondence the Synchronize objective.
+
+```latex
+\textbf{Synchronize.} Repair high-value correspondence as ordinary work touches the relevant surface.
+```
+
+## operating-a-gee.tex:9
+
+Source: `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex`, original lines 9–9, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Replace the abstract opening with the actual document content and identify the DocAble procedure.
+
+```latex
+The design develops the engineering argument. It identifies the motivating failure or requirement, considers alternatives, and explains the proposed components and interactions.
+```
+
+## operating-a-gee.tex:32
+
+Source: `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex`, original lines 32–32, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:39:34-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Identify commit conventions as DocAble practice, not a universal MAGE requirement.
+
+```latex
+The agent records its refined plan in the first commit and progress in later commit metadata.
+```
+
+
+# Appendix B modeling-choice and recovery additions: displaced prose
+
+Only the two replacements below displace existing prose. The new modeling-choice section and agent-assisted recovery paragraph are additions; no earlier text is moved or removed.
+
+## brownfield-migration.tex:5
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 5–5, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:47:54-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Apply the user’s exact replacement, avoiding unnecessary reach terminology.
+
+```latex
+Keep two dimensions of progress separate. \textbf{Representation reach} asks how much of the important system can be understood through trustworthy explicit models. \textbf{Enforcement reach} asks which important obligations are enforced by constraints or gates and which have only observations or advisory checks. A thinly modeled system may have strong local permissions and tests that block admission. A richly modeled system may report violations without preventing anything. Address the gap that matters to the selected work; neither dimension is a maturity score that must reach 100 percent.
+```
+
+## brownfield-migration.tex:19
+
+Source: `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex`, original lines 19–19, revision `dfe47382ad95bd1cb20d3d42cf107818091893ed`. Removal date: 2026-11-20T09:47:54-05:00 (America/Indiana/Indianapolis); removal revision pending parent integration. Reason: Use the requested operational Synchronize exit criterion.
+
+```latex
+Their intended correspondence is explicit and credible.
+```

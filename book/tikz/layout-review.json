@@ -11128,12 +11128,12 @@
     {
       "source": "book/assets/priority-to-accepted-work.svg",
       "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
-      "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
-      "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
-      "decision": "new",
-      "revision_date": "2026-11-19",
+      "source_sha256": "45103c1c59e1068da56c3affbca98e2937543a8ab24f86c630747faedf2d7681",
+      "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-requested illustrative workflow at a selected integration-admission boundary, not a universal DocAble schedule. Separate independent acceptance evidence from the producer, retain repair and judgment outcomes, and preserve interrupted work for recovery.",
+      "reason": "Author requested a dominant left-to-right workflow with separate model/evidence inputs and subordinate recovery. Previous source/native figure and selected active review rows archived in book/editorial/appendix-b-workflow-20261120/before.",
       "contracts": {},
       "baseline_dimensions_bp": null
     }

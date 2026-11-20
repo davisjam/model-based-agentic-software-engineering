@@ -712,6 +712,10 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
+    latex = layout_selected_table(latex, 'practicing-brownfield-exits', (.18, .40, .42),
+                                  row_gap_bp=0, row_stretch=1)
+    latex = layout_selected_table(latex, 'practicing-modeling-approaches', (.25, .34, .41),
+                                  row_gap_bp=3, row_stretch=1.05)
     # Retain native rules for tagged tables, with clearance on the text sides.
     rule_padding = r'\noalign{\vskip 3pt}'
     rules = {'toprule': r'\hline' + rule_padding,

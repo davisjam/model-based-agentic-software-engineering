@@ -1,0 +1,33 @@
+{
+  "getting-started.tex": {
+    "labels_preserved": true,
+    "new_labels": [
+      "heading:choose-a-modeling-approach",
+      "practicing-modeling-approaches"
+    ],
+    "braces_balanced": true,
+    "word_addition": 615
+  },
+  "brownfield-migration.tex": {
+    "labels_preserved": true,
+    "new_labels": [],
+    "braces_balanced": true,
+    "word_addition": 109
+  },
+  "opening_preserved": true,
+  "existing_B1_sections_preserved": true,
+  "citation_keys": [
+    "alloy6Documentation",
+    "besserDocumentation",
+    "claferDocumentation",
+    "jsonSchemaDocumentation",
+    "lamport2002",
+    "mermaidDocumentation",
+    "omg2017uml",
+    "omg2025kerml",
+    "omg2025sysml",
+    "openapi2026spec",
+    "plantumlDocumentation",
+    "tlaToolboxDocumentation"
+  ]
+}

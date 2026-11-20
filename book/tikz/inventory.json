@@ -1807,11 +1807,11 @@
     "native_context": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/priority-to-accepted-work.json",
-    "generator": "book/editorial/appendix-b-workflow-20261119/build.py",
+    "generator": "book/editorial/appendix-b-workflow-20261120/build.py",
     "data": [],
-    "conversion": "Shared geometry emits monochrome SVG and native TikZ",
+    "conversion": "Author-directed horizontal workflow with semantic model styling and separate evidence/recovery paths; synchronized SVG and native geometry.",
     "svg_title": "From priority to accepted work",
-    "svg_description": "An illustrative workflow progresses from priority to design, work order, agent implementation, acceptance gate, and integrated work. Engineering models supply scope and context to the work order and obligations to the gate. Independent acceptance evidence feeds the gate separately. Rejected work returns for repair; unresolved judgment goes to a human. An interrupted agent preserves durable commits and partial artifacts for recovery to inspect before resuming.",
+    "svg_description": "Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.",
     "native_source": "book/tikz/figures/priority-to-accepted-work.tex"
   }
 ]

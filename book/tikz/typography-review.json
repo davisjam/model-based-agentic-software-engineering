@@ -30825,35 +30825,13 @@
     {
       "source": "book/assets/priority-to-accepted-work.svg",
       "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
-      "source_sha256": "b32ee80fe7d8e6880c7f9a0b01b65ffb01e93fbdc8111dad3cedc69cc9d8e167",
-      "candidate_sha256": "d7844cb7f4da0385ced98a274718a8af97e818c395526a948ed3d6d9d5160299",
-      "decision": "new",
-      "revision_date": "2026-11-19",
+      "source_sha256": "45103c1c59e1068da56c3affbca98e2937543a8ab24f86c630747faedf2d7681",
+      "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57",
+      "decision": "revised",
+      "revision_date": "2026-11-20",
       "reviewed_visually": true,
-      "reason": "Author-requested illustrative workflow at a selected integration-admission boundary, not a universal DocAble schedule. Separate independent acceptance evidence from the producer, retain repair and judgment outcomes, and preserve interrupted work for recovery.",
+      "reason": "Author requested a dominant left-to-right workflow with separate model/evidence inputs and subordinate recovery. Previous source/native figure and selected active review rows archived in book/editorial/appendix-b-workflow-20261120/before.",
       "evidence": [
-        {
-          "source_text": "scope + context",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "scope + context",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "obligations",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "obligations",
-          "candidate_style": "regular"
-        },
         {
           "source_text": "accept",
           "source_style": {
@@ -30861,8 +30839,30 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "accept",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "scope +",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "scope +",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "context",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "context",
           "candidate_style": "regular"
         },
         {
@@ -30872,30 +30872,19 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "repair",
           "candidate_style": "regular"
         },
         {
-          "source_text": "escalate",
+          "source_text": "unresolved",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "escalate",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "check the work",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "check the work",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "unresolved",
           "candidate_style": "regular"
         },
         {
@@ -30905,19 +30894,107 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "if interrupted",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Engineering models",
+          "source_text": "resume",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "Engineering models",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "resume",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "revise design",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "revise design",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Engineering",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Engineering",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "models",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "models",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Model-derived",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Model-derived",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "obligations",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "obligations",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Independent",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Independent",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "acceptance",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "acceptance",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "evidence",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "evidence",
           "candidate_style": "regular"
         },
         {
@@ -30927,7 +31004,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Priority",
           "candidate_style": "regular"
         },
@@ -30938,19 +31015,30 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Design",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Work order",
+          "source_text": "Work",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "Work order",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Work",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "order",
+          "source_style": {
+            "font-size": "10",
+            "font-weight": "400",
+            "font-style": "normal"
+          },
+          "semantic_role": "node or relationship label",
+          "candidate_text": "order",
           "candidate_style": "regular"
         },
         {
@@ -30960,7 +31048,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Agent",
           "candidate_style": "regular"
         },
@@ -30971,7 +31059,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "implementation",
           "candidate_style": "regular"
         },
@@ -30982,7 +31070,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Acceptance",
           "candidate_style": "regular"
         },
@@ -30993,7 +31081,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "gate",
           "candidate_style": "regular"
         },
@@ -31004,7 +31092,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Integrated",
           "candidate_style": "regular"
         },
@@ -31015,52 +31103,8 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "work",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Human judgment",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "Human judgment",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "(unresolved)",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "(unresolved)",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Independent",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "Independent",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "acceptance evidence",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "acceptance evidence",
           "candidate_style": "regular"
         },
         {
@@ -31070,7 +31114,7 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "Durable commits",
           "candidate_style": "regular"
         },
@@ -31081,68 +31125,57 @@
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
+          "semantic_role": "node or relationship label",
           "candidate_text": "+ partial artifacts",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Recovery: inspect",
+          "source_text": "Recovery",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "Recovery: inspect",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Recovery",
           "candidate_style": "regular"
         },
         {
-          "source_text": "before resuming",
+          "source_text": "inspect artifacts",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "before resuming",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "inspect artifacts",
           "candidate_style": "regular"
         },
         {
-          "source_text": "work progression",
+          "source_text": "Human judgment",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "work progression",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "context or evidence",
-          "source_style": {
-            "font-size": "10",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "artifact, activity, decision, or relationship label",
-          "candidate_text": "context or evidence",
+          "semantic_role": "node or relationship label",
+          "candidate_text": "Human judgment",
           "candidate_style": "regular"
         }
       ],
       "checks": [
         {
-          "text": "scope + context",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "obligations",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "accept",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "scope +",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "context",
           "bold": false,
           "italic": false
         },
@@ -31152,12 +31185,7 @@
           "italic": false
         },
         {
-          "text": "escalate",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "check the work",
+          "text": "unresolved",
           "bold": false,
           "italic": false
         },
@@ -31167,7 +31195,47 @@
           "italic": false
         },
         {
-          "text": "Engineering models",
+          "text": "resume",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "revise design",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Engineering",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Model-derived",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "obligations",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Independent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "acceptance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "evidence",
           "bold": false,
           "italic": false
         },
@@ -31182,7 +31250,12 @@
           "italic": false
         },
         {
-          "text": "Work order",
+          "text": "Work",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "order",
           "bold": false,
           "italic": false
         },
@@ -31217,26 +31290,6 @@
           "italic": false
         },
         {
-          "text": "Human judgment",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "(unresolved)",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Independent",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "acceptance evidence",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Durable commits",
           "bold": false,
           "italic": false
@@ -31247,22 +31300,17 @@
           "italic": false
         },
         {
-          "text": "Recovery: inspect",
+          "text": "Recovery",
           "bold": false,
           "italic": false
         },
         {
-          "text": "before resuming",
+          "text": "inspect artifacts",
           "bold": false,
           "italic": false
         },
         {
-          "text": "work progression",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "context or evidence",
+          "text": "Human judgment",
           "bold": false,
           "italic": false
         }

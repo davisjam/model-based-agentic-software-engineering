@@ -2,11 +2,13 @@
 
 An existing system already contains parts of its engineering environment: tests, documentation, deployment policy, ownership records, runbooks, and expert knowledge. The task is to make the knowledge and obligations needed for a selected kind of work dependable. Begin by identifying which existing representations and controls that work relies upon, then decide what must be recovered, reconciled, or enforced. There is no need to model the whole system before delegating work on that surface. \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}} explains the recovery techniques; the procedure here supplies operating decisions and exit criteria.
 
-Keep two dimensions of progress separate. \textbf{Representation reach} asks how much of the important system can be understood through trustworthy explicit models. \textbf{Enforcement reach} asks which important obligations are enforced by constraints or gates and which have only observations or advisory checks. A thinly modeled system may have strong local permissions and tests that block admission. A richly modeled system may report violations without preventing anything. Address the gap that matters to the selected work; neither dimension is a maturity score that must reach 100 percent.
+Keep model coverage and enforcement separate. A system may have extensive models but few mechanisms that enforce their obligations. Conversely, tests, permissions, and other existing controls may enforce important properties even where explicit system models are sparse. Assess model coverage against the engineering questions the selected work requires, and identify which obligations are enforced, merely evaluated, or still depend on human judgment. Neither comprehensive modeling nor universal enforcement is the objective; address the gaps that matter to the work.
 
 \subsection{Audit, Synchronize, Govern, Extend}\label{heading:audit-synchronize-govern-extend}
 
 Apply the four stages in \autoref{practicing-brownfield-exits} to one surface at a time. Their exit criteria describe what must become dependable before the next investment can rely on it. They are not dates in a rollout plan. A new discrepancy can send one obligation back to reconciliation while other parts of the environment continue to operate.
+
+Agents can perform much of this work. They can inventory existing representations, recover candidate models from source and configuration, construct traceability links, and compare models with their implementations, using the techniques in \autoref{4.3-brownfield-engineering:heading:recover-latent-models}. This can make brownfield migration substantially less expensive than manual reconstruction. The resulting models still need validation: an agent may misunderstand the architecture or faithfully recover a defect as though it were intended behavior. Engineers should review consequential claims and unresolved discrepancies. Where model--implementation correspondence can be checked independently through reliable analyses or tests, that evidence can reduce the need for manual review. Agreement establishes correspondence within the checks' scope, however, not that the recovered model expresses the intended design.
 
 {\footnotesize
 \begin{longtable}[]{@{}p{.16\linewidth}p{.36\linewidth}p{.38\linewidth}@{}}
@@ -15,15 +17,15 @@ Apply the four stages in \autoref{practicing-brownfield-exits} to one surface at
 \textbf{Stage} & \textbf{Work} & \textbf{Exit criterion} \\
 \midrule
 \endhead
-\textbf{Audit} & Inventory claims, their subjects, and existing mechanisms; classify gaps. & Important gaps are classified rather than merely counted. \\
-\textbf{Synchronize} & Reconcile the representations that upcoming work will rely upon. & Their intended correspondence is explicit and credible. \\
+\textbf{Audit} & Inventory claims, their subjects, and existing mechanisms; classify gaps. & Claims needed for the selected work have been checked; consequential discrepancies have an owner and a next action. \\
+\textbf{Synchronize} & Reconcile the representations that upcoming work will rely upon. & Required correspondences are established through review or independently checked evidence. \\
 \textbf{Govern} & Enforce selected obligations where sufficient evidence is available. & The selected obligations no longer depend primarily on someone remembering to inspect them. \\
 \textbf{Extend} & Add capability where expected reuse or consequence justifies its cost. & Each addition has a named consumer or engineering question and a reason to exist. \\
 \bottomrule
 \end{longtable}
 }
 
-\textbf{Audit.} Trace a few consequential claims all the way to their subjects and consumers. A wiki may declare that only one service can call an external API; inspect the implementation, deployment policy, and any check that relies on that declaration. Record whether the claim describes current behavior or intended behavior. A disagreement does not tell you which side should change. Keep the audit advisory while those decisions remain unresolved; making a recovered mistake authoritative would make the system harder to repair.
+\textbf{Audit.} Trace the claims needed for the selected work to their subjects and consumers, and identify which discrepancies require attention. A wiki may declare that only one service can call an external API; inspect the implementation, deployment policy, and any check that relies on that declaration. Record whether the claim describes current behavior or intended behavior. A disagreement does not tell you which side should change. Keep the audit advisory while those decisions remain unresolved; making a recovered mistake authoritative would make the system harder to repair.
 
 Classify unlinked code before treating it as a modeling backlog. An orphan can have three explanations:
 
@@ -36,7 +38,7 @@ Classify unlinked code before treating it as a modeling backlog. An orphan can h
 
 An orphan count without this triage rewards unnecessary modeling. Follow the important questions instead. If a model identifies a component, it need not enumerate every helper used to implement it. Conversely, a small piece of code may deserve explicit treatment if it determines a consequential permission or transition. Size alone does not decide the appropriate grain.
 
-\textbf{Synchronize.} Repair high-value correspondence as ordinary work touches the relevant surface. Link the claim to the code and evidence that support it; provide the reverse route where engineers or agents need to discover the claim from an implementation location. Repair stale anchors and surface semantic disagreements for an engineering decision. When a machine can derive the needed view from the authoritative source, avoid maintaining a second handwritten version.
+\textbf{Synchronize.} Resolve the selected discrepancies and establish dependable correspondence before upcoming work relies on the representation. Link the claim to the code and evidence that support it; provide the reverse route where engineers or agents need to discover the claim from an implementation location. Repair stale anchors and surface semantic disagreements for an engineering decision. When a machine can derive the needed view from the authoritative source, avoid maintaining a second handwritten version.
 
 An existing configuration can remain authoritative while a recovered model earns trust as a \emph{verified mirror}. In DocAble's service-flow migration, tests required the model-derived dependency table to match the existing deployment table byte for byte; an injected discrepancy tested whether the check could detect drift. Transferring authority was a separate, planned step: migrate consumers to the model, then retire the duplicated table. This gives brownfield adoption a useful intermediate state. Check correspondence first, resolve disagreements, and move authority deliberately rather than treating a newly recovered representation as authoritative on its first day.
 
