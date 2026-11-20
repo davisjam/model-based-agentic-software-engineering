@@ -24037,3 +24037,44 @@ These channels differ in their governing force. Natural language and specificati
 Three ideas describe the resulting dynamics: alignment can operate actively or passively; models can be brought into governance incrementally around an alignment kernel; and the models themselves can emerge from engineering work rather than being specified completely in advance.
 
 ```
+
+
+## 2026-11-20 — §7.4 repetition review, approved revisions
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex` at `d178425869d6c6d0b22c14cddf946fa5e637c9ff`. The author approved tightening the opening, deleting review Edits 2, 3, and 5, retaining the production–assurance passage, and expanding the resilience transition. Removed or replaced source is preserved below; the resilience addition does not cut existing prose.
+
+### Opening paragraph: approved tightening
+
+Original source line 35.
+
+```latex
+As agents acquire more of the engineering repertoire, the competence required of the engineer changes. An agent can recognize a modeling opportunity, construct a state machine, query a dependency graph, propose an invariant, or suggest that recurring inspection become machinery. But knowing how to perform these moves is not the same as judging where they apply or accepting responsibility for their consequences. An agent\textquotesingle s command of the repertoire does not establish that a chosen abstraction captures what matters, that a proposed invariant expresses the intended property, or that the resulting tradeoff is acceptable. Those judgments remain engineering work.
+```
+
+### Edit 2: remove repeated control and responsibility conclusion
+
+Original source line 41.
+
+```latex
+Engineering expertise remains necessary to exercise informed control over that distinction, and professional responsibility remains with those who authorize the resulting system.
+```
+
+### Edit 3: remove repeated review and accountability paragraph
+
+Original source line 192.
+
+```latex
+% <!-- point: object-of-review-moves-accountability-does-not | The object of review moves to models and evidence; accountability does not move. -->
+
+The object of review moves; accountability does not. An engineer has never needed to hand-implement every consequential choice to remain answerable for the resulting system. Agentic systems extend this arrangement across more of the system. The engineer delegates the keystrokes and stays answerable down to the code and past it --- to the properties a model names and the evidence a validator produces.
+```
+
+### Edit 5: remove generic concluding recap
+
+Original source line 228.
+
+```latex
+% <!-- point: review-shift-changes-the-questions-not-the-expertise | Moving review toward models and evidence does not reduce the expertise required of the engineer; it changes the questions that expertise must answer. -->
+
+Moving review toward models and evidence does not reduce the expertise required of the engineer. It changes the questions that expertise must answer.
+```
