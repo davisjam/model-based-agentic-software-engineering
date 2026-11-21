@@ -64,9 +64,9 @@ For a university, compliance creates a recurring production problem: courses dis
 
 The requirements were ordinary production-software requirements. What was unusual was the implementation capacity available to one engineer.
 
-% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements are stated in full here, where they do their work: {{sec:mage-by-example}} grouped them into kinds of obligation to establish the problem; stated in full, they explain why demonstrating semantic reasoning was only the beginning. | terms: governance-target-product -->
+% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements briefly introduced in {{sec:mage-by-example}} are stated in full here as the requirements that guided DocAble’s development. | terms: governance-target-product -->
 
-\magevalue{sec:mage-by-example} grouped these obligations by kind to establish the nature of the problem. \autoref{docable-requirements} states the eight requirements: they explain why demonstrating semantic reasoning was only the beginning.
+\autoref{chapter:1.3-mage-by-example} briefly introduced the obligations. \autoref{docable-requirements} states them in full: eight requirements that guided DocAble\textquotesingle s development.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -103,9 +103,9 @@ R8 · Institutional deployment & Operate as a deployed service that scales to th
 \end{longtable}
 }
 
-% <!-- point: requirements-explain-the-size | Semantic reasoning was only one requirement of eight. The capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation. Those obligations generated the engineering system around that capability. | terms: governance-target-product -->
+% <!-- point: requirements-explain-the-size | Production use required preservation, reviewable changes, standards-grounded evaluation, and dependable operation alongside semantic reasoning; these obligations shaped the product and its engineering environment. | terms: governance-target-product -->
 
-These requirements explain why the resulting system grew large. Semantic reasoning was only one requirement of eight. A frontier foundation model could supply a capability that had previously been missing. That capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation; each remained an engineering obligation. Those obligations generated the engineering system around that capability.
+The requirements extend well beyond semantic reasoning. A foundation model could supply a capability that had previously been missing, but using it in a production service required document preservation, reviewable changes, standards-grounded evaluation, and dependable operation. These obligations shaped both the product and the engineering environment through which I built it.
 
 \section{Building the Factory}\label{heading:building-the-factory}
 
@@ -246,7 +246,7 @@ As DocAble grew, source code alone stopped being an adequate engineering interfa
 
 % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
 % Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
-The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. These models describe both the software being produced and the process used to produce it.
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agents and their engineering environment. These models describe both the software being produced and the process used to produce it.
 
 % <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
 

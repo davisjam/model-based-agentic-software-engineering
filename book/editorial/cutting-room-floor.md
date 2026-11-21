@@ -24799,3 +24799,50 @@ Override frequency supplies maintenance evidence. The inspected mechanism can re
 ```latex
 An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor's entire reasoning process. The \href{appendix-b-operating-a-gee.html}{Operating a GEE section of Appendix B} develops the day-to-day decisions around these boundaries.
 ```
+
+
+## Chapter 5: requirements, evidence limits, and transition (2026-11-21)
+
+Source revision: `9888a6cabfe87f744270b2d166de362f72ce3b26`. Author-requested replacements focus the requirements on engineering scope, distinguish case limitations from maintenance costs, and turn directly toward established organizations. Deleted Appendix B pointer is not relocated.
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, original lines 67–69
+
+```latex
+% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements are stated in full here, where they do their work: {{sec:mage-by-example}} grouped them into kinds of obligation to establish the problem; stated in full, they explain why demonstrating semantic reasoning was only the beginning. | terms: governance-target-product -->
+
+\magevalue{sec:mage-by-example} grouped these obligations by kind to establish the nature of the problem. \autoref{docable-requirements} states the eight requirements: they explain why demonstrating semantic reasoning was only the beginning.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, original lines 106–108
+
+```latex
+% <!-- point: requirements-explain-the-size | Semantic reasoning was only one requirement of eight. The capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation. Those obligations generated the engineering system around that capability. | terms: governance-target-product -->
+
+These requirements explain why the resulting system grew large. Semantic reasoning was only one requirement of eight. A frontier foundation model could supply a capability that had previously been missing. That capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation; each remained an engineering obligation. Those obligations generated the engineering system around that capability.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, original lines 249–249
+
+```latex
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. These models describe both the software being produced and the process used to produce it.
+```
+
+### `book/latex/sources/part5/5.3-evaluating-docable.tex`, original lines 122–122
+
+```latex
+The factory’s maintenance costs are one limitation on its economic value. A separate limitation concerns what can be inferred from this case. It follows one primary engineer directing an agent fleet, using one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, build the same mechanisms, or achieve the same economics --- and checker scores do not establish complete end-user accessibility. What the case can establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted long enough to be exercised under continuing change.
+```
+
+### `book/latex/sources/part5/5.3-evaluating-docable.tex`, original lines 124–124
+
+```latex
+{[}appendix: appendix-practicing-mage{]} offers a practical starting point for applying these techniques, including brownfield migration, operation of a governed engineering environment, and measurement.
+```
+
+### `book/latex/sources/part5/5.3-evaluating-docable.tex`, original lines 126–128
+
+```latex
+% <!-- point: turn-outward-to-other-factories | The evaluation establishes development, operation, outputs and costs within one factory, including failures and upkeep; it motivates comparison of other organizations without asserting they need the same arrangements. -->
+
+DocAble provides evidence about one factory's development, operation, outputs, and costs. It shows how an engineer can construct machinery that permits substantial delegation while preserving selected engineering obligations, but also how that machinery can fail or become expensive to maintain. These observations do not establish that other organizations need the same arrangements. They do, however, raise a question worth examining: when agents increase implementation capacity in other software organizations, what changes in the surrounding production system?
+```

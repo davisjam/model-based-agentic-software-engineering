@@ -2511,12 +2511,12 @@
             },
             {
               "slug": "the-eight-requirements-stated-where-they-work",
-              "text": "The eight requirements are stated in full here, where they do their work: §1.3 grouped them into kinds of obligation to establish the problem; stated in full, they explain why demonstrating semantic reasoning was only the beginning.",
+              "text": "The eight requirements briefly introduced in §1.3 are stated in full here as the requirements that guided DocAble’s development.",
               "block_index": 19
             },
             {
               "slug": "requirements-explain-the-size",
-              "text": "Semantic reasoning was only one requirement of eight. The capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation. Those obligations generated the engineering system around that capability.",
+              "text": "Production use required preservation, reviewable changes, standards-grounded evaluation, and dependable operation alongside semantic reasoning; these obligations shaped the product and its engineering environment.",
               "block_index": 22
             }
           ]
@@ -2967,8 +2967,8 @@
             },
             {
               "slug": "turn-outward-to-other-factories",
-              "text": "The evaluation establishes development, operation, outputs and costs within one factory, including failures and upkeep; it motivates comparison of other organizations without asserting they need the same arrangements.",
-              "block_index": 44
+              "text": "DocAble constructed models, controls, and production processes alongside the product; established organizations face increased implementation capacity from a different starting point.",
+              "block_index": 43
             }
           ]
         }
