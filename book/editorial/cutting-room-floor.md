@@ -24320,3 +24320,10 @@ The entitlement failure also shows the limit of inference from an inadequate rep
 ```latex
 They do not remove the need for expertise when requirements change or the representation itself becomes inadequate.
 ```
+
+
+## 2026-11-20 — Chapter 7 repeated disciplinary-foundations conclusion
+
+Source revision: `18e5b6f6830819b8d8e7e0d1c8005c771b431e64`. Deleted only the final sentence of the implementation-fluency paragraph in §7.4, as requested.
+
+> Engineers still need the disciplinary foundations that make those judgments possible.
