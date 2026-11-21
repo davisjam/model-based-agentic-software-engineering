@@ -24668,3 +24668,28 @@ A check selector must remain connected to the machinery it controls. The merge-c
 
 
 ```
+
+
+## Appendix A: contracts and delegated-work openings (2026-11-20)
+
+Source revision: `1fd75f33be8413cb0c6a80da1bbea3bf6a5f1978`. Author-approved replacement copy states transferable requirements before the DocAble realization. All technical mechanisms and evidence are retained.
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex` (from line 5, before this pass)
+
+```latex
+An agent can receive a clear objective and still work from stale context, repeat a completed assignment, or leave useful changes stranded when its conversation ends. A delegated-work arrangement must connect authorized scope to the knowledge needed for the task, preserve durable results, and distinguish reported completion from evidence that the work can be accepted.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex` (from line 68, before this pass)
+
+```latex
+Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
+
+Connect the assignment's scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex` (from line 118, before this pass)
+
+```latex
+Add controls where recurring failures reveal a dependable decision.
+```

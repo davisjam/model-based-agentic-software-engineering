@@ -2,7 +2,7 @@
 
 ## Problem
 
-An agent can receive a clear objective and still work from stale context, repeat a completed assignment, or leave useful changes stranded when its conversation ends. A delegated-work arrangement must connect authorized scope to the knowledge needed for the task, preserve durable results, and distinguish reported completion from evidence that the work can be accepted.
+Delegating engineering work requires more than assigning a task to an agent. The assignment must identify its authorized scope, supply relevant engineering knowledge, preserve durable results, and establish what evidence permits acceptance. Without these arrangements, an agent may work from stale context, repeat completed work, or leave useful changes stranded when its conversation ends.
 
 ## Conceptual Design
 
@@ -53,9 +53,9 @@ The engineer retains authority over objectives, acceptance obligations, and exce
 
 ### Compose and Select Context {.unnumbered}
 
-Assignment validation can check structure, registered identities, paths, and required instruction markers. It cannot establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Keep that review explicit. A usable assignment is a prerequisite for delegation, not a certificate that its engineering premise is sound.
+Context selection connects an assignment’s scope to maintained engineering knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
 
-Connect the assignment’s scope to maintained knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
+Before selection, validate the assignment’s structure, registered identities, paths, and required instruction markers. These checks establish that the declared inputs can be resolved; they do not establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Those decisions require engineering review.
 
 The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
 
@@ -87,7 +87,7 @@ For a new arrangement, test interruption before the first durable result, after 
 
 ### Enforce Lifecycle Decisions {#handbook-conversion-episode .unnumbered}
 
-Add controls where recurring failures reveal a dependable decision. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
+A system that delegates work against persistent assignments needs explicit rules for recognizing completed work, reopening assignments, and authorizing exceptions. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
 
 A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase’s completion state.
 

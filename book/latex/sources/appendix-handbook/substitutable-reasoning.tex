@@ -76,6 +76,8 @@ Acceptance model & What evidence is required to accept the artifact? & Obligatio
 \end{longtable}
 }
 
+\subsection*{Task, Operation, and Acceptance Contracts}
+
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{operation contract} defines the changes a reasoning engine may request. DocAble's Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. The application component resolves and executes supported operations under the applicable admissibility policy, returning application, refusal, or failure. \autoref{chapter:appendix-a-controlled-mutation} develops the corresponding boundary for PDF changesets, which use a different operation vocabulary.
 
@@ -89,6 +91,8 @@ The contract must also express what makes an answer acceptable. For alternative 
 The \textbf{acceptance contract} specifies the evidence required to accept the result. Deterministic checks can identify missing accessibility properties or illegal document structures. Content-preservation checks can detect selected forms of unintended loss. Semantic evaluators or human reviewers assess properties that structural checks cannot decide, such as whether an alternative description accurately conveys an image. The contract must also identify which findings block acceptance and which require engineering judgment.
 
 These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
+
+\subsection*{Workflow, Selection, and Correspondence}
 
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{reasoning workflow model} represents the process used to produce a result. DocAble organizes remediation as a graph of specialized passes. Some passes are algorithmic; others request structural judgments or descriptive content from foundation models. The graph represents dependencies among computations; execution machinery uses those dependencies to determine which work is ready as intermediate results are produced. A planning agent can instead maintain and revise a plan as it inspects the artifact. The workflow may change while task meanings and acceptance obligations remain fixed. A plan is guidance until an executor consumes it; an execution trace records what actually happened.

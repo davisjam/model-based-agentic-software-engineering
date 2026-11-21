@@ -29,6 +29,8 @@ Consider an image-description task in the illustrated design. At the narrower su
 | Reasoning workflow model | How is work decomposed, ordered, and assigned? | A pass graph with dependency edges and task assignments, or an agent's revisable plan. | Execution machinery consumes the workflow; its steps request tasks and propose operations. |
 | Acceptance model | What evidence is required to accept the artifact? | Obligations, evaluation criteria, required evidence, blocking and review conditions. | Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. |
 
+### Task, Operation, and Acceptance Contracts {.unnumbered}
+
 The **operation contract** defines the changes a reasoning engine may request. DocAble’s Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. The application component resolves and executes supported operations under the applicable admissibility policy, returning application, refusal, or failure. [ref:chapter:appendix-a-controlled-mutation] develops the corresponding boundary for PDF changesets, which use a different operation vocabulary.
 
 The vocabulary must support legitimate work without becoming an unrestricted programming interface. A replacement engine can propose different operations or sequence them differently. To make this an enforcement boundary, the surrounding environment must also restrict mutation authority to the controlled application component. A typed interface alone does not prevent a reasoner with direct file access from bypassing it.
@@ -40,6 +42,8 @@ The contract must also express what makes an answer acceptable. For alternative 
 The **acceptance contract** specifies the evidence required to accept the result. Deterministic checks can identify missing accessibility properties or illegal document structures. Content-preservation checks can detect selected forms of unintended loss. Semantic evaluators or human reviewers assess properties that structural checks cannot decide, such as whether an alternative description accurately conveys an image. The contract must also identify which findings block acceptance and which require engineering judgment.
 
 These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
+
+### Workflow, Selection, and Correspondence {.unnumbered}
 
 The **reasoning workflow model** represents the process used to produce a result. DocAble organizes remediation as a graph of specialized passes. Some passes are algorithmic; others request structural judgments or descriptive content from foundation models. The graph represents dependencies among computations; execution machinery uses those dependencies to determine which work is ready as intermediate results are produced. A planning agent can instead maintain and revise a plan as it inspects the artifact. The workflow may change while task meanings and acceptance obligations remain fixed. A plan is guidance until an executor consumes it; an execution trace records what actually happened.
 
