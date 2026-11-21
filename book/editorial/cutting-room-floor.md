@@ -24327,3 +24327,57 @@ They do not remove the need for expertise when requirements change or the repres
 Source revision: `18e5b6f6830819b8d8e7e0d1c8005c771b431e64`. Deleted only the final sentence of the implementation-fluency paragraph in §7.4, as requested.
 
 > Engineers still need the disciplinary foundations that make those judgments possible.
+
+
+## 2026-11-20 — Chapter 7 technological trajectories organized as a list
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, §7.1.4, lines 121–168 at revision `e25e2db11c4ca85b43bd88263488a80b584b9911`. Replaced with the author-approved four-item list and three shared concluding paragraphs. Preserved the retrieval/representation distinction and architecture-recovery and Cabot citations.
+
+```latex
+% <!-- point: better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them | Better reasoners leave more legitimate freedom unresolved; even perfect realization does not establish that the encoding captures the right obligations, so capability does not retire engineering responsibility. -->
+
+Because these trajectories need not proceed together, commodity intelligence does not fix a single destination for software engineering. Better reasoners let engineering leave more legitimate freedom unresolved. The engineer states the consequential distinctions and lets realization choose among the acceptable possibilities. As \magevalue{chapter:theory} shows, faithful production approaches \(P(E\mid R)\) when conditional realization approaches one and encoding quality is held fixed. Agents may infer omitted intent, but reliable fulfillment alone does not establish that the encoded obligations were right. Capability therefore moves effort toward deciding which distinctions are consequential; it does not retire the obligation to encode them.
+
+% <!-- point: cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical | If explicit representations become cheap to construct, maintain, and reconcile, engineers can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system. -->
+
+If explicit representations become cheap to construct, maintain, and reconcile, engineers can profitably externalize more consequential knowledge. The modeling work developed in \magevalue{chapter:modeling} then becomes economical for more questions: choosing useful abstractions and maintaining their claimed correspondence with the system.
+
+% <!-- point: representation-engineering-broader-than-context-engineering | Retrieval selects information for a reasoner; representation engineering chooses the form in which the engineering question is expressed. The distinction concerns access and representation, which can be combined. -->
+
+Retrieval and representation engineering address different questions. Retrieval selects information to place before a reasoner; representation engineering asks whether a different form would make the engineering question easier to answer. An agent might retrieve enough source to reconstruct an architectural dependency, or work over a dependency model in which that relation is already explicit. The first improves access to the implementation; the second changes the representation over which reasoning proceeds. The two can be combined: a context pipeline may retrieve the dependency model itself.
+
+Program comprehension and architecture recovery make this economic choice concrete. Their established methods recover higher-level views from source, execution, and other evidence~\citep{chikofsky1990taxonomy, ducasse2009architecture, cornelissen2009dynamic}. If agents make accurate recovery cheaper, they can lower the cost of realization and improve \(P(F \mid E,R)\) by reducing reconstruction cost and exposing the dependencies relevant to a change. Recovery does not automatically improve \(P(E \mid R)\): existing structure and observed behavior do not establish what the system ought to do. Engineers must compare recovering a view on demand with retaining it as engineering capital, whose future reuse must justify its construction and carrying costs.
+
+This trajectory changes the price of representation work, not its nature. It makes a larger investment in representations economical without establishing that such an investment will dominate software engineering.
+
+% <!-- point: cheap-reliable-realization-moves-effort-upstream | If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented. -->
+
+If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream. Little consequential freedom then remains downstream of the representation, and transformation or generation can replace autonomous realization wherever the representation determines the implementation. \magevalue{sec:software-rejoins-engineering} examines the engineering tradition that already works this way.
+
+% <!-- point: cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority | If strong controls become cheap, engineers can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk. -->
+
+If strong controls become cheap, engineers can tolerate more freedom in realization while independently checking the consequential results. Validators, monitors, and admission checks can reduce the chance that unacceptable work is admitted when they detect violations and trigger an effective rejection or intervention. Lower cost makes that coverage more economical to construct and maintain; it does not by itself make a check sound. Effort then moves toward deciding which obligations deserve enforcement, placing the controls that enforce them, and judging the risk that remains. Under this trajectory an organization can become far more governed without becoming more model-driven.
+
+% <!-- point: combinations-land-differently-for-different-properties-of-one-system | Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology. -->
+
+Real engineering environments will combine these trajectories, often differently for different properties of the same system. A system might maintain an authoritative state model where invalid transitions are consequential, allow an agent wide implementation freedom locally, derive architectural views when a question needs them rather than maintain them, and enforce security and dependency obligations at admission.
+
+\textbf{The appropriate unit of analysis is therefore usually the engineering question or obligation, not the development methodology.}
+
+% <!-- point: cabot-is-one-plausible-equilibrium-not-the-prediction | Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive. -->
+
+Model-driven engineering is one plausible destination, reached when improvements in representation and realization machinery reinforce one another. Cabot\textquotesingle s proposal for vibe-driven model-based engineering keeps models as the pillar of development while letting AI assist their construction and, where a model determines the implementation, their realization through deterministic generators~\citep{cabot2026vibe}. That is one combination of the trajectories in \autoref{effort-trajectories}: AI lowers the cost of constructing and manipulating explicit models while model-based realization stays attractive. MAGE includes that future. It does not predict it. The opposite combination is equally available. If reasoners become good at reconstructing trustworthy task-specific representations from implementation, carrying separately maintained models may become less attractive for many questions.
+
+\textbf{Commodity intelligence changes the economics of representation and control without determining their eventual form.}
+
+% <!-- point: more-modeling-need-not-mean-more-permanently-maintained-models | More modeling need not mean more permanently maintained models: construction cost can be repaid through repeated reuse or one consequential answer; cheap machine reasoning expands the one-off questions for which a purposeful reduction pays. -->
+
+More modeling need not mean more permanently maintained models. Agents can make it economical to construct a dependency graph, a state abstraction, a quantitative model, or another purposeful reduction for one consequential question and discard it afterward. Construction cost must be repaid by the value of the reasoning it enables. Repeated reuse is one way to earn that return; answering a sufficiently consequential question once is another. Cheaper construction expands the range of one-off questions for which a model pays. A model can matter because reasoning passes through it today; an organization need not preserve it forever.
+
+% <!-- point: recurring-judgment-becomes-engineering-capital-under-any-trajectory | Recurring judgment remains an opportunity for governance conversion; conversion and ratcheteering let later work inherit it while keeping the resulting structure open to correction. -->
+
+Whichever trajectory dominates, recurring judgment remains an opportunity for governance conversion. The conversion and ratcheteering developed in \magevalue{chapter:one-problem-many-models} let later work inherit that judgment while keeping the resulting structure open to correction. The professional question is whether the judgment belongs in the next reviewer\textquotesingle s head or whether future work should inherit it from the environment.
+
+The answer is not always "mechanize." Guidance remains useful where interpretation is semantic; human review remains appropriate where consequence or ambiguity warrants it; and every new mechanism adds carrying cost. The goal is to \textbf{mechanize where doing so pays}. Engineers make that choice one obligation at a time, under economics that have not finished moving.
+
+```
