@@ -23,7 +23,8 @@ For an explicit fresh rebuild of **all** editions, use
 `python3 book/build_book.py --rebuild-all`. This recompiles the complete book and
 all 13 standalone editions, including the front matter, conclusion, combined
 appendices, individual appendices, and back matter, even when their sources have
-not changed. It also refreshes the EPUB and runs the same integrity gates. Use
+not changed. It clears temporary compilation state, refreshes the EPUB, and runs
+the same integrity gates. Use
 this command when the author asks to “rebuild all”; ordinary `--pdf` builds may
 reuse verified, unchanged standalone PDFs. The explicit flag also overrides the
 publication environment's usual omission of local review editions; it does not

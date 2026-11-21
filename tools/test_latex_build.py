@@ -3,9 +3,43 @@ import unittest
 from pathlib import Path
 import re
 import tempfile
+import os
+from types import SimpleNamespace
+from unittest.mock import patch
+import latex_build
 
 from latex_build import (plain_table_bodies, keep_tables_together, diagnostics, bold_table_headers, single_page_tables,
                          namespace_heading_links, restore_chapter_heading_links)
+
+
+class FreshCompilation(unittest.TestCase):
+    def test_fresh_build_discards_interrupted_state_and_allows_late_convergence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "book.tex"
+            source.write_text("manuscript")
+            aux = root / "book.aux"
+            mathml = root / "book-luamml-mathml.html"
+            aux.write_text("truncated auxiliary")
+            mathml.write_text("truncated math")
+            calls = []
+
+            def run(*args, **kwargs):
+                if not calls:
+                    self.assertFalse(aux.exists())
+                    self.assertFalse(mathml.exists())
+                calls.append(1)
+                aux.write_text("state-" + str(min(len(calls), 6)))
+                (root / "book.log").write_text("")
+                (root / "book.pdf").write_bytes(b"%PDF-1.7 fixture")
+                return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+            with patch.dict(os.environ, {"MAGE_PDF_SPLIT_FORCE": "1"}), \
+                    patch.object(latex_build.shutil, "which", return_value="lualatex"), \
+                    patch.object(latex_build.subprocess, "run", side_effect=run):
+                pdf = latex_build.compile_tex(source, texmf_cache=root / "cache")
+            self.assertEqual(len(calls), 7)
+            self.assertEqual(pdf, (root / "book.pdf").resolve())
 
 
 class NativeMathRoundTrip(unittest.TestCase):

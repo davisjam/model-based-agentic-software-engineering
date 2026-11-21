@@ -249,9 +249,18 @@ def compile_tex(source: Path, output_dir: Path | None = None, *,
     env["TEXMFCACHE"] = str(cache)
     cmd = [engine, "-interaction=nonstopmode", "-halt-on-error", "-file-line-error",
            "-no-shell-escape", "-recorder", f"-output-directory={output_dir}", str(source)]
+    # An explicitly fresh all-edition build must not read partial auxiliary or
+    # MathML files left by an interrupted run. Keep the previous PDF available.
+    if env.get("MAGE_PDF_SPLIT_FORCE"):
+        for suffix in (".aux", ".bbl", ".blg", ".toc", ".out", ".lof", ".lot",
+                       "-luamml-mathml.html"):
+            (output_dir / f"{source.stem}{suffix}").unlink(missing_ok=True)
     previous = None
     bibliography_state = None
-    for attempt in range(1, 6):
+    # A cold full-book build can need more than five passes for bibliography,
+    # page references, and tagged MathML associations to settle.
+    max_passes = 8
+    for attempt in range(1, max_passes + 1):
         result = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
         (output_dir / f"{source.stem}.console.txt").write_text(result.stdout + result.stderr)
         if result.returncode:
@@ -286,7 +295,7 @@ def compile_tex(source: Path, output_dir: Path | None = None, *,
             break
         previous = state
     else:
-        raise RuntimeError(f"LaTeX auxiliary state did not converge after 5 passes: {source}")
+        raise RuntimeError(f"LaTeX auxiliary state did not converge after {max_passes} passes: {source}")
     log_path = output_dir / f"{source.stem}.log"
     rejected, allowed = diagnostics(log_path.read_text(errors="replace"))
     if rejected:
