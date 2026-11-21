@@ -24693,3 +24693,109 @@ Connect the assignment's scope to maintained knowledge. A component catalogue ca
 ```latex
 Add controls where recurring failures reveal a dependable decision.
 ```
+
+
+## Appendix A: implementation-focused revisions to A.4 and A.5 (2026-11-20)
+
+Source revision: `9c91c41394907d4ae75db33ff554449589bbb2f4`. Author-approved targeted edits remove repeated general qualifications and clarify construction boundaries. Original changed passages follow; concrete experiments, code, measurements, and verification procedures remain in the manuscript.
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 32–32
+
+```latex
+Consider an image-description task in the illustrated design. At the narrower substitution boundary, select a different foundation model while retaining the same task, permitted operations, and acceptance conditions. The surrounding workflow remains unchanged; only the component supplying the semantic judgment differs. At the broader boundary, a general-purpose agent may replace several specialized reasoning passes. It can choose which analyses to perform and in what order, but the design requires its proposed document changes to use the supported operation vocabulary and the resulting artifact to satisfy the applicable acceptance conditions. The first substitution changes a reasoner within a workflow; the second changes the workflow itself. Neither grants the replacement authority to redefine what constitutes an acceptable document.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 93–94
+
+```latex
+These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
+
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 104–104
+
+```latex
+The engine retains freedom to choose among admissible repairs, gather additional information, and revise their order where dependencies permit. Capability requirements and interface constraints restrict that freedom without prescribing every reasoning step. Whether the models describe the right task and the right acceptance conditions remains an engineering judgment.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 114–114
+
+```latex
+Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the required refusal or review occurs; a checker that detects an error but cannot affect admission does not enforce the obligation.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 120–120
+
+```latex
+Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy. Meeting a capability requirement makes a model eligible; it does not guarantee an adequate answer.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 141–141
+
+```latex
+Model routing does not change the task or the surrounding remediation strategy. Replacing the reasoning engine does. The latter may change how work is decomposed, which information is gathered, how operations are ordered, and when the system decides that further repair is unnecessary.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 154–157
+
+```latex
+In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25--29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker, so these results measure residual findings and completion, not semantic quality or equivalence to the specialized graph. They support further evaluation of agent-driven Office remediation and show that its effectiveness depended strongly on the reasoning model.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The Office results do not establish that the same engine can replace a PDF remediation pipeline. An untagged or scanned PDF may require construction of a structure tree before operations targeting existing elements can be used. Substitution covers the work expressible through the selected interface, not every repair the domain might require.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 175–176
+
+```latex
+Such measurements can inform an architectural decision, but small experiments do not establish a universal ranking of reasoning strategies.
+
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, original lines 187–187
+
+```latex
+The central benefit is architectural freedom. When the meaning of a task, the permitted effects, and the evidence for accepting results are explicit, engineers can change how reasoning is performed without rebuilding the rest of the system. That freedom has economic value as reasoning capabilities and costs change, provided the surrounding models and checks remain adequate to the work.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 9–9
+
+```latex
+\autoref{handbook-model-guided-delegation} follows those connections. The work order gives the agent an assignment; maintained engineering models help select context; dispatch checks govern whether that assignment may proceed. Commits and other durable artifacts then support integration, completion review, and recovery. The completion boundary is separate from the dispatch boundary, and the figure does not prescribe one identical sequence for every task.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 62–62
+
+```latex
+The engineer retains authority over objectives, acceptance obligations, and exceptions. Agents can choose implementations and investigate alternatives within the declared scope. Context selection helps them find relevant knowledge, while permissions and gates independently restrict selected actions and admissions. The completion model must therefore connect an obligation to the evidence that evaluates it and the decision that consumes that evidence, rather than treating an agent's final message as the accepted state.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 90–90
+
+```latex
+DocAble's adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. Make those outcomes visible to the caller so that extraction failure cannot be mistaken for absence of obligations.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 94–94
+
+```latex
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 109–109
+
+```latex
+Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents' commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. This observed recovery supports a narrow but useful claim: committed results can survive loss of the conversational channel. It does not establish that every interrupted assignment is complete or safe to merge.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 140–140
+
+```latex
+Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control's actual behavior still needs its own evidence.
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex`, original lines 148–148
+
+```latex
+An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor's entire reasoning process. The \href{appendix-b-operating-a-gee.html}{Operating a GEE section of Appendix B} develops the day-to-day decisions around these boundaries.
+```

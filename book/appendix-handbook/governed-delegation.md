@@ -6,7 +6,7 @@ Delegating engineering work requires more than assigning a task to an agent. The
 
 ## Conceptual Design
 
-[ref:handbook-model-guided-delegation] follows those connections. The work order gives the agent an assignment; maintained engineering models help select context; dispatch checks govern whether that assignment may proceed. Commits and other durable artifacts then support integration, completion review, and recovery. The completion boundary is separate from the dispatch boundary, and the figure does not prescribe one identical sequence for every task.
+[ref:handbook-model-guided-delegation] organizes delegated work around three boundaries. Dispatch checks whether an assignment may proceed, using the work order, relevant engineering knowledge, and lifecycle state. Execution gives the agent freedom within the assignment while preserving commits and other durable artifacts. Completion evaluates the resulting work against its acceptance obligations and determines whether it can be accepted or must be reconciled. Recovery uses the durable artifacts to resume interrupted work without discarding completed changes.
 
 <!-- label: handbook-model-guided-delegation -->
 <!-- figure: assets/handbook-model-guided-delegation.svg | *Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence.* Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned. [short: Governed delegation] -->
@@ -47,7 +47,7 @@ The work order states intended work; component records and provenance describe r
 
 A lifecycle model must distinguish the states needed by its consumers. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately from acceptance. Choose the states for the work unit and its consumers. The important requirements are that dispatch have a defined precondition, acceptance require the work-order evidence, and interruption not imply successful completion. DocAble’s completed-phase gate uses a narrower predicate: a positively resolved completed phase refuses a new dispatch. Reopening changes that phase state; a reasoned override permits a particular dispatch without redefining completion.
 
-The engineer retains authority over objectives, acceptance obligations, and exceptions. Agents can choose implementations and investigate alternatives within the declared scope. Context selection helps them find relevant knowledge, while permissions and gates independently restrict selected actions and admissions. The completion model must therefore connect an obligation to the evidence that evaluates it and the decision that consumes that evidence, rather than treating an agent’s final message as the accepted state.
+Context selection supplies assignment-relevant knowledge, while permissions and gates restrict selected actions and admissions. The completion model connects each acceptance obligation to its required evidence and the decision that consumes that evidence. An agent’s final message is an input to review, not the accepted completion state.
 
 ## Realization
 
@@ -69,9 +69,9 @@ def coverage_for_files(
 
 The aggregator deduplicates by registry and constraint identity, orders each registry’s contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
 
-DocAble’s adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval. Make those outcomes visible to the caller so that extraction failure cannot be mistaken for absence of obligations.
+DocAble’s adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval.
 
-Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations. Context selection cannot recover a design intention that no queried representation contains.
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations.
 
 ### Dispatch, Execute, and Evaluate Completion {#handbook-model-lifecycle .unnumbered}
 
@@ -81,7 +81,7 @@ Require durable work early enough that interruption is recoverable. In DocAble, 
 
 Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment’s producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
 
-Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents’ commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. This observed recovery supports a narrow but useful claim: committed results can survive loss of the conversational channel. It does not establish that every interrupted assignment is complete or safe to merge.
+Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents’ commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. The operator recovered the work from durable repository state rather than the lost completion notifications.
 
 For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
 
@@ -106,7 +106,7 @@ def extract_phase_from_brief(brief_text: str) -> str | None:
 
 Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
 
-Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. That signal does not automatically weaken or disable the gate. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction. A conversion ledger can link the failure class to the phase installing its repair; the control’s actual behavior still needs its own evidence.
+Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction.
 
 ### Verify the Arrangement {.unnumbered}
 
@@ -114,4 +114,4 @@ Exercise the whole path from assignment to accepted or recoverable work. A valid
 
 ## Adaptation and Limits
 
-An analogous arrangement might delegate an infrastructure change, a document transformation, or an operational procedure. Preserve the relationships among scope, relevant knowledge, authority, durable results, and acceptance evidence; do not copy the document taxonomy merely because DocAble uses briefs and phases. Choose the smallest work identity whose completion and reopening can be stated meaningfully. Retain enough evidence to resume or decline work without reconstructing the executor’s entire reasoning process. The [Operating a GEE section of Appendix B](appendix-b-operating-a-gee.html) develops the day-to-day decisions around these boundaries.
+The arrangement applies to delegated infrastructure changes, document transformations, and operational procedures. Preserve the relationships among assignment scope, relevant knowledge, authorization, durable results, and acceptance evidence. Choose work identities and lifecycle states appropriate to the domain, including explicit completion and reopening rules. Retain sufficient evidence to resume or decline work without reconstructing the agent’s conversation. [Appendix B’s Operating a GEE section](appendix-b-operating-a-gee.html) develops the corresponding operating procedures.

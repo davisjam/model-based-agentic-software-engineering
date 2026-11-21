@@ -29,7 +29,7 @@ DocAble supplies examples for two distinct substitution decisions. Model selecti
 \end{figure}
 
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: design-illustration
-Consider an image-description task in the illustrated design. At the narrower substitution boundary, select a different foundation model while retaining the same task, permitted operations, and acceptance conditions. The surrounding workflow remains unchanged; only the component supplying the semantic judgment differs. At the broader boundary, a general-purpose agent may replace several specialized reasoning passes. It can choose which analyses to perform and in what order, but the design requires its proposed document changes to use the supported operation vocabulary and the resulting artifact to satisfy the applicable acceptance conditions. The first substitution changes a reasoner within a workflow; the second changes the workflow itself. Neither grants the replacement authority to redefine what constitutes an acceptable document.
+Consider an image-description task in the illustrated design. At the narrower substitution boundary, select a different foundation model while retaining the same task, permitted operations, and acceptance conditions. The surrounding workflow remains unchanged; only the component supplying the semantic judgment differs. At the broader boundary, a general-purpose agent may replace several specialized reasoning passes. It can choose which analyses to perform and in what order, but the design requires its proposed document changes to use the supported operation vocabulary and the resulting artifact to satisfy the applicable acceptance conditions. The first substitution changes a reasoner within a workflow; the second changes the workflow itself. Both retain the task, operation, and acceptance contracts.
 
 \section{Engineering Models}\label{heading:engineering-models}
 
@@ -90,8 +90,6 @@ The contract must also express what makes an answer acceptable. For alternative 
 
 The \textbf{acceptance contract} specifies the evidence required to accept the result. Deterministic checks can identify missing accessibility properties or illegal document structures. Content-preservation checks can detect selected forms of unintended loss. Semantic evaluators or human reviewers assess properties that structural checks cannot decide, such as whether an alternative description accurately conveys an image. The contract must also identify which findings block acceptance and which require engineering judgment.
 
-These contracts serve different purposes. A well-typed operation establishes that a request has a recognized form. Successful application establishes that the requested mutation occurred. Neither establishes that the resulting document satisfies its semantic obligations.
-
 \subsection*{Workflow, Selection, and Correspondence}
 
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
@@ -101,7 +99,7 @@ Assign ownership to the obligations and to the observations used to evaluate the
 
 Task identifiers join workflow steps to selection requirements and evaluators. Target identifiers join operation proposals to the current domain artifact. Keep these meanings aligned as schemas, models, and artifacts change: a task renamed without updating its evaluator, or a target resolved against stale structure, breaks correspondence even when the request remains well typed. Check that the executor follows required workflow dependencies and that the gate consumes the evidence the acceptance model requires.
 
-The engine retains freedom to choose among admissible repairs, gather additional information, and revise their order where dependencies permit. Capability requirements and interface constraints restrict that freedom without prescribing every reasoning step. Whether the models describe the right task and the right acceptance conditions remains an engineering judgment.
+The engine retains freedom to choose among admissible repairs, gather additional information, and revise their order where dependencies permit. Capability requirements and interface constraints restrict that freedom without prescribing every reasoning step.
 
 \section{Realization}\label{heading:realization}
 
@@ -111,13 +109,13 @@ Begin with one bounded semantic task. Specify its inputs, output representation,
 
 Next, establish the application interface. Give reasoning implementations a closed vocabulary of supported operations, with stable target identities, explicit preconditions, and results that distinguish application, refusal, and failure. Restrict mutation authority to the application component, and test that the reasoning engine cannot alter the governed artifact through another path.
 
-Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the required refusal or review occurs; a checker that detects an error but cannot affect admission does not enforce the obligation.
+Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the gate produces the required refusal or review.
 
 Only then introduce an alternative reasoning engine. Run both engines against comparable inputs through the same application interface. Evaluate the artifacts rather than the engines' accounts of their own success. Include failure cases: invalid targets, unsupported operations, incomplete repairs, interrupted execution, and plausible but semantically incorrect outputs.
 
 \subsection*{Select Models for Fixed Tasks}\label{heading:select-models-for-fixed-tasks}
 
-Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy. Meeting a capability requirement makes a model eligible; it does not guarantee an adequate answer.
+Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy.
 
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 DocAble's selector interface represents the result through this typed choice:
@@ -138,7 +136,7 @@ Selection can account for task-specific capability requirements, input difficult
 
 A model-selection policy should be evaluated against the errors that matter for each task. Average quality is not sufficient when different errors have substantially different consequences. For example, fabricating content in an alternative description and failing to recognize a decorative image are different failures, even if a benchmark combines them into one accuracy score.
 
-Model routing does not change the task or the surrounding remediation strategy. Replacing the reasoning engine does. The latter may change how work is decomposed, which information is gathered, how operations are ordered, and when the system decides that further repair is unnecessary.
+Replacing the reasoning engine is a broader change: it may alter task decomposition, information gathering, operation ordering, and termination decisions.
 
 \subsection*{Exercise an Alternative Engine}\label{heading:exercise-an-alternative-engine}
 
@@ -151,10 +149,7 @@ An October 2026 experiment exercised this arrangement on Office documents. A sin
 The operation vocabulary covered 201 of 202 checker-reported issues classified as fixable in the pilot corpus. This measures the expressiveness of the editing interface, not the agent's ability to resolve those issues correctly.
 
 % Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
-In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25--29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker, so these results measure residual findings and completion, not semantic quality or equivalence to the specialized graph. They support further evaluation of agent-driven Office remediation and show that its effectiveness depended strongly on the reasoning model.
-
-% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
-The Office results do not establish that the same engine can replace a PDF remediation pipeline. An untagged or scanned PDF may require construction of a structure tree before operations targeting existing elements can be used. Substitution covers the work expressible through the selected interface, not every repair the domain might require.
+In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25--29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker. The results show substantial differences in residual findings and completion among the evaluated models.
 
 \subsection*{Evaluate the Result}\label{heading:evaluate-the-result}
 
@@ -172,8 +167,6 @@ A comparison should therefore use the same inputs and acceptance criteria for ea
 % Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
 The experiments in \autoref{chapter:5.2-inside-docables-software-factory} illustrate the importance of comparable measurements. A September 2026 comparison on one handwritten PDF measured approximately four cents of inference for the specialized pipeline against an estimated \$2.29 for a general-purpose agent. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference structure, and its cost was reconstructed from an execution transcript. The result informed investigation of costs without establishing equivalent quality. A November evaluation on two PDFs found no additional checker findings closed by a coached repair loop; the harder document retained 15 findings while cost rose from \$1.35 to \$3.57.
 
-Such measurements can inform an architectural decision, but small experiments do not establish a universal ranking of reasoning strategies.
-
 For an end-to-end trial, introduce an unsupported operation, a stale target, a missing required evaluation result, and a plausible but inadequate description. Confirm the appropriate refusal or review, the artifact actually produced, and the evidence used for acceptance. A successful path must produce an acceptable artifact; a failed path must not acquire a success record merely because the engine declared completion.
 
 \section{Adaptation and Limits}\label{heading:adaptation-and-limits}
@@ -184,4 +177,4 @@ The same architecture applies beyond document remediation. A planning agent can 
 
 The boundary need not be perfectly general. A small vocabulary supporting the operations a system actually requires is often more useful than a universal interface that restores unrestricted authority to the reasoner. Extend the vocabulary when new work justifies it, and evaluate each extension against the obligations already protected.
 
-The central benefit is architectural freedom. When the meaning of a task, the permitted effects, and the evidence for accepting results are explicit, engineers can change how reasoning is performed without rebuilding the rest of the system. That freedom has economic value as reasoning capabilities and costs change, provided the surrounding models and checks remain adequate to the work.
+The central benefit is architectural freedom. Explicit task, operation, and acceptance contracts let engineers change reasoning implementations without rebuilding the surrounding application and evaluation machinery. This flexibility has economic value as reasoning capabilities and costs change.
