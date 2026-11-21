@@ -15,6 +15,8 @@ An agent can receive a clear objective and still work from stale context, repeat
 
 The models in [ref:handbook-delegation-models] connect an assignment to its scope, lifecycle, results, and acceptance evidence.
 
+A work order must carry enough structure for people and machinery to use it. DocAble’s briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. Path declarations establish the initial scope for repository lookup and context selection while leaving implementation choices open within that scope.
+
 <!-- label: handbook-delegation-models -->
 <!-- table: *Engineering models for delegated work.* Assignment and phase identities connect scope, relevant knowledge, durable artifacts, and completion criteria. Lifecycle rules govern dispatch and reopening; evidence about landed work supports acceptance. [short: Engineering models for delegated work] -->
 | **Model** | **Engineering question** | **Representation** | **Relationships / consumers** |
@@ -24,8 +26,6 @@ The models in [ref:handbook-delegation-models] connect an assignment to its scop
 | Work lifecycle | Which transitions may proceed from the recorded state? | Assignment or phase identity, state, completion conditions, reopen rules, and authorized exceptions. | Dispatch consults reconciled state; completion and reopening update it under explicit policies. |
 | Work identity and provenance | Which durable results belong to an assignment? | Links among work orders, executors, worktrees, commits, artifacts, and inspection records. | Integration and recovery locate results without reconstructing a conversation. |
 | Completion criteria | What evidence permits acceptance and closure? | Promised effects, required checks or review, results, and unresolved obligations. | Completion review consumes independently inspectable artifacts and evidence; a producer report is one input. |
-
-A work order must carry enough structure for both people and machinery to use it. DocAble’s briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
 
 These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
 

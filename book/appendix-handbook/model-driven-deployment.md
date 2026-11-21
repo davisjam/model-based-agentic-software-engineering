@@ -50,7 +50,7 @@ The model leaves service algorithms and internal organization open while fixing 
 
 ### Derive and Apply Permissions {.unnumbered}
 
-In the DocAble design, the deployment dependency map supplies the grant planner, and a correspondence check relates that map to the typed call declarations. For each selected caller it resolves the runtime service account and each environment-scoped callee, then constructs a command granting `roles/run.invoker`. Application deduplicates by principal and callee while retaining all logical callers in its report. DocAble’s inspected configuration uses a shared runtime service account, so several logical callers can collapse to the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
+For each selected caller, the grant planner resolves its runtime service account and environment-scoped callee, then constructs a `roles/run.invoker` binding. Application deduplicates bindings by principal and callee while retaining the logical callers in its report. DocAble’s inspected configuration uses a shared runtime service account, so several logical callers can produce the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
 
 Separate planning from attempting the external effect. A deterministic planner can be exercised without cloud access; an application component needs credentials, a target environment, and a policy for failed operations. DocAble retains the following result for each distinct binding:
 

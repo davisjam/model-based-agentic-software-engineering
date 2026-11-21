@@ -24604,3 +24604,67 @@ The duplicate-dispatch incident in {[}appendix: appendix-a-governed-delegation{]
 Price that inheritance. A rare, inexpensive failure may not justify permanent machinery; a repeated reconstruction or recurring loss may justify it readily. Remove the superseded procedure or control when its replacement makes it unnecessary. Otherwise every repair adds another thing that later work must understand. The next run should inherit a better starting point, with the evidence needed to tell whether the repair worked.
 
 ```
+
+
+## Appendix A: nine targeted copyedits (2026-11-20)
+
+Source revision: `1a0e684c1f7c5b29acf6de200d132f98879a4d3c`. Author-approved tightening and removal of repeated explanations; retained mechanisms and evidence remain in the manuscript.
+
+### `book/latex/sources/appendix-handbook/model-driven-deployment.tex` (lines 74–74, before this pass)
+
+```latex
+In the DocAble design, the deployment dependency map supplies the grant planner, and a correspondence check relates that map to the typed call declarations. For each selected caller it resolves the runtime service account and each environment-scoped callee, then constructs a command granting \texttt{roles/run.invoker}. Application deduplicates by principal and callee while retaining all logical callers in its report. DocAble's inspected configuration uses a shared runtime service account, so several logical callers can collapse to the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
+```
+
+### `book/latex/sources/appendix-handbook/controlled-mutation.tex` (lines 57–57, before this pass)
+
+```latex
+The document structure describes the current artifact. The operation model specifies permitted kinds of change; an operation instance remains a proposal whose admission depends on the assignment and policy. \texttt{StructId} must resolve to the intended current entity. \texttt{BeforeAlt} describes the expected prior value, while \texttt{AfterAlt} states the proposed result. If another writer changes the artifact before application, the correspondence between reference, before-value, and current state must be reconsidered. The policy determines the response to that disagreement.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex` (lines 80–80, before this pass)
+
+```latex
+The \textbf{operation contract} defines the changes a reasoning engine may request. DocAble's Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. A controlled application component resolves the target against the current document, checks applicable preconditions, and reports application, refusal, or failure. The PDF changeset in \autoref{chapter:appendix-a-controlled-mutation} is an analogous interface for a different document model; it is not the Office operation vocabulary.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex` (lines 164–164, before this pass)
+
+```latex
+These examples show why evaluation must extend beyond interface compatibility. Structural and content-preservation checks supply evidence about the properties they inspect. Semantic judgments require evidence about meaning, which may come from another model or a human reviewer. Keeping the evaluator separate from the producer makes results easier to compare, but does not by itself make their errors independent. An evaluator that shares the producer's model family or assumptions may confirm the same mistake.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex` (lines 177–181, before this pass)
+
+```latex
+The distinction matters economically. A specialized graph requires construction and maintenance, but can divide work into smaller tasks that less expensive models perform adequately. A general-purpose agent may require less specialized orchestration while consuming more inference resources per document. Neither arrangement is necessarily preferable: the balance depends on task complexity, available model capability, quality requirements, and the number of documents over which the engineering investment is amortized.
+
+Compare total engineering cost at the required quality, using the construction, running, and carrying costs distinguished in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}. Include inference, execution, diagnosis, and repair as well as maintenance of the models and checks. A more capable model may justify retiring specialized reasoning machinery; a stable, high-volume task may justify retaining it to reduce recurring inference costs.
+
+
+```
+
+### `book/latex/sources/appendix-handbook/governed-delegation.tex` (lines 37–37, before this pass)
+
+```latex
+A work order must carry enough structure for both people and machinery to use it. DocAble's briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. The path declarations identify the initial scope for repository lookup and context selection. They leave implementation choices open within that scope.
+```
+
+### `book/latex/sources/appendix-handbook/model-based-test-selection.tex` (lines 215–216, before this pass)
+
+```latex
+Model-based selection makes validation responsive to the system's engineering structure rather than treating every change as equally consequential. Its value depends on maintaining trustworthy relationships among changes, obligations, and checks---and ensuring that the resulting decisions govern the validation actually performed.
+
+```
+
+### `book/latex/sources/appendix-handbook/maintaining-the-machinery.tex` (lines 18–24, before this pass)
+
+```latex
+\section{Keep Selection Connected to Execution}
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: incident-and-design
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: incident-and-design
+A check selector must remain connected to the machinery it controls. The merge-check incident in \autoref{chapter:appendix-a-model-based-test-selection} illustrates how a correctly derived selection can fail to govern execution and acceptance. Maintenance should therefore examine not only whether the selection remains appropriate, but whether the selected checks actually run, whether their findings determine the intended verdict, and whether changes to the validation machinery have invalidated those relationships.
+
+
+```

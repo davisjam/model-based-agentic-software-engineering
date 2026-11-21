@@ -219,6 +219,10 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
 \usepackage[mage]{house}
 \usepackage{longtable,booktabs,array,calc}
 \usepackage[numbers]{natbib}
+% Match HTML and resolved excerpt references, including sentence-initial uses.
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
 \setlength{\emergencystretch}{2em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\pandocbounded}[1]{#1}
@@ -1047,6 +1051,10 @@ def prepare_pdf(slugs=None, name="mage-book"):
 \documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
 \usepackage[numbers]{natbib}
+% Match HTML and resolved excerpt references, including sentence-initial uses.
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
 \setlength{\emergencystretch}{2em}
 \renewcommand{\bibsection}{\chapter*{\bibname}\label{mage-bibliography}}
 \DeclareRobustCommand{\magecomma}{,}

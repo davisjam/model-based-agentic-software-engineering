@@ -12,10 +12,6 @@ The graph’s analysis computes a declared order and detects cycles; tests inclu
 
 Correspondence has a similarly concrete boundary. The anchor check compares modeled commands, lifecycle events, scripts, and entry symbols with configured wiring. It can detect a missing command or a mismatched firing event within its inspected population. Finding the expected function name does not establish that its behavior remains suitable. When a control’s meaning changes, review the represented requirements as well as its address.
 
-## Keep Selection Connected to Execution
-
-A check selector must remain connected to the machinery it controls. The merge-check incident in [ref:chapter:appendix-a-model-based-test-selection] illustrates how a correctly derived selection can fail to govern execution and acceptance. Maintenance should therefore examine not only whether the selection remains appropriate, but whether the selected checks actually run, whether their findings determine the intended verdict, and whether changes to the validation machinery have invalidated those relationships.
-
 ## Recurring Engineering Moves {#handbook-composition-procedure}
 
 The ten moves in [ref:handbook-engineering-moves] are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
