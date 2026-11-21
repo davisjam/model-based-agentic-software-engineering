@@ -84,11 +84,8 @@ Suppose an endpoint is required to be authenticated. If an independently authore
 
 % <!-- index-def: independent-obligation -->
 
-The source of a model does not determine whether it supplies an independent obligation. A model extracted from code can describe the current \emph{is}; a governing invariant must state the \emph{ought} independently. A hand-authored model may merely repeat the implementation\textquotesingle s assumptions, so authorship alone does not establish independence. Enforcement requires an obligation against which the work can actually be wrong.
-
 % <!-- point: tolerance-independence-comes-from-intent-not-realization | Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged. | terms: independent-obligation, tolerance -->
-
-Where an obligation permits variation, the acceptable region must likewise come from the engineering intent that governs the work. A measured implementation can establish what latency it achieved or what dependencies it contains; whether those values are acceptable requires an independent engineering obligation.
+The source of a model does not determine whether it supplies an independent obligation. A model extracted from code can describe the current \emph{is}; a governing invariant must state the \emph{ought} independently. A hand-authored model may merely repeat the implementation's assumptions, so authorship alone does not establish independence. Enforcement requires an obligation against which the work can actually be wrong. The same distinction applies to quantitative properties: measurements can establish an implementation's latency, but an independent engineering obligation must determine whether that latency is acceptable.
 
 % <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement. | terms: agreement-vs-correctness, independent-obligation -->
 
@@ -153,21 +150,7 @@ Both examples illustrate the same rule for placing enforcement:
 \textbf{Place enforcement at the earliest boundary where the obligation is both legible and decidable.}
 \end{quote}
 
-\emph{Earliest} matters because delay makes a failure more expensive to repair. \emph{Legible} matters because moving the check earlier than the property permits produces false refusals or meaningless checks. The rule explains the whole mechanism menu at a glance:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Static type checks} evaluate expressions against declared types before execution, once the relevant code and type information are available.
-\item
-  \textbf{Action hooks} act at one tool call, one command --- where a single move is legible.
-\item
-  \textbf{Task-completion checks} act at the work-unit boundary --- where "done" first becomes readable across a body of commits.
-\item
-  \textbf{Deployment gates} act after broader evidence has accumulated --- the last boundary before the artifact is accepted.
-\end{itemize}
-
-And some properties stay illegible until later still: a leak visible only across ten calls, a cost overrun visible only across a season of jobs. No boundary makes them readable sooner.
+\emph{Earliest} matters because delay makes a failure more expensive to repair. \emph{Legible} matters because checking before the necessary evidence exists produces false refusals or meaningless results. Static type checks can reject code that violates declared typing rules before execution; action hooks can govern individual tool calls; task-completion checks can evaluate obligations spanning several commits; and deployment gates can evaluate accumulated evidence before release. Other properties become observable only later, such as a leak emerging across repeated calls or a cost overrun visible across many jobs. No earlier boundary can establish what the available evidence does not yet reveal.
 
 % <!-- point: the-part-two-rhyme-coarsest-representation-earliest-boundary | The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible. | terms: semantic-gap, earliest-legible-boundary, modeling-principle, alignment-principle -->
 

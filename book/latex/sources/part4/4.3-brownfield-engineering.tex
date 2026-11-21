@@ -61,13 +61,11 @@ Several techniques can help recover models from an existing system:
 
 These techniques produce candidate representations for engineering review. Engineers must determine which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
 
-Repeated implementation structures offer another source of candidates. A detector can narrow the search, but repetition may reflect a missing domain concept, an external protocol, test scaffolding, or ordinary cleanup. Its findings need interpretation in their architectural context.
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+Repeated implementation structures offer another source of candidate models. DocAble used a primitive-density detector to identify interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such interfaces can indicate that a domain concept is being reconstructed repeatedly rather than represented explicitly. They can also be appropriate. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
 
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
-DocAble encountered this problem through a primitive-density detector, which identifies interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such interfaces can indicate that a domain concept is being repeatedly reconstructed rather than represented explicitly. They can also be perfectly appropriate. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
-
-% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
-\autoref{discovering-latent-models} shows the three principal dispositions. Some findings describe legitimate implementation structure, such as protocol adapters or test fixtures, and warrant no architectural change. Others call for mechanical cleanup or annotations. A smaller group may reveal a missing domain concept. In DocAble, related document mutators repeatedly passed the same language and provenance information, while alt-text mutations carried recurring description and attribution state. Examining these patterns together exposed concepts worth representing explicitly. The important question was not how many primitive-heavy interfaces existed, but which repeated structures expressed engineering knowledge that later work should preserve.
+\autoref{discovering-latent-models} shows three principal dispositions. Some findings describe legitimate implementation structure, such as protocol adapters or test fixtures, and warrant no architectural change. Others call for mechanical cleanup or annotations. A smaller group may reveal missing domain concepts. In DocAble, document mutators repeatedly passed the same language and provenance information, while alt-text mutations carried recurring description and attribution state. Examining these patterns together exposed concepts worth representing explicitly. The important question was which repeated structures expressed engineering knowledge that later work should preserve, not how many primitive-heavy interfaces existed.
 
 The third disposition requires more than naming a repeated structure. The engineer must recover a representation that captures the underlying concept, migrate its consumers, and establish appropriate correspondence and enforcement.
 
@@ -154,7 +152,6 @@ Even a correct rule may be unsuitable for immediate enforcement. A legacy codeba
 \end{quote}
 
 Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
-
 
 
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism

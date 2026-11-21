@@ -246,7 +246,7 @@ As DocAble grew, source code alone stopped being an adequate engineering interfa
 
 % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
 % Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
-The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. The factory represents both the software it produces and the process that produces it.
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. These models describe both the software being produced and the process used to produce it.
 
 % <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
 
@@ -304,7 +304,7 @@ Which step changed this document element? & Recorded remediation-pass provenance
 \end{longtable}
 }
 
-\subsection{The Joins: What the Factory Can Derive and Enforce}\label{heading:the-joins-what-the-factory-can-derive-and-enforce}
+\subsection{The Joins: Deriving Evidence and Enforcement}\label{heading:the-joins-what-the-factory-can-derive-and-enforce}
 
 % <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | The factory checks relations among representations and uses selected results to determine whether work may proceed. | terms: alignment-principle -->
 
@@ -329,7 +329,7 @@ In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-mode
 % <!-- pullquote -->
 
 \begin{quote}
-Modeling changed what the factory could know. Alignment changed what that knowledge could cause.
+Modeling made engineering knowledge explicit and reusable. Alignment made selected obligations enforceable.
 \end{quote}
 
 \subsection{The Computation Graph: a Representation That Took Over Execution}\label{heading:the-computation-graph-a-representation-that-took-over-execution}
@@ -346,7 +346,7 @@ The remediation graph makes a further connection: its representation determines 
 % Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
 % Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
 % Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
-Explicit models expanded the questions the environment could answer. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was expressed in a bounded TLA+ model of serverless push recovery. Its TLC configurations contrast recovery enabled and disabled under stated delivery and sweep fairness assumptions. Checking the model creates a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercise production operations against the executable model, while model-to-implementation checks are selected when modeled surfaces change. These mechanisms supply separate evidence about correspondence.
+Explicit models made additional engineering questions tractable. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was expressed in a bounded TLA+ model of serverless push recovery. Its TLC configurations contrast recovery enabled and disabled under stated delivery and sweep fairness assumptions. Checking the model creates a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercise production operations against the executable model, while model-to-implementation checks are selected when modeled surfaces change. These mechanisms supply separate evidence about correspondence.
 
 \subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
 

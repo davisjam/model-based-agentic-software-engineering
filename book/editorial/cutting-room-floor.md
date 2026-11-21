@@ -24096,3 +24096,194 @@ Source revision: `753b676c477e0bbdbeb838565f29f435df77435a`. The author requeste
 ```latex
 \caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.}
 ```
+
+
+## 2026-11-20 — Chapter 5 factory cleanup
+
+Source revision: `6d3ccb0c4176b26819fbc82024b993a6561eb3ac`. Approved consolidation, Agile inset, precise factory vocabulary, and clarified coda starting conditions. The coda's final two paragraphs are unchanged. Superseded text follows.
+
+### book/latex/sources/part5/5.1-software-factory.tex
+
+```latex
+% <!-- point: the-two-problems-specialize-to-changes-not-copies | The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one. | terms: tolerance -->
+
+Process design organizes how changes are produced; tolerance determines which resulting changes are acceptable. Unlike a factory producing repeated copies of a fixed design, a software factory must preserve consequential properties while changing the system itself.
+
+% <!-- point: representations-of-software-carry-a-carrying-cost | Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost. -->
+
+That task carries a cost that physical manufacturing can often amortize differently. A drawing for a manufactured part can remain useful across thousands of instances of that part. A representation of a software system describes a target that is itself being changed. Requirements, architecture descriptions, interface specifications, models, tests, and other engineering artifacts therefore incur a carrying cost: as the software changes, they may also have to change if they are to remain useful representations of it.
+
+% <!-- point: organizations-judge-the-carrying-cost-differently | Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate. -->
+
+Software organizations have made different economic judgments about that cost. Some have found enough durable value in explicit models, specifications, interface definitions, and other representations to justify creating and maintaining them; others have found it cheaper to keep skilled human engineers close to implementation, where they can resolve open questions about behavior, structure, interfaces, failure handling, and performance as the software changes~\citep{kautz2018mbse}. Neither choice is intrinsically irrational. The tradeoff depends on how much reusable engineering knowledge a representation carries, how expensive that knowledge would be to reconstruct during implementation, and how expensive the representation is to keep accurate.
+
+% <!-- point: agile-is-intelligible-when-the-product-is-change | The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern. -->
+
+The Agile movement placed greater weight on keeping knowledgeable engineers close to implementation~\citep{agile-manifesto2001}~\citep{scrumguide2020}. Working software became the primary measure of progress; changing requirements were expected rather than exceptional; close collaboration was preferred to elaborate handoffs; and documentation was valuable insofar as it continued to serve the work. These choices make particular sense when the object of engineering is controlled change. A representation that does not change with the software can cease to describe the thing it is meant to govern. Keeping knowledgeable humans close to implementation accepts repeated human judgment partly in exchange for avoiding representations whose carrying cost may exceed their continuing value.
+
+% <!-- point: earlier-separation-attempts-met-the-same-tradeoff | Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply. -->
+
+Earlier attempts to separate engineering judgment from implementation encountered the same tradeoff from the other direction. Moving decisions upstream could allow implementation to be performed by less experienced programmers, but only if sufficiently detailed requirements, architecture, interfaces, or models carried the judgment that those programmers would otherwise need to supply. Producing those representations required skilled engineering labor, and maintaining them as the software changed added further cost. Leave more decisions open, however, and the organization again needed skilled human fabricators capable of resolving them during implementation.
+
+% <!-- point: the-question-was-where-judgment-is-carried-most-economically | The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply. -->
+
+The economic question was where engineering judgment could be carried most economically without losing control. Craft production remains economical when transferring enough judgment out of fabrication would cost as much as leaving that judgment with the skilled human fabricator. Factory production becomes economical when reusable production structures can carry consequential judgment more cheaply than repeatedly exercising it during fabrication.
+
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence. | terms: commodity-intelligence -->
+
+Commodity intelligence changes this tradeoff. In an agentic software factory, inexpensive agents can perform substantial realization work and resolve many ordinary implementation decisions. The production system can carry selected consequential judgments while leaving the agent substantial realization freedom, subject to the evidence required for acceptance.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+```latex
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+```latex
+The Joins: What the Factory Can Derive and Enforce
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+```latex
+Modeling changed what the factory could know. Alignment changed what that knowledge could cause.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+```latex
+The factory represents both the software it produces and the process that produces it.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+```latex
+Explicit models expanded the questions the environment could answer.
+```
+
+### book/latex/sources/part5/5.5-engineering-the-factory.tex
+
+```latex
+Process design and tolerance help explain the different arrangements observed in this chapter (\autoref{process-design-and-tolerance}). DocAble\textquotesingle s accessibility obligations and one-engineer staffing made explicit requirements and automated rejection especially valuable: I had little inherited human process to accommodate and no spare reviewers for every implementation decision. Coordinating agents still required work orders, scheduling, and completion checks. In an established organization, the factory must also fit existing teams, knowledge, and authority. Both settings require judgments about which properties to preserve and how to organize work around them. A more capable agent may change the process needed to produce a system without changing its memory bound or deployment restriction. Engineers can leave implementation choices open within those bounds, while weighing the cost of supervision against the cost of maintaining the representations and checks that support it.
+```
+
+
+## 2026-11-20 — Chapters 3–4 repetition cleanup
+
+Source revision: `6d3ccb0c4176b26819fbc82024b993a6561eb3ac`. Twelve approved consolidations and relocations; retained examples, citations, evidence annotations, equations, and subsection structure. Corrected the DocAble callback to its current subsection and kept skill extraction distinct from harness improvement. Superseded text follows.
+
+### book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex
+
+```latex
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do most of their work: a finite reasoner does better when the relevant system knowledge is already externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown.
+
+Guidance can make an acceptable realization more likely. A sound constraint or admission mechanism can instead rule a represented class of unacceptable realizations out of the surface it governs. Guidance improves the producer\textquotesingle s odds; enforcement changes what admission must trust.
+```
+
+### book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex
+
+```latex
+The source of a model does not determine whether it supplies an independent obligation. A model extracted from code can describe the current \emph{is}; a governing invariant must state the \emph{ought} independently. A hand-authored model may merely repeat the implementation\textquotesingle s assumptions, so authorship alone does not establish independence. Enforcement requires an obligation against which the work can actually be wrong.
+
+% <!-- point: tolerance-independence-comes-from-intent-not-realization | Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged. | terms: independent-obligation, tolerance -->
+
+Where an obligation permits variation, the acceptable region must likewise come from the engineering intent that governs the work. A measured implementation can establish what latency it achieved or what dependencies it contains; whether those values are acceptable requires an independent engineering obligation.
+```
+
+### book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex
+
+```latex
+\emph{Earliest} matters because delay makes a failure more expensive to repair. \emph{Legible} matters because moving the check earlier than the property permits produces false refusals or meaningless checks. The rule explains the whole mechanism menu at a glance:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Static type checks} evaluate expressions against declared types before execution, once the relevant code and type information are available.
+\item
+  \textbf{Action hooks} act at one tool call, one command --- where a single move is legible.
+\item
+  \textbf{Task-completion checks} act at the work-unit boundary --- where "done" first becomes readable across a body of commits.
+\item
+  \textbf{Deployment gates} act after broader evidence has accumulated --- the last boundary before the artifact is accepted.
+\end{itemize}
+
+And some properties stay illegible until later still: a leak visible only across ten calls, a cost overrun visible only across a season of jobs. No boundary makes them readable sooner.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+```latex
+\textbf{DocAble: Constraining Document Changes.} The billing example uses a module restriction, observed interactions, and a merge gate to protect an architectural boundary. DocAble applies the same distinction to document repair: an agent may propose a change, while the environment determines which mutations can be expressed and which proposals may be applied.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+```latex
+Constraints, tests, and failure experiments can prevent selected violations or expose them before work is accepted. An obligation still does not determine a unique mechanism. Engineers must decide which form of enforcement is appropriate, what evidence it requires, and how much implementation freedom it should preserve.
+```
+
+### book/latex/sources/part3/3.4-governance-conversion.tex
+
+```latex
+No engineered environment begins with every future obligation already represented and mechanized. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, a format mutation must cross a particular seam. Others become visible only when the work exposes a failure nobody represented or controlled. A governed environment acquires durable structure in two ways: \textbf{up front, from obligations already known, and in response to failures and surprises.}
+
+% <!-- index-def: governance-conversion -->
+
+The second route is \textbf{governance conversion}. A failure exposes a recurring class, engineers identify what was missing, and the environment encodes the lesson as durable structure. Later work inherits the result. The repair fixes this instance. Conversion changes the environment.
+```
+
+### book/latex/sources/part4/4.1-the-dynamics-of-mage.tex
+
+```latex
+Once the system satisfies the obligation, the same models and alignment mechanisms can serve a different purpose. Passive alignment evaluates subsequent changes against the established obligations, constraining or refusing changes that would violate them. The engineer need not prescribe how each change is implemented, provided the result remains acceptable. Models introduced to direct one transformation thus become durable engineering structure that governs later work.
+
+The models and checks established through active alignment become engineering capital when later changes benefit from them. Subsequent work inherits both the obligation and the machinery for evaluating it.
+```
+
+### book/latex/sources/part4/4.1-the-dynamics-of-mage.tex
+
+```latex
+Software engineering exists in part because software changes. Requirements turn out to be incomplete. Apparently obvious abstractions prove wrong. Interactions become consequential only after something runs. A specification can reduce degrees of freedom without eliminating uncertainty about which choices should ultimately be fixed.
+
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+Early in a project, some degrees of freedom therefore have information value. Cheap implementation can be used to explore them. A loose specification can produce one or several prototypes; those prototypes expose missing requirements, useful abstractions, resource constraints, awkward interactions, and assumptions that were invisible on paper. The engineer then has better evidence about what should become explicit structure. The parallel document-format implementations in \href{3.2-models-and-the-semantic-gap.html#agreement-is-not-correctness}{\magevalue{sec:models-and-the-semantic-gap}} illustrate the exploratory route to Modeling in \href{2.1-context-is-the-first-modeling-problem.html}{\magevalue{sec:context-is-the-first-modeling-problem}}: they let me investigate common structure before deciding what should be shared.
+```
+
+### book/latex/sources/part4/4.1-the-dynamics-of-mage.tex
+
+```latex
+Cheap implementation changes engineering experience in three related ways.
+```
+
+### book/latex/sources/part4/4.3-brownfield-engineering.tex
+
+```latex
+Repeated implementation structures offer another source of candidates. A detector can narrow the search, but repetition may reflect a missing domain concept, an external protocol, test scaffolding, or ordinary cleanup. Its findings need interpretation in their architectural context.
+
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+DocAble encountered this problem through a primitive-density detector, which identifies interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such interfaces can indicate that a domain concept is being repeatedly reconstructed rather than represented explicitly. They can also be perfectly appropriate. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
+
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+\autoref{discovering-latent-models} shows the three principal dispositions. Some findings describe legitimate implementation structure, such as protocol adapters or test fixtures, and warrant no architectural change. Others call for mechanical cleanup or annotations. A smaller group may reveal a missing domain concept. In DocAble, related document mutators repeatedly passed the same language and provenance information, while alt-text mutations carried recurring description and attribution state. Examining these patterns together exposed concepts worth representing explicitly. The important question was not how many primitive-heavy interfaces existed, but which repeated structures expressed engineering knowledge that later work should preserve.
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex
+
+```latex
+Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape later action~\citep{argyris1978organizational}. Governance conversion is a concrete engineering move within that broader concern: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
+
+Some recent work automates parts of this improvement: analyzing traces to distil reusable skills,~\citep{ni2026trace2skill} diagnose harness defects,~\citep{chen2026harnessfix} or revise the harness from observability data~\citep{lin2026agentic}. Such techniques can supply candidates; engineers still decide which lessons and obligations the environment should preserve.
+
+Some recurring judgments should remain qualitative. Others contain narrower obligations that can be enforced while the larger decision stays open. The unit of that decision is the obligation, not the entire task.
+
+One way to preserve the knowledge behind those judgments is to package it for later use.
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex
+
+```latex
+In software testing, an \emph{oracle} is the means of deciding whether an observed result is correct. It may be an expected output, a property the result must satisfy, a reference implementation, or a human judgment. An oracle is useful only to the extent that its verdict addresses the intended obligation. A perfectly reliable check of the wrong property is still an inadequate oracle.
+```

@@ -7,7 +7,7 @@
     "derived_ids": 93,
     "missing_topic_sentence": 10,
     "sections_drained": 118,
-    "paragraph_points": 526
+    "paragraph_points": 524
   },
   "chapters": [
     {
@@ -1270,17 +1270,17 @@
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
               "text": "The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse.",
-              "block_index": 20
+              "block_index": 19
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second enforcement boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 26
+              "block_index": 25
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 29
+              "block_index": 28
             }
           ]
         },
@@ -1290,32 +1290,32 @@
           "heading_text": "Placement, Strength, and Feedback",
           "topic_sentence": "These locations do not form a monotonic scale from weak to strong.",
           "id_source": "explicit",
-          "block_index": 32,
+          "block_index": 31,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 34
+              "block_index": 33
             },
             {
               "slug": "substantial-enforcement-can-exist-without-rich-models",
               "text": "Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern.",
-              "block_index": 36
+              "block_index": 35
             },
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Boundary placement affects what feedback can return and when; timely evidence lets an agent use the reasoning and context already at hand, while delayed feedback may require reconstruction.",
-              "block_index": 39
+              "block_index": 38
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.",
-              "block_index": 45
+              "block_index": 44
             }
           ]
         },
@@ -1325,7 +1325,7 @@
           "heading_text": "Enforcement Boundaries in Practice",
           "topic_sentence": "The appropriate boundary depends on the obligation and the evidence needed to evaluate it.",
           "id_source": "explicit",
-          "block_index": 47,
+          "block_index": 46,
           "points": []
         }
       ],
@@ -1407,22 +1407,22 @@
             {
               "slug": "tolerance-independence-comes-from-intent-not-realization",
               "text": "Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged.",
-              "block_index": 29
+              "block_index": 28
             },
             {
               "slug": "proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy",
               "text": "Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement.",
-              "block_index": 31
+              "block_index": 30
             },
             {
               "slug": "docable-requested-temporal-checking-for-an-obligation-its-models-already-carried",
               "text": "Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it.",
-              "block_index": 33
+              "block_index": 32
             },
             {
               "slug": "those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics",
               "text": "Correspondence evidence is limited by what references and traces establish and by the operations they cover.",
-              "block_index": 37
+              "block_index": 36
             }
           ]
         },
@@ -1432,37 +1432,37 @@
           "heading_text": "The Semantic Gap and Earliest Decidable Boundary",
           "topic_sentence": "A second problem is placement.",
           "id_source": "explicit",
-          "block_index": 39,
+          "block_index": 38,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering.",
-              "block_index": 50
+              "block_index": 49
             },
             {
               "slug": "place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
               "text": "The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable.",
-              "block_index": 55
+              "block_index": 54
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 62
+              "block_index": 59
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook.",
-              "block_index": 69
+              "block_index": 66
             }
           ]
         },
@@ -1472,17 +1472,17 @@
           "heading_text": "DocAble: From Correspondence to Enforcement",
           "topic_sentence": "DocAble repairs accessibility problems in Office and PDF documents through a sequence of computations.",
           "id_source": "explicit",
-          "block_index": 75,
+          "block_index": 72,
           "points": [
             {
               "slug": "execution-consumes-the-computation-model-so-it-governs-composition",
               "text": "DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers.",
-              "block_index": 76
+              "block_index": 73
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The section has supplied both requirements for enforcement; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 85
+              "block_index": 82
             }
           ]
         }
@@ -1593,7 +1593,7 @@
           "heading_text": "Testing Against Models",
           "topic_sentence": "Tests can evaluate whether an implementation satisfies obligations expressed in a model.",
           "id_source": "explicit",
-          "block_index": 56,
+          "block_index": 55,
           "points": []
         },
         {
@@ -1602,7 +1602,7 @@
           "heading_text": "Failure Models and Testing the Tests",
           "topic_sentence": "Testing expected behavior is not enough when a system must also respond correctly to failures.",
           "id_source": "explicit",
-          "block_index": 65,
+          "block_index": 64,
           "points": []
         },
         {
@@ -1611,7 +1611,7 @@
           "heading_text": "Choosing Mechanisms and Preserving Freedom",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 78,
+          "block_index": 77,
           "points": []
         },
         {
@@ -1620,42 +1620,42 @@
           "heading_text": "Matching Mechanisms to Obligations",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "explicit",
-          "block_index": 79,
+          "block_index": 78,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand.",
-              "block_index": 81
+              "block_index": 80
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol.",
-              "block_index": 83
+              "block_index": 82
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior.",
-              "block_index": 85
+              "block_index": 84
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it.",
-              "block_index": 87
+              "block_index": 86
             },
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 90
+              "block_index": 89
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission.",
-              "block_index": 94
+              "block_index": 93
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 101
+              "block_index": 100
             }
           ]
         },
@@ -1665,42 +1665,42 @@
           "heading_text": "Margins and Engineering Freedom",
           "topic_sentence": "Alignment can do more than determine whether an implementation satisfies an obligation.",
           "id_source": "explicit",
-          "block_index": 103,
+          "block_index": 102,
           "points": [
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible.",
-              "block_index": 105
+              "block_index": 104
             },
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 113
+              "block_index": 112
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 115
+              "block_index": 114
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 117
+              "block_index": 116
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 123
+              "block_index": 122
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 126
+              "block_index": 125
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 131
+              "block_index": 130
             }
           ]
         }
@@ -1723,12 +1723,12 @@
           "heading_text": "Up Front: Encode What You Already Know",
           "topic_sentence": "Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable.",
           "id_source": "explicit",
-          "block_index": 12,
+          "block_index": 11,
           "points": [
             {
               "slug": "up-front-encode-obligations-you-can-state-before-the-work-begins",
               "text": "Up front: encode the obligations you can state before the work begins, and stop paying judgment for them.",
-              "block_index": 14
+              "block_index": 13
             }
           ]
         },
@@ -1738,27 +1738,27 @@
           "heading_text": "As You Learn: Convert What the Work Teaches",
           "topic_sentence": "The harder half begins when the system surprises you.",
           "id_source": "explicit",
-          "block_index": 18,
+          "block_index": 17,
           "points": [
             {
               "slug": "diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate",
               "text": "Diagnose what was missing; not every failure calls for another gate.",
-              "block_index": 20
+              "block_index": 19
             },
             {
               "slug": "the-conversion-lands-in-one-of-five-places",
               "text": "The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement.",
-              "block_index": 22
+              "block_index": 21
             },
             {
               "slug": "correct-judgment-without-enforcement",
               "text": "A correct validation result does not protect the system unless an appropriate mechanism acts on it.",
-              "block_index": 26
+              "block_index": 25
             },
             {
               "slug": "modeling-and-alignment-form-a-feedback-loop",
               "text": "Agent work supplies evidence for engineering decisions about models, obligations, and controls; later work uses the revised environment and supplies further evidence.",
-              "block_index": 30
+              "block_index": 29
             }
           ]
         },
@@ -1768,42 +1768,42 @@
           "heading_text": "Engineering Capital",
           "topic_sentence": "Governance conversion motivates a useful concept: **engineering capital**.",
           "id_source": "explicit",
-          "block_index": 33,
+          "block_index": 32,
           "points": [
             {
               "slug": "governance-conversion-forms-engineering-capital-the-positive-stock",
               "text": "Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for.",
-              "block_index": 35
+              "block_index": 34
             },
             {
               "slug": "the-asset-is-something-you-can-point-at",
               "text": "The capital must be something future work can actually inherit — a concrete asset you can point at.",
-              "block_index": 38
+              "block_index": 37
             },
             {
               "slug": "capital-earns-a-return-lower-marginal-engineering-cost",
               "text": "Capital earns a return: lower marginal engineering cost. Conversion is capital formation.",
-              "block_index": 39
+              "block_index": 38
             },
             {
               "slug": "engineering-capital-can-transfer-between-projects",
               "text": "Engineering capital can transfer through reusable mechanisms or through the design judgment behind them; its value depends on work saved after adaptation and maintenance costs.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "inherited-capital-improves-starting-conditions-without-supplying-every-control",
               "text": "Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 45
+              "block_index": 44
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 47
+              "block_index": 46
             }
           ]
         },
@@ -1813,52 +1813,52 @@
           "heading_text": "Where Enforcement Stops",
           "topic_sentence": "Not every engineering obligation should be enforced mechanically.",
           "id_source": "explicit",
-          "block_index": 49,
+          "block_index": 48,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 51
+              "block_index": 50
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 54
+              "block_index": 53
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, but the result does not control whether work may proceed.",
-              "block_index": 59
+              "block_index": 58
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision.",
-              "block_index": 61
+              "block_index": 60
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set.",
-              "block_index": 63
+              "block_index": 62
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 65
+              "block_index": 64
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-enforcement",
               "text": "The mechanism that discovers an obligation need not be the one that ultimately enforces it; Chapter 4 follows that migration.",
-              "block_index": 67
+              "block_index": 66
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "Governance conversion creates a portfolio of controls that can themselves become inconsistent, redundant, or orphaned.",
-              "block_index": 69
+              "block_index": 68
             }
           ]
         }
@@ -2035,7 +2035,7 @@
           "heading_text": "Establish a Kernel Before Expanding",
           "topic_sentence": "The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 9,
           "points": []
         },
         {
@@ -2044,7 +2044,7 @@
           "heading_text": "Greenfield and Brownfield MAGE",
           "topic_sentence": "Incremental adoption is easiest to see in a brownfield system.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 18,
           "points": []
         },
         {
@@ -2053,7 +2053,7 @@
           "heading_text": "What Cheap Implementation Changes",
           "topic_sentence": "Agentic implementation makes this strategy unusually cheap.",
           "id_source": "explicit",
-          "block_index": 24,
+          "block_index": 22,
           "points": []
         }
       ],
@@ -2265,7 +2265,7 @@
           "heading_text": "Reconcile the Map and the Territory",
           "topic_sentence": "Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 30,
           "points": []
         },
         {
@@ -2274,7 +2274,7 @@
           "heading_text": "Invest Where It Pays",
           "topic_sentence": "Prioritize recovery where explicit structure can reduce recurring work:",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 43,
           "points": []
         }
       ],
@@ -2299,7 +2299,7 @@
           "heading_text": "Package Recurring Judgment",
           "topic_sentence": "**Skills preserve recurring procedures and judgment.** Package the representations, examples, heuristics, decision procedures, and tools that help later work avoid reconstructing the same practice from general knowledge.",
           "id_source": "explicit",
-          "block_index": 13,
+          "block_index": 11,
           "points": []
         },
         {
@@ -2308,7 +2308,7 @@
           "heading_text": "Evaluate the Work",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 19,
+          "block_index": 18,
           "points": []
         },
         {
@@ -2317,7 +2317,7 @@
           "heading_text": "Establish Adequate Evidence",
           "topic_sentence": "Every engineering process must decide what evidence justifies accepting a change.",
           "id_source": "explicit",
-          "block_index": 20,
+          "block_index": 19,
           "points": []
         },
         {
@@ -2326,7 +2326,7 @@
           "heading_text": "Model-Aware Change Impact",
           "topic_sentence": "As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 36,
           "points": []
         },
         {
@@ -2335,7 +2335,7 @@
           "heading_text": "Operate the Environment",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 44,
+          "block_index": 43,
           "points": []
         },
         {
@@ -2344,12 +2344,12 @@
           "heading_text": "Lifecycle Models and Recovery",
           "topic_sentence": "A method has to survive terrible, horrible, no good, very bad days, too.",
           "id_source": "explicit",
-          "block_index": 45,
+          "block_index": 44,
           "points": [
             {
               "slug": "validation-placement-became-a-factory-design-decision",
               "text": "A validation bottleneck prompted independent scheduling of broad checks, with cheap checks before merge and full validation before deployment; the redesign traded detection delay and attribution cost against integration cost.",
-              "block_index": 59
+              "block_index": 58
             }
           ]
         },
@@ -2359,7 +2359,7 @@
           "heading_text": "Scheduling Validation",
           "topic_sentence": "Model-aware change-impact analysis addresses which evaluations a change requires.",
           "id_source": "explicit",
-          "block_index": 60,
+          "block_index": 59,
           "points": []
         },
         {
@@ -2368,7 +2368,7 @@
           "heading_text": "Maintain the Machinery",
           "topic_sentence": "As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate.",
           "id_source": "explicit",
-          "block_index": 72,
+          "block_index": 71,
           "points": []
         }
       ],
@@ -2408,38 +2408,28 @@
             },
             {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
-              "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
+              "text": "A software factory preserves consequential properties while changing the system itself.",
               "block_index": 28
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
-              "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
+              "text": "Representations of changing software incur construction and maintenance costs.",
               "block_index": 30
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
-              "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
+              "text": "Organizations weigh reusable representations against the cost of skilled judgment during implementation.",
               "block_index": 32
             },
             {
-              "slug": "agile-is-intelligible-when-the-product-is-change",
-              "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 34
-            },
-            {
-              "slug": "earlier-separation-attempts-met-the-same-tradeoff",
-              "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 36
-            },
-            {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
-              "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 38
+              "text": "The economic question is where consequential knowledge can be maintained and applied most economically without losing control.",
+              "block_index": 33
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
-              "text": "Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence.",
-              "block_index": 40
+              "text": "Inexpensive capable agents can resolve ordinary implementation choices while engineers preserve selected consequential judgments and acceptance evidence.",
+              "block_index": 38
             }
           ]
         },
@@ -2449,22 +2439,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 40,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 43
+              "block_index": 41
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 49
+              "block_index": 47
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 51
+              "block_index": 49
             }
           ]
         }
@@ -2674,7 +2664,7 @@
           "section_id": "what-the-factory-knows",
           "level": 3,
           "heading_text": "What the Factory Knows",
-          "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.",
+          "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.[^1] These representations change with the system and answer different engineering questions.",
           "id_source": "derived",
           "block_index": 72,
           "points": [
@@ -2691,9 +2681,9 @@
           ]
         },
         {
-          "section_id": "the-joins-what-the-factory-can-derive-and-enforce",
+          "section_id": "the-joins-deriving-evidence-and-enforcement",
           "level": 3,
-          "heading_text": "The Joins: What the Factory Can Derive and Enforce",
+          "heading_text": "The Joins: Deriving Evidence and Enforcement",
           "topic_sentence": "In [§2.6](2.6-system-knowledge.html), DocAble used shared identities to answer engineering questions, such as how a particular deployment performed.",
           "id_source": "derived",
           "block_index": 78,
@@ -3201,7 +3191,7 @@
       "preamble_points": [
         {
           "slug": "supervision-capacity-and-carrying-cost-become-visible-as-realization-gets-cheaper",
-          "text": "Process design and tolerance are complementary responses to differing organizational conditions; finite supervision and the upkeep of representations influence where engineers place control.",
+          "text": "DocAble developed production arrangements as implementation outpaced individual supervision; established organizations adapted existing processes, validation suites, and review practices.",
           "block_index": 1
         },
         {
