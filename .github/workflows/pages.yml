@@ -699,7 +699,7 @@ jobs:
           python3 handbook/scripts/test_latex_source.py
           python3 tools/test_latex_build.py
           python3 tools/test_pdf_structure.py
-          python3 -m unittest tests.test_native_site_boundaries
+          python3 -m unittest tests.test_native_site_boundaries tests.test_native_web_references
           # Holds the artifact-scope declaration AND the chapter reuse key / stamp guard. Stays in
           # CI though the chapter PDFs no longer build here: the declaration and the guard are what
           # make the local-only trade sound, so they are exactly the part that must not drift.

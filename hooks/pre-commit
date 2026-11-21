@@ -146,7 +146,8 @@ for _regression_tool in ("handbook/scripts/test_latex_source.py",
         sys.exit(_bridge_tests.returncode)
 
 _boundaries = subprocess.run([sys.executable, "-m", "unittest",
-                              "tests.test_native_site_boundaries"], cwd=ROOT)
+                              "tests.test_native_site_boundaries",
+                              "tests.test_native_web_references"], cwd=ROOT)
 if _boundaries.returncode:
     sys.exit(_boundaries.returncode)
 

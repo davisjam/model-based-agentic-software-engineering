@@ -5570,24 +5570,32 @@ def _number_floats(body: str, chapter_id: str, fig_n: int, tbl_n: int,
     return _FLOAT_RE.sub(_repl, body), fig_n, tbl_n
 
 
+# Float-only consumers (including the introduction gate) retain their vocabulary.
 _XREF_RE = re.compile(r"\[ref:\s*([a-z0-9][a-z0-9-]*)\]")
+_ALL_XREF_RE = re.compile(r"\[ref:\s*([^\]\s]+)\]")
 
 
 def _resolve_xrefs(body: str, ref_map: "dict[str, dict]", for_print: bool) -> str:
-    """Resolve every `[ref:key]` cross-reference to a linked "Figure N"/"Table N", using the label map the
-    numbering pre-pass built. Fails loud on a `[ref:]` whose key has no `<!-- label: -->` float — a dangling
-    cross-reference must stop the build, not ship as literal `[ref:foo]` text."""
+    """Resolve symbolic float and section references; reject unknown destinations.
+
+    Qualified native labels must not bypass validation and leak into HTML/EPUB.
+    """
     def _repl(m: "re.Match[str]") -> str:
         key = m.group(1)
         e = ref_map.get(key)
         if e is None:
             raise SystemExit(
-                f"[ref:{key}]: no float carries `<!-- label: {key} -->` — check the spelling or add the label")
+                f"[ref:{key}]: no matching float, chapter, or heading — check the destination label")
+        if e["kind"] == "section":
+            href = f'#{e["anchor"]}' if for_print else e["slug"] + '.html'
+            if not for_print and e["anchor"]:
+                href += '#' + e["anchor"]
+            return f'<a class="xref" href="{html.escape(href, quote=True)}">{html.escape(e["text"])}</a>'
         word = "Figure" if e["kind"] == "fig" else "Table"
         anchor = _float_id(e["kind"], e["num"])
         href = f'#{anchor}' if for_print else f'{e["slug"]}.html#{anchor}'
         return f'<a class="xref" href="{html.escape(href, quote=True)}">{word}&nbsp;{e["num"]}</a>'
-    return _XREF_RE.sub(_repl, body)
+    return _ALL_XREF_RE.sub(_repl, body)
 
 
 # `[appendix: <slug>]` — a SYMBOLIC cross-reference to an appendix. The prose names the appendix by its
@@ -5670,6 +5678,46 @@ def _bare_flagship_page_map(chapters: "list[dict]") -> "dict[str, tuple[str, str
         if mm:
             out[mm.group(1)] = (c["slug"], m.group(1))
     return out
+
+
+def _collect_section_refs(chapters: list[dict]) -> dict[str, dict]:
+    """Resolve native chapter/heading labels from the same records that render HTML.
+
+    Numbered headings use their display number; unnumbered headings use their
+    title. Give referenced automatic headings explicit IDs so MkDocs and EPUB
+    share a stable target independent of displayed numbering.
+    """
+    wanted = {key for c in chapters for key in _ALL_XREF_RE.findall(c["body_md"])}
+    refs = {}
+    for c in chapters:
+        slug = c["slug"]
+        prefix = _chap_ref(c).removeprefix("§")
+        appendix = re.match(r"^([A-Z]\.\d+)\b", c["chapter_title"])
+        if appendix:
+            prefix = appendix[1]
+        title = ("Section " + prefix if prefix else
+                 "Chapter " + str(c["part"]) if c.get("is_part_page") else
+                 c["chapter_title"])
+        refs["chapter:" + slug] = dict(kind="section", slug=slug, anchor="", text=title)
+        count = 0
+        for block in _split_blocks(c["body_md"]):
+            match = re.fullmatch(r"(#{2,6}) ([^\n]+)", block.strip())
+            if not match:
+                continue
+            level, raw = match.groups()
+            if level == "##":
+                count += 1
+            visible, attr = _heading_anchor(raw)
+            anchor = (html.unescape(re.search(r'id="([^"]+)"', attr)[1]) if attr else
+                      re.sub(r"[^a-z0-9_-]+", "-", visible.lower()).strip("-"))
+            key = slug + ":heading:" + anchor
+            if key not in wanted:
+                continue
+            text = "Section " + prefix + "." + str(count) if prefix and level == "##" else visible
+            refs[key] = dict(kind="section", slug=slug, anchor=anchor, text=text)
+            if not attr:
+                c["body_md"] = c["body_md"].replace(block, block.rstrip() + " {#" + anchor + "}")
+    return refs
 
 
 def _collect_floats(chapters: list[dict], page_anchor_maps: dict) -> "tuple[list[dict], dict[str, dict]]":
@@ -7135,7 +7183,9 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # Harvest the glossary annotations (single source of truth for the inline glosses + the back-Glossary).
     _collect_glossary(chapters)
 
+    section_refs = _collect_section_refs(chapters)
     float_entries, ref_map = _collect_floats(chapters, page_anchor_maps)
+    ref_map.update(section_refs)
     chapters = _with_contents(chapters)
 
     # Per-chapter pages. Float numbers are CHAPTER-RELATIVE ("Figure 1.3-1"): the counters reset to 1 at
