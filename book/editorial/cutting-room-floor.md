@@ -24287,3 +24287,36 @@ One way to preserve the knowledge behind those judgments is to package it for la
 ```latex
 In software testing, an \emph{oracle} is the means of deciding whether an observed result is correct. It may be an expected output, a property the result must satisfy, a reference implementation, or a human judgment. An oracle is useful only to the extent that its verdict addresses the intended obligation. A perfectly reliable check of the wrong property is still an inadequate oracle.
 ```
+
+
+## 2026-11-20 — Chapter 6 theory-opening cleanup
+
+Source revision: `cf8327aaff5b3eeacede87548ad399f60e5c06ce`. Replaced repeated entitlement examples with a direct introduction and general information-availability distinction; clarified the probability interpretation and removed the repeated Storey qualification. Retained the deliberate mathematical and economic development.
+
+### book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex
+
+```latex
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
+Recall the entitlement failure from \magevalue{chapter:modeling}. The client based its upload decision on a finite-credit total, ignoring a separate unlimited-status flag. That scalar could not distinguish exhausted finite credit from unlimited access. An implementation could faithfully compare the scalar with the upload cost and still make the wrong admission decision. The representation used for the decision had omitted a consequential distinction available elsewhere in the system.
+
+This illustrates two ways delegated implementation can fail. The engineer may encode the wrong obligations, or the agent may fail to fulfill correctly encoded obligations. Let \(E\) mean that the encoding captures the consequential intent and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
+```
+
+### book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex
+
+```latex
+The two terms distinguish failures in what the agent was asked to produce from failures in producing it.
+```
+
+### book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex
+
+```latex
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: dated-case-evidence
+The entitlement failure also shows the limit of inference from an inadequate representation. A reasoner using only the finite-credit total could not recover the distinction between exhausted credit and unlimited access. Better reasoning could help only by revisiting the decision representation or consulting the existing unlimited-status signal.
+```
+
+### book/latex/sources/part6/6.2-what-the-theory-predicts.tex
+
+```latex
+They do not remove the need for expertise when requirements change or the representation itself becomes inadequate.
+```

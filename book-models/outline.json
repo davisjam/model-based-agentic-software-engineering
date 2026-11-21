@@ -3209,7 +3209,7 @@
           "section_id": "encoding-and-realization",
           "level": 2,
           "heading_text": "What Makes Production Faithful?",
-          "topic_sentence": "Recall the entitlement failure from Chapter 2.",
+          "topic_sentence": "The preceding chapters have shown how engineers use representations to direct implementation, how independent checks govern its results, and how these arrangements become part of a software factory.",
           "id_source": "explicit",
           "block_index": 6,
           "points": [
@@ -3533,7 +3533,7 @@
             },
             {
               "slug": "engineering-capital-preserves-knowledge-without-eliminating-expertise",
-              "text": "Engineering capital can preserve consequential understanding and intent, but stale or incomplete assets cannot substitute for judgment that was never captured.",
+              "text": "Engineering capital can preserve consequential understanding and intent, addressing the cognitive and intent debt that may accompany rapidly accumulated implementation.",
               "block_index": 61
             },
             {
