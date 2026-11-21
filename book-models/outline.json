@@ -7,7 +7,7 @@
     "derived_ids": 93,
     "missing_topic_sentence": 10,
     "sections_drained": 118,
-    "paragraph_points": 520
+    "paragraph_points": 524
   },
   "chapters": [
     {
@@ -3920,14 +3920,34 @@
               "block_index": 32
             },
             {
+              "slug": "better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them",
+              "text": "Better reasoners leave more legitimate freedom unresolved; even perfect realization does not establish that the encoding captures the right obligations, so capability does not retire engineering responsibility.",
+              "block_index": 36
+            },
+            {
+              "slug": "cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical",
+              "text": "If explicit representations become cheap to construct, maintain, and reconcile, engineers can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system.",
+              "block_index": 37
+            },
+            {
               "slug": "representation-engineering-broader-than-context-engineering",
               "text": "Retrieval selects information for a reasoner; representation engineering chooses the form in which the engineering question is expressed. The distinction concerns access and representation, which can be combined.",
+              "block_index": 38
+            },
+            {
+              "slug": "cheap-reliable-realization-moves-effort-upstream",
+              "text": "If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented.",
               "block_index": 39
             },
             {
               "slug": "cabot-is-one-plausible-equilibrium-not-the-prediction",
               "text": "Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive.",
-              "block_index": 42
+              "block_index": 40
+            },
+            {
+              "slug": "cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority",
+              "text": "If strong controls become cheap, engineers can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk.",
+              "block_index": 41
             },
             {
               "slug": "combinations-land-differently-for-different-properties-of-one-system",
