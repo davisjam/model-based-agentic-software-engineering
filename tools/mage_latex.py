@@ -745,7 +745,10 @@ def _prepare_record(task):
              'bottomrule': rule_padding + r'\hline'}
     latex = re.sub(r'\\(toprule|midrule|bottomrule)(?:\\noalign\{\})?',
                    lambda m: rules[m[1]], latex)
-    latex = keep_tables_together(latex)
+    # This inventory must precede the contract discussion that follows it;
+    # a float can otherwise interrupt the new heading and its first paragraph.
+    latex = keep_tables_together(latex, in_place_labels=frozenset({
+        'handbook-substitution-models'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

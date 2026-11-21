@@ -183,6 +183,19 @@ Second & Another \\
         self.assertLess(output.index('Caption with'), output.index(r'\begin{tabular}'))
         self.assertEqual(output.count(r'\hline'), 3)
 
+    def test_selected_table_preserves_reading_order_without_splitting(self):
+        source = (r'Before.\begin{longtable}{ll}'
+                  r'\caption{Inventory}\label{contracts}\\'
+                  r'A & B \\ \endhead One & Two \\ \end{longtable}'
+                  r'\subsection*{Contracts}After.')
+        output = keep_tables_together(source, in_place_labels=frozenset({'contracts'}))
+        self.assertNotIn(r'\begin{table}', output)
+        self.assertIn(r'\begin{minipage}{\linewidth}', output)
+        self.assertIn(r'\captionof{table}{Inventory}\label{contracts}', output)
+        self.assertLess(output.index(r'\end{minipage}'), output.index(r'\subsection*{Contracts}'))
+        ordinary = keep_tables_together(source, in_place_labels=frozenset({'other'}))
+        self.assertIn(r'\begin{table}[!htbp]', ordinary)
+
     def test_uncaptioned_single_header_table(self):
         source = r'\begin{longtable}{ll}A & B \\ \endhead One & Two \\ \end{longtable}'
         output = keep_tables_together(source)

@@ -80,12 +80,13 @@ def plain_table_bodies(latex: str) -> str:
     return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', table, latex, flags=re.S)
 
 
-def keep_tables_together(latex: str) -> str:
+def keep_tables_together(latex: str, *, in_place_labels: frozenset[str] = frozenset()) -> str:
     """Keep each caption and table together, using native floats outside insets.
 
     Preserve reading order, column geometry, row content and the first header.
     Oversize blocks must be redesigned; the strict overfull-box gate rejects them.
     This also works inside a breakable inset, where a table float would be lost.
+    Selected tables stay in reading order when following prose depends on them.
     """
     def table(match):
         header, marker, remainder = match[0].partition(r'\endhead')
@@ -123,7 +124,8 @@ def keep_tables_together(latex: str) -> str:
         inset = any(before.count(r'\begin{' + env + '}') > before.count(r'\end{' + env + '}')
                     for env in ('quote', 'bookbox', 'bookinset', 'tcolorbox', 'minipage'))
         content = caption + '\n' + header + body + footer + r'\end{tabular}'
-        if inset:
+        in_place = any(r'\label{' + label + '}' in match[0] for label in in_place_labels)
+        if inset or in_place:
             return ('\\par\\addvspace{\\baselineskip}\\noindent\n'
                     '\\begin{minipage}{\\linewidth}\\centering\n'
                     '\\booktablecaptionstyle\\captionsetup{hypcap=false}\n' + content +
