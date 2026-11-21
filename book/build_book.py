@@ -7033,6 +7033,15 @@ def _is_publication_run(env: "dict[str, str] | None" = None) -> bool:
     return latex_reuse.is_publication_run(env)
 
 
+def _configure_pdf_rebuild(args: "list[str]") -> None:
+    """An explicit all-edition rebuild must compile even unchanged review PDFs."""
+    if "--rebuild-all" not in args:
+        return
+    if "--no-split" in args:
+        raise ValueError("--rebuild-all cannot be combined with --no-split")
+    os.environ["MAGE_PDF_SPLIT_FORCE"] = "1"
+
+
 def _pdf_split_enabled(args: "list[str]", env: "dict[str, str] | None" = None) -> bool:
     """Whether a `--pdf` run also emits the per-section review PDFs.
 
@@ -7040,8 +7049,11 @@ def _pdf_split_enabled(args: "list[str]", env: "dict[str, str] | None" = None) -
     place: a local-only artifact is skipped on a publication run and built everywhere else. The
     pre-push hook and the Pages workflow therefore run the identical `--pdf` command and cannot
     disagree about what it produces. `--no-split` stays the manual full-edition-only escape for a
-    local caller that wants the shipped editions alone.
+    local caller that wants the shipped editions alone. An explicit `--rebuild-all` includes
+    every review edition even in a publication environment, without changing upload scope.
     """
+    if "--rebuild-all" in args:
+        return True
     if "--no-split" in args:
         return False
     return not (_artifact_is_local_only("section-pdfs") and _is_publication_run(env))
@@ -7350,7 +7362,12 @@ if __name__ == "__main__":
     # and book/book_mkdocs.py projects the tree (the blockquote-placement gate runs there, over the
     # emitted bodies). `--pdf` also emits the per-section review PDFs, which book-manifest.json
     # declares LOCAL-ONLY — so a publication run skips them, and `--no-split` skips them anywhere.
-    if "--pdf" in args:
+    if "--pdf" in args or "--rebuild-all" in args:
+        try:
+            _configure_pdf_rebuild(args)
+        except ValueError as error:
+            print(f"ERROR: {error}", file=sys.stderr)
+            raise SystemExit(2)
         rc = build_pdf()
         if rc == 0:
             import book_epub

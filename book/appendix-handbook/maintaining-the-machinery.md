@@ -35,8 +35,6 @@ The ten moves in [ref:handbook-engineering-moves] are construction choices. A bl
 | The same operational judgment must be reconstructed repeatedly. | Externalize recurring judgment. Record states, evidence, and sanctioned responses. | Lifecycle descriptions and runbooks distinguish recovery work from ordinary completion and identify where judgment remains. |
 | Individually reasonable changes conflict when combined. | Make dependencies queryable. Represent the relationships needed to analyze the interaction. | The governance graph records firing events, resource use, and chosen resolutions among selected mechanisms. |
 
-When correspondence fails, a stale descriptive model needs repair; a violated authoritative obligation requires repair of the implementation or an engineering decision to revise the obligation. The check alone cannot choose. Closing an external editing interface likewise does not establish control over internal mutation paths: state the boundary and test whether the relevant paths cross it.
-
 ## Repair, Reconsider, or Retire
 
 A control’s repeated use supplies evidence about its design. False refusals may reveal a bad identity extractor, as in the completed-phase gate. Missing attribution may reveal a mutation path the scanner cannot enumerate. Repeated manual reconstruction may identify a useful model; a frequently consulted model that never changes a decision may instead be unnecessary. Distinguish a defect in the mechanism from a deliberate exception to its policy before adding another override or check.

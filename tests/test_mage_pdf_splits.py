@@ -101,6 +101,21 @@ class ArtifactScopeDeclarationTests(unittest.TestCase):
 
 
 class PublicationScopeTests(unittest.TestCase):
+    def test_explicit_rebuild_all_compiles_even_a_current_section(self):
+        with tempfile.TemporaryDirectory() as directory, patch.dict(os.environ, {}, clear=True):
+            pdf = Path(directory) / "appendix.pdf"
+            stamp = Path(directory) / "appendix.cache.json"
+            pdf.write_bytes(b"%PDF-1.7 appendix")
+            stamp.write_text(json.dumps(latex_reuse.stamp_payload("same-inputs", pdf)))
+            self.assertTrue(build_book._section_is_current(stamp, "same-inputs", pdf))
+            build_book._configure_pdf_rebuild(["--rebuild-all"])
+            self.assertFalse(build_book._section_is_current(stamp, "same-inputs", pdf))
+            self.assertTrue(build_book._pdf_split_enabled(["--rebuild-all"], PUBLICATION_ENV))
+
+    def test_rebuild_all_rejects_omitting_sections(self):
+        with self.assertRaisesRegex(ValueError, "cannot be combined"):
+            build_book._configure_pdf_rebuild(["--rebuild-all", "--no-split"])
+
     def test_a_local_only_artifact_is_skipped_only_on_a_publication_run(self):
         with patch.dict(os.environ, {}, clear=True):
             self.assertTrue(build_book._pdf_split_enabled(["--pdf"]),

@@ -45,7 +45,7 @@ public sealed class SetAltOp : EditOp
 
 The document structure describes the current artifact. The operation model specifies permitted kinds of change; an operation instance remains a proposal whose admission depends on the assignment and policy. `StructId` must resolve to the intended current entity. `BeforeAlt` describes the expected prior value, while `AfterAlt` states the proposed result. If another writer changes the artifact before application, the correspondence between reference, before-value, and current state must be reconsidered. The policy determines the response to that disagreement.
 
-The operation vocabulary deliberately leaves repair decisions open while limiting the effects expressible through this interface. A producer may choose a supported target and replacement description; it does not thereby acquire authority for an arbitrary document rewrite. Engineers own the admissibility rules and the intended meaning of each operation. Evidence records describe outcomes rather than supplying permission: a proposed changeset, an operation result, and a successful-edit log answer different questions.
+The operation vocabulary defines the effects a producer may propose through this interface; it does not establish the correctness of the repair decision. Engineers specify the operation meanings and admissibility rules; the applier enforces the restrictions implemented at its boundary. Operation results and attribution records describe what occurred. They do not authorize the proposed change or establish that the resulting document is semantically correct.
 
 ## Realization
 

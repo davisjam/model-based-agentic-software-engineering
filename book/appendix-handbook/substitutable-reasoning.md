@@ -17,9 +17,7 @@ Consider an image-description task in the illustrated design. At the narrower su
 
 ## Engineering Models
 
-The models answer different engineering questions. The task model states the meaning of a requested judgment; the workflow model organizes the work used to answer it. Replacing a workflow need not redefine the task, and selecting a different foundation model need not change either one.
-
-The model relationships are summarized in [ref:handbook-substitution-models].
+[ref:handbook-substitution-models] identifies five models and their consumers. Task, operation, and acceptance models define the obligations that must remain stable across substitutions. The workflow model describes how reasoning is organized; the capability and selection model determines which foundation models are eligible for a task. The relationships among these models define the substitution boundaries.
 
 <!-- label: handbook-substitution-models -->
 <!-- table: *Engineering models for substitutable reasoning.* Task, operation, and acceptance models state the domain obligations while the reasoning workflow and selected foundation models may vary. Shared task and target identities connect these representations to their consumers. [short: Engineering models for substitutable reasoning] -->
@@ -30,8 +28,6 @@ The model relationships are summarized in [ref:handbook-substitution-models].
 | Operation model | Which effects may the engine propose? | Typed operations, target references, arguments, preconditions, result meanings. | Targets refer to the domain artifact; the applier resolves and executes supported proposals. |
 | Reasoning workflow model | How is work decomposed, ordered, and assigned? | A pass graph with dependency edges and task assignments, or an agent's revisable plan. | Execution machinery consumes the workflow; its steps request tasks and propose operations. |
 | Acceptance model | What evidence is required to accept the artifact? | Obligations, evaluation criteria, required evidence, blocking and review conditions. | Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. |
-
-The operation, task, and acceptance contracts specify obligations through three of the models in the inventory. They do different work from the workflow that organizes reasoning and the capability model that supports selection.
 
 The **operation contract** defines the changes a reasoning engine may request. DocAble’s Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. A controlled application component resolves the target against the current document, checks applicable preconditions, and reports application, refusal, or failure. The PDF changeset in [ref:chapter:appendix-a-controlled-mutation] is an analogous interface for a different document model; it is not the Office operation vocabulary.
 

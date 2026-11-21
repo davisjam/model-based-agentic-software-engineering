@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 654,
+    "total_sites": 653,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 319,
+      "book-web": 318,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -1109,7 +1109,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-a-model-based-test-selection.md",
@@ -1117,11 +1117,11 @@
           },
           {
             "file": "book/web/docs/appendix-a-model-driven-deployment.md",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/web/docs/appendix-a-substitutable-reasoning.md",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
@@ -1141,7 +1141,7 @@
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/web/docs/appendix-practicing-mage.md",
@@ -1661,19 +1661,19 @@
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/appendix-a-model-based-test-selection.md",
-            "occ": 35
+            "occ": 33
           },
           {
             "file": "book/web/docs/appendix-a-model-driven-deployment.md",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-a-substitutable-reasoning.md",
-            "occ": 54
+            "occ": 51
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
@@ -1689,10 +1689,6 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-handbook.md",
             "occ": 1
           },
           {
@@ -1747,7 +1743,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 62
+            "occ": 61
           }
         ]
       },

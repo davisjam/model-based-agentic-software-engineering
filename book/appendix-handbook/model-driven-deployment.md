@@ -15,7 +15,7 @@ Consider the accessibility-quality service calling DocAble’s GenAI service. Th
 
 ## Engineering Models {#handbook-model-service-flow}
 
-Shared identities connect the representations in [ref:handbook-deployment-models].
+Shared service identities connect the architectural contract, deployment configuration, runtime identity, and derived grant plan. These representations supply different facts to different consumers. The architectural contract describes intended communication; deployment configuration supplies environment-specific endpoints; runtime identity identifies the principal presented to cloud authorization; and the grant plan specifies the permissions to install. [ref:handbook-deployment-models] identifies the engineering question and consumer for each representation.
 
 <!-- label: handbook-deployment-models -->
 <!-- table: *Engineering models for deployment.* Shared service identities connect intended calls, deployed endpoints, and runtime principals. The derived grant plan specifies permissions; separate evidence checks correspondence and application. [short: Engineering models for deployment] -->
@@ -25,8 +25,6 @@ Shared identities connect the representations in [ref:handbook-deployment-models
 | Deployment dependencies | Which deployed endpoints must be wired? | Environment-scoped service names, dependency relationships, URL configuration. | Deployment consumes the map; the planner resolves each logical callee to its deployed resource. |
 | Runtime identity | Under which principal does each caller execute? | Service-to-principal mapping for the selected environment. | Joins a logical caller to the identity used by cloud authorization. |
 | Grant plan | Which concrete permissions are required? | Derived principal–callee–role bindings, retaining logical callers. | Application consumes the plan; results and authorization probes provide different evidence about its effects. |
-
-The architectural contract identifies an intended caller, callee, API, and authentication obligation. Deployment configuration supplies different facts: the callee’s environment-specific name, its URL wiring, and the principal under which the caller executes. Common service identities join these records. Keeping the representations separate lets the same architectural relation be used across environments without embedding every deployed name in the call model.
 
 This actual call declaration connects DocAble’s accessibility-quality service to its GenAI service. The referenced authentication contract specifies the transport, token-audience requirement, and need for an invocation grant.
 

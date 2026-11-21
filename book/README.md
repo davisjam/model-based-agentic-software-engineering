@@ -19,6 +19,17 @@ with the existing `catalog.py build`. `tools/mage_latex.py sync --check` rejects
 projections. The compiler rejects errors, unresolved references/citations, missing
 glyphs, overfull boxes, and other warnings; underfull boxes are explicitly tolerated.
 
+For an explicit fresh rebuild of **all** editions, use
+`python3 book/build_book.py --rebuild-all`. This recompiles the complete book and
+all 13 standalone editions, including the front matter, conclusion, combined
+appendices, individual appendices, and back matter, even when their sources have
+not changed. It also refreshes the EPUB and runs the same integrity gates. Use
+this command when the author asks to “rebuild all”; ordinary `--pdf` builds may
+reuse verified, unchanged standalone PDFs. The explicit flag also overrides the
+publication environment's usual omission of local review editions; it does not
+change which artifacts are uploaded. For a full rebuild through the pre-push
+automation, use `MAGE_PDF_SPLIT_FORCE=1 git push origin main`.
+
 The full `mage-book.pdf` places each color figure immediately before its native
 black-and-white version from `tikz/`, including chapter navigation maps. The build
 checks the monochrome drawings at their authored print sizes and retains the

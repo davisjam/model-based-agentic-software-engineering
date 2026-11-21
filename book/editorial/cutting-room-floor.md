@@ -24381,3 +24381,66 @@ Whichever trajectory dominates, recurring judgment remains an opportunity for go
 The answer is not always "mechanize." Guidance remains useful where interpretation is semantic; human review remains appropriate where consequence or ambiguity warrants it; and every new mechanism adds carrying cost. The goal is to \textbf{mechanize where doing so pays}. Engineers make that choice one obligation at a time, under economics that have not finished moving.
 
 ```
+
+
+## 2026-11-20 — Appendix A technical-writing pass
+
+Source revision: `3944d879bd5c303eb3983ad79e8193b7ea20b3c3`. Applied the author-approved blueprint-template and repetition edits. Preserved model semantics, verification procedures, examples, and existing heading hierarchy; cited the existing Gang of Four bibliography entry.
+
+### book/latex/sources/appendix-handbook/_opening.tex
+
+```latex
+Each blueprint begins with an engineering problem and a conceptual design for addressing it. It then identifies the engineering models on which the design depends: what each model represents, which questions it answers, how it relates to other representations, and which components consume it. The realization describes the mechanisms that put those models to work, including the constraints, checks, and gates that govern consequential effects. Each blueprint concludes with guidance for adapting the arrangement and understanding its limits. \autoref{chapter:appendix-a-designing-your-own-blueprint} concludes with a method for constructing an arrangement for a new engineering problem.
+```
+
+### book/latex/sources/appendix-handbook/model-driven-deployment.tex
+
+```latex
+Shared identities connect the representations in \autoref{handbook-deployment-models}.
+```
+
+### book/latex/sources/appendix-handbook/model-driven-deployment.tex
+
+```latex
+The architectural contract identifies an intended caller, callee, API, and authentication obligation. Deployment configuration supplies different facts: the callee's environment-specific name, its URL wiring, and the principal under which the caller executes. Common service identities join these records. Keeping the representations separate lets the same architectural relation be used across environments without embedding every deployed name in the call model.
+```
+
+### book/latex/sources/appendix-handbook/controlled-mutation.tex
+
+```latex
+The operation vocabulary deliberately leaves repair decisions open while limiting the effects expressible through this interface. A producer may choose a supported target and replacement description; it does not thereby acquire authority for an arbitrary document rewrite. Engineers own the admissibility rules and the intended meaning of each operation. Evidence records describe outcomes rather than supplying permission: a proposed changeset, an operation result, and a successful-edit log answer different questions.
+```
+
+### book/latex/sources/appendix-handbook/substitutable-reasoning.tex
+
+```latex
+The models answer different engineering questions. The task model states the meaning of a requested judgment; the workflow model organizes the work used to answer it. Replacing a workflow need not redefine the task, and selecting a different foundation model need not change either one.
+
+The model relationships are summarized in \autoref{handbook-substitution-models}.
+
+
+```
+
+### book/latex/sources/appendix-handbook/substitutable-reasoning.tex
+
+```latex
+The operation, task, and acceptance contracts specify obligations through three of the models in the inventory. They do different work from the workflow that organizes reasoning and the capability model that supports selection.
+```
+
+### book/latex/sources/appendix-handbook/model-based-test-selection.tex
+
+```latex
+For example, a change confined to the PDF editing model may require PDF-specific validation without requiring the spreadsheet checker. The decision depends on the maintained component relationships, not merely on the names of the modified files. A change to a shared dependency may affect several subsystems even when the modified file belongs to only one component.
+```
+
+### book/latex/sources/appendix-handbook/model-based-test-selection.tex
+
+```latex
+Evaluate the selector against historical changes and current work while continuing to run the full suite. Use separate dependency analyses, model relationships, coverage evidence, and full-suite comparisons to find omissions.
+```
+
+### book/latex/sources/appendix-handbook/maintaining-the-machinery.tex
+
+```latex
+When correspondence fails, a stale descriptive model needs repair; a violated authoritative obligation requires repair of the implementation or an engineering decision to revise the obligation. The check alone cannot choose. Closing an external editing interface likewise does not establish control over internal mutation paths: state the boundary and test whether the relevant paths cross it.
+```

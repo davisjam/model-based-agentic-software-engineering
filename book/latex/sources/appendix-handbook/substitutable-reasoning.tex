@@ -33,9 +33,7 @@ Consider an image-description task in the illustrated design. At the narrower su
 
 \section{Engineering Models}\label{heading:engineering-models}
 
-The models answer different engineering questions. The task model states the meaning of a requested judgment; the workflow model organizes the work used to answer it. Replacing a workflow need not redefine the task, and selecting a different foundation model need not change either one.
-
-The model relationships are summarized in \autoref{handbook-substitution-models}.
+\autoref{handbook-substitution-models} identifies five models and their consumers. Task, operation, and acceptance models define the obligations that must remain stable across substitutions. The workflow model describes how reasoning is organized; the capability and selection model determines which foundation models are eligible for a task. The relationships among these models define the substitution boundaries.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -77,8 +75,6 @@ Reasoning workflow model & How is work decomposed, ordered, and assigned? & A pa
 Acceptance model & What evidence is required to accept the artifact? & Obligations, evaluation criteria, required evidence, blocking and review conditions. & Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. \\
 \end{longtable}
 }
-
-The operation, task, and acceptance contracts specify obligations through three of the models in the inventory. They do different work from the workflow that organizes reasoning and the capability model that supports selection.
 
 % Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
 The \textbf{operation contract} defines the changes a reasoning engine may request. DocAble's Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. A controlled application component resolves the target against the current document, checks applicable preconditions, and reports application, refusal, or failure. The PDF changeset in \autoref{chapter:appendix-a-controlled-mutation} is an analogous interface for a different document model; it is not the Office operation vocabulary.

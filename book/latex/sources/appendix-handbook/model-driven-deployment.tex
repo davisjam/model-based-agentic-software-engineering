@@ -25,7 +25,7 @@ Consider the accessibility-quality service calling DocAble's GenAI service. The 
 
 \section{Engineering Models}\label{heading:handbook-model-service-flow}
 
-Shared identities connect the representations in \autoref{handbook-deployment-models}.
+Shared service identities connect the architectural contract, deployment configuration, runtime identity, and derived grant plan. These representations supply different facts to different consumers. The architectural contract describes intended communication; deployment configuration supplies environment-specific endpoints; runtime identity identifies the principal presented to cloud authorization; and the grant plan specifies the permissions to install. \autoref{handbook-deployment-models} identifies the engineering question and consumer for each representation.
 
 {\footnotesize
 \begin{longtable}{@{}p{.18\linewidth}p{.22\linewidth}p{.25\linewidth}p{.27\linewidth}@{}}
@@ -40,8 +40,6 @@ Runtime identity & Under which principal does each caller execute? & Service-to-
 Grant plan & Which concrete permissions are required? & Derived principal--callee--role bindings, retaining logical callers. & Application consumes the plan; results and authorization probes provide different evidence about its effects. \\
 \bottomrule\end{longtable}
 }
-
-The architectural contract identifies an intended caller, callee, API, and authentication obligation. Deployment configuration supplies different facts: the callee's environment-specific name, its URL wiring, and the principal under which the caller executes. Common service identities join these records. Keeping the representations separate lets the same architectural relation be used across environments without embedding every deployed name in the call model.
 
 % Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
 This actual call declaration connects DocAble's accessibility-quality service to its GenAI service. The referenced authentication contract specifies the transport, token-audience requirement, and need for an invocation grant.
