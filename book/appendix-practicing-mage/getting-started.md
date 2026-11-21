@@ -1,12 +1,22 @@
 <!-- GENERATED from book/latex/sources/appendix-practicing-mage/getting-started.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-Start with a small set of engineering models, not an organization-wide commitment to autonomy. Choose a part of the system whose structure, behavior, or obligations you understand well enough to describe and check. Identify what the models must represent, which questions they should answer, and how their claims can be validated. The first objective is modest: make enough engineering knowledge explicit to support a bounded assignment whose result can be evaluated.
+Start with a bounded engineering problem, not an organization-wide commitment to autonomy. Choose a part of the system whose structure, behavior, or obligations you understand well enough to describe and check. The first objective is modest: make enough engineering knowledge explicit to support an assignment whose result can be evaluated.
 
 Structural models are often a good starting point. Engineers already reason about components, dependencies, interfaces, and ownership boundaries, even when these relationships are not formally documented. Much of this structure can be recovered from source code, configuration, and existing documentation. Static analysis can help check whether the implementation agrees with the model. Begin with a few important relationships rather than attempting to describe the entire system. Distinguish the structure that exists from the structure you intend: recovering a dependency does not establish that it belongs there.
 
 Before building machinery, examine how the selected models could improve engineering work. What must someone currently reconstruct from source, documents, or conversations? Which decisions recur? What must remain true while the implementation changes? Preserve the requirements and decisions that matter to acceptance, including qualitative obligations that still require judgment. Also identify choices that can safely remain open. A model that specifies every implementation decision can consume the very engineering effort delegation was meant to save.
 
 Inventory the knowledge and enforcement you already have. A schema may reject invalid data, and a permission may prevent a dangerous action. A test may expose a regression, while a review may settle an ambiguous case. Determine which of these actually affects whether work proceeds. An adequate existing mechanism needs a place in the workflow, not a replacement bearing a new name. Where existing enforcement already provides adequate protection at a justified cost, additional system modeling may contribute little. Where people repeatedly recover the same architectural relation, a small representation may help before any new gate is needed.
+
+### Choose the Engineering Activity {#choose-the-engineering-activity}
+
+Choose the engineering activity in which the initial investment should improve work. Coding agents and repository controls are one starting point, but requirements, design, and operation also present opportunities for Modeling and Alignment.
+
+During requirements development, a model may represent stakeholder needs, conflicting constraints, and acceptance criteria. Agents can help identify ambiguities and compare alternatives, while engineers decide which requirements to adopt. During design, architectural and behavioral models support analysis of dependencies, resource limits, and failure scenarios. Agents can explore candidate designs; the models state the properties those designs must satisfy.
+
+During implementation, those obligations may become checks on code, configuration, and integration. During operation, deployment models, runtime measurements, and incident records support decisions about whether the system continues to satisfy its requirements. An incident may reveal an assumption missing from the design or a property that should become an enforceable obligation.
+
+These activities need dependable relationships where their decisions intersect. A requirement may identify the property a design must preserve; the design may identify the implementation elements involved; tests and operational measurements provide evidence about the resulting system. This does not require one comprehensive model or a common agent workflow.
 
 ### Choose a Modeling Approach {#choose-a-modeling-approach}
 
@@ -44,16 +54,6 @@ For the first trial, state what the agent may change, what evidence will support
 
 Run a small number of comparable work units and retain the interventions they required. Distinguish time spent creating new intent from time spent reconstructing known facts, checking routine conditions, or recovering from a recurring failure. These observations tell you what the next investment should address. A repeated escalation can indicate an appropriate human judgment boundary; it does not automatically justify a new evaluator or permission.
 
-### Choose the Engineering Activity {#choose-the-engineering-activity}
-
-MAGE can support different activities across the product lifecycle, each with different engineering questions. Coding agents and repository controls are possible starting points, but requirements, design, and operation also involve repeated work and consequential uncertainty.
-
-During requirements development, a model may represent stakeholder needs, conflicting constraints, and acceptance criteria. Agents can help identify ambiguities and compare alternatives, while engineers decide which requirements to adopt. During design, architectural and behavioral models support analysis of dependencies, resource limits, and failure scenarios. Agents can explore candidate designs; the models state the properties those designs must satisfy.
-
-During implementation, those obligations may become checks on code, configuration, and integration. During operation, deployment models, runtime measurements, and incident records support decisions about whether the system continues to satisfy its requirements. An incident may reveal an assumption missing from the design or a property that should become an enforceable obligation.
-
-These activities need dependable relationships where their decisions intersect. A requirement may identify the property a design must preserve; the design may identify the implementation elements involved; tests and operational measurements provide evidence about the resulting system. This does not require one comprehensive model or a common agent workflow. Start where the expected benefit justifies the investment, and connect other activities as the need arises.
-
 ### From Local Practice to Shared Engineering Infrastructure {#from-local-practice-to-shared-engineering-infrastructure}
 
 MAGE can be applied at different scales. An engineer might begin with a model of one component, a behavioral specification for one feature, or a gate protecting one consequential obligation. Such investments are relatively inexpensive and can provide immediate benefits. Broader adoption requires more coordination: shared modeling conventions, stable component identities, common interfaces, and agreement about which obligations the engineering environment should enforce. The additional overhead can be substantial, but so can the return. When engineers and agents work from consistent models and controls, they can modify different components without repeatedly negotiating their relationships or rediscovering the rules governing their integration.
@@ -62,8 +62,8 @@ This tradeoff is familiar from conventional software engineering. Organizations 
 
 The appropriate scale depends on the expected return. A small project may need only a few local models and checks. A large organization may justify shared modeling infrastructure because its costs are distributed across many components, teams, and engineering episodes. Standardization can also impose unnecessary restrictions or make changes more expensive when conventions no longer fit. Expand the governed environment when the benefits of consistency, reuse, and coordination justify the additional construction and maintenance costs.
 
-### Decide Whether to Expand {#decide-whether-to-expand}
+### Expand Delegation Deliberately {#decide-whether-to-expand}
 
-Expand the scope or consequence of delegated work when the evidence supports doing so. Check that someone remains able to inspect the result, diagnose failures, and continue essential work when the preferred agent or service is unavailable. Review the boundary by engineering surface; a successful workflow does not establish that the rest of the product is equally governable. This keeps the adoption decision connected to demonstrated capability and its costs.
+Expand delegated work when the evidence supports increasing its scope or authority. Before doing so, establish that engineers can inspect accepted results, diagnose failures, and continue essential work when the preferred agent or service is unavailable. Evaluate each engineering surface separately: success with one workflow does not establish that other obligations are adequately represented or governed.
 
-Expansion is not the default. Once the selected capability has adequate representations, evidence, and enforcement, further machinery needs a new reason to exist. A useful first result may be modest: one dependency that stops being rediscovered, one recurring review decision made explicit, or one acceptance condition that no longer depends on memory.
+Successful delegation does not, by itself, justify expanding its scope or adding more machinery. Once a selected capability has adequate representations, evidence, and enforcement, additional machinery needs a specific reason to exist. A useful initial result may be modest: one dependency no longer reconstructed, one recurring review decision made explicit, or one acceptance condition no longer dependent on memory.

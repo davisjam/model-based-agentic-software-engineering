@@ -24444,3 +24444,163 @@ Evaluate the selector against historical changes and current work while continui
 ```latex
 When correspondence fails, a stale descriptive model needs repair; a violated authoritative obligation requires repair of the implementation or an engineering decision to revise the obligation. The check alone cannot choose. Closing an external editing interface likewise does not establish control over internal mutation paths: state the boundary and test whether the relevant paths cross it.
 ```
+
+
+## 2026-11-20 — Appendix B adoption order and operating instructions
+
+Source revision: `ac79779cae0a140b3da6845ef4442421663cce02`. Original sections preserved before six targeted edits: move activity choice earlier, distinguish delegation expansion from shared infrastructure, and condense repeated operating explanations. The author's final expansion wording supersedes “Expansion is optional.”
+
+### book/latex/sources/appendix-practicing-mage/getting-started.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Start with a small set of engineering models, not an organization-wide commitment to autonomy. Choose a part of the system whose structure, behavior, or obligations you understand well enough to describe and check. Identify what the models must represent, which questions they should answer, and how their claims can be validated. The first objective is modest: make enough engineering knowledge explicit to support a bounded assignment whose result can be evaluated.
+
+Structural models are often a good starting point. Engineers already reason about components, dependencies, interfaces, and ownership boundaries, even when these relationships are not formally documented. Much of this structure can be recovered from source code, configuration, and existing documentation. Static analysis can help check whether the implementation agrees with the model. Begin with a few important relationships rather than attempting to describe the entire system. Distinguish the structure that exists from the structure you intend: recovering a dependency does not establish that it belongs there.
+
+Before building machinery, examine how the selected models could improve engineering work. What must someone currently reconstruct from source, documents, or conversations? Which decisions recur? What must remain true while the implementation changes? Preserve the requirements and decisions that matter to acceptance, including qualitative obligations that still require judgment. Also identify choices that can safely remain open. A model that specifies every implementation decision can consume the very engineering effort delegation was meant to save.
+
+Inventory the knowledge and enforcement you already have. A schema may reject invalid data, and a permission may prevent a dangerous action. A test may expose a regression, while a review may settle an ambiguous case. Determine which of these actually affects whether work proceeds. An adequate existing mechanism needs a place in the workflow, not a replacement bearing a new name. Where existing enforcement already provides adequate protection at a justified cost, additional system modeling may contribute little. Where people repeatedly recover the same architectural relation, a small representation may help before any new gate is needed.
+
+\subsection{Choose a Modeling Approach}\label{heading:choose-a-modeling-approach}
+
+Before accumulating models, establish how they will be interpreted and maintained. \autoref{2.2-constructing-and-using-engineering-models:heading:semantic-commitment-and-analysis} distinguishes semantic commitment from the means of storing and interacting with a model. Decide which questions and analyses the representation must support, then choose how engineers and agents will edit, query, visualize, and check it. \autoref{practicing-modeling-approaches} offers starting points for those decisions.
+
+{\footnotesize
+\begin{longtable}[]{@{}p{.25\linewidth}p{.31\linewidth}p{.34\linewidth}@{}}
+\caption[Choosing modeling approaches and tools]{\emph{Modeling semantics and tooling serve different purposes.} These approaches can be combined; the rows are not a ranking of precision or value. Choose the combination whose analyses and uses justify its construction and upkeep.}\label{practicing-modeling-approaches}\\
+\toprule
+\textbf{Approach and examples} & \textbf{Semantic capability} & \textbf{Tooling role and practical use} \\
+\midrule
+\endhead
+Informal models: sketches, ADRs, Markdown & Meaning is stated in prose and conventions, with interpretation left to readers. & Explore alternatives and record qualitative decisions before committing to a machine-interpretable form. \\
+UML; PlantUML or Mermaid views~\citep{omg2017uml,plantumlDocumentation,mermaidDocumentation} & UML defines standard modeling constructs; a diagram renderer does not establish the semantics of every depicted relation. & Render architecture, behavior, or interaction views; generate them from authoritative models where practical. \\
+Project models: typed registries, JSON Schema, OpenAPI~\citep{jsonSchemaDocumentation,openapi2026spec} & Schemas define data constraints; OpenAPI describes HTTP interfaces. Project declarations need explicit meanings for their relationships. & Keep models in ordinary project files; validate declarations and build the queries or derived views the work needs. \\
+Clafer~\citep{claferDocumentation} & Declarative structural and feature models with constraints. & Generate instances, check consistency, and complete configurations. \\
+BESSER~\citep{besserDocumentation} & A modeling framework with supported model families and transformations. & Create models visually, through textual imports, or in Python; generate code for supported targets. \\
+SysML v2 / KerML~\citep{omg2025sysml,omg2025kerml} & Defined semantics for system modeling and its kernel constructs. & Connect interacting system views; select tools for the required editing, visualization, and analysis. \\
+TLA+ and Alloy~\citep{lamport2002,tlaToolboxDocumentation,alloy6Documentation} & Formal behavioral specifications or relational and temporal models. & Use TLC or Alloy analysis under stated scopes and assumptions; TLAPS separately supports proofs. \\
+\bottomrule
+\end{longtable}
+}
+
+Choose the least elaborate approach that supports the questions and analyses you need. Agree on model-element meanings, authoritative sources, and change conventions. A rendering tool such as Mermaid can display a dependency graph, but the project must still define what its edges mean; generating that view from a maintained model can avoid a second account to reconcile. Agents can help construct models, generate views, and migrate representations when those conventions and checks are stable.
+
+Some modeling approaches support formal verification: establishing mathematically that a model or implementation satisfies specified properties, subject to the assumptions and scope of the analysis. This can provide strong assurance, but only about the properties actually proved. Memory safety or the absence of certain illegal states may be comparatively straightforward to specify. Behavioral correctness is harder: before proving that a system behaves as required, engineers must determine what behavior is required. Agents can help formulate specifications and construct proofs, but the responsible engineer must understand and validate the properties, assumptions, and correspondence between model and implementation. A proof of a property that nobody has established as the right property is not evidence that the system meets its requirements. \autoref{3.2-models-and-the-semantic-gap:heading:agreement-is-not-correctness} develops this distinction between checking a property and establishing its adequacy.
+
+The choice of modeling approach is also an economic decision. More explicit semantics can reduce the effort agents spend interpreting models, recovering missing relationships, and checking implementations against engineering obligations. In the terms of the cost-per-correct-admitted-change equation in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}, these savings must be weighed against the cost of constructing, validating, and maintaining the models and their tooling. Greater precision is worthwhile when its benefits across subsequent engineering work exceed those costs. It is not an objective in itself.
+
+\subsection{Model the Change}\label{heading:use-a-change-as-the-first-model}
+
+A structured engineering ticket can model the change you intend to make. It can preserve the intended behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. When it carries enough information to reason about one requested change, it functions as a change-scoped model. It should refer to longer-lived system knowledge rather than reproduce that knowledge in every ticket. For a defect, record the observed discrepancy and the intended correction; diagnosis may still be the difficult part of the work.
+
+Identify who will use each link and for what decision. An agent may follow the ticket's component reference to the relevant ownership model; a reviewer may follow an invariant to its tests; a completion audit may compare the requested behavior with the landed result. Add a field when someone or something will use it. Fields without a consumer become additional material to keep current. The first useful investment may be a reliable link between an existing ticket, an architectural decision, and its acceptance evidence.
+
+The ticket's lifetime matters. A ticket written in 2022 need not describe the product in 2026, but it can remain an accurate representation of the intent governing the 2022 change. Its persistence is useful history rather than a synchronization burden. A current architectural model makes a different claim and must be reconciled when the relevant system or intent changes. Mark that distinction before installing freshness checks: otherwise a well-intended audit can classify valid history as drift.
+
+\subsection{Establish the Delegation Boundary}\label{heading:establish-the-delegation-boundary}
+
+For the first trial, state what the agent may change, what evidence will support acceptance, and what should stop the work. Separate the producing agent's completion report from the evidence used to evaluate it. Existing tests, analyses, measurements, and review procedures may already provide much of that evidence. When they do not settle a consequential question, name the remaining judgment and who must exercise it. Keep an escalation path for a mistaken premise, an unavailable dependency, or an obligation the environment cannot adequately evaluate.
+
+Run a small number of comparable work units and retain the interventions they required. Distinguish time spent creating new intent from time spent reconstructing known facts, checking routine conditions, or recovering from a recurring failure. These observations tell you what the next investment should address. A repeated escalation can indicate an appropriate human judgment boundary; it does not automatically justify a new evaluator or permission.
+
+\subsection{Choose the Engineering Activity}\label{heading:choose-the-engineering-activity}
+
+MAGE can support different activities across the product lifecycle, each with different engineering questions. Coding agents and repository controls are possible starting points, but requirements, design, and operation also involve repeated work and consequential uncertainty.
+
+During requirements development, a model may represent stakeholder needs, conflicting constraints, and acceptance criteria. Agents can help identify ambiguities and compare alternatives, while engineers decide which requirements to adopt. During design, architectural and behavioral models support analysis of dependencies, resource limits, and failure scenarios. Agents can explore candidate designs; the models state the properties those designs must satisfy.
+
+During implementation, those obligations may become checks on code, configuration, and integration. During operation, deployment models, runtime measurements, and incident records support decisions about whether the system continues to satisfy its requirements. An incident may reveal an assumption missing from the design or a property that should become an enforceable obligation.
+
+These activities need dependable relationships where their decisions intersect. A requirement may identify the property a design must preserve; the design may identify the implementation elements involved; tests and operational measurements provide evidence about the resulting system. This does not require one comprehensive model or a common agent workflow. Start where the expected benefit justifies the investment, and connect other activities as the need arises.
+
+\subsection{From Local Practice to Shared Engineering Infrastructure}\label{heading:from-local-practice-to-shared-engineering-infrastructure}
+
+MAGE can be applied at different scales. An engineer might begin with a model of one component, a behavioral specification for one feature, or a gate protecting one consequential obligation. Such investments are relatively inexpensive and can provide immediate benefits. Broader adoption requires more coordination: shared modeling conventions, stable component identities, common interfaces, and agreement about which obligations the engineering environment should enforce. The additional overhead can be substantial, but so can the return. When engineers and agents work from consistent models and controls, they can modify different components without repeatedly negotiating their relationships or rediscovering the rules governing their integration.
+
+This tradeoff is familiar from conventional software engineering. Organizations standardize programming languages, test frameworks, build systems, and repository conventions partly to reduce the cost of collaboration and integration. A monorepo with uniform component ownership rules, for example, imposes conventions on individual teams but makes dependencies, ownership, and cross-component changes easier to manage. MAGE extends the same reasoning to engineering models and governance mechanisms. A shared architectural model can establish component boundaries, while common checks preserve them as different engineers and agents work independently. The benefit is not simply that each change becomes easier; it is that independently produced changes remain consistent with decisions made elsewhere in the system.
+
+The appropriate scale depends on the expected return. A small project may need only a few local models and checks. A large organization may justify shared modeling infrastructure because its costs are distributed across many components, teams, and engineering episodes. Standardization can also impose unnecessary restrictions or make changes more expensive when conventions no longer fit. Expand the governed environment when the benefits of consistency, reuse, and coordination justify the additional construction and maintenance costs.
+
+\subsection{Decide Whether to Expand}\label{heading:decide-whether-to-expand}
+
+Expand the scope or consequence of delegated work when the evidence supports doing so. Check that someone remains able to inspect the result, diagnose failures, and continue essential work when the preferred agent or service is unavailable. Review the boundary by engineering surface; a successful workflow does not establish that the rest of the product is equally governable. This keeps the adoption decision connected to demonstrated capability and its costs.
+
+Expansion is not the default. Once the selected capability has adequate representations, evidence, and enforcement, further machinery needs a new reason to exist. A useful first result may be modest: one dependency that stops being rediscovered, one recurring review decision made explicit, or one acceptance condition that no longer depends on memory.
+
+```
+
+### book/latex/sources/appendix-practicing-mage/operating-a-gee.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+% Evidence: appendix-operators-reference/a-worked-factory-workflow.tex at 507bbaeb5739569d81a21523b77191e0799d051b.
+% The PDF-heading assignment is illustrative, not an additional measured project episode.
+
+How does an engineering priority become work that an agent can perform and an engineer can accept? As an illustration, consider a request to improve PDF heading detection in DocAble. The objective is straightforward, but assigning it to an agent requires several engineering decisions. Which heading behaviors should improve? What existing behavior must remain unchanged? Which components may the agent modify? What evidence would establish that the change is acceptable?
+
+\autoref{practicing-priority-to-accepted-work} follows this assignment from priority to integrated work. The stages distinguish decisions that are easily conflated when an engineer simply asks an agent to implement a feature. The figure places acceptance at an integration-admission boundary; later completion or release checks may impose additional obligations.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/priority-to-accepted-work-d9bddb56c0.pdf}
+\caption[From priority to accepted work]{\emph{From priority to accepted work.} Engineering models inform the assignment and its acceptance conditions. An agent produces changes, but independent evidence determines whether they can be accepted. Interrupted or rejected work returns to repair or recovery without discarding durable results.}
+\label{practicing-priority-to-accepted-work}
+\end{figure}
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+The priority identifies the desired improvement. In DocAble's November 2026 workflow, I record requirements for the next deployment alongside longer-term priorities, and the orchestrator maintains a strategy document from my instructions. Selecting a priority authorizes further planning; it does not determine how the work should be implemented.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+The design establishes the proposed approach. An epic develops the effort into scope, rationale, risks, relevant models, and a Definition of Done. A design document records the motivating failure or requirement, alternatives considered, and proposed components and interactions. For heading detection, this means identifying the representations and computations involved, the intended behavioral change, and the properties that must survive it. Stable invariant identifiers connect obligations to tests or analyses, while uncovered obligations remain explicit.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+The work order turns an approved part of that design into a bounded assignment. DocAble's machine-parseable phase table records dependencies and required reasoning capability, allowing the scheduler to identify ready work. A dispatch brief specifies one phase's role, scope, time budget, relevant sources, verification requirements, and expected hand-back. If design review changes a dependency, the schedulable plan must change too. The brief linter can reject missing structure and selected dispatch errors; it cannot determine whether the design is sound.
+
+During implementation, the agent uses the supplied context and may inspect additional code and models as its understanding improves. It remains free to choose implementation details within the established obligations. The work order should not prescribe every edit, but neither should the agent have to infer which existing behaviors it must preserve.
+
+At acceptance, the question changes from whether the agent completed its assignment to whether the resulting implementation satisfies the obligations. Tests, analyses, and other evidence must concern the actual revision being accepted. For heading detection, a successful demonstration of the new behavior would be insufficient if the change also damaged unrelated document structure. The illustrated acceptance gate must consume evidence for the applicable preservation requirements as well as the intended improvement; it cannot substitute for review of a property the available checks do not settle.
+
+Finally, recovery preserves work that cannot yet be accepted. If the agent is interrupted, or its change fails acceptance, the environment must identify which commits and artifacts remain usable, what obligations are unresolved, and what work a subsequent attempt should undertake. Repeating the original assignment without examining those artifacts can duplicate work or introduce conflicting changes.
+
+The workflow need not execute as a rigid sequence. A failed acceptance check may require a local repair or a revised design. A newly discovered dependency may change the work order. \autoref{practicing-priority-to-accepted-work} identifies the relationships that must remain coherent as the work moves among these activities.
+
+\subsection{From a Brief to Accepted Work}\label{heading:from-a-brief-to-accepted-work}
+
+The heading-detection assignment illustrates what the dispatch brief must preserve. Prepare it from the current repository, not from a remembered account of the component. Four kinds of information make it usable:
+
+\begin{itemize}
+\tightlist
+\item \textbf{Intended change and preservation.} Identify the heading behavior to improve, the existing behavior that must remain, and exclusions such as unrelated document mutations. Leave implementation choices open where they do not affect these obligations.
+\item \textbf{Engineering context.} Point to current source, the representation the component operates through, and relevant invariants. Require the agent to query the models and checks associated with its refined target files before changing them.
+\item \textbf{Acceptance evidence.} Specify evidence for the intended behavior, preservation obligations, and affected integration paths. Evaluate those properties independently of the implementation the agent happens to choose. Record unavailable evidence as an open question.
+\item \textbf{Budget and hand-back.} State when to stop and what to preserve: commits, completed checks, partial results, unresolved questions, and unmet obligations. An honest partial result supports a decision about further work; an unsupported completion claim hides that decision.
+\end{itemize}
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+In DocAble, the agent records its refined plan in the first commit and progress in later commit metadata. A sentinel check verifies selected prerequisites early: the expected worktree, branch, working directory, and registration marker. These checks can discover an unusable working environment before substantial effort is spent. They establish those prerequisites at that boundary; later integration still needs its own evidence. The companion \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/EPIC-TEMPLATE-starter.md}{epic}, \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/design-doc-template-starter.md}{design-document}, and \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/agent-brief-starter.md}{dispatch-brief} starters supply field structures that can be adapted to these consumers.
+
+Completion review follows the work back into the repository. For the heading-detection assignment, the reviewer must establish that the promised change was integrated and that the required checks support its acceptance. Commit markers help locate the work, but do not establish that the new behavior is correct or that existing behavior was preserved. If the evidence is inadequate, the work returns for repair rather than being declared complete. If execution was interrupted, inspect the existing commits, partial artifacts, and current ownership before redispatching the assignment. Recovery should resume from the durable result, not repeat work that has already been completed.
+
+\subsection{Keep the Checking Process Operational}\label{heading:keep-the-checking-process-operational}
+
+Acceptance depends on checks that must themselves be scheduled, executed, and observed reliably. In November, I retained cheap synchronous checks at merge and moved expensive validation into a periodic sweep. An intermediate design launched that sweep after every merge, so bursts of completed work still caused bursts of expensive validation and overloaded the host. Background execution had changed who waited without removing the coupling that caused the overload. The replacement gave the sweep its own schedule and lock, inspected the main branch in a disposable worktree, and allowed one sweep at a time. Broader validation remained part of release.
+
+A configured schedule is not evidence that a check runs. The November 3 investigation found the timer in the configuration manifest but not installed. Checks had been running through a debounced post-merge hook, masking the missing schedule. Installation and inspection of the live schedule corrected that gap. Another failure concerned closure: an alert was marked resolved while its lint still failed. Rechecking before closure, or reopening the alert when the next sweep finds the condition again, was identified as necessary follow-up work.
+
+Distinguish detection, acknowledgment, and repair in the operating record. The observed sweep detected a blocking failure and emitted an alert. A different alert, concerning accumulated worktree branches, caused a hook to refuse an orchestrator operation until acknowledgment. Those observations did not demonstrate detection, blocked dispatch, and verified repair for the same failure. Acknowledgment permits a deliberate response to a known problem; it does not make the problem disappear. Record the revision each check examined so that evidence for an earlier snapshot cannot silently validate later changes.
+
+\subsection{Make Recovery Improve Later Work}\label{heading:make-recovery-improve-later-work}
+
+After recovery, ask what subsequent work should inherit. Was the problem missing knowledge, a stale representation, an implicit obligation, late evidence, or a mechanism that failed to act? The answer determines whether to improve a model, move a check, restrict an action, change the procedure, or retain deliberate human judgment. Record the obligation and intended consumer of the repair, then verify that the consumer actually uses it. This is the practical handoff from incident response to governance conversion.
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+The duplicate-dispatch incident in {[}appendix: appendix-a-governed-delegation{]} illustrates this handoff. Its repair placed a completed-phase gate in work-order composition, so later assignments inherit the refusal automatically. The gate acts on recorded completion rather than inferring it from arbitrary repository changes; that boundary defines which recurrence the repair prevents.
+
+Price that inheritance. A rare, inexpensive failure may not justify permanent machinery; a repeated reconstruction or recurring loss may justify it readily. Remove the superseded procedure or control when its replacement makes it unnecessary. Otherwise every repair adds another thing that later work must understand. The next run should inherit a better starting point, with the evidence needed to tell whether the repair worked.
+
+```
