@@ -26072,3 +26072,11 @@ Cloudflare thus illustrates how organizational obligations can become part of a 
 ```latex
 This is a concrete process-design decision: spare compute can produce more work than the next human stage can absorb.
 ```
+
+## 2026-11-23 — Shorten the TDD comparison
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex:136` at `6124c8a719b134918c89625809567835666eac43`. Removed repeated explanation of executable specification; retained the workflow analogy, implementation freedom, partial scope, and the surrounding inset.
+
+```latex
+Test-driven development (TDD) offers a useful analogy: its test → implement → refactor cycle organizes programming, while the team still has to decide how to evaluate interactions and the assembled system~\citep{fowler2023tdd}. TDD can also be understood as a form of specification-first development: tests express selected requirements as executable checks of a component’s observable behavior before its implementation is written. The implementation remains free to change as long as it satisfies those checks. The specification is necessarily partial, since tests exercise only selected inputs and properties, but the underlying move is familiar: establish what must hold, then evaluate the implementation against it. An SDD workflow similarly contributes to engineering a system without settling every question about its representations, obligations, and evidence.
+```
