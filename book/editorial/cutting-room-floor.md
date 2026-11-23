@@ -24991,3 +24991,30 @@ Production raises a different question. A familiar pattern may make the agent li
 The trouble is the requirements. In software engineering, it always has been~\citep{brooks1987}. Agents promise to get us to that discovery more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. The opportunity now is to represent consequential intent well enough to use this capacity. Capable agents allow many realization choices to remain open; engineers must establish which properties must survive that freedom.
 
 ```
+
+
+## Chapter 7: focus full-system engineering (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, §7.4.3, revision `046c316cf`. Author-approved removal of two DocAble examples and merger of the learning and systems-thinking paragraphs. Chapter 4 §4.1 already explains implementation as a means of learning, including the format example; nothing relocated.
+
+```latex
+The consequential decisions were the ones that crossed these domains. The decision record of \magevalue{chapter:software-factories} shows the shape. Retiring accessibility-checker scores in favor of validation grounded in the standards required three judgments together: a regulatory reading of what the obligations actually require, a product observation that users\textquotesingle{} documents passed the checkers while losing meaning, and a change to the validation architecture. None of the three could have settled it alone.
+
+% <!-- point: format-breadth-selected-for-knowledge | Supporting additional formats did different work — an architectural probe, not simply product expansion: each format tested whether the architecture captured general properties of remediation or assumptions inherited from the first formats, and cheap implementation made those experiments economical, so implementation can be selected for the knowledge it produces, not only the functionality it delivers. -->
+
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+Supporting additional document formats did different work: an architectural probe rather than simply an expansion of the product. Each format tested whether the architecture captured general properties of document remediation or assumptions inherited from the formats supported first. Cheap implementation made those experiments economical even when the additional formats were not immediate product requirements. Implementation can be selected for the knowledge it produces, not only the functionality it delivers. Neither decision belonged to any layer of an implementation stack.
+
+% <!-- point: cheap-implementation-enables-judgment-developing-amplification | Cheap implementation compresses the modeling cycle, so implementation and connection amplification develop engineering judgment rather than deskilling the engineer. -->
+
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
+```
+
+```latex
+I have found that this process develops the engineer as well as the system. The engineer goes through the loop too. Repeatedly choosing representations, confronting predictions with evidence, finding the proper level of a failure, and deciding what knowledge should become durable machinery forces the engineer to learn. Abundant implementation can deskill an engineer who merely consumes its output and loses the feedback through which expertise develops; used this way, it can instead become an unusually powerful medium for developing engineering judgment.
+
+% <!-- point: consequential-judgment-follows-a-property-across-the-lifecycle | Consequential judgment often requires following a property across the whole lifecycle, not just implementation. -->
+
+This is systems thinking applied to software engineering under agentic leverage. Local implementation can increasingly be delegated, but consequential judgment often requires following a property across requirements, models, architecture, implementation, validation, deployment, operation, and maintenance. The engineer need not personally perform every activity or master every technology. The requirement is sufficient command: enough understanding of each relevant domain to recognize how decisions made in one part of the system constrain, enable, or invalidate reasoning elsewhere, and to intervene when those relationships threaten consequential properties.
+
+```
