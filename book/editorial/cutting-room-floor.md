@@ -25018,3 +25018,37 @@ I have found that this process develops the engineer as well as the system. The 
 This is systems thinking applied to software engineering under agentic leverage. Local implementation can increasingly be delegated, but consequential judgment often requires following a property across requirements, models, architecture, implementation, validation, deployment, operation, and maintenance. The engineer need not personally perform every activity or master every technology. The requirement is sufficient command: enough understanding of each relevant domain to recognize how decisions made in one part of the system constrain, enable, or invalidate reasoning elsewhere, and to intervene when those relationships threaten consequential properties.
 
 ```
+
+
+## Chapter 7: separate foundations from curricular emphasis (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, §7.4.4, revision `684b2cacac11450d1ed57510d95bf1a819d5df00`. Author-approved deletion of repeated foundations and Chapter 6 callbacks; curriculum and implementation-fluency material merged into the opening of Shift the emphasis.
+
+```latex
+% <!-- point: delegation-makes-foundations-more-consequential | Delegating realization makes the technical foundations more consequential. -->
+
+This is technical knowledge that practitioners cannot reasonably be expected to rediscover for themselves. Commodity intelligence may make particular languages, frameworks, APIs, and implementation techniques cheaper to learn and quicker to replace. Delegating more realization makes the foundations more consequential: engineers increasingly judge systems whose detailed implementation they did not personally construct.
+
+% <!-- point: curriculum-remains-substantially-recognizable | The curriculum remains substantially recognizable: programming, software engineering, and the computing foundations all stay, and engineers still need implementation fluency. -->
+
+The curriculum therefore remains substantially recognizable. Programming does not disappear, nor does software engineering, and neither do the computing foundations on which they depend. Engineers still need enough implementation fluency to understand the systems they build, diagnose failures, evaluate generated work, and descend through abstractions when necessary.
+
+% <!-- point: fluency-moves-between-implementation-and-models | Implementation fluency is the ability to move between the realized system's behavior and the representations that direct subsequent work — not producing every implementation, but recognizing when the governing abstractions are inadequate. -->
+
+Diagnosing a failure may require examining the realized system and then translating what was learned into a change to its governing models. The engineer must be able to move between the behavior of the implementation and the representations that direct subsequent work. This does not require personally producing every implementation, but it does require enough technical understanding to recognize when the governing abstractions are inadequate.
+
+% <!-- point: what-changes-is-the-allocation-of-attention | Routine implementation is already cheap enough to alter the engineering problem while specification, validation, coordination, and judgment stay scarce, so education should change which competencies it practices rather than which subjects it drops. -->
+
+What changes is the allocation of attention. Routine implementation is already becoming cheap enough to alter the engineering problem. Specification, validation, coordination, and judgment have not become correspondingly abundant. Education should reflect that shift. The question is therefore less what subjects disappear than which competencies deserve more or less practice.
+
+% <!-- point: trajectories-explain-why-the-competencies-may-keep-moving | Chapter 6 and the four trajectories explain why competencies may change in relative importance; education should prepare engineers to judge that changing allocation rather than assume one destination. -->
+
+\magevalue{chapter:theory} explains why these competencies matter, and the four trajectories in \autoref{effort-trajectories} explain why their relative importance may continue to move. They may advance unevenly. Education must prepare engineers to judge that changing allocation of work, rather than train them for one presumed destination.
+
+\subsection{Shift the emphasis}\label{heading:shift-the-emphasis}
+
+% <!-- point: shift-emphasis-to-abstractions-specification-validation | Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods. -->
+
+Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work. Modeling, specification, architecture, measurement, programming languages, and formal methods deserve more room because these fields teach durable ways to choose abstractions, state properties precisely, make invalid states harder to express, and separate a claim from the evidence that establishes it. Students should also learn to distinguish improving a reasoner\textquotesingle s context from improving the representation of the engineering problem itself. This does not require every engineer to become a language theorist, systems modeler, or verification specialist.
+
+```
