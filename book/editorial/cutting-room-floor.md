@@ -25385,3 +25385,180 @@ That inversion clarifies MAGE\textquotesingle s position. Software-first agent s
 
 Degrees of freedom locate MAGE along this axis. Where the models fully specify the system, and no consequential freedom remains, deterministic generation is preferable. Where freedom remains, engineers can preserve the obligations and tolerances that matter while leaving agents to choose among acceptable implementations. \textbf{Those degrees of freedom are not defects in the model; they are choices engineers have not, or could not, settle in advance.} MAGE therefore includes model-first engineering without mandating it. Which representations become primary depends on their costs and benefits for a given system, potentially differing even among components or properties of the same system.
 ```
+
+## Chapter 7: reorganize the transfer argument beyond software (2026-11-23)
+
+Source revision: `19a419451`. Author-requested restructuring moves the substance and figure from §§7.2.4–7.2.5 into §7.3’s opening, establishes software’s favorable conditions as the comparison, develops digital-twin gaps, merges knowledge work and science, and distinguishes performance from convergence hypotheses. Canonical passages are preserved below, including citations, labels, and point metadata. The semantic-layer aside and repeated general definitions are deliberately cut; residual-judgment discussion remains in §7.4.
+
+### Former §§7.2.4–7.2.5
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 72 through end. The figure and two argument-point IDs move to §7.3.
+
+```latex
+\section{Established Traditions, New Composition}\label{heading:established-traditions-new-composition}
+
+% <!-- point: mage-composes-two-inheritances-around-delegated-realization | MAGE combines two established lines of work around delegated realization: engineering through representations, evidence, and control, and extending AI reasoners through external structure and tools. -->
+
+MAGE combines two established lines of work around delegated realization. Engineering disciplines developed ways to represent systems, justify consequential claims, and control realization. AI developed ways to extend reasoners through external representations, memory, and tools. \autoref{established-traditions-new-composition} shows how these contributions meet in an agentic production system.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/established-traditions-new-composition-bd6313723f.pdf}
+\caption{\emph{Established traditions, new composition.} MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.}
+\label{established-traditions-new-composition}
+\end{figure}
+
+Engineering supplies the first inheritance. Across its disciplines it externalized consequential knowledge into representations, constrained realization against those representations, established evidence that the constraints held, and controlled the transitions that carry consequence: a release, a certification, a change to a system already in service.
+
+AI supplies the second. Its long history of improving reasoners runs substantially through structure placed outside the reasoner: knowledge representations holding what the system knows, planning state and memory holding what it is doing, tools and interfaces extending what it can act on, and intermediate reasoning structures holding partial work. \magevalue{sec:reorganization-of-se} traces that line through recent systems. The reasoner improved because its surroundings did.
+
+Commodity intelligence brings the two traditions into the same production system. The engineering environment itself becomes an object of design: the representations, evidence, constraints, and controls around autonomous work must be engineered and maintained together.
+
+The conversion and ratcheteering developed in \magevalue{chapter:one-problem-many-models} keep this arrangement open to correction as experience reveals missing knowledge or controls.
+
+\section{What MAGE Claims Is New}\label{heading:what-mage-claims-is-new}
+
+% <!-- point: what-mage-claims-is-new | The components of MAGE have deep precedents; its claim concerns their architectural and disciplinary composition — redesign the environment when autonomous implementation becomes a primary productive substrate. -->
+
+MAGE neither restores a sequential development process nor requires a complete model before implementation begins. Its components have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents. The contribution lies in their architectural and disciplinary composition, made newly practical by commodity intelligence.
+
+Much recent agentic software engineering asks how increasingly capable agents can perform work within the software-engineering environment they inherit. MAGE asks how that environment itself should be redesigned when autonomous implementation becomes a primary productive substrate.
+
+Its answer is to make purposeful models, Alignment machinery, and the governed engineering environment first-class objects of software engineering, and to treat recurring judgment converted into durable structure as engineering capital. Consequential semantic judgment stays with engineers wherever representation and mechanism cannot responsibly carry it.
+
+The claim is bounded in two directions. MAGE does not depend on inventing new modeling or verification techniques, and it does not hold that model-first organization is where software engineering must arrive. MAGE makes selected engineering representations authoritative within an increasingly automated production system, and applies the same approach to the production process itself. Commodity intelligence changes the cost of constructing and maintaining that arrangement. The engineering task is to decide where it pays and to build the production environment accordingly.
+```
+
+### Former §7.3
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, complete section before restructuring.
+
+```latex
+% mage-auto-heading: what-must-transfer
+% mage-auto-heading: model-based-engineering
+% mage-auto-heading: professional-knowledge-work
+% mage-auto-heading: science-as-the-harder-case
+% mage-auto-heading: where-the-generalization-fails
+% mage-auto-heading: a-research-prediction
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Profession -->
+
+% <!-- chapter-title: Agentic Engineering Beyond Software -->
+
+\chapter{Agentic Engineering Beyond Software}
+
+MAGE grew out of software engineering, where my expertise lies. The evidence in this book comes primarily from software: the DocAble case, accounts of other software factories, and a theory developed from those observations. The subtitle is deliberate. Software engineering is the first worked domain of Model-Based Agentic Engineering.
+
+But software is not essential to the problem MAGE addresses. Agents can perform consequential work in other engineering disciplines, and the result need not be an autonomous system. A civil engineer may direct an agent to develop a structural design; an accountant may use one to prepare an analysis; a lawyer may use one to evaluate a claim. In each case, someone remains responsible for judging whether the result is acceptable.
+
+The difference lies partly in what the work produces. A bridge design can be analyzed before construction, and the resulting structure can be inspected, tested, and monitored. A recommendation, approval, or business decision instead produces consequences that may become apparent only after someone acts on it. Both require representations of what matters, evidence appropriate to the claims being made, and controls over what an agent may do. Both can also produce lessons that improve subsequent work.
+
+The available machinery differs by domain. Software offers types, tests, dependency models, permissions, and admission gates. Conventional engineering offers physical models, simulations, measurements, inspections, and certification. Professional knowledge work may instead rely on represented assumptions, documented evidence, approval rules, and review by accountable experts. The question is which of these mechanisms can support responsible delegation, not whether every profession should adopt software engineering\textquotesingle s methods.
+
+Throughout this book, \emph{engineering} has meant exercising informed control over consequential systems and accepting responsibility for their outcomes (see the Glossary). This is a functional definition, not a professional designation. An accountant, lawyer, manager, or scientist may perform engineering work in this sense. That does not make all knowledge work engineering. The question is whether the work admits sufficient representation, evidence, and control to support responsible delegation.
+
+The following discussion examines what must transfer from software for MAGE to apply elsewhere, and where that transfer may fail.
+
+\section{What Must Transfer}\label{heading:what-must-transfer}
+
+The first requirement is representability: a purposeful reduction must preserve the distinctions relevant to a consequential decision. Beyond software, the represented object might be a proposed design, the state of a business, the alternatives in a decision, the evidence supporting a claim, or the expected consequences of an action.
+
+A structural model can preserve the quantities needed to reason about a bridge. A decision model can preserve alternatives, objectives, assumptions, uncertainties, and predicted consequences needed to reason about a business choice. The particular form must make the domain\textquotesingle s question easier to answer.
+
+Representation alone is insufficient. MAGE also depends on correspondence: some credible account of why the representation describes what it claims to describe. A beautifully structured model that has drifted from its object can make reasoning easier while making its conclusions worse.
+
+Correspondence takes different forms for different outcomes. In software, a model may be extracted from, checked against, or even generate executable artifacts. In conventional engineering, drawings and models can be reconciled with measurements, inspections, and the realized artifact. In knowledge work, a representation may instead claim to describe the relevant state of the world, the evidence available when a decision was made, or the consequences expected to follow from it. Those claims can be checked against source data, independent evidence, and eventually observed outcomes. The mechanism changes; the need for trustworthy correspondence does not.
+
+A third condition is governability. At least some consequential actions, outputs, or transitions must be susceptible to checks or controls outside the producing agent. The mechanism need not be a Boolean validator. Work may be constrained, routed, admitted, rejected, escalated for human judgment, or subjected to additional evidence requirements. A software change might be prevented from deployment; an engineering design might require certification; a financial commitment might require human approval above a threshold. The important distinction is between asking the producing agent to remember an obligation and engineering an environment in which the obligation has an independent path to consequence.
+
+A fourth condition is economy. Models, controls, correspondence mechanisms, and accumulated engineering capital cost something to build and maintain. Their value lies in avoiding costs elsewhere: repeated reconstruction, repeated judgment, review, error, delay, or risk. The balance will differ sharply by domain and by task frequency. A representation worth maintaining for work performed ten thousand times may not be worth constructing for a singular judgment.
+
+Finally, some consequential judgment must remain where representation and mechanism cannot responsibly carry it. A representation can expose alternatives without deciding which objective matters most. Evidence can reduce uncertainty without determining what risk is acceptable. Enforcement can bound delegated authority without deciding where that authority ought to be placed. MAGE moves judgment only where knowledge and mechanism justify the move.
+
+This boundary is not all-or-nothing. A domain may support strong Modeling and weak Alignment. Useful representations may extend an agent\textquotesingle s reasoning horizon even when few consequential judgments can responsibly be moved into independent enforcement. MAGE governs what can usefully be governed; it does not turn judgment into machinery merely by naming it.
+
+These requirements do not imply that every domain should acquire software-like models, tests, or workflows. They identify the functions that must somehow be served: represent what matters, maintain correspondence with what is represented, obtain evidence for consequential claims, constrain delegated authority, and preserve human judgment where the remaining decision cannot responsibly be mechanized. The forms that serve those functions are domain-specific.
+
+\section{Model-Based Engineering}\label{heading:model-based-engineering}
+
+Conventional engineering is the nearest transfer because the shape of the outcome changes least. Civil, mechanical, electrical, aerospace, and systems engineering commonly produce artifacts or systems whose consequential properties can be represented before realization and inspected or measured afterward. Their representational traditions therefore supply much of the machinery MAGE requires.
+
+Software engineering is not the first engineering discipline to discover the value of working through models. Model-Based Systems Engineering (MBSE) formalizes the use of modeling to support requirements, design, analysis, verification, and validation across the system lifecycle~\citep{incose2023handbook}. Different engineering disciplines supply different models---of geometry, structure, behavior, loads, flows, controls, interfaces, or other properties---but the underlying move is familiar: engineers reason about a system through representations chosen to expose properties relevant to the decisions they must make.
+
+MAGE does not replace this machinery. It asks what happens when agents begin to perform substantial work within it. An MBSE environment may already contain much of the engineering knowledge an agent would otherwise have to reconstruct from documents, realized artifacts, and prior conversations. Those models can become part of the agent\textquotesingle s reasoning environment. They are context supplied to the agent, true, but their more critical function here is as maintained engineering representations through which the agent can inspect the system, evaluate candidate changes, invoke established analyses, and communicate its own decisions. The arrival of capable agents therefore gives existing investments in model-based engineering another purpose. Models built to help people engineer systems can also help govern the agents engineering them.
+
+An MBSE environment is not automatically a Governed Engineering Environment. Existing models do not settle which actions an agent may take, what evidence those actions require, or who may authorize their consequences. MAGE adds those delegation questions to the established discipline of keeping models in correspondence with the engineered system.
+
+Digital twins offer a familiar example of one part of this relationship. A digital twin maintains a computational representation in correspondence with a physical system, allowing observations of the physical system to inform the representation and the representation to support analysis of the physical system across its lifecycle~\citep{grieves2017digitaltwin}. For MAGE, the twin\textquotesingle s detail matters less than its discipline: the representation participates in an ongoing correspondence relationship with the thing it describes. An agent working through such a representation need not reconstruct the relevant system state from scratch, while measurements and established engineering analyses can provide evidence independent of the agent\textquotesingle s own reasoning.
+
+These traditions suggest that the software case developed in this book may be unusual in one useful respect. In an engineering organization with mature MBSE practice, some of the representational infrastructure MAGE calls for may already exist. The question shifts from \emph{what models should we construct so that agents can reason about the engineered artifact and its consequential properties?} toward \emph{how should agents use, maintain, and act through the models engineers already trust?} This leads to a testable prediction: other things equal, organizations with mature and trustworthy model-based engineering environments should be better positioned to delegate consequential work to agents without requiring those agents to reconstruct the system from its realized artifacts.
+
+There is a useful exchange in the other direction. Software engineering has much to learn from the model-centered traditions of systems engineering, but the software case also contributes something to the broader picture: software engineering is the engineering discipline of \textbf{controlled change}~\citep{davis2026sehandbook}. Software is valuable partly because behavior remains revisable after construction, so its engineering problem includes keeping the artifact acceptable as both it and its environment change.
+
+That emphasis has produced rich machinery for governing change: version control, automated analysis, tests, review, permissions, admission gates, deployment controls, and telemetry. These mechanisms help engineers understand the system and govern its evolution: what may change, what must remain true, what evidence is required, and whether a proposed change may acquire consequence. Software engineering offers another advantage: substantial degrees of freedom in realization. As \magevalue{chapter:problem} illustrated, many implementations can satisfy the same consequential obligations, and this machinery controls change among those implementations even as requirements and operating conditions evolve. The combination of useful realization freedom and mature controlled-change machinery may make software an unusually favorable domain for MAGE.
+
+The software case was therefore a fortuitous place to develop MAGE. Model-based systems engineering provides a mature account of how engineering knowledge can live in purposeful representations. Software engineering provides a mature account of how continual change can remain under engineering control. In MAGE\textquotesingle s terms, the former illuminates Modeling especially clearly, while the latter illuminates Alignment. Neither division is exclusive: systems engineering has long traditions of verification and change control, and software engineering has long used models. But their different emphases expose complementary parts of the same problem.
+
+Conventional engineering shows the transfer most clearly when the outcome is an artifact. The harder test is whether the same control structure survives when the outcome is a decision or action instead.
+
+\section{Professional Knowledge Work}\label{heading:professional-knowledge-work}
+
+Consider an ordinary recurring business decision: how much inventory to carry, which market to enter, how to price a product, whether to approve an investment, or how to respond to a change in demand. There may be no autonomous artifact handed from a development team to a separate user. The people responsible for the outcome remain inside the loop. They represent the relevant state of the world, develop alternatives, gather evidence, make a decision, act, observe what happens, and decide again.
+
+MAGE asks which parts of the process admit durable engineering structure. A representation can make alternatives, objectives, assumptions, dependencies, evidence, and uncertainty explicit. Evidence requirements can prevent a recommendation from proceeding without specified observations. Authority rules can determine which commitments an agent may make and which require human approval. Subsequent events provide evidence about the consequences of the decision. A recurring lesson can then alter the representations, rules, or review obligations inherited by the next iteration.
+
+The transfer is therefore not a development lifecycle. It is a control loop. When consequential work recurs, ask what knowledge should be represented, what claims require evidence, what authority may be delegated, what decisions require human judgment, and what today\textquotesingle s experience should cause tomorrow\textquotesingle s work to inherit.
+
+Whether professional knowledge work belongs here at all turns on the book\textquotesingle s definition of engineering, which is functional rather than institutional: what matters is the kind of control, evidence, expertise, and responsibility being exercised, not the name on the office door. In the tradition of my engineering forebears, I hesitate to assert that doctors and lawyers are "engineering" things. But given the definition used in this book, I must admit the possibility. What marks the boundary is not the profession\textquotesingle s name but whether specialized expertise is being used to exercise informed control over consequential outcomes for which someone remains answerable. Two professions make the range visible.
+
+% <!-- point: accounting-environment-already-engineered | Accounting supplies established representations and controls: double-entry makes balancing checkable, while reconciliation, review, and allocated authority address obligations that arithmetic alone cannot establish. -->
+
+Accounting illustrates the easier end of knowledge work because both its intermediate representations and many of its consequential actions are already highly structured. Double-entry bookkeeping makes one obligation explicit: the debits and credits recorded for a transaction must balance. Arithmetic can expose a failure of that invariant, but balanced entries can still omit a transaction or classify it incorrectly. The distinction explains why accounting also needs ledgers and charts of accounts, classification rules, reconciliations, separation of duties, approval thresholds, closing controls, and audit trails. These representations and controls help maintain correspondence with economic activity and check selected obligations independently of the person producing the records.
+
+In enterprise AI, a structured representation of business concepts, metrics, and relationships is often called a \emph{semantic layer}~\citep{dbt-semantic-layer}. Accounting\textquotesingle s chart of accounts and classification rules provide a familiar example of the kind of shared meaning such a layer can preserve.
+
+The MAGE question is what happens when agents perform more work inside that environment. An agent can reason over the accounting representations rather than reconstructing the rules from prose for each transaction. Reconciliations and variance checks can supply evidence independent of its reasoning. Approval limits and segregation-of-duties rules can determine which actions may proceed and which require escalation. Other judgments require more than applying an arithmetic rule. Materiality concerns what could affect a reader\textquotesingle s decisions; a numerical threshold alone does not settle it. Ambiguous classification and the reasonableness of an estimate likewise require accountable professional judgment. The environment can organize evidence, route these judgments, record them, and bound delegated actions without establishing that every judgment has become mechanically decidable.
+
+% <!-- point: law-representation-without-determinization | Legal analysis can have rich representations while important interpretations remain contested; making an argument explicit does not make its merits mechanically decidable. -->
+
+Legal analysis illustrates a different limit: representations can become rich while consequential judgment remains contested. Legal representations include parties, claims, elements, facts, authorities, procedural posture, deadlines, and relationships among precedents. An agent can organize these structures, trace propositions to authority, and identify missing evidence or conflicting authorities. Some obligations admit mechanical checks: filing deadlines can be monitored, and submissions missing required components can be blocked. But interpretation, credibility, strategy, and the weight of competing authorities remain matters of judgment. Two lawyers working from the same represented facts and authorities may responsibly reach different conclusions. Modeling can make their disagreement easier to examine without supplying a rule that resolves it. A capable agent may contribute an interpretation, but its acceptance still requires justification.
+
+% <!-- point: unit-of-transfer-is-the-surface | The unit of transfer is the engineering surface rather than the profession: a reconciliation or filing deadline may be mechanized while materiality and interpretation remain matters of judgment. -->
+
+The comparison locates the boundary within each profession. A reconciliation may be mechanized while a materiality judgment remains open; a filing deadline may be monitored while an interpretation remains contested. In both, the unit of transfer is the engineering surface rather than the profession.
+
+\section{Science as the Harder Case}\label{heading:science-as-the-harder-case}
+
+% <!-- point: science-tests-the-theory | Science tests the distinction between enforcing conditions on inquiry and establishing what its results warrant; reproducible conduct alone does not settle explanatory merit. -->
+
+Scientific work tests the distinction between governing a process and establishing what its results warrant. Much of what an agent needs can be represented and inherited: hypotheses, experimental designs, datasets, provenance, measurement models, statistical assumptions, analysis plans, and the evidence relationships among them. Some obligations can be enforced outside the producing reasoner. An environment can record a preregistered analysis plan and require departures to be disclosed. Data-integrity and provenance checks can test specified conditions, and a computational result can be refused admission until its steps reproduce.
+
+Those checks do not by themselves establish that an explanation is scientifically compelling or that a surprising result reflects the world rather than the instrument. Scientific work may revise the assumptions and representations through which the result is interpreted. A reproducible calculation can still rest on a poor measurement model; an unexpected observation can justify changing the analysis or designing another experiment. The environment should make these assumptions and changes examinable, while leaving room to challenge the plan itself.
+
+MAGE's role here is to support inquiry without treating procedural compliance as sufficient evidence for a scientific conclusion. Provenance, preregistration, reproduction, and disclosure supply governable surfaces. Models and agents can also contribute to novelty and interpretation, but those contributions remain claims to be assessed through evidence and scientific criticism. A system that enforces an analysis plan has established something useful about how the result was produced. It has not thereby established that a discovery has been made.
+
+\section{Where the Generalization Fails}\label{heading:where-the-generalization-fails}
+
+% <!-- point: failure-traits-named | Transfer becomes difficult where relevant knowledge cannot be represented adequately, evidence or correspondence is weak, recurrence is low, or a mechanized proxy would lose the context that gives an obligation its meaning. -->
+
+The transfer conditions identify several ways strong governance can fail. The difficulty is not simply that a domain is unfamiliar; it is that a representation or mechanism may omit what makes the judgment consequential.
+
+Some relevant knowledge is tacit or embodied: the surgeon's feel for tissue, the negotiator's read of a room, the mechanic's ear for a bearing going bad. If the available representation omits what trained perception contributes, a check over that representation cannot establish the whole judgment. Other obligations around the work may still be governable. Disputed evidence creates a related limit: a mechanism can apply an agreed decision rule, but applying it does not resolve a disagreement about what the evidence warrants.
+
+Some work also changes its object by representing it. A disclosed negotiating position, a published trading model, or a community under observation may alter the behavior being described. Correspondence then requires accounting for that response; a representation that assumes the object remains unchanged can mislead. Highly novel work presents a different economic difficulty. Existing models may be inadequate and recurrence uncertain, so the cost of building durable structure may not be repaid, even though exploratory representations and evidence from the work can still be inherited.
+
+Some obligations also cannot responsibly be interpreted apart from their context. A clinical decision or a use-of-force judgment may depend on distinctions a proposed rule does not preserve. Mechanizing that rule would then enforce a proxy for the obligation. The engineering task is to recognize the missing distinction before treating compliance with the proxy as sufficient.
+
+Finally, some environments offer no meaningful admission boundary and no independent source of evidence. Where nothing stands between the producing reasoner and consequence, Alignment has nowhere to act. Whatever governance exists must live inside the reasoner or its supervisor, which is the arrangement whose limits motivated this book.
+
+In such settings, better representations may still improve the agent\textquotesingle s reasoning without making the consequential judgment mechanically decidable. Modeling can help even where strong Alignment cannot. Such domains may repay investment in representation while resisting independent enforcement, and should therefore expect to retain more human judgment per unit of consequence.
+
+\section{A Research Prediction}\label{heading:a-research-prediction}
+
+The broader interpretation produces a testable prediction. Holding agent capability roughly fixed, consequential work should become cheaper, more reliable, or require less human reconstruction when the environment supplies trustworthy task-relevant representations and independently governs obligations that would otherwise be repeatedly inferred. The effect should grow with task scale and recurrence, and shrink as representation, correspondence, or enforcement becomes expensive or unreliable.
+
+The strongest test would be comparative rather than rhetorical. Independently evolved systems for governing consequential agentic work should develop similar underlying structures despite producing very different outcomes: purposeful representations kept connected to the work they describe, independently produced evidence, allocated authority, and mechanisms that convert recurring judgment into structure later work inherits. The failure conditions just described must bound the comparison. The broader claim should also fail if software\textquotesingle s unusually symbolic realization substrate turns out to be essential rather than merely favorable.
+
+That prediction has been developed here from software engineering. Testing it elsewhere is future work.
+```
