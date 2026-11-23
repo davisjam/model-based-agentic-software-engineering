@@ -9,7 +9,7 @@
 
 % <!-- section-terms: remediation-cost, governance-conversion, field-report -->
 
-% <!-- point: evaluation-covers-product-cost-and-maintenance | The factory's value depends on the accessibility and preservation properties of the software it produces and on production and maintenance costs; the undergraduate workflow supplies a practical reference for the documents. -->
+% <!-- point: evaluation-covers-product-cost-and-maintenance | The evaluation distinguishes remediation comparisons, production economics, and the limits of a longitudinal case. -->
 
 The engineering machinery described in the preceding section made substantial delegation possible. Its value, however, depends on the software it produces and the cost of producing and maintaining it. \autoref{docable-evaluation-questions} organizes the evaluation around four questions, distinguishing what the available evidence establishes from what remains uncertain.
 
@@ -18,12 +18,11 @@ The engineering machinery described in the preceding section made substantial de
 % Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
 % Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
 % Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
-% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
 {\footnotesize
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6000}}@{}}
-\caption[Evaluating DocAble's product and factory]{\emph{Evaluating DocAble's product and factory.} Four questions distinguish output quality, production economics, and the costs of sustaining the factory.}\label{docable-evaluation-questions}\tabularnewline
+\caption[Evaluating DocAble's product and factory]{\emph{Evaluating DocAble's product and factory.} Four questions distinguish comparative performance, production economics, and the limits of the case.}\label{docable-evaluation-questions}\tabularnewline
 \toprule\noalign{}
 \textbf{Question} & \textbf{What the evidence tells us} \\
 \midrule\noalign{}
@@ -37,7 +36,7 @@ The engineering machinery described in the preceding section made substantial de
 \textbf{How does DocAble compare with alternative remediation approaches?} & Human remediation and general-purpose agents provide different baselines for evaluating quality, runtime, and cost. \\
 \textbf{How economical is document production?} & Remediation takes minutes and incurs little inference expenditure; human review and correction remain additional costs. \\
 \textbf{What does building the product and factory cost?} & Development requires substantial upfront investment in both the service and its engineering machinery, distinct from marginal production costs. \\
-\textbf{What must the factory maintain?} & Models, controls, and checks require upkeep; their accumulated size does not establish their continuing value. \\
+\textbf{What can this case establish?} & A longitudinal case establishes mechanisms and their sequence, rather than general estimates of productivity or effectiveness. \\
 \end{longtable}
 }
 
@@ -144,24 +143,12 @@ These quantities show that the specialized system can produce remediation output
   \textbf{Cost to change the product.} Once the factory was established, coding agents could implement substantial changes while I directed engineering decisions and evaluated their consequences. The development activity in \magevalue{sec:inside-docables-software-factory} illustrates this capacity, but does not isolate the cost of individual changes or establish a general productivity multiplier.
 \end{itemize}
 
-\section{Limitations and Maintenance Costs}\label{heading:liability}
-
-% <!-- section-terms: governance-conversion -->
-
-% <!-- point: the-map-pointed-at-a-ghost | A stale symbol reference misled agents until deployment; auditing exposed broader model-to-code drift and motivated correspondence checking for the factory's representations. | terms: governance-conversion -->
-
-% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
-% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
-The engineering machinery that made delegation possible could also mislead the agents it was meant to support. One model named a code symbol that was later moved and renamed. Nothing invalidated the reference; the model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. A subsequent audit showed that the stale pointer was not an isolated defect: re-running closed work against current code found genuine model-to-code drift that a green definition of done had missed. This incident motivated correspondence checking between models and implementation. The factory needed machinery not only to preserve engineering knowledge, but also to establish that its representations remained connected to the system they purported to describe.
-
-% <!-- point: accumulated-structure-has-carrying-costs | Models, controls and evidence require maintenance; the apparatus can stop being worth its upkeep. | terms: governance-conversion -->
-
-The apparatus requires maintenance of its own. Models drift, controls conflict, and evidence becomes stale as workloads change. A gate can continue enforcing an obsolete assumption long after the incident that justified it. Correspondence checks help detect some of these failures, but must themselves be operated and repaired. At the final snapshot, supporting source was about \magevalue{seip_support_ratio} times the production code. Its size is a liability as well as an investment; some of it will cease to justify its upkeep.
+\section{Limits of the Case}\label{heading:liability}
 
 % <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
 
-The case also has limits as evidence about agentic software engineering more generally. It follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, build the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+The case follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, develop the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
 
-% <!-- point: turn-outward-to-other-factories | DocAble constructed models, controls, and production processes alongside the product; established organizations face increased implementation capacity from a different starting point. -->
+% <!-- point: turn-outward-to-other-factories | DocAble illustrates one response to increased implementation capacity; other organizations begin with different resources and constraints. -->
 
-DocAble's development shows one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. Established software organizations face the same pressure from a different starting point. What changes in their production systems when agents take on more implementation work?
+DocAble illustrates one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. Other organizations begin with different resources and constraints. How have they organized their factories as agents take on more implementation work?

@@ -26505,3 +26505,31 @@ Source: `book/references.bib`, lines 3605–3611, at `822b207a614f8eadbd0127a240
 }
 
 ```
+
+## 2026-11-23 — Chapter 5.3 closing: limits and transition
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 147–167, at `dab684dd66d04eceb64325575cec4c3d26811e98`. Removed the repeated model-drift incident and maintenance discussion; retained the case limitations and shortened transition to the comparative accounts.
+
+```latex
+\section{Limitations and Maintenance Costs}\label{heading:liability}
+
+% <!-- section-terms: governance-conversion -->
+
+% <!-- point: the-map-pointed-at-a-ghost | A stale symbol reference misled agents until deployment; auditing exposed broader model-to-code drift and motivated correspondence checking for the factory's representations. | terms: governance-conversion -->
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+The engineering machinery that made delegation possible could also mislead the agents it was meant to support. One model named a code symbol that was later moved and renamed. Nothing invalidated the reference; the model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. A subsequent audit showed that the stale pointer was not an isolated defect: re-running closed work against current code found genuine model-to-code drift that a green definition of done had missed. This incident motivated correspondence checking between models and implementation. The factory needed machinery not only to preserve engineering knowledge, but also to establish that its representations remained connected to the system they purported to describe.
+
+% <!-- point: accumulated-structure-has-carrying-costs | Models, controls and evidence require maintenance; the apparatus can stop being worth its upkeep. | terms: governance-conversion -->
+
+The apparatus requires maintenance of its own. Models drift, controls conflict, and evidence becomes stale as workloads change. A gate can continue enforcing an obsolete assumption long after the incident that justified it. Correspondence checks help detect some of these failures, but must themselves be operated and repaired. At the final snapshot, supporting source was about \magevalue{seip_support_ratio} times the production code. Its size is a liability as well as an investment; some of it will cease to justify its upkeep.
+
+% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
+
+The case also has limits as evidence about agentic software engineering more generally. It follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, build the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+
+% <!-- point: turn-outward-to-other-factories | DocAble constructed models, controls, and production processes alongside the product; established organizations face increased implementation capacity from a different starting point. -->
+
+DocAble's development shows one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. Established software organizations face the same pressure from a different starting point. What changes in their production systems when agents take on more implementation work?
+```

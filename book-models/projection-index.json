@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 647,
+    "total_sites": 646,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 312,
+      "book-web": 311,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -1029,7 +1029,7 @@
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
-            "occ": 12
+            "occ": 9
           },
           {
             "file": "book/web/docs/5.4-other-agentic-software-factories.md",
@@ -1589,7 +1589,7 @@
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/web/docs/5.4-other-agentic-software-factories.md",
@@ -2398,10 +2398,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.3-evaluating-docable.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 6
           },
@@ -2493,7 +2489,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 40
+            "occ": 39
           }
         ]
       },
