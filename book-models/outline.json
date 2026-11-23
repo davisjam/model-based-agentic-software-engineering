@@ -7,7 +7,7 @@
     "derived_ids": 90,
     "missing_topic_sentence": 10,
     "sections_drained": 116,
-    "paragraph_points": 503
+    "paragraph_points": 502
   },
   "chapters": [
     {
@@ -2429,10 +2429,10 @@
           ]
         },
         {
-          "section_id": "walking-through-a-software-factory",
+          "section_id": "comparing-software-factories",
           "level": 2,
-          "heading_text": "Walking Through a Software Factory",
-          "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
+          "heading_text": "Comparing Software Factories",
+          "topic_sentence": "If we are to adopt the metaphor of a software factory, we must consider how such factories might be organized.",
           "id_source": "derived",
           "block_index": 31,
           "points": [
@@ -2442,14 +2442,9 @@
               "block_index": 32
             },
             {
-              "slug": "software-tolerances-take-more-forms-than-a-dimension",
-              "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 38
-            },
-            {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 40
+              "block_index": 38
             }
           ]
         }

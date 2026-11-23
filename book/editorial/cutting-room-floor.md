@@ -26185,3 +26185,36 @@ The approaches need not be opposites. Both seek to produce acceptable software w
 Commodity intelligence changes this tradeoff. In an agentic software factory, inexpensive agents can perform substantial realization work and resolve many ordinary implementation decisions. Engineers can preserve selected consequential judgments in reusable representations and controls while leaving agents substantial freedom over realization, subject to the evidence required for acceptance.
 
 ```
+
+## 2026-11-23 — Chapter 5.1.2 comparative framing
+
+Source: `book/latex/sources/part5/5.1-software-factory.tex` §5.1.2, lines 88–113, at `517d01c15dc0e0fe7dbd4440c246027706d1ca7a`. Renamed the subsection, acknowledged the factory metaphor in its opening, and removed the redundant tolerance paragraph. Four questions and concluding paragraph retained unchanged.
+
+```latex
+\section{Walking Through a Software Factory}\label{heading:walking-through-a-software-factory}
+
+% <!-- point: four-questions-orient-a-walkthrough | Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied. | terms: tolerance -->
+
+Four questions orient a walkthrough without prescribing how the factory should be organized:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{What does the factory produce?} What changes enter it, and where do they originate?
+\item
+  \textbf{What do people do?} Which judgments and acts of realization do people retain or delegate?
+\item
+  \textbf{How is production organized?} How does work move through realization, evaluation, admission, and deployment, and how do lessons change that process?
+\item
+  \textbf{What are the tolerances?} Which properties must remain within bounds, how are those bounds represented, and what evidence establishes compliance?
+\end{enumerate}
+
+% <!-- point: software-tolerances-take-more-forms-than-a-dimension | Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment. | terms: tolerance -->
+
+Software tolerances include quantitative bounds, invariants, architectural constraints, and qualitative obligations that may still require human judgment; each identifies variation the factory must control while leaving other choices open.
+
+% <!-- point: the-four-questions-are-broader-than-mage | A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control. -->
+
+These questions can be answered at different levels of detail. A longitudinal account can show how a factory's arrangements developed, which problems prompted changes, and what the resulting machinery accomplished. Reports from established organizations can show how factories differ in their allocation of work, authority, and control, although they rarely expose the same development history. DocAble provides the first perspective; the industrial accounts provide the second.
+```
