@@ -26388,3 +26388,120 @@ The case also has limits as evidence about agentic software engineering more gen
 
 DocAble's development shows one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. Established software organizations face the same pressure from a different starting point. What changes in their production systems when agents take on more implementation work?
 ```
+
+## 2026-11-23 — DocAble cost categories and removal of unpublished citations
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 124–126, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change~\citep{davis2026docable}. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 50–51, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+\textbf{Human reference.} Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates remediated documents. The recovered corpus contains \magevalue{seip_uta_pairs} identifiable before/after pairs from \magevalue{seip_uta_courses} courses~\citep{davis2026docable}.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 58–59, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
+\textbf{General-purpose agents.} Could a general-purpose agent perform the remediation directly? A separate comparison in the DocAble study used community document tools, unlike the engineered DocAble operations reused in \hyperref[5.2-inside-docables-software-factory:heading:exploring-alternative-reasoning-engines]{Substituting the Reasoning Engine}. Opus and Fable each used one configuration on ten validation documents: five PDFs, two Word documents, two presentations, and one spreadsheet.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 116–117, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
+\textbf{Runtime and inference cost.} Median elapsed time across all \magevalue{seip_eval_attempts} attempts, including the failed attempt, was \magevalue{seip_eval_runtime_median_minutes} minutes. Inference expenditure per completed output had a median of \$\magevalue{seip_eval_inference_median_usd} across the \magevalue{seip_eval_completed} outputs, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud execution costs were not measured for this cohort. The paper separately reports coarse operating-cost estimates; those should not be mistaken for the measured distribution~\citep{davis2026docable}.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 119–120, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+The undergraduates billed \magevalue{seip_uta_hours} hours, or \magevalue{seip_uta_hours_per_pair} billed hours per pair. At an assumed typical wage of \$\magevalue{seip_uta_hourly_wage}, estimated direct labor is \$\magevalue{seip_uta_cost_per_pair} per pair. These are corpus-level quantities; individual document timings and subsequent review effort were not measured~\citep{davis2026docable}.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 129–130, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
+\textbf{Factory investment.} A factory's startup cost, its marginal change cost, and its carrying cost are different numbers --- a separation \magevalue{sec:toward-a-theory-of-mage} develops formally. The DocAble study estimates approximately \$110,000 to develop DocAble over six months: \$90,000 in engineering labor and \$20,000 in cloud expenditure. These are author-supplied estimates, not an independently audited ledger~\citep{davis2026docable}. Much of that expenditure purchased reusable capability. Dividing it by the documents processed during development would confuse the cost of building the factory with the cost of using it.
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 127–136, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Replaced the factory-investment discussion with three explicit cost categories.
+
+```latex
+% <!-- point: the-accounting-prices-the-case | Construction, operation, and retained human review are different costs; the SEIP development estimate is author-supplied. -->
+
+% Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
+\textbf{Factory investment.} A factory's startup cost, its marginal change cost, and its carrying cost are different numbers --- a separation \magevalue{sec:toward-a-theory-of-mage} develops formally. The DocAble study estimates approximately \$110,000 to develop DocAble over six months: \$90,000 in engineering labor and \$20,000 in cloud expenditure. These are author-supplied estimates, not an independently audited ledger~\citep{davis2026docable}. Much of that expenditure purchased reusable capability. Dividing it by the documents processed during development would confuse the cost of building the factory with the cost of using it.
+
+% <!-- point: measured-production-cost-leaves-review-and-carrying-cost-open | Startup investment, inference expenditure and retained review are separate costs; the case does not establish institutional savings. -->
+
+The alternatives incur costs in different places. Manual remediation purchases labor for each document. General-purpose agents need a rubric, tools, and supervision. A specialized service incurs development and maintenance costs to make the recurring workflow easier to run. Cheap output production is therefore only part of the return on the factory. Establishing that the outputs serve their readers, integrating the service into institutional work, and maintaining it remain engineering and economic obligations.
+
+
+```
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 39–39, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Updated the overview to identify the combined product-and-factory development estimate.
+
+```latex
+\textbf{What does building the factory cost?} & Development requires substantial upfront investment, distinct from marginal production costs. \\
+```
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 174–175, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The preceding account describes how the engineering problem changed as DocAble developed. Repository history provides a different view: how implementation activity and the supporting engineering machinery changed over time. The reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026~\citep{davis2026docable}. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
+```
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 390–391, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+Experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make~\citep{davis2026docable}?
+```
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 465–466, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: implementation
+A deterministic lint checks registered prompt definitions against this model and blocks illegal combinations. An agent introducing another unconditional fact minimum into a description prompt encounters a failed check rather than relying on a reviewer to recognize the mistake. The lint governs the instructions, not the descriptions produced from them; it cannot establish that an individual output contains no fabricated content. It prevents a recurring class of inappropriate requirements from entering the remediation system~\citep{davis2026docable}.
+```
+
+Source: `book/latex/sources/appendix-evidence-ledger/evidence-tables.tex`, lines 434–434, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+This receipt records the data used in the revised \magevalue{sec:inside-docables-software-factory}, drawn from the DocAble study's manuscript sources and generated summaries.\citep{davis2026docable} It does not merge them with the historical windows above. The engineering reconstruction covers 31 complete seven-day weeks, March 12--October 14, 2026; the evaluation uses a separate held-out document partition. The factory workflow described as of November 3 is later than the engineering measurement window.
+```
+
+Source: `book/latex/sources/appendix-evidence-ledger/evidence-tables.tex`, lines 621–621, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+The median runtime was \magevalue{seip_eval_runtime_median_minutes} minutes across all \magevalue{seip_eval_attempts} primary attempts, including failure; the range was approximately 0.10--14.09 minutes. Inference expenditure was measured for \magevalue{seip_eval_completed} completed outputs: median \$\magevalue{seip_eval_inference_median_usd}, range approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud and total-cost measurements were unavailable for this cohort. The paper also reports coarse operational estimates of typical inference expenditure; these are distinct from the measured held-out distribution. Subsequent human review and correction were not measured, so these values do not establish labor saved or total institutional savings.
+```
+
+Source: `book/latex/sources/appendix-evidence-ledger/evidence-tables.tex`, lines 647–647, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed a reference to the unpublished companion account; underlying evidence records remain available.
+
+```latex
+The DocAble cost median here is for these ten outputs, not the \$\magevalue{seip_eval_inference_median_usd} median over the 62 completed outputs in the main comparison. The paper presents this smaller cohort's DocAble median more coarsely as less than \$0.50.
+```
+
+Source: `book/references.bib`, lines 3605–3611, at `822b207a614f8eadbd0127a240b4b2a40b342952`. Removed the unpublished companion manuscript from the book bibliography.
+
+```latex
+@misc{davis2026docable,
+  author = {James C. Davis},
+  title = {{DocAble}: Automated Document-Accessibility Remediation, Good Fast and Cheap},
+  year = {2026},
+  howpublished = {SEIP manuscript, October 28, 2026}
+}
+
+```

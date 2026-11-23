@@ -216,7 +216,7 @@ The ledger's narrower purpose is traceability: the quantitative claims in {{chap
 
 ## G.9 Current-Window DocAble Measurements {#docable-seip-current-window}
 
-This receipt records the data used in the revised {{sec:inside-docables-software-factory}}, drawn from the DocAble study’s manuscript sources and generated summaries.[cite: davis2026docable] It does not merge them with the historical windows above. The engineering reconstruction covers 31 complete seven-day weeks, March 12–October 14, 2026; the evaluation uses a separate held-out document partition. The factory workflow described as of November 3 is later than the engineering measurement window.
+This receipt records the data used in the revised {{sec:inside-docables-software-factory}}, drawn from preserved measurement records and generated summaries. It does not merge them with the historical windows above. The engineering reconstruction covers 31 complete seven-day weeks, March 12–October 14, 2026; the evaluation uses a separate held-out document partition. The factory workflow described as of November 3 is later than the engineering measurement window.
 
 ### G.9.1 Longitudinal Definitions and Coverage {#seip-longitudinal-protocol}
 
@@ -293,7 +293,7 @@ The rubric was developed on the development partition. Two validation passes use
 
 Of {{seip_eval_rubric_rows}} criterion rows, {{seip_eval_inconclusive}} were inconclusive for DocAble, including {{seip_eval_adapters_pending}} with automatic adapters pending. The run did not include vision-tier or screen-reader assessments. It did not systematically measure complete preservation or visual fidelity. Gains and regressions in the figure count document–criterion judgments; they are not unique defects, and a net gain can coexist with regressions.
 
-The median runtime was {{seip_eval_runtime_median_minutes}} minutes across all {{seip_eval_attempts}} primary attempts, including failure; the range was approximately 0.10–14.09 minutes. Inference expenditure was measured for {{seip_eval_completed}} completed outputs: median ${{seip_eval_inference_median_usd}}, range approximately ${{seip_eval_inference_min_usd}}–${{seip_eval_inference_max_usd}}. Full cloud and total-cost measurements were unavailable for this cohort. The paper also reports coarse operational estimates of typical inference expenditure; these are distinct from the measured held-out distribution. Subsequent human review and correction were not measured, so these values do not establish labor saved or total institutional savings.
+The median runtime was {{seip_eval_runtime_median_minutes}} minutes across all {{seip_eval_attempts}} primary attempts, including failure; the range was approximately 0.10–14.09 minutes. Inference expenditure was measured for {{seip_eval_completed}} completed outputs: median ${{seip_eval_inference_median_usd}}, range approximately ${{seip_eval_inference_min_usd}}–${{seip_eval_inference_max_usd}}. Full cloud and total-cost measurements were unavailable for this cohort. Subsequent human review and correction were not measured, so these values do not establish labor saved or total institutional savings.
 
 ### G.9.4 General-Purpose Agent Comparison {#docable-agent-comparison-receipt}
 
@@ -307,7 +307,7 @@ This separate comparison used ten validation documents and community document to
 | Fable   | 9/10 | 7.77 |         $3.977 |
 | DocAble | 10/10 | 1.31 |         $0.084 |
 
-The DocAble cost median here is for these ten outputs, not the ${{seip_eval_inference_median_usd}} median over the 62 completed outputs in the main comparison. The paper presents this smaller cohort’s DocAble median more coarsely as less than $0.50.
+The DocAble cost median here is for these ten outputs, not the ${{seip_eval_inference_median_usd}} median over the 62 completed outputs in the main comparison.
 
 On the four PDFs completed by all configurations, median checker reductions were 89.7% for Opus, 91.8% for Fable, 100% for DocAble, and 75.3% for human remediation. Both agents exceeded DocAble on the two Word documents; the human workflow led on the two presentations. The spreadsheet had no original findings. These results concern automatic findings, runtime, and inference expenditure. They do not establish comparable semantic quality, and this small comparison cannot isolate a benefit from MAGE or a lasting capability boundary.
 
