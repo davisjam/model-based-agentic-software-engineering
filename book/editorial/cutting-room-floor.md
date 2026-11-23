@@ -26050,3 +26050,25 @@ At original line68, “That evidence can come from several sources.” becomes �
 Applied the approved §4.4 guidance. Preserved the full context-delivery paragraph, all impact-analysis and operational cases, the maintenance case, all citations, evidence references, point IDs, labels, and index-definition markers. Shortened and moved the oracle definition before mainline uses; relocated Docker with independent reviewer invocation, suite, human gate, and no-merge boundary intact, using “agents” rather than “fleet.” Diagnosis widths are18/39/43 percent with header “Limit.”
 
 Self-communicate review checked both the mainline-only and inset-inclusive reading paths. The evidence/representation distinction remains explicit; uncertainty about obligations still motivates experimentation; evaluation and enforcement remain separate. The cognition inset retains Hutchins, Zhang/Norman, the direct application to tools and representations, and the enforcement distinction. No new factual claims or new citation requirements. `git diff --check` passed. No sync, build, or commit performed.
+
+## 2026-11-23 — Chapter 5 comparative callbacks
+
+Source: `book/latex/sources/part5/5.4-other-agentic-software-factories.tex` at `ce2da7af2065b4b7cdff1bfd343308f4cd5217d3`. Replaced introductory and closing sentences to connect the Cloudflare and Uber cases to DocAble; retained the Uber outcome-series qualification.
+
+### Former text, line 19
+
+```latex
+The four questions from \magevalue{sec:the-software-factory} guide the comparison: what the factory produces, what people do, how production is organized, and what tolerances the resulting software must satisfy. The public accounts illuminate different parts of those questions; they need not supply the same answer or document every part equally well.
+```
+
+### Former text, line 39
+
+```latex
+Cloudflare thus illustrates how organizational obligations can become part of a repeatable production process.
+```
+
+### Former text, line 95
+
+```latex
+This is a concrete process-design decision: spare compute can produce more work than the next human stage can absorb.
+```
