@@ -25758,3 +25758,84 @@ Source lines 12–12:
 ```latex
 The software factory is itself an object of engineering. Its processes determine how work is selected, divided, performed, and evaluated; its models and controls establish which decisions can be delegated and which properties must be preserved (\autoref{process-design-and-tolerance}). DocAble developed these arrangements as implementation outpaced my ability to supervise individual changes. Established organizations, by contrast, already had engineering processes, representations, analyses, and controls into which agents could be introduced. In both settings, increasing implementation capacity creates new demands on the surrounding production system. The factory must evolve alongside the software it produces.
 ```
+
+## 2026-11-23 — Chapter 6 transitions and research progression
+
+Source revision: `34fcdef61e1fe4fc4a69066ac2ba671110eb8689`. Clarify inherited engineering capacity, distinguish scope conditions from investment choices, and place experimental comparisons before measurement. Preserve mathematics and experimental qualifications.
+
+
+### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, source lines 157–157
+
+```latex
+Choosing the least costly arrangement for the next change is not necessarily the best decision for the next hundred changes. A model, validator, or procedure may cost more to construct than the immediate task justifies, yet repay that investment through later work. Conversely, a locally inexpensive change can introduce architectural irregularity or obscure information that subsequent engineers and agents must reconstruct.
+```
+
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source lines 54–54
+
+```latex
+A more ambitious possibility is representation innovation. A reasoner may propose a different decomposition, relation, or state space that makes an engineering question tractable, even when that representation was neither supplied by an engineer nor plainly latent in the implementation. The innovation is useful when it exposes consequential structure that existing representations did not make practically available. A novel diagram alone would not establish that result.
+```
+
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source lines 194–194
+
+```latex
+Consider two agents making more changes against the same service boundary. An explicit dependency model may spare both agents repeated reconstruction; a gate may keep the covered architectural violation out of admitted work. Those mechanisms can support a higher rate of acceptable changes. If the model is stale or the gate enforces the wrong rule, more activity can instead multiply the resulting repair and review. The proposition concerns these mechanisms and their fit to the tasks, rather than a blanket advantage for a GEE described as stronger.
+```
+
+
+### `book/latex/sources/part6/6.3-scope-conditions.tex`, source lines 55–55
+
+```latex
+Consequence does not imply governability. Some important obligations admit precise models and strong evaluation: structural loads, resource bounds, protocol states, or dependency relations may support calculation, exhaustive analysis, or proof. Other obligations remain substantially qualitative even when an organization has strong reason, or a legal duty, to evaluate them carefully.
+```
+
+
+### `book/latex/sources/part6/6.3-scope-conditions.tex`, source lines 74–74
+
+```latex
+Two considerations guide the investment decision. First, how much value would making an obligation explicit provide? Recurrence, consequence, and avoided reasoning or recovery costs can all justify greater investment. Second, how much of the obligation can be mechanized? Some properties admit reliable constraints, validators, or gates; others still require substantial judgment. The propositions in \magevalue{sec:what-the-theory-predicts} explain how explicit engineering can create value; \autoref{return-governability} asks when that value justifies investment and how much of the resulting governance can be mechanized. High-value obligations may justify explicit models, evidence, and procedures even when reliable automation is unavailable. Where mechanization is feasible, its benefits must still justify its construction and carrying costs.
+```
+
+
+### `book/latex/sources/part6/6.3-scope-conditions.tex`, source lines 105–105
+
+```latex
+The preceding limits concern which obligations can be governed economically and adequately. A separate question is whether the same engineering mechanisms apply outside software. Other engineering work also uses representations, independent evidence, reusable procedures, and inherited judgment. Transfer requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations. Where those conditions are weak, better agents or expert judgment may remain the appropriate means of doing the work.
+```
+
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source lines 14–14
+
+```latex
+The next step is to determine when these mechanisms matter, by how much, and at what cost. Three research directions address that question: representation engineering, governance and engineering capital, and the interaction between agentic capacity and the engineering environment. Their results could eventually inform a broader decision problem: how to choose the engineering arrangement and investment appropriate to a task. The central experimental difficulty is to distinguish improvements in the reasoning engine from improvements in the engineering environment through which it works.
+```
+
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source lines 16–16
+
+```latex
+Lines of code have long served as a convenient measure of software production, although their relationship to engineering effort and value is imperfect. Agentic implementation weakens that relationship further: large quantities of code can be produced with little human effort, while substantial engineering work may produce no code at all. Token expenditure offers another readily available measure, but it describes resource consumption rather than engineering output. Agarwal and colleagues~\citep{agarwal2026tokens} found that token expenditure varied widely across weeks with similar commit counts. Engineers also reported using agents for analysis, research, and planning as well as implementation.
+```
+
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source lines 18–18
+
+```latex
+Model-based engineering offers a broader measurement perspective. Prior work has examined model maturity, traceability, verification, rework, and engineering effort~\citep{garcia2021modelproductivity,henderson2023digitalmetrics,campo2023mbse}. MAGE extends the objects of measurement to the governed engineering environment itself: its models, relationships, controls, and ability to support subsequent engineering work. \autoref{engineering-measures} organizes candidate measures into four categories. These measures describe different aspects of engineering activity, output, and capability; they are alternatives and complements for empirical investigation, not components of a prescribed productivity score.
+```
+
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source lines 76–76
+
+```latex
+To test representation leverage, compare agents given structured models with agents given prose containing the same obligations. Hold the task, foundation model, tools, and admission mechanism fixed. Measure correct delivery, reasoning cost, and the human effort required to interpret or repair the result. This isolates the effect of representation form on fulfillment. A separate elicitation experiment should test whether structured representations help engineers discover or express obligations they would otherwise omit, rather than assuming that every treatment begins with an equally complete specification.
+```
+
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source lines 126–126
+
+```latex
+The preceding comparisons would estimate how representations, controls, and agent capabilities affect engineering outcomes. Those estimates could inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger foundation model, a cheaper foundation model with better structure, or a deterministic operation for a sufficiently specified task. Across repeated work, the decision also concerns what to invest in the GEE. The engineer must allocate resources among reasoning, representation, implementation, and assurance while accounting for the environment that later work will inherit.
+```

@@ -52,7 +52,7 @@ A single system can contain obligations suited to durable enforcement alongside 
 
 % <!-- point: consequence-does-not-imply-governability | A consequential obligation can justify explicit engineering and careful judgment without becoming mechanically decidable. -->
 
-Consequence does not imply governability. Some important obligations admit precise models and strong evaluation: structural loads, resource bounds, protocol states, or dependency relations may support calculation, exhaustive analysis, or proof. Other obligations remain substantially qualitative even when an organization has strong reason, or a legal duty, to evaluate them carefully.
+The preceding conditions identify when an engineering investment can be worthwhile and sustained. A further question is what form that investment should take. Important obligations differ in how much can be represented explicitly and how reliably their satisfaction can be evaluated. Consequence does not imply governability: structural loads, resource bounds, protocol states, and dependency relations may support calculation, exhaustive analysis, or proof, while other consequential obligations remain substantially qualitative. Organizations may nevertheless have strong reasons, or a legal duty, to evaluate them carefully.
 
 % <!-- box-family: inset -->
 
@@ -71,7 +71,7 @@ The historic-building and accessibility examples illustrate obligations that are
 
 % <!-- point: value-and-governability-are-two-dimensions-of-investment | The value of explicit engineering and feasible governability are distinct; valuable judgment may warrant investment without a complete predicate. -->
 
-Two considerations guide the investment decision. First, how much value would making an obligation explicit provide? Recurrence, consequence, and avoided reasoning or recovery costs can all justify greater investment. Second, how much of the obligation can be mechanized? Some properties admit reliable constraints, validators, or gates; others still require substantial judgment. The propositions in \magevalue{sec:what-the-theory-predicts} explain how explicit engineering can create value; \autoref{return-governability} asks when that value justifies investment and how much of the resulting governance can be mechanized. High-value obligations may justify explicit models, evidence, and procedures even when reliable automation is unavailable. Where mechanization is feasible, its benefits must still justify its construction and carrying costs.
+\autoref{return-governability} combines the value of making an obligation explicit with its mechanizability. Recurrence, consequence, and avoided reasoning or recovery costs can justify greater investment through the mechanisms developed in \magevalue{sec:what-the-theory-predicts}. High-value obligations may warrant explicit models, evidence, and procedures even when reliable automation is unavailable. Where mechanization is feasible, its benefits must still justify its construction and carrying costs.
 
 \begin{figure}[htbp]
 \centering
@@ -102,6 +102,6 @@ The failure mode is \textbf{premature closure}. An explicit representation can m
 
 % <!-- point: scope-beyond-software-is-a-conditional-generalization | The mechanisms may transfer where useful representations, trustworthy correspondence and adequate governance are available; that transfer remains untested here. -->
 
-The preceding limits concern which obligations can be governed economically and adequately. A separate question is whether the same engineering mechanisms apply outside software. Other engineering work also uses representations, independent evidence, reusable procedures, and inherited judgment. Transfer requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations. Where those conditions are weak, better agents or expert judgment may remain the appropriate means of doing the work.
+Transfer beyond software requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations. Where those conditions are weak, better agents or expert judgment may remain the appropriate means of doing the work.
 
 These scope conditions are theoretical, informed by \magevalue{chapter:software-factories}; they are not estimates of how often MAGE will succeed across a population. \magevalue{chapter:profession} examines other domains and what the account implies for engineers. The research agenda asks how to test the relationships first, before treating that wider application as established.

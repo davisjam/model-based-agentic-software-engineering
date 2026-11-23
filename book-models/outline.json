@@ -3333,7 +3333,7 @@
           "section_id": "the-dynamic-model",
           "level": 2,
           "heading_text": "What Makes Progress Cumulative?",
-          "topic_sentence": "Choosing the least costly arrangement for the next change is not necessarily the best decision for the next hundred changes.",
+          "topic_sentence": "The preceding analysis compares the cost and acceptability of production, including repeated attempts and upkeep.",
           "id_source": "explicit",
           "block_index": 56,
           "points": [
@@ -3664,7 +3664,7 @@
           "section_id": "value-and-mechanizability",
           "level": 2,
           "heading_text": "Value and Mechanizability",
-          "topic_sentence": "Consequence does not imply governability.",
+          "topic_sentence": "The preceding conditions identify when an engineering investment can be worthwhile and sustained.",
           "id_source": "derived",
           "block_index": 20,
           "points": [
@@ -3704,7 +3704,7 @@
           "section_id": "scope-beyond-software",
           "level": 2,
           "heading_text": "Scope Beyond Software",
-          "topic_sentence": "The preceding limits concern which obligations can be governed economically and adequately.",
+          "topic_sentence": "Transfer beyond software requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations.",
           "id_source": "derived",
           "block_index": 38,
           "points": [
@@ -3732,7 +3732,7 @@
           "section_id": "representation-engineering",
           "level": 2,
           "heading_text": "Representation Engineering",
-          "topic_sentence": "To test representation leverage, compare agents given structured models with agents given prose containing the same obligations.",
+          "topic_sentence": "To test representation leverage (P1), compare agents given structured models with agents given prose containing the same obligations.",
           "id_source": "derived",
           "block_index": 10,
           "points": [
@@ -3812,7 +3812,7 @@
           "section_id": "research-optimizing-the-engineering-environment",
           "level": 2,
           "heading_text": "Optimizing the Engineering Environment",
-          "topic_sentence": "The preceding comparisons would estimate how representations, controls, and agent capabilities affect engineering outcomes.",
+          "topic_sentence": "The preceding experiments would estimate how representations, controls, and agent capabilities affect engineering outcomes.",
           "id_source": "explicit",
           "block_index": 35,
           "points": [
@@ -3824,17 +3824,17 @@
             {
               "slug": "engineering-investment-is-a-constrained-sequential-decision",
               "text": "An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "optimal-investment-is-unknown-and-conditions-move",
               "text": "The policy, costs and GEE transitions are uncalibrated; changes in foundation models, tasks and obligations can change which engineering investments pay.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "research-needs-durable-outcomes-not-activity-proxies",
               "text": "Effects are limited to the studied tasks, agents, and environments; replication and evidence of adequate representation and evaluation are needed for broader transfer.",
-              "block_index": 46
+              "block_index": 47
             }
           ]
         }
