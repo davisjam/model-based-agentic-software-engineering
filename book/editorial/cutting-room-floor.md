@@ -25351,3 +25351,17 @@ Physical engineering makes the separation vivid. Fabrication can be expensive or
 
 MAGE shares that emphasis, and asks what happens when much of the work downstream of those decisions can be delegated to commodity intelligence.
 ```
+
+## Chapter 7: clarify implementation’s authority (2026-11-23)
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, §7.2.2 final two paragraphs, lines 52–59, revision `a45087082`. Author-requested replacement removes the repeated economic alternatives and distinguishes executable models from deployed behavior. The preceding commodity-intelligence paragraph remains unchanged.
+
+```latex
+% <!-- point: the-economics-change-without-fixing-the-destination | Lower construction and maintenance costs can make additional representations worthwhile without determining which should become primary; that choice depends on the question and the cost of maintaining correspondence. -->
+
+Lower construction and maintenance costs can make additional representations worthwhile without determining which should become primary. The alternatives in \magevalue{sec:reorganization-of-se} remain open: maintain a model, derive a view when needed, or reason directly over implementation. The choice depends on the engineering question, the value of the representation, and the cost of keeping its claimed correspondence trustworthy.
+
+% <!-- point: the-separation-is-not-absolute | Implementation remains an important source of truth and a useful representation need not become authoritative; what changes is that code need no longer bear the whole burden of being realization, repository of system knowledge, and the surface over which reasoning occurs. -->
+
+Implementation remains an important source of truth, and some properties are most naturally reasoned about there. A useful representation need not become authoritative. What changes is that code need no longer bear the whole burden of being the realization, the repository of system knowledge, and the surface over which engineering reasoning occurs.
+```
