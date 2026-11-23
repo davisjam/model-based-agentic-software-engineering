@@ -25199,3 +25199,23 @@ Organizations may distribute these responsibilities across engineers, platform t
 \textbf{Natural language may be one interface to the work. It is not the engineering method.}
 
 ```
+
+
+## Chapter 7: introduce the professional essays through questions (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, §7.4 opening, revision `526963a69`. Author-approved replacement ending with substantive questions rather than a summary of the following essays.
+
+```latex
+The broader theory sharpens the question this chapter began with. If agents can increasingly implement changes, maintain models, run analyses, and propose engineering moves, what remains the engineer\textquotesingle s work?
+
+% <!-- point: engineers-work-is-responsibility-for-meaning | A profession cannot define its purpose by temporary tool limitations; greater implementation capability does not itself confer authority, and engineers must retain informed control and responsibility for the system. -->
+
+The answer is decidedly not whatever tasks machines happen to perform poorly today. A profession cannot define its purpose by the temporary limitations of its tools. Commodity intelligence expands the implementation capability available to engineers; it does not itself determine who is entitled to authorize the work or accept the result. \textbf{\emph{The engineer must retain informed control over the resulting system and remain responsible for it}}. The professional question is what competence and authority that responsibility requires when much of the work is delegated.
+
+% <!-- point: work-authority-responsibility-come-apart | Directing implementation one did not personally produce is familiar in engineering teams and can become more routine for individual engineers; work, decision authority, and responsibility remain distinct, because delegation does not discharge engineering responsibility. -->
+
+Software engineers have often performed technical work, exercised decision authority, and borne responsibility for the resulting system within the same role. Engineering organizations have long distributed these functions across people and teams, as when technical leads and managers direct implementation they did not personally produce. Commodity intelligence can make this arrangement more routine for individual engineers: an engineer can delegate implementation to agents while defining the intended result and evaluating the evidence for acceptance.
+
+That wider scope for delegation requires engineers to distinguish the functions explicitly. Work performed refers to the activities carried out by people or agents. Authority exercised refers to the decisions a person or mechanism is permitted to make, while responsibility retained refers to accountability for the consequences of the whole engineering arrangement. Delegating an activity does not by itself confer authority to accept its result. An agent or other mechanism can also exercise explicitly delegated authority without thereby discharging the engineer\textquotesingle s responsibility for the system.
+
+```
