@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 653,
+    "total_sites": 652,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 318,
+      "book-web": 317,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -1077,7 +1077,7 @@
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 121
+            "occ": 115
           },
           {
             "file": "book/web/docs/7.5-what-cannot-be-delegated.md",
@@ -1378,10 +1378,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/7.4-the-engineer.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
             "occ": 1
           },
@@ -1405,7 +1401,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 21
+            "occ": 20
           }
         ]
       },

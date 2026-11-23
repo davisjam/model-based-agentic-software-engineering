@@ -25052,3 +25052,150 @@ What changes is the allocation of attention. Routine implementation is already b
 Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work. Modeling, specification, architecture, measurement, programming languages, and formal methods deserve more room because these fields teach durable ways to choose abstractions, state properties precisely, make invalid states harder to express, and separate a claim from the evidence that establishes it. Students should also learn to distinguish improving a reasoner\textquotesingle s context from improving the representation of the engineering problem itself. This does not require every engineer to become a language theorist, systems modeler, or verification specialist.
 
 ```
+
+
+## Chapter 7: focus and reorder the judgment frontier (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, §7.4.1, revision `d5ae573a9`. Author-approved table and inset moves, shortened pharmaceutical analogy preserving the two crucial resilience sentences verbatim, and removal of repeated individual-practice, DocAble, capital, and closing aphorism passages. The original section is preserved below to retain the context of the cuts and moves.
+
+```latex
+\section{Competence, Authority, and the Judgment Frontier}\label{heading:authority-follows-competence-and-responsibility}
+
+% <!-- point: agent-carries-repertoire-engineer-judges-application | An agent can carry the method's repertoire; the engineer is distinguished by judging where the moves apply. -->
+
+As agents acquire more of the engineering repertoire, the competence required of the engineer changes. An agent can recognize a modeling opportunity, construct a state machine, propose an invariant, or suggest that recurring inspection become machinery. But performing these moves is not the same as judging where they apply or accepting responsibility for their consequences. An agent\textquotesingle s command of the repertoire does not establish that a chosen abstraction captures what matters, that a proposed invariant expresses the intended property, or that the resulting tradeoff is acceptable.
+
+As agents improve, they may need less help decomposing problems, choosing architectures, constructing models, or implementing solutions. \autoref{specified-region} distinguished engineering obligations from the scaffolding an agent needs to satisfy them. At the limit, an agent may require only a specification of the desired system and its acceptance conditions. This possibility recalls Sutton's \emph{The Bitter Lesson}, which argues that, in building AI systems, general methods that exploit increasing computation have repeatedly displaced approaches built around human-supplied domain knowledge~\citep{sutton2019bitterlesson}. By analogy, a similar development may occur in agentic software engineering. Some of the machinery described in this book helps today's agents reason through implementation. Better agents may eventually perform that work without the same scaffolding. \textbf{We should not mistake a temporary need to guide implementation for a permanent requirement of engineering.}
+
+What remains is the problem of specification in its fullest sense. \textbf{Precision in meaning is an engineering skill}, requiring engineers to identify consequential properties, distinguish acceptable from unacceptable outcomes, and judge the appropriate tradeoffs and evidence. Agents may help formulate specifications as well as implement them. But their ability to satisfy a specification does not establish that it expresses the right intentions.
+
+\subsection{Professional authority}\label{heading:professional-authority}
+
+% <!-- point: authority-follows-competence-and-responsibility | Engineering authority follows competence and responsibility; an AI produces artifacts but cannot assume professional responsibility. -->
+
+Engineering authority extends beyond technical capability. Societies entrust engineers with consequential decisions because engineers are expected to understand the systems they certify and to stand behind them. The institutional details differ across domains, but the principle holds: the authority to make consequential engineering decisions requires both sufficient control over the system and responsibility for the decisions made. Engineers can carry legal, professional, and sometimes personal liability for the decisions they sign. An AI system can generate an artifact or assemble evidence. It cannot assume the professional responsibility attached to an engineer\textquotesingle s judgment.
+
+% <!-- point: licensure-makes-answerability-institutionally-explicit | Professional licensure and responsible charge make engineering answerability institutionally explicit. -->
+
+Other engineering professions make answerability institutionally explicit through professional licensure. In U.S. professional-engineering practice, the concept of responsible charge attaches authority to the engineer exercising direct control and supervision over consequential engineering work; licensed engineers are also subject to enforceable ethical and legal duties directed toward public health, safety, and welfare.\magefootnote{nspe}{On responsible charge --- direct control and supervision by the engineer exercising professional judgment --- see National Society of Professional Engineers (NSPE) Position Statement No. 10-1778 (rev. May 2024);~\citep{nspe-responsible-charge} on the statutory duties and practice exemptions that bound where licensed authority is required, NSPE Position Statement No. 09-0173 (rev. November 2023)~\citep{nspe-licensure-exemptions}.}
+
+% <!-- point: oversight-is-part-of-legitimate-engineering-authority | Being able to understand and challenge agentic decisions is part of the basis on which engineering authority is legitimately exercised. -->
+
+% <!-- point: withholding-authority-can-be-a-legitimate-outcome | Withholding authority from a system that cannot be meaningfully overseen is itself a legitimate engineering outcome. -->
+
+The ability to understand and challenge agentic decisions is therefore part of the basis on which consequential engineering authority can legitimately be exercised. The converse matters too. If engineers cannot retain sufficient control over a system making consequential decisions to exercise that authority responsibly, withholding the authority is itself a legitimate---and sometimes necessary---engineering outcome.
+
+% <!-- point: production-system-competence-shapes-authority | Agentic production adds the production system to the competence authority requires: domain understanding that cannot evaluate the production system, and orchestration expertise that cannot judge the software's obligations, are each insufficient to accept the work. -->
+
+Agentic production also changes what the competence behind that authority must cover: the production system itself becomes something the engineer must be able to evaluate. Someone who understands the application domain but cannot evaluate the production system may be poorly equipped to authorize its outputs. Conversely, expertise in agent orchestration alone does not establish competence to judge whether the resulting software satisfies its obligations. Authority to accept the work requires both: enough command of the production system to know what its evidence establishes, and enough command of the domain to know what that evidence must show.
+
+\subsection{The judgment frontier}\label{heading:the-judgment-frontier}
+
+% <!-- point: engineers-entrusted-with-consequential-work | One social purpose of the engineer is answerability for work too consequential for ordinary individuals; GenAI can push that boundary down. -->
+
+One social purpose of the engineer is to be entrusted with, and answerable for, technical work too complex or consequential for ordinary individuals to undertake for themselves~\citep{bugliarello-social-function}. A small bridge across the ditch in my parents\textquotesingle{} yard allowed the neighborhood kids to visit more easily, but a few boards crossing a span of three feet did not call for a structural engineer. The Golden Gate Bridge did. Large engineering organizations extend the same principle internally: a chief engineer may be answerable for a system assembled through layers of engineers and specialists, below which lie tasks simple enough that engineering expertise is no longer needed either to perform the work or to establish that it was done correctly. GenAI can push that boundary downward. If machine intelligence can reliably perform more of the work, fewer human engineers may be needed to build the same system. Nothing about engineering requires preserving jobs that no longer require engineering judgment.
+
+% <!-- point: technical-capability-is-not-social-authority | Technical capability is not social authority: the frontier is what society will let machines judge on our behalf. -->
+
+But there is another boundary: the judgment frontier. \magevalue{chapter:theory} showed that some obligations cannot yet be reduced to mechanical checks. A capable reasoner must still decide whether the evidence is enough, whether a tradeoff is acceptable, or whether something is simply right for its purpose. Better GenAI will move this frontier too. We may entrust machine intelligence with judgments that in 2026 we reserve for experienced engineers, including increasingly contextual and qualitative ones. Yet technical capability and social authority are different things. Society may accept an engineering organization with far fewer human engineers before it accepts one with none: no human professional entrusted with the work, no human being who can be called to account for its judgments, and only machine intelligence standing behind the result.\magefootnote{judgment-frontier}{Contemporary calls for greater social control over advanced AI have argued that decisions about powerful systems should not be left solely to the organizations developing them, but should reflect broader social judgment~\citep{fli-pause-open-letter}. Frank Herbert imagined an extreme version of such a choice in Dune: after the Butlerian Jihad, its fictional society prohibits "thinking machines" and deliberately preserves human capacities to perform work that machines might otherwise perform~\citep{herbert-dune}. Herbert\textquotesingle s answer is extreme, but the underlying question is real: societies must decide not only what machine intelligence can do, but what roles they are willing to surrender to it and what human capacity they wish to preserve.} The frontier is therefore not only what machines can judge. It is what society is willing to let them judge on our behalf.
+
+% <!-- point: resilience-machine-only-capacity-has-no-fallback | Engineering capacity existing only through machine intelligence becomes critical infrastructure with no independent fallback. -->
+
+Resilience gives another reason to preserve the human side of that frontier. A society whose engineering capacity exists only through machine intelligence has made that intelligence critical infrastructure. If the foundation models become unavailable, untrustworthy, compromised, or controlled by someone else, the society has no independent engineering capacity to fall back on. Some human engineering competence may therefore remain valuable even when it is no longer the cheapest way to produce engineering work.
+
+Other industries have learned the same lesson about efficiency and reserve capacity. Systems optimized around lean inventories and just-in-time supply can be highly efficient in ordinary conditions while leaving too little cushion when a common disruption arrives. The COVID-19 pandemic made that tradeoff unusually visible~\citep{nasem-supply-chain-resilience}. In consequential industries, resilience can go beyond prudent management and become an explicit engineering obligation. U.S. pharmaceutical manufacturing rules require an "adequate number of qualified personnel" to perform and supervise drug production, with personnel qualified for their assigned functions~\citep{cfr-211-25}. Federal law separately requires manufacturers of certain drugs and related products to maintain redundancy risk-management plans addressing threats to supply,~\citep{fdc-506c-redundancy} and FDA guidance recommends that medical-device manufacturers plan for continuity by ensuring additional production capacity and identifying alternative sources~\citep{fda-device-supply-chain-guidance}.
+
+The analogy to machine intelligence should not be pushed too far: these rules do not require pharmaceutical manufacturers to keep redundant workers idle in case ordinary production fails. But they embody a useful engineering principle. A critical productive capability should not be evaluated only by how efficiently it operates under ordinary conditions; its dependencies, qualified capacity, and ability to continue under disruption matter too. The judgment frontier is therefore partly about trust and accountability, but also about preserving the ability to act without the machine.
+
+% <!-- point: resilience-favors-diversity-of-machine-intelligence | Resilience also favors diversity in where machine intelligence resides; local foundation models can provide reserve capacity. -->
+
+Resilience need not mean preserving only human reserve capacity. It may also favor diversity in where machine intelligence resides. If consequential engineering increasingly depends on foundation models available only through a small number of remote providers, access to those providers becomes part of the engineering infrastructure on which individuals, firms, and societies depend. Smaller local or on-device foundation models could provide another layer of reserve capacity: perhaps less capable than frontier systems, but inexpensive, independently operable, and sufficient when paired with strong representations, tools, and evidence. Whether that capability becomes technically or economically competitive is uncertain. The engineering principle is not. A resilient system should be wary of concentrating an essential productive capability behind a dependency it cannot itself control.
+
+% <!-- point: implementation-fungible-not-independent-human-capacity | Reducing the human effort needed for a given system does not remove the value of independent engineering capacity; engineers must also be able to bring that expertise to consequential decisions. -->
+
+Cheaper implementation can reduce the human effort needed to produce a given system. It does not follow that a resilient society should allow independent human engineering capacity to disappear. The economic case for delegation does not settle the case for preserving independent engineering capacity.
+
+% <!-- point: engineers-leverage-moves-upstream | Working with agents moves the engineer's leverage upstream, from supervising actions toward authoring and judging the environment. -->
+
+At the level of the individual engineer, retaining this competence requires moving between levels of abstraction: choosing the level that exposes the property at issue and descending when the current abstraction no longer answers the question. Working with agents extends that practice. Natural-language programming---say what you want and receive code---captures only the realization interface. As agents acquire more of the technical repertoire, the engineer\textquotesingle s leverage moves upstream---from supervising individual actions toward authoring and judging the environment in which those actions occur.
+
+% <!-- point: docable-was-not-deskilling-expertise-moved-upstream | Building DocAble was not deskilling: expertise moved from realizing implementation decisions to deciding what to represent, constrain, measure, and preserve. -->
+
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
+My own experience building DocAble was not one of deskilling. I needed every ounce of my software-engineering knowledge to make the system work. What changed was where I spent that expertise. I spent less of it realizing individual implementation decisions and more of it deciding what needed to be represented, constrained, measured, and preserved. I found that shift delightful: cheaper realization let me use engineering judgment on a system substantially larger than I could otherwise have built.
+
+% <!-- point: authored-environment-carries-reasoning-forward | An authored environment carries an engineer's reasoning into later work, accumulating engineering capital with unusual leverage. -->
+
+% <!-- point: inheritance-is-not-abdication | Inheritance is not abdication: expert work moves to creating, evaluating, and revising the durable structure. -->
+
+That upstream work can outlast the individual judgment. A well-chosen abstraction, a binding constraint, or a reliable validator can continue carrying part of an engineer\textquotesingle s reasoning into work performed by other people and agents. This is one reason the environment can accumulate engineering capital. It is also why authoring the environment carries unusual leverage: a consequential judgment made well once may shape thousands of later changes. But inheritance is not abdication. Someone must still recognize when the environment no longer fits the system, when an old distinction has stopped mattering, or when a new obligation lies outside what the existing machinery can see. The expert contribution moves toward creating, evaluating, and revising durable structure; it does not disappear once that structure exists. Engineers must also be able to make their knowledge and objections available to those who have authority to act.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING PRACTICE -->
+
+% <!-- inset-size: small -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Engineering at the frontier of authority}
+\label{inset-frontier-authority}
+Engineers advising those with authority to proceed must make their expertise count. They remain responsible for making the engineering case legible: what is understood, what can be assured, what remains uncertain, and what risk a decision would accept.
+
+Engineering history shows what happens when technical knowledge and decision authority become disconnected. Before the Challenger launch, Morton Thiokol engineers recommended against launching at the expected temperatures, but management reversed the recommendation; the Rogers Commission later reconstructed the disagreement and the decision process~\citep{rogers1986}. Before Columbia\textquotesingle s loss, engineers raised concerns about the foam strike and sought additional imagery, but their uncertainties did not reach decision-makers with sufficient force~\citep{caib2003}. Volkswagen\textquotesingle s emissions scandal illustrates a different failure: engineers participated in implementing software that concealed regulatory violations, and the subsequent legal record established individual accountability~\citep{doj-vw-liang}. The disclosures of Frances Haugen and Arturo Béjar concerning harms on Facebook\textquotesingle s platforms illustrate another form of the problem: internal measurements and warnings can exist without producing an adequate organizational response~\citep{senate-haugen2021, senate-bejar2023}.
+
+These cases suggest a simple professional test. When consequential harm occurs, the engineering record should show what engineers knew, what they did not know, what they warned about, and who chose to proceed. This is not merely defensive documentation. Making knowledge, uncertainty, disagreement, and evidence explicit is part of how engineering informs consequential decisions and makes those decisions answerable.
+
+The distinction matters increasingly as software agents become capable of consequential action. Retaining engineering control does not require engineers to make every decision an agent makes. It requires them to establish the relevant bounds: what authority has been delegated, what properties are assured within it, what evidence supports those claims, what departures can be detected, and where the limits of that assurance lie.
+
+Sometimes the available evidence will not establish the desired bound. Engineers are not always the final decision-makers. Executives, military commanders, regulators, political leaders, and societies may have legitimate reasons to proceed despite engineering uncertainty: the consequences of inaction may themselves be severe, and competitive or geopolitical pressures may make accepting substantial risk rational. Engineering\textquotesingle s responsibility is to preserve the distinction. A decision to accept an inadequately bounded risk does not make the risk bounded. The record should make clear what engineering could establish, what it could not, and who possessed the authority to proceed anyway.
+
+That answerability matters after the decision as well. Society needs identifiable people and institutions from whom an account can be demanded and to whom consequences can attach. Professional licenses can be revoked, certifications withdrawn, organizations sanctioned, and individuals held legally responsible. A machine cannot become the terminus of that chain of responsibility. Delegating a decision to a machine does not delegate the responsibility that justified the human or institutional authority to make it.
+
+Better engineering environments can expand the domain over which engineers responsibly delegate action. At this frontier, their value is measured by what people and institutions can understand, constrain, assure, and govern---and by whether they can answer for the consequences.
+\end{bookbox}
+
+\autoref{authorship-division} summarizes the division between delegated engineering work and retained judgment.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Delegated work and retained judgment]{\emph{Delegated work and retained judgment.} Agents may propose engineering moves; engineers remain answerable for their significance, intended meaning, and consequences.}\label{authorship-division}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Self-Governance carries
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The engineer remains answerable for
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Self-Governance carries
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The engineer remains answerable for
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+recognizing a modeling opportunity & determining its significance \\
+proposing a representation & establishing what it means \\
+extracting candidate concepts & choosing the consequential abstraction \\
+finding an inconsistency & adjudicating the intent behind it \\
+formalizing a known property & deciding what property should hold \\
+proposing a governance mechanism & deciding what it should enforce \\
+identifying a recurring failure & determining acceptable risk and tradeoff \\
+\end{longtable}
+}
+
+% <!-- point: authorship-allocation-should-be-explicit-and-governed | How the authorship responsibilities are allocated across roles should be explicit and governed. -->
+
+Organizations may distribute these responsibilities across engineers, platform teams, review boards, or other accountable roles. The allocation should be explicit and governed.
+
+% <!-- point: natural-language-is-an-interface-not-the-method | Natural language may be one interface to the work; it is not the engineering method. -->
+
+\textbf{Natural language may be one interface to the work. It is not the engineering method.}
+
+```
