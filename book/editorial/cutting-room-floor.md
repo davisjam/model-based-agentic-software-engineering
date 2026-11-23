@@ -25219,3 +25219,43 @@ Software engineers have often performed technical work, exercised decision autho
 That wider scope for delegation requires engineers to distinguish the functions explicitly. Work performed refers to the activities carried out by people or agents. Authority exercised refers to the decisions a person or mechanism is permitted to make, while responsibility retained refers to accountability for the consequences of the whole engineering arrangement. Delegating an activity does not by itself confer authority to accept its result. An agent or other mechanism can also exercise explicitly delegated authority without thereby discharging the engineer\textquotesingle s responsibility for the system.
 
 ```
+
+## Chapters 5 and 7: local copyedits and model-first closing (2026-11-23)
+
+### §5.5: established engineering infrastructure
+
+Source: `book/latex/sources/part5/5.5-engineering-the-factory.tex`, line 12, revision `99d95482b4ee66e251f75346b061aacedf4832da`. Replaced or removed at the author’s request to tighten progression and avoid repetition.
+
+```latex
+Established organizations, by contrast, already had production processes, validation suites, and review practices into which agents could be introduced.
+```
+
+### §7.4.3: learning and systems thinking
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 194, revision `99d95482b4ee66e251f75346b061aacedf4832da`. Replaced or removed at the author’s request to tighten progression and avoid repetition.
+
+```latex
+I have found that this process develops the engineer as well as the system. Repeatedly choosing representations, confronting predictions with evidence, and deciding what knowledge should become durable machinery develops engineering judgment. Abundant implementation can deskill an engineer who merely consumes its output; used this way, it can instead become a powerful medium for learning. This is systems thinking under agentic leverage: following consequential properties across requirements, architecture, implementation, validation, and operation, and recognizing when decisions in one part of the system affect another. The engineer need not master every technology or personally perform every activity, but must understand enough to recognize and intervene when those relationships threaten consequential properties.
+```
+
+### §7.4.5: repeated Handbook pointer
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, line 293, revision `99d95482b4ee66e251f75346b061aacedf4832da`. Replaced or removed at the author’s request to tighten progression and avoid repetition.
+
+```latex
+ The companion Software Engineering Handbook is one attempt to address this problem directly: it organizes an undergraduate software engineering core around judgment and decision-making rather than treating implementation technique as the center of the discipline~\citep{davis2026sehandbook}.
+```
+
+### §7.2.3: remove repeated Cabot account and merge closing paragraph
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 74, revision `99d95482b4ee66e251f75346b061aacedf4832da`. Replaced or removed at the author’s request to tighten progression and avoid repetition.
+
+```latex
+Degrees of freedom locate MAGE along this axis. Where the models fully specify the system, and no consequential freedom remains, deterministic generation is preferable. Where freedom remains, engineers can preserve the obligations and tolerances that matter while leaving agents to choose among acceptable implementations. \textbf{Those degrees of freedom are not defects in the model; they are choices engineers have not, or could not, settle in advance.}
+
+Cabot\textquotesingle s vibe-driven model-based engineering proposes a contemporary software route toward the same end of the space, placing agents downstream of models much as a model-first engineering culture already does~\citep{cabot2026vibe}. \magevalue{sec:reorganization-of-se} weighed that proposal as one plausible equilibrium among several. What it adds here is the observation that the software proposal and the systems-engineering practice describe one arrangement approached from two directions.
+
+% <!-- point: mage-includes-model-first-organization-without-privileging-it | Model-first organization is one point in the representational design space, not the privileged destination; where a discipline settles depends on where the new prices land, and one system may settle differently for different properties. -->
+
+In sum, MAGE includes model-first engineering without mandating it. Which representations become primary depends on their costs and benefits for a given system, potentially differing even among components or properties of the same system.
+```
