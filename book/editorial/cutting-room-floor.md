@@ -25335,3 +25335,19 @@ DevOps offers a particularly close precedent. Infrastructure as Code and Policy 
 
 This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. What changes is that engineers increasingly exercise those responsibilities through the production system in which agents work. The next section places that arrangement within the longer history of engineering through explicit representations and controls.
 ```
+
+## Chapter 7: consolidate engineering representations and relocate iteration (2026-11-23)
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, §7.2.1, lines 20–38, revision `3e71e79f5`. Author-requested consolidation of the three opening paragraphs, retaining the models footnote and examples; TDD/Agile paragraph moved unchanged after the opening of §7.2.2. Deleted the final MAGE callback. Original opening and deleted sentence preserved below.
+
+```latex
+The account of Modeling in \magevalue{chapter:modeling} belongs to a much older engineering practice. Civil, mechanical, electrical, aerospace, and systems engineers work through load models, schematics, state-space models, simulations, drawings, and analyses.
+
+% <!-- index-def: universal-language -->
+
+Models are the building blocks of engineering.\mageaside{Here I mean model in the broad sense developed in \magevalue{chapter:modeling}: a purposeful reduction that preserves distinctions needed for some question. The claim is close to axiomatic under this book\textquotesingle s definition of Engineering. A consequential system sufficiently simple to understand and direct without reasoning through reduced representations does not present the complexity for which engineering, in this sense, is required.} A circuit schematic is not a circuit; a finite-element model is not a bridge; a process-flow diagram is not a refinery. The representation is useful because it leaves most of reality out.
+
+Physical engineering makes the separation vivid. Fabrication can be expensive or irreversible, full-scale trials can be destructive, and physical iteration can take weeks or months. A structural model answers a loading question before concrete is poured. Circuit simulation exposes a design error before a mask set is fabricated. Realization cost makes the gap between representation and artifact obvious.
+
+MAGE shares that emphasis, and asks what happens when much of the work downstream of those decisions can be delegated to commodity intelligence.
+```
