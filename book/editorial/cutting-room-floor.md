@@ -26124,3 +26124,64 @@ As \magevalue{sec:constraints-sensors-validators-gates} showed, measurement can 
 Watt\textquotesingle s improved steam engine shows why production capability and product tolerance must develop together. Its design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for the engine to perform as intended. The advance was therefore more than a faster way to make an existing artifact. A more capable production system made a different artifact practical.
 
 ```
+
+## 2026-11-23 — Chapter 5.1.1 definition, carrying costs, and Agile inset
+
+Source: `book/latex/sources/part5/5.1-software-factory.tex` §5.1.1, lines 51–104, at `bdcbc636b0fc3f2141a0b13dc03cf9c715f2fffa`. Merged the copying/change distinction and carrying-cost discussion; moved the MAGE-specific factory description into §5.2; recast the inset around Royce and Agile and shortened its transition. Original prose retained below.
+
+```latex
+% <!-- point: software-does-not-repeatedly-produce-instances | The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing. -->
+
+The analogy requires one adjustment before we apply it to software. A physical factory commonly produces many instances of a product. Software usually does not. Another copy of a program may cost almost nothing, while a software service may consist of one continuously evolving system serving millions of users.
+
+% <!-- point: the-output-is-the-next-working-realization | The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works. -->
+
+The output of a software factory is the next working realization of the product. Software organizations repeatedly change an existing system: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Each production cycle begins with a working software system and attempts to produce a changed system that still works.
+
+% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | A software factory organizes controlled change while preserving control over consequential properties and consequences. -->
+
+The factory\textquotesingle s job is to realize controlled change: creating and evolving software while preserving sufficient control over the properties and consequences that matter~\citep{davis2026sehandbook}. A software factory is the production system through which that change occurs.
+
+\begin{quote}
+\textbf{Software factory.} The engineered production system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved.
+\end{quote}
+
+% <!-- point: a-factory-contains-more-than-its-fabricators | Models, tools, and controls perform different roles within the factory, whose GEE is joined by people, agents, production activities, and organizational authority. -->
+
+Within the factory, models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies.
+
+The governed engineering environment developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} is part of this larger factory. It comprises the reusable representations, tools, procedures, and controls through which engineering work is directed and governed. The factory also includes the people and agents doing the work, the production activities they perform, and the organizational arrangements that determine what work is undertaken and who has authority over its consequences.
+
+% <!-- point: the-two-problems-specialize-to-changes-not-copies | A software factory preserves consequential properties while changing the system itself. | terms: tolerance -->
+
+Unlike a factory producing repeated copies of a fixed design, a software factory must preserve consequential properties while changing the system itself.
+
+% <!-- point: representations-of-software-carry-a-carrying-cost | Representations of changing software incur construction and maintenance costs. -->
+
+That task carries a cost that physical manufacturing can often amortize differently. A drawing for a manufactured part may remain useful across thousands of instances. A representation of a software system describes a target that is itself changing. Requirements, architecture descriptions, interface specifications, models, and tests therefore incur a carrying cost: they must evolve with the software if they are to remain useful.
+
+% <!-- point: organizations-judge-the-carrying-cost-differently | Organizations weigh reusable representations against the cost of skilled judgment during implementation. -->
+% <!-- point: the-question-was-where-judgment-is-carried-most-economically | The economic question is where consequential knowledge can be maintained and applied most economically without losing control. -->
+
+Software organizations have made different choices about where to retain engineering judgment. Explicit representations can preserve knowledge for reuse, but require skilled labor to construct and maintain. Keeping knowledgeable engineers close to implementation avoids some of that cost, but requires them to resolve questions about behavior, structure, and tradeoffs as the software changes~\citep{kautz2018mbse}. Neither choice is intrinsically irrational. The economic question is where consequential engineering knowledge can be maintained and applied most economically without losing control.
+
+% <!-- box-family: inset -->
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Engineering judgment and the Agile movement}
+\label{inset-engineering-judgment-agile}
+% <!-- point: earlier-separation-attempts-met-the-same-tradeoff | Moving decisions upstream can reduce implementation judgment but requires skilled work to construct and maintain the representations. -->
+Earlier attempts to separate engineering judgment from implementation often sought to move decisions upstream. Detailed requirements, architectures, interfaces, and models would guide programmers who did not need to reconstruct the underlying design decisions. That arrangement could reduce the judgment required during implementation, but constructing and maintaining the representations demanded substantial skilled engineering labor.
+
+% <!-- point: agile-is-intelligible-when-the-product-is-change | Agile practices placed greater weight on knowledgeable engineers close to implementation; representation costs help explain the tradeoff. -->
+The Agile movement placed greater weight on keeping knowledgeable engineers close to implementation~\citep{agile-manifesto2001,scrumguide2020}. Working software became the primary measure of progress; changing requirements were expected; collaboration was preferred to elaborate handoffs; and documentation was valuable insofar as it continued to serve the work. These practices reflected an economic tradeoff. When software changes frequently, a representation that is costly to maintain may provide less value than having an engineer resolve the question directly.
+
+The approaches need not be opposites. Both seek to produce acceptable software while controlling the cost of engineering judgment. They differ in how much knowledge is preserved in reusable representations and how much must be supplied by people during implementation. As that balance changes, so does the value of investing in the production system around the programmer.
+\end{bookbox}
+
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Inexpensive capable agents can resolve ordinary implementation choices while engineers preserve selected consequential judgments and acceptance evidence. | terms: commodity-intelligence -->
+
+Commodity intelligence changes this tradeoff. In an agentic software factory, inexpensive agents can perform substantial realization work and resolve many ordinary implementation decisions. Engineers can preserve selected consequential judgments in reusable representations and controls while leaving agents substantial freedom over realization, subject to the evidence required for acceptance.
+
+```
