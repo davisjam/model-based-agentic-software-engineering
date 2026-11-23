@@ -3861,32 +3861,32 @@
           "heading_text": "Agents Entered an Implementation-Centered Discipline",
           "topic_sentence": "The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 12,
           "points": [
             {
               "slug": "agents-inherited-the-implementation-centered-object",
               "text": "The first agentic-SE research inherited the engineering object in front of it — a repository and a task — and asked how to make a stronger reasoner perform it.",
-              "block_index": 12
+              "block_index": 13
             },
             {
               "slug": "repocoder-sweagent-autocoderover-share-an-orientation",
               "text": "Retrieval, purpose-built interfaces, program analysis, and specification inference differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact.",
-              "block_index": 14
+              "block_index": 15
             },
             {
               "slug": "agent-governance-research-is-another-antecedent",
               "text": "Agent-governance research translates obligations into controls across design-time, runtime, and assurance layers, evaluates actions against path-dependent policies, and integrates enforcement into an agent's operating environment; MAGE's governance-conversion process adds how implementation reveals missing obligations.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "mage-accepts-machinery-and-changes-the-object",
               "text": "MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "the-difference-is-level-not-opposition",
               "text": "Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent.",
-              "block_index": 20
+              "block_index": 21
             }
           ]
         },
@@ -3896,12 +3896,12 @@
           "heading_text": "The Old Dream, with a New Substrate",
           "topic_sentence": "The ambition predates today's coding agents.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 23,
           "points": [
             {
               "slug": "the-old-dream-with-a-new-substrate",
               "text": "The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible.",
-              "block_index": 23
+              "block_index": 24
             }
           ]
         },
@@ -3911,67 +3911,67 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "As commodity intelligence assumes more implementation and routine engineering work, human effort shifts toward directing that work and governing its results.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 28,
           "points": [
             {
               "slug": "allocation-changes-even-where-the-eventual-organization-is-uncertain",
               "text": "As implementation becomes cheaper the allocation of engineering work changes, while the profession’s eventual organization remains uncertain. Human effort may move toward intent, abstraction, evidence, tradeoffs, and acceptance.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "where-displaced-effort-settles-depends-on-what-becomes-cheaper",
               "text": "Where displaced effort settles depends on which parts of the production system become cheaper and more reliable, and the theory of Chapter 6 names the quantities those improvements act on.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "four-trajectories-are-the-independent-variables-behind-the-uncertainty",
               "text": "Technological progress can move those terms independently: reasoners, representation machinery, realization machinery, and governance machinery can each improve at their own rate, and they are the independent variables that prevent a single confident forecast.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them",
               "text": "Better reasoners leave more legitimate freedom unresolved; even perfect realization does not establish that the encoding captures the right obligations, so capability does not retire engineering responsibility.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical",
               "text": "If explicit representations become cheap to construct, maintain, and reconcile, engineers can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "representation-engineering-broader-than-context-engineering",
               "text": "Retrieval selects information for a reasoner; representation engineering chooses the form in which the engineering question is expressed. The distinction concerns access and representation, which can be combined.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "cheap-reliable-realization-moves-effort-upstream",
               "text": "If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "cabot-is-one-plausible-equilibrium-not-the-prediction",
               "text": "Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority",
               "text": "If strong controls become cheap, engineers can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "combinations-land-differently-for-different-properties-of-one-system",
               "text": "Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology.",
-              "block_index": 48
+              "block_index": 49
             },
             {
               "slug": "more-modeling-need-not-mean-more-permanently-maintained-models",
               "text": "More modeling need not mean more permanently maintained models: construction cost can be repaid through repeated reuse or one consequential answer; cheap machine reasoning expands the one-off questions for which a purposeful reduction pays.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "recurring-judgment-becomes-engineering-capital-under-any-trajectory",
               "text": "Recurring judgment remains an opportunity for governance conversion; conversion and ratcheteering let later work inherit it while keeping the resulting structure open to correction.",
-              "block_index": 52
+              "block_index": 53
             }
           ]
         },
@@ -3981,17 +3981,17 @@
           "heading_text": "Engineering the Production System",
           "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 55,
           "points": [
             {
               "slug": "two-places-engineering-attention-can-go",
               "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
               "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
-              "block_index": 62
+              "block_index": 63
             }
           ]
         }
