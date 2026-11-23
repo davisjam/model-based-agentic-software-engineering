@@ -24846,3 +24846,148 @@ The factory’s maintenance costs are one limitation on its economic value. A se
 
 DocAble provides evidence about one factory's development, operation, outputs, and costs. It shows how an engineer can construct machinery that permits substantial delegation while preserving selected engineering obligations, but also how that machinery can fail or become expensive to maintain. These observations do not establish that other organizations need the same arrangements. They do, however, raise a question worth examining: when agents increase implementation capacity in other software organizations, what changes in the surrounding production system?
 ```
+
+
+## Chapter 7: name the probability events (2026-11-23)
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, line 80, revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested replacement names E and F as the terms are introduced; surrounding paragraph retained.
+
+```latex
+Faithful production through a representation \(R\) depends on whether consequential intent is encoded in it (\(P(E \mid R)\)) and whether the agent fulfills those obligations (\(P(F \mid E,R)\)).
+```
+
+### Four trajectories introduction
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, line 84, revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested tightening; preceding explanation and symbolic table reference retained.
+
+```latex
+These four are not a taxonomy of tools. They are the independent variables that prevent a single confident forecast. \autoref{effort-trajectories} sketches how each would redirect engineering effort. The correspondence is deliberately not one term per row: an improvement can change several terms at once, and representation machinery changes probabilities and costs alike.
+```
+
+
+## Chapter 7: degrees of freedom and realization (2026-11-23)
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 74, revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested condensed replacement; final sentence emphasized as supplied.
+
+```latex
+Degrees of freedom locate MAGE along this axis. A sufficiently complete model can determine realization closely enough that transformation, generation, or synthesis is the natural next step. MAGE includes that case, but does not require it. Its models can instead specify the obligations that matter and the tolerances those obligations permit while deliberately leaving other realization choices open. Those degrees of freedom are not defects in the model; they are choices engineers have no reason to settle in advance. Where tolerances become narrow and little consequential freedom remains, deterministic generation may be preferable. Where substantial freedom remains, autonomous realization can choose among acceptable implementations.
+```
+
+### Model-first engineering conclusion
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 80, revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested replacement states the costs-and-benefits criterion directly.
+
+```latex
+\textbf{MAGE includes this organization but does not privilege it.} Which representations become primary is an empirical question about where the new prices land. A discipline may settle at different points for different systems, or for different properties of the same system.
+```
+
+
+## Chapters 7 and 1: scaffolding and iterative specification (2026-11-23)
+
+Source revision: `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested merge of the scaffolding and Sutton paragraphs, with the simple-systems observation moved and revised for Section 1.4.2. The proposed merged copy repeated the Sutton explanation and concluding sentence; each is retained once. Symbolic figure reference and citation preserved.
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, original lines 37–39
+
+```latex
+\autoref{specified-region} in \magevalue{chapter:modeling} distinguished engineering obligations from the scaffolding a particular agent needs to satisfy them. That distinction has a long-term implication. As agents become more capable, they may need less help decomposing problems, choosing architectures, constructing models, or implementing solutions. At the limit, an agent may require only a specification of the desired system and the conditions for accepting it. Even then, simple systems may need little precision in the initial specification because human observation can supply the missing detail informally and iteratively.
+
+This possibility recalls Sutton's \emph{The Bitter Lesson}, which argues that, in building AI systems, general methods that exploit increasing computation have repeatedly displaced approaches built around human-supplied domain knowledge~\citep{sutton2019bitterlesson}. By analogy, a similar development may occur in agentic software engineering. Some of the machinery described in this book helps today's agents reason through implementation. Better agents may eventually perform that work without the same scaffolding. We should not mistake a temporary need to guide implementation for a permanent requirement of engineering.
+```
+
+### `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, original line 75
+
+```latex
+Either way, a developer can go from an idea to a working application with little code written by hand. For prototypes, this may be enough.
+```
+
+
+## Chapter 7: precision in specification (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, original line 39, revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-requested tightening of the specification paragraph, preserving the distinction between satisfying a specification and expressing the right intentions.
+
+```latex
+What remains is the problem of specification in its fullest sense. Specification requires engineering skill: identifying consequential properties, expressing requirements precisely enough to distinguish acceptable from unacceptable outcomes, and deciding which tradeoffs and evidence are appropriate. Precision in meaning is part of the training shared across engineering disciplines. Agents may help formulate specifications, just as they help construct implementations. But their ability to satisfy a specification does not establish that it expresses the right intentions.
+```
+
+
+## Siemens consolidation and delegated-work table (2026-11-23)
+
+Source revision: `f9286ea5292c2e6dd127f9099b99fd85b8c33841`; working-copy line numbers. Author-requested consolidation into Chapter 5, shorter Chapter 7 interpretation, neutral factory terminology, and revised table introduction and caption. Siemens sources distinguish Agent Studio, simulation research, and Teamcenter BOM updates.
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, line 127
+
+```latex
+\autoref{authorship-division} names this authorship division.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, line 133
+
+```latex
+\caption[The authorship division]{\emph{The authorship division.} Self-Governance can recognize and propose engineering moves; the engineer remains answerable for the significance, intended meaning, authority, and tradeoffs those moves serve.}
+```
+
+### `book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex`, line 23
+
+```latex
+\magefootnote{agent-studio-models}{Siemens' Agent Studio research illustrates another design use. Agents work with formal engineering models, including SysML v2 representations, and simulations evaluate candidate electric-vehicle architectures using Simcenter Amesim. An engineer decides how to proceed at critical points. The research account describes an exploration of candidate designs~\citep{liu2024agentstudio}.}
+```
+
+### `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, line 185
+
+```latex
+% <!-- worked-examples: binds-model-to-territory -->
+
+The Siemens reconstruction describes models, implementation, and engineering analyses kept in correspondence across a digital thread without making every disagreement a build-blocking event. In that account, a human confirms the bill of materials while physics solvers carry parts of the evaluation. The example is useful precisely because correspondence and gating are separate design choices: the coupling can hold without a hard gate deciding the instant the two diverge.
+
+% <!-- worked-examples-end -->
+```
+
+### `book/latex/sources/part5/5.4-other-agentic-software-factories.tex`, line 133
+
+```latex
+The four factory questions reveal different arrangements rather than a common maturity sequence.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 342
+
+```latex
+Here the consequence is the mature capability:
+```
+
+### `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 68
+
+```latex
+The Siemens reconstruction demonstrates one such equilibrium in a mature engineering culture. The public account describes persistent models carrying geometry, requirements, behavior, physical relationships, allowable change, and traceability before an agent enters the picture. Software can appear downstream as one realization among others. The agentic question is therefore not how to recover engineering structure from source code, but how to let autonomous tools operate safely through structure the organization already made explicit.
+```
+
+
+## Chapter 7: focus the sign-off essay (2026-11-23)
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, working-copy line 198, base revision `f9286ea5292c2e6dd127f9099b99fd85b8c33841`. Author-approved cut from the authority discussion to the end of §7.4.2, replaced with the attachment’s preferred Brooks conclusion. Preserves the production-versus-assurance distinction here for possible reuse.
+
+```latex
+% <!-- point: answerability-requires-competence-and-a-path-to-change | Real answerability requires competence and a path to change the environment, or responsibility becomes nominal. -->
+
+Real answerability requires competence and authority. The reviewer has to distinguish local defects from structural problems, and a structural diagnosis needs a path to the architecture, models, mechanisms, or infrastructure that can address it. Otherwise responsibility becomes nominal: the engineer can see the problem but cannot change the environment that produces it.
+
+% <!-- point: models-remain-objects-of-engineering-fidelity-maintained | The correspondence discipline applies to review surfaces; sign-off requires evidence connecting a model’s claims to the realized system. -->
+
+The correspondence discipline of \magevalue{chapter:modeling} applies to the review surface too. The engineer must ask what evidence connects a model\textquotesingle s claims to the realized system; an orderly representation alone is no basis for sign-off.
+
+% <!-- point: probability-chain-locates-residual-uncertainty-upstream | Better realization does not establish that the encoded obligations were right; familiar implementations can be produced from little explicit specification. -->
+
+% <!-- point: interpretation-term-is-not-constant-across-the-work | The interpretation burden within realization varies: familiar patterns can let an agent supply omitted detail, which is useful for exploration and prototyping. -->
+
+Better realization does not establish that the encoded obligations were right. For an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent can supply much of what the engineer left unsaid. This is enormously useful for exploration and prototyping.
+
+% <!-- point: familiarity-reduces-specification-for-production-not-assurance | Production raises a different question: a familiar pattern can make the agent likely to do the right thing without making the right thing explicit enough to check, so familiarity can reduce the specification needed to produce software without reducing the specification needed to assure it. -->
+
+Production raises a different question. A familiar pattern may make the agent likely to do the right thing without making the right thing explicit enough to check. Where the distinction is consequential, "the agent probably knows what we mean" is not an engineering control. The relevant property must be represented well enough that the environment can evaluate whether the realization actually preserves it. Familiarity can reduce the specification needed to produce software; it does not necessarily reduce the specification needed to assure it.
+
+% <!-- point: the-trouble-is-the-requirements | Cheapening realization moved the bottleneck rather than removing it: one expensive part of engineering became dramatically cheaper, and the opportunity now is to represent consequential requirements well enough that the new realization capacity can be used. -->
+
+% <!-- point: represent-consequential-intent-not-the-implementation | The engineering response is a better representation of consequential intent, not a more complete specification of the implementation: capable agents can hold realization choices open, so the engineer must represent what matters well enough to survive that freedom. -->
+
+The trouble is the requirements. In software engineering, it always has been~\citep{brooks1987}. Agents promise to get us to that discovery more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. The opportunity now is to represent consequential intent well enough to use this capacity. Capable agents allow many realization choices to remain open; engineers must establish which properties must survive that freedom.
+
+```

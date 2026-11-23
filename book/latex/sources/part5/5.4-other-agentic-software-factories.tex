@@ -4,6 +4,7 @@
 % mage-auto-heading: uber
 % mage-auto-heading: amazon
 % mage-auto-heading: gitlab
+% mage-auto-heading: siemens
 % mage-auto-heading: what-the-factories-share-and-where-they-differ
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
@@ -119,11 +120,17 @@ GitLab illustrates how an integrated development workflow can bring existing org
 
 GitLab\textquotesingle s internal playbook also makes acceptance depend on the surrounding pipeline. Its failing-test-first practice is backed by a CI job that fails when the test count decreases unless an explicit bypass label is present, addressing agents that remove tests to obtain a passing result~\citep{gitlab2026playbook}. A test-count check cannot establish that the remaining tests express the right requirements. It does make one recurring way of evading them consequential at admission.
 
+\section{Siemens}\label{heading:siemens}
+
+Siemens illustrates a different starting point for agentic engineering: a production environment organized around established systems-engineering models. Its Agent Studio research integrates AI agents with SysML v2 models and engineering simulation tools, including Simcenter Amesim. In a reported electric-vehicle design example, agents explore candidate architectures, simulate their behavior, and check them against requirements, with an engineer deciding how to proceed at critical points~\citep{liu2024agentstudio}. Related Siemens work connects geometry, physical simulation, and engineering data through a digital thread~\citep{siemens2026a3e}. In Teamcenter, an agent analyzes product structures and proposes bill-of-materials changes; a human confirms updates within existing governance and change processes~\citep{haines2026bomagent}.
+
+This arrangement differs from the software-centered factories examined above. Rather than introducing agents into a production process organized primarily around source code, Siemens connects them to an existing model-based engineering repertoire. The engineering models provide a common basis for design exploration, analysis, and subsequent realization. Correspondence among these representations need not make every disagreement a blocking event; engineers can retain decision authority while agents and specialized tools perform much of the work. Siemens thus demonstrates another organization of the agentic factory, one in which models of the engineered system, rather than its software implementation, occupy the center.
+
 \section{What the Factories Share, and Where They Differ}\label{heading:what-the-factories-share-and-where-they-differ}
 
 % <!-- point: the-factories-place-admission-in-four-different-locations | The cases make different admission arrangements visible and provide uneven evidence; reported activity should not be mistaken for independently established effectiveness. -->
 
-The four factory questions reveal different arrangements rather than a common maturity sequence. The organizations differ in where they place engineering judgment, what they permit agents to decide, and which decisions remain with people or independent controls. Their measurements answer different questions: override frequency, veto and correction rates, merge rate, token cost, review delay, and engineering-health indicators cannot be combined into a single ranking of factory effectiveness.
+The four factory questions reveal different arrangements for organizing agentic production, not stages along a common path toward autonomy. Their primary engineering artifacts also differ: some factories center on source repositories and validation suites, while Siemens works through systems-engineering models and simulations. The organizations differ in where they place engineering judgment, what they permit agents to decide, and which decisions remain with people or independent controls. Their measurements answer different questions: override frequency, veto and correction rates, merge rate, token cost, review delay, and engineering-health indicators cannot be combined into a single ranking of factory effectiveness.
 
 One important difference is where the authority to accept work resides. Cloudflare distinguishes standards that advise reviewers from those whose violations can block a merge, while retaining a recorded human override~\citep{skidmore2026review}. Spotify inserted agents into an existing production process but kept required verification and, in the reported configuration, human review of agent-authored changes~\citep{charas2025honk,curtis2026spotifyqcon}. Shopify's security workflow reserves merge authority to the engineers responsible for the affected code~\citep{son2026security}; GitLab's documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. These arrangements reserve admission authority in different ways, but none treats the producing agent's claim of completion as sufficient authority to admit consequential changes. Process design determines who or what may make the admission decision; tolerance and its evidence determine what that decision must establish.
 

@@ -34,11 +34,9 @@ That wider scope for delegation requires engineers to distinguish the functions 
 
 As agents acquire more of the engineering repertoire, the competence required of the engineer changes. An agent can recognize a modeling opportunity, construct a state machine, propose an invariant, or suggest that recurring inspection become machinery. But performing these moves is not the same as judging where they apply or accepting responsibility for their consequences. An agent\textquotesingle s command of the repertoire does not establish that a chosen abstraction captures what matters, that a proposed invariant expresses the intended property, or that the resulting tradeoff is acceptable.
 
-\autoref{specified-region} in \magevalue{chapter:modeling} distinguished engineering obligations from the scaffolding a particular agent needs to satisfy them. That distinction has a long-term implication. As agents become more capable, they may need less help decomposing problems, choosing architectures, constructing models, or implementing solutions. At the limit, an agent may require only a specification of the desired system and the conditions for accepting it. Even then, simple systems may need little precision in the initial specification because human observation can supply the missing detail informally and iteratively.
+As agents improve, they may need less help decomposing problems, choosing architectures, constructing models, or implementing solutions. \autoref{specified-region} distinguished engineering obligations from the scaffolding an agent needs to satisfy them. At the limit, an agent may require only a specification of the desired system and its acceptance conditions. This possibility recalls Sutton's \emph{The Bitter Lesson}, which argues that, in building AI systems, general methods that exploit increasing computation have repeatedly displaced approaches built around human-supplied domain knowledge~\citep{sutton2019bitterlesson}. By analogy, a similar development may occur in agentic software engineering. Some of the machinery described in this book helps today's agents reason through implementation. Better agents may eventually perform that work without the same scaffolding. \textbf{We should not mistake a temporary need to guide implementation for a permanent requirement of engineering.}
 
-This possibility recalls Sutton's \emph{The Bitter Lesson}, which argues that, in building AI systems, general methods that exploit increasing computation have repeatedly displaced approaches built around human-supplied domain knowledge~\citep{sutton2019bitterlesson}. By analogy, a similar development may occur in agentic software engineering. Some of the machinery described in this book helps today's agents reason through implementation. Better agents may eventually perform that work without the same scaffolding. We should not mistake a temporary need to guide implementation for a permanent requirement of engineering.
-
-What remains is the problem of specification in its fullest sense. Specification requires engineering skill: identifying consequential properties, expressing requirements precisely enough to distinguish acceptable from unacceptable outcomes, and deciding which tradeoffs and evidence are appropriate. Precision in meaning is part of the training shared across engineering disciplines. Agents may help formulate specifications, just as they help construct implementations. But their ability to satisfy a specification does not establish that it expresses the right intentions.
+What remains is the problem of specification in its fullest sense. \textbf{Precision in meaning is an engineering skill}, requiring engineers to identify consequential properties, distinguish acceptable from unacceptable outcomes, and judge the appropriate tradeoffs and evidence. Agents may help formulate specifications as well as implement them. But their ability to satisfy a specification does not establish that it expresses the right intentions.
 
 \subsection{Professional authority}\label{heading:professional-authority}
 
@@ -126,13 +124,13 @@ That answerability matters after the decision as well. Society needs identifiabl
 Better engineering environments can expand the domain over which engineers responsibly delegate action. At this frontier, their value is measured by what people and institutions can understand, constrain, assure, and govern---and by whether they can answer for the consequences.
 \end{bookbox}
 
-\autoref{authorship-division} names this authorship division.
+\autoref{authorship-division} summarizes the division between delegated engineering work and retained judgment.
 
 {\footnotesize
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
-\caption[The authorship division]{\emph{The authorship division.} Self-Governance can recognize and propose engineering moves; the engineer remains answerable for the significance, intended meaning, authority, and tradeoffs those moves serve.}\label{authorship-division}\tabularnewline
+\caption[Delegated work and retained judgment]{\emph{Delegated work and retained judgment.} Agents may propose engineering moves; engineers remain answerable for their significance, intended meaning, and consequences.}\label{authorship-division}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Self-Governance carries
@@ -197,29 +195,9 @@ Let me raise a concern about where this leaves the engineer. Is supervising agen
 
 As implementation becomes cheaper, organizations have a choice. They can ask their engineers to \textbf{shift left}, toward requirements, specification, design, and the consequential decisions that shape a system. Or they can ask them to \textbf{shift right}, toward endless reviews of agent-generated work. The former offers an opportunity to exercise engineering judgment over larger systems; the latter risks turning engineers into full-time inspectors of machine output. I suspect that sustained professional satisfaction will depend on which direction organizations choose. MAGE offers a way to make the first path practical: improve the engineering environment so that recurring mistakes no longer require repeated human intervention.
 
-% <!-- point: answerability-requires-competence-and-a-path-to-change | Real answerability requires competence and a path to change the environment, or responsibility becomes nominal. -->
+% <!-- point: the-trouble-is-the-requirements | Requirements remain the engineering problem: cheaper realization leaves engineers to decide what the resulting system must satisfy. -->
 
-Real answerability requires competence and authority. The reviewer has to distinguish local defects from structural problems, and a structural diagnosis needs a path to the architecture, models, mechanisms, or infrastructure that can address it. Otherwise responsibility becomes nominal: the engineer can see the problem but cannot change the environment that produces it.
-
-% <!-- point: models-remain-objects-of-engineering-fidelity-maintained | The correspondence discipline applies to review surfaces; sign-off requires evidence connecting a model’s claims to the realized system. -->
-
-The correspondence discipline of \magevalue{chapter:modeling} applies to the review surface too. The engineer must ask what evidence connects a model\textquotesingle s claims to the realized system; an orderly representation alone is no basis for sign-off.
-
-% <!-- point: probability-chain-locates-residual-uncertainty-upstream | Better realization does not establish that the encoded obligations were right; familiar implementations can be produced from little explicit specification. -->
-
-% <!-- point: interpretation-term-is-not-constant-across-the-work | The interpretation burden within realization varies: familiar patterns can let an agent supply omitted detail, which is useful for exploration and prototyping. -->
-
-Better realization does not establish that the encoded obligations were right. For an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent can supply much of what the engineer left unsaid. This is enormously useful for exploration and prototyping.
-
-% <!-- point: familiarity-reduces-specification-for-production-not-assurance | Production raises a different question: a familiar pattern can make the agent likely to do the right thing without making the right thing explicit enough to check, so familiarity can reduce the specification needed to produce software without reducing the specification needed to assure it. -->
-
-Production raises a different question. A familiar pattern may make the agent likely to do the right thing without making the right thing explicit enough to check. Where the distinction is consequential, "the agent probably knows what we mean" is not an engineering control. The relevant property must be represented well enough that the environment can evaluate whether the realization actually preserves it. Familiarity can reduce the specification needed to produce software; it does not necessarily reduce the specification needed to assure it.
-
-% <!-- point: the-trouble-is-the-requirements | Cheapening realization moved the bottleneck rather than removing it: one expensive part of engineering became dramatically cheaper, and the opportunity now is to represent consequential requirements well enough that the new realization capacity can be used. -->
-
-% <!-- point: represent-consequential-intent-not-the-implementation | The engineering response is a better representation of consequential intent, not a more complete specification of the implementation: capable agents can hold realization choices open, so the engineer must represent what matters well enough to survive that freedom. -->
-
-The trouble is the requirements. In software engineering, it always has been~\citep{brooks1987}. Agents promise to get us to that discovery more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. The opportunity now is to represent consequential intent well enough to use this capacity. Capable agents allow many realization choices to remain open; engineers must establish which properties must survive that freedom.
+The trouble is the requirements. In software engineering, it always has been~\citep{brooks1987}. Agents promise to help us discover what matters more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. But the engineer must still decide what the resulting system should satisfy. Capable agents can leave many realization choices open; engineering judgment determines which properties must survive that freedom.
 
 \section{From Full-Stack to Full-System Engineering}\label{heading:from-full-stack-to-full-system-engineering}
 
