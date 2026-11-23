@@ -25620,3 +25620,141 @@ That distinction does not reserve a permanent set of tasks for humans. Better ma
 
 The Preface asked what we can safely delegate. The Conclusion approaches the same boundary from the other direction: What must not be delegated?
 ```
+
+
+## Chapter 5 flow and production-system copyedit — 23 November 2026
+
+Source revision: `913c997a952a086679a448df98a7d84c1f978d6d`. The author requested structural and copyediting cleanup while preserving Chapter 5’s evidence and section order. The passages below are replaced or condensed, not relocated.
+
+### `book/latex/sources/part5/5.1-software-factory.tex`, source lines 19–19
+
+Reason: Condense the repeated fabricator/factory distinction while retaining the manufacturing analogy and its progression.
+
+```latex
+We can now expand that metaphor. A fabricator does not operate alone. Once fabrication becomes a means of production, it sits inside a larger system that determines what should be made, organizes how production proceeds, and determines whether what was produced is acceptable. The printer becomes one piece of the factory.
+```
+
+### `book/latex/sources/part5/5.1-software-factory.tex`, source lines 74–74
+
+Reason: Keep the concrete factory components; remove the repeated definition and test-versus-gate explanation already taught in Chapter 3.
+
+```latex
+A software factory contains more than its fabricators. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies. An agent can run a test and reason about its result. The test supplies evidence; a gate enforces a condition by requiring a passing result before admission. A failed test that is only reported leaves a different choice to the agent or reviewer. Fabricators build the product from models, using tools, subject to controls.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source lines 34–34
+
+Reason: Apply the approved direct first-person opening.
+
+```latex
+DocAble was built by one engineer (me) directing a fleet of coding agents.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source lines 241–241
+
+Reason: Open Inside the Factory with the actual representations and consumers rather than reteaching why source alone is an inadequate supervisory interface.
+
+```latex
+As DocAble grew, source code alone stopped being an adequate engineering interface. Repository search could locate a symbol without explaining which services participated in a workflow, who owned a piece of state, or which resource bound a proposed change had to preserve. The growth in supporting source recorded in \autoref{support-ratio-curve} reflects my response to such problems. The following examples show what that investment made possible: representations that answered engineering questions directly, relationships from which the factory could derive checks and configuration, and controls that made selected obligations consequential for later changes.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source lines 249–249
+
+Reason: Remove a sentence that repeats the immediately preceding product/factory distinction.
+
+```latex
+Some models describe the product, while others describe the agents and their engineering environment. These models describe both the software being produced and the process used to produce it.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source lines 253–253
+
+Reason: Let the concrete table carry the supervisory consequence; retain a direct transition to it.
+
+```latex
+Each representation gives the engineer a purpose-built view of a consequential property. The model carries selected engineering knowledge that the supervisor can inspect directly, without reconstructing it from implementation. This applies the purposeful reduction developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} to factory supervision. \autoref{factory-census-specimens} shows six representative models, chosen for the variety of question, form, and consumer.
+```
+
+### `book/latex/sources/part5/5.3-evaluating-docable.tex`, source lines 75–75
+
+Reason: State the inference-cost denominator explicitly before the comparison with human labor; preserve cohort and exclusions.
+
+```latex
+The \magevalue{seip_eval_completed} completed outputs had a median inference expenditure of \$\magevalue{seip_eval_inference_median_usd}, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}.
+```
+
+### `book/latex/sources/part5/5.3-evaluating-docable.tex`, source lines 80–80
+
+Reason: Explicitly distinguish corpus-level average billed labor from validation-cohort median elapsed runtime without treating them as matched labor savings.
+
+```latex
+The human reference required \magevalue{seip_uta_hours_per_pair} billed hours per document pair, compared with \magevalue{seip_eval_runtime_median_minutes} minutes of unattended DocAble runtime. These are different measures of production effort.
+```
+
+### `book/latex/sources/part5/5.4-other-agentic-software-factories.tex` — industrial comparison and coda
+
+Source revision: `913c997a952a086679a448df98a7d84c1f978d6d`. Replaced paragraphs below are retained for review. The edit clarifies case contributions, separates knowledge acquisition from maintenance, and concludes from the chapter’s evidence.
+
+Source lines 39–39:
+
+```latex
+Operating experience also changes what later work inherits. The November and December 2025 outages led to rules against calling \texttt{.unwrap()} outside tests and against assuming upstream dependencies were in an expected state. Dangerous configuration patterns can be enrolled in Snapstone\textquotesingle s shared deployment machinery. The policy representation changed from Markdown to JSON when agents needed more reliable filtering~\citep{hartman2026failsmall}. Semantic-review latency also encouraged moving suitable checks into deterministic linters earlier in the workflow~\citep{reimann2026codex}. These are concrete instances of governance conversion: a failure or recurring cost leads to a reusable change in the environment. The sources describe those changes but do not measure their effect on later incidents.
+```
+
+Source lines 45–45:
+
+```latex
+Spotify introduced agents into an established process for changing software across many repositories. Fleet Management selected repositories, ran transformations, opened and merged pull requests, and monitored the resulting deployments, alerting the change author when production failed~\citep{brown2023fleet}. In 2025, an agent replaced the transformation script at one station while the surrounding targeting, review, and merge infrastructure initially remained the same. The agent addressed changes that deterministic scripts had struggled to cover, including the remaining 30 percent of one fleet migration~\citep{charas2025honk}. This lets us examine which production structures could be reused and which later required revision.
+```
+
+Source lines 59–59:
+
+```latex
+Spotify\textquotesingle s later measurements make the limits of that process visible. Its refined rework measure did not rise during the AI ramp-up, while code complexity and pull-request size did; the company kept its thresholds unchanged. Incident retrospectives found no material direct contribution from AI-authored code, yet change volume had grown faster than some verification controls could adapt. One automated dependency upgrade passed its checks and still failed in production~\citep{singer2026quality}. These observations concern different properties and should not be collapsed into a single quality score. Producing more changes has exposed a capacity problem as well as a check-coverage problem.
+```
+
+Source lines 77–77:
+
+```latex
+A security-workflow account shows why recording an instruction may be insufficient. River violated a prompt-stated enumeration requirement and acknowledged the omission in its report. Shopify\textquotesingle s response was to require rules governing vulnerability closure to be enforced in code. The same account describes draft-only agent output, merge authority held by the engineers responsible for the affected code, a merge queue requiring fresh evidence, and a post-merge check that the default branch contains the fix. Use of that queue rose from about 10 to 80 percent~\citep{son2026security}. That measures adoption of the queue, not the rate at which vulnerabilities escaped. The controls are described for security work; the account does not establish what evidence ordinary River pull requests must carry or how often they fail in production.
+```
+
+Source lines 87–87:
+
+```latex
+Uber adjusts context delivery, tool access, and coordination. Moving deterministic orchestration from repeated agent turns into executable code reportedly cut token use by more than half for common workflows and by more than 90 percent for bulk cases. Real workloads become benchmarks, foundation models are selected against cost and reliability, and managed agents are evaluated in units such as cost per merged pull request, review, alert, or cleanup~\citep{medisetty2026factory, medisetty2026sdlc}. Those units connect resource use to an outcome rather than counting agent activity alone. They also make the surrounding engineering choices visible: some work is cheaper when executed directly than when repeatedly reconstructed through model interactions.
+```
+
+Source lines 113–113:
+
+```latex
+Amazon also reports experiments on improving Kiro itself. Kiro-trace proposes prompt or tool changes from recorded runs. A separate deterministic gate screens targeted failures, checks regression assertions, and compares candidates with an unchanged control on the full benchmark. It requires gains on selected tasks without losses beyond a specified margin elsewhere; a person decides whether to merge. One apparent improvement was rejected after it proved to be a lucky run. Evaluation mistakes became checks, and confirmed fixes add regression assertions~\citep{kim2026kirotrace}. These internal experiments illustrate the same engineering problem at another level: improving the fabricator requires evidence about the improvement and maintenance of the machinery that evaluates it.
+```
+
+Source lines 119–119:
+
+```latex
+GitLab illustrates how an integrated development workflow can bring existing organizational knowledge and controls to agent work. Repository instructions, chat rules, review skills, CI configuration, and workflow definitions supply different kinds of context~\citep{gitlab2026customize}. The documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. For human-triggered flows running on runners, composite identity limits access to the intersection of the service account's and triggering user's privileges~\citep{gitlab2026identity}. Tool-governance rules can also constrain actions; project rules may tighten but not loosen a group rule~\citep{gitlab2026toolgovernance}. These are distinct functions: instructions inform the work, permissions restrict actions, and the approval boundary reserves a consequential decision.
+```
+
+Source lines 139–139:
+
+```latex
+Two recurring costs cut across those arrangements. The first is supervisory capacity. Uber\textquotesingle s Sunday maintenance schedule would be incomplete without its separate limit on Monday\textquotesingle s review load. Spotify\textquotesingle s ability to generate more changes exposed limits in verification even when its measured rework did not rise. A factory therefore has to organize evaluation and admission alongside realization. Increasing the rate of one stage can shift delay or risk to another; the production system must be assessed through the work it can accept and sustain.
+```
+
+Source lines 143–144:
+
+```latex
+The second cost is maintaining what later work inherits. Shopify repairs divergent instructions; Cloudflare revises policy representations and moves suitable checks earlier; Kiro\textquotesingle s improvement experiments acquire new regression assertions. Each preserved lesson can reduce future reconstruction or repeated judgment, but the resulting artifact must remain connected to the work it governs. This is the carrying-cost question from \magevalue{sec:the-software-factory} in operational form. Improvements in foundation models can also change that calculation, as Spotify\textquotesingle s retired judge illustrates; Shopify\textquotesingle s rising merge rate with an unchanged model shows that the surrounding factory can improve independently.
+
+```
+
+### `book/latex/sources/part5/5.5-engineering-the-factory.tex` — industrial comparison and coda
+
+Source revision: `913c997a952a086679a448df98a7d84c1f978d6d`. Replaced paragraphs below are retained for review. The edit clarifies case contributions, separates knowledge acquisition from maintenance, and concludes from the chapter’s evidence.
+
+Source lines 12–12:
+
+```latex
+The software factory is itself an object of engineering. Its processes determine how work is selected, divided, performed, and evaluated; its models and controls establish which decisions can be delegated and which properties must be preserved (\autoref{process-design-and-tolerance}). DocAble developed these arrangements as implementation outpaced my ability to supervise individual changes. Established organizations, by contrast, already had engineering processes, representations, analyses, and controls into which agents could be introduced. In both settings, increasing implementation capacity creates new demands on the surrounding production system. The factory must evolve alongside the software it produces.
+```

@@ -31,7 +31,7 @@
 % <!-- point: one-engineer-directed-a-fleet | One engineer directed coding agents while engineering both the remediation product and its factory; the final snapshot records production source, supporting source, and model modules. | terms: fleet-scale -->
 
 % Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
-DocAble was built by one engineer (me) directing a fleet of coding agents. The product was a document-accessibility remediation service; the factory was the production system through which I directed changes to that service. I was engineering both. The product had to improve accessibility while preserving the document properties its users depended on. The factory had to organize implementation and preserve consequential engineering decisions as agents changed the system.
+I built DocAble by directing multiple coding agents. The product was a document-accessibility remediation service; the factory was the production system through which I directed changes to that service. I was engineering both. The product had to improve accessibility while preserving the document properties its users depended on. The factory had to organize implementation and preserve consequential engineering decisions as agents changed the system.
 
 % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
 % Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
@@ -236,9 +236,9 @@ Sustaining that delegation posed a second problem. Once the change volume exceed
 
 % <!-- section-terms: modeling-principle, alignment-principle, governed-engineering-environment -->
 
-% <!-- point: source-code-stopped-being-an-adequate-interface | The growth in supporting source reflects investment in representations, derivations, and controls that answer system-level questions and govern later changes. | terms: modeling-principle -->
+% <!-- point: source-code-stopped-being-an-adequate-interface | Models of workflows, ownership, and resource bounds connect to consumers that supply context, derive configuration, and check obligations. | terms: modeling-principle -->
 
-As DocAble grew, source code alone stopped being an adequate engineering interface. Repository search could locate a symbol without explaining which services participated in a workflow, who owned a piece of state, or which resource bound a proposed change had to preserve. The growth in supporting source recorded in \autoref{support-ratio-curve} reflects my response to such problems. The following examples show what that investment made possible: representations that answered engineering questions directly, relationships from which the factory could derive checks and configuration, and controls that made selected obligations consequential for later changes.
+The supporting apparatus recorded in \autoref{support-ratio-curve} includes models of service workflows, state ownership, and resource bounds, together with their consumers. Some consumers supply context to agents; others derive configuration or check whether a change preserves a declared obligation.
 
 \subsection{What the Factory Knows}\label{heading:what-the-factory-knows}
 
@@ -246,11 +246,11 @@ As DocAble grew, source code alone stopped being an adequate engineering interfa
 
 % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
 % Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
-The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agents and their engineering environment. These models describe both the software being produced and the process used to produce it.
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot.\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.} These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agents and their engineering environment.
 
 % <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
 
-Each representation gives the engineer a purpose-built view of a consequential property. The model carries selected engineering knowledge that the supervisor can inspect directly, without reconstructing it from implementation. This applies the purposeful reduction developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} to factory supervision. \autoref{factory-census-specimens} shows six representative models, chosen for the variety of question, form, and consumer.
+\autoref{factory-census-specimens} shows six representative models, their consumers, and what each allows the supervisor to stop reconstructing from implementation.
 
 {\footnotesize
 \begin{longtable}[]{@{}

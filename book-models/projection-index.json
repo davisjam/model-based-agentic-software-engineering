@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 648,
+    "total_sites": 647,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 313,
+      "book-web": 312,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -114,10 +114,6 @@
           {
             "file": "book/web/docs/4.5-mage-in-motion-summary.md",
             "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 2
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -251,7 +247,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 57
+            "occ": 56
           }
         ]
       },
@@ -1029,7 +1025,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 50
+            "occ": 47
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -1037,11 +1033,11 @@
           },
           {
             "file": "book/web/docs/5.4-other-agentic-software-factories.md",
-            "occ": 82
+            "occ": 84
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1247,7 +1243,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 83
+            "occ": 84
           },
           {
             "file": "catalogue-figure.html",
@@ -1589,7 +1585,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 48
+            "occ": 47
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -2515,7 +2511,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "development-workflow.html",
@@ -2565,7 +2561,7 @@
           },
           {
             "file": "book/web/docs/5.4-other-agentic-software-factories.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
