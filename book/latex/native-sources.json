@@ -228,8 +228,8 @@
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
       "projection": "book/part5/5.3-evaluating-docable.md",
-      "source_hash": "f0f3d16554073b8ee71f1149ed84ac478a33d6fd2781e1797b129c5f5c5f065f",
-      "projection_hash": "6307eafacc93a3879faf39966bbe2281e6510921d5f04af5d48e9bd2c74bd80b"
+      "source_hash": "283242c49bcad422d808532fffaf8aebbcdd507c6afc9b1b445ec6d20084cd9d",
+      "projection_hash": "32482e8d00a200de7ca858b3d2a03ebed53ad6e4b6b7b7f51ab90fe211dd8b21"
     },
     {
       "source": "book/latex/sources/part5/5.4-other-agentic-software-factories.tex",
@@ -1056,6 +1056,6 @@
       "projection_hash": "f7a71bb58e87a19d499fb8c0af78583db10a10c69a3308bc51055e77ec4703d4"
     }
   ],
-  "engine_hash": "91559c0b2c71e7a339e97f81d3ebb697a736654d4f439f31db33a03273b2ae04",
+  "engine_hash": "56bd6ad57351a10189d4e1116e8d6fb6d1d1a1e3cdeced3c168e20864490b470",
   "renderer_version": "pandoc 3.9.0.2"
 }

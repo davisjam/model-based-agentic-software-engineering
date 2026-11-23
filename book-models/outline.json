@@ -2858,32 +2858,32 @@
           "heading_text": "Human Remediation as a Reference",
           "topic_sentence": "Across approximately six months, 42 trained undergraduates billed 1,303.4 hours, and the recovered corpus contains 382 identifiable before/after pairs from 20 courses.",
           "id_source": "explicit",
-          "block_index": 5,
+          "block_index": 6,
           "points": [
             {
               "slug": "manual-remediation-provides-a-reference-not-an-oracle",
               "text": "The trained undergraduate corpus provides artifacts and billed labor for a reference workflow, not expert ground truth or matched labor savings.",
-              "block_index": 6
+              "block_index": 7
             },
             {
               "slug": "human-comparison-separates-syntax-and-semantics",
               "text": "The human-reference evaluation separately measures checker findings and transcript-based semantic improvements relative to the original.",
-              "block_index": 9
+              "block_index": 10
             },
             {
               "slug": "human-comparison-results-vary-by-property",
               "text": "DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output.",
-              "block_index": 13
+              "block_index": 14
             },
             {
               "slug": "semantic-example-exposes-the-checker-limit",
               "text": "A title-only description passed a checker but omitted table contents; a transcription improved access to those contents, while other examples favored human repair.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "human-comparison-limits-define-the-result",
               "text": "Fallible transcript assessment, inconclusive criteria, changed checkers and unmeasured visual and screen-reader properties limit the results.",
-              "block_index": 18
+              "block_index": 19
             }
           ]
         },
@@ -2893,12 +2893,12 @@
           "heading_text": "Runtime and Cost",
           "topic_sentence": "Median elapsed time across all 63 attempts, including the failed attempt, was 1.36 minutes.",
           "id_source": "derived",
-          "block_index": 21,
+          "block_index": 22,
           "points": [
             {
               "slug": "runtime-and-inference-are-measured-separately",
               "text": "The 63 attempts had median runtime 1.36 minutes; 62 completed outputs had median inference cost $0.066, excluding unmeasured review and full cloud costs.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         },
@@ -2908,12 +2908,12 @@
           "heading_text": "General-Purpose Agents and a Specialized Service",
           "topic_sentence": "Could a general-purpose agent perform the remediation directly?",
           "id_source": "explicit",
-          "block_index": 25,
+          "block_index": 26,
           "points": [
             {
               "slug": "agent-comparison-tests-economics-without-a-capability-boundary",
               "text": "A ten-document comparison found mixed checker quality and lower DocAble runtime and inference cost, without establishing comparable semantic quality.",
-              "block_index": 26
+              "block_index": 27
             }
           ]
         },
@@ -2923,17 +2923,17 @@
           "heading_text": "What the Economics Establish",
           "topic_sentence": "A factory’s startup cost, its marginal change cost, and its carrying cost are different numbers — a separation §6.1 develops formally.",
           "id_source": "explicit",
-          "block_index": 30,
+          "block_index": 31,
           "points": [
             {
               "slug": "the-accounting-prices-the-case",
               "text": "Construction, operation, and retained human review are different costs; the SEIP development estimate is author-supplied.",
-              "block_index": 31
+              "block_index": 32
             },
             {
               "slug": "measured-production-cost-leaves-review-and-carrying-cost-open",
               "text": "Startup investment, inference expenditure and retained review are separate costs; the case does not establish institutional savings.",
-              "block_index": 33
+              "block_index": 34
             }
           ]
         },
@@ -2943,27 +2943,27 @@
           "heading_text": "Limitations and Maintenance Costs",
           "topic_sentence": "The engineering machinery that made delegation possible could also mislead the agents it was meant to support.",
           "id_source": "explicit",
-          "block_index": 35,
+          "block_index": 36,
           "points": [
             {
               "slug": "the-map-pointed-at-a-ghost",
               "text": "A stale symbol reference misled agents until deployment; auditing exposed broader model-to-code drift and motivated correspondence checking for the factory's representations.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "accumulated-structure-has-carrying-costs",
               "text": "Models, controls and evidence require maintenance; the apparatus can stop being worth its upkeep.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "the-claim-is-bounded-one-engineer-one-ecosystem",
               "text": "The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "turn-outward-to-other-factories",
               "text": "DocAble constructed models, controls, and production processes alongside the product; established organizations face increased implementation capacity from a different starting point.",
-              "block_index": 43
+              "block_index": 44
             }
           ]
         }

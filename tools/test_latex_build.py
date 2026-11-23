@@ -159,6 +159,12 @@ class DiagnosticPolicy(unittest.TestCase):
 
 
 class TableHeaderStyle(unittest.TestCase):
+    def test_reviewed_question_emphasis_is_scoped_to_named_table(self):
+        source = r"\begin{longtable}{ll}\label{questions}\endhead\textbf{Why?} & Evidence\end{longtable}"
+        self.assertIn(r"\textbf{Why?}", plain_table_bodies(source, preserve_labels=frozenset({'questions'})))
+        self.assertNotIn(r"\textbf{Why?}", plain_table_bodies(source))
+        self.assertNotIn(r"\textbf{Why?}", plain_table_bodies(source, preserve_labels=frozenset({'other'})))
+
     def test_all_tables_keep_caption_header_and_body_together(self):
         source = r"""\begin{longtable}[]{ll}
 \caption[Short]{Caption with \emph{meaning}}\label{example}\tabularnewline

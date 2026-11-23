@@ -280,7 +280,7 @@ def compatibility(source: Path, output: Path):
     source = source.resolve()
     text = source.read_text().replace(r'\mbox{}', '')
     from latex_build import plain_table_bodies
-    text = plain_table_bodies(text)
+    text = plain_table_bodies(text, preserve_labels=frozenset({'docable-evaluation-questions'}))
     # Print heading anchors are chapter-qualified; web/EPUB chapters are separate
     # pages. Preserve the same destination when projecting a cross-chapter link.
     text = re.sub(r'\\hyperref\[([^\]:]+):heading:([^\]]+)\]',
@@ -718,7 +718,7 @@ def _prepare_record(task):
 
     from latex_build import (bold_table_headers, layout_selected_table, plain_table_bodies, keep_tables_together,
                              namespace_heading_links, restore_chapter_heading_links)
-    latex = bold_table_headers(plain_table_bodies(latex))
+    latex = bold_table_headers(plain_table_bodies(latex, preserve_labels=frozenset({'docable-evaluation-questions'})))
     from mage_figure_layout import theory_perspectives_columns
     latex = theory_perspectives_columns(latex)
     latex = layout_selected_table(latex, 'engineering-questions-and-candidate-models',
@@ -728,6 +728,8 @@ def _prepare_record(task):
     latex = layout_selected_table(latex, 'stalled-work-diagnosis', (.18, .39, .43),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
+                                  row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'docable-evaluation-questions', (.40, .60),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
@@ -754,7 +756,7 @@ def _prepare_record(task):
     # This inventory must precede the contract discussion that follows it;
     # a float can otherwise interrupt the new heading and its first paragraph.
     latex = keep_tables_together(latex, in_place_labels=frozenset({
-        'handbook-substitution-models'}))
+        'handbook-substitution-models', 'docable-evaluation-questions'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

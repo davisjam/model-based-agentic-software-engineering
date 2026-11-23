@@ -1,8 +1,8 @@
 {
   "source": "book/assets/docable-work-order-flow.svg",
   "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-  "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
-  "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+  "source_sha256": "f8fce9c0648d19c013a26f3538822b75280f58afd3ba464d256dd4efa73194e5",
+  "candidate_sha256": "fcef855f628a1bef5823fc5fb50e43c5ca5c6c48890f490684e3280e1de290df",
   "claim": "From engineering intent to completed work. The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.",
   "provenance": {
     "lecture": "course/lectures/act-2-delegation-and-control/05-building-with-agents/2-7-Inside-an-Agentic-Software-Factory.pptx",
@@ -48,8 +48,8 @@
   ],
   "bw_encoding": "All nodes have white interiors. Their labels and topology carry the roles; stage colors in the SVG are redundant. No grayscale role distinction is required.",
   "bold": "Node titles distinguish named actors, artifacts and lifecycle stages from regular explanatory details. Both parallel agent nodes receive equal treatment.",
-  "routing": "Orthogonal directed flow with the original solid repair return preserved exactly. Its outer rail extends upward as a dotted optional branch, entering the engineer from the right with a 76bp terminal approach. The branch annotation sits in the clear right margin beside the reviewed work order; no nodes or labels are crossed.",
-  "redesign": "Synthesis of the lecture workflow rather than slide reproduction. Detailed templates and hook behavior belong in prose/table; this drawing retains scheduling, isolation, integration, completion review and repair.",
+  "routing": "Orthogonal flow with unchanged repair and optional escalation topology. Reduced vertical clearances; repair label sits beside the return near the orchestrator.",
+  "redesign": "Synthesis of the lecture workflow rather than slide reproduction. Detailed templates and hook behavior belong in prose/table; this drawing retains scheduling, isolation, integration, completion review and repair. November 23: reduced native print height from 450 to 341bp (24.2%) without changing font sizes or widths; color artwork was already compact and now shares the same stage elevations.",
   "d2_limitations": "Custom geometry keeps exact peer alignment and a single orthogonal outer return at fixed print width, while preserving matching native TikZ coordinates; the house d2 version does not expose equivalent orthogonal route control.",
   "alt": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. An optional dotted branch also returns unresolved problems to the engineer. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness.",
   "layout_contracts": {

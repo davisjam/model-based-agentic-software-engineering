@@ -26218,3 +26218,11 @@ Software tolerances include quantitative bounds, invariants, architectural const
 
 These questions can be answered at different levels of detail. A longitudinal account can show how a factory's arrangements developed, which problems prompted changes, and what the resulting machinery accomplished. Reports from established organizations can show how factories differ in their allocation of work, authority, and control, although they rarely expose the same development history. DocAble provides the first perspective; the industrial accounts provide the second.
 ```
+
+## 2026-11-23 — Chapter 5.3 evaluation overview
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, opening paragraph, line 14, at `a5714d5652e2fecc12ea02f8122294a369fa30bc`. Replaced the closing orientation sentences with a reference to the new five-question synthesis table.
+
+```latex
+The engineering machinery described in the preceding section made substantial delegation possible. Its value, however, depends on the software it produces and the cost of producing and maintaining it. DocAble must improve document accessibility while preserving the properties its users depend on; the factory must accomplish that work economically. Purdue's undergraduate remediation effort provides a practical reference for evaluating the resulting documents.
+```

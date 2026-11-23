@@ -58,9 +58,11 @@ def single_page_tables(latex: str, labels: set[str], *, placement: str = "p",
     return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', convert, latex, flags=re.S)
 
 
-def plain_table_bodies(latex: str) -> str:
-    """Reserve bold type for column headings in native longtable bodies."""
+def plain_table_bodies(latex: str, *, preserve_labels: frozenset[str] = frozenset()) -> str:
+    """Reserve bold for headings, except explicitly reviewed table emphasis."""
     def table(match):
+        if any(r'\label{' + label + '}' in match[0] for label in preserve_labels):
+            return match[0]
         head, marker, body = match[0].partition(r'\endhead')
         if not marker:
             raise ValueError('Table has no explicit header/body boundary')
