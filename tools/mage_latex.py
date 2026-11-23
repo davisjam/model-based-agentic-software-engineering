@@ -723,6 +723,10 @@ def _prepare_record(task):
     latex = theory_perspectives_columns(latex)
     latex = layout_selected_table(latex, 'engineering-questions-and-candidate-models',
                                   (.18, .54, .28), row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'phenomena-amplification', (.25, .27, .48),
+                                  row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'stalled-work-diagnosis', (.18, .39, .43),
+                                  row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
