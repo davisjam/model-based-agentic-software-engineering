@@ -4043,16 +4043,16 @@
           ]
         },
         {
-          "section_id": "model-first-engineering-as-one-point-in-the-design-space",
+          "section_id": "model-first-engineering-as-one-point-in-the-methodological-spectrum",
           "level": 2,
-          "heading_text": "Model-First Engineering as One Point in the Design Space",
-          "topic_sentence": "Model-first engineering occupies one end of the representational design space: sufficiently complete models determine much of the realization that follows.",
+          "heading_text": "Model-First Engineering as One Point in the Methodological Spectrum",
+          "topic_sentence": "Engineering methodologies differ in when models are constructed and how they relate to implementation.",
           "id_source": "derived",
           "block_index": 22,
           "points": [
             {
               "slug": "mage-includes-model-first-organization-without-privileging-it",
-              "text": "Model-first organization is one point in the representational design space, not the privileged destination; where a discipline settles depends on where the new prices land, and one system may settle differently for different properties.",
+              "text": "Degrees of Freedom and Tolerance help engineers decide which choices to settle through models and which to leave to realization; the balance depends on the engineering question and the costs and benefits of available representations.",
               "block_index": 27
             }
           ]

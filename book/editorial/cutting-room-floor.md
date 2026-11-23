@@ -25365,3 +25365,23 @@ Lower construction and maintenance costs can make additional representations wor
 
 Implementation remains an important source of truth, and some properties are most naturally reasoned about there. A useful representation need not become authoritative. What changes is that code need no longer bear the whole burden of being the realization, the repository of system knowledge, and the surface over which engineering reasoning occurs.
 ```
+
+## Chapter 7: frame model-first engineering within a methodological spectrum (2026-11-23)
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, §7.2.3, lines 54 onward in revision `b0d52b139`. Author-approved replacement defines model-first and model-last starting points, contrasts the Chapter 5 factories, recalls DocAble’s iterative practice, and closes positively with Degrees of Freedom and Tolerance. Timing and realization freedom remain distinct.
+
+```latex
+\section{Model-First Engineering as One Point in the Design Space}\label{heading:model-first-engineering-as-one-point-in-the-design-space}
+
+Model-first engineering occupies one end of the representational design space: sufficiently complete models determine much of the realization that follows.
+
+The Siemens account in \autoref{chapter:5.4-other-agentic-software-factories} illustrates one such arrangement in an established model-based engineering culture. Agents can operate through engineering representations that the organization already uses for design and analysis. How much realization freedom remains depends on what those representations determine and what they leave open.
+
+Model-first engineering does not, by itself, imply waterfall. A model can be revised after a prototype, simulation, test, or deployment exposes a mistaken assumption. The distinction concerns how much engineering intent the representation determines, not whether development proceeds through a single pass. In a model-first system, a sufficiently complete representation may support deterministic generation of much of the implementation; in MAGE, the representation may instead preserve selected obligations while leaving substantial implementation freedom to an agent. Both arrangements can be iterative. What differs is how much the engineer chooses to settle before a particular act of realization.
+
+That inversion clarifies MAGE\textquotesingle s position. Software-first agent systems largely ask, \emph{How do we make a codebase legible to an agent?} A model-first discipline can ask, \emph{How do we let the agent work through the same engineering representations we already trust?}
+
+% <!-- point: mage-includes-model-first-organization-without-privileging-it | Model-first organization is one point in the representational design space, not the privileged destination; where a discipline settles depends on where the new prices land, and one system may settle differently for different properties. -->
+
+Degrees of freedom locate MAGE along this axis. Where the models fully specify the system, and no consequential freedom remains, deterministic generation is preferable. Where freedom remains, engineers can preserve the obligations and tolerances that matter while leaving agents to choose among acceptable implementations. \textbf{Those degrees of freedom are not defects in the model; they are choices engineers have not, or could not, settle in advance.} MAGE therefore includes model-first engineering without mandating it. Which representations become primary depends on their costs and benefits for a given system, potentially differing even among components or properties of the same system.
+```
