@@ -6,13 +6,11 @@
 
 \chapter{Engineering the Environment}
 
-The engineering environment accumulates models, controls, procedures, and evidence. Maintaining its usefulness requires four kinds of work: equip the reasoner, evaluate proposed work, operate the supporting machinery, and maintain what later tasks inherit.
+The models and controls developed through engineering episodes become part of the environment inherited by later work. That environment must itself be engineered. It must supply agents with useful knowledge and procedures, produce evidence for accepting their work, operate reliably as work proceeds, and remain trustworthy as the system changes. These responsibilities meet in practice: the models available to an agent affect the evidence reviewers need, while validation schedules determine when that evidence can support acceptance.
 
 \section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}
 
-There are two complementary ways to improve recurring engineering work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to enforce selected obligations in the environment so that satisfying them does not depend entirely on the reasoner choosing correctly.
-
-Both effects can come from the same artifact. A model can guide an agent and state properties consumed by a validator. A runbook can brief a reasoner and trigger a gate. Evidence can inform a decision or feed a gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.
+The engineering environment can improve recurring work by supplying agents with better representations, procedures, tools, and context, and by enforcing selected obligations independently of their judgments. Some artifacts serve both purposes. A model may guide implementation while supplying properties to a validator; a runbook may inform an agent while invoking checks and gates that govern its actions.
 
 Distributed cognition provides a useful frame for this composition: reasoning can be performed by a system of people, representations, procedures, and artifacts rather than one isolated individual. The inset explains the connection~\citep{hutchins1995cognition}.
 
@@ -24,28 +22,20 @@ Distributed cognition provides a useful frame for this composition: reasoning ca
 
 \begin{bookbox}{inset}{The GEE as a Distributed Cognitive System}
 \label{inset-distributed-cognitive-system}
-Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it~\citep{hutchins1995cognition}.
+Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it~\citep{hutchins1995cognition}. In agentic engineering, models and procedures preserve knowledge outside the agent's context, tools perform operations directly, and people or agents supply the remaining judgment.
 
-The same perspective is useful for agentic engineering. A coding agent need not carry the whole engineering problem inside its context window. Models preserve selected facts about the system; skills preserve procedures; tools perform operations that need not be approximated through language-model reasoning; evidence records what occurred; people or agents supply judgments that remain difficult to evaluate mechanically. The capability of the resulting engineering system is therefore not simply the capability of its foundation model.
-
-External representations matter for more than storage. Work on distributed cognitive tasks shows that the form of an external representation can change the operations required to solve a problem~\citep{zhang1994representations}. A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
+The form of an external representation can also change the operations required to solve a problem~\citep{zhang1994representations}. A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
 
 A GEE adds another step. Its surrounding machinery can sometimes act on the represented property. A dependency model may help an agent understand the architecture, but a validator can also compare an observed dependency with an architectural obligation, and a gate can refuse the change. The environment therefore does not merely distribute cognition across reasoners and artifacts. For selected obligations, it can enforce what those representations express.
 \end{bookbox}
 
-The GEE can improve not only individual judgments but also the conditions under which later judgments are made. Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape subsequent action~\citep{argyris1978organizational}. Governance conversion applies that distinction to engineering: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
-
-Some judgments should remain qualitative, while narrower obligations within them can be enforced. The unit of that decision is the obligation, not the entire task. Knowledge that supports recurring judgments can be preserved in reusable procedures and skills, even when the judgments themselves cannot be mechanized.
+Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape subsequent action~\citep{argyris1978organizational}. Governance conversion applies that distinction to engineering: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
 
 \subsection{Package Recurring Judgment}\label{heading:package-recurring-judgment}
 
-\textbf{Skills preserve recurring procedures and judgment.} Package the representations, examples, heuristics, decision procedures, and tools that help later work avoid reconstructing the same practice from general knowledge.
-
-A skill can range from a compact procedure to a substantial body of domain knowledge and tools. It needs the representations used to reason about the work, the recurring decisions that matter, and a procedure for making them. What matters is what a fresh agent can use, not the package's length or file format.
+Skills preserve recurring procedures and judgment for later work. A useful skill packages the representations, examples, heuristics, decision procedures, and tools that help an agent perform a recurring task without reconstructing the practice from general knowledge. Its value depends on what a fresh agent can use, not on the package's length or file format.
 
 Recent work explores deriving reusable skills from execution traces~\citep{ni2026trace2skill}. Related techniques use execution evidence to diagnose harness defects~\citep{chen2026harnessfix} or revise the harness from observability data~\citep{lin2026agentic}. These techniques propose changes to different parts of the engineering environment; engineers still decide which procedures, assumptions, and obligations later work should inherit.
-
-Prose, examples, models, and decision procedures make satisfactory judgments more likely. A skill can also invoke enforcing mechanisms or carry the models and correctness conditions they consume. Where an obligation requires independent enforcement, a constraint or gate must control the relevant action or admission decision; a checker may supply the evaluation used by that gate.
 
 % <!-- index-def: standing-context -->
 
@@ -55,21 +45,21 @@ Delivering the packaged knowledge is its own engineering problem. Loading everyt
 
 \subsection{Establish Adequate Evidence}\label{heading:establish-adequate-evidence}
 
-Every engineering process must decide what evidence justifies accepting a change. Code review, testing, analysis, measurement, and expert judgment remain available; agentic implementation increases the rate at which the environment must use them. Start with the obligation the evidence must establish.
+Every engineering process must decide what evidence justifies accepting a change. Code review, testing, analysis, measurement, and expert judgment remain available; agentic implementation increases the rate at which the environment must use them. The obligation determines what evidence is needed. When it is settled, evaluation can ask whether the change satisfies it. When it remains uncertain---whether users want a feature, which workflow they prefer, or which tradeoff is acceptable---the evidence must instead come from experimentation. The environment can govern that experiment and preserve known constraints while the engineer learns what to require.
 
-Validation begins with an obligation. If the obligation is settled, evidence can test whether the change satisfies it. If the obligation is still a hypothesis --- whether users want the feature, which workflow they prefer, which tradeoff is acceptable --- no test suite can manufacture the missing product knowledge. In that regime the evidence is experimental. MAGE can govern the experiment and preserve known constraints; it cannot turn an open question into a mechanical truth.
-
-The obligation determines what must be represented; the representation determines which judgments are feasible. Start with the obligation and ask what representation makes it tractable, then use the cheapest judge adequate to the representation and the decision at hand. Representation can change that allocation: a judgment that initially requires expensive interpretation may become mechanically decidable once the relevant states, relations, or invariants are explicit. The converse failure also exists. A cheap judge can be perfectly reliable over an inadequate representation and still answer the wrong engineering question. In DocAble, pixel variance was easy to measure but could not decide whether a low-variance image carried semantic content; the representation had discarded the distinction the obligation required. Tightening the pixel-variance threshold would not recover the missing semantic distinction. DocAble instead routed that question to a judge capable of evaluating semantic content.
+The representation determines which judgments are feasible. Ask what representation preserves the distinction the obligation requires and what evaluation can decide it at acceptable cost. In DocAble, pixel variance was cheap to measure but could not establish whether a low-variance image carried semantic content. Tightening the threshold could not recover information the representation omitted; that question required semantic evaluation. Conversely, a representation that makes the relevant states or relations explicit may turn an expensive judgment into a mechanical check.
 
 \textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement.
 
 For a settled obligation, the producer\textquotesingle s own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated independently of the judgment seeking admission. \textbf{For consequential changes, prefer evidence that can challenge the producer\textquotesingle s own claim rather than relying on self-report alone. Where the consequence warrants it, place admission control outside the producer\textquotesingle s ability to redefine success.}
 
-That evidence can come from several sources. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
+Docker\textquotesingle s reported coding workflow uses an independent reviewer with its own model invocation, a determinized test suite, and a human gate to evaluate agent-produced changes. The agents may open a pull request; they may not merge one~\citep{delapena2026fleet}.
 
 % <!-- index-def: oracle -->
 
-Software testing calls the means of deciding whether an observed result is correct an \emph{oracle}. The oracle may be an expected output, an executable property, a reference implementation, or human judgment. Its usefulness depends on whether its verdict addresses the intended obligation.
+Software testing calls the means of deciding whether an observed result is correct an \emph{oracle}; its usefulness depends on whether its verdict addresses the intended obligation.
+
+Evidence can come from several sources. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
 
 % <!-- box-family: inset -->
 
@@ -91,8 +81,6 @@ Existing behavior can stand in for a surprising amount of written specification.
 % <!-- index-def: generative-validation -->
 
 Generative validation searches for counterexamples to a property, as discussed in \magevalue{sec:constraints-sensors-validators-gates}. For sorting, generated empty lists, duplicates, and different input orders can test whether the result is an ordered permutation. A failure may reveal a law worth checking beyond the original example. A run without a counterexample still depends on which inputs the generator could reach; test count and line coverage alone do not establish that the property holds.
-
-Docker\textquotesingle s autonomous coding fleet separates producer from grader: the agent that writes a change does not grade it. An independent reviewer with its own model invocation, a determinized test suite, and a human gate stand between a pull request and main. The fleet may open a pull request; it may not merge one~\citep{delapena2026fleet}.
 
 Establishing adequate evidence for an obligation is one problem. Determining which obligations a proposed change might affect is another.
 
@@ -150,7 +138,7 @@ Where possible, surround a step requiring judgment with deterministic work. Prep
 
 % <!-- index-def: measure-one-level-deeper -->
 
-Operational measurement should expose the state the decision actually depends on. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. Ousterhout\textquotesingle s rule from \magevalue{sec:interlude-one-problem-many-models} applies to operations unchanged:~\citep{ousterhout2018} \textbf{measure one level deeper}. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
+As in \magevalue{sec:interlude-one-problem-many-models}, operational measurement should expose the quantity that explains the problem rather than a convenient proxy~\citep{ousterhout2018}. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
 
 The validation machinery itself also needs operational management.
 
@@ -194,13 +182,13 @@ Repeated failure does not always call for another control. Before you build one,
 
 {\footnotesize
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.18}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.43}}@{}}
 \caption[Diagnosing stalled work]{\emph{Diagnosing stalled work.} Four possible limits on engineering work and the changes each calls for.}\label{stalled-work-diagnosis}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-What may be limiting
+Limit
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 The question
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright

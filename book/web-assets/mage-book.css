@@ -163,11 +163,23 @@ blockquote.concept-inset .inset-title{
   content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.5rem;
   background: var(--inset-accent); border-radius: 2px; vertical-align: middle;
 }blockquote.concept-inset p{ margin: 0 0 0.7rem; line-height: 1.6; }blockquote.concept-inset p:last-child{ margin-bottom: 0; }blockquote.concept-inset strong{ color: var(--inset-header); }blockquote.concept-inset em{ font-style: italic; }/* inline emphasis still italicizes inside roman body */
-/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
-   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+/* ── SEMANTIC BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
    The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
    (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
    = a schematic; evidence (cool blue) = the author's observation, .md-typeset not doctrine. */
+/* MOVE — a compact reusable engineering practice, not an optional scholarly inset.
+   Reuse the green role tokens; the explicit title preserves meaning in grayscale. */
+blockquote.box-move{ background: var(--box-thesis-fill); color: var(--ink);
+  border: 0; border-left: 2px solid var(--box-thesis-rule); border-radius: 0;
+  font-style: normal; padding: 0.8rem 1rem; margin: 1.3rem auto;
+  float: none; width: auto; max-width: 100%; break-inside: avoid; }
+blockquote.box-move p{ margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-move p:last-child{ margin-bottom: 0; }
+blockquote.box-move .inset-title{ color: var(--box-thesis-rule); font-weight: 700;
+  font-size: 1rem; line-height: 1.35; margin: 0 0 0.6rem; padding: 0; }
+blockquote.box-move .inset-title::before{ content: none; }
+blockquote.box-move strong{ color: inherit; }
 /* CANONICAL — MAGE doctrine, .md-typeset the strongest house treatment: warm rust panel, .md-typeset thick left rule, .md-typeset a centered
    UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
 blockquote.box-canonical{ background: var(--accent-tint); border: 1px solid var(--rule);

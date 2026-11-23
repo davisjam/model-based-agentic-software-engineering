@@ -82,23 +82,15 @@ Remediation then operates on the skeleton (\autoref{interlude-execution-unit}, p
 
 The corresponding memory invariant states the property directly:
 
-% mage-code-language: text
-\begin{verbatim}
-peak worker RSS <= C
-\end{verbatim}
+\[
+\begin{aligned}
+\operatorname{RSS}_{\mathrm{peak}} &\le C,\\
+C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+   + M_{\mathrm{handles}} + M_{\mathrm{work}}.
+\end{aligned}
+\]
 
-where, within the declared operating envelope,
-
-% mage-code-language: text
-\begin{verbatim}
-C =
-    rolling stream buffer
-  + structural skeleton
-  + handles
-  + remediation working set
-\end{verbatim}
-
-and C is independent of aggregate media payload size within that envelope.
+The four terms bound memory for the rolling stream buffer, structural skeleton, handles, and remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Chunking had shown that the observed documents worked. Skeletonization supports a structural claim over a declared class of inputs: peak worker memory is bounded independently of total media size, provided the modeled path never retains the complete payload.
@@ -249,18 +241,16 @@ Nor was the memory work finished before the execution-time work began. A memory 
 
 % <!-- index-def: ratcheteering -->
 
-% <!-- box-family: canonical -->
+% <!-- box-family: move -->
 
-\begin{quote}
-\mbox{}%
-\subsection{Engineering technique --- Ratcheteering}\label{heading:technique-ratcheteering}
+% mage-box-prefix: MAGE Move —
 
-Governance conversion is an individual engineering move: it turns a recurring failure, judgment, or newly discovered relationship into durable structure. Ratcheteering is the continuing practice of accumulating and correcting that structure across engineering episodes.
+\begin{bookbox}{move}{Ratcheteering}
+\label{heading:technique-ratcheteering}
+Ratcheteering is the continuing practice of accumulating and correcting durable engineering structure across successive changes. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control.
 
-The ratchet preserves the obligation, not necessarily the current answer. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control. The engineering environment should permit those corrections. What later work cannot do silently is return the consequential property to an unexamined implementation detail.
-
-Each episode may add, revise, or retire the structure that later engineering work inherits. The engineer retains models, procedures, evidence, and controls selectively, when their engineering value justifies the maintenance they require.
-\end{quote}
+Each episode may add, revise, or retire the models, procedures, evidence, and controls that later work inherits. Retain them selectively, when their engineering value justifies their maintenance.
+\end{bookbox}
 
 The episode therefore left more than a revised implementation. It left several models whose relationships could support later decisions, even as their parameters and assumptions continued to change.
 

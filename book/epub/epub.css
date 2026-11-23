@@ -147,6 +147,18 @@ div.apparatus-page {
   padding: 0.7em 1em;
   font-size: 0.92em;
 }
+/* Short reusable engineering moves keep their semantic label in monochrome readers. */
+blockquote.box-move {
+  color: #1c1917;
+  background: #eef7ee;
+  border: 0;
+  border-left: 2px solid #15803d;
+  border-radius: 0;
+  padding: 0.7em 0.9em;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+blockquote.box-move .inset-title { color: #15803d; }
 blockquote .inset-title,
 .wex-title {
   display: block;

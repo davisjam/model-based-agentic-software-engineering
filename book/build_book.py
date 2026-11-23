@@ -424,8 +424,8 @@ MARKER_KEYWORDS = (
     #   (author declaration; classified BEFORE the concept-inset title check so a TITLED box is never
     #   mis-read as a concept-inset). In-prose `> **The … Thesis.**` boxes keep the lead-text path.
     "principlebox",
-    # `<!-- box-family: <canonical|inset|model-card|evidence> -->` — the explicit box-visual-grammar family
-    #   selector (four-family grammar, box-grammar-IMPL-260823). Armed for the NEXT blockquote; OUTRANKS the
+    # `<!-- box-family: <canonical|inset|model-card|evidence|move> -->` — the explicit box-visual-grammar family
+    #   selector (semantic box grammar, box-grammar-IMPL-260823). Armed for the NEXT blockquote; OUTRANKS the
     #   content-based klass inference (concept-inset/thesis) and picks the family's visual treatment (palette +
     #   badge/corner). `<!-- inset-domain: <TAG> -->` (inset family only) carries the upper-right provenance
     #   badge. Both consumed + stripped so they never leak into reader-visible output.
@@ -1869,7 +1869,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 pending_sidenote.append(True)
                 return True
             if inner.startswith("box-family:"):
-                # `<!-- box-family: X -->` — arms the four-family visual treatment for the NEXT blockquote.
+                # `<!-- box-family: X -->` — arms the semantic visual treatment for the NEXT blockquote.
                 # Consumed here so the marker never reaches reader-visible output (mirrors the arming family
                 # above). The family value outranks the content-based klass inference in `_render_blockquote`.
                 pending_boxfamily.append(inner[len("box-family:"):-len("-->")].strip())
@@ -2368,8 +2368,8 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
     to a styled `inset-title` paragraph (no document-outline break). An explicit `<!-- box-family: X -->`
-    marker (`box_family` ∈ {canonical, inset, model-card, evidence}) OUTRANKS all shape inference: it forces
-    the `box-<family>` class of the four-family visual grammar (box-grammar-IMPL-260823), with an
+    marker (`box_family` ∈ {canonical, inset, model-card, evidence, move}) OUTRANKS all shape inference: it forces
+    the `box-<family>` class of the semantic visual grammar (box-grammar-IMPL-260823), with an
     `inset-domain` provenance badge on insets (a `CAVEAT` badge for the §6.5 conjecture box) and a MODEL CARD
     corner on model cards. Absent a family marker, the class is picked by shape: an explicit `<!-- epigraph -->`
     (`is_epigraph` → the inline `chapter-epigraph`) or `<!-- inline-quote -->` (`is_inline_quote` → the

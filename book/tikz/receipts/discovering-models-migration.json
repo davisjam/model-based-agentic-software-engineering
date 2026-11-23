@@ -29,26 +29,38 @@
   "questions": [],
   "alt": "Weak signals from an existing codebase—primitive density, repeated shapes, component/boundary view—locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded.",
   "qa": {
-    "date": "2026-11-13",
-    "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-    "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-    "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-    "page": 1,
-    "width_bp": 449.972,
-    "height_bp": 379.973,
-    "minimum_prose_font_pt": 9.0,
+    "date": "2026-11-23",
+    "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+    "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+    "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+    "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+    "page": 2,
+    "width_bp": 449.97198486328125,
+    "height_bp": 350.0539855957031,
     "authored_type_sizes_pt": [
-      9.0,
+      9,
       9.5,
-      10.0
+      10
+    ],
+    "minimum_prose_font_pt": 9,
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-It",
+      "SourceSans3-Regular"
     ],
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "monochrome_pixels": true,
     "semantic_typography_checks": 20,
-    "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-    "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-    "status": "passed"
+    "typography_findings": 0,
+    "svg_overflow_findings": 0,
+    "monochrome_pixels": true,
+    "reviewed_visually": true,
+    "status": "passed",
+    "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+    "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+    "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
   },
   "svg_qa": {
     "overflow_findings": 0,
@@ -64,40 +76,52 @@
   "layout_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
     "validation": {
-      "date": "2026-11-13",
-      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 379.973,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-23",
+      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+      "page": 2,
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
       "authored_type_sizes_pt": [
-        9.0,
+        9,
         9.5,
-        10.0
+        10
+      ],
+      "minimum_prose_font_pt": 9,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 20,
-      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-      "status": "passed"
+      "typography_findings": 0,
+      "svg_overflow_findings": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "status": "passed",
+      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
     "contracts": {},
     "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
     "page_layout": {
       "after_dimensions_bp": [
-        449.972,
-        379.973
+        449.97198486328125,
+        350.0539855957031
       ],
       "after_font_sizes_pt": [
         9,
@@ -105,39 +129,56 @@
         10
       ],
       "decision": "recomposed",
-      "reason": "Three partition branches align horizontally; the central recovery sequence descends through consistently spaced nodes. A smooth right-hand loop returns to the codebase.",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
       "reviewed_visually": true
+    },
+    "compaction_review": {
+      "date": "2026-11-23",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+      "native_and_svg_inspected": true
     }
   },
   "typography_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
     "validation": {
-      "date": "2026-11-13",
-      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 379.973,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-23",
+      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+      "page": 2,
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
       "authored_type_sizes_pt": [
-        9.0,
+        9,
         9.5,
-        10.0
+        10
+      ],
+      "minimum_prose_font_pt": 9,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 20,
-      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-      "status": "passed"
+      "typography_findings": 0,
+      "svg_overflow_findings": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "status": "passed",
+      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
     "checks": [
@@ -343,37 +384,54 @@
         "candidate_style": "regular",
         "semantic_role": "recovery stage, artifact, or process annotation"
       }
-    ]
+    ],
+    "compaction_review": {
+      "date": "2026-11-23",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+      "native_and_svg_inspected": true
+    }
   },
   "style_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
     "validation": {
-      "date": "2026-11-13",
-      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 379.973,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-23",
+      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+      "page": 2,
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
       "authored_type_sizes_pt": [
-        9.0,
+        9,
         9.5,
-        10.0
+        10
+      ],
+      "minimum_prose_font_pt": 9,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 20,
-      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-      "status": "passed"
+      "typography_findings": 0,
+      "svg_overflow_findings": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "status": "passed",
+      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/style-review.json",
     "receipt": "book/tikz/receipts/discovering-models-migration.json",
@@ -386,37 +444,54 @@
     "shape": "Modestly rounded rectangles denote findings, steps, and artifacts; consistent gray fill identifies the discovered concept and reinforced model substrate.",
     "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
     "book_references": [],
-    "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch."
+    "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch.",
+    "compaction_review": {
+      "date": "2026-11-23",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+      "native_and_svg_inspected": true
+    }
   },
   "fidelity_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
     "validation": {
-      "date": "2026-11-13",
-      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 379.973,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-23",
+      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+      "page": 2,
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
       "authored_type_sizes_pt": [
-        9.0,
+        9,
         9.5,
-        10.0
+        10
+      ],
+      "minimum_prose_font_pt": 9,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 20,
-      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-      "status": "passed"
+      "typography_findings": 0,
+      "svg_overflow_findings": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "status": "passed",
+      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/fidelity-review.json",
     "checks": {
@@ -436,44 +511,71 @@
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 449.972,
-    "height_bp": 379.973,
+    "width_bp": 449.97198486328125,
+    "height_bp": 350.0539855957031,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists."
+    "review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "compaction_review": {
+      "date": "2026-11-23",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+      "native_and_svg_inspected": true
+    }
   },
   "grayscale_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
     "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
     "validation": {
-      "date": "2026-11-13",
-      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 379.973,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-23",
+      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+      "page": 2,
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
       "authored_type_sizes_pt": [
-        9.0,
+        9,
         9.5,
-        10.0
+        10
+      ],
+      "minimum_prose_font_pt": 9,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-It",
+        "SourceSans3-Regular"
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
       "semantic_typography_checks": 20,
-      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-      "status": "passed"
+      "typography_findings": 0,
+      "svg_overflow_findings": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "status": "passed",
+      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/discovering-models-migration.json",
     "reviewed": true,
-    "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling."
+    "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "compaction_review": {
+      "date": "2026-11-23",
+      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+      "native_and_svg_inspected": true
+    }
+  },
+  "compaction_review": {
+    "date": "2026-11-23",
+    "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+    "native_and_svg_inspected": true
   }
 }

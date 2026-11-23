@@ -10,7 +10,7 @@
 
 \chapter{Brownfield Engineering}
 
-The DocAble episode began with an engineering problem and developed models as the work exposed new questions. Brownfield engineering often begins from the opposite direction: the system already exists, and consequential knowledge is distributed across code, tests, documents, and operational practice. How can engineers recover the models and obligations needed to govern subsequent changes?
+The preceding episode followed one problem through several related models. Brownfield engineering extends this work to the knowledge already distributed across a system's code, tests, documents, and operational practice. Which representations remain trustworthy, which obligations are already enforced, and what must be recovered or repaired before the next consequential change?
 
 \section{Start from the System You Own}\label{heading:start-from-the-system-you-own}
 
@@ -18,22 +18,11 @@ The DocAble episode began with an engineering problem and developed models as th
 
 % <!-- index-def: brownfield-migration -->
 
-Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Brownfield engineering is therefore partly an exercise in recovery: find the representations and controls the system already owns, reconnect them to the territory they describe, repair or retire what has drifted, and invest in new structure where recurring engineering costs justify it.
+Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Lehman's work on software evolution describes systems adapting to changing environments while complexity tends to increase unless engineers act to control it~\citep{lehman1985}. Their models and governance mechanisms require corresponding maintenance. Brownfield engineering therefore includes recovering the representations and controls a system already owns, establishing which remain trustworthy, and repairing or retiring those that have drifted.
 
 The objective is not to model the entire existing system before agents can work on it. It is to make the next consequential change safely, then improve the engineering environment so that later changes become easier to govern. Existing tests, permissions, architecture documents, and review practices are starting points. Some already enforce useful obligations; others depend on someone remembering what to check. The work is to discover which is which, establish what can be trusted, and strengthen the environment one important property at a time.
 
-% <!-- box-family: inset -->
 
-% <!-- inset-domain: SOFTWARE ENGINEERING -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{Software evolves; its engineering structure must evolve with it}
-\label{inset-lehman-software-evolution}
-The inherited structure can become stale because the software itself keeps changing. Lehman\textquotesingle s work on software evolution observed that systems embedded in a changing real-world environment must continually adapt, while their complexity tends to increase unless engineers act to control it~\citep{lehman1985}.
-
-Models and governance mechanisms need corresponding maintenance. For example, retiring a service may leave its old dependencies in an architecture model and its recovery steps in a runbook. Both artifacts still exist, but neither describes the current system. A brownfield inventory therefore needs to establish which models, checks, and procedures remain applicable, which need repair, and which can be retired.
-\end{bookbox}
 
 A fast-built system may need to author models that implementation never made explicit. An established organization may instead need to reconcile fragmented ADRs, schemas, tests, ownership records, and operating procedures. Both start by inventorying what remains useful; neither requires a complete governed environment before work begins. The age of the implementation also does not settle its intent: a new regulated system can have firm obligations, while a mature product may still be exploring what users need.
 
@@ -135,21 +124,18 @@ Reconciliation determines which claims need correction and which obligations sho
 
 Even a correct rule may be unsuitable for immediate enforcement. A legacy codebase may already contain hundreds of violations. Making the rule blocking would stop development before those violations could be repaired. Instead, introduce it in three stages.
 
-% <!-- box-family: canonical -->
+% <!-- box-family: move -->
 
-\begin{quote}
-\mbox{}%
-\subsection{The move --- Audit → Drain → Promote}\label{heading:audit-drain-promote-move}
+% mage-box-prefix: MAGE Move —
 
-\begin{itemize}
-\item
-  \textbf{Audit.} Run the new check without blocking commits. Record the violations it detects.
-\item
-  \textbf{Drain.} Repair existing violations, using tests and other evidence to check that intended behavior is preserved.
-\item
-  \textbf{Promote.} Once existing violations are resolved, make the check blocking so new violations it detects are rejected.
-\end{itemize}
-\end{quote}
+\begin{bookbox}{move}{Audit → Drain → Promote}
+\label{heading:audit-drain-promote-move}
+\textbf{Audit.} Run the new check without blocking commits. Record the violations it detects.
+
+\textbf{Drain.} Repair existing violations, using tests and other evidence to check that intended behavior is preserved.
+
+\textbf{Promote.} Once existing violations are resolved, make the check blocking so new violations it detects are rejected.
+\end{bookbox}
 
 Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
 

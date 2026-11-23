@@ -150,6 +150,7 @@
   \ifstrequal{#1}{quotation}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F6F4EF}}{}%
   \ifstrequal{#1}{code-example}{\definecolor{boxrule}{HTML}{57534E}\definecolor{boxfill}{HTML}{F3EFE7}}{}%
   \ifstrequal{#1}{key-idea}{\definecolor{boxrule}{HTML}{15803D}\definecolor{boxfill}{HTML}{EEF7EE}}{}%
+  \ifstrequal{#1}{move}{\definecolor{boxrule}{HTML}{15803D}\definecolor{boxfill}{HTML}{EEF7EE}}{}%
   \ifstrequal{#1}{example}{\definecolor{boxrule}{HTML}{15803D}\definecolor{boxfill}{HTML}{EEF7EE}}{}%
   \ifstrequal{#1}{case-study}{\definecolor{boxrule}{HTML}{2F5169}\definecolor{boxfill}{HTML}{E7EDF3}}{}%
   \ifstrequal{#1}{warning}{\definecolor{boxrule}{HTML}{B23B3B}\definecolor{boxfill}{HTML}{FBEAEA}}{}%
@@ -172,9 +173,14 @@
   \begingroup
   \ifstrequal{#1}{inset}{\bookinsetcodetrue}{}%
   \def\bookboxtitle{#2}%
+  \def\bookboxkind{#1}%
+  \ifstrequal{#1}{move}{%
+    \def\bookboxkind{MAGE Move}%
+    \tcbset{bookboxlayout/.style={unbreakable,left=8pt,right=8pt,top=6pt,bottom=6pt}}%
+  }{\tcbset{bookboxlayout/.style={breakable}}}%
   \bookboxcolors{#1}%
-  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\ifmageedition\setlength{\parskip}{0.25\baselineskip}\else\setlength{\parskip}{0.45em}\fi\setlength{\parindent}{1.2em}}]
-  \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
+  \begin{tcolorbox}[enhanced,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,bookboxlayout,after upper={\bookboxtagpause},before upper={\bookboxtagtext\ifmageedition\setlength{\parskip}{0.25\baselineskip}\else\setlength{\parskip}{0.45em}\fi\ifstrequal{#1}{move}{\setlength{\parindent}{0pt}}{\setlength{\parindent}{1.2em}}}]
+  \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{\bookboxkind}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
 }{\end{tcolorbox}\endgroup\bookboxtagend}
 
 % Fitted inset identity for compact figures that share a page with prose.

@@ -617,6 +617,20 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         # Fail loud rather than silently dropping the weight — the pilot defines weight treatments for the
         # inset/model-card families and family-less boxes; extend here when a canonical/evidence box needs one.
         raise SystemExit(f"box-weight {box_weight!r} is not defined for box-family {box_family!r} yet")
+    if box_family == "move":
+        # Reusable engineering practice: a compact, labeled, one-page green panel.
+        lines = inner_md.splitlines()
+        title = "MAGE Move"
+        body_md = inner_md
+        if lines and lines[0].lstrip().startswith("#"):
+            title = bb._HEADING_ANCHOR_RE.sub("", re.sub(r"^\s*#+\s*", "", lines[0])).strip()
+            body_md = "\n".join(lines[1:]).strip()
+        body = _render_markdown_body(body_md, _EmitCtx.inert())
+        return ('#block(fill: dt.box-thesis-fill, '
+                'stroke: (left: 1.5pt + dt.box-thesis-rule), '
+                'inset: 8pt, radius: 0pt, width: 100%, breakable: false)[\n'
+                '#text(font: dt.font-body, weight: 700, fill: dt.box-thesis-rule)['
+                + inline_typst(title) + ']\n#v(4pt)\n' + body + '\n]')
     if is_principlebox or box_family == "canonical":
         # CANONICAL (box-grammar-IMPL-260823) — MAGE doctrine: a full 4-side RUST frame. A leading `### TITLE`
         # line becomes a centered UPPERCASE title-bar (source keeps natural case; the renderer applies caps).

@@ -2053,7 +2053,7 @@
           "heading_text": "What Cheap Implementation Changes",
           "topic_sentence": "Agentic implementation makes this strategy unusually cheap.",
           "id_source": "explicit",
-          "block_index": 22,
+          "block_index": 23,
           "points": []
         }
       ],
@@ -2114,7 +2114,7 @@
           "heading_text": "Why One Level Deeper Matters",
           "topic_sentence": "An end-to-end measurement says whether the outcome moved.",
           "id_source": "explicit",
-          "block_index": 40,
+          "block_index": 38,
           "points": []
         },
         {
@@ -2123,7 +2123,7 @@
           "heading_text": "Memory Did Not Stop Mattering",
           "topic_sentence": "Bringing memory under governance did not make memory disappear.",
           "id_source": "explicit",
-          "block_index": 44,
+          "block_index": 42,
           "points": []
         },
         {
@@ -2132,7 +2132,7 @@
           "heading_text": "Modeling Execution and Latency",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 49,
+          "block_index": 47,
           "points": []
         },
         {
@@ -2141,7 +2141,7 @@
           "heading_text": "Why Are We Still Chunking?",
           "topic_sentence": "Page chunking had originally served two purposes: it partitioned remediation work and reduced the memory required by each worker.",
           "id_source": "explicit",
-          "block_index": 50,
+          "block_index": 48,
           "points": []
         },
         {
@@ -2150,7 +2150,7 @@
           "heading_text": "Redesigning the Critical Path",
           "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
           "id_source": "explicit",
-          "block_index": 60,
+          "block_index": 58,
           "points": []
         },
         {
@@ -2159,7 +2159,7 @@
           "heading_text": "The Second Resource Model",
           "topic_sentence": "The critical-path model explained which dependencies could determine latency.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 64,
           "points": []
         },
         {
@@ -2168,7 +2168,7 @@
           "heading_text": "Predicting Latency",
           "topic_sentence": "Critical-path analysis also supports quantitative latency predictions when operation costs are available.",
           "id_source": "explicit",
-          "block_index": 71,
+          "block_index": 69,
           "points": []
         },
         {
@@ -2177,7 +2177,7 @@
           "heading_text": "Predicting the Cost of a Design Change",
           "topic_sentence": "A proposed intermediate representation can be inserted into the dependency graph before it is implemented.",
           "id_source": "explicit",
-          "block_index": 75,
+          "block_index": 73,
           "points": []
         },
         {
@@ -2186,7 +2186,7 @@
           "heading_text": "Use Prediction Error as Evidence",
           "topic_sentence": "Implementation eventually supplies measurements to compare with the model’s predictions.",
           "id_source": "explicit",
-          "block_index": 77,
+          "block_index": 75,
           "points": []
         },
         {
@@ -2195,7 +2195,7 @@
           "heading_text": "Preserving and Revising Models",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 82,
+          "block_index": 80,
           "points": []
         },
         {
@@ -2204,7 +2204,7 @@
           "heading_text": "What Carries Forward",
           "topic_sentence": "DocAble did not turn observed wall-clock time into the durable control.",
           "id_source": "explicit",
-          "block_index": 83,
+          "block_index": 81,
           "points": []
         },
         {
@@ -2213,7 +2213,7 @@
           "heading_text": "Models Get Falsified; the Obligation Survives",
           "topic_sentence": "A ratchet does not make the current model true forever.",
           "id_source": "explicit",
-          "block_index": 86,
+          "block_index": 84,
           "points": []
         },
         {
@@ -2222,7 +2222,7 @@
           "heading_text": "The Resulting Model Family",
           "topic_sentence": "[ref:interlude-model-family] collects the models and the engineering questions each addresses.",
           "id_source": "explicit",
-          "block_index": 94,
+          "block_index": 92,
           "points": []
         },
         {
@@ -2231,7 +2231,7 @@
           "heading_text": "Modeling Inside the Implementation Loop",
           "topic_sentence": "This sequence took about three days inside the existing governed engineering environment.",
           "id_source": "explicit",
-          "block_index": 99,
+          "block_index": 97,
           "points": []
         }
       ],
@@ -2256,7 +2256,7 @@
           "heading_text": "Recover Latent Models",
           "topic_sentence": "Begin with two questions.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 9,
           "points": []
         },
         {
@@ -2265,7 +2265,7 @@
           "heading_text": "Reconcile the Map and the Territory",
           "topic_sentence": "Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 27,
           "points": []
         },
         {
@@ -2274,7 +2274,7 @@
           "heading_text": "Invest Where It Pays",
           "topic_sentence": "Prioritize recovery where explicit structure can reduce recurring work:",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 40,
           "points": []
         }
       ],
@@ -2288,7 +2288,7 @@
           "section_id": "the-gee-as-a-distributed-cognitive-system",
           "level": 2,
           "heading_text": "Equip the Reasoner",
-          "topic_sentence": "There are two complementary ways to improve recurring engineering work.",
+          "topic_sentence": "The engineering environment can improve recurring work by supplying agents with better representations, procedures, tools, and context, and by enforcing selected obligations independently of their judgments.",
           "id_source": "explicit",
           "block_index": 2,
           "points": []
@@ -2297,9 +2297,9 @@
           "section_id": "package-recurring-judgment",
           "level": 3,
           "heading_text": "Package Recurring Judgment",
-          "topic_sentence": "**Skills preserve recurring procedures and judgment.** Package the representations, examples, heuristics, decision procedures, and tools that help later work avoid reconstructing the same practice from general knowledge.",
+          "topic_sentence": "Skills preserve recurring procedures and judgment for later work.",
           "id_source": "explicit",
-          "block_index": 11,
+          "block_index": 9,
           "points": []
         },
         {
@@ -2308,7 +2308,7 @@
           "heading_text": "Evaluate the Work",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 18,
+          "block_index": 14,
           "points": []
         },
         {
@@ -2317,7 +2317,7 @@
           "heading_text": "Establish Adequate Evidence",
           "topic_sentence": "Every engineering process must decide what evidence justifies accepting a change.",
           "id_source": "explicit",
-          "block_index": 19,
+          "block_index": 15,
           "points": []
         },
         {
@@ -2326,7 +2326,7 @@
           "heading_text": "Model-Aware Change Impact",
           "topic_sentence": "As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck.",
           "id_source": "explicit",
-          "block_index": 36,
+          "block_index": 31,
           "points": []
         },
         {
@@ -2335,7 +2335,7 @@
           "heading_text": "Operate the Environment",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 43,
+          "block_index": 38,
           "points": []
         },
         {
@@ -2344,12 +2344,12 @@
           "heading_text": "Lifecycle Models and Recovery",
           "topic_sentence": "A method has to survive terrible, horrible, no good, very bad days, too.",
           "id_source": "explicit",
-          "block_index": 44,
+          "block_index": 39,
           "points": [
             {
               "slug": "validation-placement-became-a-factory-design-decision",
               "text": "A validation bottleneck prompted independent scheduling of broad checks, with cheap checks before merge and full validation before deployment; the redesign traded detection delay and attribution cost against integration cost.",
-              "block_index": 58
+              "block_index": 53
             }
           ]
         },
@@ -2359,7 +2359,7 @@
           "heading_text": "Scheduling Validation",
           "topic_sentence": "Model-aware change-impact analysis addresses which evaluations a change requires.",
           "id_source": "explicit",
-          "block_index": 59,
+          "block_index": 54,
           "points": []
         },
         {
@@ -2368,7 +2368,7 @@
           "heading_text": "Maintain the Machinery",
           "topic_sentence": "As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate.",
           "id_source": "explicit",
-          "block_index": 71,
+          "block_index": 66,
           "points": []
         }
       ],

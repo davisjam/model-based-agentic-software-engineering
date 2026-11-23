@@ -420,6 +420,17 @@ An inset belongs to the chapter's reading sequence. Its opening should pick up a
 
 Audit each inset with the prose immediately before and after it. Check both reading paths: entering the inset and skipping it. Track the later book-wide pass in [review.md](review.md).
 
+Use the green **MAGE Move** family for a short reusable engineering practice, such as
+Governance conversion, Ratcheteering, or Audit → Drain → Promote. Author it as
+`\begin{bookbox}{move}{Title}` with a stable label, `box-family: move`, and
+`mage-box-prefix: MAGE Move —` metadata. The shared PDF, HTML, and EPUB renderers
+provide a pale-green fill, a thin green left rule, square corners, and a labeled
+title. Keep each short move together on one printed page; color alone must not
+identify its role. Scholarly connections remain lavender insets, case records
+remain evidence, and comparisons of phenomena use ordinary tables rather than
+another box family. A move should name the practice and explain what to do;
+leave the motivating episode and its evidence in the main narrative.
+
 Once a term has been taught, use the term without re-teaching it.
 
 ---

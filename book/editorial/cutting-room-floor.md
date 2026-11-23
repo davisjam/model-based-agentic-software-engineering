@@ -25839,3 +25839,214 @@ To test representation leverage, compare agents given structured models with age
 ```latex
 The preceding comparisons would estimate how representations, controls, and agent capabilities affect engineering outcomes. Those estimates could inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger foundation model, a cheaper foundation model with better structure, or a deterministic operation for a sufficiently specified task. Across repeated work, the decision also concerns what to invest in the GEE. The engineer must allocate resources among reasoning, representation, implementation, and assurance while accounting for the environment that later work will inherit.
 ```
+
+## 2026-11-23 — Chapter 4 dynamics and reusable engineering moves
+
+Source revision: `cab140370d8f46a4192c1846254365b01eeb71f3`. Apply approved transitions, consolidate repeated inset material, and group named engineering practices. Mathematics retains its operating-envelope qualifications.
+
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, source lines 106–106
+
+```latex
+A recurring failure, a repeated judgment, or a newly discovered relationship is converted into durable engineering structure: a representation, a body of evidence, a procedure, or an enforced obligation. \magevalue{sec:governance-conversion} develops the move in full.
+```
+
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, source lines 132–132
+
+```latex
+MAGE examines how cheaper model construction, analysis, and maintenance change which engineering work is worth doing. As a system grows, separately specified changes can interact through shared resources and dependencies. In DocAble, for example, increasing concurrency could improve throughput while also increasing peak memory. Concurrency models used the memory model to choose how much work could run at once, and guards refused work whose estimated memory exceeded its budget. Later measurements corrected assumptions in the model. \magevalue{sec:interlude-one-problem-many-models} follows this example from the memory failure that made the model necessary.
+```
+
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, source lines 147–147
+
+```latex
+Leave degrees of freedom open while variation produces useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the implementation to it. This applies to greenfield and brownfield engineering alike. The difference is where the first useful evidence comes from: exploratory implementations in one case, an existing system and its accumulated engineering knowledge in the other. \magevalue{sec:brownfield-engineering} examines how to recover that knowledge from an inherited system.
+```
+
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source lines 90–90
+
+```latex
+where, within the declared operating envelope,
+```
+
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source lines 101–101
+
+```latex
+and C is independent of aggregate media payload size within that envelope.
+```
+
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source lines 258–258
+
+```latex
+Governance conversion is an individual engineering move: it turns a recurring failure, judgment, or newly discovered relationship into durable structure. Ratcheteering is the continuing practice of accumulating and correcting that structure across engineering episodes.
+```
+
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source lines 260–260
+
+```latex
+The ratchet preserves the obligation, not necessarily the current answer. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control. The engineering environment should permit those corrections. What later work cannot do silently is return the consequential property to an unexamined implementation detail.
+```
+
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex`, source lines 13–13
+
+```latex
+The DocAble episode began with an engineering problem and developed models as the work exposed new questions. Brownfield engineering often begins from the opposite direction: the system already exists, and consequential knowledge is distributed across code, tests, documents, and operational practice. How can engineers recover the models and obligations needed to govern subsequent changes?
+```
+
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex`, source lines 21–21
+
+```latex
+Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Brownfield engineering is therefore partly an exercise in recovery: find the representations and controls the system already owns, reconnect them to the territory they describe, repair or retire what has drifted, and invest in new structure where recurring engineering costs justify it.
+```
+
+# Archived §4.4 passages
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`
+
+HEAD revision before edit: `cab140370d8f46a4192c1846254365b01eeb71f3`
+
+Line ranges refer to that revision. Original text retained below for each substantive replacement, deletion, or relocation. Figure, evidence, and citation identifiers remain in the revised manuscript.
+
+## The engineering environment accumulates
+
+Original lines 9–9.
+
+```latex
+The engineering environment accumulates models, controls, procedures, and evidence. Maintaining its usefulness requires four kinds of work: equip the reasoner, evaluate proposed work, operate the supporting machinery, and maintain what later tasks inherit.
+```
+
+## Equip the Reasoner opening consolidation
+
+Original lines 13–15.
+
+```latex
+There are two complementary ways to improve recurring engineering work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to enforce selected obligations in the environment so that satisfying them does not depend entirely on the reasoner choosing correctly.
+
+Both effects can come from the same artifact. A model can guide an agent and state properties consumed by a validator. A runbook can brief a reasoner and trigger a gate. Evidence can inform a decision or feed a gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.
+```
+
+## Distributed cognition application shortened
+
+Original lines 27–29.
+
+```latex
+Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it~\citep{hutchins1995cognition}.
+
+The same perspective is useful for agentic engineering. A coding agent need not carry the whole engineering problem inside its context window. Models preserve selected facts about the system; skills preserve procedures; tools perform operations that need not be approximated through language-model reasoning; evidence records what occurred; people or agents supply judgments that remain difficult to evaluate mechanically. The capability of the resulting engineering system is therefore not simply the capability of its foundation model.
+```
+
+## External representation topic sentence
+
+Original lines 31–31.
+
+```latex
+External representations matter for more than storage. Work on distributed cognitive tasks shows that the form of an external representation can change the operations required to solve a problem~\citep{zhang1994representations}.
+```
+
+## The GEE can improve not only
+
+Original lines 36–36.
+
+```latex
+The GEE can improve not only individual judgments but also the conditions under which later judgments are made. Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape subsequent action~\citep{argyris1978organizational}. Governance conversion applies that distinction to engineering: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
+```
+
+## Repeated qualitative-judgment qualification removed
+
+Original lines 38–40.
+
+```latex
+Some judgments should remain qualitative, while narrower obligations within them can be enforced. The unit of that decision is the obligation, not the entire task. Knowledge that supports recurring judgments can be preserved in reusable procedures and skills, even when the judgments themselves cannot be mechanized.
+```
+
+## Package Recurring Judgment consolidation
+
+Original lines 42–44.
+
+```latex
+\textbf{Skills preserve recurring procedures and judgment.} Package the representations, examples, heuristics, decision procedures, and tools that help later work avoid reconstructing the same practice from general knowledge.
+
+A skill can range from a compact procedure to a substantial body of domain knowledge and tools. It needs the representations used to reason about the work, the recurring decisions that matter, and a procedure for making them. What matters is what a fresh agent can use, not the package's length or file format.
+```
+
+## Repeated support/enforcement paragraph removed
+
+Original lines 48–50.
+
+```latex
+Prose, examples, models, and decision procedures make satisfactory judgments more likely. A skill can also invoke enforcing mechanisms or carry the models and correctness conditions they consume. Where an obligation requires independent enforcement, a constraint or gate must control the relevant action or admission decision; a checker may supply the evaluation used by that gate.
+```
+
+## Evidence opening: three paragraphs become two
+
+Original lines 58–62.
+
+```latex
+Every engineering process must decide what evidence justifies accepting a change. Code review, testing, analysis, measurement, and expert judgment remain available; agentic implementation increases the rate at which the environment must use them. Start with the obligation the evidence must establish.
+
+Validation begins with an obligation. If the obligation is settled, evidence can test whether the change satisfies it. If the obligation is still a hypothesis --- whether users want the feature, which workflow they prefer, which tradeoff is acceptable --- no test suite can manufacture the missing product knowledge. In that regime the evidence is experimental. MAGE can govern the experiment and preserve known constraints; it cannot turn an open question into a mechanical truth.
+
+The obligation determines what must be represented; the representation determines which judgments are feasible. Start with the obligation and ask what representation makes it tractable, then use the cheapest judge adequate to the representation and the decision at hand. Representation can change that allocation: a judgment that initially requires expensive interpretation may become mechanically decidable once the relevant states, relations, or invariants are explicit. The converse failure also exists. A cheap judge can be perfectly reliable over an inadequate representation and still answer the wrong engineering question. In DocAble, pixel variance was easy to measure but could not decide whether a low-variance image carried semantic content; the representation had discarded the distinction the obligation required. Tightening the pixel-variance threshold would not recover the missing semantic distinction. DocAble instead routed that question to a judge capable of evaluating semantic content.
+```
+
+## Docker case relocated and condensed
+
+Original lines 95–97.
+
+```latex
+Docker\textquotesingle s autonomous coding fleet separates producer from grader: the agent that writes a change does not grade it. An independent reviewer with its own model invocation, a determinized test suite, and a human gate stand between a pull request and main. The fleet may open a pull request; it may not merge one~\citep{delapena2026fleet}.
+```
+
+## Oracle definition shortened and moved before first use
+
+Original lines 70–74.
+
+```latex
+% <!-- index-def: oracle -->
+
+Software testing calls the means of deciding whether an observed result is correct an \emph{oracle}. The oracle may be an expected output, an executable property, a reference implementation, or human judgment. Its usefulness depends on whether its verdict addresses the intended obligation.
+```
+
+## Operational measurement should expose
+
+Original lines 153–153.
+
+```latex
+Operational measurement should expose the state the decision actually depends on. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. Ousterhout\textquotesingle s rule from \magevalue{sec:interlude-one-problem-many-models} applies to operations unchanged:~\citep{ousterhout2018} \textbf{measure one level deeper}. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
+```
+
+## Diagnosis table width allocation
+
+Original lines 197–199.
+
+```latex
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+```
+
+## Diagnosis table first column header
+
+Original lines 203–204.
+
+```latex
+What may be limiting
+```
+
+## Minor transition adjustment
+
+At original line68, “That evidence can come from several sources.” becomes “Evidence can come from several sources.” after the oracle definition moves ahead of it; no substantive content changes.
+
+## Implementation review
+
+Applied the approved §4.4 guidance. Preserved the full context-delivery paragraph, all impact-analysis and operational cases, the maintenance case, all citations, evidence references, point IDs, labels, and index-definition markers. Shortened and moved the oracle definition before mainline uses; relocated Docker with independent reviewer invocation, suite, human gate, and no-merge boundary intact, using “agents” rather than “fleet.” Diagnosis widths are18/39/43 percent with header “Limit.”
+
+Self-communicate review checked both the mainline-only and inset-inclusive reading paths. The evidence/representation distinction remains explicit; uncertainty about obligations still motivates experimentation; evaluation and enforcement remain separate. The cognition inset retains Hutchins, Zhang/Norman, the direct application to tools and representations, and the enforcement distinction. No new factual claims or new citation requirements. `git diff --check` passed. No sync, build, or commit performed.

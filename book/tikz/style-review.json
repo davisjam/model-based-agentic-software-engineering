@@ -2796,50 +2796,57 @@
     {
       "source": "book/assets/agentic-engineering-cycle.svg",
       "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
-      "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
-      "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+      "source_sha256": "ac6ec5a8343191902a953b53c8ed4f5db423bc972731294f65ec2c8ce1e58cb7",
+      "candidate_sha256": "fd06bdffa4057bae9aade576fdf51ad045bd7c61c6417f33856ef39590e8dfca",
       "receipt": "book/tikz/receipts/agentic-engineering-cycle.json",
       "decision": "new",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "fill": "All process boxes are white; no fill conveys a needed extra role.",
-      "bold": "Title and governance-conversion label are bold; activity names and explanatory line are regular.",
-      "routing": "Orthogonal cycle edges; 45bp horizontal arrows and 20bp return approach. Native TikZ brace spans all three activities.",
+      "bold": "Governance-conversion label is bold; activity names and explanatory line are regular. No visible title.",
+      "routing": "Orthogonal cycle; 40.5bp horizontal arrows and 14bp return approach. Brace spans all three activities.",
       "shape": "Three equal rounded rectangles establish equal visual weight. A brace groups all three without becoming a process edge.",
       "visual_review": "Native and SVG proofs inspected; all labels fit and every edge remains clear of text.",
       "validation": {
-        "proof": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.pdf",
-        "proof_png": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.png",
-        "proof_sha256": "1ce2de6ac774610f65a52b7510c1a644f761a7951e4bbf9fb2cb27e47f0faf05",
-        "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
-        "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
-        "width_bp": 425.9729919433594,
-        "height_bp": 161.9759979248047,
+        "date": "2026-11-23",
+        "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+        "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-1.png",
+        "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-1.png",
+        "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+        "source_sha256": "ac6ec5a8343191902a953b53c8ed4f5db423bc972731294f65ec2c8ce1e58cb7",
+        "candidate_sha256": "fd06bdffa4057bae9aade576fdf51ad045bd7c61c6417f33856ef39590e8dfca",
+        "page": 1,
+        "width_bp": 383.9729919433594,
+        "height_bp": 129.9759979248047,
         "authored_type_sizes_pt": [
           10.5,
-          11,
-          11.5
+          11
         ],
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "reviewed_peer_groups": 1,
-        "semantic_typography_checks": 6,
-        "typography_findings": 0,
+        "minimum_prose_font_pt": 10.5,
         "fonts": [
           "SourceSans3-Bold",
           "SourceSans3-Regular"
         ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 5,
+        "typography_findings": 0,
+        "svg_overflow_findings": 0,
         "monochrome_pixels": true,
         "reviewed_visually": true,
-        "date": "2026-11-10",
         "status": "passed",
-        "validation_scope": "New cycle artwork only; final assembled chapter requires layout inspection.",
-        "geometry_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/geometry-audit.json",
-        "typography_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/typography-audit.json"
+        "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+        "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+        "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
       },
       "book_references": [],
-      "routing_exceptions": "None."
+      "routing_exceptions": "None.",
+      "compaction_review": {
+        "date": "2026-11-23",
+        "reason": "Removed redundant visible title, narrowed authored geometry 10%, and shortened return clearance without changing activity or governance fonts, content, direction, or brace scope.",
+        "native_and_svg_inspected": true
+      }
     },
     {
       "source": "book/assets/interlude-execution-unit.svg",
@@ -3243,32 +3250,44 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
-      "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
-      "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
       "validation": {
-        "date": "2026-11-13",
-        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-        "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
-        "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
-        "page": 1,
-        "width_bp": 449.972,
-        "height_bp": 379.973,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-23",
+        "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+        "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+        "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+        "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+        "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+        "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+        "page": 2,
+        "width_bp": 449.97198486328125,
+        "height_bp": 350.0539855957031,
         "authored_type_sizes_pt": [
-          9.0,
+          9,
           9.5,
-          10.0
+          10
+        ],
+        "minimum_prose_font_pt": 9,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
         ],
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "monochrome_pixels": true,
         "semantic_typography_checks": 20,
-        "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
-        "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
-        "status": "passed"
+        "typography_findings": 0,
+        "svg_overflow_findings": 0,
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "status": "passed",
+        "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+        "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+        "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
       },
       "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/style-review.json",
       "receipt": "book/tikz/receipts/discovering-models-migration.json",
@@ -3281,7 +3300,12 @@
       "shape": "Modestly rounded rectangles denote findings, steps, and artifacts; consistent gray fill identifies the discovered concept and reinforced model substrate.",
       "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
       "book_references": [],
-      "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch."
+      "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch.",
+      "compaction_review": {
+        "date": "2026-11-23",
+        "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+        "native_and_svg_inspected": true
+      }
     },
     {
       "source": "book/assets/squash-zero-promote.svg",

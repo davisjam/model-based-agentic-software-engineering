@@ -62,6 +62,8 @@ A greenfield project might appear to invite the opposite strategy: construct the
 % Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
 Software changes because requirements are incomplete, abstractions prove wrong, and interactions become consequential only after something runs. A specification can constrain implementation choices without eliminating uncertainty about which choices should ultimately be fixed. Leaving some choices unsettled can therefore have information value. Engineers can use exploratory implementations to expose missing requirements, useful abstractions, resource constraints, and assumptions that were invisible on paper, then decide what should become explicit structure. The parallel document-format implementations in \hyperref[3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement]{\magevalue{sec:models-and-the-semantic-gap}} illustrate this route to Modeling: they let me investigate common structure before deciding what should be shared.
 
+Modeling may therefore precede implementation, follow it, or develop alongside it. A known resource bound may belong in the alignment kernel before a transformation begins; a missing architectural relationship may become visible only after several implementations expose it. The sequence matters less than identifying which properties must be preserved and what evidence is needed before accepting the next change.
+
 \section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}
 
 Agentic implementation makes this strategy unusually cheap. In that setting, even vibe coding has a legitimate engineering role: it can serve as a kind of 3D printer for software, rapidly realizing a loose specification so that engineers can learn about the system they actually need. The mistake is not using cheap implementation. The mistake is confusing an exploratory realization with a sufficiently governed one.
@@ -76,37 +78,44 @@ A useful rule is to distinguish three kinds of decisions. If a choice follows me
 
 % <!-- print-keep-with-next: 8 -->
 
-These decisions become more frequent as agents accelerate implementation. The increased rate of work also changes what engineers can learn from experience, through three related forms of amplification.
+These decisions become more frequent as agents accelerate implementation. The increased rate of work also changes what engineers can learn from experience, through three related forms of amplification (\autoref{phenomena-amplification}).
 
-% <!-- box-family: canonical -->
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.25}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.27}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.48}}@{}}
+\caption[Three forms of amplification]{\emph{Three forms of amplification.} Faster implementation creates opportunities to explore alternatives, refine intent, and recognize related observations.}\label{phenomena-amplification}\tabularnewline
+\toprule\noalign{}
+Phenomenon & What changes & Engineering opportunity \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Phenomenon & What changes & Engineering opportunity \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Implementation amplification & Alternatives become cheaper to realize & Implement, measure, and reject designs that previously cost too much to try. \\
+Comprehension amplification & Intent can be refined through rapid trials & Use working software to expose misunderstandings and revise the representation. \\
+Connection amplification & Related observations occur closer together & Recognize shared causes, missing relationships, or architectural gaps. \\
+\end{longtable}
+}
 
-\begin{quote}
-\mbox{}%
-\subsection{Engineering phenomena --- Implementation, comprehension, and connection amplification}\label{heading:phenomena-amplification}
-
-\textbf{Implementation amplification: compressed exploration.} Commodity intelligence makes it cheap to implement, inspect, measure, and reject alternatives that previously would have been too expensive to try.
-
-\textbf{Comprehension amplification: compressed understanding.} Rapid implementation helps engineers discover what they mean. Working software exposes misunderstandings that requirements and discussion leave hidden; agents make it cheaper to repeat the cycle of expressing an intent, inspecting the result, and revising the representation. \textbf{You can only learn from what you can observe.}
-
-\textbf{Connection amplification: compressed experience.} Agents surface related failures, observations, and design consequences in dense succession, where conventional development would have separated them by days or weeks. Their proximity can make relationships visible: several local failures reveal one architectural gap; a measurement exposes a missing model; one change makes the consequence of another immediately apparent.
-
-The limitation matters. A change can satisfy its functional goal while worsening performance, security, or maintainability. Fast implementation therefore increases the importance of measuring beneath the visible outcome. The DocAble case in \magevalue{sec:interlude-one-problem-many-models} illustrates this through Ousterhout's advice to measure one level deeper~\citep{ousterhout2018}.
-\end{quote}
+You can only learn from what you can observe. A change can satisfy its functional goal while worsening performance, security, or maintainability. Fast implementation therefore increases the importance of measuring beneath the visible outcome.
 
 In DocAble, related failures sometimes arrived quickly enough that what first appeared to be separate defects became recognizable as symptoms of a missing architectural concept. The shared relationship became a system model, which in turn enabled static analyses that prevented several classes of failure. Speed had changed what the engineer could see.
 
 The engineer still judges which alternatives are worth exploring and which apparent connections matter. When experience reveals a recurring lesson, governance conversion preserves it in the environment so that later work can use the resulting representation, procedure, or control.
 
-% <!-- box-family: canonical -->
+% <!-- box-family: move -->
 
-\begin{quote}
-\mbox{}%
-\subsection{Engineering move --- Governance conversion}\label{heading:move-governance-conversion}
+% mage-box-prefix: MAGE Move —
 
-A recurring failure, a repeated judgment, or a newly discovered relationship is converted into durable engineering structure: a representation, a body of evidence, a procedure, or an enforced obligation. \magevalue{sec:governance-conversion} develops the move in full.
-
-It does not decide \emph{what} deserves capturing; that judgment stays with the engineer. It names what follows the decision: the lesson stops living in one person\textquotesingle s memory and starts living in the environment that governs the next change.
-\end{quote}
+\begin{bookbox}{move}{Governance conversion}
+\label{heading:move-governance-conversion}
+When a recurring failure, repeated judgment, or newly discovered relationship warrants preservation, record it in durable engineering structure: a model, evidence, a procedure, or an enforced obligation. Establish how subsequent work will use it. The engineer decides what deserves preservation; governance conversion makes the resulting decision available beyond the episode in which it arose. \magevalue{sec:governance-conversion} develops the move in full.
+\end{bookbox}
 
 % <!-- box-family: inset -->
 
@@ -129,8 +138,6 @@ Test-driven development (TDD) offers a useful analogy: its test → implement �
 % Evidence: E25 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E25.md | kind: author-account
 My practice in building DocAble often followed a different sequence. I first asked agents to implement working functionality, using tests to establish that particular behaviors worked. Once I had enough implementation to understand the problem better, I asked agents to recover explicit models of the system’s structure and behavior. I then revisited the tests: did they actually check the obligations those models expressed? Some tests needed stronger assertions, others needed additional cases, and some obligations called for different forms of analysis or enforcement. This was not test-driven development in the usual temporal sense. Implementation helped discover what needed to be modeled; the models then helped determine what the tests needed to establish.
 
-MAGE examines how cheaper model construction, analysis, and maintenance change which engineering work is worth doing. As a system grows, separately specified changes can interact through shared resources and dependencies. In DocAble, for example, increasing concurrency could improve throughput while also increasing peak memory. Concurrency models used the memory model to choose how much work could run at once, and guards refused work whose estimated memory exceeded its budget. Later measurements corrected assumptions in the model. \magevalue{sec:interlude-one-problem-many-models} follows this example from the memory failure that made the model necessary.
-
 \end{bookbox}
 
 \autoref{agentic-engineering-cycle} brings these recurring activities together. Alignment operates throughout the work, while governance conversion can preserve a consequential lesson wherever it arises.
@@ -144,4 +151,4 @@ MAGE examines how cheaper model construction, analysis, and maintenance change w
 
 The engineers supervising this process do not begin without understanding. They had enough understanding to state the problem, write the loose specification, judge the prototype, and recognize what it gets wrong. The task is to move consequential parts of that understanding out of human memory and into explicit representations that agents and the engineering environment can use. Because agents can perform both implementation and much of the mechanical work of model induction quickly, this transition need not be a long separate modeling phase.
 
-Leave degrees of freedom open while variation produces useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the implementation to it. This applies to greenfield and brownfield engineering alike. The difference is where the first useful evidence comes from: exploratory implementations in one case, an existing system and its accumulated engineering knowledge in the other. \magevalue{sec:brownfield-engineering} examines how to recover that knowledge from an inherited system.
+Leave degrees of freedom open while variation produces useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the implementation to it. The next episode follows an existing system whose memory failure prompted a new residency model. That model changed which execution designs were worth considering, while later measurements forced further revisions.

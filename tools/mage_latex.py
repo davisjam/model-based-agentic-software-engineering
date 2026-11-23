@@ -157,9 +157,11 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
                 match = re.match(r'####\s+(.*?)\s*\{#([^}]+)\}\n+', inner)
                 if match:
                     heading, label = match.groups()
-                    prefix = re.match(r'^Inset\s*[—–-]\s*', heading)
+                    prefix = re.match(r'^(?:Inset|MAGE Move)\s*[—–-]\s*', heading)
+                    family = 'move' if heading.startswith('MAGE Move') else 'inset'
                     result.append(('% mage-box-prefix: ' + (prefix[0] if prefix else '')).rstrip())
-                    result.append(r'\begin{bookbox}{inset}{' + inline(re.sub(r'^Inset\s*[—–-]\s*', '', heading)) + '}\n' + r'\label{' + label + '}\n' + render_blocks(inner[match.end():]) + '\n' + r'\end{bookbox}')
+                    box_title = heading[prefix.end():] if prefix else heading
+                    result.append(r'\begin{bookbox}{' + family + '}{' + inline(box_title) + '}\n' + r'\label{' + label + '}\n' + render_blocks(inner[match.end():]) + '\n' + r'\end{bookbox}')
                 else: result.append(inline(re.sub(r'^(>\s*)#(#{1,5} )', r'\1\2', text, flags=re.M)))
             elif block.kind is book_ir.BlockKind.TABLE:
                 pending_caption = block.caption
