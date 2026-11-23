@@ -33,7 +33,7 @@
     "sections_total": 182,
     "sections_primary_of_an_outcome": 5,
     "modules": 8,
-    "lessons": 36
+    "lessons": 37
   },
   "taxonomy": {
     "know": [
@@ -360,6 +360,11 @@
           },
           {
             "lesson": "7.4-the-engineer",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "7.5-what-cannot-be-delegated",
             "own_outcomes": [],
             "section_outcomes": []
           }

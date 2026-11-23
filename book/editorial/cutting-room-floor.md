@@ -25562,3 +25562,61 @@ The strongest test would be comparative rather than rhetorical. Independently ev
 
 That prediction has been developed here from software engineering. Testing it elsewhere is future work.
 ```
+
+
+## Chapter 7 education and entry-rung revision — 23 November 2026
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex`, §§7.4.4–7.4.5, lines 268–298.
+- Source revision: `32862935b372a75d6b13b2b96e483962e73ca94a`.
+- Reason: Apply the author's final dialogue: objectives, assessment, then contextualized capstone; two question-led entry/progression paragraphs. The final profession paragraph moves verbatim into §7.4.4. Original text retained here to preserve the replaced formulations and citations.
+
+```latex
+\subsection{Change what students demonstrate}\label{heading:change-what-students-demonstrate}
+
+% <!-- point: capstone-should-carry-the-engineering-case | A capstone should carry the engineering case, not only a working artifact. -->
+
+A capstone should therefore demonstrate more than a working artifact. Ask students to bring the \textbf{engineering case}.\magefootnote{abet-capstone}{Existing accreditation already asks for a culminating design experience that integrates standards and multiple constraints and builds on earlier coursework, with software-specific criteria adding requirements analysis, security, verification and validation, and processes for complex software systems~\citep{abet-eac-criteria}. Computing-accredited programs likewise require a major integrative project~\citep{abet-cac-criteria}. The open question is not whether students should integrate their knowledge but what should count as evidence that they have --- which is why the capstone should carry the engineering case, not only the demo.} The artifact should be one component of that case, alongside requirements, models, tradeoffs, measurements, validation evidence, and an explicit argument for acceptance. Students should also demonstrate that they can organize substantial work: decompose an objective, manage dependencies and integration, coordinate parallel realization, and adapt the plan as engineering evidence arrives. This extends the integrative purpose of the capstone by asking students to show how they exercised informed control over the system. They should be able to explain which evidence supports its consequential properties, recognize the assumptions and tradeoffs behind that evidence, and justify accepting the result.
+
+% <!-- point: assessment-distinguishes-performed-from-directed-work | Assessment must distinguish work students performed from work they directed and evaluated: a successful implementation can show the arrangement worked without showing the student understood it, and the two outcomes require different evidence. -->
+
+Assessment must distinguish between work students performed themselves and work they directed and evaluated. A successful implementation can demonstrate that a production arrangement worked without establishing that the student understood its assumptions, recognized consequential decisions, or could intervene when the arrangement failed. Both direct technical work and the competent direction of delegated work are legitimate educational outcomes, but they require different evidence.
+
+% <!-- point: program-objectives-change-little-practice-changes | Program objectives change little; how students practice and demonstrate the capabilities changes. -->
+
+Program objectives may need to change less than daily engineering work does. Most engineering programs need little change in \textbf{what they claim an engineer should become}. The larger change is in how students practice and demonstrate those capabilities.
+
+% <!-- point: teach-durable-principles-beneath-the-agent-interface | Teach the durable principles beneath the fast-changing agent interface, not the interface itself. -->
+
+The durable curriculum should not be organized around the current agent interface. Prompt conventions, harness architectures, model APIs, and context-management techniques matter in practice and students should use them, but they change too quickly to define the intellectual core. Teach the principles beneath them---finite reasoning and abstraction, representation and fidelity, action boundaries and authority, independent evidence, security, measurement, and the design of environments in which uncertain components can be used safely---and let students encounter current agents throughout the curriculum.
+
+\section{The Entry-Rung Problem}\label{heading:the-entry-rung-problem}
+
+% <!-- point: genai-erodes-the-implementation-apprenticeship | GenAI erodes the implementation apprenticeship through which the profession trained senior engineers. -->
+
+The traditional path into software engineering runs through implementation. Junior engineers become useful by writing code, and through that work they encounter larger systems, learn why designs fail, and gradually acquire the judgment needed to take responsibility for more of the system. GenAI changes this apprenticeship model. If routine implementation requires fewer people, the profession loses some of the work through which it has historically trained its future senior engineers.
+
+% <!-- point: entry-rung-problem-acquiring-judgment-without-implementation-work | The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant. -->
+
+This creates an entry-rung problem. Requirements discovery, modeling, security, systems reasoning, validation, and engineering judgment are harder to teach through a short framework-oriented path---and they are also the capabilities that become more valuable when implementation is abundant. Practitioners concentrated in implementation therefore need paths into architecture, assurance, modeling, and system responsibility. New entrants need ways to acquire those foundations even if the market demands less handwritten construction. The deeper educational problem is how students acquire the engineering judgment that routine implementation previously helped them develop through experience.
+
+% <!-- point: profession-reorganizes-around-responsibility-for-the-whole | Education must develop people who can take responsibility for the engineered whole even when much of the work through which earlier generations learned is delegated. -->
+
+The profession cannot define itself by a stable residue of tasks left to humans; those tasks will continue to move as capabilities improve. Its educational challenge is to develop people who can take responsibility for the engineered whole, even when much of the work through which earlier generations learned is delegated.
+```
+
+
+## Chapter 7 closing consolidation — 23 November 2026
+
+- Source: `book/latex/sources/part7/7.5-what-cannot-be-delegated.tex`, §7.5, lines 12–18.
+- Source revision: `32862935b372a75d6b13b2b96e483962e73ca94a`.
+- Reason: The author combines the chapter synthesis with the responsibility paragraph formerly in §7.4, ending with substantive responsibility rather than a signpost to the Conclusion.
+
+```latex
+Making implementation cheaper does not make software engineering easy; it changes where the difficulty lies.
+
+This chapter has followed that change from software work to engineering traditions, beyond software to other consequential professions, and finally to the engineer’s own expertise and authority. Across these settings, the same distinction persists. Work can be delegated, and authority to make particular decisions can be granted to people or mechanisms. Responsibility for the resulting engineering arrangement remains with those who authorize and govern it.
+
+That distinction does not reserve a permanent set of tasks for humans. Better machines may eventually perform nearly every activity discussed in this book, including constructing models, evaluating evidence, proposing controls, and exercising consequential judgment. What matters is whether people and institutions retain sufficient understanding, control, and authority to remain answerable for the resulting systems.
+
+The Preface asked what we can safely delegate. The Conclusion approaches the same boundary from the other direction: What must not be delegated?
+```

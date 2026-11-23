@@ -16,7 +16,7 @@
       "concepts": 72,
       "labels": 82,
       "refs": 84,
-      "chapters": 83,
+      "chapters": 84,
       "parts": 9,
       "points": 506,
       "terms": 340,
@@ -1429,7 +1429,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.4-the-engineer::block-97",
+          "element": "7.4-the-engineer::block-101",
           "role": "paragraph-point"
         }
       ]
@@ -3119,7 +3119,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "9.1-the-part-that-stays-yours::block-36",
+          "element": "9.1-the-part-that-stays-yours::block-37",
           "role": "paragraph-point"
         }
       ]
@@ -3439,7 +3439,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.4-the-engineer::block-110",
+          "element": "7.5-what-cannot-be-delegated::block-2",
           "role": "paragraph-point"
         }
       ]
@@ -3449,7 +3449,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.4-the-engineer::block-101",
+          "element": "7.4-the-engineer::block-97",
           "role": "paragraph-point"
         }
       ]
