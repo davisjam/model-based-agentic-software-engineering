@@ -25279,3 +25279,59 @@ DevOps offers a particularly close precedent. Infrastructure as Code and Policy 
 
 \textbf{Making agents easier to operate is not the same as making software easier to engineer.}
 ```
+
+## Chapter 7: merge review into engineering the production system (2026-11-23)
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, former §§7.1.5–7.1.6, lines 160–208, revision `a19c829b9`. Author-approved replacement places DevOps first and code review second as examples of engineering the production system; removes the separate review heading, repeated conclusions, and wider environment-capability discussion. Original text preserved with citations and references.
+
+```latex
+\section{Review When Implementation Is Abundant}\label{heading:review-when-implementation-is-abundant}
+
+Code review does not disappear when agents produce the code. Its center of gravity moves.
+
+At low change volume, an experienced engineer can treat the diff itself as the principal reasoning surface. Read the implementation, reconstruct the surrounding architecture, infer the affected behavior, inspect the tests, decide whether the change belongs. That strategy stops scaling as implementation becomes abundant. The scarce resource is no longer the ability to produce another diff. It is the engineer\textquotesingle s ability to determine what the change means.
+
+This pressure predates agents. Long before agentic programming, empirical work at Microsoft found that larger changes were harder to review well: as more files were touched, the proportion of useful reviewer feedback declined, and large changes imposed greater reviewer effort~\citep{bosu2015useful}. Agentic generation makes that problem larger; it does not change its basic cognitive shape. The older result establishes that large changes tax human review and reduce useful feedback. It does not establish that explicit models would relieve the strain; models as the remedy are MAGE\textquotesingle s proposal.
+
+Greiler\textquotesingle s more recent SCOPE proposal responds by changing the review operating model: detailed implementation review moves increasingly into the developer--agent loop, and team review becomes risk-proportional assurance over code together with higher-level artifacts and evidence~\citep{greiler2026scope}. That proposal already includes agent review, developer attestation, risk-based team assurance, and accountability. SCOPE changes the operating model for review; MAGE additionally changes the surfaces available to the reviewer. When the environment holds explicit models of structure, behavior, ownership, execution, measurement, and provenance, those models become review surfaces in their own right. The engineer need not reconstruct every relevant property from the diff.
+
+Explicit models provide intermediate review surfaces. A change can be projected onto component ownership, permitted dependencies, service edges, lifecycle states, deployment placement, user journeys, measurement obligations, and provenance. Deterministic mechanisms discharge the obligations that are mechanically decidable before scarce human attention is spent. The reviewer then spends attention on the remainder:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Is the intended change desirable} --- the question a diff could never answer on its own.
+\item
+  \textbf{Do the models capture the relevant concern} --- or has the change moved a property no current representation exposes.
+\item
+  \textbf{Is the evidence sufficient} --- do the checks that ran actually bound the risk this change carries.
+\item
+  \textbf{Should the tradeoff be accepted} --- the residual judgment that stays with a person.
+\end{itemize}
+
+Implementation becomes one evidentiary surface among several, rather than the origin from which every system property must be reconstructed. The reviewer still examines implementation details when they are necessary to evaluate the risk. The models supply an index into the engineering significance of a change.
+
+In the terms of \magevalue{chapter:theory}, these representations can reduce the cost of evaluating a realization without necessarily improving the probability that the agent produces an acceptable one.
+
+Review moves upstream, from inspecting realization toward evaluating intent, consequence, evidence, and the judgment that remains. Some argue that capable coding agents will eliminate human code review altogether~\citep{monperrus2026end}. Even if code review disappears, engineers must still evaluate the models, evidence, and tradeoffs that govern the resulting software.
+
+{[}appendix: appendix-handbook{]} examines selected DocAble models, their consumers, and the checks that maintain correspondence with the implementation. These examples illustrate the engineering surfaces available for review without prescribing a fixed catalog of models.
+
+This shift in review surfaces has a broader implication: effective engineering capability may increasingly be a property of the environment as well as the foundation model. A weaker reasoner operating over accurate representations, well-routed context, strong tools, and independent evidence may outperform a stronger reasoner over an opaque repository. MAGE does not establish that substitution quantitatively; \magevalue{sec:research-agenda} asks how capability and environment substitute for or complement one another, and how those comparisons might inform engineering routing.
+
+\section{Engineering the Production System}\label{heading:engineering-the-production-system}
+
+% <!-- point: two-places-engineering-attention-can-go | Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization. -->
+
+\magevalue{chapter:software-factories} distinguished two places engineering attention can go as realization becomes abundant. Engineers can spend increasing effort operating agentic machinery: supplying work and context, coordinating agents, inspecting output, and resolving exceptions. They can also engineer the production system around that machinery so that selected knowledge, evidence, and controls persist across acts of realization.
+
+% <!-- point: both-futures-contain-capable-agents-and-differ-in-where-judgment-goes | The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work. | terms: degrees-of-freedom -->
+
+Both futures can contain capable agents and very little human implementation. They differ in where scarce engineering judgment goes. MAGE predicts increasing value in designing and revising the production environment: deciding what it must preserve, how it establishes acceptability, and which choices it can safely leave to agents.
+
+DevOps offers a particularly close precedent. Infrastructure as Code and Policy as Code moved knowledge that once lived in operating practice into executable artifacts. MAGE generalizes the move without insisting on code as the form: an engineering decision might become a type, model, schema, validator, permission, workflow, or documented review obligation. Useful engineering knowledge increasingly becomes structure later work can inherit; residual semantic judgment remains with people.
+
+% <!-- point: not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it | This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work. -->
+
+This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. What changes is that engineers increasingly exercise those responsibilities through the production system in which agents work. The next section places that arrangement within the longer history of engineering through explicit representations and controls.
+```
