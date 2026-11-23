@@ -11,12 +11,9 @@
 % <!-- section-terms: tolerance -->
 
 % <!-- point: the-printer-described-a-fabricator | The printer analogy explained fabricative technology — a machine that realizes a broad range of artifacts from a description of what should be made. | terms: printer-metaphor -->
-
-Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made.
-
 % <!-- point: the-printer-becomes-one-piece-of-the-factory | The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable. | terms: printer-metaphor -->
 
-The printer becomes one piece of a larger factory: a system that determines what should be made, organizes production, and evaluates whether the result is acceptable.
+Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made. But the printer is only one piece of a larger factory: a system that determines what should be made, organizes production, and evaluates whether the result is acceptable.
 
 % <!-- point: scaling-fabrication-required-engineering-the-production-system | Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator. -->
 
@@ -26,7 +23,14 @@ Software engineering has already made much of this move. Continuous integration 
 
 % <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
 
-Two ideas from manufacturing help explain what this expanded software factory must do (\autoref{process-design-and-tolerance}):
+Two ideas from manufacturing help explain what this expanded software factory must do (\autoref{process-design-and-tolerance}). One concerns how production is organized; the other concerns which properties of the finished product must be controlled. As \magevalue{sec:constraints-sensors-validators-gates} showed, measurement can establish not only whether a result is acceptable but, for quantitative properties, how much margin remains. That evidence can inform subsequent engineering decisions without prescribing every step of production.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
+\caption[Process design and tolerance]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
+\label{process-design-and-tolerance}
+\end{figure}
 
 \begin{itemize}
 \tightlist
@@ -36,18 +40,11 @@ Two ideas from manufacturing help explain what this expanded software factory mu
   \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter~\citep{winchester2018}.
 \end{itemize}
 
-As \magevalue{sec:constraints-sensors-validators-gates} showed, measurement can establish not only whether a realization satisfies a tolerance but, for quantitative properties, how much margin remains. That evidence can inform the next engineering decision without prescribing how the fabricator must work.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
-\caption[Process design and tolerance]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
-\label{process-design-and-tolerance}
-\end{figure}
-
 % <!-- point: a-better-production-system-made-a-different-artifact-practical | Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance. | terms: tolerance -->
 
-Watt\textquotesingle s improved steam engine shows why production capability and product tolerance must develop together. Its design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for the engine to perform as intended. The advance was therefore more than a faster way to make an existing artifact. A more capable production system made a different artifact practical.
+% Historical verification (2026-11-23): Science Museum Group, separate condenser and Wilkinson boring mill: https://collection.sciencemuseumgroup.org.uk/objects/co50928 and https://collection.sciencemuseumgroup.org.uk/objects/co46455 ; Boulton & Watt production records: https://calmview.birmingham.gov.uk/CalmView/Record.aspx?id=MS+3147/4&src=CalmView.Catalog ; Soho Foundry: https://historicengland.org.uk/listing/the-list/list-entry/1021388/
+
+Process design and tolerance must develop together. The history of the steam engine illustrates their relationship. Thomas Newcomen developed an early practical steam engine in 1712, but its inefficient operation consumed large quantities of fuel. James Watt substantially improved its efficiency by introducing a separate condenser, making steam power economical for a wider range of applications. However, Watt’s design required cylinders bored more accurately than ordinary eighteenth-century manufacturing could reliably achieve. John Wilkinson’s precision boring machinery addressed this requirement, producing cylinders sufficiently true for Watt’s engine to perform as intended. Watt’s business partner Matthew Boulton helped organize the specialized labor, machinery, and production methods needed to manufacture the engines commercially. These were complementary advances: improved manufacturing precision expanded what engineers could design, while the organization of production made those designs practical to manufacture at scale~\citep{robinson1969watt,winchester2018}.
 
 \section{What Does a Software Factory Produce?}\label{heading:what-does-a-software-factory-produce}
 

@@ -2384,52 +2384,52 @@
           "heading_text": "What Does a Software Factory Produce?",
           "topic_sentence": "The analogy requires one adjustment before we apply it to software.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 14,
           "points": [
             {
               "slug": "software-does-not-repeatedly-produce-instances",
               "text": "The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing.",
-              "block_index": 17
+              "block_index": 15
             },
             {
               "slug": "the-output-is-the-next-working-realization",
               "text": "The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works.",
-              "block_index": 19
+              "block_index": 17
             },
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "A software factory organizes controlled change while preserving control over consequential properties and consequences.",
-              "block_index": 21
+              "block_index": 19
             },
             {
               "slug": "a-factory-contains-more-than-its-fabricators",
               "text": "Models, tools, and controls perform different roles within the factory, whose GEE is joined by people, agents, production activities, and organizational authority.",
-              "block_index": 24
+              "block_index": 22
             },
             {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
               "text": "A software factory preserves consequential properties while changing the system itself.",
-              "block_index": 27
+              "block_index": 25
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Representations of changing software incur construction and maintenance costs.",
-              "block_index": 29
+              "block_index": 27
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Organizations weigh reusable representations against the cost of skilled judgment during implementation.",
-              "block_index": 31
+              "block_index": 29
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question is where consequential knowledge can be maintained and applied most economically without losing control.",
-              "block_index": 32
+              "block_index": 30
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Inexpensive capable agents can resolve ordinary implementation choices while engineers preserve selected consequential judgments and acceptance evidence.",
-              "block_index": 37
+              "block_index": 35
             }
           ]
         },
@@ -2439,22 +2439,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 37,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 40
+              "block_index": 38
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 46
+              "block_index": 44
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 48
+              "block_index": 46
             }
           ]
         }
@@ -2468,22 +2468,22 @@
         {
           "slug": "the-printer-becomes-one-piece-of-the-factory",
           "text": "The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable.",
-          "block_index": 4
+          "block_index": 3
         },
         {
           "slug": "scaling-fabrication-required-engineering-the-production-system",
           "text": "Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator.",
-          "block_index": 6
+          "block_index": 5
         },
         {
           "slug": "process-design-and-tolerance",
           "text": "Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable.",
-          "block_index": 9
+          "block_index": 8
         },
         {
           "slug": "a-better-production-system-made-a-different-artifact-practical",
           "text": "Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance.",
-          "block_index": 14
+          "block_index": 12
         }
       ]
     },

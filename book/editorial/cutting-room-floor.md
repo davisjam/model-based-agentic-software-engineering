@@ -26080,3 +26080,47 @@ Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex:136` at `6124c8a7
 ```latex
 Test-driven development (TDD) offers a useful analogy: its test → implement → refactor cycle organizes programming, while the team still has to decide how to evaluate interactions and the assembled system~\citep{fowler2023tdd}. TDD can also be understood as a form of specification-first development: tests express selected requirements as executable checks of a component’s observable behavior before its implementation is written. The implementation remains free to change as long as it satisfies those checks. The specification is necessarily partial, since tests exercise only selected inputs and properties, but the underlying move is familiar: establish what must hold, then evaluate the implementation against it. An SDD workflow similarly contributes to engineering a system without settling every question about its representations, obligations, and evidence.
 ```
+
+## 2026-11-23 — Chapter 5.1 factory introduction and steam-engine history
+
+Source: `book/latex/sources/part5/5.1-software-factory.tex` §5.1, lines 15–51, at `8c2ea2d5e2f8b4eef60cae8f9e639058ea4a4242`. Merged the introductory paragraphs, moved measurement before the definitions, and expanded the historical account to distinguish efficiency, precision machinery, and production organization.
+
+```latex
+Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made.
+
+% <!-- point: the-printer-becomes-one-piece-of-the-factory | The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable. | terms: printer-metaphor -->
+
+The printer becomes one piece of a larger factory: a system that determines what should be made, organizes production, and evaluates whether the result is acceptable.
+
+% <!-- point: scaling-fabrication-required-engineering-the-production-system | Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator. -->
+
+Factories developed to make production repeatable at scales that craft production could not support. Interchangeable parts allowed components made separately to participate in the same product. Mechanization increased the amount of work that machinery could perform. Machine tools increased precision and repeatability. Each advance also exposed a problem. Faster machinery could produce defects faster than people could inspect them; a design was of little use if the available machinery could not realize it accurately; interchangeable parts were not interchangeable if different shops produced incompatible dimensions. Scaling fabrication therefore required engineering the production system around the fabricator.
+
+Software engineering has already made much of this move. Continuous integration and delivery organize building, testing, and deployment into repeatable processes, with automated checks governing what may proceed~\citep{humble2010continuous}. Coding agents extend automation into the production of the changes themselves. The factory must now govern not only how software is built and delivered, but also how implementation decisions are delegated, what system knowledge informs them, and what evidence justifies accepting the result.
+
+% <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
+
+Two ideas from manufacturing help explain what this expanded software factory must do (\autoref{process-design-and-tolerance}):
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Process design} determines how production proceeds. Work is decomposed and sequenced; responsibilities, machinery, and information are arranged; measurements and decision points occur at selected stages. The process carries knowledge about how production should occur rather than requiring each fabricator to reconstruct it. Scientific management made this separation explicit by moving planning, work methods, instructions, and standards into a deliberately designed production system~\citep{taylor1911}.
+\item
+  \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter~\citep{winchester2018}.
+\end{itemize}
+
+As \magevalue{sec:constraints-sensors-validators-gates} showed, measurement can establish not only whether a realization satisfies a tolerance but, for quantitative properties, how much margin remains. That evidence can inform the next engineering decision without prescribing how the fabricator must work.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
+\caption[Process design and tolerance]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
+\label{process-design-and-tolerance}
+\end{figure}
+
+% <!-- point: a-better-production-system-made-a-different-artifact-practical | Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance. | terms: tolerance -->
+
+Watt\textquotesingle s improved steam engine shows why production capability and product tolerance must develop together. Its design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for the engine to perform as intended. The advance was therefore more than a faster way to make an existing artifact. A more capable production system made a different artifact practical.
+
+```
