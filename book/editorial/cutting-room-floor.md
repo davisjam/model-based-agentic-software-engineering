@@ -33994,3 +33994,1484 @@ Former next-section transition no longer fits the reordered chapter; replaced by
 ```latex
 Some mechanisms can be designed before work begins; others become necessary when experience exposes a missing control. The next section examines how the governed environment grows through both routes.
 ```
+
+
+## Chapter 3 mechanization and internal organization — 2026-11-24
+
+Original passages retained before the author-requested consolidation, replacement, and relocation. Source revision: `031cfda8dcbf82fc6ce65e23bb4569ee2a3f950c`. The Chapter 2 callbacks are included for provenance.
+
+### book/latex/sources/part3/00-part-intro.tex (lines 1–33)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+% <!-- index-def: alignment-principle -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:alignment-principle}
+
+Engineering models can express obligations without ensuring that an implementation satisfies them. Instructions and feedback may guide an agent toward acceptable behavior, but important obligations should not depend solely on the agent interpreting them correctly. Engineers can establish mechanisms that restrict actions, obtain evidence, and determine whether work may proceed. These mechanisms must be placed where the relevant obligations can be evaluated and enforced.
+
+\emph{Alignment Principle. Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.}
+\end{quote}
+
+\magevalue{chapter:modeling} showed how engineering models make consequential knowledge and intent explicit. But an agent can produce an implementation that violates a correctly stated model. Suppose an agent is asked to add a reporting feature using billing data. The architectural model requires \texttt{Reporting} to access \texttt{BillingDB} through \texttt{BillingAPI}, where access-control and consistency rules can be applied. The agent instead connects directly to the database. The report may display the expected values while bypassing those rules. Repeating the requirement in the prompt may help, but it leaves the obligation dependent on another interpretation of the instruction.
+
+Alignment addresses this problem by connecting selected obligations to mechanisms that can restrict actions or determine whether work may proceed. \autoref{engineer-agent-interaction} places Alignment alongside Modeling in the engineer's interaction with agents. Natural language, specifications, and models communicate intent; review, testing, and analysis provide evidence about the resulting work. The engineer must decide which obligations warrant enforcement, what evidence is adequate, and which implementation choices should remain open. These decisions draw on familiar practices, including architectural conformance checking, software testing, permissions, and system-safety engineering~\citep{murphy1995reflexion,sangal2005dependency,passos2010conformance,leveson2011}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/engineer-agent-interaction-0b4a60f4a1.pdf}
+\caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.}
+\label{engineer-agent-interaction}
+\end{figure}
+
+% <!-- print-keep-with-next: 8 -->
+
+We begin with the obligations expressed in the engineering models of \magevalue{chapter:modeling} and examine what it means to enforce them (\cref{chapter:3.1-from-engineering-models-to-enforcement}). \cref{chapter:3.2-governance-mechanisms} develops a repertoire of governance mechanisms and considers how to choose among them while preserving engineering freedom. \cref{chapter:3.3-where-obligations-can-be-enforced} examines where these mechanisms should act. As engineers learn more about their systems, they can add to and revise the machinery governing their work (\cref{chapter:3.4-governance-conversion}). Finally, \cref{chapter:3.5-when-guardrails-collide} examines how to model and maintain that machinery as a system in its own right.
+
+```
+
+### book/latex/sources/part3/3.1-from-engineering-models-to-enforcement.tex (lines 1–177)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: From Engineering Models to Enforcement -->
+
+\chapter{From Engineering Models to Enforcement}
+
+\magevalue{chapter:modeling} asked four questions about each model: what engineering question it serves, what representation makes that question tractable, which property it makes explicit, and which quality attribute that property concerns. We now take up the fifth: \textbf{what enforces the property?} A model can tell an agent what must hold without ensuring that the agent's work satisfies it. We begin by distinguishing a request from an enforced obligation, then examine what evidence would justify accepting the work.
+
+\section{Guidance and Enforcement}\label{heading:guidance-and-enforcement}
+
+% <!-- point: the-environment-intervenes-between-a-proposed-action-and-its-consequence | The environment intervenes between a proposed action and its consequence. | terms: governed-environment, agentic-harness -->
+
+A foundation model produces probabilistic outputs; a harness turns selected outputs into actions. Once those actions can alter a repository, invoke an API, change infrastructure, or ship an artifact, the engineering question is no longer only how to steer the reasoner. It is where the surrounding environment can intervene between a proposed action and its consequence.
+
+% <!-- point: guidance-influences-behavior-enforcement-constrains-consequences | Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them. | terms: guidance-vs-enforcement, alignment-principle -->
+
+% <!-- index-def: agent -->
+
+Guidance tells an agent what to do. Enforcement limits what it can do or what we will accept. A prompt, brief, example, or playbook can make one action more likely than another. A permission boundary can forbid an action, while a required test can prevent an unsatisfactory result from being accepted. Feedback can return evidence to the reasoner---a failing test, an observed call, a measured latency, or an explanation of why a check failed---so that subsequent work can respond. For the billing example, repeating the architectural rule may improve the agent's next attempt. Enforcement requires the environment to restrict the forbidden access or refuse work that violates the rule.
+
+A correct result does not excuse an unacceptable process. An agent might produce working software while accessing data it was not authorized to read, modifying dependencies without approval, or deploying before the required checks completed. Testing the resulting artifact cannot establish that those actions were permissible. Some engineering obligations govern the product. Others govern how the product may be produced. The environment must be able to enforce both.
+
+% <!-- point: security-practice-draws-the-same-boundary | Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact. | terms: guidance-vs-enforcement -->
+
+Recent agentic-security guidance draws a similar boundary. Once agents act before commit time, the repository is too late to be the security boundary: the tools, permissions, and execution environment that produce a change join the trusted base, so agentic security must secure the process that creates the artifact, not only the artifact~\citep{snyk2026agenticlifecycle}.
+
+\section{Correspondence, Conformance, and Acceptance}\label{heading:agreement-is-not-correctness}
+
+The correspondence patterns in \cref{2.6-system-knowledge:heading:maintaining-correspondence} connect models to implementation through derivation, generation, or traceability. They help establish agreement over selected properties. We must distinguish that agreement from satisfying an engineering obligation and from permission to proceed.
+
+The term Alignment requires some care. In artificial intelligence, alignment concerns making AI systems behave consistently with human intentions, preferences, or values~\citep{gabriel2020artificial,ji2024ai}. MAGE addresses a narrower engineering problem. Rather than establishing that an agent's objectives are aligned with those of its user, the engineer establishes an environment in which selected obligations can be evaluated and enforced despite the agent's fallibility. An agent may misunderstand an architectural rule or propose a forbidden operation; the environment can nevertheless refuse the operation or reject the resulting work.
+
+% <!-- point: drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims | Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim. | terms: agreement-vs-correctness, independent-obligation -->
+
+The terminology also connects to established software-engineering concepts. \textbf{Correspondence} asks whether an engineering model and its implementation agree over the relationships the model claims to represent~\citep{murphy1995reflexion}. A drift check evaluates that declared correspondence and surfaces disagreements. \textbf{Conformance} asks whether the implementation satisfies an independent engineering obligation, which may be represented in the same model~\citep{passos2010conformance}. \textbf{Acceptance} is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model. These distinctions matter because agreement is not necessarily correctness, and evidence of correctness does not by itself authorize an action.
+
+MAGE uses Alignment for the engineering activity that connects selected obligations to the mechanisms governing work. It includes establishing what must hold, obtaining evidence where that obligation can be evaluated, and making the appropriate actions or results depend on that evidence. Correspondence and conformance are relationships that Alignment may evaluate; acceptance is one decision it may govern. The engineer chooses which obligations warrant such treatment and which implementation choices should remain open.
+
+% <!-- point: an-obligation-can-test-one-of-three-relations | Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable. | terms: independent-obligation, agreement-vs-correctness -->
+
+\autoref{three-relations} shows these three judgments over one implementation. The engineering model is one part of the GEE, whose admission decision may depend on additional obligations and evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/three-relations-ac66d52458.pdf}
+\caption{\emph{Model agreement, obligation satisfaction, and admission.} Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE\textquotesingle s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.}
+\label{three-relations}
+\end{figure}
+
+\section{Independent Obligations and Evidence}\label{heading:independent-obligations-and-evidence}
+
+\magevalue{chapter:modeling} distinguished a descriptive model from one that is authoritative for a property. That distinction determines what can count as a violation: the implementation must be capable of disagreeing with the obligation, even when its descriptive models faithfully record what it does.
+
+% <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
+
+Enforcement requires \textbf{an obligation independent of the work being judged and evidence capable of establishing whether it holds.}
+The architectural model requires \texttt{Reporting} to obtain billing data through \texttt{BillingAPI}, preserving \texttt{BillingDB} behind that interface.
+The job-lifecycle model specifies how events move a job from \texttt{IDLE} through \texttt{RUNNING} to \texttt{DONE} or \texttt{FAILED}.
+These are accounts of intended construction and behavior against which an implementation can be evaluated.
+
+% <!-- point: an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy | An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation. | terms: independent-obligation, modeling-principle, alignment-principle -->
+
+The environment needs evidence that corresponds to those meanings.
+A dependency analysis can look for paths from \texttt{Reporting} to \texttt{BillingDB} that bypass \texttt{BillingAPI}; a model-based test can submit job events and compare the resulting states with the specified transitions.
+The engineer must decide whether the evidence is adequate and how the finding should affect the work.
+A check may inform a later decision, or its result may be required before an action or change can proceed.
+The obligation can also reside directly in a type, permission, schema, test, or policy.
+What matters is that it is distinguishable from the implementation being judged and that a mechanism can enforce the resulting decision. Design by Contract provides a familiar precedent for expressing obligations independently of implementation through preconditions, postconditions, and invariants~\citep{meyer1997oosc}.
+
+% <!-- section-terms: agreement-vs-correctness, independent-obligation -->
+
+% <!-- point: a-drift-check-establishes-agreement-not-that-the-correspondence-is-right | A drift check establishes agreement between two artifacts, not that the correspondence expresses the right intent. | terms: agreement-vs-correctness -->
+
+% <!-- index-def: agreement-vs-correctness -->
+
+% <!-- index-def: mirror-vs-spec -->
+
+% <!-- index-def: drift-caveat -->
+
+Suppose an endpoint is required to be authenticated. If an independently authored policy says so, a check can compare the implementation against that obligation and flag an open endpoint. If instead the representation is derived only from the implementation, it may faithfully record the endpoint as open. Model and code agree; the security obligation is still violated.
+
+% <!-- point: the-distinction-is-description-versus-independent-obligation | The distinction is not derived versus authored; it is description versus independent obligation. | terms: independent-obligation, agreement-vs-correctness -->
+
+% <!-- index-def: independent-obligation -->
+
+% <!-- point: tolerance-independence-comes-from-intent-not-realization | Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged. | terms: independent-obligation, tolerance -->
+A model can come from the code and still help us decide what the code ought to do. A model extracted from code can describe the current \emph{is}; a governing invariant must state the \emph{ought} independently. A hand-authored model may merely repeat the implementation's assumptions, so authorship alone does not establish independence. Enforcement requires an obligation against which the work can actually be wrong. The same distinction applies to quantitative properties: measurements can establish an implementation's latency, but an independent engineering obligation must determine whether that latency is acceptable.
+
+% <!-- index-def: oracle -->
+
+Software testing has long confronted the \emph{oracle problem}: how do we determine whether an observed result is correct? The means of making that judgment is an \emph{oracle}~\citep{barr2015oracle}. Consider testing a sorting function. Checking that the returned elements are in ascending order is insufficient; a function that returns an empty list would satisfy that check. We must also establish that the result contains the same elements, with the same multiplicities, as the input.
+
+The problem is particularly important when implementation and evaluation are delegated separately. An independently constructed check can still be inadequate if it expresses only part of the intended obligation. The engineer must determine which properties constitute acceptable evidence, not merely whether the checks execute successfully.
+
+% <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement. | terms: agreement-vs-correctness, independent-obligation -->
+
+Stronger verification does not remove this distinction. A proof assistant such as Lean checks proofs that formally stated propositions follow from their assumptions~\citep{lean-reference}. TLA+ lets engineers specify system behavior; the TLC model checker can explore a model to check whether it satisfies stated properties~\citep{lamport2002}. Neither approach establishes that the chosen property captures the engineering requirement. If an agent chooses a property merely because its implementation satisfies it, a valid proof or successful model check may leave the intended obligation untested. Engineers can ask agents to help formalize requirements and develop proofs or checks while retaining responsibility for whether those requirements express what the system must preserve.
+
+% <!-- point: docable-requested-temporal-checking-for-an-obligation-its-models-already-carried | Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it. | terms: independent-obligation, agreement-vs-correctness -->
+
+For example, an engineer can require a queueing service to bring every accepted job to a terminal state, then ask an agent to develop an analysis of that requirement. The agent may help formalize the obligation and construct the checker. What matters is that the obligation comes from what the service must do, rather than being chosen merely because the current implementation satisfies it.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Assurance Cases}
+\label{inset-assurance-cases}
+In safety-critical engineering, an assurance case makes explicit why a system should be trusted. It connects claims about the system to supporting evidence through an argument explaining why that evidence supports the claims~\citep{iso15026-2-2022,kelly2004gsn}. Knowing which tests correspond to a requirement does not establish that those tests adequately verify it; an assurance case must explain why the evidence is sufficient for the claim.
+
+Suppose DocAble claims to preserve document content during accessibility remediation. Comparing the text before and after processing provides some evidence, but is it sufficient? Text extraction might miss content in images, equations, or annotations. An assurance argument would identify these limitations, explain which additional checks address them, and state what remains unverified. Passing every available test does not establish a claim broader than those tests support.
+
+Assurance cases help engineers justify why a system should be trusted. MAGE helps establish and preserve selected properties on which that justification depends.
+
+If you work under a safety standard such as IEC 61508 or DO-178C, MAGE can complement your existing assurance process~\citep{iec61508-1-2010,rtca-do178c-2011}. The claims and arguments in an assurance case can guide what you model, what you check, and what evidence you retain. Agents can help produce and maintain that evidence as the system evolves. The assurance case still needs independent scrutiny. Neither an agent's report nor a passing check establishes that the overall argument is sound.
+\end{bookbox}
+
+% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis. | terms: independent-obligation, traceability -->
+
+Once an obligation is explicit, engineers need to determine whether the implementation satisfies it. You may be familiar with this work from requirements traceability, which connects a requirement to relevant design elements, implementation, tests, and other evidence~\citep{estefan2008mbse}. These connections help engineers examine the design choices made to meet the requirement and find the evidence needed to evaluate the implementation. When a requirement or design changes, the links help identify which parts of the implementation and which checks need to be reconsidered.
+
+% <!-- point: traceability-connects-intent-realization-evidence-without-enforcement | Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model. | terms: independent-obligation, traceability, alignment-principle -->
+
+Traceability links do not themselves determine acceptance. A requirement may trace cleanly to a test whose failure is merely reported. Conversely, a permission boundary may enforce firmly without a rich traceability model.
+
+Traceability can do more than help engineers locate the implementation of a modeled property. When model elements are linked to code and execution records, those relationships can be checked as the system changes. Static references can connect model elements to implementation declarations; runtime traces can identify the modeled operations being executed. Static checks can detect when a referenced implementation element is deleted or renamed. Dynamic checks can compare observed operations with the model, revealing modeled operations that were not observed or executions that cannot be associated with a modeled element. These checks complement the use of models as guidance: agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes. \cref{3.3-where-obligations-can-be-enforced:heading:docable-dynamic-context-injection-and-discovery} develops one way to supply that guidance.
+
+The appropriate evidence depends on the model and the property being checked. Architectural models often admit static checks of dependencies, interfaces, and component boundaries. Behavioral models may require execution traces to establish which states or transitions actually occurred. These are not exclusive categories. Static analysis can check declared state-machine structure, while runtime instrumentation can expose architectural interactions that source-level checks miss. In each case, the traceability relationships make the relevant evidence available for comparison with the model.
+
+% <!-- point: those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics | Correspondence evidence is limited by what references and traces establish and by the operations they cover. | terms: agreement-vs-correctness, semantic-gap -->
+
+These checks turn traceability relationships into Alignment mechanisms. A change that breaks a model–implementation relationship can produce a finding without requiring an engineer to rediscover the relationship manually. Static references establish that implementation elements still exist, while runtime traces provide evidence about their execution. Neither establishes that the implementation still behaves as intended, nor that the traceability relationships cover every relevant operation. Where the evidence is adequate, a gate can require the checks to pass before accepting a change.
+
+\section{DocAble: From Correspondence to Enforcement}\label{heading:docable-from-correspondence-to-enforcement}
+
+% <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
+
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+\autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} described how DocAble connects computation declarations, scheduling, and an analytical graph. Their agreement leaves two further questions: do the checks cover the live computations, and do their findings govern acceptance?
+
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+While building DocAble as a prototype, I asked several agents to develop support for different document formats concurrently. I wanted to know which parts of remediation the formats could usefully share. To judge that aright, I needed to learn how to work with each format myself. Once I had independent implementations, I asked agents to trace their computations and dependencies. Comparing the implementations revealed common patterns that we could capture in an explicit computation model.
+
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+We developed a separate Python graph to inspect those relationships. In the September 5, 2026 snapshot, it contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume. The scheduler reads the computation model to order the work; the analytical graph lets us query and check those relationships.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+An audit exposed a gap: a live Office pass ran outside the registry entries that the correspondence checks examined. The checks could therefore report agreement even though they had missed a computation. At the time, the PDF checks blocked changes that failed them, while the Office checks only reported discrepancies. Making the Office checks blocking at that point would still have let the unregistered pass through.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+We first brought the missing computations within the checks' coverage and verified that the repaired checks detected the relevant discrepancies. After clearing the findings, we made the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission. \magevalue{sec:brownfield-engineering} examines this progression from diagnosis to enforced control as a recurring engineering practice.
+
+The case illustrates the three judgments in \autoref{three-relations}:
+\begin{itemize}
+\item \textbf{Correspondence (model agreement).} The parity checks establish whether the analytical graph agrees with its sources over the relationships they examine. The audit asked a different question: which live computations had they missed?
+\item \textbf{Conformance (obligation satisfaction).} The scheduler must respect the computation model's dependency order. Agreement between the graph and its sources does not establish that execution preserves that order.
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\item \textbf{Acceptance (permission to proceed).} Once the Office checks became blocking, a discrepancy that previously produced an advisory finding could prevent admission. Promotion changed what happened to the finding; the earlier coverage repair changed what the checks could find.
+\end{itemize}
+
+DocAble also uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. These relationships let the environment check correspondence as the implementation changes, subject to the coverage limits described above.
+
+% <!-- point: the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does | Independent obligations and adequate evidence prepare the reader to choose enforcement mechanisms. | terms: independent-obligation -->
+
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\autoref{chapter:appendix-a-remediation-computation-graph} describes the declarations, coverage checks, and admission mechanisms behind this episode.
+
+The repaired correspondence checks illustrate what enforcement adds to a representation: adequate evidence has a consequence for the work. We next examine the machinery that can provide those restrictions, observations, and decisions.
+
+```
+
+### book/latex/sources/part2/2.7-modeling-summary.tex (lines 1–42)
+
+```latex
+% mage-auto-heading: modeling-principle
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Modeling -->
+
+% <!-- chapter-title: Summary -->
+
+\chapter{Summary}
+
+Engineering models make selected properties of a system available for reasoning without requiring engineers or agents to reconstruct them from implementation. The useful representation depends on the question: architecture, behavior, decisions, and quantitative properties call for different reductions. As engineers learn more about a system, they may add newly consequential distinctions to their models or remove details that no longer serve an engineering purpose. Across these forms, the engineering task is to preserve the distinctions that matter, leave other choices open, and maintain the relationships on which subsequent reasoning depends.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Model parsimoniously for an engineering question.} Preserve the distinctions needed to answer the question. A model earns its carrying cost while the reasoning it enables justifies the work of keeping it current.
+\item
+  \textbf{Externalize consequential knowledge and intent.} A relationship or obligation recorded in a model is available to the next engineer or agent. Each can use it without having to infer the original decision from the code.
+\item
+  \textbf{Preserve degrees of freedom deliberately.} State the obligations every acceptable implementation must satisfy. Where several choices satisfy those obligations, leave the choice to the implementer.
+\item
+  \textbf{Maintain the correspondences you depend on.} Shared identities connect representations of the same system. Derivation and generation can carry facts from an authoritative source, while checked traceability can expose disagreements between independently maintained artifacts.
+\item
+  \textbf{Distinguish description from authority.} A model may describe the implementation or prescribe properties the implementation must satisfy. When the two disagree, which one should change depends on which is authoritative for the property in question.
+\end{enumerate}
+
+% <!-- point: the-modeling-principle-in-its-weakest-form | Externalize knowledge and intent into engineering models that both engineers and agents can reason through. | terms: modeling-principle, reasoning-horizon, context-window -->
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Modeling Principle}\label{heading:modeling-principle}
+
+Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
+
+Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
+\end{quote}
+
+A model can make an obligation explicit without ensuring that an implementation satisfies it. An agent may misunderstand the representation, overlook a constraint, or produce a result that violates a property the model states correctly. \magevalue{chapter:alignment} takes up the complementary engineering problem: how to make selected obligations enforceable in the environment where agents work.
+
+```
+
+### book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex (lines 1–206)
+
+```latex
+% mage-auto-heading: semantic-commitment
+% mage-auto-heading: representing-and-interacting-with-models
+% mage-auto-heading: from-analysis-to-engineering-decisions
+% mage-auto-heading: the-engineering-modeling-repertoire
+% mage-auto-heading: semantic-commitment-and-analysis
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Modeling -->
+
+% <!-- chapter-title: Constructing and Using Engineering Models -->
+
+\chapter{Constructing and Using Engineering Models}
+
+% <!-- section-terms: modeling-principle, degrees-of-freedom -->
+
+% <!-- point: the-direction-also-runs-in-reverse | An exploratory implementation can expose constraints, tradeoffs, state distinctions, dependencies, and bounds that were not evident in the initial design. | terms: modeling-principle, degrees-of-freedom -->
+% <!-- point: human-authority-is-not-human-invention | The agent may supply a design insight; the engineer takes responsibility for adopting it by evaluating it against the system's requirements. | terms: modeling-principle -->
+
+We can model a system before we build it, after we build it, or while we build it. A requirement can supply an obligation before any code exists. An existing system and the people who maintain it can supply observed dependencies and the reasons for preserving some of them. An agent building a prototype may discover a state distinction that nobody thought to specify. The engineer can start from any of the sources in \autoref{multiple-routes-to-engineering-models} and judge what each establishes about the system, including which properties later implementations must preserve.
+
+% <!-- point: model-origins-and-uses | Models support engineering design, direct agent work, and supply properties against which results can be checked. | terms: modeling-principle -->
+
+However a model originates, its value depends on what engineers can do with it. Consider the three uses beneath the model in \autoref{multiple-routes-to-engineering-models}. An engineer can reason through a proposed service boundary by asking which clients would need to change if the database schema changed. The engineer can direct an agent adding a client to use the interface named in the model. A reviewer can then compare the client's actual dependencies with the permitted ones. Detecting an unexpected dependency gives the reviewer evidence; rejecting a change that violates the boundary requires an additional enforcement mechanism.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/multiple-routes-to-engineering-models-abe57356fe.pdf}
+\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it can support three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; engineers judge whether its design is desirable and which discovered properties should become obligations. Further engineering discoveries may motivate new or revised models.}
+\label{multiple-routes-to-engineering-models}
+\end{figure}
+
+% <!-- point: the-most-important-evidence-comes-from-realization | Implementing and trying a design can reveal distinctions that were not evident in the initial model. | terms: modeling-principle -->
+% <!-- point: revise-the-model-when-evidence-changes-the-judgment | Neither direction guarantees the boundary is right; analysis, implementation, measurement, or failure may reveal that an omitted distinction mattered or an included one did not, and the model is revised when the evidence changes the engineering judgment. | terms: degrees-of-freedom, model-as-map -->
+
+Models also change as engineers learn more about a system. Measurements may reveal that a performance model omits an important source of latency; a prototype may expose a state or interaction that the original requirements did not anticipate. Engineers and agents can use this evidence to revise the model, adding distinctions needed for new questions or removing details that no longer serve its purpose. Modeling continues throughout development as new evidence changes what engineers need to understand and preserve.
+
+\section{The Modeling Repertoire for Engineering}\label{heading:the-engineering-modeling-repertoire}
+
+% <!-- section-terms: model-classes, projection, modeling-principle -->
+
+% <!-- point: engineering-fields-have-accumulated-a-modeling-repertoire | Software engineers need not invent a representation from first principles each time; engineering fields have accumulated a large repertoire of models for recurring questions, each preserving different information and supporting different analyses. | terms: model-classes, modeling-principle -->
+% <!-- point: recognize-the-question-select-the-representation | The practical skill is recognizing the engineering question and selecting a representation that preserves the properties needed to answer it; MAGE prescribes no new notation. | terms: modeling-principle, model-classes -->
+% <!-- point: reuse-the-established-repertoire-choosing-is-judgment | This chapter illustrates modeling practice rather than exhausting it; once the engineering question is known, start with the representations the field has already developed — the repertoire is reusable engineering knowledge, and choosing from it remains engineering judgment. | terms: modeling-principle, model-classes -->
+% <!-- index-def: model-classes -->
+
+The engineer's role is to identify the engineering question and select a model that makes it easier to answer. Engineers do not need to invent a modeling technique from first principles for each question, and generally should not. Decades of work in software engineering, systems engineering, mathematics, and operations research have produced models of structure, behavior, decisions, quantities, and evidence. MAGE leaves the choice of notation to the engineer. \autoref{modeling-repertoire} illustrates the available repertoire with nine examples, showing the properties each model can express and the analyses it supports.
+
+% <!-- point: read-the-repertoire-as-available-moves-not-a-taxonomy | What matters is not a representation's graphical shape but the engineering question its entities and relations preserve. | terms: model-classes, projection -->
+% <!-- point: shape-does-not-distinguish-a-model-semantics-do | Shape does not distinguish representations, semantics do; semantic commitment decides how much of that meaning is declared rather than understood. | terms: system-knowledge-graph, semantic-commitment -->
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-repertoire-f010848f36.pdf}
+\caption{\emph{The engineering modeling repertoire.} Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.}
+\label{modeling-repertoire}
+\end{figure}
+
+How do you choose among these representations? Start with what you need to establish about the system. A requirement that only one worker may own a job raises a question about concurrent claims. To answer it, explore whether any permitted sequence of claims and releases leaves two workers holding the same job. The model must therefore represent ownership and the transitions that change it. Failures and proposed changes can raise questions too. \autoref{engineering-questions-and-candidate-models} pairs each analysis with models that supply the facts it needs.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.18}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.54}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}@{}}
+\caption[Engineering questions, analyses, and candidate models]{\emph{Engineering questions, analyses, and candidate models.} The intended analysis determines what a useful model must represent.}\label{engineering-questions-and-candidate-models}\tabularnewline
+\toprule\noalign{}
+Engineering concern & Question and analysis & Candidate models \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Correctness & Can two workers own the same job? Explore concurrent states and check the ownership invariant. & Ownership and state-transition models \\
+Performance & Will requests accumulate faster than they can be served? Compare arrival rates with service capacity. & Queueing and workload models \\
+Security & Can an untrusted component reach protected data through an unauthorized path? Trace dependencies and check permissions along each path. & Dependency graph and trust-boundary model with permissions \\
+Reliability & Can a failed operation recover without losing work? Explore failure and recovery sequences. & Recovery state machine \\
+Regulatory compliance & Which stores and processors are implicated by a GDPR erasure request? Trace where personal data was sent and which records were derived from it. & Data-flow and provenance models \\
+\end{longtable}
+}
+
+We can use the same model to answer different questions. The same state machine can help answer questions about correctness and reliability. We can examine its transitions for conflicting claims, then follow its recovery paths to see whether work survives a failure. Some questions require combining models because no single representation preserves all the relevant facts.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 6 -->
+
+\begin{bookbox}{inset}{Debugging Models Before Code}
+\label{inset-debugging-models-before-code}
+One engineering question may require several models. Suppose we are designing a battery-powered device with two sensors that collect measurements and transmit them over a radio. Can any measurements be lost? \autoref{sensor-buffer-radio} answers this question by combining three models:
+
+\begin{itemize}
+\tightlist
+\item \textbf{(a) Structural model.} Two sensors feed a shared buffer in on-device storage, from which a radio transmits measurements. The model establishes that both sensors compete for the same storage capacity.
+\item \textbf{(b) Quantitative model.} Each sensor produces one measurement per second, the buffer holds three measurements, and the radio transmits every five seconds. These parameters do not specify how many sensors share the buffer.
+\item \textbf{(c) Behavioral model.} An arriving measurement is stored if space remains and discarded otherwise. A transmission sends and removes all stored measurements; when transmission and sampling coincide, transmission occurs first. Starting with an empty buffer, two measurements arrive at second 1. At second 2, only one of the next two fits; the other is lost. The derived execution trace combines the structure, quantities, and behavioral rules to expose the failure.
+\end{itemize}
+
+We can now consider increasing buffer capacity, transmitting more frequently, or sampling less often. Alternatively, we could change the overflow behavior to retain measurements elsewhere until transmission, provided that additional storage and eventual transmission capacity are sufficient. Each choice affects energy consumption, memory requirements, measurement quality, or implementation complexity. I would much rather discover this problem by examining three small models than by debugging a thousand lines of C.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,alt={Two sensors share a three-measurement buffer in on-device storage. Each samples once per second; the radio transmits every five seconds. Arrivals are stored if space remains and discarded otherwise. The derived trace shows one measurement lost at second two. At second five, transmission empties the buffer before two new measurements arrive.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Combining three models to expose measurement loss]{\emph{Combining three models to expose measurement loss.} The structural model identifies two sensors sharing on-device storage; the quantitative model specifies per-sensor sampling rates, buffer capacity, and transmission interval; and the behavioral model specifies what happens when measurements arrive at a full buffer. Their combination reveals that a measurement is lost at second 2, before the first transmission.}
+\label{sensor-buffer-radio}
+\end{figure}
+\end{bookbox}
+
+\section{Semantic Commitment and Analysis}\label{heading:semantic-commitment-and-analysis}
+
+% <!-- section-terms: modeling-principle, semantic-commitment, system-knowledge-graph, structured -->
+
+\subsection{Semantic Commitment}\label{heading:semantic-commitment}
+
+% <!-- point: a-model-can-preserve-distinctions-without-defining-them | A representation can preserve the right distinctions while its interpreters supply most of its meaning. | terms: semantic-commitment, model-as-map -->
+% <!-- point: agents-make-the-semantics-tradeoff-newly-consequential | Explicit semantics preserve meanings that later agents would otherwise have to infer without the shared context of the original team. | terms: semantic-commitment, externalized-knowledge -->
+
+Engineering models range from whiteboard sketches to specifications written in a programming language. A team sketching a service boundary can agree in conversation that an arrow means one service is permitted to call another. That agreement may be precise enough for the people at the whiteboard. An agent reading the sketch later, or a tool checking a proposed dependency, needs some way to recover the same interpretation. How much meaning the engineer needs to record depends on who will use the model and what they need to do with it.
+
+% <!-- point: semantic-commitment-names-the-second-axis | Semantic commitment: how much meaning the representation itself carries explicitly. | terms: semantic-commitment, structured -->
+% <!-- point: semantic-commitment-is-distinct-from-purposeful-reduction | Purposeful reduction determines which distinctions to preserve; semantic commitment determines how precisely the representation defines them. | terms: semantic-commitment, model-as-map -->
+% <!-- index-def: semantic-commitment -->
+
+\textbf{Semantic commitment} is how much of a representation's meaning it defines explicitly and how much its interpreter must supply. A diagram file can preserve every arrow while leaving its meaning ambiguous. A small typed graph, on the other hand, can define exactly which calls are permitted while leaving every service's algorithm open. Defining relations, units, and constraints can make stronger analyses possible, but the definitions take work to write, learn, and maintain. \autoref{semantic-commitment-spectrum} compares what several representations define and what each leaves unspecified.
+
+% <!-- point: semantic-precision-is-not-generative-completeness | Semantic precision and generative completeness are different properties. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: stronger-semantics-buy-capabilities-and-create-obligations | Stronger semantics buy capabilities and create obligations; they are not inherently better. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: the-spectrum-in-concrete-artifacts | Concrete artifacts illustrate the range; the rows are examples, not maturity levels. | terms: semantic-commitment, degrees-of-freedom -->
+% <!-- point: the-columns-are-not-one-progression | Stronger commitment aids mechanical interpretation; it moves interpretation burden rather than removing it. | terms: semantic-commitment -->
+
+% <!-- print-keep-with-next: 14 -->
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.23}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
+\caption[Degrees of semantic commitment, in concrete artifacts]{\emph{Semantic commitment is not model completeness.} Purposeful reduction determines which distinctions a model preserves. Semantic commitment determines how precisely it defines them. UML 2.5.1~\citep{omg2017uml} and SysML v2~\citep{omg2025sysml} with KerML 1.0~\citep{omg2025kerml} define standard meanings for selected constructs.}\label{semantic-commitment-spectrum}\tabularnewline
+\toprule\noalign{}
+Representation & Meaning available to the reader or tool & What remains unspecified \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Informal architecture sketch & Labels identify the components. & An unlabeled arrow may denote an observed call or permission to call. \\
+UML 2.5.1 state machine & States, triggers, guards, and transitions have defined behavioral meanings. & A lifecycle can leave the implementation of its event handlers open. \\
+OpenAPI 3.1, JSON Schema, or typed repository registries & Named fields, types, constraints, and references support queries and validation. & A declared field type alone leaves its business meaning and storage unspecified. \\
+SysML v2 with KerML 1.0 & Types, relationships, expressions, and constraints support composition and analysis. & A system model can fix a component boundary while leaving the internal design open. \\
+\end{longtable}
+}
+
+% <!-- point: state-machine-semantics-make-path-properties-checkable | An explicit transition relation allows a path property to be checked; composing machines also requires a choice of communication semantics. | terms: semantic-commitment, model-as-map -->
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: FORMAL METHODS -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{What Does a State-Machine Arrow Mean?}
+\label{inset-state-machine-arrow}
+Find the panel labeled “Finite-state” in \autoref{modeling-repertoire}. It shows four job states: IDLE, RUNNING, DONE, and FAILED. Suppose a job starts in IDLE, each arrow denotes a permitted transition, and DONE and FAILED are terminal. We can now ask whether a job can reach DONE without first entering RUNNING.
+
+Let \(\operatorname{Paths}(M)\) be the paths in model \(M\) that start at IDLE and follow its arrows, and let \(p_i\) denote the state at position \(i\) on a path \(p\), counting from zero. For every position on every path, the requirement is:
+\[
+\forall p \in \operatorname{Paths}(M),\quad
+p_i = \mathrm{DONE} \;\Longrightarrow\;
+\exists j < i:\ p_j = \mathrm{RUNNING}.
+\]
+A search can check the property by tracking whether RUNNING has been visited. In the diagram, the only arrow into DONE comes from RUNNING. A job can still end in FAILED.
+
+Now compose the job model with a worker that reports completion. Under synchronous semantics, the worker reports completion and the job enters DONE in one joint transition. Under asynchronous semantics, the worker sends a message and the job processes it later. Ownership might change in between. The job's arrows suffice to check the local path property. To check whether a former owner's completion can be accepted, we must also specify how the two machines communicate.
+\end{bookbox}
+
+\subsection{Representing and Interacting with Models}\label{heading:representing-and-interacting-with-models}
+
+% <!-- point: structured-is-the-word-doing-the-work | Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined. | terms: structured, system-knowledge-graph -->
+% <!-- point: the-simplest-useful-form-is-a-graph | The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage. | terms: system-knowledge-graph, structured -->
+% <!-- index-def: structured -->
+% <!-- index-def: system-knowledge-graph -->
+
+Models can be maintained in ordinary project files, databases, or specialized modeling environments. The choice resembles deciding whether to store application data in flat files, use SQLite, or operate a database server. Specialized modeling tools may provide graphical editing, consistency checks, simulation, and traceability across models. Interfaces using the Model Context Protocol (MCP) can expose these modeling capabilities as tools an agent can invoke. The appropriate choice depends on the analyses required, the team's familiarity with the tools, and the cost of learning, integrating, and maintaining them.
+
+% <!-- point: capability-comes-in-rungs | Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model. | terms: capability-ladder, structured, semantic-commitment -->
+% <!-- index-def: capability-ladder -->
+
+Whatever the tooling, models become more useful when engineers and agents can query their elements and relationships. A service registry, for example, can identify each service, its owner, dependencies, and deployment. An agent investigating a service can retrieve the relevant records without reconstructing those relationships from source code, even when the complete model exceeds its working context. For example, Spotify makes service ownership and documentation available to agents through its service catalog~\citep{spotify2026constraint}. Other models support operations beyond lookup: a schema can validate a document or generate interface types, while a transition model can drive a simulation or direct a running system. These operations depend on the meaning assigned to the model's elements, not merely on their availability.
+
+\subsection{From Analysis to Engineering Decisions}\label{heading:from-analysis-to-engineering-decisions}
+
+% <!-- point: validate-the-model-for-its-question | Validation examines whether the model represents the distinctions, assumptions, and behaviors needed for the question. | terms: semantic-commitment, model-as-map -->
+
+% <!-- point: analysis-produces-evidence-for-an-engineering-decision | A model's semantics determine which analyses can produce evidence for a design decision. Implementation conformance requires separate evidence. | terms: semantic-commitment, modeling-principle -->
+
+\autoref{question-to-consequence-progression} follows an engineering question from model selection through analysis to a decision. Suppose an engineer wants to know whether a recovery policy can lose a job. Finding a path to loss in the model gives the engineer a sequence to investigate and may warrant changing the policy. If the search finds no such path but a trace shows that a job was lost, the trace can expose a missing failure transition. The engineer can revise the model and repeat the search. Adopting the resulting recovery rule is a design decision. Establishing that the implementation follows it takes evidence from the implementation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/question-to-consequence-progression-25598a02ec.pdf}
+\caption{\emph{From engineering question to engineering consequence.} The representation determines which analyses become tractable. Their results can inform a design decision, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.}
+\label{question-to-consequence-progression}
+\end{figure}
+
+The following sections examine these choices for three familiar classes of engineering question. Structural models preserve the relationships needed to ask what is connected to what. Behavioral models preserve states and transitions so we can ask what may happen. Decision models preserve the criteria for choosing what should happen next. A single system can raise all three questions, and their answers can draw on the same entities.
+
+```
+
+### book/latex/sources/part3/3.2-governance-mechanisms.tex (lines 1–444)
+
+Original at 031cfda8d before the 2026-11-24 mechanization and organization pass. Preserved for the requested relocations and cuts.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Governance Mechanisms -->
+
+\chapter{Governance Mechanisms}
+
+An obligation and its evidence do not yet specify how the engineering environment should act. We need machinery that can restrict an operation, obtain the relevant evidence, or make a decision binding on subsequent work. This section develops that repertoire, examines how to construct and evaluate its mechanisms, and considers which choices they should leave open.
+
+\section{Constraints, Sensors, and Gates}\label{heading:constraints-sensors-and-gates}
+
+% <!-- point: four-roles-separate-prevention-observation-judgment-admission | Constraints restrict possibilities, sensors produce evidence, and gates evaluate whether actions or results may proceed and enforce decisions. Checking may be advisory or used within a gate. | terms: governance-mechanism, constraint, sensor, gate -->
+
+Return to the billing architecture: \texttt{Reporting} may obtain data through \texttt{BillingAPI}, but must not connect directly to \texttt{BillingDB}.
+Keeping that boundary lets the billing service control access to its data and change its schema without exposing it to every client.
+The architectural model states the permitted relationship.
+How can the engineered environment preserve it while agents change the reporting code?
+
+% <!-- index-def: governance-mechanism -->
+
+\begin{quote}
+\textbf{Governance mechanism.} A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed.
+\end{quote}
+
+\autoref{governance-mechanism-questions} distinguishes three governance functions by the engineering questions they answer.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.30}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.54}}@{}}
+\caption[Three functions of engineering governance]{\emph{Three functions of engineering governance.} A single mechanism may perform several functions. This classification draws on established principles of protection and policy enforcement~\citep{saltzer1975protection, rfc2753, oasis2017xacml}.}\label{governance-mechanism-questions}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Category
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Category
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Constraint & What can happen? & Restricts available actions or states. \\
+Sensor & What evidence do we have? & Produces evidence about artifacts, proposed actions, or executions. \\
+Gate & May this proceed? & Evaluates whether an action or result may proceed and enforces that decision. \\
+\end{longtable}
+}
+
+\autoref{alignment-overview} shows how models connect to enforcement. Constraints restrict actions or states; sensors obtain evidence about artifacts and executions; gates evaluate that evidence and determine whether work may proceed. These functions may be combined in one mechanism, and their assurance extends only to the obligations and evidence they cover.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/alignment-overview.pdf}
+\caption{\emph{Alignment from models to enforcement.} Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.}
+\label{alignment-overview}
+\end{figure}
+
+% <!-- section-terms: constraints-and-sensors, constraint, sensor -->
+
+% <!-- point: a-mechanism-is-one-of-two-moves-prevent-or-observe | Constraints exclude particular actions or states; sensors supply evidence about behavior that remains possible. | terms: constraint, sensor, constraints-and-sensors -->
+
+% <!-- index-def: constraints-and-sensors -->
+
+% <!-- point: constraint-and-sensor-echo-control-engineering | The accompanying note connects constraints and feedback to systems-safety engineering without identifying agent engineering with a control system. | terms: constraint, sensor, constraints-and-sensors -->
+
+A constraint can exclude some violations before they occur. Sensors provide evidence about behavior that remains possible, so the environment can check it before accepting the change.\mageaside{For the role of constraints and feedback in systems-safety engineering, see Leveson~\citep{leveson2011}.}
+
+Why observe a behavior when we could prevent it? Because we may not yet know whether it should be forbidden. A constraint embodies a decision about which alternatives are unacceptable. If that decision is premature, the constraint can exclude useful implementations along with bad ones. Observation lets us gather evidence before deciding what to prohibit. Once an obligation is understood, however, relying on observation alone may leave a known failure free to recur. The engineering judgment is deciding which choices are settled and which still warrant investigation.
+
+% <!-- point: a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it | An instruction is enforced only when a mechanism in the environment acts on it. | terms: constraint -->
+
+% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint excludes particular actions or representations within the scope of its language, interface, or runtime permissions; a closed type does not govern every possible behavior. | terms: constraint, typed-enum -->
+
+% <!-- index-def: constraint -->
+
+% <!-- gloss-only: Constraint | A governance mechanism that restricts available actions or representable states so that particular invalid choices are unavailable through it. A closed enum excludes undeclared state names; transition rules require their own constraint. -->
+
+An instruction to use the billing API can guide an agent, but it does not exclude a direct database connection. \textbf{A constraint instead limits the actions or states available to the implementation.}\mageaside{Types provide one familiar way to exclude invalid choices. Pierce describes type systems as syntactic methods for ruling out classes of erroneous behavior~\citep{pierce2002}. A closed enum with variants such as \texttt{IDLE}, \texttt{RUNNING}, and \texttt{DONE} excludes undeclared state names in checked code; external input must be validated when converted to the type. It does not by itself forbid a transition from \texttt{IDLE} directly to \texttt{DONE}. That transition requires its own constraint.} For the reporting change, a module boundary exposes the billing API client while keeping the database connector private. The language\textquotesingle s visibility rules prevent checked reporting code from importing that connector. The agent remains free to assemble the report but cannot use the private connector. Generic networking remains a possible route around this restriction.
+
+% <!-- point: a-sensor-observes-and-produces-evidence-and-costs-iterations | A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect. | terms: sensor, observability -->
+
+% <!-- index-def: sensor -->
+
+% <!-- gloss-only: Sensor | A governance mechanism that observes an artifact, an attempted action, or an executing system and produces evidence. A source scan can record dependencies; runtime instrumentation can record connection attempts and outcomes. That evidence may support checking or other analysis without itself permitting or refusing work. -->
+
+% <!-- index-def: observability -->
+
+% <!-- index-example: observability -->
+
+% <!-- point: a-sensor-is-only-as-good-as-its-observability | Evidence must preserve the distinctions needed to judge the obligation, such as caller identity, destination, and architectural component. | terms: sensor, observability -->
+
+\textbf{A sensor produces evidence about work or system behavior} through mechanisms such as logging, instrumentation, and static analysis, and so depends on \textbf{observability}: the relevant state or behavior must be exposed in a form the environment can inspect. For the reporting change, instrumented tests record the caller, destination, and outcome of attempted connections. A test exercising a direct database path through generic networking can expose a violation that the module restriction did not exclude. Recording the connection does not prevent it; the evidence informs the acceptance decision. The record must distinguish an API call from a direct database connection. ``Request succeeded'' is insufficient: the evidence must preserve the distinctions needed to evaluate the architectural obligation.
+
+% <!-- section-terms: gate, validator, governance-mechanism -->
+
+% <!-- point: a-gate-supplies-the-consequence-and-a-gate-is-a-commitment | A gate evaluates whether an action or result may proceed, locally or through a delegated check, and enforces the decision; a blocking check can reject both genuine violations and false positives. | terms: gate, validator -->
+
+% <!-- index-def: gate -->
+
+% <!-- point: a-ci-suite-bundles-three-roles-without-collapsing-the-distinction | Instrumented tests produce observations, a checker compares them with the architectural model, and the merge gate requires the build and interaction checks to pass. | terms: sensor, gate, validator, governance-package -->
+
+% <!-- point: a-validator-turns-evidence-into-a-judgment | The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions. | terms: validator, gate -->
+
+A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. Policy-based access-control architectures distinguish the decision about whether access is permitted from the enforcement of that decision~\citep{rfc2753,oasis2017xacml}. The same distinction applies here: finding a violation does not stop it. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
+
+% <!-- index-def: validator -->
+
+% <!-- gloss-only: Validator | A conventional name for a checking component, such as a schema validator or dependency checker. Its findings may inform a person, produce an advisory report, or supply the evaluation used within a gate. A result does not by itself control whether work proceeds. -->
+
+% <!-- point: two-roles-act-on-the-work-two-act-at-the-door | Defense in depth combines protections with different coverage; tests and the gate that enforces their results constitute one protection together. | terms: constraint, sensor, gate, validator -->
+
+These categories describe functions rather than execution stages. A source scanner can act as a sensor, runtime permissions as constraints, and one tool may combine observation, evaluation, and refusal. Together, the module restriction and instrumented tests provide \emph{defense in depth}~\citep{ross2022trustworthysystems}: a connection that evades the former may be detected by the latter and rejected at merge. The gate does not independently detect violations; it enforces the test verdict. Engineers must still consider which paths escape both protections.
+
+\autoref{constraint-vs-sensor} brings these mechanisms together around a proposed reporting change. Module restrictions, test instrumentation, and a merge gate work together to preserve the billing boundary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-proposed-change-16bfb894e7.pdf}
+\caption{\emph{Governance around a proposed change.} Module boundaries restrict available operations, instrumented tests record interactions, and the merge gate evaluates the required evidence against the architectural model. Each mechanism provides assurance only within its scope.}
+\label{constraint-vs-sensor}
+\end{figure}
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Familiar Engineering Machinery}
+\label{inset-familiar-engineering-machinery}
+\textbf{Constraints.} Type systems and module boundaries can exclude invalid expressions or hide operations from callers; database constraints and permissions can restrict stored states or resource access. Their assurance depends on the scope they actually enforce. A type-level restriction governs checked code, for example, while inputs from outside that code still need to be checked at the boundary.
+
+\textbf{Sensors.} Logging and tracing expose execution behavior; parsers and static analyses can expose facts about artifacts, configurations, and dependency graphs. The evidence must preserve the distinctions needed by the check, whether it comes from a running system or a static artifact. Collecting it does not itself determine whether work may proceed.
+
+\textbf{Gates.} A continuous integration (CI) job may report test results; a merge gate uses required results to admit or refuse a change. Deployment gates can require a successful security check, and runtime authorization gates can permit or refuse requests under an access policy. One tool can perform several functions by collecting evidence, evaluating it, and enforcing the resulting decision.
+\end{bookbox}
+
+% <!-- section-terms: governance-mechanism, constraints-and-sensors -->
+
+% <!-- point: implementations-bundle-roles-name-them-do-not-stretch-the-terms | A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence. | terms: governance-package, constraints-and-sensors -->
+
+% <!-- gloss-only: Governance mechanism | A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed. Constraints restrict available actions or states; sensors produce evidence; gates evaluate whether actions or results may proceed and enforce the resulting decisions. A control is a governance mechanism considered in relation to the obligation or risk it addresses. -->
+
+% <!-- index-def: governance-package -->
+
+% <!-- gloss-only: Governance package | A maintained combination of models, mechanisms, and supporting checks. For example, a package may include an architectural model, a dependency scanner, a checker that compares the extracted dependencies with the model, and a merge gate that uses the result to admit or refuse a change. -->
+
+A \textbf{governance package} combines these mechanisms so they can be maintained and used together. Within the package, keep track of which mechanism produces evidence, which evaluates it, and which restricts or refuses work. That distinction makes it easier to diagnose a failure without confusing an incorrect judgment with a failure to enforce it.
+
+% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it. | terms: alignment-principle, intervention-boundary -->
+
+\textbf{The Alignment Principle:} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. Once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.
+
+\section{Constructing and Validating Mechanisms}\label{heading:constructing-and-evaluating-governance-mechanisms}
+
+Knowing a mechanism's function does not establish that it enforces the intended obligation. Engineers must construct the mechanism, connect it to the work it governs, and obtain evidence that it behaves as required. The same engineering repertoire used to develop products---interfaces, generation, testing, and failure analysis---also applies to this machinery.
+
+% <!-- point: typed-document-edits-separate-proposal-from-controlled-application | In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document. -->
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+DocAble's PDF changeset interface provides an action boundary for document repair. A reasoning component may decide that an image needs alternative text without receiving unrestricted access to the PDF's internal representation. It proposes a typed operation naming the target and intended change. The operation vocabulary constrains which mutations can be expressed through this interface; the applier determines whether a supported operation can proceed against the current document.
+
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+The applier's refusals make that boundary concrete. An operation that marks a structure as decorative must identify the source of the classification. The applier refuses it if the classification source is missing, or if the target is a heading, a formula, or content carrying authored alternative text. These are checks with enforced outcomes. Subsequent validation supplies evidence about selected properties of the resulting document, including content preservation and mechanically testable accessibility requirements. A well-formed proposal does not establish that its description is educationally appropriate, and successful application does not establish complete accessibility.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+The boundary also preserves freedom. A specialized pipeline and a general-purpose agent may use different methods to decide what to repair. Neither needs to reproduce the mechanics of applying a supported edit. Nor does either gain authority to bypass the restrictions imposed by the common interface. The architecture is therefore more than a convenient API: it separates the judgment that proposes a change from the mechanisms that determine which changes can be made and which results are acceptable.
+
+% <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
+
+Constraints can restrict an implementation after it is produced, or shape its construction so that selected violations cannot arise. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward~\citep{schmidt2006model,sendall2003model,czarnecki2006feature}.
+
+A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
+
+% <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
+
+Agents can also help construct the checking and enforcement machinery. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, or static analysis. Here the generated artifact checks or constrains another implementation. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it~\citep{bodden2018,bodden2023sosa}. The engineer remains responsible for the obligation and for validating what the resulting mechanism actually establishes.
+
+% <!-- point: human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates | Human review can combine tacit context, evaluation, and approval; selected obligations in agentic work need explicit rules, evidence, and admission consequences. | terms: sensor, gate, constraint, validator -->
+
+A human reviewer might recognize the forbidden connection and refuse the merge using tacit knowledge of the architecture. With agents making repeated changes, engineers can instead record the permitted interaction, collect evidence, and make acceptance depend on the check. The engineer still decides which obligations warrant enforcement.
+
+% <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs. | terms: validator, gate -->
+
+Make sure you checked the version you are about to accept. A release check can regenerate the evidence rather than trust the producing agent's report or results from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This makes acceptance independent of the agent's account of its work.
+
+
+\subsection{Testing Against Models}\label{heading:tests-and-models-work-together}
+
+% <!-- index-def: generative-validation -->
+
+Tests can evaluate whether an implementation satisfies obligations expressed in a model. Different testing methods organize that evidence differently. A regression test preserves a particular case and makes a recurrence easier to diagnose. Such tests remain useful as a system acquires more explicit models~\citep{winters2020}. \emph{Property-based testing} evaluates an executable property over generated inputs. The engineer chooses the property and ensures that the generator exercises the cases that matter; QuickCheck provides a framework for this approach~\citep{claessen2000quickcheck}.
+
+\emph{Model-based testing} uses an explicit account of expected behavior to construct operations, evaluate their results, or both. A behavioral model can supply the test oracle---the rule for evaluating the result---across many sequences. It need not reproduce the entire implementation; it needs enough behavior to answer the engineering question~\citep{utting2012taxonomy}. Property-based and model-based testing can be combined. Hypothesis's stateful testing, for example, can generate sequences of actions and compare a real system with a simpler model. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.
+
+Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave the required property unasserted. Passing tests supports a claim only about the executions and properties checked~\citep{winters2020}.
+
+The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+\textbf{DocAble: Testing Ownership.} The ownership model in \autoref{2.4-behavioral:heading:distinguishing-a-current-owner-from-a-returning-one} gives the tests a specific obligation: a returning worker must not release a newer worker\textquotesingle s claim. The model supplies expected outcomes; tests compare them with what the implementation does.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+A regression test can reproduce the stale-release sequence against the implementation and assert that the newer claim remains. Property-based testing can evaluate the broader rule that a release carrying an old generation must not clear the current claim, varying worker identities, claim generations, and relevant operations. The generator must actually exercise stale releases for these checks to supply the intended evidence.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+For a model-based test, the ownership model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A driver can issue each operation to both that model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences.
+
+A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}. Testing selected implementation executions also differs from analyzing all behavior admitted by a bounded model. We return to that distinction when choosing mechanisms for the recovery protocol.
+
+\subsection{Failure Models and Testing the Tests}\label{heading:model-and-exercise-failure-responses}
+
+Testing expected behavior is not enough when a system must also respond correctly to failures. A failure model identifies conditions worth exercising and the responses they require. Failure Mode and Effects Analysis (FMEA) provides an established approach: enumerate the ways a component or operation can fail, identify their causes and effects, and assess their consequences~\citep{iec60812_2018}.
+
+Fault injection exercises the required responses by introducing selected failures during execution. At a dependency boundary, for example, a test can make a dependency time out, return a malformed response, or become unavailable. The failure model identifies which conditions to exercise and what the receiving component must do. The purpose is not simply to demonstrate that the service encounters an error, but to establish whether its response satisfies the modeled obligation. Fault injection has long been used in dependability evaluation; an explicit failure model helps select experiments and interpret their results~\citep{hsueh1997fault}.
+
+A passing test establishes that the implementation satisfied the checks performed. It does not establish that those checks would detect a relevant defect. Software testing has developed techniques for examining this distinction directly. Mutation testing deliberately introduces small changes into a program and asks whether its tests detect them. A test suite that continues to pass after a relevant defect is introduced may be exercising the code without adequately checking its behavior. Mutation testing has a substantial research history, including work on mutation operators and measures of test adequacy~\citep{demillo1978hints,jia2011analysis}.
+
+Models can make these experiments more systematic. Rather than introducing arbitrary changes, engineers can derive candidate faults from the properties the model represents. For the job-ownership model in \autoref{2.4-behavioral:heading:docable-job-lifecycles-and-recovery}, one mutation might remove the generation check from a release operation, allowing an expired worker to clear a newer worker's claim. A test intended to protect that obligation should reject the mutated implementation. If it does not, the failure is in the evidence used to establish Alignment, even if the original implementation happens to be correct. Model-based mutation testing develops this approach by using mutations of behavioral specifications to assess whether tests can distinguish the intended behavior from plausible alternatives~\citep{aichernig2015modelmutation}.
+
+The same reasoning applies to the engineering environment. A validator, sensor, or gate is itself software whose behavior may be incorrect. If a gate is intended to reject a forbidden dependency, deliberately introduce that dependency and verify that the actual gate refuses the change. If a validation result must distinguish success from incomplete execution, inject a checker failure and verify that the consumer does not accept it as success. These experiments test not only whether the check can produce a verdict, but whether the verdict has the required consequence.
+
+\textbf{DocAble: Failure Responses and Checking Failures.} DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
+
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
+DocAble uses the failure model to guide fault-injection tests. The tests inject modeled failures at dependency boundaries while exercising the real service implementation, then inspect the result returned to the caller and the response of downstream consumers. They also exercise healthy operation, so a test cannot pass merely because every request fails. Where a failure affects admission, the test checks whether the required consequence follows. Reproducing existing behavior does not establish that the behavior is acceptable.
+
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
+The model also supports failure provenance. When a failure occurs, DocAble can record where it originated, where it was observed, and how it propagated through subsequent operations. These records let engineers trace a failed request through the affected services rather than reconstructing its history from unrelated error messages. The model need not enumerate every possible fault; DocAble concentrates on failures affecting recovery, correctness, and the trustworthiness of evidence, extending the representation when new cases emerge.
+
+% Evidence: E22 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E22.md | kind: dated-case-evidence
+This approach exposed an incorrect interpretation of output from DocAble's accessibility checker. If the underlying validation program timed out or failed to run, the checker could report an informational issue while returning zero failed checks. A caller consulting only that count could mistake an incomplete evaluation for a clean document. The checker had reported the failure, but its consumer treated the absence of reported violations as evidence that validation had succeeded. The missing distinction was between ``no violations found'' and ``validation did not complete.'' Modeling these outcomes separately exposed the error in how the result was interpreted.
+
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+A separate incident concerned the coverage of the checker itself (\autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates}): DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
+
+Agentic implementation changes the economics of this work. Agents can help construct mutants, fault-injection harnesses, and regression tests, making systematic challenges to the checking machinery less expensive. The engineer still decides which faults matter and whether the experiments adequately represent them. A mutation score is not a reliability guarantee: it depends on the mutations selected, and some mutants preserve the program's behavior. Fault injection likewise covers only the failure conditions and responses exercised. Both techniques provide something more useful than a larger test count: evidence that selected violations can actually be detected.
+
+Constraints, tests, and failure experiments can prevent selected violations or expose them before work is accepted. Choosing among them requires judging the evidence each supplies and the implementation freedom it preserves.
+
+\section{Choosing Mechanisms}\label{heading:one-obligation-several-ways-to-hold-it}
+
+\magevalue{chapter:modeling} selected representations according to the engineering questions they could answer. The corresponding choice here is a mechanism suited to the obligation: what must be prevented or established, and what evidence would be adequate?
+
+% <!-- section-terms: constraint, validator, gate -->
+
+% <!-- point: a-modeled-obligation-does-not-imply-one-enforcement | Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand. -->
+
+A modeled obligation does not imply one particular enforcement technology. Some obligations can be embodied in generated implementation structure; others can be enforced through constraints on agent actions or evaluated through tests and analysis. Tests exercise selected implementation behaviors; model checking examines behavior admitted by an explicit model. Ask what evidence the obligation needs and how the environment should act on it.
+
+% <!-- point: prefer-the-constraint-when-you-can-exclude-the-state | An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol. -->
+
+If an invalid state can be excluded by the runtime operation itself, use that constraint where practical. An atomic conditional update can acquire a job only while its database row remains unclaimed. Two competing workers cannot both win that transition. Tests can still check how the surrounding code handles success, refusal, and failure. The runtime primitive and the tests contribute different protections.
+
+% <!-- point: interleaving-properties-need-a-validator-over-the-state-space | Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior. -->
+
+\emph{Model checking} and \emph{model-based testing} answer different questions. A model checker asks whether the represented protocol permits a violation within the explored domain. Model-based tests ask whether the implementation behaves as the model requires in the executions they perform. Exploring the model does not itself execute database calls or establish that production code follows the modeled transitions. A counterexample found in the model can guide an implementation test, while a test failure can reveal a distinction missing from the model~\citep{baier-katoen2008,utting2012taxonomy}.
+
+% <!-- point: temporal-obligations-require-another-shape-of-evidence | A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it. -->
+
+The obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior~\citep{baier-katoen2008,lamport2002}.
+
+% <!-- section-terms: constraint -->
+
+% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form. | terms: constraint -->
+
+A negative constraint prohibits an action, such as accessing a document's internal representation except through a sanctioned interface. But an agent might find another route to the same effect without using that interface. A complementary positive constraint requires evidence that a protected operation passed through an authorized path. This resembles remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
+
+The receiving boundary can require such evidence without enumerating every possible bypass. Depending on the stakes, engineers may also need to establish its reliability. Requiring an attribution record does not establish that the record is authentic or accurately describes the operation.
+
+\textbf{DocAble: Protecting the Recovery Protocol.} In the ownership model of \autoref{2.4-behavioral:heading:docable-job-lifecycles-and-recovery}, a worker\textquotesingle s lease may expire even though that worker continues executing, so a stale operation must not disturb a newer claim. Enforcing this obligation requires more than recording the current owner. DocAble uses an atomic comparison to protect selected state changes, while separate analyses investigate the behavior of the recovery protocol.
+
+% <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+\autoref{match-mechanism-to-property} distinguishes two mechanisms. A durable compare-and-set prevents competing workers from acquiring the same protected-effect claim. An explicit-state checker explores whether sequences of lease acquisition, expiry, replacement, and release can violate ownership. The first restricts a runtime operation; the second evaluates the modeled protocol.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/match-mechanism-to-property-2c4d8f0003.pdf}
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+\caption{\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.}
+\label{match-mechanism-to-property}
+\end{figure}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+The operation succeeds only while the stored state matches the required prior state, so competing workers cannot both acquire the same claim. An expired lease or repeated delivery does not bypass this restriction. The constraint governs a particular effect; it does not guarantee that every part of the job executes exactly once.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+For the ownership protocol introduced in \autoref{2.4-behavioral:heading:distinguishing-a-current-owner-from-a-returning-one}, a finite model can explore interleavings of claim acquisition, expiry, replacement, and release. This addresses a different question from the atomic runtime operation: whether the modeled transitions permit a forbidden ownership state. DocAble uses a purpose-built explicit-state checker to explore interleavings of its ownership model within stated bounds and search for violations of this property.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The analysis establishes a property of the represented protocol, not of every possible implementation. Tests or other evidence must separately establish that the implementation follows it.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+
+% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
+
+A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
+
+\section{Preserving Engineering Freedom}\label{heading:preserving-engineering-freedom}
+
+Choosing an enforcement mechanism also changes which implementation choices remain available. The aim is to protect the obligations that matter while preserving the degrees of freedom established through Modeling. Quantitative margins, the distinction between acceptable and permitted implementations, and the limits of mechanical evaluation help engineers make that choice.
+
+\subsection{Tolerances and Margins}\label{heading:margin-and-engineering-freedom}
+
+% <!-- section-terms: tolerance, sensor, model -->
+
+% <!-- point: a-quantitative-tolerance-can-expose-margin | Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible. | terms: tolerance, sensor -->
+
+Alignment can do more than determine whether an implementation satisfies an obligation. For quantitative properties, it can also measure how much room remains within the tolerance established by the model. This gives engineers a reason to model non-functional properties explicitly, rather than concentrate only on architecture and behavior. A latency budget, memory bound, or cost ceiling can define an acceptable region within which implementation choices remain open. \magevalue{chapter:modeling} introduced tolerances as bounds on acceptable variation and degrees of freedom as choices left open to implementation. Once the environment can measure an implementation against those bounds, engineers can examine not only whether it conforms, but also how close it is to violating them.
+
+\autoref{cost-enforcement-gradient} illustrates this relationship using a response-time obligation of 200 milliseconds. Two implementations complete the same operation in 120 ms and 195 ms, respectively. Both satisfy the requirement, but the first has 80 ms of measured margin while the second has only 5 ms. The model establishes the acceptable region; Alignment supplies the measurements needed to locate each implementation within it. A binary conformance check would accept both and discard this additional information.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/cost-enforcement-gradient-4e2626b031.pdf}
+\caption{\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.}
+\label{cost-enforcement-gradient}
+\end{figure}
+
+Margin can inform subsequent implementation work. An agent considering a more expensive algorithm or additional processing may have considerable room to explore when measured latency is well below the limit. Near the boundary, the same change may require optimization elsewhere or a different design. The margin does not prescribe which implementation to choose, nor does it guarantee that a proposed change will remain acceptable. It provides evidence that can guide exploration, with the resulting implementation evaluated again against the obligation.
+
+The evidence also informs the engineer. Shrinking margin may indicate that the current design has little capacity to absorb additional work or operating variation. The engineer can investigate the cause, reconsider the architecture, allocate a more specific performance budget, or introduce an earlier warning threshold. The appropriate response is not necessarily to tighten the tolerance. The original bound may remain correct even when the implementation approaches it. In this way, Alignment returns information to Modeling: measurements obtained from one implementation can improve the representations and decisions governing the next engineering task.
+
+This reasoning applies where the model defines a meaningful quantitative boundary and the environment can measure the relevant behavior. Latency, memory consumption, cost, and capacity are familiar examples. The measured margin also depends on the workload and conditions under which it was obtained; headroom observed in one setting is not a guarantee under another. Many software obligations are discrete instead. A dependency is permitted or forbidden, and a state transition is legal or illegal. Such properties may admit measures of risk, but they do not necessarily have a useful distance to failure. For them, conformance may be the appropriate evaluation.
+
+\subsection{Underconstraint and Overconstraint}\label{heading:underconstraint-and-overconstraint}
+
+% <!-- section-terms: constraint, governance-mechanism -->
+
+% <!-- point: preserving-freedom-has-positive-value | Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring. | terms: constraint, governance-mechanism -->
+
+Alignment should preserve the implementation freedom that Modeling deliberately leaves open. A control can exclude an unacceptable realization, but it can also rule out alternatives that satisfy the stated obligations. Operational simplicity or the cost of assurance can justify some restrictions. As implementation becomes cheaper, more of the alternatives that a control excludes may be worth exploring.
+
+% <!-- point: defer-consequential-commitments-until-the-last-responsible-moment | Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer. | terms: constraint -->
+
+For consequential choices whose effects are still uncertain, engineers can defer a commitment until the \emph{last responsible moment}. Waiting can yield useful information, but it can also make a later change more expensive. Agents can produce prototypes and experiments sooner, while controls protect the obligations already understood. The tradeoff depends on which realizations satisfy the stated obligations and which the environment actually permits.
+
+% <!-- point: realization-space-underconstraint-vs-overconstraint | Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P. | terms: constraint, governance-mechanism -->
+
+The latency example measures how much room an implementation has within one obligation. A broader question is whether the environment permits every implementation that would satisfy the applicable obligations, or unnecessarily excludes some of them. We can describe this distinction with sets. Let \(\mathcal R\) be the possible realizations of the work. Each obligation \(O_i \subseteq \mathcal R\) is the set of realizations satisfying it, so the acceptable realizations are \(\mathcal A = O_1 \cap \ldots \cap O_n\).
+
+For a fixed control configuration and decision context, let \(C_j \subseteq \mathcal R\) be the set of realizations permitted by enforcing control \(j\), whether a direct constraint or a gate. When every applicable control must permit a realization, the environment permits \(\mathcal P = C_1 \cap \ldots \cap C_m\). A gate can exclude a realization that satisfies all direct constraints, for example because required evidence is missing. Sensors can supply evidence for that decision without themselves restricting \(\mathcal P\). The permitted region can change as the evidence or controls change. Two kinds of mismatch appear as set differences:
+
+\[
+\text{underconstraint: } \mathcal P \setminus \mathcal A \qquad \text{overconstraint: } \mathcal A \setminus \mathcal P
+\]
+
+Underconstraint leaves unacceptable realizations permitted; it threatens correctness. Overconstraint excludes acceptable realizations; it sacrifices useful engineering freedom. \autoref{acceptability-versus-permission} classifies realizations by acceptability and permission.
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{8em}>{\raggedright\arraybackslash}p{9em}>{\raggedright\arraybackslash}p{9em}@{}}
+\caption[Acceptability versus permission]{\emph{Acceptability versus permission.} Obligations determine acceptability; enforcing controls determine permission. Underconstraint permits unacceptable realizations, while overconstraint excludes acceptable alternatives.}\label{acceptability-versus-permission}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Realizations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Realizations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Acceptable & Preserved freedom & Overconstraint \\
+Unacceptable & Underconstraint & Correct exclusion \\
+\end{longtable}
+
+% <!-- point: matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified | Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence. | terms: constraint -->
+
+Making \(\mathcal P\) coincide with \(\mathcal A\) is an idealization, not always a practical or even desirable goal. An engineer may deliberately exclude acceptable alternatives --- for operational simplicity, for consistency, or for assurance. Comparing the two regions helps engineers identify that restriction and decide whether its benefit justifies the lost freedom.
+
+\subsection{Where Enforcement Stops}\label{heading:where-enforcement-stops}
+
+% <!-- section-terms: residual, constraints-and-sensors -->
+
+% <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
+
+Not every engineering obligation should be enforced mechanically. An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. Each case calls for a different engineering decision. Human review informed by adequate evidence may be more appropriate than enforcement of a poorly specified rule. \autoref{honest-gaps} shows these four possible stopping points.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/residual-decision-tree-478c6933ab.pdf}
+\caption{\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.}
+\label{honest-gaps}
+\end{figure}
+
+% <!-- point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use | The residual is an obligation nobody made explicit enough for the environment to use. | terms: residual, judgment-is-the-scarce-resource -->
+
+% <!-- index-def: residual -->
+
+\textbf{Residual.} The obligation is not explicit in a form the environment can use. An engineer or agent must reconstruct the relevant meaning when the decision arises.
+
+% <!-- point: an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation | An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. The decision still requires human judgment.
+
+% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, but the result does not control whether work may proceed. | terms: residual, constraints-and-sensors -->
+
+\textbf{Evaluated only.} The environment can evaluate the obligation, but the result does not control whether work may proceed.
+
+% <!-- point: a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk | A governed obligation is enforced in a form appropriate to the engineering decision. | terms: residual, constraints-and-sensors -->
+
+\textbf{Governed.} The environment enforces the obligation through a constraint on available actions or states, or through a gate that makes an action or admission depend on the evaluation.
+
+% <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set. | terms: residual, tolerance -->
+
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not require tightening it or enforcing it mechanically. As \autoref{cost-enforcement-gradient} illustrated, measurements can reveal how much margin remains within a quantitative tolerance, even when the environment does not use those measurements to block work. A broad tolerance may be the correct engineering decision, and variation within it remains legitimate implementation freedom. Stronger Alignment means more dependable adherence to the obligations engineers actually chose, not progressively narrowing the acceptable realization space.
+
+% <!-- point: three-different-reasons-non-enforcement-is-sometimes-the-engineered-result | An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result. | terms: residual, governance-conversion -->
+
+Different concerns can warrant different stopping points. A team may record service cost while leaving the spending decision to a human, rather than imposing a hard daily ceiling. It may review a trend in incident reports without setting a required number, which would reward the count instead of the improvement. A design decision may require context that the available checks cannot evaluate adequately. In each case, engineers should make the remaining judgment or policy choice explicit instead of treating non-enforcement as an accidental omission.
+
+% <!-- point: the-mechanism-that-discovers-need-not-carry-the-enforcement | The mechanism that discovers an obligation need not be the one that ultimately enforces it; \magevalue{chapter:one-problem-many-models} follows that migration. | terms: sensor, governance-conversion -->
+
+The mechanism that exposes a problem need not be the one that ultimately enforces the repair. A complexity warning may identify code worth examining without justifying a ban on every similar function. Investigation may instead reveal a missing type or an architectural boundary that a more precise control can enforce. \magevalue{chapter:one-problem-many-models} follows a migration of this kind, from an audit signal to more specific representations and controls.
+
+Once engineers have chosen which obligations warrant enforcement and what mechanisms could provide it, they must decide where those mechanisms should act. A suitable check can still be ineffective if the necessary evidence is unavailable at the point where it runs.
+
+```
+
+### book/latex/sources/part3/3.6-alignment-summary.tex (lines 1–41)
+
+Source 031cfda8d before the requested 2026-11-24 reorganization and cuts.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Summary -->
+
+\chapter{Summary}
+
+Modeling makes consequential properties and intended obligations explicit; Alignment determines how selected obligations will be upheld as agents work. An implementation can agree with a model without satisfying the intended obligation, and a correct finding need not control what happens next. Engineers must establish what should hold, choose trustworthy mechanisms, and place them where the necessary evidence is available. They must also revise those mechanisms as the product and the engineering environment change.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Distinguish guidance, evidence, and enforcement.} Guidance tells an agent how it should act. Correspondence establishes agreement over selected relationships; conformance concerns an independent obligation. Acceptance decides whether work may proceed. Evidence for one does not establish the others.
+\item
+  \textbf{Choose mechanisms suited to the obligation.} Constraints restrict available actions or states, sensors produce evidence, and gates evaluate conditions and enforce decisions. Evaluate the machinery itself, and preserve acceptable implementation choices unless their restriction has an engineering justification.
+\item
+  \textbf{Enforce at the earliest decidable boundary.} An action can be refused as soon as the relevant facts are available. An obligation spanning several changes or concerning integrated behavior may need evidence that appears later. Placement and enforcement strength are separate decisions.
+\item
+  \textbf{Convert recurring judgment into durable structure.} When a failure or repeated decision reveals something future work should preserve, record it in a model, check, or control. That structure becomes engineering capital when subsequent work benefits from it.
+\item
+  \textbf{Govern the governance machinery.} Controls can leave an obligation uncovered, interfere with one another, or become too costly to maintain. Engineers need to know which controls exist, how they interact, and which obligations they govern.
+\end{enumerate}
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Alignment Principle}\label{heading:alignment-principle}
+
+Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+\end{quote}
+
+Alignment makes selected obligations dependable without prescribing every choice involved in satisfying them. Agents can investigate, design, and implement within the freedom those obligations preserve; engineers remain responsible for the resulting system. They decide what must hold and whether the available evidence justifies acceptance. Mechanization is valuable where it reduces repeated judgment or prevents known failures. Beyond those boundaries, reasoning remains necessary.
+
+% <!-- point: modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method | \magevalue{chapter:one-problem-many-models} shows how engineers use and revise models and controls together as an engineering problem develops. | -->
+
+Modeling and Alignment have been examined separately, but engineering does not proceed in two isolated phases. Implementations expose missing models; analyses reveal obligations worth enforcing; and failures motivate changes to the governed environment. In the next chapter, we follow these interactions as they unfold, showing how engineers introduce, revise, and retain models and controls while a system evolves.
+
+```
+
+### book/latex/sources/part3/3.5-when-guardrails-collide.tex (lines 1–124)
+
+Source 031cfda8d before the requested 2026-11-24 reorganization and cuts.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: When Controls Become a System -->
+
+\chapter{When Controls Become a System}
+
+% <!-- gloss-only: Governance graph | A structured model whose nodes are the fleet's own governance mechanisms (each tagged by the event it fires on and the shared resources it reads, writes, or locks) and whose edges are the conflicts between them over a shared resource, in a closed taxonomy of contradiction, contention, ordering, and soft-versus-hard; the dynamic dual of a static catalogue of controls, holding the interaction dimension a list omits. -->
+
+% <!-- point: every-control-reasonable-alone-the-system-of-controls-still-wrong | Every control can be reasonable in isolation while the control machinery as a whole remains inconsistent, incomplete, or obsolete. | terms: governance-graph, constraint -->
+
+As governance mechanisms accumulate, they become control machinery: the constraints, sensors, and gates through which the environment governs agentic work. The machinery can fail even when every individual control is reasonable. Controls may impose incompatible demands, interfere with one another, outlive their purpose, or leave important obligations uncovered.
+
+% <!-- point: successful-environments-accumulate-machinery-so-the-estate-is-a-portfolio-to-manage | Governance conversion and up-front design accumulate control machinery; that machinery becomes an engineering object to maintain, reconcile, and sometimes retire. | terms: governance-graph, engineering-capital -->
+
+% <!-- point: alignment-turned-on-itself-a-model-of-the-controls-made-binding-on-the-controls | Alignment turned on itself: a model of the controls, enforced on the controls. | terms: governance-graph -->
+
+\section{Modeling the Control Machinery}\label{heading:model-interactions-between-controls}
+
+% <!-- point: the-catalogue-gives-each-control-a-stable-identity | Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its governance role. | terms: governance-graph, shared-resource -->
+
+\autoref{census-trio} shows three ways to examine this machinery. A catalogue identifies the controls and their purposes; an interaction graph relates controls through the resources they access; and a coverage view compares the controls with independently established engineering obligations. The views share control identities but answer different questions. Maintaining them requires recording where each control acts, which resources it accesses, and what justifies its existence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/census-trio-ab9995bb33.pdf}
+\caption{\emph{Three views of the control machinery.} A catalogue identifies controls, an interaction graph exposes potential conflicts through shared resources, and a coverage view relates controls to independently identified engineering obligations. For example, if the squash rule and diff-size guard cannot both be satisfied, the engineer can inspect their shared commit-set requirements and decide which obligation or mechanism needs revision. The coverage view separately identifies obligations lacking adequate controls (coverage gaps) and controls lacking a current justification (candidate orphans).}
+\label{census-trio}
+\end{figure}
+
+% <!-- section-terms: governance-graph, shared-resource -->
+
+% <!-- point: each-collision-lives-in-the-space-between-two-controls-drawn-nowhere | A collision lives between two controls, drawn nowhere until the graph draws it. | terms: shared-resource, governance-graph -->
+
+Suppose the squash rule and diff-size guard in \autoref{census-trio} both apply to the same change. The catalogue identifies their purposes. The interaction view reveals that both concern the commit set. Comparing their requirements shows that one may demand a single atomic commit while the other forbids a commit of the required size. The coverage view then asks whether revising or removing either control would leave an engineering obligation unprotected.
+
+% <!-- point: the-interaction-graph-joins-controls-by-shared-resource | The interaction graph uses controls as nodes and shared resources as the principal join key; controls need not call one another to collide. | terms: governance-graph, shared-resource -->
+
+The interaction graph uses controls as nodes and shared resources as the principal join key. A resource may be ordinary --- a lock, a file, a commit-set, a deployment slot --- or operational, such as a lifecycle event or a context budget. Controls need not call one another to interact: potentially incompatible demands on a shared resource can expose an interaction. Shared-resource analysis is one way to find such interactions; logically incompatible obligations may conflict even when the resource-access model reports none.
+
+% <!-- point: shared-resource-is-a-useful-conservative-relation-not-a-proof-of-completeness | Shared resource is a useful conservative relation, not a proof that the graph captured every interaction. | terms: shared-resource, semantic-gap -->
+
+A shared resource is a conservative signal of interaction, not proof that every conflict has been captured. Within the represented surface, it lets engineers and tools ask useful questions before the controls interact in production work: which controls fire on this event, which touch this resource, which pairs have no declared order, and which known combinations impose incompatible requirements.
+
+% <!-- point: decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges | Some candidate conflicts are mechanically decidable; others require judgment about what the mechanisms demand. | terms: governance-graph, semantic-gap -->
+
+% <!-- point: diagnose-the-conflict-kind-before-weakening-an-obligation | Not every conflict between controls reflects a conflict between the obligations they enforce; incompatible obligations require revisiting requirements, while interfering mechanisms may be changed without weakening either obligation. | terms: governance-graph, shared-resource -->
+
+Some candidate conflicts can be evaluated mechanically, such as a cycle in declared ordering requirements. Others need judgment. A static check can show that two controls touch the same commit set; a validator or human reviewer must determine whether their requirements conflict. The graph exposes the interaction for evaluation before it disrupts work. Conflicts can arise from incompatible obligations or from mechanisms that interfere while enforcing compatible obligations. The first requires reconsidering the requirements or specification. The second may be resolved by changing the mechanisms or their interaction without weakening either obligation.
+
+% <!-- section-terms: governance-graph, governance-conversion -->
+
+% <!-- point: a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not | A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not. | terms: governance-graph, governance-conversion -->
+
+To find an uncovered obligation, start from the obligations engineers expect the environment to govern. A list of your controls cannot tell you what you forgot to control.
+
+% <!-- point: coverage-is-a-requirements-traceability-problem-gap-vs-orphan | Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan. | terms: governance-graph, governance-conversion -->
+
+% <!-- point: gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad | A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete. | terms: governance-graph -->
+
+Tracing in both directions yields two findings:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Coverage gap.} A consequential obligation for which the intended evidence or enforcement is not adequately supplied.
+\item
+  \textbf{Orphan.} A mechanism that no longer traces to a current obligation, failure class, or documented purpose. An orphan is a finding to reconcile, not proof that the mechanism should be deleted.
+\end{itemize}
+
+\section{DocAble: Interacting Governance Mechanisms}\label{heading:docable-interacting-governance-mechanisms}
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+The catalogue, interaction graph, and coverage view answer different questions about a growing set of controls. DocAble implements one part of this analysis by recording when governance mechanisms execute and which resources they read or write. Its experience shows both the usefulness and the limits of this representation.
+
+% <!-- point: governance-interaction-graph-candidate-conflict-condition | DocAble adapts a classical read/write conflict test to identify potential access conflicts at a shared event; the governance model records resolutions and must also account for incompatible obligations. | terms: governance-graph, shared-resource, semantic-gap -->
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+DocAble's implemented interaction analysis covers one class of interaction: potentially conflicting access to a shared resource. I adopted an interaction model borrowed from concurrency control's read/write conflict test~\citep{bernstein1981concurrency}. For each governance mechanism, the model records when it executes and which resources it reads or writes. Two mechanisms running at the same event have a potential conflict if they access the same resource and at least one writes it. For example, a post-commit code-style formatter writes a file that a subsequent checker reads. If the checker must inspect the formatted result, it must run afterward. The conflict graph identifies such interactions; the governance model records their resolutions.
+
+% <!-- point: three-turn-end-hooks-one-shared-slot | Two turn-end hooks compete for a finite context budget. Their required order is recorded in the governance model, although the read/write conflict test does not discover it. | terms: governance-graph, shared-resource -->
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+Two DocAble hooks share a finite context budget at the end of an agent turn. In Claude Code (as of 2026), lifecycle hooks run configured checks at defined events and can prompt an agent to continue working when it tries to stop~\citep{anthropic2026claudecodehooks}. The first, \emph{recurring failure}, prompts Claude to reflect on notable failures or repeated issues in its recent history that might warrant conversion into durable governance mechanisms (\magevalue{sec:governance-conversion}), either through human review or autonomous follow-up. The other, \emph{stranded work}, prompts the orchestrator to compare the subagent's completed and landed work against its original brief to identify work that may have been lost. Both consume context, and the stranded-work inspection may exhaust the remaining context window before recurring-failure reflection can complete its analysis. Each hook is useful independently, but their order matters. The governance model therefore requires the recurring-failure hook to run before the stranded-work hook.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+The governance graph records conflicts and their resolutions, including ordering, merging mechanisms, separating execution points, or accepting an interaction. Topological sorting computes a sequence from the declared ordering constraints and reports cycles; a separate check compares the governance model with the configured mechanisms.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Read/write conflicts are one way to discover interactions, not a complete account of them. The broader engineering question is whether one mechanism can interfere with another's ability to fulfill its obligation. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+The squash rule and diff-size guard expose a different limit of read/write analysis. Both checks may only read the commit set, so the conflict test can miss incompatible obligations. Resolving that conflict requires revisiting what the checks demand.
+
+Detecting interactions is only part of governing the control machinery. Engineers must also decide which conflicts to resolve, which obligations remain uncovered, and which mechanisms have outlived their purpose. These decisions require maintaining the relationships between controls, their implementations, and the obligations that justify them.
+
+\section{Maintaining the Control Portfolio}\label{heading:add-reconcile-and-retire-controls}
+
+% <!-- section-terms: governance-graph, teetering-tower, engineering-capital -->
+
+% <!-- point: conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both | Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both. | terms: governance-graph, governance-conversion -->
+
+Governance conversion and coverage auditing provide complementary pressures. Conversion adds durable structure when experience exposes a recurring gap; coverage auditing finds controls that are missing, redundant, or obsolete. The audit can therefore lead to consolidation or retirement.
+
+% <!-- point: the-meta-model-stays-connected-where-controls-are-modeled-explicitly | Entries in a control model identify the implementing mechanism, and correspondence checks expose missing or unrecognized targets instead of silently treating them as covered. | terms: traceability, teetering-tower -->
+
+The control model must remain connected to the controls it represents. An entry can identify the script or configured permission that implements a control, while a correspondence check reports missing or unrecognized targets. The check should expose a gap in the relation rather than silently treating an unmatched control as covered. This applies the broader rule from \magevalue{chapter:modeling}: a model of the engineering environment must stay connected to the machinery that engineers and agents use it to reason about.
+
+% <!-- point: stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists | Stop the recursion unless experience earns more: a governance model can itself become bureaucracy. | terms: governance-graph, teetering-tower -->
+
+Do not recursively govern every relation merely because it can be modeled. Extend the control model only when a recurring engineering question or observed failure justifies the added machinery.
+
+The worked control-machinery model is grounded primarily in the originating case. Its broader value is a hypothesis for other engineering environments: the catalogue, interaction, and coverage views provide concrete questions to test when a growing set of controls becomes difficult to manage.
+
+% <!-- point: alignment-distinguishes-what-must-be-governed-from-what-may-remain-open | Alignment must preserve two complementary freedoms — freedom of implementation (which acceptable realizations remain available) and freedom to extend the environment (whether additional controls can coexist); the realization-space model answers the first, the governance graph the second. | terms: governance-graph, alignment-principle -->
+
+Alignment must preserve two kinds of freedom. The first is freedom of \emph{implementation}: which acceptable realizations remain available after obligations are enforced. The second is freedom to \emph{extend the engineering environment}: whether additional controls can coexist with those already installed. The realization-space model in \magevalue{sec:constraints-sensors-validators-gates} addresses the first question; the governance graph addresses the second.
+
+% <!-- point: governing-the-governors-is-second-order-not-a-license-for-unrestricted-agents | Agents may explore without being authorized to commit, and engineers still decide which freedoms to delegate. | terms: governance-graph -->
+
+Agents may explore implementation alternatives without being authorized to merge, deploy, or otherwise commit them. The engineer decides which choices remain open and which require stronger control. The same judgment applies to the engineering environment itself: adding a control may prevent one failure while interfering with mechanisms already in place.
+
+The GEE has itself become a system about which engineers need to ask questions. The Modeling Principle applies here as it does to the product: externalize the relationships needed to reason about the system, maintain their correspondence with the machinery, and leave irrelevant detail out. \magevalue{chapter:one-problem-many-models} examines how engineers develop and revise these models and controls together while building a changing product.
+
+```
+
+### book/latex/sources/part3/3.3-where-obligations-can-be-enforced.tex (lines 1–213)
+
+Source 031cfda8d before the requested 2026-11-24 reorganization and cuts.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Where Obligations Can Be Enforced -->
+
+\chapter{Where Obligations Can Be Enforced}
+
+The preceding section distinguished what governance mechanisms do. Their placement determines what work they can examine and which actions they can still affect. A permission may act on one attempted operation; a completion check may need the combined evidence from several changes. We now examine these boundaries and how to choose among them.
+
+\section{Intervention Boundaries}\label{heading:reasoning-input-action-work-unit-and-artifactruntime}
+
+% <!-- point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible | An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it. | terms: intervention-boundary -->
+
+Where the environment intervenes determines what it can examine and control. \autoref{intervention-boundaries} distinguishes reasoning input, where guidance ordinarily operates, from three enforcement boundaries: individual actions, composed units of work, and the resulting artifact or runtime state. Moving toward larger units of work can make additional obligations legible because more context and evidence are available.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/intervention-boundaries-1ac2c40a9b.pdf}
+\caption{\emph{Intervention boundaries.} Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.}
+\label{intervention-boundaries}
+\end{figure}
+
+% <!-- section-terms: intervention-boundary, reasoning-input, action-boundary, work-unit-boundary, artifact-runtime-boundary -->
+
+% <!-- point: the-first-boundary-is-reasoning-input | The first location is reasoning input: ordinarily guidance, not enforcement. | terms: reasoning-input, intervention-boundary -->
+
+% <!-- index-def: reasoning-input -->
+
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do much of their work: a finite reasoner benefits when relevant system knowledge is externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown. Guidance helps an agent avoid mistakes. Enforcement can prevent those mistakes from being accepted.
+
+
+
+% <!-- point: the-second-boundary-is-the-action-one-attempted-side-effect | The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse. | terms: action-boundary, intervention-boundary -->
+
+% <!-- index-def: action-boundary -->
+
+The first of the three \emph{enforcement} boundaries is the \textbf{action boundary} exposed by the harness and its tools. Here, one attempted side effect is in view: a tool call, an API request, a shell command, or a file mutation.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: AGENT HARNESS -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Hooks and Permissions}
+\label{inset-hooks-and-permissions}
+Many agent harnesses let engineers intervene in an agent's work through permissions and lifecycle hooks. For example, a deployment tool can be permitted to inspect production state while its credentials deny permission to modify it. A pre-action hook can invoke a check on a proposed command; if the check is configured to block violations, the harness refuses the command. A post-action hook can check the result or collect evidence, but the operation has already occurred. That evidence can inform a later acceptance decision: a CI or deployment gate can reject a larger unit of work when required checks fail.
+
+We can understand these facilities by separating \emph{where} an intervention occurs from \emph{what} the configured mechanism does. The boundary determines what evidence is available in time to affect the decision. The mechanism determines how that evidence is used: the same failed check at the same hook might produce a warning or stop execution. If the deployment tool must not modify production state, permissions enforced by the production service can refuse a write before it takes effect. A warning after a write cannot satisfy that obligation: the forbidden effect has already occurred. The engineer therefore starts with what must be prevented or established, then chooses a boundary with sufficient evidence and a mechanism whose response enforces that requirement.
+\end{bookbox}
+
+% <!-- point: the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions | The second enforcement boundary is the work unit, where whole-work obligations become legible. | terms: work-unit-boundary, intervention-boundary -->
+
+% <!-- index-def: work-unit-boundary -->
+
+The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. The larger scope makes obligations involving several actions available for evaluation, even when no individual action provides enough evidence.
+
+% <!-- point: the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible | The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept. | terms: artifact-runtime-boundary, intervention-boundary, ban-lint -->
+
+% <!-- index-def: artifact-runtime-boundary -->
+
+The third enforcement boundary is the \textbf{artifact or runtime boundary}: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. For example, a service account may have permission to read production records but no permission to change them. The permission restricts what the running system can do, regardless of how the agent wrote its code.
+
+\section{The Semantic Gap and Earliest Decidable Boundary}\label{heading:the-semantic-gap}
+
+% <!-- section-terms: semantic-gap, earliest-legible-boundary, model-drift -->
+
+% <!-- point: an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check | An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it. | terms: semantic-gap, earliest-legible-boundary -->
+
+Which of these boundaries provides enough evidence? We may know exactly what to check but try to check it too soon. The required evidence may span several changes, or the property may emerge only when components operate together. A semantic gap occurs when the chosen boundary does not expose enough information to decide whether the obligation holds.
+
+The end-to-end argument in system design explains why this information boundary matters. A function that needs end-to-end knowledge cannot in general be implemented completely at a lower layer that lacks that knowledge~\citep{saltzerreedclark1984e2e}. That argument concerns where to place functionality in a distributed system; the corresponding question here is where to place enforcement over engineering work. An enforcing mechanism needs access to the information required to decide whether the obligation holds.
+
+\autoref{semantic-gap} illustrates two such cases. Although both arise during software development, they require checks at different boundaries.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/semantic-gap-levels-bf0468495b.pdf}
+\caption{\emph{The semantic gap.} Different obligations become decidable at different boundaries. Model--implementation correspondence may be required at task completion, while rendered-page correctness requires integrated execution. Place each check at the earliest boundary where sufficient evidence is available.}
+\label{semantic-gap}
+\end{figure}
+
+% <!-- point: model-drift-at-the-commit-is-the-wrong-granularity | Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work. | terms: model-drift, semantic-gap -->
+
+% <!-- index-def: semantic-gap -->
+
+% <!-- index-example: model-drift -->
+
+Consider an agent changing a system's call graph. The architectural model must agree with the implementation when the task is complete, but several intermediate commits may legitimately leave them inconsistent. Requiring correspondence after every commit would reject valid intermediate work. At task completion, the accumulated code changes and model updates can be checked together. The obligation belongs to the completed task, not to each commit.
+
+% <!-- point: a-deployment-can-pass-every-check-and-still-serve-a-blank-page | Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering. | terms: semantic-gap, earliest-legible-boundary -->
+
+A different obligation requires the assembled system to behave correctly. A deployment can pass source, build, and API checks yet serve a blank page. Those checks establish useful properties, but not that the application displays the expected content. A browser smoke test can load the page and check its rendered output. The test belongs at the earliest boundary where the integrated application can be exercised, such as a preview or staging deployment. A successful HTTP response alone does not establish that the page rendered correctly.
+
+% <!-- gloss: Epic | A tracked unit of work larger than one commit: a feature or effort with its own file, plan, and definition of done, carried out over several agent dispatches. -->
+
+% <!-- gloss: Definition of done (DoD) | The explicit list of conditions a unit of work must meet to count as finished — tests present, docs updated, the model in sync — checked at the end rather than assumed. -->
+
+% <!-- section-terms: earliest-legible-boundary, semantic-gap -->
+
+% <!-- point: place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable | The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable. | terms: earliest-legible-boundary, semantic-gap -->
+
+% <!-- index-def: earliest-legible-boundary -->
+
+Both examples illustrate the same rule for placing enforcement:
+
+\begin{quote}
+\textbf{Place enforcement at the earliest boundary where the obligation is both legible and decidable.}
+\end{quote}
+
+\emph{Earliest} matters because delay makes a failure more expensive to repair. \emph{Legible} matters because checking before the necessary evidence exists produces false refusals or meaningless results. Static type checks can reject code that violates declared typing rules before execution; action hooks can govern individual tool calls; task-completion checks can evaluate obligations spanning several commits; and deployment gates can evaluate accumulated evidence before release. Other properties become observable only later, such as a leak emerging across repeated calls or a cost overrun visible across many jobs. No earlier boundary can establish what the available evidence does not yet reveal.
+
+% <!-- point: the-part-two-rhyme-coarsest-representation-earliest-boundary | The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible. | terms: semantic-gap, earliest-legible-boundary, modeling-principle, alignment-principle -->
+
+\magevalue{chapter:modeling} and \magevalue{chapter:alignment} therefore use companion selection rules:
+
+% <!-- inline-quote -->
+
+\begin{quote}
+\textbf{Modeling} --- \emph{choose the reduction that makes the engineering \textbf{question} answerable without carrying unnecessary detail.}
+
+\textbf{Alignment} --- \emph{choose the earliest boundary at which the \textbf{obligation} becomes legible and decidable.}
+\end{quote}
+
+Both rules keep irrelevant detail from driving the engineering decision.
+
+\begin{itemize}
+\tightlist
+\item
+  Modeling avoids carrying detail the question does not need.
+\item
+  Alignment avoids enforcing an obligation before the necessary evidence exists.
+\end{itemize}
+
+Choose the wrong abstraction in \magevalue{chapter:modeling} and the required property is not represented. Choose the wrong boundary here and the required evidence is not available.
+
+% <!-- point: real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one | Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook. | terms: earliest-legible-boundary, semantic-gap -->
+
+Real boundaries sometimes require a margin for the mechanism to act. Suppose an agent must preserve a durable hand-off before its working context is compacted. Waiting until no room remains may leave too little capacity to write it. A practical trigger can act earlier, when context is becoming full and the durable record is stale. The trigger approximates the desired boundary while preserving enough time and capacity to complete the required action.
+
+An enforceable obligation needs more than a model and a checker. The obligation must be independent of the work being judged, the evidence must cover the relevant behavior, and the check must operate where that evidence is available. These requirements also leave engineers a separate decision about whether the result should control admission.
+
+\section{Placement, Strength, and Feedback}\label{heading:placement-and-strength-are-different-decisions}
+
+% <!-- section-terms: intervention-boundary, guidance-vs-enforcement -->
+
+% <!-- point: the-four-boundaries-do-not-form-a-monotonic-scale | The four boundaries do not form a monotonic weak-to-strong scale. | terms: intervention-boundary, guidance-vs-enforcement -->
+
+A later check is not necessarily a stronger check. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
+
+% <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
+
+Richer models can expand the properties the environment is able to state and govern, but substantial enforcement can exist without them. A bounded execution sandbox, for example, can constrain actions without requiring a rich model of the system it contains.
+
+% <!-- section-terms: intervention-boundary, feedback -->
+
+% <!-- point: every-boundary-determines-where-feedback-can-return | Boundary placement affects what feedback can return and when; timely evidence lets an agent use the reasoning and context already at hand, while delayed feedback may require reconstruction. | terms: intervention-boundary, feedback -->
+
+% <!-- index-def: intervention-boundary -->
+
+% <!-- index-def: engineered-agent-loop -->
+
+The boundaries also determine what feedback can return and when. An action hook can explain why a call was refused; a CI check can report a violated invariant in the change under review; a deployment validator can identify failed checks or missing required evidence. Placing a check where the obligation can first be evaluated allows useful evidence to return while the relevant work is still in progress. The agent can then revise the change using the reasoning and context already at hand. If feedback arrives after it has moved on, it may have to reconstruct what it changed and why before it can understand the failure and correct the work.
+
+% <!-- point: these-mechanisms-do-not-act-independently-deferred-to-3-5 | These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5. | terms: intervention-boundary -->
+
+Controls within the GEE can also interact or conflict; \magevalue{sec:when-guardrails-collide} treats their growing portfolio as a system in its own right.
+
+\section{Enforcement Boundaries in Practice}\label{heading:enforcement-boundaries-in-practice}
+
+The appropriate boundary depends on the obligation and the evidence needed to evaluate it. DocAble uses different boundaries to govern discovery and completed work; Docker and Spotify illustrate how other environments govern outbound requests and submission for review.
+
+% <!-- worked-examples: alignment-principle -->
+
+\subsection{DocAble: Dynamic Context Injection and Discovery}\label{heading:docable-dynamic-context-injection-and-discovery}
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+DocAble's engineering environment must supply agents with the rules relevant to their tasks without requiring them to reconstruct every applicable obligation from the repository. It must also distinguish supplying those rules from establishing that required discovery occurred. Dynamic context injection addresses the first problem; a separate gate addresses the second. The selected knowledge includes architectural invariants, ownership declarations, lint requirements, and links to design decisions.
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/deliver-context-two-layer-15d7b97afa.pdf}
+\caption{\emph{Dynamic context injection and enforcement.} A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.}
+\label{docable-context-selection}
+\end{figure}
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
+
+\subsection{DocAble: Completion Audits}\label{heading:docable-completion-audits}
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+Completion requires a different view of the work. DocAble's definition-of-done review asks a reviewer agent to rerun the task's tests and lints against the completed work rather than trust earlier status records. A separate closing gate checks that the declared commits are present on the main branch. Several intermediate commits may legitimately leave a model and its implementation temporarily inconsistent; the completed task is where their required agreement can be assessed. The two mechanisms therefore answer different questions: did the required discovery occur, and does the finished work carry the evidence needed for acceptance? Neither question is answered merely by placing instructions in context. ({[}appendix: appendix-a-governed-delegation{]} develops a blueprint for model selection, work-order construction, and completion checks.)
+
+\subsection{Other Environments: Docker and Spotify}\label{heading:example-docker}
+
+Docker Sandboxes routes outbound HTTP and HTTPS requests through a proxy on the host. Under a configured deny-by-default policy, the proxy checks the destination domain against an allowlist and blocks requests to unapproved domains. For example, suppose an agent tries to upload a diagnostic log to a domain absent from the allowlist. The proxy blocks that request before it reaches the destination, even if the agent considers the upload useful. This enforces the domain restriction; it does not establish that content sent to or obtained from an allowed domain is safe~\citep{mikhalev2026untrusted}.
+
+Spotify requires a proposed change to pass the relevant verifiers before its background coding system opens a pull request. The environment selects independent verifiers from repository contents: finding \texttt{pom.xml}, for example, activates a Maven verifier. The agent can invoke verification while editing, and a Claude Code stop hook runs all relevant verifiers before PR creation. If one fails, the system returns an error and does not open the PR. The agent can therefore obtain feedback during its work, while the final invocation makes verification a condition of submitting that work for review~\citep{charas2025feedback}.
+
+\magevalue{chapter:software-factories} examines how such controls fit into software factories, including Spotify's migration system.
+
+% <!-- worked-examples-end -->
+
+We can now state an obligation, choose machinery suited to it, and place that machinery where the necessary evidence is available. But we cannot anticipate every obligation before engineering begins. New behavior, failures, and changes in requirements will expose decisions that the environment does not yet preserve.
+
+```
+
+### book/latex/sources/part3/3.4-governance-conversion.tex (lines 1–132)
+
+Source 031cfda8d before the requested 2026-11-24 reorganization and cuts.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Growing the Governed Environment -->
+
+\chapter{Growing the Governed Environment}
+
+% <!-- point: a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches | A governed environment grows from obligations already known and from what the work teaches; governance conversion is the second route. | terms: up-front-governance, governance-conversion -->
+
+% <!-- index-def: governed-environment -->
+
+% <!-- index-def: governance-conversion -->
+Some rules we know before we start. An API must require authentication. A job must not finish before it starts. But no engineered environment can begin with every future obligation already represented and mechanized. On new engineering tasks, we tend to discover further obligations as we go, often when something goes wrong.
+
+The environment therefore acquires durable structure in two ways: up front, from obligations already known, and through \textbf{governance conversion}, when engineers turn lessons from failures and surprises into structure that subsequent work inherits. Repair fixes the immediate instance; conversion changes the environment.
+
+Governance conversion has a parallel in organizational learning. Organizations can preserve lessons from experience in routines, procedures, and other structures that survive the individuals who originally learned them~\citep{argyris1978organizational}. In a governed engineering environment, models and executable controls can preserve some of these lessons directly in the machinery through which subsequent work proceeds.
+
+This concept rhymes with what you may have learned about software postmortems~\citep{dingsoyr2005postmortem}. After diagnosing a failure, ask why you were surprised. What did you expect to happen, and which assumption proved wrong? The diagnosis reopens the design space. You might repair the immediate defect, change the design, or introduce a control against a broader class of failures. The consequences and costs of each option help you decide which lesson to carry forward.
+
+Getting a lesson into subsequent work is harder. Dingsøyr and colleagues found few companies that analyzed findings across project postmortems to support organizational learning~\citep{dingsoyr2007organizational}. In interviews at a national space research center, Anandayuvaraj and colleagues found that engineers often applied lessons only when someone remembered an earlier failure or knew where to look for it~\citep{anandayuvaraj2026failures}. Commodity intelligence changes the economics. Agents can help build the models and controls that carry a lesson forward, and more changes can benefit from the same investment. Governance conversion makes selected lessons part of the environment that subsequent work inherits.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 12 -->
+
+\begin{bookbox}{inset}{Failure Modes Before and After Failure}
+\label{inset-failure-modes}
+Failure-mode analysis need not wait for a failure. The FMEA approach discussed in \magevalue{sec:constraints-sensors-validators-gates} can identify possible failures before operation and guide decisions about prevention, detection, and mitigation. Known obligations can therefore produce durable engineering structure before experience forces the issue.
+
+Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineers identify the failure mode behind the instance and ask what durable structure should address the class: a model, obligation, constraint, sensor, gate, or other durable structure.
+\end{bookbox}
+
+\section{Up Front: Encode What You Already Know}\label{heading:up-front-encode-what-you-already-know}
+
+% <!-- section-terms: up-front-governance -->
+
+% <!-- point: up-front-encode-obligations-you-can-state-before-the-work-begins | Up front: encode the obligations you can state before the work begins, and stop paying judgment for them. | terms: up-front-governance -->
+
+% <!-- index-def: up-front-governance -->
+
+Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. Encode recurring obligations when the environment can carry them more cheaply and reliably than repeated judgment.
+
+\magevalue{chapter:one-problem-many-models} turns this into a method for starting and migrating systems; here the distinction is simply that these obligations are known before failure forces the issue.
+
+\section{As You Learn: Governance Conversion}\label{heading:as-you-learn-convert-what-the-work-teaches}
+
+% <!-- section-terms: governance-conversion, constraints-and-sensors -->
+
+% <!-- point: diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate | Diagnose what was missing; not every failure calls for another gate. | terms: governance-conversion -->
+
+The harder half begins when the system surprises you. \textbf{Do not assume every failure calls for another gate. Diagnose what was missing.}
+
+% <!-- point: the-conversion-lands-in-one-of-five-places | The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement. | terms: governance-conversion, constraints-and-sensors -->
+
+A failure can expose five kinds of missing engineering structure:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Missing representation / semantics → improve the model.} Make the fact or relation durable at the abstraction where the question becomes answerable.
+\item
+  \textbf{Missing obligation or tolerance → state the governing boundary.} A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.
+\item
+  \textbf{Missing evidence → add a sensor or trace.} Make the relevant state observable.
+\item
+  \textbf{Missing evaluation → strengthen the check.} Turn evidence into a repeatable judgment, whether advisory or enforced by a gate.
+\item
+  \textbf{Missing enforcement → add or strengthen a constraint or gate.} Make the verdict control the relevant action or admission.
+\end{itemize}
+
+A failure can expose missing enforcement even when the environment already identifies the violation. In that case, adding another validator may accomplish nothing; the missing structure is enforcement of the existing verdict.
+
+% <!-- point: correct-judgment-without-enforcement | A correct validation result does not protect the system unless an appropriate mechanism acts on it. | terms: governance-conversion, validator, gate -->
+
+Suppose a deployment pipeline checks that every required configuration value is present. The validator detects a missing value, but the pipeline records only a warning and continues deploying. The evidence and evaluation are adequate for that obligation; acceptance does not depend on the verdict. Adding another check for the same missing value would repeat the judgment without repairing the gap.
+
+The durable change is to make the deployment decision depend on that result, if the configuration really is required. In another case, the safer repair may remove an unsafe operation entirely and require review when it would have been used. Governance conversion should change the part of the environment that permitted the failure. It can add a mechanism, strengthen its consequence, or retire a capability whose risk no longer has a useful justification.
+
+These diagnoses are not mutually exclusive. In practice, one failure often exposes several missing pieces at once. A property that was never represented may also lack an explicit invariant and the sensor needed to observe it. The durable repair can therefore add a model, an obligation, and evidence together. The categories identify where engineering structure was missing; they do not require the repair to land in only one place.
+
+% <!-- point: modeling-and-alignment-form-a-feedback-loop | Agent work supplies evidence for engineering decisions about models, obligations, and controls; later work uses the revised environment and supplies further evidence. | terms: modeling-principle, alignment-principle, governance-conversion -->
+
+Failures and surprises can reveal obligations that were previously implicit, including choices treated as implementation freedoms that turned out to matter. Engineers investigate what was missing and decide whether to revise the model, state a new obligation, collect different evidence, or change enforcement. The revised environment then shapes later work, which may expose further gaps. \autoref{governance-conversion-fig} shows how this process converts experience into durable engineering structure.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-conversion-dbc51d550d.pdf}
+\caption{\emph{Governance conversion.} When a failure exposes a recurring failure mode rooted in missing representation, obligation, evidence, evaluation, or enforcement, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when that durable structure continues to lower future cost or uncertainty.}
+\label{governance-conversion-fig}
+\end{figure}
+
+\section{Engineering Capital}\label{heading:engineering-capital}
+
+% <!-- section-terms: engineering-capital, governance-conversion, modeling-principle, alignment-principle -->
+
+% <!-- point: governance-conversion-forms-engineering-capital-the-positive-stock | Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for. | terms: engineering-capital, governance-conversion -->
+
+% <!-- index-def: engineering-capital -->
+
+Governance conversion motivates a useful concept: \textbf{engineering capital}. You may be familiar with the opposite idea, technical debt: a shortcut today that makes future changes more costly. Where technical debt reduces your ability to make changes, engineering capital increases it. You have durable models, checks, and other engineering structure that lower the cost or uncertainty of future changes. Commodity intelligence can lower the cost of constructing that structure, while increasing the number of engineering episodes over which its cost can be recovered.
+
+% <!-- point: the-asset-is-something-you-can-point-at | The capital must be something future work can actually inherit — a concrete asset you can point at. | terms: engineering-capital, constraints-and-sensors -->
+
+% <!-- point: capital-earns-a-return-lower-marginal-engineering-cost | Capital earns a return: lower marginal engineering cost. Conversion is capital formation. | terms: engineering-capital, governance-conversion -->
+
+Engineering capital is useful only if later work can use it. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a gate can evaluate evidence and control whether work proceeds; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
+
+% <!-- point: engineering-capital-can-transfer-between-projects | Engineering capital can transfer through reusable mechanisms or through the design judgment behind them; its value depends on work saved after adaptation and maintenance costs. | terms: engineering-capital, modeling-principle, alignment-principle -->
+
+Engineering capital can also transfer between projects. A reusable build check or task-completion procedure can give a new project an established starting point. Engineers may adapt the mechanism directly, or reuse the design judgment that led to it while building a different mechanism. The value comes from work the next project no longer has to repeat, after accounting for the cost of adapting and maintaining what it inherits.
+
+% <!-- point: inherited-capital-improves-starting-conditions-without-supplying-every-control | Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs. | terms: engineering-capital, governance-conversion -->
+
+Reuse still requires engineering. A deployment check may assume a particular hosting platform; a review procedure may assume a team structure the new project lacks. The receiving project must identify those assumptions, test whether they hold, and adapt or discard the parts that do not fit. Inherited structure improves the starting conditions only where its obligations and mechanisms remain appropriate.
+
+% <!-- point: capital-depreciates-so-accumulation-cannot-be-the-objective | Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective. | terms: engineering-capital, governed-environment -->
+
+The engineered environment evolves with the system it governs.\magefootnote{lehman}{Lehman\textquotesingle s work on software evolution made the analogous observation about software itself: software used in a changing real-world environment must continually adapt, and its complexity tends to increase unless effort is spent maintaining or reducing it. MAGE extends that caution to the engineered environment surrounding the software. Models, validators, constraints, and procedures evolve too --- and can become liabilities when they no longer fit what they govern. See Lehman \& Ramil 2003~\citep{lehman2003evolution}.} Capital also \textbf{depreciates}. A model can drift from the system it represents. A validator can encode an assumption the architecture has outgrown. A sensor can become noisy; a gate can impose more delay than the failure it prevents; a once-important control can survive long after its obligation disappears. Maintenance preserves useful capital; reconciliation repairs assets that no longer match the system; retirement removes assets whose carrying cost now exceeds their return. This is why accumulation cannot be the objective. A governed environment with more mechanisms is not necessarily richer than one with fewer. What matters is the future engineering value those mechanisms continue to produce.
+
+% <!-- point: debt-and-capital-are-symmetric-stocks-that-compound | Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound. | terms: engineering-capital -->
+
+Debt makes future work pay again for today\textquotesingle s expedience; capital lets future work inherit today\textquotesingle s judgment. Governance conversion turns lessons from individual engineering efforts into structure that subsequent work can reuse.
+
+% <!-- point: the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why | Governance conversion creates a portfolio of controls that can themselves become inconsistent, redundant, or orphaned. | terms: governance-conversion, residual, governed-environment -->
+
+Governance conversion adds durable structure, but the accumulated mechanisms do not necessarily work well together. They may compete for resources, impose incompatible requirements, or remain in place after their obligations have changed. The next section examines how to model and maintain the controls themselves.
+
+```

@@ -527,6 +527,20 @@
   },
   {
     "chapter": "3.2-governance-mechanisms",
+    "source": "assets/models-to-engineering-machinery.svg",
+    "caption": "*From engineering models to engineering machinery.* Engineers and agents can interpret models to construct implementations and checks. Models with sufficiently defined semantics can also support mechanical analysis, generation, and derivation of checks, in whole or in part. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
+    "generator": null,
+    "data": [],
+    "conversion": "Native TikZ and matching monochrome SVG, following the author-requested three-branch teaching diagram",
+    "svg_title": "From engineering models to engineering machinery",
+    "svg_description": "An engineering model supports three parallel uses: analyze the model, generate all or part of a realization, and derive checks. Model analysis produces evidence about the model. A generated implementation and derived tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.",
+    "native_source": "book/tikz/figures/models-to-engineering-machinery.tex"
+  },
+  {
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/match-mechanism-to-property.svg",
     "caption": "\\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -601,7 +615,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Engineer–agent interaction through Modeling and Alignment",
-    "svg_description": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels — natural language, specification, and models —\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels —\n    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence."
+    "svg_description": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels — natural language, specification, and models —\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Governing Work: the implementation yields a result, which fans out through three parallel channels —\n    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and governing work. A constraints box on the Alignment side acts directly on the implementation, showing that Alignment can restrict work as well as evaluate its results."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",

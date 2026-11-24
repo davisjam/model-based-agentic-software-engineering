@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 308" width="448" height="308" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<title id="title">From engineering models to engineering machinery</title>
+<desc id="desc">An engineering model supports three parallel uses: analyze the model, generate all or part of a realization, and derive checks. Model analysis produces evidence about the model. A generated implementation and derived tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker></defs>
+<rect x="124" y="2" width="200" height="36" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="224" y="17" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Engineering model</text>
+<text x="224" y="30" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Obligations and intent</text>
+<rect x="2" y="62" width="140" height="66" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="72.0" y="76" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Analyze the model</text>
+<text x="10" y="94" text-anchor="start" font-size="10" fill="#1c1917">• Check model properties</text>
+<text x="10" y="106" text-anchor="start" font-size="10" fill="#1c1917">• Find counterexamples</text>
+<text x="10" y="118" text-anchor="start" font-size="10" fill="#1c1917">• Check proofs</text>
+<rect x="154" y="62" width="140" height="66" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="224.0" y="76" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Generate a realization</text>
+<text x="162" y="94" text-anchor="start" font-size="10" fill="#1c1917">• Types and configuration</text>
+<text x="162" y="106" text-anchor="start" font-size="10" fill="#1c1917">• Transition rules</text>
+<text x="162" y="118" text-anchor="start" font-size="10" fill="#1c1917">• Code or structures</text>
+<rect x="306" y="62" width="138" height="66" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="375.0" y="76" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Derive checks</text>
+<text x="314" y="94" text-anchor="start" font-size="10" fill="#1c1917">• Tests and expected results</text>
+<text x="314" y="106" text-anchor="start" font-size="10" fill="#1c1917">• Runtime monitors</text>
+<text x="314" y="118" text-anchor="start" font-size="10" fill="#1c1917">• Data validators</text>
+<path d="M224 38 L224 50 L72 50 L72 62" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M224 38 L224 62" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M224 50 L375 50 L375 62" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="2" y="146" width="140" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="72" y="158" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Evidence about</text>
+<text x="72" y="170" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">the model</text>
+<rect x="154" y="146" width="140" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="224" y="164" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Implementation</text>
+<rect x="306" y="146" width="138" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="375" y="158" text-anchor="middle" font-size="10" fill="#1c1917">Tests, monitors,</text>
+<text x="375" y="170" text-anchor="middle" font-size="10" fill="#1c1917">validators</text>
+<path d="M72 128 L72 146" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M224 128 L224 146" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M375 128 L375 146" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="154" y="200" width="140" height="26" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="224" y="217" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Evaluate implementation</text>
+<rect x="306" y="200" width="138" height="26" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="375" y="211" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Implementation</text>
+<text x="375" y="223" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">evidence</text>
+<path d="M224 174 L224 200" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M375 174 L375 186 L224 186 L224 200" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M294 213 L306 213" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="2" y="242" width="442" height="62" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="224" y="256" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Semantic commitment</text>
+<text x="224" y="268" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Applies to all three uses</text>
+<text x="91" y="285" text-anchor="middle" font-size="10" fill="#1c1917">Less explicit meaning</text>
+<text x="91" y="298" text-anchor="middle" font-size="10" fill="#1c1917">More interpretation</text>
+<text x="357" y="285" text-anchor="middle" font-size="10" fill="#1c1917">More explicit meaning</text>
+<text x="357" y="298" text-anchor="middle" font-size="10" fill="#1c1917">More mechanization possible</text>
+<path d="M187 289 L261 289" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+</svg>

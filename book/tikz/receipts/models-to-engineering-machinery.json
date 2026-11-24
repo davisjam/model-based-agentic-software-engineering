@@ -1,0 +1,284 @@
+{
+  "source": "book/assets/models-to-engineering-machinery.svg",
+  "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+  "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+  "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+  "decision": "new",
+  "reviewed_visually": true,
+  "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+  "validation": {
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+    "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+    "page": 1,
+    "width_bp": 448.6199951171875,
+    "height_bp": 308.62200927734375,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "semantic_typography_checks": 28,
+    "typography_findings": 0,
+    "status": "passed",
+    "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+    "geometry_findings": 0
+  },
+  "claim": "Explicit model semantics can support model analysis, realization generation, and derived checks, while evidence about the model and implementation remains distinct.",
+  "topology": "An engineering model supports three parallel uses: analyze the model, generate all or part of a realization, and derive checks. Model analysis produces evidence about the model. A generated implementation and derived tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.",
+  "required_terms": [
+    "Engineering model",
+    "Obligations and intent",
+    "Analyze the model",
+    "\u2022 Check model properties",
+    "\u2022 Find counterexamples",
+    "\u2022 Check proofs",
+    "Generate a realization",
+    "\u2022 Types and configuration",
+    "\u2022 Transition rules",
+    "\u2022 Code or structures",
+    "Derive checks",
+    "\u2022 Tests and expected results",
+    "\u2022 Runtime monitors",
+    "\u2022 Data validators",
+    "Evidence about",
+    "the model",
+    "Implementation",
+    "Tests, monitors,",
+    "validators",
+    "Evaluate implementation",
+    "Implementation",
+    "evidence",
+    "Semantic commitment",
+    "Applies to all three uses",
+    "Less explicit meaning",
+    "More interpretation",
+    "More explicit meaning",
+    "More mechanization possible"
+  ],
+  "bw_encoding": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades.",
+  "redesign": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+  "questions": [],
+  "alt": "An engineering model supports three parallel uses: analyze the model, generate all or part of a realization, and derive checks. Model analysis produces evidence about the model. A generated implementation and derived tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.",
+  "qa": {
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+    "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+    "page": 1,
+    "width_bp": 448.6199951171875,
+    "height_bp": 308.62200927734375,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "semantic_typography_checks": 28,
+    "typography_findings": 0,
+    "status": "passed",
+    "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+    "geometry_findings": 0
+  },
+  "layout_review": {
+    "source": "book/assets/models-to-engineering-machinery.svg",
+    "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+    "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+    "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+    "decision": "new",
+    "reviewed_visually": true,
+    "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+      "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+      "page": 1,
+      "width_bp": 448.6199951171875,
+      "height_bp": 308.62200927734375,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 28,
+      "typography_findings": 0,
+      "status": "passed",
+      "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+      "geometry_findings": 0
+    },
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "three uses of engineering models",
+          "labels": [
+            "Analyze the model",
+            "Generate a realization",
+            "Derive checks"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/models-to-engineering-machinery.svg",
+    "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+    "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+    "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+    "decision": "new",
+    "reviewed_visually": true,
+    "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+      "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+      "page": 1,
+      "width_bp": 448.6199951171875,
+      "height_bp": 308.62200927734375,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 28,
+      "typography_findings": 0,
+      "status": "passed",
+      "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+      "geometry_findings": 0
+    },
+    "checks": [
+      {
+        "text": "Engineering model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Obligations and intent",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Analyze the model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Check model properties",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Find counterexamples",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Check proofs",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Generate a realization",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Types and configuration",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Transition rules",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Code or structures",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Derive checks",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Tests and expected results",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Runtime monitors",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u2022 Data validators",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Evidence about",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "the model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Tests, monitors,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "validators",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Evaluate implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "evidence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Semantic commitment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Applies to all three uses",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Less explicit meaning",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "More interpretation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "More explicit meaning",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "More mechanization possible",
+        "bold": false,
+        "italic": false
+      }
+    ]
+  },
+  "reference_image": "User-supplied three-branch design with subsequent editorial corrections in the two2026-11-24 packets; no DocAble archaeology required."
+}

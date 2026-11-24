@@ -13,66 +13,63 @@
 % <!-- index-def: governance-conversion -->
 Some rules we know before we start. An API must require authentication. A job must not finish before it starts. But no engineered environment can begin with every future obligation already represented and mechanized. On new engineering tasks, we tend to discover further obligations as we go, often when something goes wrong.
 
-The environment therefore acquires durable structure in two ways: up front, from obligations already known, and through \textbf{governance conversion}, when engineers turn lessons from failures and surprises into structure that subsequent work inherits. Repair fixes the immediate instance; conversion changes the environment.
+We can therefore establish models and controls in two ways. We can construct them for obligations we already understand, or we can construct them as experience reveals new obligations. I call the latter activity \textbf{governance conversion}.
 
-Governance conversion has a parallel in organizational learning. Organizations can preserve lessons from experience in routines, procedures, and other structures that survive the individuals who originally learned them~\citep{argyris1978organizational}. In a governed engineering environment, models and executable controls can preserve some of these lessons directly in the machinery through which subsequent work proceeds.
+Governance conversion has a parallel in organizational learning. Organizations preserve lessons from experience in routines and procedures so that later work does not depend on the individuals who originally learned them~\citep{argyris1978organizational}. In a governed engineering environment, we can also preserve some of these lessons in models and executable controls.
 
-This concept rhymes with what you may have learned about software postmortems~\citep{dingsoyr2005postmortem}. After diagnosing a failure, ask why you were surprised. What did you expect to happen, and which assumption proved wrong? The diagnosis reopens the design space. You might repair the immediate defect, change the design, or introduce a control against a broader class of failures. The consequences and costs of each option help you decide which lesson to carry forward.
+You may be familiar with software postmortems~\citep{dingsoyr2005postmortem}. Investigating a failure can reveal an incorrect assumption, a missing requirement, or a weakness in the system's design. Repairing the immediate defect is one response. Another is to change the engineering environment so that subsequent work is less likely to introduce the same class of defect.
 
-Getting a lesson into subsequent work is harder. Dingsøyr and colleagues found few companies that analyzed findings across project postmortems to support organizational learning~\citep{dingsoyr2007organizational}. In interviews at a national space research center, Anandayuvaraj and colleagues found that engineers often applied lessons only when someone remembered an earlier failure or knew where to look for it~\citep{anandayuvaraj2026failures}. Commodity intelligence changes the economics. Agents can help build the models and controls that carry a lesson forward, and more changes can benefit from the same investment. Governance conversion makes selected lessons part of the environment that subsequent work inherits.
+Applying lessons from earlier failures is difficult. Dingsøyr and colleagues found few companies that analyzed findings across project postmortems to support organizational learning~\citep{dingsoyr2007organizational}. In interviews at a national space research center, Anandayuvaraj and colleagues found that engineers often applied lessons only when someone remembered an earlier failure or knew where to look for it~\citep{anandayuvaraj2026failures}. Agents can help us construct the models and mechanisms that preserve these lessons and make them available during subsequent engineering.
 
-% <!-- box-family: inset -->
+Failure-mode analysis can help us identify obligations before a failure occurs, as discussed in \autoref{3.2-governance-mechanisms:heading:constructing-and-evaluating-governance-mechanisms}. Governance conversion complements that approach by using actual failures and surprises to identify engineering knowledge that the environment did not yet preserve.
 
-% <!-- inset-domain: ENGINEERING -->
-
-% mage-box-prefix: Inset —
-
-% <!-- print-keep-with-next: 12 -->
-
-\begin{bookbox}{inset}{Failure Modes Before and After Failure}
-\label{inset-failure-modes}
-Failure-mode analysis need not wait for a failure. The FMEA approach discussed in \magevalue{sec:constraints-sensors-validators-gates} can identify possible failures before operation and guide decisions about prevention, detection, and mitigation. Known obligations can therefore produce durable engineering structure before experience forces the issue.
-
-Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineers identify the failure mode behind the instance and ask what durable structure should address the class: a model, obligation, constraint, sensor, gate, or other durable structure.
-\end{bookbox}
-
-\section{Up Front: Encode What You Already Know}\label{heading:up-front-encode-what-you-already-know}
+\section{Establishing Known Obligations}\label{heading:up-front-encode-what-you-already-know}
 
 % <!-- section-terms: up-front-governance -->
 
-% <!-- point: up-front-encode-obligations-you-can-state-before-the-work-begins | Up front: encode the obligations you can state before the work begins, and stop paying judgment for them. | terms: up-front-governance -->
+% <!-- point: up-front-encode-obligations-you-can-state-before-the-work-begins | Establish mechanisms for known obligations when violations are costly or evaluation recurs. | terms: up-front-governance -->
 
 % <!-- index-def: up-front-governance -->
 
-Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. Encode recurring obligations when the environment can carry them more cheaply and reliably than repeated judgment.
+Some engineering obligations are known before implementation begins. We can represent a required output format with a schema, a forbidden dependency with an architectural model and checker, or a permitted lifecycle with a state-transition model. Permissions and narrow interfaces can restrict operations whose consequences we already understand.
 
-\magevalue{chapter:one-problem-many-models} turns this into a method for starting and migrating systems; here the distinction is simply that these obligations are known before failure forces the issue.
+Establishing these mechanisms in advance can be worthwhile when a violation would be costly or when the obligation will need to be evaluated repeatedly. \magevalue{chapter:one-problem-many-models} examines how engineers choose which protections to establish before undertaking a transformation.
 
-\section{As You Learn: Governance Conversion}\label{heading:as-you-learn-convert-what-the-work-teaches}
+\section{Learning from Failures: Governance Conversion}\label{heading:as-you-learn-convert-what-the-work-teaches}
 
 % <!-- section-terms: governance-conversion, constraints-and-sensors -->
 
 % <!-- point: diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate | Diagnose what was missing; not every failure calls for another gate. | terms: governance-conversion -->
 
-The harder half begins when the system surprises you. \textbf{Do not assume every failure calls for another gate. Diagnose what was missing.}
+A failure may reveal that the engineering environment lacks something needed to guide or govern subsequent work. Adding another gate is not necessarily the solution. We first need to understand what the existing environment failed to represent, observe, evaluate, or enforce.
 
-% <!-- point: the-conversion-lands-in-one-of-five-places | The conversion lands in one of five places: model, invariant, sensor, validator, or enforcement. | terms: governance-conversion, constraints-and-sensors -->
+% <!-- point: the-mechanism-that-discovers-need-not-carry-the-enforcement | The mechanism that discovers an obligation need not be the one that ultimately enforces it; \magevalue{chapter:one-problem-many-models} follows that migration. | terms: sensor, governance-conversion -->
 
-A failure can expose five kinds of missing engineering structure:
+The mechanism that exposes a problem need not be the one that ultimately enforces the repair. A complexity warning may identify code worth examining without justifying a ban on every similar function. Investigation may instead reveal a missing type or an architectural boundary that a more precise control can enforce. \magevalue{chapter:one-problem-many-models} follows a migration of this kind, from an audit signal to more specific representations and controls.
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Missing representation / semantics → improve the model.} Make the fact or relation durable at the abstraction where the question becomes answerable.
-\item
-  \textbf{Missing obligation or tolerance → state the governing boundary.} A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.
-\item
-  \textbf{Missing evidence → add a sensor or trace.} Make the relevant state observable.
-\item
-  \textbf{Missing evaluation → strengthen the check.} Turn evidence into a repeatable judgment, whether advisory or enforced by a gate.
-\item
-  \textbf{Missing enforcement → add or strengthen a constraint or gate.} Make the verdict control the relevant action or admission.
-\end{itemize}
+% <!-- point: the-conversion-lands-in-one-of-five-places | A failure can expose missing representation, obligation, evidence, evaluation, or enforcement. | terms: governance-conversion, constraints-and-sensors -->
+
+\autoref{governance-diagnostic-questions} organizes the diagnosis around five kinds of missing engineering structure.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.34}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.66}}@{}}
+\caption[Diagnosing missing engineering structure]{\emph{Diagnosing missing engineering structure.} The questions distinguish what the environment failed to represent, observe, evaluate, or enforce.}\label{governance-diagnostic-questions}\tabularnewline
+\toprule\noalign{}
+\textbf{Missing engineering structure} & \textbf{Diagnostic question} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\textbf{Missing engineering structure} & \textbf{Diagnostic question} \\
+\midrule\noalign{}
+\endhead
+Representation or semantics & Did the model express the distinction that mattered? \\
+Obligation or tolerance & Had we established what behavior was acceptable? \\
+Evidence & Could we observe the relevant behavior? \\
+Evaluation & Could we determine whether the obligation held? \\
+Enforcement & Did the verdict affect what the environment permitted? \\
+\bottomrule\noalign{}
+\end{longtable}
 
 A failure can expose missing enforcement even when the environment already identifies the violation. In that case, adding another validator may accomplish nothing; the missing structure is enforcement of the existing verdict.
 
@@ -82,11 +79,9 @@ Suppose a deployment pipeline checks that every required configuration value is 
 
 The durable change is to make the deployment decision depend on that result, if the configuration really is required. In another case, the safer repair may remove an unsafe operation entirely and require review when it would have been used. Governance conversion should change the part of the environment that permitted the failure. It can add a mechanism, strengthen its consequence, or retire a capability whose risk no longer has a useful justification.
 
-These diagnoses are not mutually exclusive. In practice, one failure often exposes several missing pieces at once. A property that was never represented may also lack an explicit invariant and the sensor needed to observe it. The durable repair can therefore add a model, an obligation, and evidence together. The categories identify where engineering structure was missing; they do not require the repair to land in only one place.
+% <!-- point: modeling-and-alignment-form-a-feedback-loop | A failure may require changes to models, sensors, evaluators, and enforcement mechanisms together; subsequent work uses the revised environment. | terms: modeling-principle, alignment-principle, governance-conversion -->
 
-% <!-- point: modeling-and-alignment-form-a-feedback-loop | Agent work supplies evidence for engineering decisions about models, obligations, and controls; later work uses the revised environment and supplies further evidence. | terms: modeling-principle, alignment-principle, governance-conversion -->
-
-Failures and surprises can reveal obligations that were previously implicit, including choices treated as implementation freedoms that turned out to matter. Engineers investigate what was missing and decide whether to revise the model, state a new obligation, collect different evidence, or change enforcement. The revised environment then shapes later work, which may expose further gaps. \autoref{governance-conversion-fig} shows how this process converts experience into durable engineering structure.
+A failure can expose several missing pieces at once. A property that was never represented may also lack an explicit obligation and the machinery needed to observe it. Governance conversion may therefore require changes to models, sensors, evaluators, and enforcement mechanisms together. \autoref{governance-conversion-fig} summarizes the possible deficiencies and the kinds of engineering structure that can address them.
 
 \begin{figure}[htbp]
 \centering
@@ -103,30 +98,24 @@ Failures and surprises can reveal obligations that were previously implicit, inc
 
 % <!-- index-def: engineering-capital -->
 
-Governance conversion motivates a useful concept: \textbf{engineering capital}. You may be familiar with the opposite idea, technical debt: a shortcut today that makes future changes more costly. Where technical debt reduces your ability to make changes, engineering capital increases it. You have durable models, checks, and other engineering structure that lower the cost or uncertainty of future changes. Commodity intelligence can lower the cost of constructing that structure, while increasing the number of engineering episodes over which its cost can be recovered.
+Governance conversion motivates a useful concept: \textbf{engineering capital}. You may be familiar with technical debt, where a shortcut today makes future changes more expensive. Engineering capital works in the other direction. We invest in models, checks, and other engineering machinery that can make subsequent changes easier or less costly.
 
-% <!-- point: the-asset-is-something-you-can-point-at | The capital must be something future work can actually inherit — a concrete asset you can point at. | terms: engineering-capital, constraints-and-sensors -->
+% <!-- point: the-asset-is-something-you-can-point-at | Engineering capital consists of reusable models, checks, and other engineering machinery. | terms: engineering-capital, constraints-and-sensors -->
 
 % <!-- point: capital-earns-a-return-lower-marginal-engineering-cost | Capital earns a return: lower marginal engineering cost. Conversion is capital formation. | terms: engineering-capital, governance-conversion -->
 
-Engineering capital is useful only if later work can use it. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a gate can evaluate evidence and control whether work proceeds; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
+A model can save engineers from reconstructing knowledge about the system. A constraint can prevent a recurring failure. A sensor can expose information that would otherwise require investigation. A gate can enforce an obligation without requiring someone to evaluate it again by hand. These investments earn their return when later work benefits from them.
 
 % <!-- point: engineering-capital-can-transfer-between-projects | Engineering capital can transfer through reusable mechanisms or through the design judgment behind them; its value depends on work saved after adaptation and maintenance costs. | terms: engineering-capital, modeling-principle, alignment-principle -->
 
-Engineering capital can also transfer between projects. A reusable build check or task-completion procedure can give a new project an established starting point. Engineers may adapt the mechanism directly, or reuse the design judgment that led to it while building a different mechanism. The value comes from work the next project no longer has to repeat, after accounting for the cost of adapting and maintaining what it inherits.
-
 % <!-- point: inherited-capital-improves-starting-conditions-without-supplying-every-control | Inherited automation and principles improve a new project's starting conditions; they do not supply every representation or control the new system needs. | terms: engineering-capital, governance-conversion -->
 
-Reuse still requires engineering. A deployment check may assume a particular hosting platform; a review procedure may assume a team structure the new project lacks. The receiving project must identify those assumptions, test whether they hold, and adapt or discard the parts that do not fit. Inherited structure improves the starting conditions only where its obligations and mechanisms remain appropriate.
+Engineering capital can also transfer between projects. A reusable build check or task-completion procedure can give a new project an established starting point. Engineers may adapt the mechanism directly, or reuse the design judgment that led to it while building a different mechanism. Reuse still requires engineering: a deployment check may assume a particular hosting platform, or a review procedure may assume a team structure the new project lacks. The receiving project must identify those assumptions and adapt or discard the parts that do not fit. The value comes from work the next project no longer has to repeat, after accounting for adaptation and maintenance.
 
 % <!-- point: capital-depreciates-so-accumulation-cannot-be-the-objective | Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective. | terms: engineering-capital, governed-environment -->
 
 The engineered environment evolves with the system it governs.\magefootnote{lehman}{Lehman\textquotesingle s work on software evolution made the analogous observation about software itself: software used in a changing real-world environment must continually adapt, and its complexity tends to increase unless effort is spent maintaining or reducing it. MAGE extends that caution to the engineered environment surrounding the software. Models, validators, constraints, and procedures evolve too --- and can become liabilities when they no longer fit what they govern. See Lehman \& Ramil 2003~\citep{lehman2003evolution}.} Capital also \textbf{depreciates}. A model can drift from the system it represents. A validator can encode an assumption the architecture has outgrown. A sensor can become noisy; a gate can impose more delay than the failure it prevents; a once-important control can survive long after its obligation disappears. Maintenance preserves useful capital; reconciliation repairs assets that no longer match the system; retirement removes assets whose carrying cost now exceeds their return. This is why accumulation cannot be the objective. A governed environment with more mechanisms is not necessarily richer than one with fewer. What matters is the future engineering value those mechanisms continue to produce.
 
-% <!-- point: debt-and-capital-are-symmetric-stocks-that-compound | Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound. | terms: engineering-capital -->
-
-Debt makes future work pay again for today\textquotesingle s expedience; capital lets future work inherit today\textquotesingle s judgment. Governance conversion turns lessons from individual engineering efforts into structure that subsequent work can reuse.
-
 % <!-- point: the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why | Governance conversion creates a portfolio of controls that can themselves become inconsistent, redundant, or orphaned. | terms: governance-conversion, residual, governed-environment -->
 
-Governance conversion adds durable structure, but the accumulated mechanisms do not necessarily work well together. They may compete for resources, impose incompatible requirements, or remain in place after their obligations have changed. The next section examines how to model and maintain the controls themselves.
+As the environment acquires more models and controls, another engineering problem arises. Individually useful mechanisms can interfere with one another, and some may outlive the obligations that justified them. We now need to reason about the environment as a system.

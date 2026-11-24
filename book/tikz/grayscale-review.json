@@ -1562,32 +1562,60 @@
   {
     "source": "book/assets/cost-enforcement-gradient.svg",
     "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-    "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
-    "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+    "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+    "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
     "decision": "author-reference redraw",
     "reviewed_visually": true,
-    "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+    "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
     "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/grayscale-review.json",
     "receipt": "book/tikz/receipts/cost-enforcement-gradient.json",
     "reviewed": true,
-    "rationale": "Monochrome reference with light-gray quantitative region and value panels.",
+    "rationale": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-      "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-      "page": 1,
-      "width_bp": 408.483,
-      "height_bp": 316.771,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+      "page": 2,
+      "width_bp": 427.677001953125,
+      "height_bp": 287.77099609375,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-      "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-      "semantic_typography_checks": 34,
-      "monochrome_pixels": true,
+      "semantic_typography_checks": 27,
+      "typography_findings": 0,
+      "reviewed_visually": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
-    }
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-24",
+        "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+        "previous": {
+          "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+          "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+          "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+          "rationale": "Monochrome reference with light-gray quantitative region and value panels.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+            "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+            "page": 1,
+            "width_bp": 408.483,
+            "height_bp": 316.771,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+            "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+            "semantic_typography_checks": 34,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+          }
+        }
+      }
+    ]
   },
   {
     "source": "book/assets/governance-conversion.svg",
@@ -1687,9 +1715,9 @@
     "receipt": "book/tikz/receipts/engineer-agent-interaction.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
-    "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
-    "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+    "rationale": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+    "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+    "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
     "revision_history": [
       {
         "date": "2026-11-11",
@@ -1722,28 +1750,55 @@
           "monochrome_pixels": true,
           "status": "passed"
         }
+      },
+      {
+        "date": "2026-11-24",
+        "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+        "previous": {
+          "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+          "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+          "rationale": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/opener-figure-20261124/proof.pdf",
+            "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+            "page": 1,
+            "width_bp": 437.242,
+            "height_bp": 218.702,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 10,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+            "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+            "semantic_typography_checks": 5,
+            "monochrome_pixels": true,
+            "status": "passed"
+          }
+        }
       }
     ],
     "validation": {
       "date": "2026-11-24",
-      "proof": "/tmp/opener-figure-20261124/proof.pdf",
-      "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
       "page": 1,
-      "width_bp": 437.242,
-      "height_bp": 218.702,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
+      "width_bp": 437.24200439453125,
+      "height_bp": 218.70199584960938,
       "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-      "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-      "semantic_typography_checks": 5,
-      "monochrome_pixels": true,
-      "status": "passed"
-    }
+      "semantic_typography_checks": 6,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
+    },
+    "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+    "reviewed_visually": true
   },
   {
     "source": "book/assets/active-passive-alignment.svg",
@@ -3936,5 +3991,32 @@
     "revision_date": "2026-11-24",
     "reviewed_visually": true,
     "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections."
+  },
+  {
+    "source": "book/assets/models-to-engineering-machinery.svg",
+    "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+    "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+    "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+    "decision": "new",
+    "reviewed_visually": true,
+    "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+      "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+      "page": 1,
+      "width_bp": 448.6199951171875,
+      "height_bp": 308.62200927734375,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 28,
+      "typography_findings": 0,
+      "status": "passed",
+      "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+      "geometry_findings": 0
+    },
+    "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
+    "reviewed": true,
+    "rationale": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades."
   }
 ]

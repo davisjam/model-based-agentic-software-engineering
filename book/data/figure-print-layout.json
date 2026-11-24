@@ -265,6 +265,11 @@
       "width_bp": 450,
       "placement": "centered",
       "before_following_prose": true
+    },
+    "models-to-engineering-machinery": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

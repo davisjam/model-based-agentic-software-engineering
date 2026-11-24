@@ -2,9 +2,9 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 143,
+  "candidate_count": 144,
   "refined_count": 122,
-  "check_count": 1078,
+  "check_count": 1106,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
   "figures": [
     {
@@ -14113,11 +14113,11 @@
     {
       "source": "book/assets/cost-enforcement-gradient.svg",
       "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-      "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
-      "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+      "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+      "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
       "decision": "author-reference redraw",
       "reviewed_visually": true,
-      "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+      "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
       "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/typography-review.json",
       "checks": [
         {
@@ -14241,52 +14241,17 @@
           "italic": false
         },
         {
-          "text": "Measured",
+          "text": "Evidence informs",
           "bold": false,
           "italic": true
         },
         {
-          "text": "evidence",
+          "text": "revised models",
           "bold": false,
           "italic": true
         },
         {
-          "text": "informs",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "engineering",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "decisions",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "(e.g., adjust",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "tolerance,",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "redesign,",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "or add",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "controls)",
+          "text": "and controls.",
           "bold": false,
           "italic": true
         }
@@ -14295,191 +14260,527 @@
         {
           "candidate_text": "MODELING",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Tolerance and degrees of freedom",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Quantitative obligation (example)",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Acceptable region",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(within tolerance)",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "80 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "5 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "0 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "120 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(A)",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "195 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(B)",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "200 ms",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(limit)",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "ALIGNMENT",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Measure implementation behavior",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "A: 120 ms",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(margin 80 ms)",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "B: 195 ms",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "(margin 5 ms)",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "within available headroom.",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "controls as margin shrinks.",
           "candidate_style": "regular",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Agent:",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
           "candidate_text": "Engineer:",
           "candidate_style": "bold",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "candidate_text": "Measured",
+          "candidate_text": "Evidence informs",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "candidate_text": "evidence",
+          "candidate_text": "revised models",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "candidate_text": "informs",
+          "candidate_text": "and controls.",
           "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "engineering",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "decisions",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "(e.g., adjust",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "tolerance,",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "redesign,",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "or add",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-        },
-        {
-          "candidate_text": "controls)",
-          "candidate_style": "italic",
-          "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         }
       ],
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-        "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-        "page": 1,
-        "width_bp": 408.483,
-        "height_bp": 316.771,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+        "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+        "page": 2,
+        "width_bp": 427.677001953125,
+        "height_bp": 287.77099609375,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-        "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-        "semantic_typography_checks": 34,
-        "monochrome_pixels": true,
+        "semantic_typography_checks": 27,
+        "typography_findings": 0,
+        "reviewed_visually": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
-      }
+        "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+        "geometry_findings": 0
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+          "previous": {
+            "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+            "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+            "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+            "checks": [
+              {
+                "text": "MODELING",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Tolerance and degrees of freedom",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Quantitative obligation (example)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Acceptable region",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "(within tolerance)",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "80 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "5 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "0 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "120 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(A)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "195 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(B)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "200 ms",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(limit)",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "ALIGNMENT",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Measure implementation behavior",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "A: 120 ms",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(margin 80 ms)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "B: 195 ms",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(margin 5 ms)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "within available headroom.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "controls as margin shrinks.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Agent:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Engineer:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Measured",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "evidence",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "informs",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "engineering",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "decisions",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "(e.g., adjust",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "tolerance,",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "redesign,",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "or add",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "controls)",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+              "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+              "page": 1,
+              "width_bp": 408.483,
+              "height_bp": 316.771,
+              "minimum_prose_font_pt": 9.5,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+              "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+              "semantic_typography_checks": 34,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+            },
+            "evidence": [
+              {
+                "candidate_text": "MODELING",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Tolerance and degrees of freedom",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Quantitative obligation (example)",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Acceptable region",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(within tolerance)",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "80 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "5 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "0 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "120 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(A)",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "195 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(B)",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "200 ms",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(limit)",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "ALIGNMENT",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Measure implementation behavior",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "A: 120 ms",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(margin 80 ms)",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "B: 195 ms",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(margin 5 ms)",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "within available headroom.",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "controls as margin shrinks.",
+                "candidate_style": "regular",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Agent:",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Engineer:",
+                "candidate_style": "bold",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "Measured",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "evidence",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "informs",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "engineering",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "decisions",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "(e.g., adjust",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "tolerance,",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "redesign,",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "or add",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              },
+              {
+                "candidate_text": "controls)",
+                "candidate_style": "italic",
+                "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/governance-conversion.svg",
@@ -15153,63 +15454,41 @@
       "source": "book/assets/engineer-agent-interaction.svg",
       "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
       "decision": "refined",
-      "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
-      "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+      "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+      "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
       "evidence": [
         {
-          "source_text": "MODELING / COMMUNICATING",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "interaction role",
           "candidate_text": "MODELING / COMMUNICATING",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/engineer-agent-interaction.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "MODELING / COMMUNICATING",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "source_text": "ALIGNMENT / EVALUATING",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "interaction role",
-          "candidate_text": "ALIGNMENT / EVALUATING",
+          "candidate_text": "ALIGNMENT / GOVERNING WORK",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/engineer-agent-interaction.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "ALIGNMENT / EVALUATING",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "source_text": "what do I know, intend, and need to make explicit?",
-          "source_style": "italic subtitle",
-          "semantic_role": "question guiding the interaction mode",
           "candidate_text": "what do I know, intend, and need to make explicit?",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/engineer-agent-interaction.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "what do I know, intend, and need to make explicit?",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         },
         {
-          "source_text": "what does the evidence justify believing or doing?",
-          "source_style": "italic subtitle",
-          "semantic_role": "question guiding the interaction mode",
-          "candidate_text": "what does the evidence justify believing or doing?",
+          "candidate_text": "what may happen, and what may proceed?",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/engineer-agent-interaction.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "what does the evidence justify believing or doing?",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Preserved or requested label, heading, or annotation"
+        },
+        {
+          "candidate_text": "Engineer",
+          "candidate_style": "regular",
+          "semantic_role": "Preserved or requested label, heading, or annotation"
+        },
+        {
+          "candidate_text": "Constraints",
+          "candidate_style": "regular",
+          "semantic_role": "Preserved or requested label, heading, or annotation"
         }
       ],
-      "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+      "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
       "checks": [
         {
           "text": "MODELING / COMMUNICATING",
@@ -15217,7 +15496,7 @@
           "italic": false
         },
         {
-          "text": "ALIGNMENT / EVALUATING",
+          "text": "ALIGNMENT / GOVERNING WORK",
           "bold": true,
           "italic": false
         },
@@ -15227,7 +15506,7 @@
           "italic": true
         },
         {
-          "text": "what does the evidence justify believing or doing?",
+          "text": "what may happen, and what may proceed?",
           "bold": false,
           "italic": true
         },
@@ -15235,27 +15514,28 @@
           "text": "Engineer",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Constraints",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
         "date": "2026-11-24",
-        "proof": "/tmp/opener-figure-20261124/proof.pdf",
-        "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+        "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+        "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
         "page": 1,
-        "width_bp": 437.242,
-        "height_bp": 218.702,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "width_bp": 437.24200439453125,
+        "height_bp": 218.70199584960938,
         "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-        "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-        "semantic_typography_checks": 5,
-        "monochrome_pixels": true,
-        "status": "passed"
+        "semantic_typography_checks": 6,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "status": "passed",
+        "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+        "geometry_findings": 0
       },
       "revision_history": [
         {
@@ -15300,8 +15580,119 @@
             "monochrome_pixels": true,
             "status": "passed"
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+          "previous": {
+            "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+            "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+            "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+            "checks": [
+              {
+                "text": "MODELING / COMMUNICATING",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "ALIGNMENT / EVALUATING",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "what do I know, intend, and need to make explicit?",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "what does the evidence justify believing or doing?",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Engineer",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "/tmp/opener-figure-20261124/proof.pdf",
+              "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+              "page": 1,
+              "width_bp": 437.242,
+              "height_bp": 218.702,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+              "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+              "semantic_typography_checks": 5,
+              "monochrome_pixels": true,
+              "status": "passed"
+            },
+            "evidence": [
+              {
+                "source_text": "MODELING / COMMUNICATING",
+                "source_style": "weight 700; normal; source size 20",
+                "semantic_role": "interaction role",
+                "candidate_text": "MODELING / COMMUNICATING",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/engineer-agent-interaction.svg",
+                  "element_text_path": "/svg/text[1]/text()",
+                  "text_element_context": "MODELING / COMMUNICATING",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "ALIGNMENT / EVALUATING",
+                "source_style": "weight 700; normal; source size 20",
+                "semantic_role": "interaction role",
+                "candidate_text": "ALIGNMENT / EVALUATING",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/engineer-agent-interaction.svg",
+                  "element_text_path": "/svg/text[3]/text()",
+                  "text_element_context": "ALIGNMENT / EVALUATING",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "what do I know, intend, and need to make explicit?",
+                "source_style": "italic subtitle",
+                "semantic_role": "question guiding the interaction mode",
+                "candidate_text": "what do I know, intend, and need to make explicit?",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/engineer-agent-interaction.svg",
+                  "element_text_path": "/svg/text[2]/text()",
+                  "text_element_context": "what do I know, intend, and need to make explicit?",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "what does the evidence justify believing or doing?",
+                "source_style": "italic subtitle",
+                "semantic_role": "question guiding the interaction mode",
+                "candidate_text": "what does the evidence justify believing or doing?",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/engineer-agent-interaction.svg",
+                  "element_text_path": "/svg/text[4]/text()",
+                  "text_element_context": "what does the evidence justify believing or doing?",
+                  "matching_fragment_count": 1
+                }
+              }
+            ]
+          }
         }
-      ]
+      ],
+      "reviewed_visually": true
     },
     {
       "source": "book/assets/active-passive-alignment.svg",
@@ -36164,6 +36555,172 @@
       ],
       "evidence": [],
       "questions": []
+    },
+    {
+      "source": "book/assets/models-to-engineering-machinery.svg",
+      "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+      "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+      "decision": "new",
+      "reviewed_visually": true,
+      "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+      "validation": {
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+        "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+        "page": 1,
+        "width_bp": 448.6199951171875,
+        "height_bp": 308.62200927734375,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "semantic_typography_checks": 28,
+        "typography_findings": 0,
+        "status": "passed",
+        "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+        "geometry_findings": 0
+      },
+      "checks": [
+        {
+          "text": "Engineering model",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Obligations and intent",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Analyze the model",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Check model properties",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Find counterexamples",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Check proofs",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Generate a realization",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Types and configuration",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Transition rules",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Code or structures",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Derive checks",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Tests and expected results",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Runtime monitors",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "\u2022 Data validators",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Evidence about",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "the model",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Implementation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Tests, monitors,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "validators",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Evaluate implementation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Implementation",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "evidence",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Semantic commitment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Applies to all three uses",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Less explicit meaning",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "More interpretation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "More explicit meaning",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "More mechanization possible",
+          "bold": false,
+          "italic": false
+        }
+      ]
     }
   ],
   "historical_figures": [
@@ -37991,5 +38548,5 @@
     "validation_scope": "Integrated whole-pool compile, native envelope, geometry and semantic typography checks rerun after the three Chapter 1 revisions. The revised drawings were separately inspected in native and web proofs.",
     "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
   },
-  "last_revised_date": "2026-11-20"
+  "last_revised_date": "2026-11-24"
 }

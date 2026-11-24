@@ -96,8 +96,8 @@
     {
       "source": "book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex",
       "projection": "book/part2/2.2-constructing-and-using-engineering-models.md",
-      "source_hash": "6aa57aa5e35d4ad8deda3b933b12b2063dc0329f60c2c17c09633289cf47456c",
-      "projection_hash": "26b2bd12a0b551442bcfed105b052bc42edf5c0ae3133df6b88dc84818b18a5d"
+      "source_hash": "5e4165da7acc70ba33adac85d3bbca075f3664b27577a3900fcf05bfa24598e8",
+      "projection_hash": "51b3c13b0aa96e8768fa93286bc4fcc684fc65583e4f69c27eb1e4cce7e74247"
     },
     {
       "source": "book/latex/sources/part2/2.3-structural.tex",
@@ -126,50 +126,50 @@
     {
       "source": "book/latex/sources/part2/2.7-modeling-summary.tex",
       "projection": "book/part2/2.7-modeling-summary.md",
-      "source_hash": "f55225b6e20fccd61eccedc0b57fe1c8cee1f379e2dc7f8d559a9c7804ef4ce9",
-      "projection_hash": "77b1ac1a3b9780c4309a1141104878926673f255a2cb7f785bec442e11bbfbd3"
+      "source_hash": "3b335f5ea42a4e457f36896bbb0403d6e424d7fa9c10293afe6deb0cd4a5325d",
+      "projection_hash": "3967c0825da2434fa274ee02503e72e00a5b0213e79ca589a7cabd92213b77cc"
     },
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "a0f60398107de597a37f1c17b68a5ccfe4fe7ce11cef581be47e98e93828dc3f",
-      "projection_hash": "183f1179a39719c178d4c15c363f6e61cdf232e444b18cd4c887ba8a32d31a5c"
+      "source_hash": "83b938693c8819d27f0696e51248bed2f0cff4187a1282745a127bac743e2f42",
+      "projection_hash": "1a6feabe2ed2adc64d1dbf312ad83bdbe0d421b22564d6faed9b1b30921d3ed1"
     },
     {
       "source": "book/latex/sources/part3/3.3-where-obligations-can-be-enforced.tex",
       "projection": "book/part3/3.3-where-obligations-can-be-enforced.md",
-      "source_hash": "d8d7e3a23742297e888e30344a39b6a4eb450f9703068298e4f9de1a185a9756",
-      "projection_hash": "a638d18999ed9050c9ecdb069e25c21e5826b4415834bdcb76539436e61b52b4"
+      "source_hash": "ad60ab1feaa7b41f7df845777acfabaf0f9838365ad456fd1b4c13cb06b9ce91",
+      "projection_hash": "cfd1bae47ba142a9b780fb4b8885c736e1bbe6e3166616823f8927a5d2d26832"
     },
     {
       "source": "book/latex/sources/part3/3.1-from-engineering-models-to-enforcement.tex",
       "projection": "book/part3/3.1-from-engineering-models-to-enforcement.md",
-      "source_hash": "e5013b2bcc510044c1be1c18aea8a5dc021f48c76449750b7dbd4e218e67e93d",
-      "projection_hash": "2b749f7ec5551060ffae078164a69af9ed6ad33333445f523075e3f4286b1b1a"
+      "source_hash": "48bee0f3337e9291e25fe3fda7859b18bb4eadd9b489baf2241c21da438c5909",
+      "projection_hash": "0250e1be3491156d97625ce6acef43159b942c651a6495fd7d89fe0f0a4eef44"
     },
     {
       "source": "book/latex/sources/part3/3.2-governance-mechanisms.tex",
       "projection": "book/part3/3.2-governance-mechanisms.md",
-      "source_hash": "bd2151bf394e7e2e7c9f4f5fd0a6e5aeb6cc866d288a5c8b2a6fc27b4b89541d",
-      "projection_hash": "ea9a35b5d93d330703ccb2bacae24b13cec4e2950222f38f8a86e6150adb9a6e"
+      "source_hash": "89c6880e27bf562b12d30814e061983fb92988a6614e0781704f00045a9db642",
+      "projection_hash": "8ba6a457775e73ff1efba9477372db33bb435237d16adcc39e50c2eb07eb3823"
     },
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
       "projection": "book/part3/3.4-governance-conversion.md",
-      "source_hash": "c2868917133cd3f1f6d244faf9e3e53c8a2ab09dddcf02700f72672fdd98f4cb",
-      "projection_hash": "13b1199ef1747b9502c01f8de4f457aaabbf5a8f7ac0b714682f408b880dc8cf"
+      "source_hash": "07b179ba570ad181c84e7baada65deca722ab465aaa7b2912e4931e3bab62b65",
+      "projection_hash": "dd6be1009143b33fc713c8bd1994b7d5196add7ffaa8cefb75974778389d4df3"
     },
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
       "projection": "book/part3/3.5-when-guardrails-collide.md",
-      "source_hash": "541abf97b9e1fbc9cbf347b0384b5012bddf205bf1430c278aaf73b11005116a",
-      "projection_hash": "c19acd1ffdeb6a3d78d04a56b25894e94bb2df5d41cc7e1ccb49972426407a27"
+      "source_hash": "5a8263ae31b6ad3ee94b5b5fed54104e9e00c297b925ab4e2590c586e427d178",
+      "projection_hash": "5f0895966c0ec7589bc7ef27face5e18e69fb089236803b8a018115c177cacdc"
     },
     {
       "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
       "projection": "book/part3/3.6-alignment-summary.md",
-      "source_hash": "707477c4202d7bc83f59ef885e16d74d608e1144c6aaac67994b0b1f8b40472f",
-      "projection_hash": "4f6aa4c4908a136fce44e303e36e15a9df833612130bb0a6853130c5b2f0802a"
+      "source_hash": "82896d3d516436103a6bdf2724fc352aea3c5b44389c4cec0985c20ed94514be",
+      "projection_hash": "5ae078b89733c11ccc40a2dfdc40d6673589f58b84230189fdc609ffdfd3af97"
     },
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",

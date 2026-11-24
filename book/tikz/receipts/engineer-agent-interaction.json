@@ -1,55 +1,34 @@
 {
   "source": "book/assets/engineer-agent-interaction.svg",
-  "claim": "*Engineer\u2013agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.",
-  "topology": "Two parallel channel fans joined by a single implementation hinge; intent descends and evidence returns.",
+  "claim": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Governing Work: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and governing work. A constraints box on the Alignment side acts directly on the implementation, showing that Alignment can restrict work as well as evaluate its results.",
+  "topology": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Governing Work: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and governing work. A constraints box on the Alignment side acts directly on the implementation, showing that Alignment can restrict work as well as evaluate its results.",
   "required_terms": [
     "MODELING / COMMUNICATING",
-    "ALIGNMENT / EVALUATING",
-    "Engineer",
-    "Engineer",
-    "Natural\\",
-    "Specification",
-    "Models",
-    "Review",
-    "Testing",
-    "Analysis",
-    "Agent",
-    "Result",
-    "Implementation",
+    "ALIGNMENT / GOVERNING WORK",
     "what do I know, intend, and need to make explicit?",
-    "what does the evidence justify believing or doing?"
+    "what may happen, and what may proceed?",
+    "Engineer",
+    "Constraints"
   ],
   "bw_encoding": "White nodes and panels; bare bold mode headings and italic question annotations; no heading boxes.",
-  "redesign": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+  "redesign": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
   "questions": [],
-  "alt": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence.",
+  "alt": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Governing Work: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and governing work. A constraints box on the Alignment side acts directly on the implementation, showing that Alignment can restrict work as well as evaluate its results.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 437.242,
-    "height_pt": 218.702,
-    "monochrome": true,
-    "inspection": "Native PDF and web SVG visually inspected; side whitespace is present and topology, content, and typography are unchanged.",
-    "validation": {
-      "date": "2026-11-24",
-      "proof": "/tmp/opener-figure-20261124/proof.pdf",
-      "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
-      "page": 1,
-      "width_bp": 437.242,
-      "height_bp": 218.702,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-      "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-      "semantic_typography_checks": 5,
-      "monochrome_pixels": true,
-      "status": "passed"
-    }
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+    "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+    "page": 1,
+    "width_bp": 437.24200439453125,
+    "height_bp": 218.70199584960938,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "semantic_typography_checks": 6,
+    "typography_findings": 0,
+    "reviewed_visually": true,
+    "status": "passed",
+    "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+    "geometry_findings": 0
   },
   "style_review": {
     "decision": "refined",
@@ -132,64 +111,28 @@
     ]
   },
   "typography_review": {
-    "decision": "refined",
-    "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
-    "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
-    "evidence": [
-      {
-        "source_text": "MODELING / COMMUNICATING",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "interaction role",
-        "candidate_text": "MODELING / COMMUNICATING",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/engineer-agent-interaction.svg",
-          "element_text_path": "/svg/text[1]/text()",
-          "text_element_context": "MODELING / COMMUNICATING",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "ALIGNMENT / EVALUATING",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "interaction role",
-        "candidate_text": "ALIGNMENT / EVALUATING",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/engineer-agent-interaction.svg",
-          "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "ALIGNMENT / EVALUATING",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "what do I know, intend, and need to make explicit?",
-        "source_style": "italic subtitle",
-        "semantic_role": "question guiding the interaction mode",
-        "candidate_text": "what do I know, intend, and need to make explicit?",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/engineer-agent-interaction.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "what do I know, intend, and need to make explicit?",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "what does the evidence justify believing or doing?",
-        "source_style": "italic subtitle",
-        "semantic_role": "question guiding the interaction mode",
-        "candidate_text": "what does the evidence justify believing or doing?",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/engineer-agent-interaction.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "what does the evidence justify believing or doing?",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
-    "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+    "source": "book/assets/engineer-agent-interaction.svg",
+    "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
+    "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+    "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
+    "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+      "page": 1,
+      "width_bp": 437.24200439453125,
+      "height_bp": 218.70199584960938,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 6,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
+    },
+    "reviewed_visually": true,
     "checks": [
       {
         "text": "MODELING / COMMUNICATING",
@@ -197,7 +140,7 @@
         "italic": false
       },
       {
-        "text": "ALIGNMENT / EVALUATING",
+        "text": "ALIGNMENT / GOVERNING WORK",
         "bold": true,
         "italic": false
       },
@@ -207,7 +150,7 @@
         "italic": true
       },
       {
-        "text": "what does the evidence justify believing or doing?",
+        "text": "what may happen, and what may proceed?",
         "bold": false,
         "italic": true
       },
@@ -215,85 +158,37 @@
         "text": "Engineer",
         "bold": false,
         "italic": false
-      }
-    ],
-    "validation": {
-      "date": "2026-11-24",
-      "proof": "/tmp/opener-figure-20261124/proof.pdf",
-      "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
-      "page": 1,
-      "width_bp": 437.242,
-      "height_bp": 218.702,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-      "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-      "semantic_typography_checks": 5,
-      "monochrome_pixels": true,
-      "status": "passed"
-    },
-    "revision_history": [
-      {
-        "date": "2026-11-11",
-        "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
-        "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
-        "validation": {
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-          "page": 55,
-          "width_bp": 408.896,
-          "height_bp": 204.529,
-          "minimum_prose_font_pt": 10.0,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 3
-        }
       },
       {
-        "date": "2026-11-24",
-        "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
-        "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-        "change": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
-        "previous_validation": {
-          "date": "2026-11-11",
-          "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
-          "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
-          "page": 1,
-          "width_bp": 408.896,
-          "height_bp": 218.702,
-          "maximum_dimensions_bp": [
-            450,
-            560
-          ],
-          "minimum_prose_font_pt": 10,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
-          "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
-          "semantic_typography_checks": 5,
-          "monochrome_pixels": true,
-          "status": "passed"
-        }
+        "text": "Constraints",
+        "bold": false,
+        "italic": false
       }
     ]
   },
   "layout_review": {
-    "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
-    "baseline_candidate_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
-    "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
-    "decision": "refined",
-    "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+    "source": "book/assets/engineer-agent-interaction.svg",
+    "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
+    "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+    "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
+    "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+      "page": 1,
+      "width_bp": 437.24200439453125,
+      "height_bp": 218.70199584960938,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 6,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
+    },
     "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      408.89599609375,
-      204.5290069580078
-    ],
     "contracts": {
       "peer_groups": [
         {
@@ -325,96 +220,353 @@
           "tolerance_pt": 1
         }
       ]
-    },
-    "validation": {
-      "date": "2026-11-24",
-      "proof": "/tmp/opener-figure-20261124/proof.pdf",
-      "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
-      "page": 1,
-      "width_bp": 437.242,
-      "height_bp": 218.702,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-      "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-      "semantic_typography_checks": 5,
-      "monochrome_pixels": true,
-      "status": "passed"
-    },
-    "page_layout": {
-      "decision": "author-requested whitespace refinement",
-      "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
-      "after_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
-      "after_dimensions_bp": [
-        437.242,
-        218.702
-      ],
-      "after_font_sizes_pt": [
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "revision_history": [
-      {
-        "date": "2026-11-11",
-        "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
-        "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
-        "validation": {
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-          "geometry_findings": 0,
-          "checked_terminal_approaches": 633,
-          "reviewed_peer_groups": 81,
-          "semantic_typography_checks": 875,
-          "unapproved_compile_diagnostics": 0,
-          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-          "maximum_dimensions_bp": [
-            450,
-            560
-          ],
-          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-          "status": "passed",
-          "page": 55,
-          "width_bp": 408.896,
-          "height_bp": 204.529
-        }
-      },
-      {
-        "date": "2026-11-24",
-        "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
-        "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-        "change": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
-        "previous_validation": {
-          "date": "2026-11-11",
-          "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
-          "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
-          "page": 1,
-          "width_bp": 408.896,
-          "height_bp": 218.702,
-          "maximum_dimensions_bp": [
-            450,
-            560
-          ],
-          "minimum_prose_font_pt": 10,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
-          "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
-          "semantic_typography_checks": 5,
-          "monochrome_pixels": true,
-          "status": "passed"
-        }
-      }
-    ]
+    }
   },
   "author_approval": {
     "date": "2026-11-24",
     "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
     "decision": "author-requested side-margin correction"
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+      "previous": {
+        "claim": "*Engineer\u2013agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.",
+        "topology": "Two parallel channel fans joined by a single implementation hinge; intent descends and evidence returns.",
+        "required_terms": [
+          "MODELING / COMMUNICATING",
+          "ALIGNMENT / EVALUATING",
+          "Engineer",
+          "Engineer",
+          "Natural\\",
+          "Specification",
+          "Models",
+          "Review",
+          "Testing",
+          "Analysis",
+          "Agent",
+          "Result",
+          "Implementation",
+          "what do I know, intend, and need to make explicit?",
+          "what does the evidence justify believing or doing?"
+        ],
+        "bw_encoding": "White nodes and panels; bare bold mode headings and italic question annotations; no heading boxes.",
+        "redesign": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+        "questions": [],
+        "alt": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence.",
+        "qa": {
+          "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+          "warnings": [],
+          "width_pt": 437.242,
+          "height_pt": 218.702,
+          "monochrome": true,
+          "inspection": "Native PDF and web SVG visually inspected; side whitespace is present and topology, content, and typography are unchanged.",
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/opener-figure-20261124/proof.pdf",
+            "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+            "page": 1,
+            "width_bp": 437.242,
+            "height_bp": 218.702,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 10,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+            "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+            "semantic_typography_checks": 5,
+            "monochrome_pixels": true,
+            "status": "passed"
+          }
+        },
+        "layout_review": {
+          "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+          "baseline_candidate_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
+          "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+          "decision": "refined",
+          "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            408.89599609375,
+            204.5290069580078
+          ],
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "communication tools",
+                "labels": [
+                  "Natural language",
+                  "Specification",
+                  "Models"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_height": true,
+                "tolerance_pt": 1
+              },
+              {
+                "name": "evaluation tools",
+                "labels": [
+                  "Review",
+                  "Testing",
+                  "Analysis"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/opener-figure-20261124/proof.pdf",
+            "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+            "page": 1,
+            "width_bp": 437.242,
+            "height_bp": 218.702,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 10,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+            "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+            "semantic_typography_checks": 5,
+            "monochrome_pixels": true,
+            "status": "passed"
+          },
+          "page_layout": {
+            "decision": "author-requested whitespace refinement",
+            "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+            "after_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+            "after_dimensions_bp": [
+              437.242,
+              218.702
+            ],
+            "after_font_sizes_pt": [
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "revision_history": [
+            {
+              "date": "2026-11-11",
+              "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+              "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+              "validation": {
+                "proof": "latex/build/tikz/candidates.pdf",
+                "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                "geometry_findings": 0,
+                "checked_terminal_approaches": 633,
+                "reviewed_peer_groups": 81,
+                "semantic_typography_checks": 875,
+                "unapproved_compile_diagnostics": 0,
+                "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+                "status": "passed",
+                "page": 55,
+                "width_bp": 408.896,
+                "height_bp": 204.529
+              }
+            },
+            {
+              "date": "2026-11-24",
+              "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
+              "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+              "change": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+              "previous_validation": {
+                "date": "2026-11-11",
+                "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+                "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+                "page": 1,
+                "width_bp": 408.896,
+                "height_bp": 218.702,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+                "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+                "semantic_typography_checks": 5,
+                "monochrome_pixels": true,
+                "status": "passed"
+              }
+            }
+          ]
+        },
+        "typography_review": {
+          "decision": "refined",
+          "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+          "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+          "evidence": [
+            {
+              "source_text": "MODELING / COMMUNICATING",
+              "source_style": "weight 700; normal; source size 20",
+              "semantic_role": "interaction role",
+              "candidate_text": "MODELING / COMMUNICATING",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/engineer-agent-interaction.svg",
+                "element_text_path": "/svg/text[1]/text()",
+                "text_element_context": "MODELING / COMMUNICATING",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "ALIGNMENT / EVALUATING",
+              "source_style": "weight 700; normal; source size 20",
+              "semantic_role": "interaction role",
+              "candidate_text": "ALIGNMENT / EVALUATING",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/engineer-agent-interaction.svg",
+                "element_text_path": "/svg/text[3]/text()",
+                "text_element_context": "ALIGNMENT / EVALUATING",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "what do I know, intend, and need to make explicit?",
+              "source_style": "italic subtitle",
+              "semantic_role": "question guiding the interaction mode",
+              "candidate_text": "what do I know, intend, and need to make explicit?",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/engineer-agent-interaction.svg",
+                "element_text_path": "/svg/text[2]/text()",
+                "text_element_context": "what do I know, intend, and need to make explicit?",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "what does the evidence justify believing or doing?",
+              "source_style": "italic subtitle",
+              "semantic_role": "question guiding the interaction mode",
+              "candidate_text": "what does the evidence justify believing or doing?",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/engineer-agent-interaction.svg",
+                "element_text_path": "/svg/text[4]/text()",
+                "text_element_context": "what does the evidence justify believing or doing?",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+          "checks": [
+            {
+              "text": "MODELING / COMMUNICATING",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "ALIGNMENT / EVALUATING",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "what do I know, intend, and need to make explicit?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "what does the evidence justify believing or doing?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Engineer",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/opener-figure-20261124/proof.pdf",
+            "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+            "page": 1,
+            "width_bp": 437.242,
+            "height_bp": 218.702,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 10,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+            "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+            "semantic_typography_checks": 5,
+            "monochrome_pixels": true,
+            "status": "passed"
+          },
+          "revision_history": [
+            {
+              "date": "2026-11-11",
+              "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+              "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+              "validation": {
+                "proof": "latex/build/tikz/candidates.pdf",
+                "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                "page": 55,
+                "width_bp": 408.896,
+                "height_bp": 204.529,
+                "minimum_prose_font_pt": 10.0,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "monochrome_pixels": true,
+                "semantic_typography_checks": 3
+              }
+            },
+            {
+              "date": "2026-11-24",
+              "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
+              "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+              "change": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+              "previous_validation": {
+                "date": "2026-11-11",
+                "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+                "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+                "page": 1,
+                "width_bp": 408.896,
+                "height_bp": 218.702,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+                "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+                "semantic_typography_checks": 5,
+                "monochrome_pixels": true,
+                "status": "passed"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+  "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92"
 }

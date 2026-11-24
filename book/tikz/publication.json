@@ -145,7 +145,8 @@
     "book/assets/engineer-agent-interaction.svg": {
       "approved_date": "2026-11-24",
       "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
-      "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e"
+      "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
+      "refinement_20261124": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text."
     },
     "book/assets/alignment-kernel.svg": {
       "approved_date": "2026-11-11",
@@ -249,7 +250,9 @@
     },
     "book/assets/cost-enforcement-gradient.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved Figure 3.9 with removal of the measured-margin footer. Footer removed; the qualification remains in caption and prose."
+      "reason": "Author approved Figure 3.9 with removal of the measured-margin footer. Footer removed; the qualification remains in caption and prose.",
+      "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
+      "refinement_20261124": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path."
     },
     "book/assets/residual-decision-tree.svg": {
       "approved_date": "2026-11-13",
@@ -382,6 +385,11 @@
       "approved_date": "2026-11-24",
       "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
       "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e"
+    },
+    "book/assets/models-to-engineering-machinery.svg": {
+      "approved_date": "2026-11-24",
+      "reason": "Author requested this three-branch figure with separated evidence and semantic-commitment strip. Native and SVG proofs pass visual, geometry, and typography review.",
+      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd"
     }
   }
 }

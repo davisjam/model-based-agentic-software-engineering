@@ -515,7 +515,6 @@
           "observability",
           "gate",
           "validator",
-          "governance-package",
           "generative-validation",
           "residual"
         ],
@@ -626,7 +625,9 @@
       "opening_anchor": "As governance mechanisms accumulate, they become control machinery:",
       "closing_anchor": "Chapter 4 examines how engineers develop and revise these models and controls together while building a changing product.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "governance-package"
+        ],
         "artifacts": [
           {
             "type": "framework",

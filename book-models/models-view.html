@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>190</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>201</b> sections · <b>49</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -346,19 +346,31 @@
 <h3 id="ch-3-1-from-engineering-models-to-enforcement"><span class="tier-kick">Lesson</span><a href="../book/3.1-from-engineering-models-to-enforcement.html" class="ch-link">3.1-from-engineering-models-to-enforcement</a> <span class="ch-slug">3.1-from-engineering-models-to-enforcement</span></h3>
 <div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--guidance-and-enforcement">
 <div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Guidance and Enforcement</a></div>
-<p class="topic">A foundation model produces probabilistic outputs; a harness turns selected outputs into actions.</p>
+<p class="topic">Guidance tells an agent what to do.</p>
 </div>
 <div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--agreement-is-not-correctness">
 <div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Correspondence, Conformance, and Acceptance</a></div>
-<p class="topic">The correspondence patterns in [ref:2.6-system-knowledge:heading:maintaining-correspondence] connect models to implementation through derivation, generation, or traceability.</p>
+<p class="topic">[ref:2.6-system-knowledge:heading:maintaining-correspondence] examined several ways to maintain correspondence between a model and its implementation.</p>
 </div>
 <div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--independent-obligations-and-evidence">
 <div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Independent Obligations and Evidence</a></div>
-<p class="topic">Chapter 2 distinguished a descriptive model from one that is authoritative for a property.</p>
+<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+</div>
+<div class="section s3" id="sec-3-1-from-engineering-models-to-enforcement--independent-engineering-obligations">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Independent Engineering Obligations</a></div>
+<p class="topic">Chapter 2 distinguished descriptive models from models that are authoritative for a property.</p>
+</div>
+<div class="section s3" id="sec-3-1-from-engineering-models-to-enforcement--adequacy-of-evidence">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Adequacy of Evidence</a></div>
+<p class="topic">Software testing has long confronted the *oracle problem*: how do we determine whether an observed result is correct?</p>
+</div>
+<div class="section s3" id="sec-3-1-from-engineering-models-to-enforcement--connecting-models-to-evidence">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Connecting Models to Evidence</a></div>
+<p class="topic">Having established an obligation and decided what evidence would be adequate, how do we obtain that evidence from a changing implementation?</p>
 </div>
 <div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--docable-from-correspondence-to-enforcement">
 <div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">DocAble: From Correspondence to Enforcement</a></div>
-<p class="topic">[ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] described how DocAble connects computation declarations, scheduling, and an analytical graph.</p>
+<p class="topic">[ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] described how I developed DocAble’s computation model by examining the computations and dependencies in its different document engines.</p>
 </div>
 </div>
 <div class="chapter">
@@ -371,17 +383,43 @@
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Constructing and Validating Mechanisms</a></div>
 <p class="topic">Knowing a mechanism’s function does not establish that it enforces the intended obligation.</p>
 </div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--alignment-by-construction">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Alignment by Construction</a></div>
+<p class="topic">One way to preserve an engineering obligation is to restrict how an implementation can be constructed or changed.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--semantic-commitment-and-mechanization">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Semantic Commitment and Mechanization</a></div>
+<p class="topic">Recall the discussion of semantic commitment in [ref:2.2-constructing-and-using-engineering-models:heading:semantic-commitment-and-analysis].</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can recall the discussion of semantic commitment in …. <span class="prov">derived</span></span></li></ul></div>
+</div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--tests-and-models-work-together">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Testing Against Models</a></div>
 <p class="topic">Tests can evaluate whether an implementation satisfies obligations expressed in a model.</p>
 </div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--model-and-exercise-failure-responses">
-<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Failure Models and Testing the Tests</a></div>
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Testing Failure Responses</a></div>
 <p class="topic">Testing expected behavior is not enough when a system must also respond correctly to failures.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--testing-the-governance-machinery">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Testing the Governance Machinery</a></div>
+<p class="topic">A passing test establishes that the implementation satisfied the checks performed.</p>
 </div>
 <div class="section s2" id="sec-3-2-governance-mechanisms--one-obligation-several-ways-to-hold-it">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Choosing Mechanisms</a></div>
 <p class="topic">Chapter 2 selected representations according to the engineering questions they could answer.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--preventing-violations-or-detecting-them">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Preventing Violations or Detecting Them</a></div>
+<p class="topic">Where practical, we can choose an operation that excludes a forbidden state rather than detect the state after it occurs.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--analyzing-models-or-testing-implementations">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Analyzing Models or Testing Implementations</a></div>
+<p class="topic">*Model checking* and *model-based testing* answer different questions.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can model checking* and *model-based testing* answer different questions. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--establishing-that-a-required-operation-occurred">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Establishing That a Required Operation Occurred</a></div>
+<p class="topic">We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative.</p>
 </div>
 <div class="section s2" id="sec-3-2-governance-mechanisms--preserving-engineering-freedom">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Preserving Engineering Freedom</a></div>
@@ -389,7 +427,7 @@
 </div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--margin-and-engineering-freedom">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Tolerances and Margins</a></div>
-<p class="topic">Alignment can do more than determine whether an implementation satisfies an obligation.</p>
+<p class="topic">Chapter 2 introduced tolerances as bounds on acceptable variation and degrees of freedom as choices left open to implementation.</p>
 </div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--underconstraint-and-overconstraint">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Underconstraint and Overconstraint</a></div>
@@ -397,7 +435,7 @@
 </div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--where-enforcement-stops">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Where Enforcement Stops</a></div>
-<p class="topic">Not every engineering obligation should be enforced mechanically.</p>
+<p class="topic">Greater semantic commitment gives us more opportunities for mechanization, but we need not pursue all of them.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
@@ -408,7 +446,7 @@
 <p class="topic">Where the environment intervenes determines what it can examine and control.</p>
 </div>
 <div class="section s2" id="sec-3-3-where-obligations-can-be-enforced--the-semantic-gap">
-<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">The Semantic Gap and Earliest Decidable Boundary</a></div>
+<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">The Semantic Gap and Enforcement Placement</a></div>
 <p class="topic">Which of these boundaries provides enough evidence?</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
 </div>
@@ -424,12 +462,12 @@
 <div class="chapter">
 <h3 id="ch-3-4-governance-conversion"><span class="tier-kick">Lesson</span><a href="../book/3.4-governance-conversion.html" class="ch-link">3.4-governance-conversion</a> <span class="ch-slug">3.4-governance-conversion</span></h3>
 <div class="section s2" id="sec-3-4-governance-conversion--up-front-encode-what-you-already-know">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Up Front: Encode What You Already Know</a></div>
-<p class="topic">Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable.</p>
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Establishing Known Obligations</a></div>
+<p class="topic">Some engineering obligations are known before implementation begins.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--as-you-learn-convert-what-the-work-teaches">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">As You Learn: Governance Conversion</a></div>
-<p class="topic">The harder half begins when the system surprises you.</p>
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Learning from Failures: Governance Conversion</a></div>
+<p class="topic">A failure may reveal that the engineering environment lacks something needed to guide or govern subsequent work.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--engineering-capital">
 <div class="sec-h"><a href="../book/3.4-governance-conversion.html">Engineering Capital</a></div>
@@ -440,15 +478,23 @@
 <h3 id="ch-3-5-when-guardrails-collide"><span class="tier-kick">Lesson</span><a href="../book/3.5-when-guardrails-collide.html" class="ch-link">3.5-when-guardrails-collide</a> <span class="ch-slug">3.5-when-guardrails-collide</span></h3>
 <div class="section s2" id="sec-3-5-when-guardrails-collide--model-interactions-between-controls">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Modeling the Control Machinery</a></div>
-<p class="topic">[ref:census-trio] shows three ways to examine this machinery.</p>
+<p class="topic">[ref:census-trio] illustrates three useful representations of the control machinery: a catalogue of the mechanisms, a graph of their interactions, and a view of their coverage of engineering obligations.</p>
+</div>
+<div class="section s3" id="sec-3-5-when-guardrails-collide--interactions-among-controls">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Interactions among Controls</a></div>
+<p class="topic">The interaction graph uses controls as nodes and shared resources as the principal join key.</p>
+</div>
+<div class="section s3" id="sec-3-5-when-guardrails-collide--coverage-of-engineering-obligations">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Coverage of Engineering Obligations</a></div>
+<p class="topic">To find an uncovered obligation, start from the obligations engineers expect the environment to govern.</p>
 </div>
 <div class="section s2" id="sec-3-5-when-guardrails-collide--docable-interacting-governance-mechanisms">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">DocAble: Interacting Governance Mechanisms</a></div>
-<p class="topic">The catalogue, interaction graph, and coverage view answer different questions about a growing set of controls.</p>
+<p class="topic">In DocAble, I wanted to identify governance mechanisms that could interfere with one another.</p>
 </div>
 <div class="section s2" id="sec-3-5-when-guardrails-collide--add-reconcile-and-retire-controls">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Maintaining the Control Portfolio</a></div>
-<p class="topic">Governance conversion and coverage auditing provide complementary pressures.</p>
+<p class="topic">As we learn more about a system, we may introduce new controls.</p>
 </div>
 </div>
 <div class="chapter">

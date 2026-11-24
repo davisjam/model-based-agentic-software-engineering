@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 644,
+    "total_sites": 643,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 309,
+      "book-web": 308,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -57,7 +57,7 @@
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/web/docs/2.3-structural.md",
@@ -81,11 +81,11 @@
           },
           {
             "file": "book/web/docs/3.2-governance-mechanisms.md",
-            "occ": 14
+            "occ": 20
           },
           {
             "file": "book/web/docs/3.3-where-obligations-can-be-enforced.md",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
@@ -221,7 +221,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 14
+            "occ": 16
           },
           {
             "file": "book/web/docs/part-5-intro.md",
@@ -965,19 +965,19 @@
           },
           {
             "file": "book/web/docs/3.1-from-engineering-models-to-enforcement.md",
-            "occ": 39
+            "occ": 37
           },
           {
             "file": "book/web/docs/3.2-governance-mechanisms.md",
-            "occ": 50
+            "occ": 64
           },
           {
             "file": "book/web/docs/3.3-where-obligations-can-be-enforced.md",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 29
+            "occ": 33
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
@@ -985,7 +985,7 @@
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
-            "occ": 8
+            "occ": 13
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -1161,7 +1161,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 168
+            "occ": 175
           },
           {
             "file": "book/web/docs/index.md",
@@ -1169,7 +1169,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 27
+            "occ": 30
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1181,7 +1181,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 28
+            "occ": 29
           },
           {
             "file": "book/web/docs/part-4-intro.md",
@@ -1243,7 +1243,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 87
+            "occ": 88
           },
           {
             "file": "catalogue-figure.html",
@@ -1327,7 +1327,7 @@
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1424,10 +1424,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
           },
@@ -1439,7 +1435,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 4
+            "occ": 3
           }
         ]
       },
@@ -1529,27 +1525,27 @@
           },
           {
             "file": "book/web/docs/3.1-from-engineering-models-to-enforcement.md",
-            "occ": 43
+            "occ": 32
           },
           {
             "file": "book/web/docs/3.2-governance-mechanisms.md",
-            "occ": 61
+            "occ": 82
           },
           {
             "file": "book/web/docs/3.3-where-obligations-can-be-enforced.md",
-            "occ": 10
+            "occ": 8
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 9
+            "occ": 7
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -1689,7 +1685,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 141
+            "occ": 149
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -1705,7 +1701,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/part-4-intro.md",
@@ -2107,7 +2103,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 29
+            "occ": 30
           },
           {
             "file": "catalogue-figure.html",

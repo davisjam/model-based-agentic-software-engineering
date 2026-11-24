@@ -1410,6 +1410,18 @@
       "kind": "engineering-blueprint",
       "location": "Appendix A",
       "rationale": "Caption explains the blueprint relationships shown; implementation detail remains in the adjacent text."
+    },
+    "assets/models-to-engineering-machinery.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part3",
+      "rationale": "Three model-mediated engineering activities and their distinct evidence outputs; the caption explains partial mechanization and semantic commitment without a maturity ranking."
+    },
+    "governance-conversion::Diagnosing missing engineering structure": {
+      "tier": "C",
+      "kind": "table",
+      "location": "book/part3/3.4-governance-conversion.md",
+      "rationale": "Compact diagnostic questions distinguish the five missing structures; the surrounding prose develops the examples."
     }
   },
   "historical_tiers": {

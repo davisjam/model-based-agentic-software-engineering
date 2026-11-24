@@ -1,7 +1,7 @@
 {
   "source": "book/assets/cost-enforcement-gradient.svg",
-  "claim": "\\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.",
-  "topology": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+  "claim": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee.",
+  "topology": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee.",
   "required_terms": [
     "MODELING",
     "Tolerance and degrees of freedom",
@@ -27,77 +27,79 @@
     "controls as margin shrinks.",
     "Agent:",
     "Engineer:",
-    "Measured",
-    "evidence",
-    "informs",
-    "engineering",
-    "decisions",
-    "(e.g., adjust",
-    "tolerance,",
-    "redesign,",
-    "or add",
-    "controls)"
+    "Evidence informs",
+    "revised models",
+    "and controls."
   ],
   "bw_encoding": "White process boxes, light-gray acceptable region and quantitative value panels, filled measured points and open boundary marker.",
   "alt": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee.",
   "historical_receipt": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/cost-enforcement-gradient.json",
   "questions": [],
   "qa": {
-    "date": "2026-11-13",
-    "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-    "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-    "page": 1,
-    "width_bp": 408.483,
-    "height_bp": 316.771,
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+    "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+    "page": 2,
+    "width_bp": 427.677001953125,
+    "height_bp": 287.77099609375,
     "minimum_prose_font_pt": 9.5,
     "unapproved_compile_diagnostics": 0,
-    "geometry_findings": 0,
-    "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-    "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-    "semantic_typography_checks": 34,
-    "monochrome_pixels": true,
+    "semantic_typography_checks": 27,
+    "typography_findings": 0,
+    "reviewed_visually": true,
     "status": "passed",
-    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+    "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+    "geometry_findings": 0
   },
   "reference_image_sha256": "5f51c232f848bc40b3fd4e9820e512ab24440d468d5dcccd20e6e0db4425d850",
   "layout_review": {
     "source": "book/assets/cost-enforcement-gradient.svg",
     "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-    "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
-    "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
-    "decision": "author-reference redraw",
-    "reviewed_visually": true,
-    "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
-    "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/layout-review.json",
-    "contracts": {},
+    "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+    "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
+    "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-      "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-      "page": 1,
-      "width_bp": 408.483,
-      "height_bp": 316.771,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+      "page": 2,
+      "width_bp": 427.677001953125,
+      "height_bp": 287.77099609375,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-      "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-      "semantic_typography_checks": 34,
-      "monochrome_pixels": true,
+      "semantic_typography_checks": 27,
+      "typography_findings": 0,
+      "reviewed_visually": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
     },
-    "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
+    "reviewed_visually": true,
+    "contracts": {}
   },
   "typography_review": {
     "source": "book/assets/cost-enforcement-gradient.svg",
     "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-    "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
-    "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
-    "decision": "author-reference redraw",
+    "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+    "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
+    "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+      "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+      "page": 2,
+      "width_bp": 427.677001953125,
+      "height_bp": 287.77099609375,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 27,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+      "geometry_findings": 0
+    },
     "reviewed_visually": true,
-    "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
-    "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/typography-review.json",
     "checks": [
       {
         "text": "MODELING",
@@ -220,245 +222,21 @@
         "italic": false
       },
       {
-        "text": "Measured",
+        "text": "Evidence informs",
         "bold": false,
         "italic": true
       },
       {
-        "text": "evidence",
+        "text": "revised models",
         "bold": false,
         "italic": true
       },
       {
-        "text": "informs",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "engineering",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "decisions",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "(e.g., adjust",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "tolerance,",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "redesign,",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "or add",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "controls)",
+        "text": "and controls.",
         "bold": false,
         "italic": true
       }
-    ],
-    "evidence": [
-      {
-        "candidate_text": "MODELING",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Tolerance and degrees of freedom",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Quantitative obligation (example)",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Acceptable region",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(within tolerance)",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "80 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "5 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "0 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "120 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(A)",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "195 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(B)",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "200 ms",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(limit)",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "ALIGNMENT",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Measure implementation behavior",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "A: 120 ms",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(margin 80 ms)",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "B: 195 ms",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(margin 5 ms)",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "within available headroom.",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "controls as margin shrinks.",
-        "candidate_style": "regular",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Agent:",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Engineer:",
-        "candidate_style": "bold",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "Measured",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "evidence",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "informs",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "engineering",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "decisions",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "(e.g., adjust",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "tolerance,",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "redesign,",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "or add",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      },
-      {
-        "candidate_text": "controls)",
-        "candidate_style": "italic",
-        "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
-      }
-    ],
-    "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-      "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-      "page": 1,
-      "width_bp": 408.483,
-      "height_bp": 316.771,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-      "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-      "semantic_typography_checks": 34,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
-    }
+    ]
   },
   "style_review": {
     "source": "book/assets/cost-enforcement-gradient.svg",
@@ -575,5 +353,474 @@
       "status": "passed",
       "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
     }
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+      "previous": {
+        "claim": "\\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent\u2019s exploration of implementation alternatives and inform the engineer\u2019s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.",
+        "topology": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+        "required_terms": [
+          "MODELING",
+          "Tolerance and degrees of freedom",
+          "Quantitative obligation (example)",
+          "Acceptable region",
+          "(within tolerance)",
+          "80 ms",
+          "5 ms",
+          "0 ms",
+          "120 ms",
+          "(A)",
+          "195 ms",
+          "(B)",
+          "200 ms",
+          "(limit)",
+          "ALIGNMENT",
+          "Measure implementation behavior",
+          "A: 120 ms",
+          "(margin 80 ms)",
+          "B: 195 ms",
+          "(margin 5 ms)",
+          "within available headroom.",
+          "controls as margin shrinks.",
+          "Agent:",
+          "Engineer:",
+          "Measured",
+          "evidence",
+          "informs",
+          "engineering",
+          "decisions",
+          "(e.g., adjust",
+          "tolerance,",
+          "redesign,",
+          "or add",
+          "controls)"
+        ],
+        "bw_encoding": "White process boxes, light-gray acceptable region and quantitative value panels, filled measured points and open boundary marker.",
+        "questions": [],
+        "alt": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee.",
+        "qa": {
+          "date": "2026-11-13",
+          "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+          "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+          "page": 1,
+          "width_bp": 408.483,
+          "height_bp": 316.771,
+          "minimum_prose_font_pt": 9.5,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+          "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+          "semantic_typography_checks": 34,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+        },
+        "layout_review": {
+          "source": "book/assets/cost-enforcement-gradient.svg",
+          "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
+          "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+          "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+          "decision": "author-reference redraw",
+          "reviewed_visually": true,
+          "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+          "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/layout-review.json",
+          "contracts": {},
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+            "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+            "page": 1,
+            "width_bp": 408.483,
+            "height_bp": 316.771,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+            "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+            "semantic_typography_checks": 34,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+          },
+          "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
+        },
+        "typography_review": {
+          "source": "book/assets/cost-enforcement-gradient.svg",
+          "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
+          "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+          "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+          "decision": "author-reference redraw",
+          "reviewed_visually": true,
+          "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+          "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/typography-review.json",
+          "checks": [
+            {
+              "text": "MODELING",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Tolerance and degrees of freedom",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Quantitative obligation (example)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Acceptable region",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "(within tolerance)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "80 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "5 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "0 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "120 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(A)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "195 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(B)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "200 ms",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(limit)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "ALIGNMENT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Measure implementation behavior",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "A: 120 ms",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(margin 80 ms)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "B: 195 ms",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(margin 5 ms)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "within available headroom.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "controls as margin shrinks.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Agent:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Engineer:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Measured",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "evidence",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "informs",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "engineering",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "decisions",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "(e.g., adjust",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "tolerance,",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "redesign,",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "or add",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "controls)",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "evidence": [
+            {
+              "candidate_text": "MODELING",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Tolerance and degrees of freedom",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Quantitative obligation (example)",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Acceptable region",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(within tolerance)",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "80 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "5 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "0 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "120 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(A)",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "195 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(B)",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "200 ms",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(limit)",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "ALIGNMENT",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Measure implementation behavior",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "A: 120 ms",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(margin 80 ms)",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "B: 195 ms",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(margin 5 ms)",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "within available headroom.",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "controls as margin shrinks.",
+              "candidate_style": "regular",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Agent:",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Engineer:",
+              "candidate_style": "bold",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "Measured",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "evidence",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "informs",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "engineering",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "decisions",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "(e.g., adjust",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "tolerance,",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "redesign,",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "or add",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            },
+            {
+              "candidate_text": "controls)",
+              "candidate_style": "italic",
+              "semantic_role": "Reference heading, measured quantity, actor, or explanatory annotation"
+            }
+          ],
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+            "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+            "page": 1,
+            "width_bp": 408.483,
+            "height_bp": 316.771,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+            "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+            "semantic_typography_checks": 34,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+          }
+        }
+      }
+    }
+  ],
+  "redesign": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+  "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+  "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668"
 }

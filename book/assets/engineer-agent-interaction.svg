@@ -2,7 +2,7 @@
 <!-- Hand-authored SVG (label: engineer-agent-interaction). The engineer's two interfaces with delegated
      realization. Left panel (Modeling / Communicating): the engineer communicates through three
      complementary channels — natural language, specification, models — which converge on the agent and
-     become implementation. Right panel (Alignment / Evaluating): the implementation's result returns
+     become implementation. Right panel (Alignment / Governing Work): the implementation's result returns
      evidence through three complementary channels — review, testing, analysis — which converge back on
      the engineer. ONE shared implementation node is the hinge between the panels (the same engineer
      appears at both upper ends: two points in one interaction, not two actors). The channels are peers:
@@ -18,10 +18,10 @@
   <desc id="eaiDesc">Two panels over one shared implementation node. Left panel, Modeling / Communicating:
     the engineer fans out through three parallel channels — natural language, specification, and models —
     which converge on the agent; the agent produces the implementation. Right panel, Alignment /
-    Evaluating: the implementation yields a result, which fans out through three parallel channels —
+    Governing Work: the implementation yields a result, which fans out through three parallel channels —
     review, testing, and analysis — that converge back on the engineer. The same engineer appears at both
     upper ends; the single implementation node at the bottom is the hinge between communicating intent
-    and evaluating evidence.</desc>
+    and governing work. A constraints box on the Alignment side acts directly on the implementation, showing that Alignment can restrict work as well as evaluate its results.</desc>
 
   <defs>
     <marker id="eai-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -36,10 +36,10 @@
   <text x="28" y="46" font-size="20" font-weight="700" fill="#1c1917">MODELING / COMMUNICATING</text>
   <text x="28" y="72" font-size="18.4" font-style="italic" fill="#57534e">what do I know, intend, and need to make explicit?</text>
 
-  <!-- ===== Panel: Alignment / Evaluating ===== -->
+  <!-- ===== Panel: Alignment / Governing Work ===== -->
   <rect x="468" y="16" width="456" height="356" rx="10" fill="#faf1e6" opacity="0.45"/>
-  <text x="500" y="46" font-size="20" font-weight="700" fill="#1c1917">ALIGNMENT / EVALUATING</text>
-  <text x="500" y="72" font-size="18.4" font-style="italic" fill="#57534e">what does the evidence justify believing or doing?</text>
+  <text x="500" y="46" font-size="20" font-weight="700" fill="#1c1917">ALIGNMENT / GOVERNING WORK</text>
+  <text x="500" y="72" font-size="18.4" font-style="italic" fill="#57534e">what may happen, and what may proceed?</text>
 
   <!-- engineers: the same engineer at two points in the interaction -->
   <rect x="164" y="92" width="120" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
@@ -69,6 +69,10 @@
   <text x="224" y="332" text-anchor="middle" font-size="19" fill="#1c1917">agent</text>
   <rect x="636" y="304" width="120" height="44" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>
   <text x="696" y="332" text-anchor="middle" font-size="19" fill="#1c1917">result</text>
+
+  <rect x="484" y="318" width="104" height="36" rx="8" fill="#fff" stroke="#1c1917" stroke-width="1.8"/>
+  <text x="536" y="342" text-anchor="middle" font-size="18.4" fill="#1c1917">constraints</text>
+  <line x1="536" y1="354" x2="536" y2="404" stroke="#1c1917" stroke-width="2" marker-end="url(#eai-ah)"/>
 
   <!-- the shared hinge: ONE implementation node -->
   <rect x="375" y="404" width="170" height="48" rx="8" fill="#fff" stroke="#1c1917" stroke-width="2"/>

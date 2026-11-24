@@ -1,65 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="35 0 415 316" width="415" height="316" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="35 0 435 287" width="435" height="287" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Margin and engineering freedom</title>
 <desc id="desc">Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
-<rect x="103" y="2" width="226" height="68" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" /></marker></defs>
+<rect x="103" y="2" width="226" height="65" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8" />
 <text x="216" y="16" text-anchor="middle" font-size="12" font-weight="700">MODELING</text>
 <text x="216" y="29" text-anchor="middle" font-size="10" font-style="italic">Tolerance and degrees of freedom</text>
-<rect x="115" y="36" width="202" height="27" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8"/>
+<rect x="115" y="36" width="202" height="27" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8" />
 <text x="216" y="47" text-anchor="middle" font-size="10">Quantitative obligation (example)</text>
 <text x="216" y="59" text-anchor="middle" font-size="11" font-weight="700">Response time ≤ 200 ms</text>
-<path d="M216 70 L216 87" fill="none" stroke="#111111" stroke-width="1" marker-end="url(#arrow)"/>
-<rect x="38" y="91" width="342" height="77" rx="5" fill="#f0f0f0" stroke="none" stroke-width=".8"/>
-<text x="132" y="106" text-anchor="middle" font-size="10" font-style="italic">Acceptable region</text>
-<text x="132" y="118" text-anchor="middle" font-size="10" font-style="italic">(within tolerance)</text>
-<path d="M54 135 L355 135" fill="none" stroke="#111111" stroke-width="1.3"/>
-<path d="M54 130 L54 140" fill="none" stroke="#111111" stroke-width="1"/>
-<circle cx="216" cy="135" r="3.2" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<circle cx="320" cy="135" r="3.2" fill="#111111" stroke="#111111" stroke-width=".9"/>
-<circle cx="355" cy="135" r="3.2" fill="#ffffff" stroke="#111111" stroke-width=".9"/>
-<path d="M216 103 L216 127" fill="none" stroke="#111111" stroke-width="0.8"/>
-<path d="M355 103 L355 127" fill="none" stroke="#111111" stroke-width="0.8"/>
-<path d="M216 107 L355 107" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<text x="285.5" y="101" text-anchor="middle" font-size="10">80 ms</text>
-<path d="M320 115 L320 127" fill="none" stroke="#111111" stroke-width="0.8"/>
-<path d="M320 120 L355 120" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-<text x="337.5" y="115" text-anchor="middle" font-size="9.5">5 ms</text>
-<text x="54" y="152" text-anchor="middle" font-size="10">0 ms</text>
-<text x="216" y="151" text-anchor="middle" font-size="10">120 ms</text>
-<text x="216" y="163" text-anchor="middle" font-size="10">(A)</text>
-<text x="316" y="151" text-anchor="middle" font-size="10">195 ms</text>
-<text x="316" y="163" text-anchor="middle" font-size="10">(B)</text>
-<text x="361" y="151" text-anchor="middle" font-size="10">200 ms</text>
-<text x="361" y="163" text-anchor="middle" font-size="10" font-style="italic">(limit)</text>
-<path d="M216 169 L216 180 L320 180 L320 169" fill="none" stroke="#111111" stroke-width="0.9"/>
-<path d="M268 180 L268 192" fill="none" stroke="#111111" stroke-width="0.9"/>
-<rect x="103" y="192" width="226" height="66" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<text x="216" y="207" text-anchor="middle" font-size="12" font-weight="700">ALIGNMENT</text>
-<text x="216" y="220" text-anchor="middle" font-size="10" font-style="italic">Measure implementation behavior</text>
-<rect x="116" y="228" width="96" height="25" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8"/>
-<rect x="220" y="228" width="96" height="25" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8"/>
-<text x="164" y="239" text-anchor="middle" font-size="10" font-weight="700">A: 120 ms</text>
-<text x="164" y="250" text-anchor="middle" font-size="10">(margin 80 ms)</text>
-<text x="268" y="239" text-anchor="middle" font-size="10" font-weight="700">B: 195 ms</text>
-<text x="268" y="250" text-anchor="middle" font-size="10">(margin 5 ms)</text>
-<path d="M154 258 L154 267 L126 267 L126 279" fill="none" stroke="#111111" stroke-width="0.9" marker-end="url(#arrow)"/>
-<path d="M274 258 L274 267 L310 267 L310 279" fill="none" stroke="#111111" stroke-width="0.9" marker-end="url(#arrow)"/>
-<rect x="40" y="279" width="170" height="33" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<rect x="230" y="279" width="174" height="33" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8"/>
-<text x="125" y="293" text-anchor="middle" font-size="10"><tspan font-weight="700">Agent:</tspan> explore alternatives</text>
-<text x="125" y="305" text-anchor="middle" font-size="10">within available headroom.</text>
-<text x="317" y="293" text-anchor="middle" font-size="10"><tspan font-weight="700">Engineer:</tspan> reassess design or</text>
-<text x="317" y="305" text-anchor="middle" font-size="10">controls as margin shrinks.</text>
-<path d="M329 228 H377 Q386 228 386 219 V39 Q386 30 377 30 H331" fill="none" stroke="#111111" stroke-width="1.2" marker-end="url(#arrow)"/>
-<text x="394" y="70" text-anchor="start" font-size="9.5" font-style="italic">Measured</text>
-<text x="394" y="81" text-anchor="start" font-size="9.5" font-style="italic">evidence</text>
-<text x="394" y="92" text-anchor="start" font-size="9.5" font-style="italic">informs</text>
-<text x="394" y="103" text-anchor="start" font-size="9.5" font-style="italic">engineering</text>
-<text x="394" y="114" text-anchor="start" font-size="9.5" font-style="italic">decisions</text>
-<text x="394" y="125" text-anchor="start" font-size="9.5" font-style="italic">(e.g., adjust</text>
-<text x="394" y="136" text-anchor="start" font-size="9.5" font-style="italic">tolerance,</text>
-<text x="394" y="147" text-anchor="start" font-size="9.5" font-style="italic">redesign,</text>
-<text x="394" y="158" text-anchor="start" font-size="9.5" font-style="italic">or add</text>
-<text x="394" y="169" text-anchor="start" font-size="9.5" font-style="italic">controls)</text>
+<path d="M 216 67 L 216 79" fill="none" stroke="#111111" stroke-width="1" marker-end="url(#arrow)" />
+<rect x="38" y="83" width="342" height="77" rx="5" fill="#f0f0f0" stroke="none" stroke-width=".8" />
+<text x="132" y="98" text-anchor="middle" font-size="10" font-style="italic">Acceptable region</text>
+<text x="132" y="110" text-anchor="middle" font-size="10" font-style="italic">(within tolerance)</text>
+<path d="M 54 127 L 355 127" fill="none" stroke="#111111" stroke-width="1.3" />
+<path d="M 54 122 L 54 132" fill="none" stroke="#111111" stroke-width="1" />
+<circle cx="216" cy="127" r="3.2" fill="#111111" stroke="#111111" stroke-width=".9" />
+<circle cx="320" cy="127" r="3.2" fill="#111111" stroke="#111111" stroke-width=".9" />
+<circle cx="355" cy="127" r="3.2" fill="#111111" stroke="#111111" stroke-width=".9" />
+<path d="M 216 95 L 216 119" fill="none" stroke="#111111" stroke-width="0.8" />
+<path d="M 355 95 L 355 119" fill="none" stroke="#111111" stroke-width="0.8" />
+<path d="M 216 99 L 355 99" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" marker-start="url(#arrow)" />
+<text x="285.5" y="93" text-anchor="middle" font-size="10">80 ms</text>
+<path d="M 320 107 L 320 119" fill="none" stroke="#111111" stroke-width="0.8" />
+<path d="M 320 112 L 355 112" fill="none" stroke="#111111" stroke-width="0.8" marker-end="url(#arrow)" marker-start="url(#arrow)" />
+<text x="337.5" y="107" text-anchor="middle" font-size="9.5">5 ms</text>
+<text x="54" y="144" text-anchor="middle" font-size="10">0 ms</text>
+<text x="216" y="143" text-anchor="middle" font-size="10">120 ms</text>
+<text x="216" y="155" text-anchor="middle" font-size="10">(A)</text>
+<text x="316" y="143" text-anchor="middle" font-size="10">195 ms</text>
+<text x="316" y="155" text-anchor="middle" font-size="10">(B)</text>
+<text x="361" y="143" text-anchor="middle" font-size="10">200 ms</text>
+<text x="361" y="155" text-anchor="middle" font-size="10" font-style="italic">(limit)</text>
+<path d="M 216 161 L 216 164 L 320 164 L 320 161" fill="none" stroke="#111111" stroke-width="0.9" />
+<path d="M 268 164 L 268 176" fill="none" stroke="#111111" stroke-width="0.9" />
+<rect x="103" y="176" width="226" height="64" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<text x="216" y="191" text-anchor="middle" font-size="12" font-weight="700">ALIGNMENT</text>
+<text x="216" y="204" text-anchor="middle" font-size="10" font-style="italic">Measure implementation behavior</text>
+<rect x="116" y="212" width="96" height="25" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8" />
+<rect x="220" y="212" width="96" height="25" rx="5" fill="#f0f0f0" stroke="#111111" stroke-width=".8" />
+<text x="164" y="223" text-anchor="middle" font-size="10" font-weight="700">A: 120 ms</text>
+<text x="164" y="234" text-anchor="middle" font-size="10">(margin 80 ms)</text>
+<text x="268" y="223" text-anchor="middle" font-size="10" font-weight="700">B: 195 ms</text>
+<text x="268" y="234" text-anchor="middle" font-size="10">(margin 5 ms)</text>
+<path d="M 154 240 L 154 242 L 126 242 L 126 254" fill="none" stroke="#111111" stroke-width="0.9" marker-end="url(#arrow)" />
+<path d="M 274 240 L 274 242 L 310 242 L 310 254" fill="none" stroke="#111111" stroke-width="0.9" marker-end="url(#arrow)" />
+<rect x="40" y="254" width="170" height="29" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<rect x="230" y="254" width="174" height="29" rx="5" fill="#ffffff" stroke="#111111" stroke-width=".8" />
+<text x="125" y="268" text-anchor="middle" font-size="10"><tspan font-weight="700">Agent:</tspan> explore alternatives</text>
+<text x="125" y="280" text-anchor="middle" font-size="10">within available headroom.</text>
+<text x="317" y="268" text-anchor="middle" font-size="10"><tspan font-weight="700">Engineer:</tspan> reassess design or</text>
+<text x="317" y="280" text-anchor="middle" font-size="10">controls as margin shrinks.</text>
+<path d="M 329 212 H 377 Q 386 212 386 203 V 39 Q 386 30 377 30 H 331" fill="none" stroke="#111111" stroke-width="1.2" marker-end="url(#arrow)" />
+<text x="394" y="87" text-anchor="start" font-size="9.5" font-style="italic">Evidence informs</text>
+<text x="394" y="99" text-anchor="start" font-size="9.5" font-style="italic">revised models</text>
+<text x="394" y="111" text-anchor="start" font-size="9.5" font-style="italic">and controls.</text>
 </svg>

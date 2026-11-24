@@ -1,7 +1,7 @@
 {
   "review": "Sparse grayscale, typography, routing, shape and explicit-reference pass",
   "date": "2026-10-17",
-  "candidate_count": 141,
+  "candidate_count": 142,
   "refined_count": 130,
   "linked_regions": 46,
   "figure_link_count": 15,
@@ -43,7 +43,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
-            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -86,7 +86,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "e0e488a816536137faae76449690a4cd69bf67b5c2c87571e299139de706c522",
-            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -105,7 +105,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
             },
             "book_references": [
               "part:1",
@@ -133,11 +133,11 @@
             "status": "reviewed",
             "source_sha256": "7348e5c194fb29c170695a0bc70838855894781cdd356d0428344ad9fe602fc8",
             "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
-            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-            "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author\u2019s request.",
+            "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author’s request.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-            "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
+            "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
             "book_references": [
               "part:1",
               "part:2",
@@ -160,7 +160,7 @@
                   "status": "reviewed",
                   "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
                   "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
-                  "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
+                  "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
                   "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
                   "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
                   "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -203,7 +203,7 @@
                   "status": "reviewed",
                   "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
                   "candidate_sha256": "e0e488a816536137faae76449690a4cd69bf67b5c2c87571e299139de706c522",
-                  "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
+                  "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
                   "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
                   "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
                   "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -222,7 +222,7 @@
                     "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
                     "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
                     "status": "passed",
-                    "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
+                    "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
                   },
                   "book_references": [
                     "part:1",
@@ -239,7 +239,7 @@
               }
             ],
             "reviewed_visually": true,
-            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2\u20135 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
             "validation": {
               "date": "2026-11-09",
               "proof": "latex/build/tikz/candidates.pdf",
@@ -254,13 +254,13 @@
               "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
               "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
               "status": "passed",
-              "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2\u20135 enclosure; full one-page guide proof inspected."
+              "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
             }
           }
         }
       ],
       "reviewed_visually": true,
-      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "validation": {
         "date": "2026-11-20",
         "proof": "/tmp/mage-navigation-followup/proof.pdf",
@@ -632,7 +632,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
-      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
       "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
       "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
       "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
@@ -859,7 +859,7 @@
       "bold": "All five stage headings bold; examples and feedback label regular.",
       "routing": "Four short vertical forward arrows; an external orthogonal feedback arrow returns from decisions to modeling.",
       "shape": "Five compact rounded stage boxes, with narrower question and interpretation stages.",
-      "visual_review": "Author-requested Figure2.5 compact layout: 315\u00d7228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations \u2192 Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+      "visual_review": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
       "validation": {
         "date": "2026-11-12",
         "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
@@ -930,7 +930,7 @@
         },
         {
           "date": "2026-11-12",
-          "reason": "Author-requested Figure2.5 compact layout: 315\u00d7228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations \u2192 Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+          "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
           "previous_source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
           "previous_candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
           "archive": "book/editorial/figure-2-5-compact-20261112/before/style-review.json"
@@ -1711,7 +1711,7 @@
       "bold": "Bold Owned state labels; the worker/generation key remains regular; subtitle and final release condition are italic.",
       "routing": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+      "visual_review": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
       "book_references": [],
       "revision_history": [
         {
@@ -1823,7 +1823,7 @@
         },
         {
           "date": "2026-11-17",
-          "reason": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+          "reason": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
           "previous_review": {
             "validation": {
               "date": "2026-11-11",
@@ -1845,7 +1845,7 @@
         }
       ],
       "semantic_revision_20261117": {
-        "description": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+        "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
         "proof": "book/latex/build/style-figure-proof.pdf",
         "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
         "page": 3,
@@ -1919,7 +1919,7 @@
       "bold": "Only comparison-panel headings are bold; service labels are regular.",
       "routing": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
       "shape": "Uniform house-scale rounded rectangles for services.",
-      "visual_review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book\u2019s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+      "visual_review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
@@ -2095,7 +2095,7 @@
       "bold": "Bold identifies the three selected models and the semantic hub; ordinary model labels remain regular.",
       "routing": "Radial association topology retained. Outward and return deployment curves are visibly separate, and every highlighted transition passes through the shared-identity hub.",
       "shape": "Modest rounded model boxes and a central semantic-join ellipse.",
-      "visual_review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry \u2192 hub \u2192 Deployment topology \u2192 hub \u2192 Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type."
+      "visual_review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type."
     },
     {
       "source": "book/assets/two-reductions-static-realized.svg",
@@ -2191,7 +2191,7 @@
         }
       ],
       "reviewed_visually": true,
-      "reason": "Restore the original SVG\u2019s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested."
+      "reason": "Restore the original SVG’s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested."
     },
     {
       "source": "book/assets/derive-generate-trace.svg",
@@ -2232,7 +2232,7 @@
       "bold": "Uppercase mode titles are bold 11 pt. Model and implementation titles are bold 10 pt, state/response headers bold 9 pt. Authority subtitles and explanatory arrow labels are italic; trace and check are bold italic. Body prose stays at 9 pt. All three model icons/tables have identical style.",
       "routing": "Derive points upward from implementation to models. Generate points downward from models to generated implementation artifacts. Trace curves downward to bind related elements; check curves upward to evaluate correspondence where decidable. Thin vertical rules separate peer modes; internal graph examples have undirected structural edges.",
       "shape": "Rounded containers represent models and implementation. Small circles and table cells depict example model forms; code sheets and gear symbols distinguish implementation and other decisions.",
-      "visual_review": "Inspected native print and SVG rendered proofs at 2\u00d7 and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions.",
+      "visual_review": "Inspected native print and SVG rendered proofs at 2× and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions.",
       "book_references": [],
       "routing_exceptions": "Two opposing curved arrows are deliberate: they distinguish tracing related elements from checking correspondence."
     },
@@ -2272,7 +2272,7 @@
       "candidate_sha256": "80560be3766dcc967720147d9cccac7103b16281d669fb5ce9cc26cffbfead1e",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
+      "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/compact-branches-20261113/candidates.pdf",
@@ -2297,9 +2297,9 @@
       "status": "reviewed",
       "fill": "Only the enforcement-boundaries enclosure uses light 5% gray. All four cards remain white; no tone implies increasing enforcement strength.",
       "bold": "Group headings are bold 11 pt; boundary names are bold 10 pt. Row labels and scope-arrow annotations are plain italic 10 pt. Scope descriptions and examples are regular 10 pt.",
-      "routing": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
+      "routing": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
       "shape": "Four aligned rounded cards with common horizontal row rules. The last three share an enforcement-boundaries enclosure; guidance has its own heading and separator.",
-      "visual_review": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion. Inspected rendered proof: clear labels and no overlaps.",
+      "visual_review": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion. Inspected rendered proof: clear labels and no overlaps.",
       "book_references": [],
       "routing_exceptions": "None."
     },
@@ -2310,7 +2310,7 @@
       "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment\u2019s controls and evidence requirements.",
+      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
       "validation": {
         "page": 1,
         "width_bp": 449.972,
@@ -2347,7 +2347,7 @@
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "fill": "Light gray distinguishes obligations from white events.",
-      "bold": "Obligation titles bold12.5\u201313pt; boundary titles bold10.5\u201311pt; timeline11pt; annotations italic10pt.",
+      "bold": "Obligation titles bold12.5–13pt; boundary titles bold10.5–11pt; timeline11pt; annotations italic10pt.",
       "routing": "Timeline arrows run right; short vertical arrows connect events through named boundaries to obligations. The second brace excludes the browser run.",
       "shape": "Rounded rectangles for events and obligations; plain braces annotate the scope of earlier checks.",
       "validation": {
@@ -2367,7 +2367,7 @@
         "geometry_findings": 0,
         "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/semantic-gap-levels-svg.png"
       },
-      "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+      "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
       "book_references": [],
       "routing_exceptions": "None.",
       "author_review": {
@@ -2480,11 +2480,11 @@
     {
       "source": "book/assets/cost-enforcement-gradient.svg",
       "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-      "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
-      "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+      "source_sha256": "756228e8370b8a435b01e22fae12dcb04c4039df704256a2532fa8f169295f7a",
+      "candidate_sha256": "95d7693b8893ec1f9819a2495dda75bc2916a4f4d36ecb028a0296b4940eb668",
       "decision": "author-reference redraw",
       "reviewed_visually": true,
-      "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+      "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
       "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/style-review.json",
       "receipt": "book/tikz/receipts/cost-enforcement-gradient.json",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
@@ -2493,27 +2493,55 @@
       "fill": "Light gray identifies the acceptable region and quantitative values, matching the author reference.",
       "bold": "Modeling and Alignment headings, the bound and measured values, and inline actor names.",
       "routing": "Orthogonal connectors and rounded feedback. Double-headed dimension arrows measure each value to the limit.",
-      "shape": "Rounded containers, quantitative axis, filled measurements and an open limit marker.",
+      "shape": "Rounded containers, quantitative axis, filled measurements and a closed limit marker for the inclusive bound.",
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
-        "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
-        "page": 1,
-        "width_bp": 408.483,
-        "height_bp": 316.771,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+        "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
+        "page": 2,
+        "width_bp": 427.677001953125,
+        "height_bp": 287.77099609375,
         "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
-        "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
-        "semantic_typography_checks": 34,
-        "monochrome_pixels": true,
+        "semantic_typography_checks": 27,
+        "typography_findings": 0,
+        "reviewed_visually": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+        "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+        "geometry_findings": 0
       },
-      "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption.",
+      "visual_review": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
       "book_references": [],
-      "routing_exceptions": "The rounded feedback loop and quantitative dimension arrows preserve the reference geometry."
+      "routing_exceptions": "The rounded feedback loop and quantitative dimension arrows preserve the reference geometry.",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Close the 200ms endpoint to match the inclusive response-time bound. Replace the long feedback annotation with Evidence informs revised models and controls. Remove 29bp of vertical whitespace without reducing any font or changing measured quantities, margin arrows, outcomes, or the feedback path.",
+          "previous": {
+            "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+            "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+            "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+              "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+              "page": 1,
+              "width_bp": 408.483,
+              "height_bp": 316.771,
+              "minimum_prose_font_pt": 9.5,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+              "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+              "semantic_typography_checks": 34,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
+            },
+            "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/governance-conversion.svg",
@@ -2650,32 +2678,28 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
-      "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+      "source_sha256": "f0e43078a483fc16dfa72e933ae60255a429d76d0f428c478839e7411e208a0d",
+      "candidate_sha256": "ea97feeaf82bf3f3a38e6adf727f2b60cb09c08f403f2ff6f585e1d053798f92",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Bare bold uppercase mode headings; original question subtitles in italics; ordinary node labels regular.",
       "routing": "10 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Rounded boxes for actors and channels only; mode headings and question annotations are unboxed.",
-      "visual_review": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+      "visual_review": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "/tmp/opener-figure-20261124/proof.pdf",
-        "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+        "proof": "book/_design/drafts/ch3-followup-figures-20261124/proof.pdf",
+        "proof_sha256": "16d1d11597f9d64925b5756328d20ed31ddf2719cbcfffdcdce64cf5e65dbfeb",
         "page": 1,
-        "width_bp": 437.242,
-        "height_bp": 218.702,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "width_bp": 437.24200439453125,
+        "height_bp": 218.70199584960938,
         "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
-        "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
-        "semantic_typography_checks": 5,
-        "monochrome_pixels": true,
-        "status": "passed"
+        "semantic_typography_checks": 6,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "status": "passed",
+        "scope": "Isolated native and font-loaded SVG proofs reviewed. Parent verifies final chapter placement.",
+        "geometry_findings": 0
       },
       "book_references": [],
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
@@ -2722,8 +2746,39 @@
             "monochrome_pixels": true,
             "status": "passed"
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+          "previous": {
+            "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+            "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "/tmp/opener-figure-20261124/proof.pdf",
+              "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
+              "page": 1,
+              "width_bp": 437.242,
+              "height_bp": 218.702,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+              "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
+              "semantic_typography_checks": 5,
+              "monochrome_pixels": true,
+              "status": "passed"
+            },
+            "visual_review": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG."
+          }
         }
-      ]
+      ],
+      "reason": "Expand the right-hand framing to Alignment / Governing Work and ask what may happen and proceed. Add Constraints acting directly on Implementation; preserve existing communication, evidence, and result paths, panel clearance, and 10pt text.",
+      "reviewed_visually": true
     },
     {
       "source": "book/assets/active-passive-alignment.svg",
@@ -2803,11 +2858,11 @@
       "status": "reviewed",
       "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
       "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
-      "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original\u2019s single green family. Containment and M_A\u2013M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1\u20134 with directed progression.",
+      "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
       "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
       "routing": "Three downward arrows connect the closely positioned numbered steps; concentric layer containment remains unchanged.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-      "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1\u20134 from models M_A\u2013M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+      "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
       "validation": {
         "date": "2026-11-24",
         "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
@@ -2973,8 +3028,8 @@
         "geometry_findings": 0,
         "status": "passed",
         "source_geometry_checks": [
-          "three equal142\u00d7430bp panels",
-          "three equal108\u00d745bp page workers"
+          "three equal142×430bp panels",
+          "three equal108×45bp page workers"
         ],
         "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
         "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
@@ -3068,8 +3123,8 @@
               "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
               "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
               "source_geometry_checks": [
-                "three equal142\u00d7546bp panels",
-                "three equal108\u00d762bp page workers"
+                "three equal142×546bp panels",
+                "three equal108×62bp page workers"
               ],
               "status": "passed"
             },
@@ -3418,10 +3473,10 @@
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "fill": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
-      "bold": "Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+      "bold": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
       "routing": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
       "shape": "Modestly rounded rectangles denote findings, steps, and artifacts; consistent gray fill identifies the discovered concept and reinforced model substrate.",
-      "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
+      "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
       "book_references": [],
       "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch.",
       "compaction_review": {
@@ -3432,7 +3487,7 @@
       "revision_history": [
         {
           "date": "2026-11-24",
-          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9–10pt labels.",
           "previous": {
             "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
             "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
@@ -3479,7 +3534,7 @@
           "previous": {
             "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
             "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-            "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+            "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9–10pt labels.",
             "validation": {
               "date": "2026-11-24",
               "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
@@ -3686,7 +3741,7 @@
       "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective footer removed.",
       "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
       "shape": "No visible boxes. Three text columns align the seven timeline rows.",
-      "visual_review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "visual_review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
@@ -3720,7 +3775,7 @@
       "revision_history": [
         {
           "date": "2026-11-11",
-          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
           "previous": {
             "source": "book/assets/build-stages-timeline.svg",
             "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -3761,7 +3816,7 @@
         },
         {
           "date": "2026-11-11",
-          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
           "previous": {
             "source": "book/assets/build-stages-timeline.svg",
             "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -3776,7 +3831,7 @@
             "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective note remains italic.",
             "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
             "shape": "No visible boxes. Three text columns align the seven timeline rows.",
-            "visual_review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "visual_review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
             "validation": {
               "date": "2026-11-11",
               "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
@@ -4245,8 +4300,8 @@
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "fill": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
-      "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9\u201311pt. No post-render scaling.",
-      "routing": "Engineering intent \u2192 Encoded property \u2192 Fabricator \u2192 Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
+      "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling.",
+      "routing": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
       "shape": "Modestly rounded rectangles denote production stages and outputs; a dashed enclosure groups production. A nested acceptable-region box depicts a subset of possible realizations, whose points are alternatives.",
       "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
       "book_references": [],
@@ -4298,7 +4353,7 @@
       "bold": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
       "routing": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
       "shape": "Modestly rounded rectangles denote named activities, check/gate stages, and their property/result artifacts. A simple split-and-join path expresses the two premises, with no unrelated enclosing region.",
-      "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text.",
+      "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text.",
       "book_references": [],
       "routing_exceptions": "None; all relations are horizontal or vertical."
     },
@@ -4403,7 +4458,7 @@
       "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
       "candidate_sha256": "e82cb37d2574da224bb9372db136bf6354a5beac2999980e356c0c5860a98b1e",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE\u2013REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE–REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Common relations orthogonal; resource mediation and context delivery still detached.",
@@ -4763,7 +4818,7 @@
       "source_sha256": "9d8d024b6350246acda49614796c7447105781f58ffd76170ae5366e78011b2f",
       "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
       "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday\u2019s answer.; the snapshot does not. The check trusts a stale answer.; GOOD \u00b7 query at the point of use; BAD \u00b7 copied snapshot; query \u2014 no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday’s answer.; the snapshot does not. The check trusts a stale answer.; GOOD · query at the point of use; BAD · copied snapshot; query — no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
@@ -6083,7 +6138,7 @@
       },
       "title_revision_review": {
         "date": "2026-11-09",
-        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
         "validation": {
           "proof": "latex/build/tikz/candidates.pdf",
           "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
@@ -6213,10 +6268,10 @@
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "fill": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color.",
-      "bold": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5\u201310 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
-      "routing": "Workflow: initial agent context \u2192 planning \u2192 refined agent context \u2192 Git precommit gate \u2192 implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+      "bold": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
+      "routing": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
       "shape": "Rounded rectangles represent context, work and selection stages. A diamond distinguishes the Git precommit admission decision. The subtle gray resource container holds repository and standing-instruction boxes.",
-      "visual_review": "Both native and live-text SVG proofs inspected at print size and 2\u00d7. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9\u201310 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author\u2019s bootstrap workflow.",
+      "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow.",
       "book_references": [],
       "routing_exceptions": "None."
     },
@@ -6233,11 +6288,11 @@
       "bold": "Regular panel headings and data labels; no decorative emphasis.",
       "routing": "No conceptual connectors; charts directly encode measured data.",
       "shape": "Bars, lines, and stacked bands encode quantities.",
-      "visual_review": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+      "visual_review": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
       "revision_history": [
         {
           "date": "2026-11-11",
-          "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+          "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
           "previous": {
             "source": "book/assets/docable-seip-longitudinal-261109.svg",
             "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
@@ -6375,7 +6430,7 @@
       "bold": "Regular panel headings and data labels; no decorative emphasis.",
       "routing": "No conceptual connectors; charts directly encode measured data.",
       "shape": "Bars, lines, and stacked bands encode quantities.",
-      "visual_review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses \u2190 0 \u2192 Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the \u00b11 parity band, and document\u2013criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+      "visual_review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
@@ -6804,6 +6859,38 @@
       "status": "reviewed",
       "shape": "Square boxes follow the author target.",
       "routing": "Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles."
+    },
+    {
+      "source": "book/assets/models-to-engineering-machinery.svg",
+      "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+      "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+      "decision": "new",
+      "reviewed_visually": true,
+      "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image’s miniature paragraphs.",
+      "validation": {
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+        "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+        "page": 1,
+        "width_bp": 448.6199951171875,
+        "height_bp": 308.62200927734375,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "semantic_typography_checks": 28,
+        "typography_findings": 0,
+        "status": "passed",
+        "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+        "geometry_findings": 0
+      },
+      "fill": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades.",
+      "bold": "Bold10pt names models, uses, and evidence; ordinary10pt gives examples. Italics distinguish model intent and the spectrum’s scope.",
+      "routing": "Solid orthogonal arrows express inputs and outputs; the left model-evidence branch does not feed implementation evaluation. The separate spectrum arrow indicates semantic commitment, not a process or relative ranking of branches.",
+      "shape": "Rounded boxes group named concepts. Equal peer activity boxes and aligned output bands establish parallel choices.",
+      "book_references": [],
+      "routing_exceptions": [],
+      "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
+      "status": "passed"
     }
   ],
   "semantic_typography_review": "book/tikz/typography-review.json",
@@ -6954,5 +7041,5 @@
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
     }
   ],
-  "last_revised_date": "2026-11-20"
+  "last_revised_date": "2026-11-24"
 }

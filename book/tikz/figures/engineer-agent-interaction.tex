@@ -6,9 +6,9 @@
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=6cm,fill=white] (mh) at (-3.900,0) {MODELING / COMMUNICATING};
-\node[head,text width=6cm,fill=white] (ah) at (3.900,0) {ALIGNMENT / EVALUATING};
+\node[head,text width=6cm,fill=white] (ah) at (3.900,0) {ALIGNMENT / GOVERNING WORK};
 \node[note,text width=6.3cm,anchor=north] (mq) at (-3.900,-.42) {what do I know, intend, and need to make explicit?};
-\node[note,text width=6.3cm,anchor=north] (aq) at (3.900,-.42) {what does the evidence justify believing or doing?};
+\node[note,text width=6.3cm,anchor=north] (aq) at (3.900,-.42) {what may happen, and what may proceed?};
 \begin{scope}[yshift=-.5cm]
 \node[box,text width=2.3cm] (e1) at (-3.900,-1.5) {Engineer};
 \node[box,text width=2.3cm] (e2) at (3.900,-1.5) {Engineer};
@@ -33,6 +33,8 @@
 \draw[edge,] (re) -- (a1);
 \draw[edge,] (m2.south) -- (-1.600,-3.75) -- (-3.900,-3.75) -- (ag.north);
 \draw[edge,] (re.north) -- (3.900,-4.050) -- (6.200,-4.050) -- (a2.south);
+\node[box,text width=1.8cm,inner sep=2pt] (co) at (1.3,-4.85) {Constraints};
+\draw[edge] (co.south) -- (co.south |- im.north);
 \draw[edge] (ag.south)--(-3.900,-6.2)--(im.west);
 \draw[edge] (im.east)--(3.900,-6.2)--(re.south);
 \end{scope}

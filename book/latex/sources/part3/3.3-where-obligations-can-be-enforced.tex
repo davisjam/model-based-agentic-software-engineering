@@ -6,7 +6,7 @@
 
 \chapter{Where Obligations Can Be Enforced}
 
-The preceding section distinguished what governance mechanisms do. Their placement determines what work they can examine and which actions they can still affect. A permission may act on one attempted operation; a completion check may need the combined evidence from several changes. We now examine these boundaries and how to choose among them.
+Suppose we have chosen a check that can detect a violation of an architectural obligation. Should it run after every edit, after a commit, or when the task is complete? The answer depends on when the evidence becomes available and when we need to act on it.
 
 \section{Intervention Boundaries}\label{heading:reasoning-input-action-work-unit-and-artifactruntime}
 
@@ -21,6 +21,8 @@ Where the environment intervenes determines what it can examine and control. \au
 \label{intervention-boundaries}
 \end{figure}
 
+These are different scopes of intervention, not necessarily successive stages of execution.
+
 % <!-- section-terms: intervention-boundary, reasoning-input, action-boundary, work-unit-boundary, artifact-runtime-boundary -->
 
 % <!-- point: the-first-boundary-is-reasoning-input | The first location is reasoning input: ordinarily guidance, not enforcement. | terms: reasoning-input, intervention-boundary -->
@@ -30,12 +32,23 @@ Where the environment intervenes determines what it can examine and control. \au
 The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do much of their work: a finite reasoner benefits when relevant system knowledge is externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown. Guidance helps an agent avoid mistakes. Enforcement can prevent those mistakes from being accepted.
 
 
-
 % <!-- point: the-second-boundary-is-the-action-one-attempted-side-effect | The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse. | terms: action-boundary, intervention-boundary -->
 
 % <!-- index-def: action-boundary -->
 
 The first of the three \emph{enforcement} boundaries is the \textbf{action boundary} exposed by the harness and its tools. Here, one attempted side effect is in view: a tool call, an API request, a shell command, or a file mutation.
+
+% <!-- point: the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions | The second enforcement boundary is the work unit, where whole-work obligations become legible. | terms: work-unit-boundary, intervention-boundary -->
+
+% <!-- index-def: work-unit-boundary -->
+
+The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. The larger scope makes obligations involving several actions available for evaluation, even when no individual action provides enough evidence.
+
+% <!-- point: the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible | The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept. | terms: artifact-runtime-boundary, intervention-boundary, ban-lint -->
+
+% <!-- index-def: artifact-runtime-boundary -->
+
+The third enforcement boundary is the \textbf{artifact or runtime boundary}: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. For example, a service account may have permission to read production records but no permission to change them. The permission restricts what the running system can do, regardless of how the agent wrote its code.
 
 % <!-- box-family: inset -->
 
@@ -50,19 +63,7 @@ Many agent harnesses let engineers intervene in an agent's work through permissi
 We can understand these facilities by separating \emph{where} an intervention occurs from \emph{what} the configured mechanism does. The boundary determines what evidence is available in time to affect the decision. The mechanism determines how that evidence is used: the same failed check at the same hook might produce a warning or stop execution. If the deployment tool must not modify production state, permissions enforced by the production service can refuse a write before it takes effect. A warning after a write cannot satisfy that obligation: the forbidden effect has already occurred. The engineer therefore starts with what must be prevented or established, then chooses a boundary with sufficient evidence and a mechanism whose response enforces that requirement.
 \end{bookbox}
 
-% <!-- point: the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions | The second enforcement boundary is the work unit, where whole-work obligations become legible. | terms: work-unit-boundary, intervention-boundary -->
-
-% <!-- index-def: work-unit-boundary -->
-
-The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. The larger scope makes obligations involving several actions available for evaluation, even when no individual action provides enough evidence.
-
-% <!-- point: the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible | The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept. | terms: artifact-runtime-boundary, intervention-boundary, ban-lint -->
-
-% <!-- index-def: artifact-runtime-boundary -->
-
-The third enforcement boundary is the \textbf{artifact or runtime boundary}: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. For example, a service account may have permission to read production records but no permission to change them. The permission restricts what the running system can do, regardless of how the agent wrote its code.
-
-\section{The Semantic Gap and Earliest Decidable Boundary}\label{heading:the-semantic-gap}
+\section{The Semantic Gap and Enforcement Placement}\label{heading:the-semantic-gap}
 
 % <!-- section-terms: semantic-gap, earliest-legible-boundary, model-drift -->
 
@@ -77,7 +78,7 @@ The end-to-end argument in system design explains why this information boundary 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/semantic-gap-levels-bf0468495b.pdf}
-\caption{\emph{The semantic gap.} Different obligations become decidable at different boundaries. Model--implementation correspondence may be required at task completion, while rendered-page correctness requires integrated execution. Place each check at the earliest boundary where sufficient evidence is available.}
+\caption{\emph{The semantic gap.} Different obligations require evidence available at different boundaries. Model--implementation correspondence may be required at task completion, while rendered-page correctness requires integrated execution. Place each check at the earliest boundary where sufficient evidence is available.}
 \label{semantic-gap}
 \end{figure}
 
@@ -99,17 +100,17 @@ A different obligation requires the assembled system to behave correctly. A depl
 
 % <!-- section-terms: earliest-legible-boundary, semantic-gap -->
 
-% <!-- point: place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable | The design rule: place enforcement at the earliest boundary where the obligation is both legible and decidable. | terms: earliest-legible-boundary, semantic-gap -->
+% <!-- point: place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable | Place enforcement at the earliest boundary with sufficient evidence to evaluate the obligation and enforce the decision. | terms: earliest-legible-boundary, semantic-gap -->
 
 % <!-- index-def: earliest-legible-boundary -->
 
 Both examples illustrate the same rule for placing enforcement:
 
 \begin{quote}
-\textbf{Place enforcement at the earliest boundary where the obligation is both legible and decidable.}
+\textbf{Place enforcement at the earliest boundary where sufficient evidence is available to evaluate the obligation and enforce the decision.}
 \end{quote}
 
-\emph{Earliest} matters because delay makes a failure more expensive to repair. \emph{Legible} matters because checking before the necessary evidence exists produces false refusals or meaningless results. Static type checks can reject code that violates declared typing rules before execution; action hooks can govern individual tool calls; task-completion checks can evaluate obligations spanning several commits; and deployment gates can evaluate accumulated evidence before release. Other properties become observable only later, such as a leak emerging across repeated calls or a cost overrun visible across many jobs. No earlier boundary can establish what the available evidence does not yet reveal.
+Earlier enforcement can prevent a forbidden action or reduce the cost of repairing a defect. But checking too early can reject legitimate intermediate work or produce a verdict unsupported by the available evidence. The appropriate boundary depends on both the obligation and the consequences of acting too late.
 
 % <!-- point: the-part-two-rhyme-coarsest-representation-earliest-boundary | The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible. | terms: semantic-gap, earliest-legible-boundary, modeling-principle, alignment-principle -->
 
@@ -118,28 +119,13 @@ Both examples illustrate the same rule for placing enforcement:
 % <!-- inline-quote -->
 
 \begin{quote}
-\textbf{Modeling} --- \emph{choose the reduction that makes the engineering \textbf{question} answerable without carrying unnecessary detail.}
+\textbf{Modeling} --- \emph{choose a representation that makes the engineering question answerable without unnecessary detail.}
 
-\textbf{Alignment} --- \emph{choose the earliest boundary at which the \textbf{obligation} becomes legible and decidable.}
+\textbf{Alignment} --- \emph{choose the earliest boundary that supplies sufficient evidence to evaluate and enforce the obligation.}
 \end{quote}
 
-Both rules keep irrelevant detail from driving the engineering decision.
+Choose the wrong abstraction and the required property may not be represented. Choose the wrong boundary and the required evidence may not be available.
 
-\begin{itemize}
-\tightlist
-\item
-  Modeling avoids carrying detail the question does not need.
-\item
-  Alignment avoids enforcing an obligation before the necessary evidence exists.
-\end{itemize}
-
-Choose the wrong abstraction in \magevalue{chapter:modeling} and the required property is not represented. Choose the wrong boundary here and the required evidence is not available.
-
-% <!-- point: real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one | Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook. | terms: earliest-legible-boundary, semantic-gap -->
-
-Real boundaries sometimes require a margin for the mechanism to act. Suppose an agent must preserve a durable hand-off before its working context is compacted. Waiting until no room remains may leave too little capacity to write it. A practical trigger can act earlier, when context is becoming full and the durable record is stale. The trigger approximates the desired boundary while preserving enough time and capacity to complete the required action.
-
-An enforceable obligation needs more than a model and a checker. The obligation must be independent of the work being judged, the evidence must cover the relevant behavior, and the check must operate where that evidence is available. These requirements also leave engineers a separate decision about whether the result should control admission.
 
 \section{Placement, Strength, and Feedback}\label{heading:placement-and-strength-are-different-decisions}
 
@@ -149,9 +135,9 @@ An enforceable obligation needs more than a model and a checker. The obligation 
 
 A later check is not necessarily a stronger check. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
 
-% <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
+% <!-- point: real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one | Real boundaries are sometimes approximate: a hook that fires early enough to leave budget for the work beats the theoretically ideal hook. | terms: earliest-legible-boundary, semantic-gap -->
 
-Richer models can expand the properties the environment is able to state and govern, but substantial enforcement can exist without them. A bounded execution sandbox, for example, can constrain actions without requiring a rich model of the system it contains.
+Sometimes the mechanism must act before the condition it is intended to prevent occurs. Suppose an agent must preserve a durable hand-off before its working context is compacted. Waiting until no room remains may leave too little capacity to write it. A practical trigger can act earlier, when context is becoming full and the durable record is stale. The trigger approximates the desired boundary while preserving enough time and capacity to complete the required action.
 
 % <!-- section-terms: intervention-boundary, feedback -->
 
@@ -161,7 +147,7 @@ Richer models can expand the properties the environment is able to state and gov
 
 % <!-- index-def: engineered-agent-loop -->
 
-The boundaries also determine what feedback can return and when. An action hook can explain why a call was refused; a CI check can report a violated invariant in the change under review; a deployment validator can identify failed checks or missing required evidence. Placing a check where the obligation can first be evaluated allows useful evidence to return while the relevant work is still in progress. The agent can then revise the change using the reasoning and context already at hand. If feedback arrives after it has moved on, it may have to reconstruct what it changed and why before it can understand the failure and correct the work.
+Recall the limits of an agent's working context discussed in \magevalue{chapter:problem}. Feedback is often more useful while the agent still has the relevant implementation and design decisions in context. An action hook can explain why a call was refused; a CI check can report a violated invariant in the change under review; a deployment validator can identify failed checks or missing required evidence. The agent can then revise the change using the reasoning and context already at hand. If feedback arrives after it has moved on, it may have to reconstruct what it changed and why before it can understand the failure and correct the work.
 
 % <!-- point: these-mechanisms-do-not-act-independently-deferred-to-3-5 | These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5. | terms: intervention-boundary -->
 
@@ -176,11 +162,11 @@ The appropriate boundary depends on the obligation and the evidence needed to ev
 \subsection{DocAble: Dynamic Context Injection and Discovery}\label{heading:docable-dynamic-context-injection-and-discovery}
 
 % Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
-DocAble's engineering environment must supply agents with the rules relevant to their tasks without requiring them to reconstruct every applicable obligation from the repository. It must also distinguish supplying those rules from establishing that required discovery occurred. Dynamic context injection addresses the first problem; a separate gate addresses the second. The selected knowledge includes architectural invariants, ownership declarations, lint requirements, and links to design decisions.
+DocAble illustrates an obligation concerning the engineering process rather than the resulting software. Before an agent implements a change, I want it to discover the engineering obligations relevant to that change. How can I supply those obligations without putting the entire repository into the agent's context? And how can I establish that the required discovery procedure occurred?
 
 % Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
 % Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
-DocAble selects context twice. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
+DocAble selects context twice. The selected knowledge includes architectural invariants, ownership declarations, lint requirements, and links to design decisions. At dispatch, an agent hook matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. The resulting knowledge joins the standing instructions in the agent's initial context. After planning, the agent triggers a second extraction using its refined file set. This selection may surface obligations missed initially or discard material no longer relevant to the proposed change. This is \emph{dynamic context injection}: the knowledge supplied to an agent changes as the work becomes better understood. \autoref{docable-context-selection} illustrates both selections and the separate gate that requires evidence of the second.
 
 \begin{figure}[htbp]
 \centering
@@ -194,6 +180,10 @@ DocAble selects context twice. At dispatch, an agent hook matches the work order
 Before implementation begins, the agent must make an initial commit demonstrating that the required discovery occurred. A separate Git pre-commit gate rejects that commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
 
 \subsection{DocAble: Completion Audits}\label{heading:docable-completion-audits}
+
+% <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs. | terms: validator, gate -->
+
+Evidence must describe the version of the work being considered for acceptance. A completion or release check can regenerate the evidence rather than rely on the producing agent's report or results from an earlier revision. Reusing earlier results can also be sound if the environment establishes that the relevant inputs have not changed.
 
 % Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
 % Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
@@ -210,4 +200,4 @@ Spotify requires a proposed change to pass the relevant verifiers before its bac
 
 % <!-- worked-examples-end -->
 
-We can now state an obligation, choose machinery suited to it, and place that machinery where the necessary evidence is available. But we cannot anticipate every obligation before engineering begins. New behavior, failures, and changes in requirements will expose decisions that the environment does not yet preserve.
+These examples concern obligations we already know how to express and evaluate. What happens when engineering exposes an obligation we had not anticipated?
