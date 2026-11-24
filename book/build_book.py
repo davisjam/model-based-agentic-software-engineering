@@ -608,25 +608,19 @@ def _assert_chapter_label_parity() -> None:
 _assert_chapter_label_parity()
 
 
-# The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
-# PDF spread) under a fixed label. One question per numbered Part: each Part is framed by the single
-# reasoning move the reader learns to make. Part 1 is the mindset opener (a "why", the new-engineering-
-# problem setup — what abundant implementation makes scarce), not an instrumental "how do I"; Parts 2-3
-# are "how do I" (the mechanisms), Part 4 a "what happens" (the dynamics + the method, post the Ch4/Ch5
-# merger), Part 5 a "what evidence", Part 6 a "how/where", Part 7 a "what follows". Single source of
-# truth: book_typst.py reads these (imported as `bb`) for the orientation verso AND the PART-OPENER SPREAD
-# sensor greps the same label + strings, so the print divider and its gate cannot disagree on which
-# question a Part carries.
+# Chapter questions advance from engineering problems through representation,
+# enforcement, dynamics, production, theory, and professional implications. This
+# dictionary is shared by chapter openings, orientation pages, and their checks.
 _PART_OPENER_QUESTION_LABEL = "Question this Chapter answers"
 _PART_OPENER_IDEAS_LABEL = "Key Ideas"
 _PART_OPENER_QUESTIONS = {
-    1: "What is software engineering when implementation is free?",
-    2: "How do I identify useful engineering models?",
-    3: "How do I make engineering obligations enforceable in my environment?",
-    4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",
-    5: "What happens to the software factory when agents substantially increase its capacity for realization?",
+    1: "What engineering problems arise when software implementation becomes cheap?",
+    2: "What should we abstract from a system, and how should we represent it?",
+    3: "How can I enforce the obligations expressed in engineering models?",
+    4: "How does MAGE work as systems change?",
+    5: "How should we organize software production when agents do much of the implementation?",
     6: "How does MAGE turn agentic capacity into durable engineering progress?",
-    7: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
+    7: "What becomes of engineering when agents do more of the work?",
 }
 
 # Per-Part epigraph map — EMPTY by author's call: the per-Part opener epigraphs (once (quote,
@@ -2388,6 +2382,12 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     inner_md = "\n".join(_strip_blockquote_prefix(ln) for ln in block.splitlines())
     inner_html = md_to_html(inner_md, anchor_map=anchor_map, _index_occ=_index_occ)
     inner_html = re.sub(r"<h[1-6]([^>]*)>(.*?)</h[1-6]>", r'<p class="inset-title"\1>\2</p>', inner_html, flags=re.S)
+    # A formal principle or cycle closes Key Ideas in centered italics.
+    # Authoring uses ordinary emphasis; restrict this treatment to opener boxes.
+    if is_principlebox:
+        inner_html = re.sub(r'<p><em>((?:(?!</em>).)+)</em></p>\s*$',
+                            r'<p class="opener-statement" style="text-align: center"><em>\1</em></p>',
+                            inner_html, flags=re.S)
     # A concept-inset heading is authored as `### Inset I<N> — <Title>` so the source carries a stable
     # number for editing; the DISPLAYED label shows the TITLE ONLY. Strip the `Inset I<N> —` prefix from
     # the rendered label (the id/anchor on the <p> is untouched, so intra-book links still resolve). This

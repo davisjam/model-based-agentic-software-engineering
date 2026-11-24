@@ -443,7 +443,10 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             text = reasoning_horizon_columns(text)
         if chapter.stem == '2.2-constructing-and-using-engineering-models':
             from mage_figure_layout import keep_opening_figure
-            for label in ('multiple-routes-to-engineering-models', 'modeling-repertoire'):
+            # Keep the compact routes diagram in sequence. The near-full-page
+            # repertoire must float: pinning it inline can strand its lead-in
+            # on a mostly empty page when preceding prose reflows.
+            for label in ('multiple-routes-to-engineering-models',):
                 alt = json.loads((BASE / 'receipts' / (label + '.json')).read_text())['alt']
                 text = keep_opening_figure(text, label, alt, reserve_heading_space=False)
         blueprint_openers = {

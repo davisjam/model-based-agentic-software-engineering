@@ -1658,23 +1658,49 @@
     "receipt": "book/tikz/receipts/engineer-agent-interaction.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "White ordinary nodes and panels; panel boundaries and bare headings distinguish the two modes without color.",
-    "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-    "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
+    "rationale": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+    "source_sha256": "31c8ff5c4ab5782d703dc8d11fc253d6f79b58cc178ce36cdf714e7ffca488aa",
+    "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e",
     "revision_history": [
       {
         "date": "2026-11-11",
         "candidate_sha256": "3a2a3d2f17b1a297fb1450c4c178418172d781f59d8976b113594097801056cd",
         "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
         "validation": {}
+      },
+      {
+        "date": "2026-11-24",
+        "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
+        "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+        "change": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+        "previous_validation": {
+          "date": "2026-11-11",
+          "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+          "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+          "page": 1,
+          "width_bp": 408.896,
+          "height_bp": 218.702,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+          "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+          "semantic_typography_checks": 5,
+          "monochrome_pixels": true,
+          "status": "passed"
+        }
       }
     ],
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
-      "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+      "date": "2026-11-24",
+      "proof": "/tmp/opener-figure-20261124/proof.pdf",
+      "proof_sha256": "49610bd04704e6ea88c00baefa8055a18343366adb059ceb9a5ac1cc2f1fddbc",
       "page": 1,
-      "width_bp": 408.896,
+      "width_bp": 437.242,
       "height_bp": 218.702,
       "maximum_dimensions_bp": [
         450,
@@ -1683,8 +1709,8 @@
       "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
-      "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+      "geometry_audit_sha256": "c05d9aa25e8df3343e2c790d19f4ca40dc67ad55648406afa3d0f74bb3192954",
+      "typography_audit_sha256": "64fc8697f16a977dd629dd548fc021d050ad3565543ab7e8df95083f8f3adaea",
       "semantic_typography_checks": 5,
       "monochrome_pixels": true,
       "status": "passed"

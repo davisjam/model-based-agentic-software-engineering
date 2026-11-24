@@ -328,6 +328,19 @@ Part closings should compress the contribution and lead forward.
 The Conclusion should return to the opening problem rather than summarize every chapter.
 
 
+## Chapter opening conventions
+
+Each numbered chapter begins with a question, a Key Ideas box, and brief opening prose. These elements serve distinct purposes:
+
+1. **Question this chapter answers.** Pose the motivating engineering problem in language available to the reader at this point in the book. Do not presuppose terminology introduced within the chapter, enumerate the contents, or ask a question answered trivially by the first example. Prefer one concise question.
+2. **Key Ideas.** Orient readers to why the chapter matters and what they should learn. Use accessible prose rather than a compressed chapter summary or a list of definitions. Introduce unfamiliar concepts through their ordinary engineering meaning. Where the chapter establishes a formal principle or recurring process, place its concise statement last, in italics and centered. Preserve canonical principle wording rather than silently creating a new definition.
+3. **Opening prose.** Advance the argument rather than merely recapitulating the preceding chapter. Usually use two or three paragraphs: establish the problem, develop its significance through an example or organizing idea, and explain how the chapter proceeds. Introduce an organizing figure where useful.
+4. **Signposting.** End the opening prose with a compact roadmap of the substantive sections, following Chapter 5's pattern. Explain each section's contribution rather than repeating the table of contents. Use resolved symbolic references, never hard-coded numbers or placeholder labels. In canonical LaTeX, single-label `\cref{chapter:<actual-slug>}` or the established `\magevalue{sec:<identity>}` convention works across editions; verify the destination against the current structure. Do not use unsupported uppercase or multi-label forms without extending and checking the projection.
+5. **Continuity.** Read adjacent questions and Key Ideas together. Each opening builds on concepts already established and introduces the next engineering problem. The progression is problems, representation, enforcement, dynamics, production organization, theory, and professional implications.
+6. **Length and typography.** Keep the opening proportionate to other chapters, Key Ideas compact, and the question short enough to read as one question. Check the rendered page for avoidable wrapping. Formal principles and process statements use consistent closing typography; ordinary explanatory paragraphs retain normal alignment.
+
+When editing an opening, verify that its question, Key Ideas, and prose do different work; that terminology is explained at the reader's current level; that roadmap references resolve to the intended sections in every edition; and that the next substantive section follows without repeating the introduction. Preserve a recently approved opening when only reference or continuity edits are needed.
+
 ## Chapter-Specific Purpose, Voice, and Editorial Style
 
 The chapters of MAGE serve different purposes and should not be edited toward a uniform prose style. The book moves from motivation to engineering methodology, empirical case analysis, theory, and professional implications. The appendices provide technical reference and adoption guidance. Editors should preserve these distinctions, including deliberate differences in pacing, exposition, examples, and use of the first person.

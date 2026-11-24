@@ -40,8 +40,8 @@
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
       "projection": "book/part1/00-part-intro.md",
-      "source_hash": "000c4546f3dc398f68f2d6752d4d3842f5db497b1b7ae31e0d7e16ab5d5a8b61",
-      "projection_hash": "bd659e77b02a4c008c8b3c58482d981c06ad6fb3b5116b610e422ac10c130a57"
+      "source_hash": "deb2cba959e88f127b83728e07f1273139320f6efd9cc196b46f148974a94a55",
+      "projection_hash": "85c3b50a3809dbea59404e8a967310694bd2e8a904652b34a58a65000c61b103"
     },
     {
       "source": "book/latex/sources/part1/1.1-the-printer.tex",
@@ -84,8 +84,8 @@
     {
       "source": "book/latex/sources/part2/00-part-intro.tex",
       "projection": "book/part2/00-part-intro.md",
-      "source_hash": "b8d312facd5f7378fca82a2c41552aa290ff62d0a4b9583ba11b4b104a56310e",
-      "projection_hash": "2fb04cdb0dab4d615d9089c3b656b951c429114c5a8a4a2e7459ea48baa9781e"
+      "source_hash": "050d0262922189cf7cb135c8d34ce171450309c318299d91c438494c05545271",
+      "projection_hash": "ca91b8669bc0df575aad7830f0588b90af59bebf466c40671849a01e9f2c4d95"
     },
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
@@ -132,14 +132,14 @@
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "fa6cbfde9bdfaaf18c4c452cc9b00f37a160c671bace0e89c712d8aaa777e17e",
-      "projection_hash": "d56f4cb88a8d766a99d375550f55b3e82227a274918a8cd0cb6309d9adc0e73e"
+      "source_hash": "b882b9aefcf5b8d3d37abfcc8a4283b1058c396bb8f7bc0b849936f042697903",
+      "projection_hash": "47d2efd54b502a80426184faaf1024af520c10b9fc7933be01916ff0aef02920"
     },
     {
       "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
       "projection": "book/part3/3.1-where-obligations-can-be-enforced.md",
-      "source_hash": "6cfce5a1107b103654112cda5cbfc58199c886fdb06db47106e41b89cd1a329b",
-      "projection_hash": "fdbd25f461aa728e7e2440b00b7f0e3ff4d7bb0fbabd846aa8409c4e76e0ca14"
+      "source_hash": "f51ccca916948c3b329ccf741c41dac4d6f33f17ef09009bd9bc329a89d07d54",
+      "projection_hash": "0de131267111c47c57bd156d4122cd3a8c3e222547ffdacefc84b0eefd98e6cb"
     },
     {
       "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
@@ -174,8 +174,8 @@
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
       "projection": "book/part4/00-part-intro.md",
-      "source_hash": "19aae4c25989235c50b7859b503f28caa2316175be1acb516a1b4a974022dfc5",
-      "projection_hash": "383a313070ed0536234fcf1170202a56a365d5c52802c0c7feee301c07a085ec"
+      "source_hash": "54af1c51a9bc8ec14e13c5e5a46ad9e8a4b2fc7550b9109684f4201db26d6181",
+      "projection_hash": "61a710321a4477a9e7cbf4da43136dcff96c846378544e946c8c3cb4c933df8c"
     },
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
@@ -246,14 +246,14 @@
     {
       "source": "book/latex/sources/part6/00-part-intro.tex",
       "projection": "book/part6/00-part-intro.md",
-      "source_hash": "16f0348675fe4cc9f4c3597c3e2ab685290eca59960aabf34f96d7bec8e66ae7",
-      "projection_hash": "2105780bbb6d60a231096109c947bc7ac57d9ce35aa02b401a794769346776e1"
+      "source_hash": "4bfe42b57bef647af1f71aed6b74f9671d5a5981cbf1669b92d13f21863d0f55",
+      "projection_hash": "9266b1b7f7f57cf74b05c252dcd9dacb6537bdbc80e907a4926a9951f0a0eee9"
     },
     {
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
-      "source_hash": "8217b0462cfcc28b53f0263b18d410a51de1fe16c48d3ee82d303f23aba5ed63",
-      "projection_hash": "ad9e675835665ac1011b4d05994fb733a666bd8a778613bf73f538a2b00d56e9"
+      "source_hash": "c4846ed3b9e129f7ad203b4864f0cd608c7d3e469dce82b0e0fbd97a15152d46",
+      "projection_hash": "6d3aca189908efc07820cb5a029fd23573cc20200681eff8f82f27fe5e523bee"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
@@ -282,8 +282,8 @@
     {
       "source": "book/latex/sources/part7/00-part-intro.tex",
       "projection": "book/part7/00-part-intro.md",
-      "source_hash": "3754cb5956fc30174daddb5febac98defdeee46843d016c6fd374c33c5bb4751",
-      "projection_hash": "4fbb7a98623499ac35ebb7b64d15d8296102975cfd53ab1a75eab2cdf49a3fc2"
+      "source_hash": "bceb8f63a4ca2c7de9c47cc35612d1ad81964b04a526bd18af2dc62ca2922047",
+      "projection_hash": "30b1ba9f9e592a9cf4801d5e76b79a4ed6aae11f6bbb50f2e10892820c5c9522"
     },
     {
       "source": "book/latex/sources/part7/7.1-reorganization-of-se.tex",

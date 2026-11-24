@@ -30655,3 +30655,252 @@ The preceding chapters have shown how engineers use representations to direct im
 Other replaced headings: “What Makes Production Economical?” and “What Makes Progress Cumulative?” Stable reference labels remain.
 
 Previous chapter question: “How does MAGE work, what should follow if the account is right, and where should we expect it to apply?”
+
+
+## Chapter opening conventions and continuity — 2026-11-24
+
+Source revision: `920dcac94d83cc934faef09b3caf3dcfb65d602e`. Replaced opening prose and boxes archived before applying the author-approved continuity pass; Chapter 6 retains its latest opening except its roadmap and the repeated Chapter 5 introduction. Figure captions are preserved; Figure 3.2 moves to §3.1.
+
+### book/latex/sources/part1/00-part-intro.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
+
+When a constraint moves, engineering reorganizes~\citep{amdahl1967,goldratt1984}.
+Steam engines made mechanical power widely available, shifting engineering effort toward designing machinery that could harness and transmit that power. Mechanized factories made production faster and cheaper, shifting engineering effort toward designing products for manufacture and organizing the machinery and processes that produced them.
+ Coding agents are now reducing the cost of software implementation. I argue that their capabilities warrant a similar reorganization of engineering work. Engineers can delegate more implementation decisions (while retaining responsibility for the resulting systems). The challenge is to exercise informed control without inspecting or directing every implementation decision.
+
+% When implementation becomes cheap, four engineering questions come into sharper focus: \textit{What should we build? What must the agent know about the system? How will we know whether its changes are correct? Which rules must it obey?}
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:founding-premise}
+
+Engineering effort concentrates around what limits reliable production. Commodity intelligence makes implementation abundant relative to engineering judgment. Engineers can delegate more realization work, but remain responsible for retaining sufficient control over the resulting system.
+\end{quote}
+
+```
+
+### book/latex/sources/part2/00-part-intro.tex (from line 1)
+
+```latex
+% mage-auto-heading: four-questions-for-every-model
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: modeling-principle, mage-becomes-practical -->
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:modeling-principle}
+
+% <!-- index-def: modeling-principle -->
+
+\textbf{Modeling Principle.} Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
+
+Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
+\end{quote}
+
+\magevalue{chapter:problem} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also take work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep. Which engineering models are worth constructing?
+
+% <!-- point: part-2-asks-what-to-model-and-what-it-reveals | The engineering question determines which distinctions a useful model must preserve. | terms: modeling-principle, model-as-map, scope-of-modeling -->
+
+The central skill is choosing a useful representation for the engineering question. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system call for different models. A useful model preserves the distinctions needed to answer its question while leaving irrelevant details out.
+
+% <!-- point: part-2-moves-through-five-model-classes | Structural, behavioral, and decision models answer different questions, and connected views support questions that span them. | terms: model-zoo, model-classes -->
+
+% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Connecting representations exposes relationships that no individual model captures. -->
+
+This chapter develops three familiar classes of engineering model: structural models ask what is connected to what; behavioral models ask what may happen; and decision models ask what should happen next. We then examine how models can be connected to answer questions that cross individual views. Different representations preserve different aspects of a system; connecting them makes relationships visible that no individual model captures.
+
+\subsection{Four questions for every model}\label{heading:four-questions-for-every-model}
+
+Read each worked model with these four questions in mind:
+
+\begin{itemize}
+\item
+  \textbf{Engineering question} --- What am I trying to know or decide?
+\item
+  \textbf{Model} --- What representation makes the question tractable?
+\item
+  \textbf{Property} --- What can I now state precisely?
+\item
+  \textbf{Quality attribute} --- What engineering concern does that property serve?
+\end{itemize}
+
+\magevalue{chapter:alignment} adds a fifth question: \textbf{What enforces the property?} Modeling makes properties explicit; Alignment makes selected obligations enforceable.
+
+```
+
+### book/latex/sources/part3/00-part-intro.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
+
+\magevalue{chapter:modeling} showed how engineering models make consequential knowledge and intent explicit. Having constructed those models, how do we know that an agent's work satisfies the obligations they express? An architectural model can state which dependencies are permitted, and a behavioral model can specify which transitions are legal. The implementation must still preserve those relationships while the agent makes the choices we have left open.
+
+Suppose an agent is asked to add a reporting feature that uses billing data. The architectural model requires \texttt{Reporting} to access \texttt{BillingDB} through \texttt{BillingAPI}, where access-control and consistency rules can be applied. The agent instead connects directly to the database. The report may display the expected values while bypassing those rules. Repeating the requirement in the prompt may help, but it leaves the obligation dependent on another interpretation of the same instruction. How can the engineering environment prevent such a change from being accepted without requiring the engineer to inspect every implementation decision?
+
+\autoref{engineer-agent-interaction} connects this question to the engineer's interaction with agents. Natural language supports conversation and exploration; specifications and models make selected obligations and relationships explicit. Review, testing, and analysis return evidence about the resulting implementation. The engineer uses that evidence to decide whether the work is acceptable, needs correction, or reveals a problem with the original understanding. These interactions can recur throughout a change.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/engineer-agent-interaction-0b4a60f4a1.pdf}
+\caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.}
+\label{engineer-agent-interaction}
+\end{figure}
+
+Alignment connects selected obligations to mechanisms that can restrict actions and determine whether work may proceed. Constraints limit available actions or states. Sensors obtain evidence about proposed work, artifacts, or executions. Gates evaluate the applicable conditions and permit or refuse passage. \autoref{alignment-overview} shows how these functions connect models to enforcement. They may be combined in one mechanism, and their assurance extends only to the obligations and evidence they cover.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+% <!-- index-def: alignment-principle -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:alignment-principle}
+
+\textbf{Alignment Principle.} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+\end{quote}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/alignment-overview.pdf}
+\caption{\emph{Alignment from models to enforcement.} Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.}
+\label{alignment-overview}
+\end{figure}
+
+These practices have established engineering precedents. Architectural conformance checks compare implementations with intended structural relationships~\citep{murphy1995reflexion,sangal2005dependency,passos2010conformance}. System-safety engineering identifies hazards and constraints, then designs controls and feedback to preserve them~\citep{leveson2011}. Types, permissions, validators, and deployment gates provide familiar software mechanisms. MAGE uses these techniques to preserve consequential obligations as agents construct and change systems.
+
+Agents remain valuable because they can investigate alternatives and devise implementations the engineer has not prescribed. Mechanizing every decision would sacrifice much of that freedom, even where it were practical. Some obligations require human judgment; others do not justify the cost of a dedicated control. The engineer must decide which obligations warrant enforcement, whether the available evidence is adequate, and which choices can remain open to reasoning and investigation.
+
+The chapter develops these engineering decisions: what must hold, what evidence can evaluate it, where the environment can intervene, and which mechanisms provide the required protection. We examine how to test those mechanisms, how controls accumulate through engineering experience, and how to maintain them when they become a system in their own right.
+
+```
+
+### book/latex/sources/part4/00-part-intro.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
+
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} separated Modeling from Alignment so that each principle could be examined clearly. This chapter brings them together around a practical question: \textbf{how should we put models to work as a system evolves?} Analysis can suggest a different design; a prototype can reveal that the current model omits a consequential interaction. Engineers must decide which properties to protect while exploring a change, how to evaluate the result, and what to retain for later work.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:the-mage-cycle}
+
+\textbf{Model → Realize → Evaluate.}
+
+Make consequential knowledge and intent explicit. Build or modify the system, potentially through agents. Evaluate the result against the relevant obligations, returning to the models or realization as the evidence requires. Alignment operates throughout, establishing or preserving correspondence as the system changes. Governance conversion makes consequential lessons durable in the structure that later work inherits.
+
+You can enter this cycle at any point. Recall \autoref{multiple-routes-to-engineering-models} in \magevalue{chapter:modeling}: engineering may begin with requirements, an existing system, an observed failure, or exploratory agent implementation.
+\end{quote}
+
+\autoref{mage-in-practice-map} maps these activities to the sections that follow.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-in-practice-map.pdf}
+\caption{\emph{MAGE in practice.} Engineering proceeds through repeated Modeling, Realization, and Evaluation. This chapter develops four complementary activities: establishing and revising alignment, developing models as new questions arise, recovering and governing knowledge in existing systems, and maintaining the engineering environment. The activities overlap; their results inform subsequent work.}
+\label{mage-in-practice-map}
+\end{figure}
+
+The chapter moves from establishing and revising alignment to developing related models, recovering knowledge from existing systems, and engineering the environment that supports this work.
+```
+
+### book/latex/sources/part6/00-part-intro.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: conversions-compound -->
+
+\magevalue{chapter:software-factories} examined DocAble's software factory and related arrangements reported by other organizations. These cases show how engineering knowledge can become part of the machinery governing subsequent work. What determines whether that machinery improves the reliability, cost, and cumulative value of engineering?
+
+We begin with three questions: did the agent produce what the engineer intended, what did it cost, and what did the work leave behind for subsequent engineering? Four theoretical propositions then explain how representations, independent enforcement, and engineering capital can affect the use of additional agentic capacity. Scope conditions identify where these relationships should matter, and a research agenda describes how they might be tested.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:the-synthesis}
+
+Agentic capacity makes implementation work cheaper, but more implementation does not necessarily mean more engineering progress. MAGE addresses the relationship between the two.
+
+The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+
+The question is how engineers make that inheritance useful: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
+\end{quote}
+
+```
+
+### book/latex/sources/part7/00-part-intro.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: seat-moves, govern-the-environment, mage-becomes-practical -->
+
+The preceding chapters developed MAGE from an engineering problem into a method and then a theory. Commodity intelligence makes implementation abundant relative to engineering judgment. Modeling makes consequential knowledge and intent explicit so that engineers and agents can reason about systems without repeatedly reconstructing them from implementation. Alignment makes selected obligations enforceable through the surrounding engineering environment. Governance conversion turns recurring failures and judgment into durable structure that subsequent work can inherit. \magevalue{chapter:theory} examined the resulting dynamics and economics: when these structures pay for themselves, how they change the division of engineering work, and what the theory predicts.
+
+Together, these ideas suggest a change in where engineers exercise their expertise. As agents assume more implementation work, engineers can increasingly direct that work through representations, evidence, constraints, and controls rather than through the implementation itself. This does not mean that every engineer becomes a modeler, or that every consequential judgment can be mechanized. It means that engineers have new ways to exercise informed control over systems whose implementation they increasingly delegate. Which ways prove economical, and which judgments remain with people, are engineering questions in their own right.
+
+This final chapter considers what follows for the profession. It begins with the reorganization of software work, places MAGE within established engineering traditions, examines what transfers beyond software, and concludes with the engineer’s expertise, authority, education, and responsibility.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:the-synthesis}
+
+When implementation becomes abundant, software engineering does not disappear. Its scarce work moves. Engineers can delegate more realization while remaining responsible for the resulting system. Their work increasingly centers on retaining informed control: deciding what must be true, choosing representations that make consequential properties understandable, establishing evidence, allocating authority, coordinating autonomous work, and accepting consequential tradeoffs.
+
+The same account suggests a broader engineering problem: how people retain informed control when agents perform consequential engineering work in domains whose representations, evidence, and means of enforcement differ from software.
+\end{quote}
+
+```
+
+### book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex (from line 1)
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: From Production to Cumulative Progress -->
+
+\chapter{From Production to Cumulative Progress}
+
+% <!-- point: the-pieces-this-chapter-assembles | Chapter 5 examined the complete software factory; the theory focuses on its GEE and how reusable engineering structure supports the encoding and realization of intent. -->
+
+% <!-- print-columns-start: theory-perspectives -->
+
+\magevalue{chapter:software-factories} showed how a software factory organizes the work of building and changing software. But producing more changes is not necessarily progress. The changes must do what engineers intended, be worth the cost of producing them, and leave the system in a condition that supports further work.
+
+These are three different questions. We will examine each in turn, beginning with what it means for an agent to produce the software an engineer actually wanted (\autoref{theory-perspectives}).
+
+
+```

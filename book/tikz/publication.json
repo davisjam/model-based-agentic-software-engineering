@@ -147,9 +147,9 @@
       "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
     },
     "book/assets/engineer-agent-interaction.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author approved revised black-and-white review Figure 4.1 in the sidebar; remove its color companion from the PDF.",
-      "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8"
+      "approved_date": "2026-11-24",
+      "reason": "Author-requested side clearance: widen the outer frames and shift each unchanged channel group outward by 0.2 cm. Native side clearance increases from approximately 0.6 pt to 9.2 pt, comparable to the existing top/bottom margins. Preserve all labels, fonts, inner box dimensions, arrow directions, vertical geometry, and shared implementation hinge. Apply equivalent 20 px side margins in the web SVG.",
+      "candidate_sha256": "ca4cae73b1f2f2ac4852f5e50f8826f21c1e09f498070ac33743d2d05a47d73e"
     },
     "book/assets/alignment-kernel.svg": {
       "approved_date": "2026-11-11",

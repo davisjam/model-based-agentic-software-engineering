@@ -10,9 +10,9 @@
 >
 > <!-- index-def: modeling-principle -->
 >
-> **Modeling Principle.** Externalize knowledge and intent into engineering models that both engineers and agents can reason through.
+> Engineering models preserve the information needed to answer particular questions about a system. A useful model makes consequential relationships easier to reason about while leaving irrelevant details out. Different questions may require different representations, and several models may need to be connected to understand one system.
 >
-> Appropriate representations make otherwise intractable engineering questions manageable and make additional properties available for Alignment.
+> *Modeling Principle. Externalize knowledge and intent into engineering models that both engineers and agents can reason through.*
 
 {{chapter:problem}} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also take work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep. Which engineering models are worth constructing?
 
@@ -24,7 +24,9 @@ The central skill is choosing a useful representation for the engineering questi
 
 <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Connecting representations exposes relationships that no individual model captures. -->
 
-This chapter develops three familiar classes of engineering model: structural models ask what is connected to what; behavioral models ask what may happen; and decision models ask what should happen next. We then examine how models can be connected to answer questions that cross individual views. Different representations preserve different aspects of a system; connecting them makes relationships visible that no individual model captures.
+We begin by examining what makes a representation an engineering model and how models are constructed and used ([ref:chapter:2.1-context-is-the-first-modeling-problem] and [ref:chapter:2.2-constructing-and-using-engineering-models]). We then develop three familiar classes: structural models describe relationships among parts of a system ([ref:chapter:2.3-structural]); behavioral models describe what may happen ([ref:chapter:2.4-behavioral]); and decision models describe how to choose among alternatives ([ref:chapter:2.5-decision]). Finally, [ref:chapter:2.6-system-knowledge] examines how representations can be connected to answer questions that no individual model can settle.
+
+<!-- print-keep-with-next: 12 -->
 
 ### Four questions for every model
 

@@ -221,6 +221,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
 \usepackage[mage]{house}
 \usepackage{longtable,booktabs,array,calc}
 \usepackage[numbers]{natbib}
+\usepackage{placeins}
 % Match HTML and resolved excerpt references, including sentence-initial uses.
 \renewcommand{\sectionautorefname}{Section}
 \renewcommand{\subsectionautorefname}{Section}
@@ -653,7 +654,16 @@ def _prepare_record(task):
                 raise ValueError(f'{slug}: expected {bb._PART_OPENER_IDEAS_LABEL} opener heading')
             if heading[2]:
                 orientation += r'\phantomsection\label{' + slug + ':heading:' + heading[2] + '}\n'
-            orientation += r'\begin{bookbox}{' + inline(bb._PART_OPENER_IDEAS_LABEL) + '}{}\n' + inline(body) + '\n' + r'\end{bookbox}' + '\n'
+            # The final wholly italic paragraph is the opener's formal statement.
+            # Keep other Key Ideas paragraphs in ordinary running prose.
+            paragraphs = body.strip().rsplit('\n\n', 1)
+            closing = re.fullmatch(r'\*([^*]+)\*', paragraphs[-1].strip(), re.S)
+            if closing:
+                lead = inline(paragraphs[0]) + '\n\n' if len(paragraphs) == 2 else ''
+                rendered_body = lead + r'\begin{center}' + '\n' + inline(paragraphs[-1]) + '\n' + r'\end{center}'
+            else:
+                rendered_body = inline(body)
+            orientation += r'\begin{bookbox}{' + inline(bb._PART_OPENER_IDEAS_LABEL) + '}{}\n' + rendered_body + '\n' + r'\end{bookbox}' + '\n'
             raw = raw[:principle.start()] + raw[principle.end():]
         orientation += '\n% mage-orientation-end\n'
     raw = bb.apply_token_passes(raw)
@@ -797,6 +807,9 @@ def _prepare_record(task):
         latex = re.sub(r'\\(sub)*section(?=[{*])', lambda m: r'\subsubsection' if m[1] else r'\subsection', latex)
     if part_page:
         heading = ''  # The chapter opener already provides its title and anchor.
+        if r'\begin{figure}' in latex:
+            # A chapter's organizing figure belongs before its first section.
+            latex += '\n' + r'\FloatBarrier' + '\n'
     elif section_page and 1 <= record['part'] <= 7 and bb._chap_ref(record):
         # Native sectioning numbers the heading and nests the bookmark under its chapter.
         heading = (r'\setcounter{secnumdepth}{2}\section{' + title + '}'
@@ -1091,6 +1104,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
 \documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
 \usepackage[numbers]{natbib}
+\usepackage{placeins}
 % Match HTML and resolved excerpt references, including sentence-initial uses.
 \renewcommand{\sectionautorefname}{Section}
 \renewcommand{\subsectionautorefname}{Section}

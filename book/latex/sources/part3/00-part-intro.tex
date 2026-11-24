@@ -2,21 +2,6 @@
 
 % <!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
 
-\magevalue{chapter:modeling} showed how engineering models make consequential knowledge and intent explicit. Having constructed those models, how do we know that an agent's work satisfies the obligations they express? An architectural model can state which dependencies are permitted, and a behavioral model can specify which transitions are legal. The implementation must still preserve those relationships while the agent makes the choices we have left open.
-
-Suppose an agent is asked to add a reporting feature that uses billing data. The architectural model requires \texttt{Reporting} to access \texttt{BillingDB} through \texttt{BillingAPI}, where access-control and consistency rules can be applied. The agent instead connects directly to the database. The report may display the expected values while bypassing those rules. Repeating the requirement in the prompt may help, but it leaves the obligation dependent on another interpretation of the same instruction. How can the engineering environment prevent such a change from being accepted without requiring the engineer to inspect every implementation decision?
-
-\autoref{engineer-agent-interaction} connects this question to the engineer's interaction with agents. Natural language supports conversation and exploration; specifications and models make selected obligations and relationships explicit. Review, testing, and analysis return evidence about the resulting implementation. The engineer uses that evidence to decide whether the work is acceptable, needs correction, or reveals a problem with the original understanding. These interactions can recur throughout a change.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/engineer-agent-interaction-0b4a60f4a1.pdf}
-\caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.}
-\label{engineer-agent-interaction}
-\end{figure}
-
-Alignment connects selected obligations to mechanisms that can restrict actions and determine whether work may proceed. Constraints limit available actions or states. Sensors obtain evidence about proposed work, artifacts, or executions. Gates evaluate the applicable conditions and permit or refuse passage. \autoref{alignment-overview} shows how these functions connect models to enforcement. They may be combined in one mechanism, and their assurance extends only to the obligations and evidence they cover.
-
 % <!-- principlebox -->
 
 % <!-- box-family: canonical -->
@@ -27,18 +12,22 @@ Alignment connects selected obligations to mechanisms that can restrict actions 
 \mbox{}%
 \subsection{Key Ideas}\label{heading:alignment-principle}
 
-\textbf{Alignment Principle.} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+Engineering models can express obligations without ensuring that an implementation satisfies them. Instructions and feedback may guide an agent toward acceptable behavior, but important obligations should not depend solely on the agent interpreting them correctly. Engineers can establish mechanisms that restrict actions, obtain evidence, and determine whether work may proceed. These mechanisms must be placed where the relevant obligations can be evaluated and enforced.
+
+\emph{Alignment Principle. Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.}
 \end{quote}
 
-\begin{figure}[!htb]
+\magevalue{chapter:modeling} showed how engineering models make consequential knowledge and intent explicit. But an agent can produce an implementation that violates a correctly stated model. Suppose an agent is asked to add a reporting feature using billing data. The architectural model requires \texttt{Reporting} to access \texttt{BillingDB} through \texttt{BillingAPI}, where access-control and consistency rules can be applied. The agent instead connects directly to the database. The report may display the expected values while bypassing those rules. Repeating the requirement in the prompt may help, but it leaves the obligation dependent on another interpretation of the instruction.
+
+Alignment addresses this problem by connecting selected obligations to mechanisms that can restrict actions or determine whether work may proceed. \autoref{engineer-agent-interaction} places Alignment alongside Modeling in the engineer's interaction with agents. Natural language, specifications, and models communicate intent; review, testing, and analysis provide evidence about the resulting work. The engineer must decide which obligations warrant enforcement, what evidence is adequate, and which implementation choices should remain open. These decisions draw on familiar practices, including architectural conformance checking, software testing, permissions, and system-safety engineering~\citep{murphy1995reflexion,sangal2005dependency,passos2010conformance,leveson2011}.
+
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{book/latex/assets/alignment-overview.pdf}
-\caption{\emph{Alignment from models to enforcement.} Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.}
-\label{alignment-overview}
+\includegraphics[width=\linewidth]{book/latex/assets/engineer-agent-interaction-0b4a60f4a1.pdf}
+\caption{\emph{Engineer--agent interaction through Modeling and Alignment.} Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization; Alignment evaluates the resulting work against engineering obligations and governs which actions or results may proceed.}
+\label{engineer-agent-interaction}
 \end{figure}
 
-These practices have established engineering precedents. Architectural conformance checks compare implementations with intended structural relationships~\citep{murphy1995reflexion,sangal2005dependency,passos2010conformance}. System-safety engineering identifies hazards and constraints, then designs controls and feedback to preserve them~\citep{leveson2011}. Types, permissions, validators, and deployment gates provide familiar software mechanisms. MAGE uses these techniques to preserve consequential obligations as agents construct and change systems.
+% <!-- print-keep-with-next: 8 -->
 
-Agents remain valuable because they can investigate alternatives and devise implementations the engineer has not prescribed. Mechanizing every decision would sacrifice much of that freedom, even where it were practical. Some obligations require human judgment; others do not justify the cost of a dedicated control. The engineer must decide which obligations warrant enforcement, whether the available evidence is adequate, and which choices can remain open to reasoning and investigation.
-
-The chapter develops these engineering decisions: what must hold, what evidence can evaluate it, where the environment can intervene, and which mechanisms provide the required protection. We examine how to test those mechanisms, how controls accumulate through engineering experience, and how to maintain them when they become a system in their own right.
+We begin by examining where obligations can be enforced (\cref{chapter:3.1-where-obligations-can-be-enforced}) and how to connect engineering intent to independently evaluated evidence (\cref{chapter:3.2-models-and-the-semantic-gap}). \cref{chapter:3.3-constraints-sensors-validators-gates} develops the constraints, sensors, and gates used to govern work. \cref{chapter:3.4-governance-conversion} examines how those mechanisms accumulate as engineers learn from failures, and \cref{chapter:3.5-when-guardrails-collide} considers how to maintain the resulting controls as a system in their own right.
