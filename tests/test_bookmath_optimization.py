@@ -36,10 +36,27 @@ class OptimizationMathTests(unittest.TestCase):
         self.assertIn('acceptable', ''.join(math.itertext()))
         self.assertIn('bb(E)', to_typst(formula))
 
+    def test_annotated_constraints_keep_labels_in_a_separate_pair(self):
+        formula = (r'\begin{aligned}\min_{\pi\in\Pi}&C&&\text{total cost}\\'
+                   r'\text{subject to}&D\ge 1&&\text{delivery}\\'
+                   r'&A\le B&&\text{human attention}\end{aligned}')
+        math = ET.fromstring(to_mathml(formula, display=True))
+        table = math.find('.//m:mtable', NS)
+        self.assertEqual(table.get('columnalign'), 'right left right left')
+        self.assertEqual(table.get('columnspacing'), '0em 2em 0em')
+        rows = table.findall('m:mtr', NS)
+        self.assertEqual(len(rows), 3)
+        for row, label in zip(rows, ['total cost', 'delivery', 'human attention']):
+            self.assertEqual(len(row), 4)
+            self.assertEqual(''.join(row[2].itertext()), '')
+            self.assertEqual(' '.join(''.join(row[3].itertext()).split()), label)
+        self.assertIn(' &  & ', to_typst(formula))
+
     def test_empty_rows_or_missing_right_expressions_still_fail(self):
         for formula in [r'\begin{aligned}&\end{aligned}',
                         r'\begin{aligned}a&\\b&=c\end{aligned}',
-                        r'\begin{aligned}a&=b\\c\end{aligned}']:
+                        r'\begin{aligned}a&=b\\c\end{aligned}',
+                        r'\begin{aligned}a&=b&&\end{aligned}']:
             with self.subTest(formula=formula), self.assertRaises(MathError):
                 to_mathml(formula)
 

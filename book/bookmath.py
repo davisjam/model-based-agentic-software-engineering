@@ -279,10 +279,12 @@ class _P:
             cells = []
             while True:
                 cell = self.parse_row(until="env-end", row_break=True, cell_break=True)
-                # A continued constraint may leave its left label blank, as in
-                # a native aligned optimization. The expression on the right
-                # must still be present.
-                if not cell["kids"] and cells:
+                # Each alignment pair is right/left. Its left member may be
+                # empty, including the spacer in `expression && annotation`.
+                # The right expression must still exist in every pair.
+                if not cell["kids"] and cells and (
+                    len(cells) % 2 == 1 or self.peek() != ("align", "&")
+                ):
                     raise MathError("aligned needs a nonempty right-hand expression")
                 cells.append(cell)
                 if self.peek() != ("align", "&"):
@@ -435,7 +437,9 @@ def _ml(node: dict) -> str:
         align = " ".join("right" if i % 2 == 0 else "left" for i in range(len(node["rows"][0])))
         rows = "".join("<mtr>" + "".join(f"<mtd>{_ml(cell)}</mtd>" for cell in row) + "</mtr>"
                        for row in node["rows"])
-        return f'<mtable displaystyle="true" rowspacing="0.25em" columnspacing="0em" columnalign="{align}">{rows}</mtable>'
+        spacing = " ".join("0em" if i % 2 == 0 else "2em"
+                           for i in range(len(node["rows"][0]) - 1)) or "0em"
+        return f'<mtable displaystyle="true" rowspacing="0.25em" columnspacing="{spacing}" columnalign="{align}">{rows}</mtable>'
     if k == "cal":
         return f'<mi mathvariant="script">{html.escape(node["v"])}</mi>'
     if k == "bb":

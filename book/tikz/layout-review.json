@@ -6381,28 +6381,23 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "source_sha256": "e83eeb5bd3a8f3a1feb7b047d9ce08f8e436e7222b729204f5977c0e44d94e3f",
-      "candidate_sha256": "f1a2f26f45c5e2cd8320ab9b8fb3cbb84b92e07b3579c4d51e0ac259e2a9d9f4",
+      "source_sha256": "99cb0734f2f0d9a78f6cc683ba335d8513911106ba37b4266f2634fc5328f76d",
+      "candidate_sha256": "cb222a82eb7f8558b9711fead8940bc6178c13a49ddd4e97294d372cf5516595",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
+      "reason": "Balance the left and right inner margins of the experience/adaptation container. Increase row height and Diagnosis title/body separation, retaining all text, font sizes, semantics, and arrow directions.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "/tmp/dynamic-figure-20261124-final/proof.pdf",
-        "proof_sha256": "45740e4f40e61b7728f80af0ee556a53ee839890a619890047e7da91741aab16",
+        "proof": "book/data/local-evidence/evidentiary-basis-11202026/integration/chapter6-followup-20261124/figure-6-2-proof.pdf",
+        "proof_sha256": "4a94decd8e106a6cd26937fc982b55e596628ef405cac5a38ecef1dd4844af89",
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 303.974,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "height_bp": 311.974,
         "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "6f28f545368169b221624e54c271252512bd6735def13823cdfbffcc34ae6ca1",
-        "typography_audit_sha256": "23f29bb5c4d09e533006041c6171a8c290fed6bfc24ef505208f933b3d081b7e",
-        "semantic_typography_checks": 27,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_audit_sha256": "97f4bc715b1ef7d2bd379c698931e388809856896e4303c144cfc938ed9bce9f",
+        "typography_audit_sha256": "305fcf33209f56de55bc9770e6a67b4145c4d214a3f9d61c5dc8cb2bc1ed9424",
         "monochrome_pixels": true,
         "status": "passed"
       },
@@ -6410,11 +6405,11 @@
         "peer_groups": [],
         "terminal_exceptions": []
       },
-      "visual_review": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
+      "visual_review": "Balance the left and right inner margins of the experience/adaptation container. Increase row height and Diagnosis title/body separation, retaining all text, font sizes, semantics, and arrow directions.",
       "page_layout": {
         "after_dimensions_bp": [
           449.972,
-          303.974
+          311.974
         ],
         "after_font_sizes_pt": [
           9,
@@ -6423,8 +6418,8 @@
         ],
         "reviewed_visually": true,
         "decision": "recomposed",
-        "reason": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
-        "after_sha256": "f1a2f26f45c5e2cd8320ab9b8fb3cbb84b92e07b3579c4d51e0ac259e2a9d9f4"
+        "reason": "Balance the left and right inner margins of the experience/adaptation container. Increase row height and Diagnosis title/body separation, retaining all text, font sizes, semantics, and arrow directions.",
+        "after_sha256": "cb222a82eb7f8558b9711fead8940bc6178c13a49ddd4e97294d372cf5516595"
       },
       "revision_history": [
         {
@@ -6464,6 +6459,32 @@
             "geometry_findings": 0,
             "geometry_audit_sha256": "6e73e233bde65b1444cbf1c2b958ca3aae12da9a9ef18356e2583c888c9bdf0a",
             "typography_audit_sha256": "0c527ab82b6f79e1f5447bb7c24beeca5a1eb9f687c8f3804ceea2c0beadccb7",
+            "semantic_typography_checks": 27,
+            "monochrome_pixels": true,
+            "status": "passed"
+          }
+        },
+        {
+          "date": "2026-11-24",
+          "candidate_sha256": "f1a2f26f45c5e2cd8320ab9b8fb3cbb84b92e07b3579c4d51e0ac259e2a9d9f4",
+          "source_sha256": "e83eeb5bd3a8f3a1feb7b047d9ce08f8e436e7222b729204f5977c0e44d94e3f",
+          "change": "Balance the left and right inner margins of the experience/adaptation container. Increase row height and Diagnosis title/body separation, retaining all text, font sizes, semantics, and arrow directions.",
+          "previous_validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/dynamic-figure-20261124-final/proof.pdf",
+            "proof_sha256": "45740e4f40e61b7728f80af0ee556a53ee839890a619890047e7da91741aab16",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 303.974,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "6f28f545368169b221624e54c271252512bd6735def13823cdfbffcc34ae6ca1",
+            "typography_audit_sha256": "23f29bb5c4d09e533006041c6171a8c290fed6bfc24ef505208f933b3d081b7e",
             "semantic_typography_checks": 27,
             "monochrome_pixels": true,
             "status": "passed"

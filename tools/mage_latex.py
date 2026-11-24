@@ -746,7 +746,7 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
                                   row_gap_bp=3, row_stretch=1.05)
-    latex = layout_selected_table(latex, 'theory-experimental-comparisons', (.22, .43, .35),
+    latex = layout_selected_table(latex, 'theory-experimental-comparisons', (.20, .45, .35),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-evaluation-questions', (.40, .60),
                                   row_gap_bp=3, row_stretch=1.05)
