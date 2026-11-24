@@ -70,7 +70,11 @@ class FourPropositions(unittest.TestCase):
             with patch.object(theory, "_BOOK", str(root)):
                 page.write_text(original)
                 self.assertEqual(theory.parity_findings(), [])
-                page.write_text(original.replace("Task-relevant structure reduces reconstruction", "unreviewed change"))
+                mechanism = theory.derive_propositions()[0].mechanism
+                self.assertIn(mechanism, original)
+                changed = original.replace(mechanism, "unreviewed change", 1)
+                self.assertNotEqual(changed, original)
+                page.write_text(changed)
                 self.assertTrue(theory.parity_findings())
                 page.write_text("# No table\n")
                 self.assertTrue(theory.parity_findings())

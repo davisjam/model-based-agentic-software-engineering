@@ -10,6 +10,18 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / 'tools'), str(ROOT / 'book')]
 import mage_latex
 import build_book
+import book_ir
+
+
+class DeepHeadingTests(unittest.TestCase):
+    def test_all_heading_levels_preserve_semantics_and_anchors(self):
+        for level in range(1, 7):
+            with self.subTest(level=level):
+                raw = '#' * level + ' Engineering question {#question}'
+                expected = f'<h{level} id="question">Engineering question</h{level}>'
+                self.assertEqual(book_ir.classify_render_block(raw), book_ir.BlockKind.HEADING)
+                self.assertEqual(build_book._render_heading(raw), expected)
+                self.assertEqual(build_book.md_to_html(raw), expected)
 
 
 @unittest.skipUnless(shutil.which('pandoc'), 'Pandoc required')

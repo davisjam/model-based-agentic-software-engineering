@@ -391,8 +391,8 @@ def classify_render_block(block: str) -> BlockKind:
     if first.startswith("```"):
         lang = first[3:].strip().lower()
         return BlockKind.MERMAID if lang == "mermaid" else BlockKind.CODE
-    # Heading (space-delimited `# ` … `#### `).
-    if any(stripped.startswith(h) for h in ("#### ", "### ", "## ", "# ")):
+    # Markdown supports six levels; native paragraph headings project to level five.
+    if re.match(r"^#{1,6} ", stripped):
         return BlockKind.HEADING
     # Blockquote — EVERY line starts with `>` (matches the renderer's `all(...)` test).
     if lines and all(ln.strip().startswith(">") for ln in block.splitlines()):

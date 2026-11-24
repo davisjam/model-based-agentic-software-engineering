@@ -2322,7 +2322,7 @@ def _render_gap_marker(block: str) -> str:
 
 
 def _render_heading(block: str, section_no: str | None = None) -> str:
-    """A `#`..`####` heading → the matching <hN>. A trailing `{#slug}` sets the id anchor (stripped from the
+    """A `#`..`######` heading → the matching <hN>. A trailing `{#slug}` sets the id anchor (stripped from the
     visible text); an `## ` may carry a leading `[role: Name]` kicker.
 
     `section_no` (e.g. "1.1.3") is a DISPLAY-ONLY `part.chapter.section` prefix stamped on a `## ` (section)
@@ -2331,12 +2331,11 @@ def _render_heading(block: str, section_no: str | None = None) -> str:
     glossary pointer keeps resolving. Passed only for body chapters (Parts 1-5) by the per-chapter build;
     `None` (the default) — front/back-matter, appendix, blockquotes, floats, word-count — renders unnumbered."""
     stripped = block.strip()
-    if stripped.startswith("#### "):
-        txt, anc = _heading_anchor(stripped[5:])
-        return f"<h4{anc}>{inline(txt)}</h4>"
-    if stripped.startswith("### "):
-        txt, anc = _heading_anchor(stripped[4:])
-        return f"<h3{anc}>{inline(txt)}</h3>"
+    deep = re.match(r"^(#{3,6}) (.*)$", stripped, re.DOTALL)
+    if deep:
+        level = len(deep.group(1))
+        txt, anc = _heading_anchor(deep.group(2))
+        return f"<h{level}{anc}>{inline(txt)}</h{level}>"
     if stripped.startswith("## "):
         txt, anc = _heading_anchor(stripped[3:])
         kick, txt = _role_kicker(txt)
