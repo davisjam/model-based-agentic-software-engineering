@@ -5187,6 +5187,69 @@
         "or broaden runs"
       ],
       "previous_review": "book/editorial/appendix-a-figure-followup-20261120/before/handbook-model-based-test-selection.json"
+    },
+    {
+      "source": "book/assets/handbook-computation-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-computation-architecture.tex",
+      "source_sha256": "857d7809c7326783620773303cf2965728c6222e1ef71cb8bf6f5cb4187e7c3f",
+      "candidate_sha256": "9614513ad86d47cfbbea7d72261e909884dbc74b091a3c50bbc195c3bd8e72cb",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "links_and_groups": "Office registry declarations feed scheduling and an edge emitter; only the emitter supplies the Office analytical graph. PDF typed declarations project the PDF analytical graph. Dashed checks compare the executable population with declarations and the analytical graph. Both graphs support dependency queries, critical-path analysis, mutation classification, and measurement or coverage. ShouldRun is an execution-applicability condition.",
+      "preserved": [
+        "OFFICE",
+        "Computation registry",
+        "Identity (stable name)",
+        "Reads / writes (artifacts)",
+        "Before / after (order)",
+        "ShouldRun (applicability)",
+        "Executable pipeline",
+        "Registered passes"
+      ]
+    },
+    {
+      "source": "book/assets/handbook-recovery-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-recovery-architecture.tex",
+      "source_sha256": "5169af9f29db99754deaa810c3d0649c7232f353afdef58781bdf8347e1430c9",
+      "candidate_sha256": "f30cc4fc981fa955c4e5b30a85b6e83657684a897a08804ca563e3cfa7ea3747",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "links_and_groups": "A document job enters an in-flight accounting lease in Redis, storing job ID and issue epoch, not worker identity. The inline chunkless path bypasses the protected merge claim; the merge path must win a database compare-and-set. Both paths persist the artifact before updating durable job state and reaching completed or failed status. A separate recovery panel distinguishes stale-lease reissue, guarded stale release, interrupted effects, and interrupted publication. Three assurance rows distinguish the runtime claim constraint, bounded interleaving exploration, and temporal delivery and sweep assumptions.",
+      "preserved": [
+        "Document job",
+        "(job ID)",
+        "Inline path",
+        "(chunkless)",
+        "Merge path",
+        "(with claim)",
+        "1. In-flight lease",
+        "(job accounting in Redis)"
+      ]
+    },
+    {
+      "source": "book/assets/handbook-resource-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-resource-architecture.tex",
+      "source_sha256": "fc718406f8de9a1317104044e8760f20d54ee3ae8f0b02d7f39b79798a509080",
+      "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "links_and_groups": "Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles.",
+      "preserved": [
+        "Input document",
+        "Streaming extraction",
+        "Structural skeleton",
+        "External media store",
+        "Computation graph",
+        "Resource admission",
+        "Active computations",
+        "Streaming recombination"
+      ]
     }
   ],
   "last_revised_date": "2026-11-20"

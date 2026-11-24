@@ -1392,6 +1392,24 @@
       "kind": "reference-table",
       "location": "part5",
       "rationale": "Reader navigation across seven production contexts and distinctive mechanisms; no comparative ranking or outcome claims."
+    },
+    "assets/handbook-computation-architecture.svg": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "Appendix A",
+      "rationale": "Caption explains the blueprint relationships shown; implementation detail remains in the adjacent text."
+    },
+    "assets/handbook-recovery-architecture.svg": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "Appendix A",
+      "rationale": "Caption explains the blueprint relationships shown; implementation detail remains in the adjacent text."
+    },
+    "assets/handbook-resource-architecture.svg": {
+      "tier": "B",
+      "kind": "engineering-blueprint",
+      "location": "Appendix A",
+      "rationale": "Caption explains the blueprint relationships shown; implementation detail remains in the adjacent text."
     }
   },
   "historical_tiers": {

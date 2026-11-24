@@ -3,7 +3,7 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 140,
+  "candidate_count": 143,
   "refined_count": 69,
   "reviewed_peer_groups": 94,
   "figures": [
@@ -11406,6 +11406,39 @@
         "scope": "Standalone proof inspected at final print dimensions; panel text retained at 9.5pt, cycle labels 11.5pt."
       },
       "reviewed_visually": true
+    },
+    {
+      "source": "book/assets/handbook-computation-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-computation-architecture.tex",
+      "source_sha256": "857d7809c7326783620773303cf2965728c6222e1ef71cb8bf6f5cb4187e7c3f",
+      "candidate_sha256": "9614513ad86d47cfbbea7d72261e909884dbc74b091a3c50bbc195c3bd8e72cb",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "contracts": {}
+    },
+    {
+      "source": "book/assets/handbook-recovery-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-recovery-architecture.tex",
+      "source_sha256": "5169af9f29db99754deaa810c3d0649c7232f353afdef58781bdf8347e1430c9",
+      "candidate_sha256": "f30cc4fc981fa955c4e5b30a85b6e83657684a897a08804ca563e3cfa7ea3747",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "contracts": {}
+    },
+    {
+      "source": "book/assets/handbook-resource-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-resource-architecture.tex",
+      "source_sha256": "fc718406f8de9a1317104044e8760f20d54ee3ae8f0b02d7f39b79798a509080",
+      "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "contracts": {}
     }
   ],
   "page_layout_review": {

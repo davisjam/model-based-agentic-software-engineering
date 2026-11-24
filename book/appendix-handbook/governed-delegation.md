@@ -27,7 +27,7 @@ A work order must carry enough structure for people and machinery to use it. Doc
 | Work identity and provenance | Which durable results belong to an assignment? | Links among work orders, executors, worktrees, commits, artifacts, and inspection records. | Integration and recovery locate results without reconstructing a conversation. |
 | Completion criteria | What evidence permits acceptance and closure? | Promised effects, required checks or review, results, and unresolved obligations. | Completion review consumes independently inspectable artifacts and evidence; a producer report is one input. |
 
-These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
+The following metadata excerpt from a November 2026 work order locates a standards-evidence check’s inputs and intended output:
 
 <!-- print-keep-with-next: 12 -->
 
@@ -41,13 +41,13 @@ These fields come from an actual November 2026 brief to add a standards-evidence
 <!-- brief-genre: lint -->
 ```
 
-The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project’s acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
+The existing paths identify the registration point and the model the checker must consume; the new-file field distinguishes an intended output from a missing input. The assignment addresses a gap between acceptance criteria and implementation: exception data exists, but its admission checker is missing. This example shows how an unmet obligation becomes bounded work; the source records the assignment during execution, not its successful completion.
 
-The work order states intended work; component records and provenance describe relationships the arrangement relies on. Derived context is a selective view of those records, not a new owner of their meaning. Stable assignment and phase identities connect dispatch, durable results, and completion. A history mentioning a phase does not establish that the current assignment belongs to it. When identities or state disagree, reconcile the records before treating the disagreement as evidence of completion.
+Stable assignment and phase identities connect dispatch, durable results, and completion. Derived context selects relevant records without changing their meaning. A history mentioning a phase does not establish that the assignment belongs to it; conflicting identities or state require reconciliation before a completion decision.
 
-A lifecycle model must distinguish the states needed by its consumers. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately from acceptance. Choose the states for the work unit and its consumers. The important requirements are that dispatch have a defined precondition, acceptance require the work-order evidence, and interruption not imply successful completion. DocAble’s completed-phase gate uses a narrower predicate: a positively resolved completed phase refuses a new dispatch. Reopening changes that phase state; a reasoned override permits a particular dispatch without redefining completion.
+A lifecycle model distinguishes the states its consumers need. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately. Dispatch has a defined precondition, and acceptance requires work-order evidence. DocAble’s completed-phase gate refuses a new dispatch when the resolved phase state is complete. Reopening changes that state; a reasoned override permits one dispatch without redefining completion.
 
-Context selection supplies assignment-relevant knowledge, while permissions and gates restrict selected actions and admissions. The completion model connects each acceptance obligation to its required evidence and the decision that consumes that evidence. An agent’s final message is an input to review, not the accepted completion state.
+The completion model connects each acceptance obligation to evidence and a decision. An agent’s final message supplies an input to review; it does not itself establish acceptance.
 
 ## Realization
 
@@ -55,9 +55,9 @@ Context selection supplies assignment-relevant knowledge, while permissions and 
 
 Context selection connects an assignment’s scope to maintained engineering knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
 
-Before selection, validate the assignment’s structure, registered identities, paths, and required instruction markers. These checks establish that the declared inputs can be resolved; they do not establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Those decisions require engineering review.
+Before selection, validate the assignment’s structure, registered identities, paths, and required instruction markers. These checks establish that the declared inputs can be resolved.
 
-The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
+Each constraint-registry adapter accepts target files and returns normalized records carrying registry and constraint identities, scope, severity, priority, source or corrective guidance, and the matched target. Independently maintained registries expose a common selection interface:
 
 <!-- print-keep-with-next: 8 -->
 
@@ -67,46 +67,35 @@ def coverage_for_files(
 ) -> list[Constraint]: ...
 ```
 
-The aggregator deduplicates by registry and constraint identity, orders each registry’s contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
+The aggregator deduplicates by registry and constraint identity, orders each registry’s contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from displacing structural constraints. The resulting selection is bounded and prioritized, so it need not contain every applicable constraint. Its purpose is to provide relevant context without overwhelming the assignment.
 
-DocAble’s adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval.
+DocAble’s aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Callers need to distinguish no match, budget exclusion, and extraction failure, with source references available for further retrieval.
 
-Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations.
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent follows that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations.
 
 ### Dispatch, Execute, and Evaluate Completion {#handbook-model-lifecycle .unnumbered}
 
 Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
 
-Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. The shared repository, worktree, assignment, and executor registry supply different evidence. Design their identities so that an operator can find the changes belonging to an assignment without recovering the agent’s conversation.
+Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work ready for integration from an interrupted sequence. Links among the assignment, executor, worktree, and commits let an operator locate results without recovering the conversation.
 
-Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment’s producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
+Evaluate completion against the work order. Inspect the promised changes, their integration, and the tests or review addressing acceptance. Record unresolved obligations rather than replacing them with a completion marker. Checks may occur before merge, in later validation, or at release. Acceptance depends on independently inspectable evidence, including but not limited to the producing agent’s report.
 
-Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents’ commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. The operator recovered the work from durable repository state rather than the lost completion notifications.
+Recovery inspects durable artifacts before assigning replacement work or resetting an executor. In DocAble’s November 9 restart episode, background completion notifications disappear while agents’ commits remain in Git worktrees. The operator inspects branches, integrates completed work, then releases the affected slots. Durable repository state supplies the evidence needed to recover the work.
 
 For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
 
 ### Enforce Lifecycle Decisions {#handbook-conversion-episode .unnumbered}
 
-A system that delegates work against persistent assignments needs explicit rules for recognizing completed work, reopening assignments, and authorizing exceptions. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
+Persistent assignments need rules for recognizing completion, reopening work, and authorizing exceptions. DocAble’s completed-phase gate addresses repeated dispatch against phases whose implementation is already integrated. Phase identities in briefs and commits connect the assignment to a reconciled phase record, which composition and dispatch both consult. The gate refuses a new assignment when that record positively identifies a completed phase.
 
 A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase’s completion state.
 
-The control itself required repair. An October 10 investigation found that phase extraction first examined the declared `Epic` line but fell back to the first “Phase N” mention anywhere in the brief. Historical prose about a completed phase could then cause a new assignment to be refused. Four false refusals in one session prompted investigation. The corrected extractor, reproduced below from the field note, restricts identity extraction to the declared line:
-
-<!-- print-keep-with-next: 11 -->
-
-``` text
-def extract_phase_from_brief(brief_text: str) -> str | None:
-    m_line = _EPIC_LINE_RE.search(brief_text)
-    if m_line is None:
-        return None
-    m_phase = _PHASE_IN_LINE_RE.search(m_line.group(0))
-    return m_phase.group(1) if m_phase else None
-```
+The October 10 investigation identifies four false refusals in one session. The original extractor searches the declared `Epic` line, then falls back to the first phase reference anywhere in the brief. Narrative history about a completed phase can therefore cause an unrelated assignment to be refused. The repair restricts extraction to the declared field. If that field contains no phase, the extractor returns no phase rather than manufacturing an identity from narrative text.
 
 Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
 
-Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction.
+Repeated overrides should prompt review of the gate’s premise, identity extraction, state reconciliation, or policy. An override is an exception to a particular dispatch decision, not evidence that the underlying control is correct.
 
 ### Verify the Arrangement {.unnumbered}
 
@@ -114,4 +103,4 @@ Exercise the whole path from assignment to accepted or recoverable work. A valid
 
 ## Adaptation and Limits
 
-The arrangement applies to delegated infrastructure changes, document transformations, and operational procedures. Preserve the relationships among assignment scope, relevant knowledge, authorization, durable results, and acceptance evidence. Choose work identities and lifecycle states appropriate to the domain, including explicit completion and reopening rules. Retain sufficient evidence to resume or decline work without reconstructing the agent’s conversation. [Appendix B’s Operating a GEE section](appendix-b-operating-a-gee.html) develops the corresponding operating procedures.
+The arrangement applies wherever delegated work must survive interrupted execution and be accepted against explicit obligations. Its effectiveness depends on stable assignment identities, durable artifacts, and a completion decision grounded in evidence beyond the producer’s report. It does not establish that an authorized assignment is worthwhile or that the selected acceptance criteria are sufficient. Those remain engineering judgments. [Appendix B’s Operating a GEE section](appendix-b-operating-a-gee.html) develops the corresponding operating procedures.

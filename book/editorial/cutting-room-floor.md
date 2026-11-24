@@ -27238,3 +27238,1829 @@ The deployment-block and batched-rendering particulars lack support in the attac
 ```latex
 That coupling became explicit in the engineering machinery. Concurrency models delegated memory feasibility to the memory model of record rather than doing memory arithmetic of their own. Fan-out width was represented as a peak-memory multiplier, so a throughput author had to size the width against a memory budget. Some throughput changes carried fail-loud guards that refused to run a fan-out whose estimated memory exceeded its budget. A batched-rendering design was chosen over a concurrent one partly because the concurrent alternative measured past the service\textquotesingle s memory ceiling. And in one latency campaign a memory sweep blocked the production deploy altogether. The earlier resource model had become part of the environment within which the later one operated.
 ```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part2/2.3-structural.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+The document-mutation model identifies where changes belong. A second structural question concerns how remediation computations depend on one another. If we change one computation, which others might be affected? DocAble runs documents through registered remediation passes that detect conditions, produce information for later passes, decide whether work should proceed, or modify document state. A \emph{registered computation} is a named remediation pass that DocAble knows how to invoke, such as a pass that classifies document content or repairs alternative text. The registry identifies the pass and records selected properties of its role in the pipeline. The graph represents the pass as a node, leaving its internal statements, library calls, and loops out of the graph.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part2/2.3-structural.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+A repair pass may edit a document directly or produce a \textbf{typed patch}: a structured description of a proposed change, such as assigning alternative text to a figure. A separate component, the \textbf{applier}, interprets the patch and performs the change. The boundary where proposed changes become document mutations is the \textbf{apply seam}.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part2/2.6-system-knowledge.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+The Office example makes the same dependency available for execution and analysis; it does not derive a new relationship by joining independent models. The execution machinery uses the declared relationships to schedule work; the analytical view exposes the structure needed for queries and checks. The important question is which representation owns each fact and how each consumer remains connected to that source. Where separate declarations are necessary, as in the PDF view, checked correspondence carries that connection.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part2/2.4-behavioral.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+The models make those distinctions available for analysis; the later Alignment chapter examines the mechanisms that enforce them.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+ \autoref{chapter:appendix-a-remediation-computation-graph} describes how to construct and test these connections.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+The computation-model case distinguishes three tasks: establishing the intended obligation, obtaining adequate evidence, and making acceptance depend on the result. We now examine the mechanisms that perform these functions, and how engineers choose among them.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+For the job-ownership model in \autoref{3.3-constraints-sensors-validators-gates:heading:tests-and-models-work-together}
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+\textbf{DocAble: Protecting the Recovery Protocol.} The ownership tests considered earlier exercise the implementation. Here we examine how a runtime constraint and model analysis address related obligations in the recovery protocol.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+DocAble's document-remediation jobs can outlive a worker attempt. A worker may crash, become slow, or lose contact while another attempt becomes eligible to continue the work. A lease makes current ownership visible and allows apparently abandoned work to be recovered. Its expiry cannot establish that the old worker stopped: a delayed worker may still return. The design therefore distinguishes eligibility to recover the work from permission to perform its protected side effect.
+
+
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+\autoref{match-mechanism-to-property} shows how DocAble addresses two obligations in this recovery protocol. A runtime constraint prevents competing workers from acquiring the same claim for a protected effect. A separate analysis checks whether the modeled recovery sequence permits a stale worker to invalidate a newer claim. The first restricts what the implementation can do; the second examines behavior that depends on the ordering of several operations.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+A page tells us where content occurs, not which computations depend on which others. \autoref{2.3-structural:heading:what-computations-depend-on-one-another} introduced the computation dependencies, and \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} connected their declarations to scheduling and analysis. Here the question was how to use them to reorganize execution. Consider alt-text generation as a concrete example. Each page can first be analyzed independently. Those analyses feed an operation that builds shared document context. Once that context exists, the GenAI queries that generate alt text for individual images become ready to execute independently. The actions and their information dependencies form a remediation graph; the currently executable actions form its frontier.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+The computation declarations described in \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} support both execution and analysis. For Office formats, registry read/write metadata informs scheduling and supplies dependencies to the analytical graph. PDF uses parallel typed declarations whose correspondence is checked. The blocking checks developed in \autoref{3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement} help preserve these relationships as the product changes. The factory therefore maintains reusable structural knowledge instead of requiring each new analysis to reconstruct composition from pass implementations.
+```
+
+
+### 2026-11-24 — Blueprint construction follow-up: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `d82f23314`; deepen the appendix and sharpen cumulative main-text uses.
+
+```latex
+\magevalue{sec:interlude-one-problem-many-models} follows the execution redesign that this knowledge supported. The resulting analytical views reuse computation identities to examine critical paths, mutation behavior, cost, and coverage, while remaining distinct from the machinery that schedules work. \autoref{chapter:appendix-a-remediation-computation-graph} describes the integrated construction.
+```
+
+
+### 2026-11-24 — GenAI-hop check scope
+
+Source archaeology distinguishes exclusion from upper-bound comparisons from a separate equality assertion; audit-only is not a blanket nonblocking guarantee.
+
+```latex
+A fifth quantity, the number of GenAI hops, was observed without blocking while its behavior was still being characterized. The distinction is worth keeping: a counter that gates and a counter that only reports are different mechanisms, and a new one usually begins as the second.
+```
+
+
+## 2026-11-24 — A.7 concrete construction expansion
+
+Source: `book/latex/sources/appendix-handbook/remediation-computation-graph.tex`, lines 1–64, revision `d82f233140e03307d58220d9f980f4d656a84e08`. Replaced by source-verified declarations, operation traces, and scoped test evidence; preserve original explanatory copy here.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A remediation system performs computations whose dependencies do not necessarily follow document structure. A pass may inspect one element, produce information for several later passes, or modify state that another computation reads. When these relationships exist only inside implementations, changing execution order requires reconstructing them. The engineering problem is to make composition explicit enough to support scheduling and analysis while keeping the declarations connected to the operations that actually execute.
+
+\section{Conceptual Design}
+
+Represent each registered computation by a stable identity, its role, and the information it reads or produces. Distinguish data dependencies from control dependencies: one carries information to another computation; the other determines whether work should execute. Record mutation behavior separately, because independence of declared inputs does not establish that two writers can safely run concurrently. \autoref{from-nodes-to-composition} illustrates these distinctions.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+DocAble connects these declarations to two kinds of consumer. For Office formats, registry read/write metadata informs scheduling and is emitted as dependency edges for a Python analytical graph. The scheduler does not consume that Python graph. For PDF, the analytical graph projects parallel typed declarations whose correspondence with the executable pipeline is checked. The two arrangements share computation identities, but differ in which facts are derived from a common source and which require reconciliation.
+
+The execution machinery determines readiness from its dependency declarations and applicable control conditions. A frontier contains work whose prerequisites permit execution; a scheduling policy selects from that frontier subject to resource and mutation restrictions. Analytical views use the computation identities to examine critical paths, mutation behavior, cost, and coverage. Additional analytical annotations need not become scheduling inputs.
+
+\section{Engineering Models}
+
+\autoref{handbook-computation-models} separates the declarations from their execution and analysis consumers.
+
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for computation dependencies]{\emph{Engineering models for computation dependencies.} Identify the source of each relationship and the consumer that gives it an execution or analytical role.}\label{handbook-computation-models}\\
+\toprule
+\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\midrule\endhead
+Computation registry & Stable pass identities and roles; the registered unit is a computation, not each internal statement. & Execution registration, dependency declarations, and attribution. \\
+Dependencies & Data prerequisites and control conditions. Office read/write declarations supply shared facts; PDF uses checked parallel declarations. & Scheduling machinery and the derived analytical graph. \\
+Mutation behavior & Declared read-only, direct-mutation, patch-producing, or mixed behavior. A declaration alone does not restrict writes. & Mutation analysis; execution policies must separately enforce required exclusion or application boundaries. \\
+Execution & Readiness, completion, and scheduling choices within the declared dependencies and resource limits. & The scheduler and tests of execution order and permitted concurrency. \\
+Analytical views & Derived relationships joined to measurements, costs, or coverage observations through computation identities. & Critical-path queries, architectural investigation, and correspondence checks. \\
+\bottomrule
+\end{longtable}
+}
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+The static graph describes possible composition, not the history of one run. Telemetry joined to computation identities supplies measurements for selected analyses; the document edit history records realized mutations through a separate attribution channel. Missing measurements must remain distinguishable from measured zero cost. \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} explains these connections; \autoref{chapter:appendix-a-controlled-mutation} describes the supported mutation interface.
+
+\section{Realization}
+
+\subsection*{Connect Declarations to Their Consumers}
+
+Assign stable computation identities and define the meanings of each dependency kind. Where execution already has authoritative declarations, derive analytical edges from them. Where separate declarations are necessary, specify what the correspondence check compares. Check unresolved identities, required inputs, and dependency structures that the chosen execution policy cannot interpret. Define what happens when a control condition is false or a prerequisite fails; graph shape alone does not supply that behavior.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+Check the covered population against executable registrations, not merely one declaration set against another. A DocAble audit found a live Office pass outside the entries examined by its checks. Making those checks blocking would not have detected the omitted pass. The repair first expanded coverage and exercised discrepancy detection, then made Office findings blocking at admission. Both format families subsequently required their declared correspondence checks to pass. This progression is developed in \autoref{3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement}.
+
+\subsection*{Exercise Ordering and Challenge the Declarations}
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation-and-illustration
+For a successful example, use a table-header repair that produces information required by a later structure check. Resolve both computation identities, derive the data dependency, and verify that the scheduler makes the check ready only after its prerequisite succeeds. Query the analytical view for the same relationship. The ordering test supplies evidence about execution; agreement of the view with its source supplies evidence about correspondence.
+
+For a failing example, remove the relationship from the analytical projection while retaining the executable declaration. The correspondence check should identify the mismatch, and a required-check gate should reject the change. Then challenge coverage with an unregistered computation or an undeclared read. A comparison that examines only the remaining declarations can miss either defect; independent registration checks and targeted execution tests must expose the relevant omission.
+
+Keep execution policy separate from computation meaning. Test a candidate frontier policy on known dependency structures, including independent computations, control-gated work, and conflicting mutations. Use measurements to challenge predicted critical paths rather than treating the graph as a timing observation. \autoref{chapter:appendix-a-resource-models-and-execution-design} connects these choices to resource limits.
+
+\section{Adaptation and Limits}
+
+This arrangement is useful for pipelines and workflows with identifiable computations and recurring questions about their composition. Its soundness depends on the declared dependencies and effects matching the implementation. A hidden read or write can invalidate a scheduling choice even when every declared edge is consistent. Preserve a conservative execution policy where those relationships are uncertain, and require separate evidence before using apparent independence to justify concurrency.
+
+```
+
+
+## 2026-11-24 — A.8 concrete construction expansion
+
+Source: `book/latex/sources/appendix-handbook/job-ownership-and-recovery.tex`, lines 1–71, revision `d82f233140e03307d58220d9f980f4d656a84e08`. Replaced by source-verified declarations, operation traces, and scoped test evidence; preserve original explanatory copy here.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A worker may continue executing after its lease expires. If another worker acquires the job, a delayed release from the first worker must not clear the new ownership. Recovery also has to preserve externally visible effects and the ordering of result publication. Preventing conflicting ownership is insufficient if interrupted work can remain stranded or a database record can refer to an output that was never made durable.
+
+This blueprint concerns runtime document-remediation jobs. \autoref{chapter:appendix-a-governed-delegation} governs coding-agent assignments in the development environment; those assignments have a different lifecycle and acceptance procedure.
+
+\section{Conceptual Design}
+
+Represent the job lifecycle, the current lease, and claims for protected effects separately. The lifecycle states which transitions are permitted. The lease identifies a particular attempt's temporary ownership. A durable effect claim controls entry to a selected operation even when delivery is repeated or an earlier worker continues running. \autoref{match-mechanism-to-property} distinguishes that runtime constraint from analysis of the recovery protocol.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+DocAble's lease release uses the lease's issue epoch to distinguish successive claims for the same job. When the releasing worker presents an issue epoch, the atomic operation removes the stored lease only if that epoch matches. A separate database compare-and-set controls acquisition of a merge-stage claim. These operations protect different state: the first prevents a stale release from deleting a replacement lease; the second prevents competing attempts from both acquiring the same protected-effect claim.
+
+Safety and progress require different arguments. Lease comparison and effect claims restrict particular operations. An explicit-state model explores whether sequences of acquisition, expiry, replacement, and release can violate ownership. A temporal recovery model asks whether jobs eventually reach terminal states under stated assumptions about delivery, retries, and recovery sweeps. Neither analysis substitutes for evidence that the implementation follows the represented protocol.
+
+\section{Engineering Models}
+
+The models in \autoref{handbook-job-recovery-models} share job and attempt identities without treating lifecycle state, lease possession, and effect permission as interchangeable.
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for job ownership and recovery]{\emph{Engineering models for job ownership and recovery.} Ownership, effect permission, publication order, and eventual progress require distinct representations and evidence.}\label{handbook-job-recovery-models}\\
+\toprule
+\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\midrule\endhead
+Job lifecycle & Legal states, transitions, and terminal conditions for the relevant runtime path. & State-changing operations, conformance tests, and recovery procedures. \\
+Lease ownership & Job identity, issue epoch, expiry, and the conditions for replacing or releasing a claim. & Atomic lease operations and finite-state interleaving analysis. \\
+Protected effect & Durable state required to acquire a claim for a selected effect. & Database compare-and-set and the worker that proceeds only after acquisition. \\
+Publication order & The required relationship between a durable output and the database reference announcing it. & Result finalization and recovery tests. \\
+Recovery progress & Failure/retry behavior and delivery or sweep assumptions sufficient for eventual termination. & Temporal specifications and their analysis configurations. \\
+\bottomrule
+\end{longtable}
+}
+
+The engineer determines the permitted transitions and required properties. The runtime stores current state; the models supply the expected meanings against which behavior is examined. A simplified teaching state machine need not enumerate every production state, but a conformance test must explicitly map its states and operations to the implementation being tested.
+
+\section{Realization}
+
+\subsection*{Protect Each State Change at Its Boundary}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation-and-illustration
+Consider a successful handoff. Worker A's lease expires, worker B acquires a replacement, and B later releases that lease. B presents the current issue epoch, so the atomic comparison permits removal. If A instead returns with the old epoch, the comparison fails and B's lease remains. The comparison and deletion must form one atomic operation; a separate read followed by an unconditional delete leaves an intervening acquisition unprotected.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+At the protected-effect boundary, acquire the durable claim before performing the effect and proceed only on success. If two workers compete for the same merge-stage claim, only the compare-and-set that encounters the required prior state succeeds. The rejected attempt must not continue as though it held the claim. This restriction does not cancel a stale worker, establish idempotence of every operation, or guarantee exactly-once execution of an entire job. Recovery must account for a crash after claim acquisition as well as one before it.
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation-and-illustration
+Result publication has its own ordering obligation. In DocAble's fallback recovery path, finalize the fallback output before advertising it as completed in durable job state. Finalization uploads the artifact when remote storage requires it; a local store may already hold the durable output. A failure before finalization completes must not advertise the fallback as available. \autoref{2.4-behavioral:heading:publishing-a-recovered-result} develops this ordering. Define retry and cleanup behavior explicitly rather than assuming that storage and database writes form one transaction.
+
+\subsection*{Test Safety, Progress, and Correspondence}
+
+Use the stale-release sequence as a regression case, then vary operation order, expiry, and successive claims. Compare implementation responses with an executable ownership model. Test atomic operations with competing calls as well as sequential traces: a driver that issues one call at a time cannot expose every race inside an operation.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+DocAble uses a purpose-built explicit-state checker for the finite ownership model. Its explored interleavings make the state-space bounds part of the result. This is separate from testing production lease operations against the model. Varying the represented number of jobs or the permitted recovery transitions changes the analysis question; it must not silently leave the reported bounds unchanged.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+The temporal specification for serverless push recovery represents one job, a pending-delivery flag, and a bounded step counter. Its progress obligation is eventual arrival at a terminal state. The configurations use a four-step bound, strong fairness for delivery, and weak fairness for the recovery sweep and step-cap action; they contrast recovery enabled and disabled. This abstraction examines lost delivery and recovery, not the lease or merge-claim implementation. To evaluate it, run the configurations, retain the bounds and results, and examine counterexamples against the intended recovery behavior. A specification records the question; an execution result records what the analysis established for that configuration.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: implementation-and-incident
+Keep correspondence checks with the modeled protocol. DocAble has tests that exercise production operations against executable models and checks for drift between modeled states or transitions and implementation declarations. Require the relevant checks when changing those surfaces, and inspect cases the mapping omits. A model property, a passing conformance test, and a correct production recovery are different claims.
+
+\section{Adaptation and Limits}
+
+Use the arrangement where retries and stale workers can affect ownership or externally visible results. Choose a claim identity that distinguishes replacement attempts and define which operations must compare it. Protect effect claims at their actual state-changing boundary, and specify recovery after partial completion. Progress remains conditional on the delivery, recovery, and failure assumptions used in the temporal model; finite exploration and conformance tests establish only the behaviors they cover.
+
+```
+
+
+## 2026-11-24 — A.9 concrete construction expansion
+
+Source: `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex`, lines 1–78, revision `d82f233140e03307d58220d9f980f4d656a84e08`. Replaced by source-verified declarations, operation traces, and scoped test evidence; preserve original explanatory copy here.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A document-processing service can exhaust worker memory even when its individual transformations are correct. Dividing work by page may reduce intermediate allocations while leaving large media payloads resident. Increasing concurrency can then improve latency on small inputs and worsen failure on large ones. The engineering problem is to choose a representation and execution policy that preserve resource bounds while allowing useful parallel work.
+
+\section{Conceptual Design}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+DocAble separates document structure from aggregate media residency. For OOXML documents, a streaming transformation places media in external storage and retains stable references in a smaller structural skeleton. Remediation operates on that skeleton and accesses media through its references. Recombination must also stream: buffering the complete payload on output would recreate the memory problem. \autoref{interlude-execution-unit} shows how this arrangement differs from whole-document and page-partitioned processing.
+
+The residency model uses the same bound as \autoref{4.2-one-problem-many-models:heading:remove-media-from-the-working-set}:
+\[
+\begin{aligned}
+\operatorname{RSS}_{\mathrm{peak}} &\le C,\\
+C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+   + M_{\mathrm{handles}} + M_{\mathrm{work}}.
+\end{aligned}
+\]
+The terms bound the rolling stream buffer, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. That statement requires bounds on the skeleton, handle population, individual media consumers, and concurrent work; streaming alone does not establish it.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+With media residency controlled, page boundaries need not determine execution groups. Dependency declarations identify ready computations; mutation restrictions and resource limits constrain which may execute together. \autoref{chapter:appendix-a-remediation-computation-graph} describes those declarations and their consumers. A separate performance model evaluates candidate policies using operation costs, dependency paths, concurrency limits, and deployment overhead. A critical path supplies a latency lower bound under the model's assumptions, not an observation of end-to-end runtime.
+
+\section{Engineering Models}
+
+\autoref{handbook-resource-models} identifies the representations needed to connect resource feasibility to execution design.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: measurement-and-analysis
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for resource-aware execution]{\emph{Engineering models for resource-aware execution.} Representation, scheduling, and measurement must agree on the work and the resource boundary being evaluated.}\label{handbook-resource-models}\\
+\toprule
+\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\midrule\endhead
+Residency & Retained objects, allocation sizes, release conditions, and an admissible memory envelope. & Capacity decisions, concurrency feasibility, and resource guards. \\
+Document structure & Skeleton entities and references to media that need not remain resident. & Remediation passes, media access, and streamed recombination. \\
+Execution & Computation prerequisites, readiness, mutation restrictions, and allowed concurrency. & Scheduling policies and execution-order tests. \\
+Performance & Operation costs, critical paths, fan-out costs, and deployment assumptions. & Predictions and comparisons of candidate designs. \\
+Measurement & Workload identities, measured quantities, sampling boundary, and configuration. & Comparisons between predicted and observed memory, latency, and cost. \\
+\bottomrule
+\end{longtable}
+}
+
+A computation's inputs must resolve to document objects accessible under the residency policy. Check whether a consumer needs embedded media or a rendered page: extracting media before whole-page rendering can remove content the computation requires. The policy must preserve or restore that content. Its concurrency allowance must agree with the memory envelope. Measured quantities must use the same process or container boundary, workload, and configuration as the prediction being evaluated. These relationships make the models useful together; merely maintaining all five does not ensure their agreement.
+
+\section{Realization}
+
+\subsection*{Establish and Challenge the Residency Bound}
+
+Measure the failing workload before changing the architecture. Record peak memory, input characteristics, major allocation sources, and execution time. Distinguish growth with aggregate media size from growth with structural complexity, the largest individual object, decoded image area, or active concurrency. Introduce streaming and skeleton references where they remove unnecessary residency, then repeat measurements across the dimensions the model says matter.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: measurement-and-design
+DocAble's PDF recombination path supplied one concrete measurement: approximately flat peak-RSS scaling across a count-scaled media sweep when each object was flushed. That result establishes behavior for the tested path and workload. Evaluating the OOXML skeletonization design requires its own media-size sweep, including the write path and the assumed bounds on structural and active state. A result for one format cannot establish a resource envelope for another.
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: measurement-and-analysis
+Challenge the variables as well as their fitted values. In DocAble, measurements contradicted predictions about mapped PDF pages and media offloading; decoded image area exposed another source of memory growth. Such findings require revising the residency explanation or its operating envelope, not merely raising a ceiling until the current fixture passes.
+
+\subsection*{Admit an Execution Policy Within the Envelope}
+
+Construct candidate schedules from the dependency declarations. Validate known ready frontiers, required order, and mutation restrictions before comparing latency. Weight the dependency paths with measured or explicitly estimated operation costs. Include resource contention, coordination, and repeated distribution costs where they affect the candidate deployment. Increasing concurrency can reduce serialization of independent work; it cannot remove a genuine dependency, and its memory cost may make the faster prediction infeasible.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: implementation-and-illustration
+Trace a proposed concurrency increase through all three decisions. The execution model identifies simultaneously ready operations. The memory model evaluates the active working set at that width. The performance model predicts completion time. When the proposal satisfies the modeled bounds, run a representative workload and compare measured memory and latency with those predictions before accepting the change.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+For the failing case, the dependency order may permit the proposed width while the estimated working set exceeds the deployment budget. A resource guard should refuse that fan-out; the scheduler can use a smaller width or a batched design if the policy permits it. DocAble's execution design used a bounded-concurrency semaphore and modeled the frontier's working set as the concurrency limit multiplied by the per-call working set. This connects a scheduling choice to a resource question that dependency order alone cannot answer.
+
+\subsection*{Preserve the Tested Obligations}
+
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: implementation-and-measurement
+Retain the fixtures, measurement definitions, and accepted baselines with the design. DocAble mechanically checked four resource counters on two fixtures, while a further GenAI-hop dimension remained an audit measure. Keep that distinction explicit when deciding what a passing run establishes. A changed baseline needs an engineering explanation; a numeric comparison cannot decide whether that explanation is adequate. \autoref{chapter:appendix-a-model-based-test-selection} describes selecting relevant validation as these modeled surfaces change.
+
+\section{Adaptation and Limits}
+
+The arrangement applies where large payloads can be separated from the structure needed for reasoning and transformation. A format that requires whole-object access, unbounded structural growth, or a large decoded working set may need a different representation or admission policy. Resource and performance models remain conditional on their workloads and measurement boundaries. Preserve those conditions when changing formats, libraries, deployment tiers, or concurrency.
+
+```
+
+
+## 2026-11-24 — Author’s Note personal closing
+
+Source: `book/latex/sources/frontmatter/0.3-authors-note.tex:21`, revision `d82f23314`. User requests a separate personal paragraph before the signature, with the simpler closing sentence.
+
+My hope is that readers will take these ideas into their own engineering practice.
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part2/2.3-structural.tex`, line 164, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+The computation model describes the declared computations and dependencies. Per-job invocations and retries belong to execution records. Other views can nevertheless attach observations to its stable computation identities. DocAble joins staged-run telemetry to those identities, so measured latency and cost can be queried alongside the structural model without turning the structural graph into an execution log. The per-session mutation record remains separate: it records what happened to one artifact, not the execution history of the computation graph.
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, line 222, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+The episode exposed two separate requirements for the checking machinery. The analytical graph had to agree with its declared sources, but the checks also had to cover the computations that actually executed. Establishing agreement without addressing coverage would have left the omitted Office pass undetected. Only after repairing coverage and testing discrepancy detection did I make the Office checks blocking. \autoref{chapter:appendix-a-remediation-computation-graph} describes how these declarations, checks, and admission decisions fit together.
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, line 271, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+DocAble uses a durable compare-and-set to protect the claim for an effect.
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 152, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+The graph explains the ordering. Independent work can run together; a consumer waits only for information it actually needs from upstream. Pages do not create those dependencies. Information does. Expressed as a directed acyclic graph, the work currently ready to execute forms a frontier: the nodes with no unmet dependencies. A worker executes that frontier, materializes its outputs, and thereby exposes the next frontier.\magefootnote{topo-dag}{This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.}
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 242, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+The ratchet preserves the engineering question and the obligation to answer it, even when the answer changes.
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 244, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+% <!-- index-def: ratcheteering -->
+
+% <!-- box-family: move -->
+
+% mage-box-prefix: MAGE Move —
+
+\begin{bookbox}{move}{Ratcheteering}
+\label{heading:technique-ratcheteering}
+Ratcheteering is the continuing practice of accumulating and correcting durable engineering structure across successive changes. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control.
+
+Each episode may add, revise, or retire the models, procedures, evidence, and controls that later work inherits. Retain them selectively, when their engineering value justifies their maintenance.
+\end{bookbox}
+
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 328, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+This infrastructure supported the execution redesign examined in \autoref{4.2-one-problem-many-models:heading:modeling-execution-and-latency}. It also lets the factory evaluate subsequent changes without reconstructing the remediation pipeline from source code.
+```
+
+
+## 2026-11-24 — Selective boundary copyedit
+
+Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`, line 50, revision `d82f233140e03307d58220d9f980f4d656a84e08` plus current editorial work. User requests local redundancy/terminology correction; figures excluded.
+
+```latex
+Ratcheteering preserves the consequential concern while allowing the particular structure that carries it to be corrected, replaced, or retired.
+```
+
+
+## 2026-11-24 — Appendix A engineering-reference prose pass
+
+Author-directed selective cuts remove source-snapshot detail while preserving construction, failure cases, and validation scope. These complete pre-edit section snapshots retain the original citations and evidence comments for recovery; only the revised passages are displaced. Source revision: working tree based on d82f233140e03307d58220d9f980f4d656a84e08, including the unpublished blueprint/figure follow-up.
+
+### engineering-moves
+
+Source: `book/latex/sources/appendix-handbook/engineering-moves.tex`, lines 1–13; SHA-256 `34ec8be81a6c9a0832b1e324cadbb2165e2c77c160d2199c11bc49b6555d80da`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The figures show how the representations and mechanisms interact. The model inventories identify the engineering questions that make those representations useful. Read the two together: a model is valuable not simply because it describes part of a system, but because it makes an engineering decision, analysis, or obligation tractable.
+
+Follow the consequential effect through the design: an installed permission, a changed artifact, an accepted work unit, or an omitted check. Identify the models that inform each decision and the components that consume them. Then ask what happens when an identity cannot be resolved, a required result is missing, or an attempted action fails. A representation that names an obligation does not establish that any component enforces it.
+
+The figures use a common vocabulary. Rectangles identify models or durable artifacts; rounded rectangles identify mechanisms or transformations; diamonds identify decisions. Solid arrows carry data or artifacts. Dashed arrows show correspondence or verification relationships, and a heavy boundary identifies where an action is constrained or refused. Pale gray identifies flexible reasoning. A path into a decision does not by itself establish that the evidence is sufficient: the prose states what each check can decide and how its findings affect the outcome.
+
+Distinguish authority from derivation. A descriptive model records what exists or has been observed; an authoritative model states properties the system must preserve. Either may be authored directly or derived from other representations. A correct derivation from a mistaken obligation remains mistaken, and a faithful description may record behavior that ought to change. Identify who owns each consequential fact, which identities connect the models, and what evidence establishes correspondence after a change.
+
+Apply Alignment at the boundary where the obligation can be decided. Constraints restrict admissible actions or states; sensors produce evidence; gates consume evidence and control whether work proceeds. Evaluation may occur within this arrangement without controlling acceptance: a validator\textquotesingle s finding has an enforcement consequence only when an effective consumer acts on it. The blueprint should leave both that consequence and the remaining human judgment visible.
+
+The code fragments are excerpts from inspected implementations unless explicitly labeled as explanatory pseudocode. Dated experiments report observations from the stated workloads. Construction instructions describe how to build an analogous arrangement; they are not additional experimental results. Before adapting a blueprint, choose one work unit and trace both a successful case and a deliberately failing case through its models, mechanisms, artifacts, and evidence.
+
+```
+
+### model-driven-deployment
+
+Source: `book/latex/sources/appendix-handbook/model-driven-deployment.tex`, lines 1–118; SHA-256 `f100d48aebb5d591f95bc97d16bd00e3c76206dfbd05da6fedf1a2776f71dd4f`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+A service can know a dependency's URL and still be unable to call it. DocAble encountered this failure when deployment wired service addresses without the corresponding invocation grants. Calls reached the cloud authorization boundary and failed before application code ran. Repairing one missing grant restores one call; deriving wiring and permissions from connected representations gives later changes a way to preserve their agreement.
+
+\section{Conceptual Design}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\autoref{handbook-derived-iam} shows the arrangement to construct. Follow the current deployment dependency map through environment-specific identity, grant planning, and application results. The typed architectural model is checked against that map while it remains a verified mirror. The figure keeps this correspondence relationship separate from the cloud permissions that actually admit calls.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-derived-iam-6f6672746f.pdf}
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\caption[Model-driven deployment]{\emph{Model-driven deployment with explicit authority boundaries.} The current dependency map and environment configuration supply a grant plan; application reports each binding's result, while cloud IAM enforces installed permissions. The typed call model remains a verified mirror checked against the map. Service-name correspondence checks a different property.}
+\label{handbook-derived-iam}
+\end{figure}
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+Consider the accessibility-quality service calling DocAble's GenAI service. The architectural model declares the invocation and its authentication requirements, and a parity check compares that declaration with the deployment dependency map. The dependency map supplies the GenAI service's address in the selected environment. Runtime-identity configuration identifies the principal under which accessibility-quality executes. Joining the deployment dependency to that principal and the deployed GenAI service name produces the invocation-grant plan. Deployment must install the grant; its application result and a call accepted by the cloud authorization boundary provide different evidence. A correct URL without the grant reproduces the original failure.
+
+\section{Engineering Models}\label{heading:handbook-model-service-flow}
+
+Shared service identities connect the architectural contract, deployment configuration, runtime identity, and derived grant plan. These representations supply different facts to different consumers. The architectural contract describes intended communication; deployment configuration supplies environment-specific endpoints; runtime identity identifies the principal presented to cloud authorization; and the grant plan specifies the permissions to install. \autoref{handbook-deployment-models} identifies the engineering question and consumer for each representation.
+
+{\footnotesize
+\begin{longtable}{@{}p{.18\linewidth}p{.22\linewidth}p{.25\linewidth}p{.27\linewidth}@{}}
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\caption[Engineering models for deployment]{\emph{Engineering models for deployment.} Shared service identities connect intended calls, deployed endpoints, and runtime principals. The derived grant plan specifies permissions; separate evidence checks correspondence and application.}\label{handbook-deployment-models}\\
+\toprule
+\textbf{Model} & \textbf{Engineering question} & \textbf{Representation} & \textbf{Relationships / consumers} \\
+\midrule\endhead
+Service architecture & Which services may call which APIs? & Typed caller--callee edges, API identities, authentication obligations. & Shared service identities connect intended calls to deployment facts; parity checks compare declarations. \\
+Deployment dependencies & Which deployed endpoints must be wired? & Environment-scoped service names, dependency relationships, URL configuration. & Deployment consumes the map; the planner resolves each logical callee to its deployed resource. \\
+Runtime identity & Under which principal does each caller execute? & Service-to-principal mapping for the selected environment. & Joins a logical caller to the identity used by cloud authorization. \\
+Grant plan & Which concrete permissions are required? & Derived principal--callee--role bindings, retaining logical callers. & Application consumes the plan; results and authorization probes provide different evidence about its effects. \\
+\bottomrule\end{longtable}
+}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+This actual call declaration connects DocAble's accessibility-quality service to its GenAI service. The referenced authentication contract specifies the transport, token-audience requirement, and need for an invocation grant.
+
+% Evidence: system-models/interservice_edges.py:352-360 at 563cdae2316d; authentic declaration retained from prior handbook.
+% <!-- print-keep-with-next: 14 -->
+\begin{verbatim}
+SyncEdge(
+    caller=ComponentName("accessibility-quality-service"),
+    callee=ComponentName("genai-service"),
+    callee_api=ApiEntityName("genai-service-complete"),
+    callee_url_env=EnvVarName("ADA_TOOL_GENAI_SERVICE_URL"),
+    auth=_SOA_IAM_AUTH,
+    url_seam=UrlSeam.DOWNSTREAM_URL_DEPS,
+    expected_status=_SOA_STATUS_BASELINE,
+),
+\end{verbatim}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+The service architecture is authoritative about intended communication only when the engineer has assigned it that role. A deployment map can independently be authoritative for the configuration consumed by deployment. A recovered architectural view may instead be descriptive. Derivation is a different distinction: the grant plan is computed from these inputs, and its correctness depends on both the input facts and the join. A correspondence check exposes disagreement between representations; an engineer must resolve which declaration should change.
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+The model leaves service algorithms and internal organization open while fixing the communication and authorization relationships needed for deployment. A component name identifies a logical service; a runtime principal identifies an actor at the authorization boundary. If several services share one principal, the derived permission is shared too. Neither a detailed architecture nor a correct join can provide isolation absent from the runtime identity arrangement.
+
+\section{Realization}
+
+\subsection*{Derive and Apply Permissions}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+For each selected caller, the grant planner resolves its runtime service account and environment-scoped callee, then constructs a \texttt{roles/run.invoker} binding. Application deduplicates bindings by principal and callee while retaining the logical callers in its report. DocAble's inspected configuration uses a shared runtime service account, so several logical callers can produce the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+Separate planning from attempting the external effect. A deterministic planner can be exercised without cloud access; an application component needs credentials, a target environment, and a policy for failed operations. DocAble retains the following result for each distinct binding:
+
+% Evidence: deploy/cloud-run/deploy_cloudrun.py:808-815 at 563cdae2316d; docstring omitted (D02).
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+class DownstreamGrantResult(NamedTuple):
+    callee: str
+    member_sa: str
+    callers: tuple[str, ...]
+    status: str  # GRANTED / DRY-RUN / FAILED: <detail>
+    detail: str
+\end{verbatim}
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+A dry run reports the intended command without applying it. A successful command records \texttt{GRANTED}; a nonzero result records \texttt{FAILED} and diagnostic detail. This result describes the application attempt. It is different from a later inspection of the live IAM binding or an authorized call through the deployed system. Cloud IAM, rather than the planning record, enforces the installed permission.
+
+\subsection*{Construct the Path and Transfer Authority}
+
+\textbf{Begin with the deployed arrangement.} Identify the configuration that currently drives URL wiring, service naming, and runtime identity. Give the selected call a stable identity and write down the authentication obligation. An address, a principal, and an intended permission must not be inferred from one another merely because their names resemble each other. Keep unrelated services outside the first migration.
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+\textbf{Introduce a verified mirror.} Express the selected relationships in a typed model and project them into the form the current consumer expects. Compare that projection with the existing configuration. DocAble's parity test requires the projected dependency map to equal the maintained deployment map; an injected missing edge checks that disagreement is detected. While both declarations exist, this comparison carries the correspondence obligation. It does not decide which declaration is correct when they disagree.
+
+\textbf{Derive and inspect the plan.} Join the dependency to runtime identity and the deployed callee name. Keep the derivation deterministic, retain the logical callers behind a deduplicated binding, and expose a dry-run result. Review whether the resulting principal is as narrow as the intended architectural permission. A precise logical edge cannot compensate for an unnecessarily broad shared credential.
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\textbf{Exercise application and repair.} Apply grants only after the named service resources exist. Define what the caller of the application component must do with a failed result. DocAble runs grant application after the fleet deployment loop. Failed grants are reported for fix-forward repair; they do not unwind the promoted fleet. Reapplying the idempotent grant on a later deployment can restore a manually revoked binding. An analogous system may instead block promotion, but that is a different policy that must be implemented and tested, not inferred from the existence of a grant plan.
+
+\textbf{Transfer authority deliberately.} Once the model's consumers and checks are dependable, migrate the relevant consumer to the model-derived view and retire the duplicate literal. Retain an explicit correspondence check while two declarations remain. A change of authority is complete only when the intended consumers use the new source.
+
+\subsection*{Verify the Arrangement}
+
+Test the pure derivation with more than the successful example. Two callers sharing a principal and callee should produce one concrete application with both callers retained as reasons. A caller excluded from the selected deployment should not silently broaden the plan. A missing architectural edge should be detected by the correspondence check. A failed external command should remain a failed result, and a dry run should not be reported as an installed permission. These checks establish different contracts and should retain different diagnostics.
+
+% Evidence: BP-DEPLOY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-DEPLOY.md | kind: implementation-and-design
+Live observations require their own scope and freshness. DocAble separately compares declared service names with a stored snapshot of the deployed fleet. An August 2026 investigation found 49 deployed names across production and staging against 28 names in the declared set. The resulting comparison began in advisory mode while discrepancies were reconciled. Name-set parity can expose an undeclared or missing service; it does not inspect IAM bindings. Even equality can preserve an undesirable naming arrangement if the declaration itself is wrong.
+
+For an analogous deployment, choose evidence for the question actually being accepted. A unit test can check the planned binding, the application result can report whether the command succeeded, and a suitable live authorization probe can examine whether a selected call is admitted or refused. The blueprint does not make those observations interchangeable. Record the environment and observation time so that yesterday's successful probe cannot silently stand for today's deployment.
+
+\section{Adaptation and Limits}\label{heading:handbook-maintaining-coherence}
+
+The reusable interface is a relation between intended communication, deployed identity, and concrete permission. Another system might derive network policy, database privileges, or message-broker access through the same arrangement. Choose stable join keys, preserve the distinction between a plan and its effects, and state the failure response at the application boundary. If existing configuration is already authoritative and economical to maintain, a checked analytical view may be sufficient; migration to a new source of authority needs a benefit of its own.
+
+```
+
+### controlled-mutation
+
+Source: `book/latex/sources/appendix-handbook/controlled-mutation.tex`, lines 1–113; SHA-256 `ab88aec0576d22e90b860a4ee856c3414e0004d0216d139e298050e73edb48ae`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A repairer may know that a document needs better alternative text without being entitled to change every part of its internal structure. Giving each producer unrestricted write access also makes it difficult to preserve the same restrictions, attribution, and failure behavior as reasoning strategies change. The engineering need is a common application boundary: producers express supported changes, and the machinery that performs them can resolve targets, refuse selected requests, and report what occurred.
+
+\section{Conceptual Design}
+
+\autoref{handbook-typed-changeset} follows one proposal through that boundary. The arrangement permits flexible reasoning about what to change while concentrating supported mutations in a controlled writer. The governed artifact must be writable only through the intended boundary for those restrictions to hold. Semantic adequacy remains an obligation beyond successful application.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-typed-changeset-c507d5112b.pdf}
+\caption[Controlled mutation]{\emph{Controlled mutation separates a proposed edit from its effects.} Supported operations resolve targets against current state and pass selected guards before mutation. Per-operation results include refusals; successful session operations and remediation-pass mutations use distinct attribution channels. A comparison affects admission only when its consumer refuses the prohibited edit; any direct write path lies outside this boundary.}
+\label{handbook-typed-changeset}
+\end{figure}
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation-and-illustration
+Suppose a reasoning component determines that an image needs alternative text. It proposes a typed operation naming the image's structure element and the intended description. The applier resolves that target against the current document, checks the operation against its supported vocabulary and applicable guards, and performs the mutation if those checks permit it. The result records application, refusal, or failure. Subsequent validation evaluates properties of the changed document. The proposal, applied operation, and validation result are different artifacts: each establishes something the others cannot.
+
+\section{Engineering Models}\label{heading:handbook-model-document-changeset}
+
+The operation boundary depends on the four models in \autoref{handbook-mutation-models}.
+
+{\footnotesize
+\begin{longtable}{@{}p{.18\linewidth}p{.22\linewidth}p{.25\linewidth}p{.27\linewidth}@{}}
+\caption[Engineering models for controlled mutation]{\emph{Engineering models for controlled mutation.} Structural identities connect proposed operations to current document entities. Policy determines admissibility, while operation results and attribution records describe the effects that occurred.}\label{handbook-mutation-models}\\
+\toprule
+\textbf{Model} & \textbf{Engineering question} & \textbf{Representation} & \textbf{Relationships / consumers} \\
+\midrule\endhead
+Document structure & Which entities and relationships can an operation target? & Typed document nodes, structural identities, and current relationships. & The applier resolves operation targets against this view; structure-changing edits require refreshed correspondence. \\
+Mutation operations & Which effects may a producer propose? & Closed operation kinds, target references, required arguments, before- and after-values. & A changeset orders proposals; the applier interprets each operation against current state. \\
+Admissibility policy & When may a proposed operation proceed? & Authored guards, evidence requirements, and rules for uncertain or stale inputs. & Guards and admission decisions consume the policy; diagnostic findings alone do not refuse work. \\
+Mutation evidence & What was attempted and what actually changed? & Operation results, pass attribution, and successful-session edit records. & Review and recovery join records to operation, producer, session, and artifact identities. \\
+\bottomrule\end{longtable}
+}
+
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+The document model supplies a typed view of the artifact. An operation names a supported mutation, a target in that view, and the required payload. An ordered changeset collects operations before application. These are proposals: neither the producer's confidence nor the presence of an operation in the list establishes that it was applied. The applier returns per-operation results so that refused or failed requests remain distinguishable from changes that occurred.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+This excerpt from DocAble's \texttt{EditOp.cs} shows a replacement-description operation; optional fields are omitted. A structural identifier replaces a raw byte address, and the before- and after-values make the intended transition inspectable.
+
+% Evidence: backend/src/AdaTool.PdfModel/Model/EditOp.cs:133-138 at 563cdae2316d; optional fields follow; excerpt retained from B03.
+% <!-- print-keep-with-next: 13 -->
+\begin{verbatim}
+public sealed class SetAltOp : EditOp
+{
+    public override string WireKind => "set-alt-text";
+    public string StructId { get; init; } = "";
+    public string BeforeAlt { get; init; } = "";
+    public string AfterAlt { get; init; } = "";
+    // Optional fields omitted.
+}
+\end{verbatim}
+
+The document structure describes the current artifact; the operation model specifies permitted kinds of change. \texttt{StructId} must resolve to the intended current entity. \texttt{BeforeAlt} describes the expected prior value, while \texttt{AfterAlt} states the proposed result. If another writer changes the artifact before application, the correspondence between reference, before-value, and current state must be reconsidered. The policy determines the response to that disagreement.
+
+The operation vocabulary defines the effects a producer may propose through this interface; it does not establish the correctness of the repair decision. Engineers specify the operation meanings and admissibility rules; the applier enforces the restrictions implemented at its boundary. Operation results and attribution records describe what occurred. They do not authorize the proposed change or establish that the resulting document is semantically correct.
+
+\section{Realization}
+
+\subsection*{Resolve, Apply, and Record}
+
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+DocAble's shared applier operates on an already-open PDF document. The caller owns opening and closing the file; browser editing and migrated remediation passes can reuse the in-memory application engine without a file round-trip for every pass. After a successful tree mutation, the implementation rebuilds its structure reader before subsequent operations use the changed structure. Target resolution and indexing are therefore part of the writer's contract, not details every reasoning producer should reproduce.
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+Attribution has two channels. A migrated remediation pass supplies its own pass name to the mutator-stamp machinery. An editor session instead uses a session operation log. The session log receives an entry only for a successfully applied operation when a session identifier is present; failed requests remain visible in operation results, not as applied-edit entries. A batch pass supplies no session identifier and does not thereby become an editor session. A history consumer must know which record it is reading and must not count the producer's entire proposal as a history of mutations.
+
+\subsection*{Enforce Admissibility}
+
+\label{heading:handbook-model-accessibility-policy}
+
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+Resolving a current target creates an opportunity to enforce obligations that the producer's text alone cannot settle. Consider a request to demote a PDF structure to a decorative artifact. In DocAble, the request must identify the source of the decorative verdict. The applier refuses missing verdict evidence, an unresolved target, and structurally informative content such as a heading, a formula, or an element carrying authored alternative or replacement text. These refusals occur before the requested demotion. A mutator's own conservative decline is also returned as a per-operation failure rather than silently disappearing from the result.
+
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+The policy for interpreting uncertain evidence is a separate component. DocAble's decorative-confidence vocabulary distinguishes clearly decorative, uncertain, and informational results; only the clearly decorative result permits its internal decorative flag. An absent or unrecognized answer does not become permission to suppress content. That authored policy guides the use of a vision-language model's judgment, while the applier supplies selected structural refusals. Neither mechanism establishes every image's instructional importance. An apparently admissible operation may still need semantic evaluation.
+
+% Evidence: E54 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E54.md | kind: dated-case-evidence
+A before-value field requires an explicit interpretation policy. A mismatch shows that the proposal's expected prior value differs from current state. Observation, refusal, retry, and engineering review are different possible responses. In DocAble's inspected runner, even the mode named \texttt{FailLoud} returned mismatch diagnostics while continuing application. The name of a diagnostic mode does not establish enforcement: test whether the consumer actually stops the prohibited operation.
+
+\subsection*{Construct One Complete Operation}
+
+Start with a consequential operation whose target and intended effect can be stated precisely. Define the operation vocabulary, the information needed to resolve its target, and a result that distinguishes success from refusal and failure. Keep the proposal serializable if it must cross a process boundary or be inspected before execution. Then implement the complete path for that operation: resolve current state, evaluate its guards, perform the mutation, and emit the evidence required by its consumers.
+
+Choose the comparison policy from the actual concurrency and failure model. A single-writer batch and a delayed proposal applied after another writer's changes have different hazards. Specify whether a stale target or before-value causes observation, rejection, retry, or engineering review. Preserve the difference between a refusal made before mutation and an operation that failed after attempting work, including any partial effects the target system permits.
+
+Migrate a producer only after naming the behavior that must remain stable. A structured pipeline, a general-purpose agent, or a human editor can propose the same operation vocabulary, but substituting their reasoning is a separate empirical comparison. During interface migration, check the resulting artifact, refusal behavior, attribution identity, and any consumers that classify the producer's mutation path. Identify any direct write paths when assessing the boundary's coverage.
+
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E55 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E55.md | kind: dated-case-evidence
+A November 8 DocAble port illustrates why this is necessary. Moving an alternative-text validation pass behind the runner would have added pass-attribution records absent from its previous output, violating the assignment's byte-identity criterion even if the intended text mutation stayed the same. Registry indirection also prevented the existing code-parity detector from recognizing the proposed route. The engineering decision is whether the additional attribution is an authorized behavior change. The correspondence check must also recognize the chosen implementation before it can establish the intended route.
+
+\subsection*{Verify the Arrangement}
+
+Exercise refusal paths with a known starting artifact. A missing verdict source, a protected heading, and an unresolved target should produce the expected failure without the prohibited mutation. A supported successful edit should produce both its result and the appropriate attribution. A failed session operation should not acquire a successful-session log entry. A tree-changing operation followed by another targeted operation should use the updated structure. Check these effects on the artifact and records rather than accepting the producer's report that the guard ran.
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+Coverage requires a declared population. DocAble's stamp-wiring lint inspects selected production primitive directories, discovers public static and public instance methods with mutation-name prefixes, and looks for recognized stamp calls or a justified exemption. Findings for the static-method population are blocking; those for instance methods are advisory. Its documented extraction heuristic skips a method whose body it cannot reliably extract. Test code is outside that scan. A clean result therefore concerns the enumerated methods and recognized wiring; it is not proof that every possible mutation in the product emits accurate provenance.
+
+The model projection and lint share their classification predicate. This prevents inconsistent classifications from two implementations of the same rule, but it does not independently establish that the rule discovers every relevant operation. When adding a new mutation pattern, test that the scanner includes it, that removing its stamp produces a finding, and that exemptions remain visible. The attribution example shows why updating the producer alone may leave the checking machinery unable to describe the new architecture.
+
+Finally, evaluate the document properties the interface cannot decide. Content preservation and mechanically testable accessibility conditions require evidence about the resulting artifact. The semantic quality of an alternative description may need a different evaluator or human review. A supported operation is permission to attempt a particular kind of change, not proof that the chosen change is correct.
+
+\section{Adaptation and Limits}
+
+The same arrangement can govern a configuration change, a database update, or an edit to another structured artifact. Choose domain operations that preserve the distinctions needed at the boundary; a generic ``run arbitrary code'' operation would hand those distinctions back to the producer. Keep the vocabulary small enough to maintain but expressive enough for legitimate work. Extend it when repeated unsupported requests reveal a useful operation, and test each addition against the result, attribution, and compatibility contracts already relied upon.
+
+```
+
+### substitutable-reasoning
+
+Source: `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`, lines 1–180; SHA-256 `8656eb5b19bc5c141bfcc33166492f342ca8cf3b3165b76a3873f05bcfd3efab`.
+
+```latex
+% mage-auto-heading: problem
+% mage-auto-heading: conceptual-design
+% mage-auto-heading: engineering-models
+% mage-auto-heading: realization
+% mage-auto-heading: connect-the-models-to-their-consumers
+% mage-auto-heading: select-models-for-fixed-tasks
+% mage-auto-heading: exercise-an-alternative-engine
+% mage-auto-heading: evaluate-the-result
+% mage-auto-heading: adaptation-and-limits
+% Evidence: book/data/local-evidence/blueprints-11202026/evidence-ledger.md; DocAble revision 563cdae2316df8798391d17c794ae7f662410321.
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}\label{heading:problem}
+
+A system that relies on AI reasoning need not commit its architecture to a particular foundation model or reasoning strategy. Models differ in cost, latency, reliability, and capability, and these properties change as the technology advances. An engineering design that embeds one model, prompt, or orchestration strategy throughout the implementation makes alternatives expensive to evaluate. A better arrangement separates the reasoning that proposes work from the machinery that carries out and evaluates its effects.
+
+\section{Conceptual Design}\label{heading:conceptual-design}
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+DocAble supplies examples for two distinct substitution decisions. Model selection chooses which foundation model performs a defined semantic task. Replacing the reasoning engine changes how the system decomposes and sequences work: a general-purpose agent can take over planning decisions made by a graph of specialized remediation passes. This blueprint separates both decisions from the domain contracts that define permitted changes and acceptable results.
+
+\autoref{handbook-substitutable-reasoning} illustrates the proposed architecture. Each reasoning engine inspects the artifact and proposes supported changes through a typed operation interface. An application component resolves targets, checks applicable preconditions, performs mutations, and records their effects. Separate evaluators inspect the resulting artifact. Hold the permitted operations and acceptance requirements fixed when comparing engines, so differences in the results can be investigated as differences in reasoning rather than changes to the task.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-substitutable-reasoning-d5f7734f79.pdf}
+\caption[Substitutable reasoning]{\emph{Substitutable reasoning.} Two alternative engines use a domain's task and operation models while making different planning decisions. Model selection chooses a foundation model within an engine; controlled application and acceptance consume their own models and evidence. Type compatibility preserves the request form, not semantic quality or equivalent behavior.}
+\label{handbook-substitutable-reasoning}
+\end{figure}
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: design-illustration
+Consider an image-description task in the illustrated design. At the narrower substitution boundary, select a different foundation model while retaining the same task, permitted operations, and acceptance conditions. The surrounding workflow remains unchanged; only the component supplying the semantic judgment differs. At the broader boundary, a general-purpose agent may replace several specialized reasoning passes. It can choose which analyses to perform and in what order, but the design requires its proposed document changes to use the supported operation vocabulary and the resulting artifact to satisfy the applicable acceptance conditions. The first substitution changes a reasoner within a workflow; the second changes the workflow itself. Both retain the task, operation, and acceptance contracts.
+
+\section{Engineering Models}\label{heading:engineering-models}
+
+\autoref{handbook-substitution-models} identifies five models and their consumers. Task, operation, and acceptance models define the obligations that must remain stable across substitutions. The workflow model describes how reasoning is organized; the capability and selection model determines which foundation models are eligible for a task. The relationships among these models define the substitution boundaries.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Engineering models for substitutable reasoning]{\emph{Engineering models for substitutable reasoning.} Task, operation, and acceptance models state the domain obligations while the reasoning workflow and selected foundation models may vary. Shared task and target identities connect these representations to their consumers.}\label{handbook-substitution-models}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Task model & What judgment is required, and what makes its result acceptable? & Task identifiers, input/output shapes, semantic obligations, error consequences. & Joins the reasoning workflow to capability selection and task-specific evaluation. \\
+Capability and selection model & Which reasoning resources are eligible for a task? & Model capabilities, task requirements, input traits, measured performance, selection policy. & Task identity joins requirements to candidate models; the selector derives a model choice. \\
+Operation model & Which effects may the engine propose? & Typed operations, target references, arguments, preconditions, result meanings. & Targets refer to the domain artifact; the applier resolves and executes supported proposals. \\
+Reasoning workflow model & How is work decomposed, ordered, and assigned? & A pass graph with dependency edges and task assignments, or an agent\textquotesingle s revisable plan. & Execution machinery consumes the workflow; its steps request tasks and propose operations. \\
+Acceptance model & What evidence is required to accept the artifact? & Obligations, evaluation criteria, required evidence, blocking and review conditions. & Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. \\
+\end{longtable}
+}
+
+\subsection*{Task, Operation, and Acceptance Contracts}
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+The \textbf{operation contract} defines the changes a reasoning engine may request. DocAble's Office editing interface provides a closed vocabulary of eleven operations, including setting alternative text, changing heading levels, and marking decorative content. Each operation identifies its target and required arguments. The application component resolves and executes supported operations under the applicable admissibility policy, returning application, refusal, or failure. \autoref{chapter:appendix-a-controlled-mutation} develops the corresponding boundary for PDF changesets, which use a different operation vocabulary.
+
+The vocabulary must support legitimate work without becoming an unrestricted programming interface. A replacement engine can propose different operations or sequence them differently. To make this an enforcement boundary, the surrounding environment must also restrict mutation authority to the controlled application component. A typed interface alone does not prevent a reasoner with direct file access from bypassing it.
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+The \textbf{task contract} defines a semantic judgment requested from a foundation model. DocAble identifies tasks such as image description, OCR transcription, reading-order inference, and heading adjudication, with declared output representations and capability requirements. Such definitions let a consumer request a task while a separate component handles model selection and invocation. They specify what the answer must mean, independently of which model supplies it.
+
+The contract must also express what makes an answer acceptable. For alternative text, the obligation is not simply to produce a nonempty string: the description must convey the image's relevant information without inventing content. For decorative classification, an incorrect judgment may suppress meaningful content entirely. Such asymmetries influence model selection, validation, and the appropriate response to uncertainty.
+
+The \textbf{acceptance contract} specifies the evidence required to accept the result. Deterministic checks can identify missing accessibility properties or illegal document structures. Content-preservation checks can detect selected forms of unintended loss. Semantic evaluators or human reviewers assess properties that structural checks cannot decide, such as whether an alternative description accurately conveys an image. The contract must also identify which findings block acceptance and which require engineering judgment.
+
+\subsection*{Workflow, Selection, and Correspondence}
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+The \textbf{reasoning workflow model} represents the process used to produce a result. DocAble organizes remediation as a graph of specialized passes. Some passes are algorithmic; others request structural judgments or descriptive content from foundation models. The graph represents dependencies among computations; execution machinery uses those dependencies to determine which work is ready as intermediate results are produced. A planning agent can instead maintain and revise a plan as it inspects the artifact. The workflow may change while task meanings and acceptance obligations remain fixed. A plan is guidance until an executor consumes it; an execution trace records what actually happened.
+
+Assign ownership to the obligations and to the observations used to evaluate them. The responsible engineer authorizes task meanings, permitted operations, and acceptance conditions; measured capability results describe behavior on an identified workload. A selection policy consumes those observations but does not turn them into universal quality guarantees. A selected model choice or a generated repair plan is derived from other representations. That describes its origin, not its authority.
+
+Task identifiers join workflow steps to selection requirements and evaluators. Target identifiers join operation proposals to the current domain artifact. Keep these meanings aligned as schemas, models, and artifacts change: a task renamed without updating its evaluator, or a target resolved against stale structure, breaks correspondence even when the request remains well typed. Check that the executor follows required workflow dependencies and that the gate consumes the evidence the acceptance model requires.
+
+The engine retains freedom to choose among admissible repairs, gather additional information, and revise their order where dependencies permit. Capability requirements and interface constraints restrict that freedom without prescribing every reasoning step.
+
+\section{Realization}\label{heading:realization}
+
+\subsection*{Connect the Models to Their Consumers}\label{heading:connect-the-models-to-their-consumers}
+
+Begin with one bounded semantic task. Specify its inputs, output representation, applicable obligations, and evidence for evaluating success. Identify the errors that matter most, including errors whose consequences differ substantially.
+
+Next, establish the application interface. Give reasoning implementations a closed vocabulary of supported operations, with stable target identities, explicit preconditions, and results that distinguish application, refusal, and failure. Restrict mutation authority to the application component, and test that the reasoning engine cannot alter the governed artifact through another path.
+
+Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the gate produces the required refusal or review.
+
+Only then introduce an alternative reasoning engine. Run both engines against comparable inputs through the same application interface. Evaluate the artifacts rather than the engines' accounts of their own success. Include failure cases: invalid targets, unsupported operations, incomplete repairs, interrupted execution, and plausible but semantically incorrect outputs.
+
+\subsection*{Select Models for Fixed Tasks}\label{heading:select-models-for-fixed-tasks}
+
+Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy.
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+DocAble's selector interface represents the result through this typed choice:
+
+% mage-code-language: csharp
+\begin{verbatim}
+public sealed record ModelChoice(
+    AcceptedModel Model,
+    string Provider,
+    ModelCapability Caps,
+    int TierRank);
+\end{verbatim}
+
+% Evidence: BP-SUBSTITUTION-CONTRACTS | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SUBSTITUTION-CONTRACTS.md | kind: implementation-and-design
+The choice exposes the selected model and supporting metadata. \texttt{TierRank} is documented for observability: callers should not reconstruct selection policy by branching on it.
+
+Selection can account for task-specific capability requirements, input difficulty, provider availability, and cost. A capability requirement is a constraint: a model that cannot process the required input is not made suitable by being inexpensive or available. Among eligible models, a policy may prefer higher-quality alternatives, distribute requests among providers, or select a lower-cost model when its measured performance is adequate.
+
+A model-selection policy should be evaluated against the errors that matter for each task. Average quality is not sufficient when different errors have substantially different consequences. For example, fabricating content in an alternative description and failing to recognize a decorative image are different failures, even if a benchmark combines them into one accuracy score.
+
+Replacing the reasoning engine is a broader change: it may alter task decomposition, information gathering, operation ordering, and termination decisions.
+
+\subsection*{Exercise an Alternative Engine}\label{heading:exercise-an-alternative-engine}
+
+An alternative is to give a general-purpose agent the document, the available operations, and the acceptance criteria. The agent can inspect the document, run checks, decide which repairs to attempt, request supported operations, and inspect the resulting findings. Within the operation vocabulary's scope, it takes over planning and sequencing without requiring a new document-editing implementation.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+An October 2026 experiment exercised this arrangement on Office documents. A single hosted agent used DocAble's existing command-line operations: \texttt{check} produced structured findings, \texttt{editor-edit} applied supported edits, and \texttt{validate} checked content preservation. The agent chose repairs and invoked these operations before checking the result again. The experiment required no changes to the deterministic operations themselves.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The operation vocabulary covered 201 of 202 checker-reported issues classified as fixable in the pilot corpus. This measures the expressiveness of the editing interface, not the agent's ability to resolve those issues correctly.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+In a subsequent evaluation on eight Office documents, a frontier model left an average of 2.8 checker-detectable findings per document, with a median of 0.5; six of the eight documents had at most one remaining finding. Three less expensive models left approximately 25--29 findings per document, and one failed to complete half its sandbox runs. Scoring used the deterministic checker. The results show substantial differences in residual findings and completion among the evaluated models.
+
+\subsection*{Evaluate the Result}\label{heading:evaluate-the-result}
+
+A successful substitution must preserve the engineering obligations, not merely the interface.
+
+% Evidence: E46 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E46.md | kind: illustration
+Consider alternative text for a scientific figure. A reasoning engine may propose a valid operation that inserts a description, and the document checker may confirm that the image now has alternative text. Yet the description may repeat the figure's title without conveying its contents. The operation was valid and the structural finding was resolved, but the accessibility requirement was not satisfied.
+
+The same problem arises when deterministic heuristics stand in for a semantic judgment. In one DocAble investigation, a repair strategy documented as asking a language model whether existing alternative text was useful actually used a chain of deterministic heuristics. An inadequate description, ``Heat Transfer 211,'' survived for a physics diagram. The decision procedure did not evaluate the semantic property promised by the contract. Deterministic methods can be appropriate substitutes, but only where evidence supports the property they must decide.
+
+Separate evaluation makes reasoning strategies easier to compare, but does not guarantee independent errors. Structural and content-preservation checks supply evidence about the properties they inspect. Semantic judgments require evidence about meaning, which may come from another model or a human reviewer. An evaluator that shares the producer's model family or assumptions may confirm the same mistake.
+
+A comparison should therefore use the same inputs and acceptance criteria for each candidate engine. Record the remaining violations, semantic quality, execution failures, latency, and cost. Where the evaluation cannot establish a property, retain that limitation rather than interpreting a passing checker as evidence of complete correctness.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The experiments in \autoref{chapter:5.2-inside-docables-software-factory} illustrate the importance of comparable measurements. A September 2026 comparison on one handwritten PDF measured approximately four cents of inference for the specialized pipeline against an estimated \$2.29 for a general-purpose agent. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference structure, and its cost was reconstructed from an execution transcript. The result informed investigation of costs without establishing equivalent quality. A November evaluation on two PDFs found no additional checker findings closed by a coached repair loop; the harder document retained 15 findings while cost rose from \$1.35 to \$3.57.
+
+For an end-to-end trial, introduce an unsupported operation, a stale target, a missing required evaluation result, and a plausible but inadequate description. Confirm the appropriate refusal or review, the artifact actually produced, and the evidence used for acceptance. A successful path must produce an acceptable artifact; a failed path must not acquire a success record merely because the engine declared completion.
+
+\section{Adaptation and Limits}\label{heading:adaptation-and-limits}
+
+A specialized reasoning graph requires construction and maintenance, but can divide work into smaller tasks that inexpensive models perform adequately. A general-purpose agent may require less specialized orchestration while consuming more inference resources per document. Compare these arrangements at the required quality using the construction, running, and carrying costs distinguished in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}. Include inference, execution, diagnosis, repair, and maintenance of the models and checks. A more capable model may justify retiring specialized reasoning machinery; a stable, high-volume task may justify retaining it to reduce recurring inference costs.
+
+The same architecture applies beyond document remediation. A planning agent can propose operations against a structured workflow; a classifier can produce typed decisions consumed by a controlled application; a diagnostic agent can recommend repairs whose effects are checked independently. In each case, the engineer determines which decisions may vary with the reasoning implementation and which obligations must remain stable.
+
+The boundary need not be perfectly general. A small vocabulary supporting the operations a system actually requires is often more useful than a universal interface that restores unrestricted authority to the reasoner. Extend the vocabulary when new work justifies it, and evaluate each extension against the obligations already protected.
+
+The central benefit is architectural freedom. Explicit task, operation, and acceptance contracts let engineers change reasoning implementations without rebuilding the surrounding application and evaluation machinery. This flexibility has economic value as reasoning capabilities and costs change.
+
+```
+
+### governed-delegation
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`, lines 1–148; SHA-256 `e93a4040506e8f50a520369b69d809690ae7035854778f1a14d292cf6c9892ad`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+Delegating engineering work requires more than assigning a task to an agent. The assignment must identify its authorized scope, supply relevant engineering knowledge, preserve durable results, and establish what evidence permits acceptance. Without these arrangements, an agent may work from stale context, repeat completed work, or leave useful changes stranded when its conversation ends.
+
+\section{Conceptual Design}
+
+\autoref{handbook-model-guided-delegation} organizes delegated work around three boundaries. Dispatch checks whether an assignment may proceed, using the work order, relevant engineering knowledge, and lifecycle state. Execution gives the agent freedom within the assignment while preserving commits and other durable artifacts. Completion evaluates the resulting work against its acceptance obligations and determines whether it can be accepted or must be reconciled. Recovery uses the durable artifacts to resume interrupted work without discarding completed changes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Governed delegation]{\emph{Governed delegation joins an assignment to relevant knowledge, durable work, and acceptance evidence.} Context selection is bounded and advisory. Dispatch gates act on assignment structure and resolved phase state; completion review evaluates landed work and independent evidence. Recovery preserves existing artifacts before work is reassigned.}
+\label{handbook-model-guided-delegation}
+\end{figure}
+
+\section{Engineering Models}\label{heading:handbook-work-models}
+
+The models in \autoref{handbook-delegation-models} connect an assignment to its scope, lifecycle, results, and acceptance evidence.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+A work order must carry enough structure for people and machinery to use it. DocAble's briefs name the objective, target and new files, genre, role, verification work, acceptance criteria, and non-goals. The objective and acceptance conditions express engineering intent. Path declarations establish the initial scope for repository lookup and context selection while leaving implementation choices open within that scope.
+
+{\footnotesize
+\begin{longtable}{@{}p{.18\linewidth}p{.22\linewidth}p{.25\linewidth}p{.27\linewidth}@{}}
+\caption[Engineering models for delegated work]{\emph{Engineering models for delegated work.} Assignment and phase identities connect scope, relevant knowledge, durable artifacts, and completion criteria. Lifecycle rules govern dispatch and reopening; evidence about landed work supports acceptance.}\label{handbook-delegation-models}\\
+\toprule
+\textbf{Model} & \textbf{Engineering question} & \textbf{Representation} & \textbf{Relationships / consumers} \\
+\midrule\endhead
+Work order & What work is authorized, and what would make it acceptable? & Objective, scope, named inputs and outputs, acceptance obligations, and non-goals. & Composition and dispatch consume the assignment; completion review evaluates its obligations. \\
+Component and constraint models & Which knowledge and obligations apply to the assignment? & Path-to-component relationships and registered constraints with scope and identity. & Context selection joins target paths to relevant records; enforcement remains with the applicable controls. \\
+Work lifecycle & Which transitions may proceed from the recorded state? & Assignment or phase identity, state, completion conditions, reopen rules, and authorized exceptions. & Dispatch consults reconciled state; completion and reopening update it under explicit policies. \\
+Work identity and provenance & Which durable results belong to an assignment? & Links among work orders, executors, worktrees, commits, artifacts, and inspection records. & Integration and recovery locate results without reconstructing a conversation. \\
+Completion criteria & What evidence permits acceptance and closure? & Promised effects, required checks or review, results, and unresolved obligations. & Completion review consumes independently inspectable artifacts and evidence; a producer report is one input. \\
+\bottomrule\end{longtable}
+}
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
+
+% Evidence: retained November brief excerpt from the prior handbook (archaeology B03).
+% <!-- print-keep-with-next: 12 -->
+\begin{verbatim}
+<!-- target-files:
+  tools/lint/lint_all/registrations/batch_d.py,
+  system-models/standards_universe.py -->
+<!-- new-files-to-create:
+  tools/lint/lint-standards-evidence-escape-admission.py -->
+<!-- compute-class: lint-all-on-commit -->
+<!-- brief-genre: lint -->
+\end{verbatim}
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+The existing paths locate the registration point and the model the new checker must consume; the new-file field distinguishes an intended output from a missing input. The brief arose from a comparison of the standards project's acceptance criteria with its implementation: exception data existed, but the checker governing admission of those exceptions was missing. The investigation captured the assignment during execution. It demonstrates the transformation from an unmet obligation to bounded work, not an observed successful completion of that particular task.
+
+The work order states intended work; component records and provenance describe relationships the arrangement relies on. Derived context is a selective view of those records, not a new owner of their meaning. Stable assignment and phase identities connect dispatch, durable results, and completion. A history mentioning a phase does not establish that the current assignment belongs to it. When identities or state disagree, reconcile the records before treating the disagreement as evidence of completion.
+
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+A lifecycle model must distinguish the states needed by its consumers. One possible design uses ready, dispatched, under review, and accepted states, with interruption recorded separately from acceptance. Choose the states for the work unit and its consumers. The important requirements are that dispatch have a defined precondition, acceptance require the work-order evidence, and interruption not imply successful completion. DocAble's completed-phase gate uses a narrower predicate: a positively resolved completed phase refuses a new dispatch. Reopening changes that phase state; a reasoned override permits a particular dispatch without redefining completion.
+
+Context selection supplies assignment-relevant knowledge, while permissions and gates restrict selected actions and admissions. The completion model connects each acceptance obligation to its required evidence and the decision that consumes that evidence. An agent's final message is an input to review, not the accepted completion state.
+
+\section{Realization}
+
+\subsection*{Compose and Select Context}
+
+Context selection connects an assignment's scope to maintained engineering knowledge. A component catalogue can map a path to its owner and architectural zone; a constraint registry can identify obligations attached to that path or genre. DocAble combines standing instructions selected during composition, file-specific constraints selected at dispatch, and retrieval as the task develops. A brief that creates a lint receives the relevant authoring instructions; later queries can retrieve designs, service relationships, or operating procedures as needed.
+
+Before selection, validate the assignment's structure, registered identities, paths, and required instruction markers. These checks establish that the declared inputs can be resolved; they do not establish that the objective is worthwhile or that the chosen acceptance evidence is sufficient. Those decisions require engineering review.
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+The file-specific selector is a concrete transformation. Each registry adapter accepts target files and returns normalized records carrying a registry and constraint identity, a scope description, severity, priority, source or corrective guidance, and the matched target. The actual adapter protocol exposes this method:
+
+% Evidence: tools/agents/_constraint_extractor.py:213-215 at 563cdae2316d (D15).
+% <!-- print-keep-with-next: 8 -->
+\begin{verbatim}
+def coverage_for_files(
+    self, files: list[str], *, repo_root: Path
+) -> list[Constraint]: ...
+\end{verbatim}
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+The aggregator deduplicates by registry and constraint identity, orders each registry's contribution by priority, applies its budget, and sorts the retained records. Priority refinement keeps stylistic findings from consuming the same limited space as more consequential structural constraints. For the November brief above, the assembled record contained 47 entries, including 25 from the lint registry. Those counts describe one selection for one scope, not a recommended amount of context for every agent.
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+DocAble's adapter aggregator catches extraction exceptions and allows the failed adapter to contribute no records; its tests exercise this degraded-empty behavior. An empty selection therefore does not establish that no obligation applies. Budgeting also intentionally omits some matched material. When adapting the selector, decide how callers will distinguish no match, budget exclusion, and extraction failure, and retain source references for further retrieval.
+
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: dated-case-evidence
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: dated-case-evidence
+Selected prose guides the reasoner. The applicable tests, permissions, and gates supply enforcement whether or not the agent followed that guidance. When work expands beyond its declared target files, repeat the selection for the actual scope and revisit the acceptance obligations.
+
+\subsection*{Dispatch, Execute, and Evaluate Completion}
+
+\label{heading:handbook-model-lifecycle}
+
+Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. The shared repository, worktree, assignment, and executor registry supply different evidence. Design their identities so that an operator can find the changes belonging to an assignment without recovering the agent's conversation.
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+Evaluate completion against the work order. Check that the promised changes arrived, that relevant integration occurred, and that the available tests or review address the acceptance conditions. Record unresolved obligations rather than replacing them with a completion marker. Different checks may occur before merge, in later validation, or at release; an accepted dispatch does not settle those later decisions. The assignment's producing agent may report its results, but acceptance must be grounded in evidence that can be inspected independently of that report.
+
+Recovery should inspect durable artifacts before assigning replacement work or resetting an executor. After an orchestrator restart on November 9, DocAble lost background completion notifications while agents' commits remained in Git worktrees. The operator inspected branches, recovered and landed completed work, then released the affected slots. The operator recovered the work from durable repository state rather than the lost completion notifications.
+
+For a new arrangement, test interruption before the first durable result, after a partial result, and after completion but before notification. Define who may resume the work and which evidence permits a slot or workspace to be released. A stale heartbeat or apparently idle process is a reason to inspect state, not sufficient evidence that its work can be destroyed.
+
+\subsection*{Enforce Lifecycle Decisions}
+
+\label{heading:handbook-conversion-episode}
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+A system that delegates work against persistent assignments needs explicit rules for recognizing completed work, reopening assignments, and authorizing exceptions. DocAble repeatedly dispatched, or nearly dispatched, work against phases whose implementation had already landed. The repair carried phase identity through briefs and commits, reconciled the corresponding phase record, and checked it during work-order composition as well as dispatch. The selected obligation was narrow: refuse a new assignment when the resolved phase record positively says the phase is complete.
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+A missing record or unresolved phase does not establish completion and therefore does not trigger this particular refusal. Other dispatch requirements still apply. When genuine further work is needed, reopening changes the recorded phase to a state that can be scheduled again. An explicit override instead permits one dispatch with a reason; its audit write is best-effort, and a write failure is reported rather than represented as persisted evidence. The override does not silently redefine the phase's completion state.
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+The control itself required repair. An October 10 investigation found that phase extraction first examined the declared \texttt{Epic} line but fell back to the first ``Phase N'' mention anywhere in the brief. Historical prose about a completed phase could then cause a new assignment to be refused. Four false refusals in one session prompted investigation. The corrected extractor, reproduced below from the field note, restricts identity extraction to the declared line:
+
+% Evidence: phase-done-gate-prose-false-fire-fix-261010.md:42-47 (D11); actual corrected implementation excerpt.
+% <!-- print-keep-with-next: 11 -->
+\begin{verbatim}
+def extract_phase_from_brief(brief_text: str) -> str | None:
+    m_line = _EPIC_LINE_RE.search(brief_text)
+    if m_line is None:
+        return None
+    m_phase = _PHASE_IN_LINE_RE.search(m_line.group(0))
+    return m_phase.group(1) if m_phase else None
+\end{verbatim}
+
+Verify both sides of this gate. A declared completed phase should be refused; a reopened phase should proceed subject to the other checks. A declared Phase 3 beside narrative history about Phase 2 must resolve to Phase 3. If the declared line has no phase, narrative history must not manufacture one. These cases test the link between identity, state, and consequence rather than merely exercising the final refusal branch.
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+Override frequency supplies maintenance evidence. The inspected mechanism can recommend review when overrides accumulate, including repeated overrides for the same phase, while accounting for intervening reopen events. An engineer must determine whether the premise, extractor, state reconciliation, or policy needs correction.
+
+\subsection*{Verify the Arrangement}
+
+Exercise the whole path from assignment to accepted or recoverable work. A valid work order should resolve its intended scope and instruction sources; missing inputs and extraction failures should receive the declared response. A completed-phase refusal, legitimate reopening, and authorized override should have distinguishable effects. Interrupt an executor before and after durable results, then verify that recovery finds the correct artifacts without accepting unfinished work. Finally, inject a failed acceptance obligation and confirm that a successful producer report cannot close it.
+
+\section{Adaptation and Limits}
+
+The arrangement applies to delegated infrastructure changes, document transformations, and operational procedures. Preserve the relationships among assignment scope, relevant knowledge, authorization, durable results, and acceptance evidence. Choose work identities and lifecycle states appropriate to the domain, including explicit completion and reopening rules. Retain sufficient evidence to resume or decline work without reconstructing the agent's conversation. \href{appendix-b-operating-a-gee.html}{Appendix B's Operating a GEE section} develops the corresponding operating procedures.
+
+```
+
+### model-based-test-selection
+
+Source: `book/latex/sources/appendix-handbook/model-based-test-selection.tex`, lines 1–213; SHA-256 `3364f62d855f2c00503c9188f1192802894e0f2fda374265a3981c170be3232b`.
+
+```latex
+% mage-auto-heading: problem
+% mage-auto-heading: conceptual-design
+% mage-auto-heading: engineering-models
+% mage-auto-heading: realization
+% mage-auto-heading: derive-the-selection
+% mage-auto-heading: connect-selection-execution-and-interpretation
+% mage-auto-heading: challenge-the-impact-declaration
+% mage-auto-heading: introduce-the-arrangement-incrementally
+% mage-auto-heading: adaptation-and-limits
+% Evidence: book/data/local-evidence/blueprints-11202026/evidence-ledger.md; DocAble revision 563cdae2316df8798391d17c794ae7f662410321.
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}\label{heading:problem}
+
+As agents produce changes faster, the cost of evaluating those changes can become a bottleneck. Running every test and analysis after every change provides broad evidence, but much of that work may be unrelated to the modification. DocAble's full predeployment validation includes roughly four thousand tests and numerous static checks. Repeating all of them at every integration boundary would consume substantial computing resources and delay subsequent work.
+
+Selecting fewer checks requires evidence that the reduced set is adequate. An omitted dependency can cause a relevant check to be skipped, allowing a regression to escape. Moreover, selecting checks is not the same as executing them: the validation machinery must actually honor the selection, and the acceptance decision must interpret the corresponding results.
+
+\section{Conceptual Design}\label{heading:conceptual-design}
+
+The engineering opportunity is to derive validation from models of change impact. A component model identifies the implementation elements involved; relationships among components identify potentially affected subsystems; declarations of validation coverage identify the checks to run. This arrangement can reduce repeated validation without requiring the engineer or agent to choose tests manually. The design below uses DocAble's change-impact selector as a concrete example.
+
+\autoref{handbook-model-based-test-selection} illustrates the design. A proposed change is resolved through component and subsystem models to a declared set of potentially affected subsystems. Their validation obligations determine which tests and analyses should execute. Unmapped changes or recognized gaps in the impact model require broader validation. Separate analyses evaluate the selector itself, including comparisons with results from the full suite.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-based-test-selection-3cbe737b13.pdf}
+\caption[Model-based regression-test selection]{\emph{Model-based regression-test selection.} Component and dependency models derive affected subsystems, and validation coverage maps them to checks. Execution records and findings feed an acceptance gate under an explicit policy. Dependency analyses and full-suite comparisons challenge the selection; conservative fallback covers recognized uncertainty, not every unmodeled dependency.}
+\label{handbook-model-based-test-selection}
+\end{figure}
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-illustration
+Suppose an agent changes the component responsible for editing PDF structure. The selector first resolves the modified files to their modeled components. It uses their declared subsystem memberships and any rules that broaden the affected set to identify potentially affected subsystems, then consults the validation-coverage model to determine which checks evaluate those subsystems. For a change whose modeled impact is confined to PDF processing, PDF-specific checks may be selected while unrelated spreadsheet checks are omitted. The executor must honor that selection, and the acceptance gate must interpret the results of the checks actually required.
+
+The decision is only as reliable as the relationships behind it. If the changed component also affects a shared document abstraction, the selection must cover the affected consumers, whether through a widened declaration or a broader run. An unmapped dependency must not be interpreted as proof that no additional checks are needed. Separately recovered dependency relationships and comparisons with full-suite execution can expose omissions in the selection model. The blueprint therefore governs not only which checks run, but how engineers establish confidence that the selection remains adequate.
+
+\section{Engineering Models}\label{heading:engineering-models}
+
+Five models connect a change to validation. Their outputs have different types: changed files identify implementation elements; impact analysis declares subsystems; coverage declarations map subsystems to validation units. Keeping these distinctions explicit prevents a plausible dependency analysis from being mistaken for an adequate test selection.
+
+The model relationships are summarized in \autoref{handbook-selection-models}.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Engineering models for regression-test selection]{\emph{Engineering models for regression-test selection.} Component and dependency relationships derive an affected-subsystem declaration; validation coverage maps it to checks. The execution model connects that selection to actual work and acceptance, while separate evidence challenges omissions.}\label{handbook-selection-models}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Component model & Where do changed implementation elements belong? & File-to-component identities and component-to-subsystem membership. & The impact query reuses the component resolver; stable identities join the other models. \\
+Dependency model & Where could a change have consequences? & Declared component relationships and separately recovered project/import dependencies. & Declared relationships inform impact; recovered edges challenge the declaration. \\
+Validation coverage model & Which checks evaluate each obligation or subsystem? & Validation-unit scope labels and supporting links to obligations or coverage observations. & Unit labels translate affected subsystems into checks; observations challenge coverage claims. \\
+Change-impact model & Which subsystems may this change affect? & Derived affected-set declaration, derivation paths, widening hints, full-run requirement. & Computed from changed files and maintained relationships; consumed by unit selection and selector validation. \\
+Validation execution model & What must run, and how do findings govern acceptance? & Selected check identities, execution modes, required results, and acceptance policy. & Executor consumes the selection; execution records support correspondence checks and gate decisions. \\
+\end{longtable}
+}
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+A change-impact model relates implementation elements to the subsystems and obligations they may affect. DocAble's component model identifies ownership and structural relationships within its codebase. A validation model groups components into subsystems, including PDF processing, Office document processing, the web application, and deployment infrastructure. The selector reuses the component model's path resolver rather than maintaining a second account of component membership.
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+Given a set of changed files, the selector resolves each file to its component and derives the declared affected subsystems. Each validation unit declares the subsystems it evaluates. The selection rule includes a unit when its scope intersects the affected set. This is a decision about what should execute; the executor must consume it.
+
+The \textbf{dependency model} has two uses that must remain distinguishable. Maintained relationships express the impact assumptions used for selection. Separately recovered project and import relationships provide descriptive evidence that can challenge those assumptions. Both may share component identities, so agreement is useful without constituting independent proof of completeness.
+
+The \textbf{change-impact model} is a derived view for a particular change: an affected-subsystem declaration together with its derivation and any requirement for full validation. Derivation does not by itself confer authority. The engineer decides where the evidence justifies allowing that declaration to control a reduced run. The \textbf{validation execution model} then specifies required execution and the policy for interpreting findings. Execution records describe what actually ran; compare them with the selected set and the permitted broader modes.
+
+Give component ownership, dependency declarations, and validation-unit scope explicit maintainers. A file move must preserve or update its component identity; a new cross-component call may widen impact; a check that acquires another responsibility needs a revised scope declaration. Observed coverage can challenge those declarations but cannot establish that an unobserved relationship is absent. These correspondence obligations keep the joins useful as the system changes.
+
+The executor can choose scheduling and parallelism where the declared dependencies permit. It may run a deliberately broader set under the acceptance policy. Neither choice authorizes silently dropping a required check or changing what a finding means for admission.
+
+\section{Realization}\label{heading:realization}
+
+\subsection*{Derive the Selection}\label{heading:derive-the-selection}
+
+The following explanatory pseudocode preserves DocAble's \texttt{decide\_unit} decision order; type annotations are omitted and diagnostic messages are simplified. It is not a verbatim source excerpt.
+
+% mage-code-language: python
+\begin{verbatim}
+def decide_unit(unit_labels, affected, forced_full):
+    if forced_full:
+        return True, "full validation required"
+    if not unit_labels:
+        return True, "validation unit has no scope declaration"
+    if unit_labels & affected:
+        return True, "unit covers an affected subsystem"
+    return False, "no modeled impact"
+\end{verbatim}
+
+The two unconditional branches constrain which checks the selector may omit. If the selector cannot adequately classify a change, it must not interpret missing information as evidence that no checks are necessary. Likewise, a validation unit without a trustworthy scope declaration should run rather than be silently excluded.
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+DocAble's selector returns a full-validation requirement for unmapped or cross-cutting files and dependency-manifest changes. The latter deserve special treatment because a project dependency can affect the assembled product beyond the component containing the manifest. Optional impact hints can enlarge the declared affected set, but cannot remove checks required by the models. These fallbacks protect against recognized uncertainty; an unrecognized dependency can still cause an omission.
+
+The resulting selection is a claim about possible impact. Its adequacy depends on the completeness and correctness of the relationships from which it was derived.
+
+\subsection*{Connect Selection, Execution, and Interpretation}\label{heading:connect-selection-execution-and-interpretation}
+
+A selector is useful only when its decisions reach the machinery that performs validation.
+
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
+An August 2026 investigation exposed this problem in DocAble's merge checks. This was a separate mechanism from the change-impact selector: it selected inexpensive lints relevant to merging work. The merge gate selected between one and four lints, yet the validation command still took approximately one minute. In one warm profiled run, a full-tree walker consumed 62.66 of the 63.1 seconds. It executed 281 predicates independently of the selected lint set.
+
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
+The problem extended beyond wasted computation. Findings produced by predicates outside the selected set could contribute to the gate's failure verdict. The selection therefore governed neither all the work executed nor all the evidence interpreted.
+
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
+The repair connected the walker to the same derived selection used by the other lint processes. It distinguished three cases for the walker's own cohort of checks:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{No restriction:} execute the ordinary full walker.
+\item
+  \textbf{Empty intersection:} no walker checks are selected, so skip the walker.
+\item
+  \textbf{Nonempty intersection:} at least one walker check is selected, so execute the full predicate cohort.
+\end{itemize}
+
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
+The third case deliberately retained extra checks rather than risk omitting a selected predicate. The empty-intersection branch removed both the unnecessary walk and its contributions to the gate verdict. A nonempty intersection still ran the whole cohort; the repair did not implement predicate-by-predicate filtering.
+
+% Evidence: E59 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E59.md | kind: dated-case-evidence
+A historical replay used eleven merge batches reconstructed from one work window. All eleven runs of the previous configuration reached the 120-second execution limit; the revised configuration completed with a measured p95 of 8.86 seconds. The earlier durations were censored at the timeout, so 120 seconds is not a measured completion-time p95. This replay demonstrates the benefit of reconnecting selection to execution for that workload, not a current or general performance rate.
+
+This incident identifies three responsibilities. \textbf{Selection} names the required checks. \textbf{Execution} performs them, or a deliberately broader set. \textbf{Interpretation} determines how findings affect acceptance. If execution runs extra checks, record that broader scope and define how their findings are handled. Do not silently let them change the gate's policy or discard a consequential failure merely because it fell outside the selection. Preserve the finding, investigate the discrepancy, and apply the declared blocking, escalation, or review policy. Test all three responsibilities together.
+
+\subsection*{Challenge the Impact Declaration}\label{heading:challenge-the-impact-declaration}
+
+Selective validation introduces a new possible failure: a relevant check may be omitted because the impact model does not represent a consequential relationship.
+
+The principal requirement is that the selected checks supply the required evidence for every validation obligation the change can affect. Establishing that property is difficult because the model used to select checks may itself be incomplete.
+
+DocAble's validation machinery compares the selector's declarations with several sources of evidence.
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+Static dependency analysis constructs a separate estimate of potentially affected subsystems. For C\# code, it follows reverse project references; for Python, it follows reverse module imports. The validation condition requires the subsystems reached by this analysis to be included in the selector's declaration:
+
+\[
+\operatorname{Reachable}(C) \subseteq \operatorname{Declared}(C).
+\]
+
+Here, both sets contain \textbf{validation subsystems} for a proposed change C; neither is a set of tests. A reached subsystem omitted from the declaration is a counterexample to the impact claim. The scope declarations of validation units then translate affected subsystems into checks to execute.
+
+The direction of this relation matters. The reachable set under-approximates potential impact: the analyzed graphs may omit reflection, dynamic dispatch, configuration-dependent behavior, or other consequential relationships. Passing the subset check establishes consistency with the dependencies that analysis found, not completeness of the declaration. The two calculations also share the component model, so a common classification error can escape this comparison.
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+Additional model relationships provide another source of counterexamples. DocAble's validator compares the declared subsystems with maintained relationships among controls, mutations, and other engineering mechanisms. These checks can expose dependencies not visible in ordinary project-reference or import graphs.
+
+Coverage evidence provides a third perspective. If an observed execution associates a validation unit with implementation affected by the change, but the selector would omit that unit, the disagreement warrants investigation. Coverage evidence is also incomplete: an unobserved execution path cannot establish that no dependency exists.
+
+Finally, full-suite execution provides an empirical comparison. Run the selector alongside ordinary validation and record which checks it would omit. A failure in an omitted subsystem exposes a possible under-declaration. Investigate whether the change caused the failure, whether the check's scope is declared correctly, and whether the result is reproducible. This comparison can challenge the selector's models without treating every pre-existing or intermittent failure as evidence of a new dependency.
+
+% Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
+The historical evidence illustrates the limits of corpus validation. Across 200 historical change windows, the analysis reported 28 under-declaration findings arising from six root causes. Widening the modeled relationships reduced those findings to zero on that corpus. A subsequent evaluation reported 111 under-declaration findings across 797 historical change windows. A window may produce several findings, and findings may share a cause; these totals do not count distinct failing changes or distinct root causes.
+
+These results do not establish a universal error rate or correctness over future changes. They show that eliminating findings on one corpus does not establish adequacy on a broader population. Additional methods and more varied changes can expose relationships that an earlier evaluation did not challenge.
+
+When a discrepancy is found, revise the impact model and repeat the comparison. Expanding the selected set cannot introduce a new omission for the same change, although it can increase validation cost. The objective is not to minimize the selected set at any price, but to eliminate unnecessary checking without losing consequential evidence.
+
+\subsection*{Introduce the Arrangement Incrementally}\label{heading:introduce-the-arrangement-incrementally}
+
+Begin with a full validation process whose results are understood. Partition the system into a manageable set of components and validation subsystems, then establish which checks evaluate each subsystem. The initial model need not distinguish every component precisely. Coarse partitions will run more checks, but they require fewer assumptions about independence.
+
+Implement the selector as a query over those models. Require it to explain its decisions: which changed file resolved to which component, which relationships established the affected subsystems, and why each validation unit was included or omitted. These records make a mistaken selection diagnosable.
+
+Define conservative behavior before optimizing. Unmapped files, unresolved relationships, and changes with potentially broad effects should trigger full validation. Do not allow a missing scope declaration to become permission to skip a check. An agent may supply additional impact information, but that information should enlarge rather than narrow the set required by the maintained models.
+
+Next, verify that the executor uses the selection and that the gate follows the declared policy for interpreting findings. Exercise empty selections, full selections, and checks executed through different mechanisms. Introduce known failures inside and outside the selected set. Confirm both that required checks detect their failures and that broader execution or unexpected findings trigger the intended blocking, escalation, or review response.
+
+Evaluate the selector against historical changes and current work while retaining full-suite execution. Apply the challenges described under ``Challenge the Impact Declaration'' to identify omissions in the impact declaration. Resolve the discrepancies and repeat the evaluation over a sufficiently varied workload. The evidence should include changes to shared dependencies, test infrastructure, configuration, and other components whose effects may extend beyond their immediate source locations.
+
+Only then decide whether the evidence justifies reduced validation at a particular boundary. The required assurance depends on the consequences of an escaped regression. A team may retain full validation before release while using a reduced set for earlier integration checks, with periodic full-suite runs to challenge the selection. Even the full suite supplies evidence only about the properties it checks; selection must not be credited with assurance the baseline never provided.
+
+Selective validation creates a continuing maintenance obligation. Component boundaries change, tests acquire new responsibilities, and dependencies emerge. The selection models and their validation evidence must evolve accordingly.
+
+Verify the complete path with a known change and deliberately introduced failures. Check the declared subsystems, selected unit identities, execution records, and resulting gate decision against the same revision. A missing result must not appear as a passing check, and an unavailable required observation must trigger the specified broader run or review.
+
+\section{Adaptation and Limits}\label{heading:adaptation-and-limits}
+
+The potential economic benefit is reduced repeated validation. Its costs include constructing and maintaining impact relationships, evaluating the selector, investigating omissions, and running broader checks when uncertainty remains. Compare them using the lifecycle account in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}, while preserving the required quality of acceptance evidence.
+
+Measure the actual work executed, not merely the number of checks selected. Record validation latency, computing cost, omitted-check findings, and the effort needed to maintain the impact model. Compare these costs against the consequences of delayed detection or escaped defects.
+
+The appropriate granularity depends on the system. A small project may gain little from selective validation because its complete test suite is inexpensive. A large repository with costly integration tests may justify a detailed model of change impact. Where the consequences of an omission are severe, conservative selection or full validation may remain preferable.
+
+The same principle applies to other engineering evaluations. A change to a resource model may require renewed performance measurements; a change to an authorization boundary may require security analyses; a modification to a deployment dependency may require checks across several services. The relevant question is which engineering obligations a change could disturb and what evidence is needed to evaluate them.
+
+```
+
+### remediation-computation-graph
+
+Source: `book/latex/sources/appendix-handbook/remediation-computation-graph.tex`, lines 1–114; SHA-256 `287b3591de2e1d91120e5c72266df4be035d0c6c0f4fc507af7f6c1c51c75298`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A remediation system performs computations whose dependencies do not necessarily follow document structure. A pass may inspect one element, produce information for several later passes, or modify state that another computation reads. When these relationships exist only inside implementations, changing execution order requires reconstructing them. The engineering problem is to make composition explicit enough to support scheduling and analysis while keeping the declarations connected to the operations that actually execute.
+
+\section{Conceptual Design}
+
+Represent each registered computation by a stable identity, its role, and the information it reads or produces. Distinguish data dependencies from control dependencies: one carries information to another computation; the other determines whether work should execute. Record mutation behavior separately, because independence of declared inputs does not establish that two writers can safely run concurrently. \autoref{from-nodes-to-composition} illustrates these distinctions.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+DocAble connects these declarations to two kinds of consumer. For Office formats, registry read/write metadata informs scheduling and is emitted as dependency edges for a Python analytical graph. The scheduler does not consume that Python graph. For PDF, the analytical graph projects parallel typed declarations whose correspondence with the executable pipeline is checked. The two arrangements share computation identities, but differ in which facts are derived from a common source and which require reconciliation.
+
+Execution order and permission to run are distinct. Registry dependencies constrain the order; a computation can still have a condition that determines whether it applies to the current document. Analytical views use the same computation identities to examine critical paths, mutation behavior, cost, and coverage. Additional analytical annotations need not become scheduling inputs.
+
+The declarations and their distinct execution and analysis consumers appear in \autoref{handbook-computation-architecture}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-computation-architecture-694d71c705.pdf}
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+\caption[Computation declarations and their consumers]{\emph{Computation declarations and their consumers.} Office uses shared registry metadata for scheduling and analytical projections. PDF maintains typed analytical declarations alongside executable passes and checks their correspondence. Both arrangements support analysis through stable computation identities. Coverage checks must also establish that the compared population includes the computations that actually execute.}
+\label{handbook-computation-architecture}
+\end{figure}
+
+\section{Engineering Models}
+
+\autoref{handbook-computation-models} separates the declarations from their execution and analysis consumers.
+
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for computation dependencies]{\emph{Engineering models for computation dependencies.} Identify the source of each relationship and the consumer that gives it an execution or analytical role.}\label{handbook-computation-models}\\
+\toprule
+\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\midrule\endhead
+Computation registry & Stable pass identities and roles; the registered unit is a computation, not each internal statement. & Execution registration, dependency declarations, and attribution. \\
+Dependencies & Data prerequisites and control conditions. Office read/write declarations supply shared facts; PDF uses checked parallel declarations. & Scheduling machinery and the derived analytical graph. \\
+Mutation behavior & Declared read-only, direct-mutation, patch-producing, or mixed behavior. A declaration alone does not restrict writes. & Mutation analysis; execution policies must separately enforce required exclusion or application boundaries. \\
+Execution & Readiness, completion, and scheduling choices within the declared dependencies and resource limits. & The scheduler and tests of execution order and permitted concurrency. \\
+Analytical views & Derived relationships joined to measurements, costs, or coverage observations through computation identities. & Critical-path queries, architectural investigation, and correspondence checks. \\
+\bottomrule
+\end{longtable}
+}
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+The static graph describes possible composition, not the history of one run. Telemetry joined to computation identities supplies measurements for selected analyses; the document edit history records realized mutations through a separate attribution channel. Missing measurements must remain distinguishable from measured zero cost. \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} explains these connections; \autoref{chapter:appendix-a-controlled-mutation} describes the supported mutation interface.
+
+\section{Realization}
+
+\subsection*{Register Computations and Derive Their Order}
+
+% Evidence: BP-COMPUTATION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A7-archaeology.md | kind: implementation
+For DOCX, a typed pass identifier names the computation, and its registration binds metadata to an executable callback. The following pseudocode reduces two actual registrations to their dependency declarations; it omits the callbacks and common metadata:
+
+\begin{verbatim}
+if options.FixTableHeaders:
+    register(TableHeaderRemediator,
+             writes={BodyTableHeaders})
+    register(TableStructureCheck,
+             reads={BodyTableHeaders},
+             writes={BodyTableStructure})
+\end{verbatim}
+
+The shared resource name connects a table-header repair to the later structure check. The registration helper supplies a phase, access mode, explicit ordering constraints, and optional execution predicate. Resource outputs describe information available to other computations; they do not by themselves establish whether a pass mutates the document directly or produces a patch. Both registrations belong to the same option-controlled group, so disabling header repair removes the pair from this registry.
+
+The registry builder combines explicit \texttt{Before}/\texttt{After} relationships with edges from resource writers to readers. Within each phase, Kahn's topological-sort algorithm repeatedly selects a computation with no remaining predecessors and removes its outgoing edges. Registration order breaks ties deterministically. The builder rejects cycles, duplicate identities, unresolved explicit dependencies, required reads without producers, and unordered pairs of writers to the same resource. An optional read permits an absent producer; if a producer exists in the same phase, it still induces an ordering edge. A producer available only in a later phase cannot satisfy an earlier read.
+
+The shared serial driver executes this order. Before invoking a pass, it evaluates \texttt{ShouldRun}; a false result records a skip. It then checks any declared runtime field preconditions and invokes the callback. An unhandled pass exception propagates as a failure rather than allowing the sequence to continue as though the pass succeeds. This distinction matters: a producer's registration establishes an ordering obligation, not a guarantee that its conditional execution supplies every value a consumer needs. Runtime preconditions must establish the latter where required.
+
+\subsection*{Project Relationships for Analysis}
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+% Evidence: BP-COMPUTATION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A7-archaeology.md | kind: implementation
+The Office edge emitter constructs registries with the relevant options enabled, without running remediation. It walks each ordered registry and pairs a resource writer with later required or optional readers. Its JSON records contain \texttt{format}, \texttt{producer}, \texttt{consumer}, and \texttt{resource}. The example yields a DOCX record connecting \texttt{TableHeaderRemediator} to \texttt{TableStructureCheck} through \texttt{BodyTableHeaders}. The Python projection resolves the identities to format-qualified node identifiers and folds the records into data-flow edges. The emitted snapshot must be refreshed when its source declarations change. This projection exposes resource dependencies; it is not a copy of every explicit ordering constraint or of one document's execution history.
+
+Each analytical node records its identity, format, role, phase reference, mutation classification, and code anchor. An edge identifies producer, consumer, and dependency kind. PDF supplies the analytical inputs through typed \texttt{Produces}, \texttt{Consumes}, and \texttt{ConsumesForControl} sets on its pass interface. These declarations describe composition without selecting runtime order. For example, the intra-page vision-fusion pass consumes heuristic-proposal paths as data, but reads document signals and routing verdicts to decide whether to run. The projection therefore creates data-flow edges for the former and control-gate edges for the latter. A control input must not appear to be payload that the computation transforms.
+
+The PDF projection compares relationships derived from these typed declarations with the analytical graph's declared edges. Registration checks separately compare node identities with executable registrations. Neither comparison proves that a pass body has no undeclared effect. Mutation analysis therefore needs its own evidence: DocAble's PDF check inspects code routes to patch-application runners and compares them with the graph's mutation classification and application boundary. This check distinguishes declared intention from the mutation path the implementation actually uses.
+
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+% Evidence: BP-COMPUTATION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A7-archaeology.md | kind: implementation
+Measurements attach through the same identities. A single format-aware function maps a trace's pass-class name to a graph node; coverage analysis and the timing-record writer share that function. Measured providers group records by the resulting node identifier and report identifiers that no longer resolve. A node with no observations remains unmeasured, rather than acquiring an estimated duration of zero. This makes the graph useful for latency analysis without turning its declared dependencies into measured execution times.
+
+\subsection*{Check the Population and the Relationships}
+
+% Evidence: BP-COMPUTATION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A7-archaeology.md | kind: test-definition-and-observed-projection-check
+The registry's ordering test deliberately registers a reader before its producer, then checks that the built order reverses them. Other tests challenge cycles, missing producers, conflicting writers, and explicit ordering. Projection tests exercise the distinction between data and control inputs. A negative test removes the PDF router's produced facets from an in-memory declaration map and verifies that the corresponding projected edges disappear. This tests the check's sensitivity without changing source files. The parity lint makes Office and PDF correspondence findings exit-contributing, and the lint registry marks the check as blocking.
+
+\autoref{handbook-computation-failures} distinguishes failures that require different evidence. A passing comparison over two incomplete sets cannot establish completeness, and a complete set of declarations cannot establish that the code obeys them.
+
+{\footnotesize
+\begin{longtable}{@{}p{.23\linewidth}p{.37\linewidth}p{.32\linewidth}@{}}
+\caption[Checking computation declarations]{\emph{Checking computation declarations.} Agreement, population coverage, and implementation effects require separate checks.}\label{handbook-computation-failures}\\
+\toprule
+\textbf{Failure} & \textbf{What is wrong} & \textbf{Required evidence} \\
+\midrule\endhead
+Projection disagreement & An analytical edge differs from its source declaration. & Recompute and compare relationships; inject a discrepancy to test detection. \\
+Missing computation & Executable work is absent from the population under comparison. & Inspect registrations and direct runner invocations, including paths outside the registry. \\
+Undeclared effect & A pass reads or writes state beyond its declarations. & Inspect relevant code effects and test the execution behavior; declaration agreement is insufficient. \\
+\bottomrule
+\end{longtable}
+}
+
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+The August 2026 coverage audit supplies a concrete missing-population case: DOCX math promotion executes through a direct runner call outside the enum-based registry, so comparing enum members with graph nodes cannot see it. The audit also identifies qualified PDF constructor names that escape the registration reader. The repair has two parts: include these execution paths in the checked population, then require the resulting correspondence findings to pass at admission. In the November design, Office checks cover enum registrations, direct runner calls, and projected edges. Making an incomplete check blocking cannot repair its blind spot. \autoref{3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement} develops that distinction.
+
+\section{Adaptation and Limits}
+
+This arrangement is useful for pipelines and workflows with identifiable computations and recurring questions about their composition. Its soundness depends on the declared dependencies and effects matching the implementation. A hidden read or write can invalidate a scheduling choice even when every declared edge is consistent. Two computations without a declared edge may still mutate the same document object, share a non-thread-safe library handle, or exceed the resource budget when active together. Separate dependency readiness from resource admission and mutation exclusion. Preserve serial execution where those relationships are uncertain; permit concurrency only where the execution design supplies the necessary isolation, application boundaries, and resource limits. \autoref{chapter:appendix-a-resource-models-and-execution-design} develops those additional obligations.
+
+```
+
+### job-ownership-and-recovery
+
+Source: `book/latex/sources/appendix-handbook/job-ownership-and-recovery.tex`, lines 1–160; SHA-256 `cb411cf8297212ff12b9fa3ae9d25d77d8c346c601c45ee7eb15fa3468931574`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A worker may continue executing after its lease expires. Its delayed release must not erase a replacement lease. Recovery must also protect effects, resolve stranded work, and prevent a database row from announcing an unavailable output.
+
+This blueprint concerns runtime document-remediation jobs. \autoref{chapter:appendix-a-governed-delegation} governs coding-agent assignments, whose lifecycle and acceptance procedure differ.
+
+\section{Conceptual Design}
+
+Separate accounting for in-flight work, acquiring a protected-effect claim, and announcing a durable result. The lease keeps work visible outside ordinary queues; the effect claim atomically controls a selected operation; publication orders artifact finalization before completion. Redis, database, and artifact-store operations do not form one transaction.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-dated-design
+DocAble's July 2026 lease design keeps a merging parent visible to demand counting, preventing scale-down during active work. In the November 16 revision, inline chunkless completion releases the accounting lease after its terminal database update; a frontier-finalization adapter reuses the retired page-chunked engine's merge claim and epoch-checked terminal hooks. Those distinct paths supply this construction.
+
+Atomic operations protect state changes; explicit-state exploration examines interleavings; temporal analysis examines eventual termination under delivery and scheduling assumptions. \autoref{match-mechanism-to-property} distinguishes these obligations.
+
+The accounting, claim, and publication boundaries appear separately in \autoref{handbook-recovery-architecture}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-recovery-architecture-96ff3186d6.pdf}
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+\caption[Three commitments in job recovery]{\emph{Three commitments in job recovery.} The Redis lease records in-flight work by job ID and issue epoch; it does not identify an owning worker. A database compare-and-set protects acquisition of the selected merge claim, while publication persists the artifact before updating durable job state. The inline path bypasses that merge claim. These operations cross separate stores; recovery and assurance address their different failure windows.}
+\label{handbook-recovery-architecture}
+\end{figure}
+
+\section{Engineering Models}
+
+\subsection*{State and Identity}
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+\autoref{handbook-job-recovery-models} separates persisted state from local protocol state.
+
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for job ownership and recovery]{\emph{Engineering models for job ownership and recovery.} Each representation answers a different recovery question.}\label{handbook-job-recovery-models}\\
+\toprule
+\textbf{Representation} & \textbf{Stored meaning} & \textbf{Consumer} \\
+\midrule\endhead
+Job row & Database job ID, status, stage, and progress timestamps. & Introduction and effect-claim updates; terminal writes; stale-job scans. \\
+In-flight lease & Redis member = parent job ID; score = wall-clock issue epoch. No worker-ID field. & Demand counting, stale-lease scans, and conditional release or reissue. \\
+Worker context & A local snapshot of the lease epoch taken at merge claim. & The terminal hook presenting the expected epoch. \\
+Effect claim & The job row's merge-stage value; not a separate per-worker lease. & One conditional database update, followed by the winning caller's merge. \\
+Recovery sequence & Local states such as fallback staged, uploaded, and database updated. & Transition guards and entry hooks ordering publication. \\
+Progress model & One abstract job, pending delivery, and bounded steps. & The temporal specification and paired analysis configurations. \\
+\bottomrule
+\end{longtable}
+}
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-abstraction
+\magevalue{chapter:modeling}'s generation abstracts successive claims. The implementation discriminator is a floating-point issue timestamp, not an incrementing counter. The executable lease model uses integer ticks and distinguishes the original worker's held epoch from the replacement lease's epoch. These abstractions do not imply a Redis worker-ID field or authority over every operation. The lease entry alone cannot identify which worker is executing the job; that question requires a worker identity or a link to an execution record.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+The inline path traverses local \texttt{IDLE}, \texttt{CLAIMED}, \texttt{TRIAGING}, and \texttt{SPLITTING} states, runs the engine, then resets to idle; the database row reaches its terminal status separately. The retained merge path adds \texttt{WAITING}, \texttt{MERGING}, and \texttt{FINALIZING}. Conformance mappings must identify their path.
+
+\section{Realization}
+
+\subsection*{Implement Conditional Lease Operations}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Introduction first wins a database claim changing \texttt{queued} to \texttt{remediating}; it then adds the parent ID to the Redis sorted set with the current time as score. These are separate operations. The Redis write is best-effort, so the database claim can exist without its accounting entry. Staleness is a comparison with a cutoff, not automatic removal of the sorted-set member. Reissue replaces the score; the parent lease has no per-worker heartbeat-renewal operation.
+
+The following pseudocode preserves the Lua scripts' decisions. Each function body executes atomically in Redis; the scan that selects a reclaim candidate runs outside it.
+
+\begin{verbatim}
+release(job, expected):
+    if expected is absent:
+        return ZREM(leases, job)
+    current = ZSCORE(leases, job)
+    if current is numeric and expected is numeric:
+        if abs(current - expected) < 0.001:
+            return ZREM(leases, job)
+    return 0
+
+reissue(job, now, stale_cutoff):
+    current = ZSCORE(leases, job)
+    if current is absent or not numeric:
+        return 0
+    if current > stale_cutoff:
+        return 0
+    ZADD(leases, job, score=now)
+    return 1
+\end{verbatim}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation-and-illustration
+If A retains an old epoch while reclaim installs a distinguishably newer one for B, A's guarded release returns zero; B can remove its matching entry. Rechecking staleness atomically prevents two scans from winning the same reclaim. The comparison tolerance requires replacement identities to remain distinguishable at the actual clock resolution.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Inline chunkless completion calls the omitted-epoch branch after its terminal database compare-and-set; dispatch-failure cleanup also uses it. The merge hook instead presents its claim-time snapshot. The API therefore supports both guarded release and unconditional cleanup.
+
+\subsection*{Claim the Effect and Classify Recovery}
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+The merge claim is a single database update whose returned row identifies the winner. The inspected implementation selects \texttt{merging} for the coordinator path or \texttt{merge\_claimed} for its push-consumer variant. Its essential predicate is:
+
+\begin{verbatim}
+UPDATE jobs
+SET stage = target_stage, progressed_at = server_now
+WHERE id = job_id AND stage <> target_stage
+  AND status NOT IN ('failed', 'completed',
+                     'deleted', 'cancelled')
+RETURNING id;
+\end{verbatim}
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Only a caller receiving a row proceeds to the merge. A second caller using the same target stage loses while that stage remains claimed. The snippet's exclusion set is specific to this primitive; a general terminal-state fence requires reconciling it with the other lifecycle consumers. The two target-stage variants also rely on route selection: their predicates alone do not establish mutual exclusion between callers using different target stages.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Recovery must classify the job before deciding what to repeat. The lease scan clears entries for missing or terminal parents without requeuing them. For a nonterminal parent, only the winner of atomic lease reissue acts. The historical chunked branch republishes preempted work; the chunkless branch marks an orphan failed rather than repeat a potentially OOM-inducing computation. A separate stale-active-job sweep examines start and progress timestamps and surfaces failure without automatic requeue. Eventual termination can therefore mean an explicit failure, not eventual successful remediation.
+
+\subsection*{Publish the Fallback and Examine Crash Points}
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+The fallback driver first archives the corrupt output and records diagnostic feedback on a best-effort basis. Its load-bearing sequence is \texttt{FALLBACK\_STAGED} \(\rightarrow\) \texttt{FALLBACK\_UPLOADED} \(\rightarrow\) \texttt{DB\_UPDATED}. The hooks copy the original input to the output location, call \texttt{finalize\_output}, then conditionally write \texttt{COMPLETED\_UNMODIFIED} from \texttt{REMEDIATING}. A remote store uploads during finalization; a local store may already have the file. Analytics and chunk cleanup follow. \autoref{2.4-behavioral:heading:publishing-a-recovered-result} explains the ordering obligation.
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-failure-analysis
+{\footnotesize
+\begin{longtable}{@{}p{.25\linewidth}p{.33\linewidth}p{.34\linewidth}@{}}
+\caption[Interruption points in job recovery]{\emph{Interruption points in job recovery.} Atomic claims protect individual decisions; artifact persistence and later bookkeeping retain separate failure windows.}\label{handbook-job-recovery-failures}\\
+\toprule
+\textbf{Interruption} & \textbf{State or source behavior} & \textbf{Recovery consequence} \\
+\midrule\endhead
+After merge claim, before completion & The stage claim survives; repeating the same claim loses. & A notification alone cannot undo the claim. Timeout and stale-work handling must resolve a stranded job; do not repeat the effect merely because a lease expired. \\
+Fallback copy or finalization raises & The driver aborts before the fallback-completion write and delegates failure outward. & The output is not advertised as completed by this sequence. A process crash bypasses those exception hooks and needs external detection. \\
+Artifact finalized, database update not reached & Storage can contain the fallback while the row remains nonterminal. Recovery-step state belongs to the interrupted invocation. & Inspect both artifact and row; this state machine does not supply a persisted checkpoint for automatic resume. \\
+Terminal database write, lease clear missed & An accounting entry can outlive completed work. & Terminal-lease reconciliation clears it without starting remediation again; repeated removal of an absent entry is harmless. \\
+Terminal write, later bookkeeping interrupted & Artifact and completion can exist without all later analytics or cleanup. & Reconcile auxiliary work separately. Ordered hooks do not make all side effects transactional or exactly once. \\
+\bottomrule
+\end{longtable}
+}
+
+\subsection*{Test Safety, Progress, and Correspondence}
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: test-definition
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: test-definition
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: test-definition
+Use three complementary constructions. Implementation tests call the production lease-release wrapper and its Lua script through fakeredis: an old epoch leaves the reissued lease present, and the current epoch removes it. Fallback tests run the real recovery driver with a fake database and mocked storage, record finalization before the database update, and inject an upload exception. Concurrent-completer tests race two threads through production completer code against a fake database claim. These tests exercise selected boundaries; they do not substitute for testing the real database's transaction behavior or remote artifact publication.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: test-definition
+Explicit-state exploration then varies operation ordering without requiring a live service. The lease model includes the current lease, a worker's held epoch, and a still-running original worker with an older epoch. Its configured cases use two parents with a six-tick clock bound and three parents with a four-tick bound. Negative variants remove the epoch fence, terminal check, or lease reconciliation and require the checker to expose the corresponding violation. Those assertions challenge the checker's ability to detect the failure family.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: recorded-model-execution
+A retained isolated run of the separate merge-claim model supplies both outcomes: with three notifications and atomic claims, 37 explored states contain no double merge; disabling the claim produces 32 violating states, including two merged notifications. This checks the model's duplicate-delivery behavior, not the full database predicate or a production execution.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: specification
+The temporal specification addresses a different question. It represents one job, a pending-delivery flag, and a four-step bound. Delivery advances status; loss removes the pending delivery without progress; a sweep offers stranded work again. Its property is \(\mathrm{Submitted} \leadsto \mathrm{Terminal}\), under strong fairness for delivery and weak fairness for the sweep and step-cap action. Paired TLC configurations enable and disable the sweep. They abstract away the lease and merge CAS. Run each configuration and retain its bounds and result; an expected counterexample written in a configuration comment is not an execution receipt.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+Keep correspondence checks with the protocol: compare declarations, exercise implementation operations against the model, and revisit mappings when paths change. The worker/generation abstraction, integer-tick exploration, timestamp-based Lua, and durable stage claim preserve different details; each needs correspondence at its claimed boundary.
+
+\section{Adaptation and Limits}
+
+Choose distinguishable replacement tokens, reconcile terminal-state definitions, and provide recovery for the winner that crashes. A safe claim can leave work stranded; a retry can repeat an effect. Specify both the allowed state changes and the mechanisms that resolve interrupted work.
+
+```
+
+### resource-models-and-execution-design
+
+Source: `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex`, lines 1–126; SHA-256 `e8dde0662b278d7d30a2f7c86e52e1252e4209e7f037afb945a371b78f603f94`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{Problem}
+
+A document-processing service can exhaust worker memory even when its individual transformations are correct. Dividing work by page may reduce intermediate allocations while leaving large media payloads resident. Increasing concurrency can then improve latency on small inputs and worsen failure on large ones. The engineering problem is to choose a representation and execution policy that preserve resource bounds while allowing useful parallel work.
+
+\section{Conceptual Design}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+DocAble's media-separation design distinguishes document structure from aggregate media residency. A streaming transformation extracts media into external storage and retains references in a smaller structural skeleton. Operations that need only the structure can use the skeleton; media consumers resolve the references or require a representation with the media restored. Recombination must also stream: buffering the complete payload on output recreates the memory problem. \autoref{interlude-execution-unit} contrasts this arrangement with whole-document and page-partitioned processing.
+
+The residency model uses the same bound as \autoref{4.2-one-problem-many-models:heading:remove-media-from-the-working-set}:
+\[
+\begin{aligned}
+\operatorname{RSS}_{\mathrm{peak}} &\le C,\\
+C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+   + M_{\mathrm{handles}} + M_{\mathrm{work}}.
+\end{aligned}
+\]
+The terms bound the rolling stream buffers, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. Architecture bounds stream buffers; workload limits bound structural size and reference count; configuration limits active concurrency. Measurements must establish the working set of each media consumer, including decoded images, rendering, and temporary allocations. Externalizing bytes alone does not establish the bound.
+
+Dependency declarations then identify ready computations, while mutation restrictions and resource limits constrain which may execute together. \autoref{chapter:appendix-a-remediation-computation-graph} describes those declarations and their consumers. A performance model evaluates candidate policies using operation costs, dependency paths, concurrency limits, and deployment overhead.
+
+The representations and execution decisions fit together as shown in \autoref{handbook-resource-architecture}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-resource-architecture-062243c02e.pdf}
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: implementation
+\caption[Resource-aware remediation execution]{\emph{Resource-aware remediation execution.} Streaming extraction separates document structure from media payloads. The computation graph determines which work is ready; configured concurrency limits, calibrated against the memory envelope, restrict active work. Media is retrieved on demand and restored through streamed recombination. Residency and performance models guide these decisions, while measurements test their assumptions.}
+\label{handbook-resource-architecture}
+\end{figure}
+
+\section{Engineering Models}
+
+\autoref{handbook-resource-models} identifies the representations needed to connect resource feasibility to execution design.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: measurement-and-analysis
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
+{\footnotesize
+\begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
+\caption[Engineering models for resource-aware execution]{\emph{Engineering models for resource-aware execution.} Representation, scheduling, and measurement must agree on the work and the resource boundary being evaluated.}\label{handbook-resource-models}\\
+\toprule
+\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\midrule\endhead
+Residency & Retained objects, allocation sizes, release conditions, and an admissible memory envelope. & Capacity decisions, concurrency feasibility, and resource guards. \\
+Document structure & Skeleton entities and references to media that need not remain resident. & Remediation passes, media access, and streamed recombination. \\
+Execution & Computation prerequisites, readiness, mutation restrictions, and allowed concurrency. & Scheduling policies and execution-order tests. \\
+Performance & Operation costs, critical paths, fan-out costs, and deployment assumptions. & Predictions and comparisons of candidate designs. \\
+Measurement & Workload identities, measured quantities, sampling boundary, and configuration. & Comparisons between predicted and observed memory, latency, and cost. \\
+\bottomrule
+\end{longtable}
+}
+
+The document format determines the identities in the structural model. The implementation supplies the actual consumers and allocation behavior; the engineer supplies the admissible operating envelope. Measurement records must distinguish managed allocation, process RSS, and container memory. A bound on one does not automatically bound the others, particularly when renderers run in child processes or temporary files occupy memory-backed storage.
+
+\section{Realization}
+
+\subsection*{Preserve Structure and Resolve Media}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A9-archaeology.md | kind: implementation
+For OOXML, the skeleton retains non-media package entries, including document XML and relationships. A manifest records each reference site separately from each distinct payload. Its essential declaration is:
+
+\begin{verbatim}
+MediaManifestEntry(
+    Anchor, Key, OriginalPartName, RestoreState?)
+StoredMediaBlob(ContentHash, FileName, ByteSize)
+\end{verbatim}
+
+An OOXML anchor identifies a package path, such as \texttt{ppt/media/image1.png}, rather than a slide ordinal. The key is the SHA-256 hash of the payload. Several reference sites can therefore resolve to one stored blob while retaining their own structural identities. Reordering slides must not change which media each site references.
+
+The C\# \texttt{MediaStore.PutStream} operation copies an entry through a bounded buffer while computing its hash, then publishes the disk file under that hash. The Python pipeline uploads each distinct file through \texttt{DataStore.put\_stream} and retains a hash-to-handle map. Recombination copies the revised skeleton and streams each referenced payload from \texttt{DataStore.open} into its original package path. Missing handles raise an error; delivery must not silently omit the media. The following pseudocode abbreviates the OOXML recombination path:
+
+\begin{verbatim}
+stream_copy_skeleton(revised_skeleton, output)
+for entry in manifest.entries:
+    handle = handles[entry.content_hash]  # must resolve
+    with store.open(handle) as source:
+        stream_copy(source, output.open(entry.original_part_name))
+\end{verbatim}
+
+PDF requires a different representation. A sentinel inside an image XObject carries the content-hash identity through intervening document rewrites. The manifest also preserves the stream's filter and decoding parameters. Recombination restores those dictionary entries with the original bytes and flushes each object. A package path cannot supply this identity, and a PDF object number is not stable enough across rewrites.
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: measurement-and-analysis
+Check the consumer before placing extraction in the pipeline. DocAble's PDF alt-text and presentation-composition operations consume whole-page or whole-slide renders. Removing embedded images before rendering leaves blank regions and destroys evidence the reasoner needs. Media separation is consequently useful only where the required visual content remains available; it does not justify sending every consumer a stripped skeleton. Rendering also introduces a decoded working set that the encoded payload size does not determine.
+
+\subsection*{Test the Bound and Its Explanation}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A9-archaeology.md | kind: test-definition
+The primitive's tests check byte-identical restoration, survival of structural edits, deduplication, stable references under slide reorder, and rejection of dangling handles. Resource tests use different instruments for different boundaries. The C\# test strips a 16\,MiB media entry and requires allocations on the measured thread below one quarter of that size. The Python test varies a blob from 1 to 4 to 16\,MiB, requiring the largest streaming peak below 4\,MiB and within 2\,MiB of the smallest. A deliberately buffered read must consume more than four times the streaming peak. That control checks whether the instrument can expose the defect.
+
+Despite its name, \texttt{test\_peak\_rss\_is\_flat\_across\_blob\_size} measures Python allocations with \texttt{tracemalloc}, not RSS. It substitutes a disk-backed store and stages the blob outside the measured region. These tests establish useful local obligations; a deployment envelope additionally needs process or container measurements across structural size, decoded image area, and concurrency. The retained PDF recombination experiment supplies one such observation: across 1, 8, 32, and 64 images of about 2\,MB each, per-object flushing yields a peak-RSS slope of approximately 0.005\,MiB per image, compared with approximately 2--5\,MiB without flushing. That result concerns recombination on that workload, not the whole remediation pipeline.
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: measurement-and-analysis
+The August 31 PDF investigation illustrates why the explanation itself needs testing. A working hypothesis attributes roughly 2.4\,GiB to a resident document graph in the canonical PDF library. A dedicated probe opens and walks a PDF containing 296\,MiB of images, then forces collection: the live graph is approximately 1\,MiB, and releasing every stream reclaims nothing. Memory mapping, capture buffers, serialization, and transient allocations explain the discrepancy. The engineering response changes which holders the model represents and which operations deserve optimization; increasing the supposed document-graph allowance would preserve the wrong explanation.
+
+\subsection*{Separate Readiness from Resource Admission}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A9-archaeology.md | kind: implementation-and-model
+DocAble's chunkless dependency scheduler separates two waits. \texttt{RunGatedProduceAsync} first awaits each predecessor's release signal, which indicates that its result is applied. It then acquires the semaphore for deterministic or GenAI work before invoking the producer, and releases that permit in a \texttt{finally} block. Dependency readiness therefore does not itself authorize immediate execution.
+
+The configured concurrency limit must fit the resource envelope. The distribution model expresses the frontier worker's active footprint as concurrency limit times per-call working set, independently of the number of waiting units. For example, forty ready calls with four permits admit at most four active calls, but that is safe only if four working sets plus retained state fit the budget. The semaphore enforces a count, not a byte estimate. An engineer must calibrate the limit for the workload and deployment, or add a resource-aware admission mechanism where per-call demands vary too much for a count limit.
+
+\subsection*{Predict Critical Paths and Repeated Work}
+
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
+Weight each dependency node with an operation duration and compute its earliest finish from the largest predecessor finish. The maximum finish is a lower bound for that dependency graph under sufficient parallel capacity. Resource limits, queueing, setup, and coordination can lengthen the schedule. DocAble's August 30 readout for six sections and thirty-seven images gives three successive GenAI levels of approximately 1.777, 1.777, and 4.105 seconds: a 7.659-second floor for the modeled work. The vision estimate uses a measured batch calibration; the summary durations remain priors. This is a conditional prediction, not an observed end-to-end latency.
+
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A9-archaeology.md | kind: model
+Repeated production adds a different cost. DocAble's time-complexity model uses
+\[
+T(d) \approx (R+1)F(d)+G(d),
+\]
+where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) accounts for reasoning work and its distribution. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
+
+\subsection*{Retain Structural Performance Checks}
+
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: implementation-and-measurement
+The performance ratchet preserves four counts: production rounds, logical GenAI calls, capture invocations, and render invocations. Its frozen serial baselines are \((2,1,3,0)\) for a title-less spreadsheet and \((2,1,3,1)\) for a single-page image-bearing PDF. These fixtures isolate a title operation and an alt-text operation. The rig generates them in process, uses a deterministic mock reasoner, and starts a fresh render cache. Structural counts expose added work without depending on machine-specific wall-clock speed.
+
+\texttt{ChunklessComplexityRatchetTests} rejects an execution-mode mismatch before comparing measurements, fails if any of the four counts exceeds its baseline, and checks that repeated runs agree. A fifth count, GenAI transport hops, is outside that upper-bound comparison. Its separately named audit test nevertheless asserts equality with the seeded value and can fail; it is not an unconstrained observation. The baseline's review policy calls for lowering a bound after an improvement and explaining any increase. The comparisons cannot decide whether an increase is justified. Nor do two small mock fixtures establish production latency or coverage of large rendered documents; those require separate workloads and measurements.
+
+\section{Adaptation and Limits}
+
+Use this arrangement where payloads can be separated from the structure needed for reasoning and transformation. Preserve reference identity, consumer access, and streamed output together. Whole-object consumers, unbounded structural growth, or large decoded working sets require a different representation or admission policy. Resource and performance claims remain conditional on workload, execution mode, and measurement boundary. Recheck those conditions when changing formats, libraries, deployment tiers, or concurrency.
+
+```
+
+### maintaining-the-machinery
+
+Source: `book/latex/sources/appendix-handbook/maintaining-the-machinery.tex`, lines 1–68; SHA-256 `2dd9fe85ea02331daad7c3a3425faa8cbe4ddd426bb14b7e773b587199008029`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A working control becomes part of the system later changes must preserve. Its inputs can drift, its consumer can move, and another control can interfere with it. The preceding blueprints therefore need maintenance beyond keeping their files present: engineers must examine interactions, correspondence, failure responses, and the work the machinery actually performs.
+
+\section{Analyze Interactions Before Adding Another Control}\label{heading:handbook-model-governance-graph}
+
+Start with a concrete interference question. Do two hooks write the same record? Must one inspect state before another consumes or changes it? Does a required property of a commit conflict with a different mechanism's transformation? Record only the distinctions needed to decide that question. A list of control names cannot answer it.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
+DocAble's governance graph represents selected mechanisms with firing events, resource requirements, enforcement characteristics, and implementation anchors. Requirements distinguish reading, writing, requiring a property, and constraining a resource. Resources have hierarchical names: a coarse reference to \texttt{commit} can be refined to \texttt{commit.message} or \texttt{commit.body}. Apparent interference may disappear when the modeled subresources are disjoint. Genuine overlap may require an ordering or an engineering decision about incompatible requirements.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
+The graph's analysis computes a declared order and detects cycles; tests include both a two-node cycle and a self-loop. This establishes properties of the represented relationships. A query returning an order is not an executing scheduler. If an analogous arrangement requires enforced ordering, install a consumer that actually uses the result and test its observed execution sequence.
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
+Correspondence has a similarly concrete boundary. The anchor check compares modeled commands, lifecycle events, scripts, and entry symbols with configured wiring. It can detect a missing command or a mismatched firing event within its inspected population. Finding the expected function name does not establish that its behavior remains suitable. When a control's meaning changes, review the represented requirements as well as its address.
+
+\section{Recurring Engineering Moves}\label{heading:handbook-composition-procedure}
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+The ten moves in \autoref{handbook-engineering-moves} are construction choices. A blueprint combines the moves needed for its purpose; it does not require every mechanism in the table. For example, deriving a grant plan is useful only after the caller, callee, and runtime identity can be joined reliably. Checking that derivation against an existing deployment map is a migration aid, not another permanent owner of the same fact.
+
+{\footnotesize
+\begin{longtable}{@{}p{0.24\linewidth}p{0.28\linewidth}p{0.38\linewidth}@{}}
+\caption[Engineering moves at a glance]{Ten engineering moves, the problems that motivate them, and concrete realizations in DocAble.}\label{handbook-engineering-moves}\tabularnewline
+\toprule
+Recurring problem & Engineering move & DocAble example \\
+\midrule
+\endfirsthead
+\toprule
+Recurring problem & Engineering move & DocAble example \\
+\midrule
+\endhead
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: implementation
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: implementation
+Different consumers disagree about the same fact. & Make one source authoritative. Assign the fact an owner and name its consumers. & The component catalogue defines the zones used by repository accounting and agent audits. \\
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+A copied declaration drifts from its source. & Derive; do not copy. Compute the second representation where a reliable transformation exists. & Deployment derives invocation-grant plans from service dependencies and runtime identity. \\
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
+A useful representation no longer describes its subject. & Check correspondence. Compare declared facts with independently obtained evidence. & A governance-graph check resolves modeled hooks against their configured events and implementing scripts. \\
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: implementation
+A collection of tests has no explicit account of what it must cover. & Derive the obligation set. Enumerate required evidence from represented properties. & Cross-service invariant declarations identify verification obligations and references to their checkers. \\
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: implementation
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
+A rule is checked where the necessary state is unavailable. & Enforce where the property is legible. Place the decision and its consequence at a suitable boundary. & The PDF applier resolves the target before deciding whether an artifact-demotion request is admissible. \\
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
+A protected operation remains available through ungoverned paths. & Close the action surface. Offer supported operations through a controlled interface. & External PDF editing uses typed operations; the applier can refuse a request before mutation. \\
+% Evidence: E19 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E19.md | kind: implementation
+% Evidence: E58 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E58.md | kind: implementation
+Relevant knowledge is discovered after the consequential choice. & Deliver knowledge at the decision. Join the work's scope to the representations it needs. & Dispatch context extraction selects constraints associated with the brief's target files. \\
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+A result cannot be traced to the work that produced it. & Carry cause with consequence. Preserve identities and attribution across transformations. & PDF mutation records identify the responsible pass or editing session; applied results can be compared with proposed edits. \\
+% Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: practice-and-design
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: practice-and-design
+The same operational judgment must be reconstructed repeatedly. & Externalize recurring judgment. Record states, evidence, and sanctioned responses. & Lifecycle descriptions and runbooks distinguish recovery work from ordinary completion and identify where judgment remains. \\
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
+Individually reasonable changes conflict when combined. & Make dependencies queryable. Represent the relationships needed to analyze the interaction. & The governance graph records firing events, resource use, and chosen resolutions among selected mechanisms. \\
+\bottomrule
+\end{longtable}
+}
+
+\section{Repair, Reconsider, or Retire}
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: incident
+A control's repeated use supplies evidence about its design. False refusals may reveal a bad identity extractor, as in the completed-phase gate. Missing attribution may reveal a mutation path the scanner cannot enumerate. Repeated manual reconstruction may identify a useful model; a frequently consulted model that never changes a decision may instead be unnecessary. Distinguish a defect in the mechanism from a deliberate exception to its policy before adding another override or check.
+
+Keep the maintenance path connected to the original obligation. Identify the failure class, the representation or mechanism changed, the consumer that must use the repair, and the evidence that exercises the repaired path. Retest both refusal and legitimate work. Then remove superseded declarations and controls when consumers no longer depend on them. Leaving both old and new machinery active can create conflicting authority, duplicate cost, or a misleading impression of independent protection.
+
+```
+
+### designing-your-own-blueprint
+
+Source: `book/latex/sources/appendix-handbook/designing-your-own-blueprint.tex`, lines 1–21; SHA-256 `79351abcfe46a4dd8aa7da6454eb85743fe31631d773354fe47f965645e6be15`.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The eight blueprints show how engineering models and mechanisms can be arranged around a needed capability. To construct an arrangement for a different problem, work backward from the capability to its obligations, then forward through the representations and mechanisms that can support them. Consider agents modifying database schemas while preserving compatibility with deployed clients.
+
+\begin{enumerate}
+\item \textbf{State the capability and its scope.} Specify which clients must continue to work as the schema changes and during which deployment stages. This is the engineering requirement. A schema registry, migration tool, or deployment platform is a possible means of satisfying it, not the starting requirement.
+
+\item \textbf{Identify failures and the obligations they expose.} An agent might remove a field still in use, propose a migration that cannot handle existing data, or deploy a schema before the corresponding application changes are ready. These failures require different evidence: client compatibility, migration validity, and a safe deployment sequence.
+
+\item \textbf{Choose models that answer those questions.} A schema model distinguishes the deployed structure from the proposed structure. A dependency model identifies clients and the fields they use. A migration model represents transitions between schema versions and their prerequisites. Shared field, client, and version identities let an analysis connect a proposed removal to the clients that must change before it takes effect.
+
+\item \textbf{Assign authority and check correspondence.} Decide which representation owns each fact and name its consumers. Compare the declared deployed schema with the database, and check the client-dependency model against evidence from the relevant implementations. A representation of current use and a decision about permitted future use make different claims. Disagreement requires an engineering decision about which should change.
+
+\item \textbf{Connect obligations to mechanisms and consequences.} A compatibility analysis can identify affected clients; a migration validator can exercise a transition against representative data. A deployment gate can refuse promotion until it receives the required findings and evidence of client readiness. Account for each check's limits: static analysis may miss dynamically constructed queries, and sampled data may miss a production record that breaks the migration. Broader tests, staged deployment, or review may be needed.
+
+\item \textbf{Exercise the composition.} Trace a valid change and deliberate violations through the complete arrangement. Does a failed compatibility check actually prevent promotion? What happens if migration evidence is missing, stale, or for another schema version? Can an agent bypass the intended path? Individual checks can work correctly while their composition fails to protect the capability.
+
+\item \textbf{Choose sufficient machinery and maintain it.} A rare inexpensive failure may remain an operating judgment; a recurring costly one may justify a durable interface or gate. Review construction, runtime, diagnosis, and upkeep costs against the work the arrangement enables or preserves. Begin with the essential obligations, preserve legitimate implementation choices, and add machinery when experience exposes a gap worth closing. The adoption and measurement procedures in Appendix B's \href{appendix-b-getting-started.html}{Getting Started} and \href{appendix-b-measuring-mage.html}{Measuring MAGE} support that decision as the environment changes.
+\end{enumerate}
+
+The sequence is iterative. A failed composition test may require a different representation; new evidence may justify revising an obligation or retiring a control. The engineer remains responsible for deciding which obligations and residual uncertainties are acceptable for the selected work.
+
+```

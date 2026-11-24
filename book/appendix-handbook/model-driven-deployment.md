@@ -2,7 +2,7 @@
 
 ## Problem
 
-A service can know a dependency’s URL and still be unable to call it. DocAble encountered this failure when deployment wired service addresses without the corresponding invocation grants. Calls reached the cloud authorization boundary and failed before application code ran. Repairing one missing grant restores one call; deriving wiring and permissions from connected representations gives later changes a way to preserve their agreement.
+A service can know a dependency’s URL and still be unable to call it. DocAble’s deployment failure illustrates the problem: service addresses are wired without the corresponding invocation grants. Calls reach the cloud authorization boundary and fail before application code runs. Repairing one missing grant restores one call; deriving wiring and permissions from connected representations gives later changes a way to preserve their agreement.
 
 ## Conceptual Design
 
@@ -42,7 +42,7 @@ SyncEdge(
 ),
 ```
 
-The service architecture is authoritative about intended communication only when the engineer has assigned it that role. A deployment map can independently be authoritative for the configuration consumed by deployment. A recovered architectural view may instead be descriptive. Derivation is a different distinction: the grant plan is computed from these inputs, and its correctness depends on both the input facts and the join. A correspondence check exposes disagreement between representations; an engineer must resolve which declaration should change.
+The architectural contract states which calls are intended; the deployment map supplies the configuration actually used. The grant plan derives concrete permissions from those declarations and the runtime identities. When the contract and deployment map disagree, a correspondence check identifies the discrepancy, but an engineer must decide which declaration to change. A correct derivation does not establish that the resulting permission is installed.
 
 The model leaves service algorithms and internal organization open while fixing the communication and authorization relationships needed for deployment. A component name identifies a logical service; a runtime principal identifies an actor at the authorization boundary. If several services share one principal, the derived permission is shared too. Neither a detailed architecture nor a correct join can provide isolation absent from the runtime identity arrangement.
 
@@ -50,22 +50,11 @@ The model leaves service algorithms and internal organization open while fixing 
 
 ### Derive and Apply Permissions {.unnumbered}
 
-For each selected caller, the grant planner resolves its runtime service account and environment-scoped callee, then constructs a `roles/run.invoker` binding. Application deduplicates bindings by principal and callee while retaining the logical callers in its report. DocAble’s inspected configuration uses a shared runtime service account, so several logical callers can produce the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
+For each selected caller, the grant planner resolves its runtime service account and environment-scoped callee, then constructs a `roles/run.invoker` binding. Application deduplicates bindings by principal and callee while retaining the logical callers in its report. DocAble’s configuration uses a shared runtime service account, so several logical callers can produce the same concrete binding. The model does not provide per-service isolation that the deployment lacks.
 
-Separate planning from attempting the external effect. A deterministic planner can be exercised without cloud access; an application component needs credentials, a target environment, and a policy for failed operations. DocAble retains the following result for each distinct binding:
+Separate planning from attempting the external effect. A deterministic planner can be exercised without cloud access; an application component needs credentials, a target environment, and a policy for failed operations.
 
-<!-- print-keep-with-next: 11 -->
-
-``` text
-class DownstreamGrantResult(NamedTuple):
-    callee: str
-    member_sa: str
-    callers: tuple[str, ...]
-    status: str  # GRANTED / DRY-RUN / FAILED: <detail>
-    detail: str
-```
-
-A dry run reports the intended command without applying it. A successful command records `GRANTED`; a nonzero result records `FAILED` and diagnostic detail. This result describes the application attempt. It is different from a later inspection of the live IAM binding or an authorized call through the deployed system. Cloud IAM, rather than the planning record, enforces the installed permission.
+For each attempted binding, retain the callee, runtime principal, logical callers, application status, and diagnostic detail. Distinguish a dry run, successful application, and failed application. These results describe the attempt to install a permission; a live authorization check supplies separate evidence about its effect. Cloud IAM enforces the installed permission.
 
 ### Construct the Path and Transfer Authority {.unnumbered}
 
@@ -83,10 +72,10 @@ A dry run reports the intended command without applying it. A successful command
 
 Test the pure derivation with more than the successful example. Two callers sharing a principal and callee should produce one concrete application with both callers retained as reasons. A caller excluded from the selected deployment should not silently broaden the plan. A missing architectural edge should be detected by the correspondence check. A failed external command should remain a failed result, and a dry run should not be reported as an installed permission. These checks establish different contracts and should retain different diagnostics.
 
-Live observations require their own scope and freshness. DocAble separately compares declared service names with a stored snapshot of the deployed fleet. An August 2026 investigation found 49 deployed names across production and staging against 28 names in the declared set. The resulting comparison began in advisory mode while discrepancies were reconciled. Name-set parity can expose an undeclared or missing service; it does not inspect IAM bindings. Even equality can preserve an undesirable naming arrangement if the declaration itself is wrong.
+Live observations require their own scope and freshness. DocAble’s service-name investigation compares declared names with a snapshot of deployed services and exposes discrepancies requiring reconciliation. The initial check is advisory while those discrepancies are examined. Name-set parity can expose missing or undeclared services, but it does not inspect IAM bindings. Even agreement can preserve an undesirable deployment arrangement if the declaration itself is wrong.
 
 For an analogous deployment, choose evidence for the question actually being accepted. A unit test can check the planned binding, the application result can report whether the command succeeded, and a suitable live authorization probe can examine whether a selected call is admitted or refused. The blueprint does not make those observations interchangeable. Record the environment and observation time so that yesterday’s successful probe cannot silently stand for today’s deployment.
 
 ## Adaptation and Limits {#handbook-maintaining-coherence}
 
-The reusable interface is a relation between intended communication, deployed identity, and concrete permission. Another system might derive network policy, database privileges, or message-broker access through the same arrangement. Choose stable join keys, preserve the distinction between a plan and its effects, and state the failure response at the application boundary. If existing configuration is already authoritative and economical to maintain, a checked analytical view may be sufficient; migration to a new source of authority needs a benefit of its own.
+The arrangement generalizes to other permissions derived from architectural relationships, including network policies, database privileges, and message-broker access. Its applicability depends on stable identities connecting intended communication to deployed resources and runtime principals. The principal limitation is that a correct permission plan does not establish its installation or enforcement. Those require evidence at the corresponding operational boundary. If existing configuration is already authoritative and economical to maintain, a checked analytical view may be sufficient; migration to a new source of authority needs a benefit of its own.

@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/handbook-resource-architecture.svg",
+  "candidate": "book/tikz/figures/handbook-resource-architecture.tex",
+  "source_sha256": "fc718406f8de9a1317104044e8760f20d54ee3ae8f0b02d7f39b79798a509080",
+  "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e",
+  "decision": "author-directed blueprint figure",
+  "revision_date": "2026-11-24",
+  "reviewed_visually": true,
+  "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+  "claim": "Resource-aware remediation execution. Streaming extraction separates document structure from media payloads. The computation graph determines which work is ready; configured concurrency limits, calibrated against the memory envelope, restrict active work. Media is retrieved on demand and restored through streamed recombination. Residency and performance models guide these decisions, while measurements test their assumptions.",
+  "topology": "Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles.",
+  "alt": "Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles.",
+  "required_terms": [
+    "Input document",
+    "Streaming extraction",
+    "Structural skeleton",
+    "External media store",
+    "Computation graph",
+    "Resource admission",
+    "Active computations",
+    "Streaming recombination"
+  ],
+  "bw_encoding": "Black outlines and arrows; white boxes; light gray distinguishes table labels. Headings bold, body labels regular.",
+  "generator": "book/figures/blueprints-20261124/a9.py",
+  "questions": [],
+  "review_scope": "Native pool: 143 candidates fit, zero geometry findings, 1638 typography checks pass. Browser SVG fonts and final full-book pages visually inspected. Captions remain separate manuscript text. Figure numbers derive from the book sequence rather than the target-image labels."
+}

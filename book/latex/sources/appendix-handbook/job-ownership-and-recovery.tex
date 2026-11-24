@@ -2,70 +2,161 @@
 
 \section{Problem}
 
-A worker may continue executing after its lease expires. If another worker acquires the job, a delayed release from the first worker must not clear the new ownership. Recovery also has to preserve externally visible effects and the ordering of result publication. Preventing conflicting ownership is insufficient if interrupted work can remain stranded or a database record can refer to an output that was never made durable.
+A worker may continue executing after its lease expires. Its delayed release must not erase a replacement lease. Recovery must also protect effects, resolve stranded work, and prevent a database row from announcing an unavailable output.
 
-This blueprint concerns runtime document-remediation jobs. \autoref{chapter:appendix-a-governed-delegation} governs coding-agent assignments in the development environment; those assignments have a different lifecycle and acceptance procedure.
+This blueprint concerns runtime document-remediation jobs. \autoref{chapter:appendix-a-governed-delegation} governs coding-agent assignments, whose lifecycle and acceptance procedure differ.
 
 \section{Conceptual Design}
 
-Represent the job lifecycle, the current lease, and claims for protected effects separately. The lifecycle states which transitions are permitted. The lease identifies a particular attempt's temporary ownership. A durable effect claim controls entry to a selected operation even when delivery is repeated or an earlier worker continues running. \autoref{match-mechanism-to-property} distinguishes that runtime constraint from analysis of the recovery protocol.
+The design separates accounting for in-flight work, acquiring a protected-effect claim, and announcing a durable result. The lease keeps work visible outside ordinary queues; the effect claim atomically controls a selected operation; publication orders artifact finalization before completion. Redis, database, and artifact-store operations do not form one transaction.
 
 % Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
-DocAble's lease release uses the lease's issue epoch to distinguish successive claims for the same job. When the releasing worker presents an issue epoch, the atomic operation removes the stored lease only if that epoch matches. A separate database compare-and-set controls acquisition of a merge-stage claim. These operations protect different state: the first prevents a stale release from deleting a replacement lease; the second prevents competing attempts from both acquiring the same protected-effect claim.
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-dated-design
+DocAble's lease design keeps a merging parent visible to demand counting, preventing scale-down during active work. Inline chunkless completion releases the accounting lease after its terminal database update; a frontier-finalization adapter reuses the retired page-chunked engine's merge claim and epoch-checked terminal hooks.
 
-Safety and progress require different arguments. Lease comparison and effect claims restrict particular operations. An explicit-state model explores whether sequences of acquisition, expiry, replacement, and release can violate ownership. A temporal recovery model asks whether jobs eventually reach terminal states under stated assumptions about delivery, retries, and recovery sweeps. Neither analysis substitutes for evidence that the implementation follows the represented protocol.
+Atomic operations protect state changes; explicit-state exploration examines interleavings; temporal analysis examines eventual termination under delivery and scheduling assumptions. \autoref{match-mechanism-to-property} distinguishes these obligations.
+
+The accounting, claim, and publication boundaries appear separately in \autoref{handbook-recovery-architecture}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-recovery-architecture-96ff3186d6.pdf}
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+\caption[Three commitments in job recovery]{\emph{Three commitments in job recovery.} The Redis lease records in-flight work by job ID and issue epoch; it does not identify an owning worker. A database compare-and-set protects acquisition of the selected merge claim, while publication persists the artifact before updating durable job state. The inline path bypasses that merge claim. These operations cross separate stores; recovery and assurance address their different failure windows.}
+\label{handbook-recovery-architecture}
+\end{figure}
 
 \section{Engineering Models}
 
-The models in \autoref{handbook-job-recovery-models} share job and attempt identities without treating lifecycle state, lease possession, and effect permission as interchangeable.
+\subsection*{State and Identity}
 
 % Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
 % Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
-% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+\autoref{handbook-job-recovery-models} separates persisted state from local protocol state.
+
 {\footnotesize
 \begin{longtable}{@{}p{.20\linewidth}p{.36\linewidth}p{.36\linewidth}@{}}
-\caption[Engineering models for job ownership and recovery]{\emph{Engineering models for job ownership and recovery.} Ownership, effect permission, publication order, and eventual progress require distinct representations and evidence.}\label{handbook-job-recovery-models}\\
+\caption[Engineering models for job ownership and recovery]{\emph{Engineering models for job ownership and recovery.} Each representation answers a different recovery question.}\label{handbook-job-recovery-models}\\
 \toprule
-\textbf{Model} & \textbf{Meaning and authority} & \textbf{Consumers} \\
+\textbf{Representation} & \textbf{Stored meaning} & \textbf{Consumer} \\
 \midrule\endhead
-Job lifecycle & Legal states, transitions, and terminal conditions for the relevant runtime path. & State-changing operations, conformance tests, and recovery procedures. \\
-Lease ownership & Job identity, issue epoch, expiry, and the conditions for replacing or releasing a claim. & Atomic lease operations and finite-state interleaving analysis. \\
-Protected effect & Durable state required to acquire a claim for a selected effect. & Database compare-and-set and the worker that proceeds only after acquisition. \\
-Publication order & The required relationship between a durable output and the database reference announcing it. & Result finalization and recovery tests. \\
-Recovery progress & Failure/retry behavior and delivery or sweep assumptions sufficient for eventual termination. & Temporal specifications and their analysis configurations. \\
+Job row & Database job ID, status, stage, and progress timestamps. & Introduction and effect-claim updates; terminal writes; stale-job scans. \\
+In-flight lease & Redis member = parent job ID; score = wall-clock issue epoch. No worker-ID field. & Demand counting, stale-lease scans, and conditional release or reissue. \\
+Worker context & A local snapshot of the lease epoch taken at merge claim. & The terminal hook presenting the expected epoch. \\
+Effect claim & The job row's merge-stage value; not a separate per-worker lease. & One conditional database update, followed by the winning caller's merge. \\
+Recovery sequence & Local states such as fallback staged, uploaded, and database updated. & Transition guards and entry hooks ordering publication. \\
+Progress model & One abstract job, pending delivery, and bounded steps. & The temporal specification and paired analysis configurations. \\
 \bottomrule
 \end{longtable}
 }
 
-The engineer determines the permitted transitions and required properties. The runtime stores current state; the models supply the expected meanings against which behavior is examined. A simplified teaching state machine need not enumerate every production state, but a conformance test must explicitly map its states and operations to the implementation being tested.
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-abstraction
+\magevalue{chapter:modeling}'s generation abstracts successive claims. The implementation discriminator is a floating-point issue timestamp, not an incrementing counter. The executable lease model uses integer ticks and distinguishes the original worker's held epoch from the replacement lease's epoch. These abstractions do not imply a Redis worker-ID field or authority over every operation. The lease entry alone cannot identify which worker is executing the job; that question requires a worker identity or a link to an execution record.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Local worker state and durable job status answer different questions. An inline worker can return to idle after the database records completion. The merge path additionally tracks waiting, merging, and finalizing work. A conformance mapping must identify which path it describes and which durable evidence supports recovery.
 
 \section{Realization}
 
-\subsection*{Protect Each State Change at Its Boundary}
-
-% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation-and-illustration
-Consider a successful handoff. Worker A's lease expires, worker B acquires a replacement, and B later releases that lease. B presents the current issue epoch, so the atomic comparison permits removal. If A instead returns with the old epoch, the comparison fails and B's lease remains. The comparison and deletion must form one atomic operation; a separate read followed by an unconditional delete leaves an intervening acquisition unprotected.
+\subsection*{Implement Conditional Lease Operations}
 
 % Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
-At the protected-effect boundary, acquire the durable claim before performing the effect and proceed only on success. If two workers compete for the same merge-stage claim, only the compare-and-set that encounters the required prior state succeeds. The rejected attempt must not continue as though it held the claim. This restriction does not cancel a stale worker, establish idempotence of every operation, or guarantee exactly-once execution of an entire job. Recovery must account for a crash after claim acquisition as well as one before it.
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Introduction first wins a database claim changing \texttt{queued} to \texttt{remediating}; it then adds the parent ID to the Redis sorted set with the current time as score. These are separate operations. The Redis write is best-effort, so the database claim can exist without its accounting entry. Staleness is a comparison with a cutoff, not automatic removal of the sorted-set member. Reissue replaces the score; the parent lease has no per-worker heartbeat-renewal operation.
 
-% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation-and-illustration
-Result publication has its own ordering obligation. In DocAble's fallback recovery path, finalize the fallback output before advertising it as completed in durable job state. Finalization uploads the artifact when remote storage requires it; a local store may already hold the durable output. A failure before finalization completes must not advertise the fallback as available. \autoref{2.4-behavioral:heading:publishing-a-recovered-result} develops this ordering. Define retry and cleanup behavior explicitly rather than assuming that storage and database writes form one transaction.
+The following pseudocode preserves the Lua scripts' decisions. Each function body executes atomically in Redis; the scan that selects a reclaim candidate runs outside it.
+
+\begin{verbatim}
+release(job, expected):
+    if expected is absent:
+        return ZREM(leases, job)
+    current = ZSCORE(leases, job)
+    if current is numeric and expected is numeric:
+        if abs(current - expected) < 0.001:
+            return ZREM(leases, job)
+    return 0
+
+reissue(job, now, stale_cutoff):
+    current = ZSCORE(leases, job)
+    if current is absent or not numeric:
+        return 0
+    if current > stale_cutoff:
+        return 0
+    ZADD(leases, job, score=now)
+    return 1
+\end{verbatim}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation-and-illustration
+If A retains an old epoch while reclaim installs a distinguishably newer one for B, A's guarded release returns zero; B can remove its matching entry. Rechecking staleness atomically prevents two scans from winning the same reclaim. The comparison tolerance requires replacement identities to remain distinguishable at the actual clock resolution.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Inline chunkless completion calls the omitted-epoch branch after its terminal database compare-and-set; dispatch-failure cleanup also uses it. The merge hook instead presents its claim-time snapshot. The API therefore supports both guarded release and unconditional cleanup.
+
+\subsection*{Claim the Effect and Classify Recovery}
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+The merge claim is a single database update whose returned row identifies the winner. The coordinator selects \texttt{merging} as its target stage, while \texttt{merge\_claimed} is the push consumer's target. Its essential predicate is:
+
+\begin{verbatim}
+UPDATE jobs
+SET stage = target_stage, progressed_at = server_now
+WHERE id = job_id AND stage <> target_stage
+  AND status NOT IN ('failed', 'completed',
+                     'deleted', 'cancelled')
+RETURNING id;
+\end{verbatim}
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Only a caller receiving a row proceeds to the merge. A second caller using the same target stage loses while that stage remains claimed. The snippet's exclusion set is specific to this primitive; a general terminal-state fence requires reconciling it with the other lifecycle consumers. The two target-stage variants also rely on route selection: their predicates alone do not establish mutual exclusion between callers using different target stages.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation
+Recovery must classify the job before deciding what to repeat. The lease scan clears entries for missing or terminal parents without requeuing them. For a nonterminal parent, only the winner of atomic lease reissue acts. The historical chunked branch republishes preempted work; the chunkless branch marks an orphan failed rather than repeat a potentially OOM-inducing computation. A separate stale-active-job sweep examines start and progress timestamps and surfaces failure without automatic requeue. Eventual termination can therefore mean an explicit failure, not eventual successful remediation.
+
+\subsection*{Publish the Fallback and Examine Crash Points}
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+The fallback driver first archives the corrupt output and records diagnostic feedback on a best-effort basis. Its publication sequence is \texttt{FALLBACK\_STAGED} \(\rightarrow\) \texttt{FALLBACK\_UPLOADED} \(\rightarrow\) \texttt{DB\_UPDATED}. The hooks copy the original input to the output location, finalize the artifact, then conditionally write \texttt{COMPLETED\_UNMODIFIED} from \texttt{REMEDIATING}. A remote store uploads during finalization; a local store may already have the file. Analytics and chunk cleanup follow. \autoref{2.4-behavioral:heading:publishing-a-recovered-result} explains the ordering obligation.
+
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: implementation
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: implementation-and-failure-analysis
+{\footnotesize
+\begin{longtable}{@{}p{.25\linewidth}p{.33\linewidth}p{.34\linewidth}@{}}
+\caption[Interruption points in job recovery]{\emph{Interruption points in job recovery.} Atomic claims protect individual decisions; artifact persistence and later bookkeeping retain separate failure windows.}\label{handbook-job-recovery-failures}\\
+\toprule
+\textbf{Interruption} & \textbf{State or source behavior} & \textbf{Recovery consequence} \\
+\midrule\endhead
+After merge claim, before completion & The stage claim survives; repeating the same claim loses. & A notification alone cannot undo the claim. Timeout and stale-work handling must resolve a stranded job; do not repeat the effect merely because a lease expired. \\
+Fallback copy or finalization raises & The driver aborts before the fallback-completion write and delegates failure outward. & The output is not advertised as completed by this sequence. A process crash bypasses those exception hooks and needs external detection. \\
+Artifact finalized, database update not reached & Storage can contain the fallback while the row remains nonterminal. Recovery-step state belongs to the interrupted invocation. & Inspect both artifact and row; this state machine does not supply a persisted checkpoint for automatic resume. \\
+Terminal database write, lease clear missed & An accounting entry can outlive completed work. & Terminal-lease reconciliation clears it without starting remediation again; repeated removal of an absent entry is harmless. \\
+Terminal write, later bookkeeping interrupted & Artifact and completion can exist without all later analytics or cleanup. & Reconcile auxiliary work separately. Ordered hooks do not make all side effects transactional or exactly once. \\
+\bottomrule
+\end{longtable}
+}
 
 \subsection*{Test Safety, Progress, and Correspondence}
 
-Use the stale-release sequence as a regression case, then vary operation order, expiry, and successive claims. Compare implementation responses with an executable ownership model. Test atomic operations with competing calls as well as sequential traces: a driver that issues one call at a time cannot expose every race inside an operation.
+% Evidence: E07 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E07.md | kind: test-definition
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: test-definition
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: test-definition
+Test the production lease operations against stale and current claim epochs. Exercise fallback publication with injected storage failures, checking that the artifact is finalized before completion is recorded. Race competing completion attempts and verify that only the authorized claim proceeds. DocAble's tests exercise these boundaries with substitute database and storage implementations; they do not establish the behavior of every external storage system or deployment configuration.
 
-% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
-DocAble uses a purpose-built explicit-state checker for the finite ownership model. Its explored interleavings make the state-space bounds part of the result. This is separate from testing production lease operations against the model. Varying the represented number of jobs or the permitted recovery transitions changes the analysis question; it must not silently leave the reported bounds unchanged.
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: test-definition
+Explicit-state exploration varies the order of lease acquisition, expiry, replacement, and release. The model must reject stale releases that invalidate newer claims. Negative configurations disable the epoch check, terminal-state protection, or lease reconciliation and require counterexamples, challenging the checker's ability to detect those failure classes.
+
+% Evidence: BP-RECOVERY | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A8-archaeology.md | kind: recorded-model-execution
+A separate merge-claim model examines duplicate notifications. A retained run finds no double merge with atomic claims and exposes duplicate merging when the claim is disabled. This supports the model's selected safety property, not the full database predicate or production behavior.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: specification
+The temporal specification addresses progress. It represents delivery, lost notifications, and recovery sweeps, with the property \(\mathrm{Submitted} \leadsto \mathrm{Terminal}\) under stated fairness assumptions. Paired configurations enable and disable recovery to test the sweep's role. They abstract away the lease and merge claim, so this analysis cannot establish those mechanisms' implementation correctness. The available evidence contains the specification and configurations, but no retained TLC execution establishing their results.
 
 % Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
-The temporal specification for serverless push recovery represents one job, a pending-delivery flag, and a bounded step counter. Its progress obligation is eventual arrival at a terminal state. The configurations use a four-step bound, strong fairness for delivery, and weak fairness for the recovery sweep and step-cap action; they contrast recovery enabled and disabled. This abstraction examines lost delivery and recovery, not the lease or merge-claim implementation. To evaluate it, run the configurations, retain the bounds and results, and examine counterexamples against the intended recovery behavior. A specification records the question; an execution result records what the analysis established for that configuration.
-
-% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
-% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: implementation-and-incident
-Keep correspondence checks with the modeled protocol. DocAble has tests that exercise production operations against executable models and checks for drift between modeled states or transitions and implementation declarations. Require the relevant checks when changing those surfaces, and inspect cases the mapping omits. A model property, a passing conformance test, and a correct production recovery are different claims.
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+Correspondence checks connect these models to the protocol: compare declarations, exercise implementation operations against the model, and revisit mappings when paths change. Abstract generations, timestamp-based lease operations, and durable stage claims preserve different details; each needs evidence at the boundary it describes.
 
 \section{Adaptation and Limits}
 
-Use the arrangement where retries and stale workers can affect ownership or externally visible results. Choose a claim identity that distinguishes replacement attempts and define which operations must compare it. Protect effect claims at their actual state-changing boundary, and specify recovery after partial completion. Progress remains conditional on the delivery, recovery, and failure assumptions used in the temporal model; finite exploration and conformance tests establish only the behaviors they cover.
+The ownership protocol can be adapted to other distributed jobs, provided that successive claims remain distinguishable and that stale workers cannot revoke newer authority. The implementation must also identify which effects require exclusive claims and which state transitions permit recovery. These decisions depend on the storage system's atomic operations and the consequences of repeating work.
+
+The principal limitation is that preventing competing claims does not guarantee progress. A worker may acquire exclusive permission for an effect and then crash, leaving the work stranded. Conversely, retrying an interrupted operation may repeat an effect that succeeds before its completion is recorded. Recovery must therefore distinguish work that can safely be repeated from work that requires reconciliation with durable state. Safety and eventual progress are separate obligations, and each requires its own evidence.

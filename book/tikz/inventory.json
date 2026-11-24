@@ -1868,5 +1868,41 @@
       "book-models/chapter_identity_declared.json"
     ],
     "conversion": "Generated SVG and native TikZ from shared chapter map; titles resolve from canonical manuscript."
+  },
+  {
+    "chapter": "appendix-a-remediation-computation-graph",
+    "source": "assets/handbook-computation-architecture.svg",
+    "caption": "*Computation declarations and their consumers.* Office uses shared registry metadata for scheduling and analytical projections. PDF maintains typed analytical declarations alongside executable passes and checks their correspondence. Both arrangements support analysis through stable computation identities. Coverage checks must also establish that the compared population includes the computations that actually execute.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "receipt": "book/tikz/receipts/handbook-computation-architecture.json",
+    "generator": "book/figures/blueprints-20261124/a7.py",
+    "data": [],
+    "conversion": "Paired SVG/TikZ from one geometry; author-supplied visual target.",
+    "svg_title": "Computation declarations and their consumers",
+    "svg_description": "Office registry declarations feed scheduling and an edge emitter; only the emitter supplies the Office analytical graph. PDF typed declarations project the PDF analytical graph. Dashed checks compare the executable population with declarations and the analytical graph. Both graphs support dependency queries, critical-path analysis, mutation classification, and measurement or coverage. ShouldRun is an execution-applicability condition."
+  },
+  {
+    "chapter": "appendix-a-job-ownership-and-recovery",
+    "source": "assets/handbook-recovery-architecture.svg",
+    "caption": "*Three commitments in job recovery.* The Redis lease records in-flight work by job ID and issue epoch; it does not identify an owning worker. A database compare-and-set protects acquisition of the selected merge claim, while publication persists the artifact before updating durable job state. The inline path bypasses that merge claim. These operations cross separate stores; recovery and assurance address their different failure windows.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "receipt": "book/tikz/receipts/handbook-recovery-architecture.json",
+    "generator": "book/figures/blueprints-20261124/a8.py",
+    "data": [],
+    "conversion": "Paired SVG/TikZ from one geometry; author-supplied visual target.",
+    "svg_title": "Three commitments in job recovery",
+    "svg_description": "A document job enters an in-flight accounting lease in Redis, storing job ID and issue epoch, not worker identity. The inline chunkless path bypasses the protected merge claim; the merge path must win a database compare-and-set. Both paths persist the artifact before updating durable job state and reaching completed or failed status. A separate recovery panel distinguishes stale-lease reissue, guarded stale release, interrupted effects, and interrupted publication. Three assurance rows distinguish the runtime claim constraint, bounded interleaving exploration, and temporal delivery and sweep assumptions."
+  },
+  {
+    "chapter": "appendix-a-resource-models-and-execution-design",
+    "source": "assets/handbook-resource-architecture.svg",
+    "caption": "*Resource-aware remediation execution.* Streaming extraction separates document structure from media payloads. The computation graph determines which work is ready; configured concurrency limits, calibrated against the memory envelope, restrict active work. Media is retrieved on demand and restored through streamed recombination. Residency and performance models guide these decisions, while measurements test their assumptions.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "receipt": "book/tikz/receipts/handbook-resource-architecture.json",
+    "generator": "book/figures/blueprints-20261124/a9.py",
+    "data": [],
+    "conversion": "Paired SVG/TikZ from one geometry; author-supplied visual target.",
+    "svg_title": "Resource-aware remediation execution",
+    "svg_description": "Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles."
   }
 ]

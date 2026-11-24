@@ -41,7 +41,7 @@ Given a set of changed files, the selector resolves each file to its component a
 
 The **dependency model** has two uses that must remain distinguishable. Maintained relationships express the impact assumptions used for selection. Separately recovered project and import relationships provide descriptive evidence that can challenge those assumptions. Both may share component identities, so agreement is useful without constituting independent proof of completeness.
 
-The **change-impact model** is a derived view for a particular change: an affected-subsystem declaration together with its derivation and any requirement for full validation. Derivation does not by itself confer authority. The engineer decides where the evidence justifies allowing that declaration to control a reduced run. The **validation execution model** then specifies required execution and the policy for interpreting findings. Execution records describe what actually ran; compare them with the selected set and the permitted broader modes.
+The **change-impact model** is a derived view for a particular change: an affected-subsystem declaration together with its derivation and any requirement for full validation. Derivation does not by itself confer authority. The engineer decides where the evidence justifies allowing that declaration to control a reduced run. The **validation execution model** then specifies required execution and the policy for interpreting findings. Execution records describe what actually executes; compare them with the selected set and the permitted broader modes.
 
 Give component ownership, dependency declarations, and validation-unit scope explicit maintainers. A file move must preserve or update its component identity; a new cross-component call may widen impact; a check that acquires another responsibility needs a revised scope declaration. Observed coverage can challenge those declarations but cannot establish that an unobserved relationship is absent. These correspondence obligations keep the joins useful as the system changes.
 
@@ -51,7 +51,7 @@ The executor can choose scheduling and parallelism where the declared dependenci
 
 ### Derive the Selection {.unnumbered}
 
-The following explanatory pseudocode preserves DocAble’s `decide_unit` decision order; type annotations are omitted and diagnostic messages are simplified. It is not a verbatim source excerpt.
+The following explanatory pseudocode preserves DocAble’s selection decision order, with type annotations omitted and diagnostic messages simplified:
 
 ``` python
 def decide_unit(unit_labels, affected, forced_full):
@@ -64,84 +64,70 @@ def decide_unit(unit_labels, affected, forced_full):
     return False, "no modeled impact"
 ```
 
-The two unconditional branches constrain which checks the selector may omit. If the selector cannot adequately classify a change, it must not interpret missing information as evidence that no checks are necessary. Likewise, a validation unit without a trustworthy scope declaration should run rather than be silently excluded.
+The unconditional branches retain checks when the change requires full validation or the validation unit lacks a scope declaration.
 
 DocAble’s selector returns a full-validation requirement for unmapped or cross-cutting files and dependency-manifest changes. The latter deserve special treatment because a project dependency can affect the assembled product beyond the component containing the manifest. Optional impact hints can enlarge the declared affected set, but cannot remove checks required by the models. These fallbacks protect against recognized uncertainty; an unrecognized dependency can still cause an omission.
 
-The resulting selection is a claim about possible impact. Its adequacy depends on the completeness and correctness of the relationships from which it was derived.
-
 ### Connect Selection, Execution, and Interpretation {.unnumbered}
 
-A selector is useful only when its decisions reach the machinery that performs validation.
+A DocAble merge check illustrates a failure to connect selection to execution. This separate selector chooses inexpensive lints for merge validation. In the original configuration, a full-tree walker still executes hundreds of predicates regardless of that selection, accounting for almost all validation time in a profiled run.
 
-An August 2026 investigation exposed this problem in DocAble’s merge checks. This was a separate mechanism from the change-impact selector: it selected inexpensive lints relevant to merging work. The merge gate selected between one and four lints, yet the validation command still took approximately one minute. In one warm profiled run, a full-tree walker consumed 62.66 of the 63.1 seconds. It executed 281 predicates independently of the selected lint set.
+Findings outside the selected set can also affect the gate’s verdict. Selection therefore governs neither the work performed nor all the evidence interpreted.
 
-The problem extended beyond wasted computation. Findings produced by predicates outside the selected set could contribute to the gate’s failure verdict. The selection therefore governed neither all the work executed nor all the evidence interpreted.
-
-The repair connected the walker to the same derived selection used by the other lint processes. It distinguished three cases for the walker’s own cohort of checks:
+The repair connects the walker to the same selection as the other lint processes, with three cases for its own cohort of checks:
 
 - **No restriction:** execute the ordinary full walker.
 - **Empty intersection:** no walker checks are selected, so skip the walker.
 - **Nonempty intersection:** at least one walker check is selected, so execute the full predicate cohort.
 
-The third case deliberately retained extra checks rather than risk omitting a selected predicate. The empty-intersection branch removed both the unnecessary walk and its contributions to the gate verdict. A nonempty intersection still ran the whole cohort; the repair did not implement predicate-by-predicate filtering.
+The nonempty-intersection case deliberately retains the full cohort to avoid omitting a selected predicate. The empty-intersection branch removes both the unnecessary walk and its contribution to the gate verdict.
 
-A historical replay used eleven merge batches reconstructed from one work window. All eleven runs of the previous configuration reached the 120-second execution limit; the revised configuration completed with a measured p95 of 8.86 seconds. The earlier durations were censored at the timeout, so 120 seconds is not a measured completion-time p95. This replay demonstrates the benefit of reconnecting selection to execution for that workload, not a current or general performance rate.
+Historical replay shows a substantial reduction in validation time for the evaluated merge workload: the revised configuration completes the batches while the earlier configuration reaches the execution limit. This comparison does not establish a general performance rate.
 
-This incident identifies three responsibilities. **Selection** names the required checks. **Execution** performs them, or a deliberately broader set. **Interpretation** determines how findings affect acceptance. If execution runs extra checks, record that broader scope and define how their findings are handled. Do not silently let them change the gate’s policy or discard a consequential failure merely because it fell outside the selection. Preserve the finding, investigate the discrepancy, and apply the declared blocking, escalation, or review policy. Test all three responsibilities together.
+The incident distinguishes **selection**, **execution**, and **interpretation**. Selection names required checks; execution performs them or an explicitly broader set; interpretation determines how findings affect acceptance. Unexpected findings require the declared blocking, escalation, or review response. Test these responsibilities together, including cases where broader execution produces an unexpected failure.
 
 ### Challenge the Impact Declaration {.unnumbered}
 
-Selective validation introduces a new possible failure: a relevant check may be omitted because the impact model does not represent a consequential relationship.
-
-The principal requirement is that the selected checks supply the required evidence for every validation obligation the change can affect. Establishing that property is difficult because the model used to select checks may itself be incomplete.
-
-DocAble’s validation machinery compares the selector’s declarations with several sources of evidence.
+The selection must supply the required evidence for every validation obligation the change can affect. Because the impact model can omit relationships, DocAble’s validation machinery challenges its declarations with several sources of evidence.
 
 Static dependency analysis constructs a separate estimate of potentially affected subsystems. For C# code, it follows reverse project references; for Python, it follows reverse module imports. The validation condition requires the subsystems reached by this analysis to be included in the selector’s declaration:
 
 <!-- eq: \operatorname{Reachable}(C) \subseteq \operatorname{Declared}(C). -->
 
-Here, both sets contain **validation subsystems** for a proposed change C; neither is a set of tests. A reached subsystem omitted from the declaration is a counterexample to the impact claim. The scope declarations of validation units then translate affected subsystems into checks to execute.
+Both sets contain **validation subsystems** for a proposed change C. An omitted reachable subsystem is a counterexample to the impact claim; validation-unit scope declarations then translate subsystems into checks.
 
-The direction of this relation matters. The reachable set under-approximates potential impact: the analyzed graphs may omit reflection, dynamic dispatch, configuration-dependent behavior, or other consequential relationships. Passing the subset check establishes consistency with the dependencies that analysis found, not completeness of the declaration. The two calculations also share the component model, so a common classification error can escape this comparison.
+The reachable set under-approximates potential impact: the graphs may omit reflection, dynamic dispatch, or configuration-dependent behavior. Passing the subset check establishes consistency with the dependencies the analysis finds. Both calculations also share the component model, so a common classification error can escape the comparison.
 
 Additional model relationships provide another source of counterexamples. DocAble’s validator compares the declared subsystems with maintained relationships among controls, mutations, and other engineering mechanisms. These checks can expose dependencies not visible in ordinary project-reference or import graphs.
 
-Coverage evidence provides a third perspective. If an observed execution associates a validation unit with implementation affected by the change, but the selector would omit that unit, the disagreement warrants investigation. Coverage evidence is also incomplete: an unobserved execution path cannot establish that no dependency exists.
+Coverage evidence supplies another challenge. If an execution associates a validation unit with affected implementation, but the selector omits that unit, the disagreement warrants investigation. An unobserved path cannot establish the absence of a dependency.
 
-Finally, full-suite execution provides an empirical comparison. Run the selector alongside ordinary validation and record which checks it would omit. A failure in an omitted subsystem exposes a possible under-declaration. Investigate whether the change caused the failure, whether the check’s scope is declared correctly, and whether the result is reproducible. This comparison can challenge the selector’s models without treating every pre-existing or intermittent failure as evidence of a new dependency.
+Full-suite execution supplies an empirical comparison. Record which checks the selector omits, then investigate failures among them. Determine whether the change causes the failure, whether the check’s scope is accurate, and whether the result is reproducible; pre-existing or intermittent failures need not imply a new dependency.
 
-The historical evidence illustrates the limits of corpus validation. Across 200 historical change windows, the analysis reported 28 under-declaration findings arising from six root causes. Widening the modeled relationships reduced those findings to zero on that corpus. A subsequent evaluation reported 111 under-declaration findings across 797 historical change windows. A window may produce several findings, and findings may share a cause; these totals do not count distinct failing changes or distinct root causes.
+Historical evaluations expose under-declared dependencies that widening the impact model resolves on the evaluated corpus. A subsequent evaluation over a larger, different collection of changes finds additional omissions. Eliminating findings on one corpus therefore does not establish adequacy for future changes. Repeated evaluation seeks counterexamples to declared impact relationships rather than certifying their completeness.
 
-These results do not establish a universal error rate or correctness over future changes. They show that eliminating findings on one corpus does not establish adequacy on a broader population. Additional methods and more varied changes can expose relationships that an earlier evaluation did not challenge.
-
-When a discrepancy is found, revise the impact model and repeat the comparison. Expanding the selected set cannot introduce a new omission for the same change, although it can increase validation cost. The objective is not to minimize the selected set at any price, but to eliminate unnecessary checking without losing consequential evidence.
+A discrepancy calls for revising the impact model and repeating the comparison. Widening the selected set cannot introduce another omission for the same change, although it increases validation cost.
 
 ### Introduce the Arrangement Incrementally {.unnumbered}
 
-Begin with a full validation process whose results are understood. Partition the system into a manageable set of components and validation subsystems, then establish which checks evaluate each subsystem. The initial model need not distinguish every component precisely. Coarse partitions will run more checks, but they require fewer assumptions about independence.
+Begin with a full validation process whose results are understood. Partition the system into components and validation subsystems, then associate checks with each subsystem. Coarse partitions run more checks but require fewer assumptions about independence.
 
-Implement the selector as a query over those models. Require it to explain its decisions: which changed file resolved to which component, which relationships established the affected subsystems, and why each validation unit was included or omitted. These records make a mistaken selection diagnosable.
+Implement the selector as a query that explains each file’s component, the relationships establishing affected subsystems, and why each check is included or omitted. These records make mistaken selections diagnosable.
 
-Define conservative behavior before optimizing. Unmapped files, unresolved relationships, and changes with potentially broad effects should trigger full validation. Do not allow a missing scope declaration to become permission to skip a check. An agent may supply additional impact information, but that information should enlarge rather than narrow the set required by the maintained models.
+Verify selection, execution, and gate decisions together. Exercise empty and full selections and checks invoked through different mechanisms. Inject failures inside and outside the selected set, including missing results, and confirm the intended blocking, broader-run, or review response. Compare all records against the same revision.
 
-Next, verify that the executor uses the selection and that the gate follows the declared policy for interpreting findings. Exercise empty selections, full selections, and checks executed through different mechanisms. Introduce known failures inside and outside the selected set. Confirm both that required checks detect their failures and that broader execution or unexpected findings trigger the intended blocking, escalation, or review response.
+Keep selection advisory while evaluating historical changes and current work alongside full validation. Resolve omissions, then repeat the comparison on varied workloads, including shared dependencies, test infrastructure, and configuration.
 
-Evaluate the selector against historical changes and current work while retaining full-suite execution. Apply the challenges described under “Challenge the Impact Declaration” to identify omissions in the impact declaration. Resolve the discrepancies and repeat the evaluation over a sufficiently varied workload. The evidence should include changes to shared dependencies, test infrastructure, configuration, and other components whose effects may extend beyond their immediate source locations.
+Then decide whether the evidence justifies reduced validation at a particular boundary. A team may use selected checks for early integration while retaining full validation before release and periodic full-suite comparisons. The decision depends on the consequences of an escaped regression and the properties the baseline checks actually evaluate.
 
-Only then decide whether the evidence justifies reduced validation at a particular boundary. The required assurance depends on the consequences of an escaped regression. A team may retain full validation before release while using a reduced set for earlier integration checks, with periodic full-suite runs to challenge the selection. Even the full suite supplies evidence only about the properties it checks; selection must not be credited with assurance the baseline never provided.
-
-Selective validation creates a continuing maintenance obligation. Component boundaries change, tests acquire new responsibilities, and dependencies emerge. The selection models and their validation evidence must evolve accordingly.
-
-Verify the complete path with a known change and deliberately introduced failures. Check the declared subsystems, selected unit identities, execution records, and resulting gate decision against the same revision. A missing result must not appear as a passing check, and an unavailable required observation must trigger the specified broader run or review.
+Maintainers must revise the models and repeat these comparisons as component boundaries, test responsibilities, and dependencies change.
 
 ## Adaptation and Limits
 
-The potential economic benefit is reduced repeated validation. Its costs include constructing and maintaining impact relationships, evaluating the selector, investigating omissions, and running broader checks when uncertainty remains. Compare them using the lifecycle account in [ref:6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately], while preserving the required quality of acceptance evidence.
+Reduced repeated validation must justify the costs of maintaining impact relationships, evaluating the selector, investigating omissions, and running broader checks. The lifecycle account in [ref:6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately] supports that comparison while preserving the required quality of acceptance evidence.
 
-Measure the actual work executed, not merely the number of checks selected. Record validation latency, computing cost, omitted-check findings, and the effort needed to maintain the impact model. Compare these costs against the consequences of delayed detection or escaped defects.
+The comparison depends on actual work executed, including validation latency, computing cost, omitted-check findings, and model maintenance. A small selected set offers little saving if its executor still runs broad checks; a cheap run can also defer detection or permit a defect to escape.
 
 The appropriate granularity depends on the system. A small project may gain little from selective validation because its complete test suite is inexpensive. A large repository with costly integration tests may justify a detailed model of change impact. Where the consequences of an omission are severe, conservative selection or full validation may remain preferable.
 
-The same principle applies to other engineering evaluations. A change to a resource model may require renewed performance measurements; a change to an authorization boundary may require security analyses; a modification to a deployment dependency may require checks across several services. The relevant question is which engineering obligations a change could disturb and what evidence is needed to evaluate them.
+The same method can select performance, security, or deployment checks when models connect proposed changes to the obligations those checks evaluate.

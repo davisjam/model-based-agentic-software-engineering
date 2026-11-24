@@ -6,15 +6,20 @@ A document-processing service can exhaust worker memory even when its individual
 
 ## Conceptual Design
 
-DocAble separates document structure from aggregate media residency. For OOXML documents, a streaming transformation places media in external storage and retains stable references in a smaller structural skeleton. Remediation operates on that skeleton and accesses media through its references. Recombination must also stream: buffering the complete payload on output would recreate the memory problem. [ref:interlude-execution-unit] shows how this arrangement differs from whole-document and page-partitioned processing.
+DocAble’s media-separation design distinguishes document structure from aggregate media residency. A streaming transformation extracts media into external storage and retains references in a smaller structural skeleton. Operations that need only the structure can use the skeleton; media consumers resolve the references or require a representation with the media restored. Recombination must also stream: buffering the complete payload on output recreates the memory problem. [ref:interlude-execution-unit] contrasts this arrangement with whole-document and page-partitioned processing.
 
 The residency model uses the same bound as [ref:4.2-one-problem-many-models:heading:remove-media-from-the-working-set]:
 
 <!-- eq: \begin{aligned} \operatorname{RSS}_{\mathrm{peak}} &\le C,\\ C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}} + M_{\mathrm{handles}} + M_{\mathrm{work}}. \end{aligned} -->
 
-The terms bound the rolling stream buffer, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. That statement requires bounds on the skeleton, handle population, individual media consumers, and concurrent work; streaming alone does not establish it.
+The terms bound the rolling stream buffers, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. Architecture bounds stream buffers; workload limits bound structural size and reference count; configuration limits active concurrency. Measurements must establish the working set of each media consumer, including decoded images, rendering, and temporary allocations. Externalizing bytes alone does not establish the bound.
 
-With media residency controlled, page boundaries need not determine execution groups. Dependency declarations identify ready computations; mutation restrictions and resource limits constrain which may execute together. [ref:chapter:appendix-a-remediation-computation-graph] describes those declarations and their consumers. A separate performance model evaluates candidate policies using operation costs, dependency paths, concurrency limits, and deployment overhead. A critical path supplies a latency lower bound under the model’s assumptions, not an observation of end-to-end runtime.
+Dependency declarations then identify ready computations, while mutation restrictions and resource limits constrain which may execute together. [ref:chapter:appendix-a-remediation-computation-graph] describes those declarations and their consumers. A performance model evaluates candidate policies using operation costs, dependency paths, concurrency limits, and deployment overhead.
+
+The representations and execution decisions fit together as shown in [ref:handbook-resource-architecture].
+
+<!-- label: handbook-resource-architecture -->
+<!-- figure: assets/handbook-resource-architecture.svg | *Resource-aware remediation execution.* Streaming extraction separates document structure from media payloads. The computation graph determines which work is ready; configured concurrency limits, calibrated against the memory envelope, restrict active work. Media is retrieved on demand and restored through streamed recombination. Residency and performance models guide these decisions, while measurements test their assumptions. [short: Resource-aware remediation execution] -->
 
 ## Engineering Models
 
@@ -30,30 +35,60 @@ With media residency controlled, page boundaries need not determine execution gr
 | Performance | Operation costs, critical paths, fan-out costs, and deployment assumptions. | Predictions and comparisons of candidate designs. |
 | Measurement | Workload identities, measured quantities, sampling boundary, and configuration. | Comparisons between predicted and observed memory, latency, and cost. |
 
-A computation’s inputs must resolve to document objects accessible under the residency policy. Check whether a consumer needs embedded media or a rendered page: extracting media before whole-page rendering can remove content the computation requires. The policy must preserve or restore that content. Its concurrency allowance must agree with the memory envelope. Measured quantities must use the same process or container boundary, workload, and configuration as the prediction being evaluated. These relationships make the models useful together; merely maintaining all five does not ensure their agreement.
+The document format determines the identities in the structural model. The implementation supplies the actual consumers and allocation behavior; the engineer supplies the admissible operating envelope. Measurement records must distinguish managed allocation, process RSS, and container memory. A bound on one does not automatically bound the others, particularly when renderers run in child processes or temporary files occupy memory-backed storage.
 
 ## Realization
 
-### Establish and Challenge the Residency Bound {.unnumbered}
+### Preserve Structure and Resolve Media {.unnumbered}
 
-Measure the failing workload before changing the architecture. Record peak memory, input characteristics, major allocation sources, and execution time. Distinguish growth with aggregate media size from growth with structural complexity, the largest individual object, decoded image area, or active concurrency. Introduce streaming and skeleton references where they remove unnecessary residency, then repeat measurements across the dimensions the model says matter.
+For OOXML, the skeleton retains non-media package entries, including document XML and relationships. A manifest records each reference site separately from each distinct payload. Its essential declaration is:
 
-DocAble’s PDF recombination path supplied one concrete measurement: approximately flat peak-RSS scaling across a count-scaled media sweep when each object was flushed. That result establishes behavior for the tested path and workload. Evaluating the OOXML skeletonization design requires its own media-size sweep, including the write path and the assumed bounds on structural and active state. A result for one format cannot establish a resource envelope for another.
+``` text
+MediaManifestEntry(
+    Anchor, Key, OriginalPartName, RestoreState?)
+StoredMediaBlob(ContentHash, FileName, ByteSize)
+```
 
-Challenge the variables as well as their fitted values. In DocAble, measurements contradicted predictions about mapped PDF pages and media offloading; decoded image area exposed another source of memory growth. Such findings require revising the residency explanation or its operating envelope, not merely raising a ceiling until the current fixture passes.
+An OOXML anchor identifies a package path, such as `ppt/media/image1.png`, rather than a slide ordinal. The key is the SHA-256 hash of the payload. Several reference sites can therefore resolve to one stored blob while retaining their own structural identities. Reordering slides must not change which media each site references.
 
-### Admit an Execution Policy Within the Envelope {.unnumbered}
+Extraction copies each payload through a bounded buffer while computing its hash, then stores the file under that hash. The pipeline uploads each distinct file and retains a hash-to-handle map. Recombination copies the revised structural package and restores each referenced media payload to its original package location through bounded streaming. Missing references are errors: an apparently successful output must not silently omit media.
 
-Construct candidate schedules from the dependency declarations. Validate known ready frontiers, required order, and mutation restrictions before comparing latency. Weight the dependency paths with measured or explicitly estimated operation costs. Include resource contention, coordination, and repeated distribution costs where they affect the candidate deployment. Increasing concurrency can reduce serialization of independent work; it cannot remove a genuine dependency, and its memory cost may make the faster prediction infeasible.
+PDF requires a different representation. A sentinel inside an image XObject carries the content-hash identity through intervening document rewrites. The manifest also preserves the stream’s filter and decoding parameters. Recombination restores those dictionary entries with the original bytes and flushes each object. A package path cannot supply this identity, and a PDF object number is not stable enough across rewrites.
 
-Trace a proposed concurrency increase through all three decisions. The execution model identifies simultaneously ready operations. The memory model evaluates the active working set at that width. The performance model predicts completion time. When the proposal satisfies the modeled bounds, run a representative workload and compare measured memory and latency with those predictions before accepting the change.
+Check the consumer before placing extraction in the pipeline. DocAble’s PDF alt-text and presentation-composition operations consume whole-page or whole-slide renders. Removing embedded images before rendering leaves blank regions and destroys evidence the reasoner needs. Media separation is consequently useful only where the required visual content remains available; it does not justify sending every consumer a stripped skeleton. Rendering also introduces a decoded working set that the encoded payload size does not determine.
 
-For the failing case, the dependency order may permit the proposed width while the estimated working set exceeds the deployment budget. A resource guard should refuse that fan-out; the scheduler can use a smaller width or a batched design if the policy permits it. DocAble’s execution design used a bounded-concurrency semaphore and modeled the frontier’s working set as the concurrency limit multiplied by the per-call working set. This connects a scheduling choice to a resource question that dependency order alone cannot answer.
+### Test the Bound and Its Explanation {.unnumbered}
 
-### Preserve the Tested Obligations {.unnumbered}
+Validate both content preservation and resource behavior. Restoration tests should check byte identity, structural edits, deduplication, stable references after reordering, and rejection of missing media. Resource tests should vary payload size while measuring the memory actually allocated by the streaming operation. A deliberately buffered implementation provides a negative control: the measurement should expose its greater memory consumption.
 
-Retain the fixtures, measurement definitions, and accepted baselines with the design. DocAble mechanically checked four resource counters on two fixtures, while a further GenAI-hop dimension remained an audit measure. Keep that distinction explicit when deciding what a passing run establishes. A changed baseline needs an engineering explanation; a numeric comparison cannot decide whether that explanation is adequate. [ref:chapter:appendix-a-model-based-test-selection] describes selecting relevant validation as these modeled surfaces change.
+These tests establish properties of the selected operation, not the entire process. DocAble’s Python streaming test measures allocated memory with `tracemalloc`, not process RSS. A production resource envelope additionally requires measurements across structural size, decoded image area, concurrent operations, and any child processes involved. In a PDF recombination experiment, per-object flushing keeps peak RSS approximately flat as image count increases; without flushing, memory grows substantially with each additional image. This supports the tested recombination path, not a bound for the whole remediation pipeline.
+
+A PDF investigation illustrates why the explanation itself needs testing. A working hypothesis attributes gigabytes of memory to a resident document graph in the canonical PDF library. A probe walks an image-heavy PDF and forces collection, revealing a small live graph; releasing every stream reclaims nothing. Memory mapping, capture buffers, serialization, and transient allocations explain the discrepancy. The engineering response changes which holders the model represents and which operations deserve optimization. Increasing the supposed document-graph allowance would preserve the wrong explanation.
+
+### Separate Readiness from Resource Admission {.unnumbered}
+
+DocAble’s chunkless dependency scheduler waits for each predecessor’s result to be applied before treating the consumer as ready. It then acquires a concurrency permit before executing the ready computation. The permit is released when execution finishes, including after failure. Dependency readiness and resource admission are therefore separate decisions.
+
+The configured concurrency limit must fit the resource envelope. The distribution model expresses the active footprint as concurrency limit times per-call working set, independently of the number of waiting units. The semaphore enforces a count, not a byte estimate. The engineer must calibrate the limit for the workload and deployment, or add resource-aware admission where per-call demands vary too much for a count limit.
+
+### Predict Critical Paths and Repeated Work {.unnumbered}
+
+Weight each dependency node with an operation duration and compute its earliest finish from the largest predecessor finish. The maximum finish supplies a latency lower bound for the modeled dependencies and durations under sufficient parallel capacity. DocAble’s analysis combines measured and estimated durations; resource limits, coordination, and inaccurate estimates can increase observed execution time. The calculation supports comparisons among designs, not a guaranteed end-to-end latency.
+
+Repeated production adds a different cost. DocAble’s time-complexity model uses
+
+<!-- eq: T(d) \approx (R+1)F(d)+G(d), -->
+
+where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) accounts for reasoning work and its distribution. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
+
+### Retain Structural Performance Checks {.unnumbered}
+
+DocAble’s performance ratchet counts production rounds, logical GenAI calls, capture operations, and renders. Small deterministic fixtures establish baselines for these quantities. The comparison rejects execution-mode mismatches; a change that increases a protected count fails the corresponding check unless the baseline is deliberately revised. Repeated runs also test whether the counts are stable.
+
+Structural counts expose additional work without depending on machine-specific wall-clock measurements. They do not establish production latency or memory consumption, and their coverage is limited to the exercised workflows. Improvements should lower the relevant baseline; increases require an engineering decision about whether the additional work is justified.
 
 ## Adaptation and Limits
 
-The arrangement applies where large payloads can be separated from the structure needed for reasoning and transformation. A format that requires whole-object access, unbounded structural growth, or a large decoded working set may need a different representation or admission policy. Resource and performance models remain conditional on their workloads and measurement boundaries. Preserve those conditions when changing formats, libraries, deployment tiers, or concurrency.
+This arrangement applies when large payloads can be separated from the structure needed for transformation. Its effectiveness depends on preserving reference identity, providing media to consumers that require it, and keeping both extraction and recombination within the intended memory envelope. Consumers that require complete objects, unbounded structural growth, or large decoded working sets may need a different representation or stricter concurrency limits.
+
+The resource bound is conditional on the workload and measurement boundary. Streaming alone does not establish bounded process memory, and a ready computation is not necessarily admissible under the available resource budget. Changes to document formats, rendering libraries, deployment tiers, or concurrency policies require renewed validation of these assumptions.

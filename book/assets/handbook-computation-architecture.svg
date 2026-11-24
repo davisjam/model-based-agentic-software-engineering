@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="939" viewBox="0 0 440 313" role="img" aria-labelledby="handbook-computation-architecture-title handbook-computation-architecture-desc"><title id="handbook-computation-architecture-title">Computation declarations and their consumers</title><desc id="handbook-computation-architecture-desc">Office registry declarations feed scheduling and an edge emitter; only the emitter supplies the Office analytical graph. PDF typed declarations project the PDF analytical graph. Dashed checks compare the executable population with declarations and the analytical graph. Both graphs support dependency queries, critical-path analysis, mutation classification, and measurement or coverage. ShouldRun is an execution-applicability condition.</desc><defs><marker id="handbook-computation-architecture-arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="440" height="313" fill="white"/>
+<path d="M80,94 L80,105 L37.5,105 L37.5,117" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<path d="M80,105 L132,105 L132,117" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<path d="M132,168 L132,181 L94,181 L94,193" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<path d="M290,64 L320,64" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#handbook-computation-architecture-arrow)" marker-start="url(#handbook-computation-architecture-arrow)"/>
+<path d="M237.5,94 L237.5,180 L223,180 L223,193" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#handbook-computation-architecture-arrow)" marker-start="url(#handbook-computation-architecture-arrow)"/>
+<path d="M384,94 L384,106 L282,106 L282,193" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<path d="M94,244 L94,256 L189.5,256 L189.5,269" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<path d="M271,244 L271,256 L189.5,256" fill="none" stroke="black" stroke-width="0.8"/>
+<text x="80" y="14" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="12.5" font-weight="bold" fill="black">OFFICE</text>
+<text x="317" y="14" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="12.5" font-weight="bold" fill="black">PDF</text>
+<rect x="5" y="23" width="151" height="71" fill="white" stroke="black" stroke-width=".8"/>
+<text x="80.5" y="36" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Computation registry</text>
+<text x="15" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="22" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Identity (stable name)</text>
+<text x="15" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="22" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Reads / writes (artifacts)</text>
+<text x="15" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="22" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Before / after (order)</text>
+<text x="15" y="82" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="22" y="82" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">ShouldRun (applicability)</text>
+<rect x="185" y="23" width="105" height="71" fill="white" stroke="black" stroke-width=".8"/>
+<text x="237.5" y="36" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Executable pipeline</text>
+<text x="193" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="200" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Registered passes</text>
+<text x="193" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="200" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Execution order</text>
+<text x="193" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="200" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Implementation</text>
+<text x="200" y="82" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">bindings</text>
+<rect x="320" y="23" width="118" height="71" fill="white" stroke="black" stroke-width=".8"/>
+<text x="379" y="36" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Typed declarations</text>
+<text x="328" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="335" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Produces (artifacts)</text>
+<text x="328" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="335" y="60" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Consumes (inputs)</text>
+<text x="328" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="335" y="71" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">ConsumesForControl</text>
+<text x="335" y="82" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">(control inputs)</text>
+<rect x="0.5" y="117" width="75" height="51" fill="white" stroke="black" stroke-width=".8"/>
+<text x="38" y="129" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Scheduler</text>
+<text x="7" y="143" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="14" y="143" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Order work</text>
+<text x="7" y="154" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="14" y="154" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Check</text>
+<text x="14" y="165" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">applicability</text>
+<rect x="87" y="117" width="90" height="51" fill="white" stroke="black" stroke-width=".8"/>
+<text x="132" y="129" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Edge emitter</text>
+<text x="95" y="143" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="102" y="143" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Project</text>
+<text x="102" y="154" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">dependencies</text>
+<text x="102" y="165" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">(for analysis)</text>
+<rect x="28" y="193" width="132" height="51" fill="white" stroke="black" stroke-width=".8"/>
+<text x="94" y="205" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Analytical graph</text>
+<text x="94" y="216" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">(Office)</text>
+<text x="36" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="43" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Computations and edges</text>
+<text x="36" y="240" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="43" y="240" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Stable computation IDs</text>
+<rect x="205" y="193" width="132" height="51" fill="white" stroke="black" stroke-width=".8"/>
+<text x="271" y="205" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Analytical graph</text>
+<text x="271" y="216" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="bold" fill="black">(PDF)</text>
+<text x="213" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="220" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Computations and edges</text>
+<text x="213" y="240" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="220" y="240" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Stable computation IDs</text>
+<rect x="49" y="269" width="281" height="43" fill="white" stroke="black" stroke-width=".8"/>
+<text x="189.5" y="282" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Shared analytical uses</text>
+<text x="61" y="295" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="68" y="295" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Dependency queries</text>
+<text x="61" y="307" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="68" y="307" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Critical-path analysis</text>
+<text x="192" y="295" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="199" y="295" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Mutation classification</text>
+<text x="192" y="307" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">•</text>
+<text x="199" y="307" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" fill="black">Measurement / coverage</text>
+<rect x="346" y="193" width="93.5" height="89" fill="white" stroke="black" stroke-width=".8"/>
+<text x="354" y="207" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10.5" font-weight="bold" fill="black">Legend</text>
+<path d="M351,224 L369,224" fill="none" stroke="black" stroke-width="0.8" marker-end="url(#handbook-computation-architecture-arrow)"/>
+<text x="374" y="220" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">Projection /</text>
+<text x="374" y="231" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">consumption</text>
+<path d="M351,247 L369,247" fill="none" stroke="black" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#handbook-computation-architecture-arrow)" marker-start="url(#handbook-computation-architecture-arrow)"/>
+<text x="374" y="243" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">Correspondence</text>
+<text x="374" y="254" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">check</text>
+<text x="354" y="266" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">(does not perform</text>
+<text x="354" y="277" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" fill="black">remediation)</text></svg>

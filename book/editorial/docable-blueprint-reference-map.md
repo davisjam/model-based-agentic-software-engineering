@@ -1,6 +1,6 @@
 # DocAble component reference map for the new Appendix A blueprints
 
-Status: **applied to the manuscript on 2026-11-24**. The map below preserves the pre-edit sites and recommendations; line numbers are historical. See [the integration report](docable-blueprint-integration-report.md) for dispositions, evidence corrections, and validation.
+Status: **applied to the manuscript on 2026-11-24, including the concrete-blueprint archaeology follow-up**. The map below preserves the pre-edit sites and recommendations; line numbers are historical. See [the integration report](docable-blueprint-integration-report.md) for dispositions, evidence corrections, and validation.
 
 ## Editorial decision
 

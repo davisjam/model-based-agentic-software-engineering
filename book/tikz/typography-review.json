@@ -2,7 +2,7 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 140,
+  "candidate_count": 143,
   "refined_count": 122,
   "check_count": 1078,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
@@ -33826,6 +33826,168 @@
         "scope": "Standalone proof inspected at final print dimensions; panel text retained at 9.5pt, cycle labels 11.5pt."
       },
       "reviewed_visually": true
+    },
+    {
+      "source": "book/assets/handbook-computation-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-computation-architecture.tex",
+      "source_sha256": "857d7809c7326783620773303cf2965728c6222e1ef71cb8bf6f5cb4187e7c3f",
+      "candidate_sha256": "9614513ad86d47cfbbea7d72261e909884dbc74b091a3c50bbc195c3bd8e72cb",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "checks": [
+        {
+          "text": "OFFICE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Computation registry",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Identity (stable name)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Reads / writes (artifacts)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Before / after (order)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "ShouldRun (applicability)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Executable pipeline",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Registered passes",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [],
+      "questions": []
+    },
+    {
+      "source": "book/assets/handbook-recovery-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-recovery-architecture.tex",
+      "source_sha256": "5169af9f29db99754deaa810c3d0649c7232f353afdef58781bdf8347e1430c9",
+      "candidate_sha256": "f30cc4fc981fa955c4e5b30a85b6e83657684a897a08804ca563e3cfa7ea3747",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "checks": [
+        {
+          "text": "Document job",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(job ID)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Inline path",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "(chunkless)",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "Merge path",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "(with claim)",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "1. In-flight lease",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(job accounting in Redis)",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "evidence": [],
+      "questions": []
+    },
+    {
+      "source": "book/assets/handbook-resource-architecture.svg",
+      "candidate": "book/tikz/figures/handbook-resource-architecture.tex",
+      "source_sha256": "fc718406f8de9a1317104044e8760f20d54ee3ae8f0b02d7f39b79798a509080",
+      "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e",
+      "decision": "author-directed blueprint figure",
+      "revision_date": "2026-11-24",
+      "reviewed_visually": true,
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "checks": [
+        {
+          "text": "Input document",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Streaming extraction",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Structural skeleton",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "External media store",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Computation graph",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Resource admission",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Active computations",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Streaming recombination",
+          "bold": true,
+          "italic": false
+        }
+      ],
+      "evidence": [],
+      "questions": []
     }
   ],
   "historical_figures": [

@@ -53,6 +53,7 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "Longrightarrow": ("⟹", "arrow.r.double.long"),
     "iff": ("⇔", "arrow.l.r.double"),
     "rightarrow": ("→", "arrow.r"),
+    "leadsto": ("⇝", '"⇝"'),
     "longrightarrow": ("⟶", "arrow.r.long"),
     "to": ("→", "arrow.r"),
     "uparrow": ("↑", "arrow.t"),

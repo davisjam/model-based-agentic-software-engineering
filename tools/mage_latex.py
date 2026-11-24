@@ -671,7 +671,14 @@ def _prepare_record(task):
     def code_size(match):
         longest = max(map(len, match[1].splitlines()), default=0)
         size = r'\fontsize{8.5}{10.5}\selectfont' if longest > 96 else (r'\fontsize{9}{11}\selectfont' if longest > 88 else r'\footnotesize')
-        return '{' + size + '\n' + match[0] + '\n}'
+        listing = '{' + size + '\n' + match[0] + '\n}'
+        # These compact blueprint listings describe one atomic operation or
+        # construction. Keep their predicates and effects on the same page.
+        if slug in {'appendix-a-remediation-computation-graph',
+                    'appendix-a-job-ownership-and-recovery',
+                    'appendix-a-resource-models-and-execution-design'}:
+            listing = '\\begin{samepage}\n' + listing + '\n\\end{samepage}'
+        return listing
     latex = re.sub(r'\\begin\{verbatim\}(.*?)\\end\{verbatim\}', code_size, latex, flags=re.S)
     latex = format_box_headings(latex)
     def concise_caption(match):
@@ -756,6 +763,10 @@ def _prepare_record(task):
                             'handbook-resource-models'):
         latex = layout_selected_table(latex, model_inventory, (.20, .40, .40),
                                       row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'handbook-computation-failures', (.23, .37, .40),
+                                  row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'handbook-job-recovery-failures', (.25, .36, .39),
+                                  row_gap_bp=3, row_stretch=1.05)
     # Retain native rules for tagged tables, with clearance on the text sides.
     rule_padding = r'\noalign{\vskip 3pt}'
     rules = {'toprule': r'\hline' + rule_padding,
@@ -769,7 +780,8 @@ def _prepare_record(task):
         'handbook-substitution-models', 'docable-evaluation-questions',
         'agentic-engineering-factories', 'factory-census-specimens',
         'handbook-computation-models', 'handbook-job-recovery-models',
-        'handbook-resource-models'}))
+        'handbook-resource-models', 'handbook-computation-failures',
+        'handbook-job-recovery-failures'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])

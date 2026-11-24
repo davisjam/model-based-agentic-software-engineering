@@ -1,5 +1,5 @@
 {
-  "status": "applied 2026-11-24; original locators and hashes retained as pre-edit evidence",
+  "status": "applied 2026-11-24 including concrete-blueprint archaeology and engineering-reference prose follow-up; original locators and hashes retained as pre-edit evidence",
   "base_commit": "1f084e175689e0e2144e4c06dc78a7c3f6d71f2b",
   "sites": [
     {
@@ -14,7 +14,7 @@
       "evidence": "E05, E13, E14, E16",
       "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8",
       "implementation_disposition": "retained teaching example; added blueprint pointer",
-      "post_edit_source_sha256": "5b2edc793a45a6e16d1631c24d22eb03caf2731141393cac2a968e4be11b089f"
+      "post_edit_source_sha256": "5cdc39727d59a8d206866c90edba0c2aa7d09035da575f980807e9afb82d2d0b"
     },
     {
       "component": "Remediation-computation graph",
@@ -28,7 +28,7 @@
       "evidence": "E05, E14",
       "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "5b2edc793a45a6e16d1631c24d22eb03caf2731141393cac2a968e4be11b089f"
+      "post_edit_source_sha256": "5cdc39727d59a8d206866c90edba0c2aa7d09035da575f980807e9afb82d2d0b"
     },
     {
       "component": "Remediation-computation graph",
@@ -42,7 +42,7 @@
       "evidence": "E10, E13, E14, E16",
       "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
+      "post_edit_source_sha256": "2d81a4554d16b5131532ceb7be05fcdb564dab489022fc2d6e62bb079bf55461"
     },
     {
       "component": "Remediation-computation graph",
@@ -56,7 +56,7 @@
       "evidence": "E13",
       "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
       "implementation_disposition": "narrowed callback to first dependency explanation",
-      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
+      "post_edit_source_sha256": "2d81a4554d16b5131532ceb7be05fcdb564dab489022fc2d6e62bb079bf55461"
     },
     {
       "component": "Remediation-computation graph",
@@ -70,7 +70,7 @@
       "evidence": "E14, E16",
       "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
+      "post_edit_source_sha256": "2d81a4554d16b5131532ceb7be05fcdb564dab489022fc2d6e62bb079bf55461"
     },
     {
       "component": "Remediation-computation graph",
@@ -84,7 +84,7 @@
       "evidence": "E05, E13, E16, E17, E18",
       "source_sha256": "e910176f5961d60c80286c3b301ce90bf4c93a8dfbd23c2f970463086379abf6",
       "implementation_disposition": "replaced repeated setup and footnote; retained audit, census, and enforcement distinctions",
-      "post_edit_source_sha256": "1fac14d22472e7be10240f4db7d33387c4553b62de4478fb4e8071681dddf1b9"
+      "post_edit_source_sha256": "ef92e47691b966fec82ab08378de5e1e08e64b9a3072fd5fbea5eb8b13d3f9c4"
     },
     {
       "component": "Remediation-computation graph",
@@ -98,7 +98,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "recalled declaration authority before execution redesign",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Remediation-computation graph",
@@ -112,7 +112,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Remediation-computation graph",
@@ -126,7 +126,7 @@
       "evidence": "E26, E27, E28, E29",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained model-family synthesis; added integrated resource blueprint pointer",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Remediation-computation graph",
@@ -140,7 +140,7 @@
       "evidence": "E13, E18, E26",
       "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
       "implementation_disposition": "replaced repeated tutorial with factory consequence; corrected heading while preserving stable ID",
-      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
+      "post_edit_source_sha256": "c06521e6c1f82581b67f3e288f7e493a5feed00de0b0ed3f0789fb864df051d0"
     },
     {
       "component": "Remediation-computation graph",
@@ -154,7 +154,7 @@
       "evidence": "",
       "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
+      "post_edit_source_sha256": "c06521e6c1f82581b67f3e288f7e493a5feed00de0b0ed3f0789fb864df051d0"
     },
     {
       "component": "Job ownership and recovery",
@@ -168,7 +168,7 @@
       "evidence": "E07",
       "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
       "implementation_disposition": "retained publication teaching example; integrated blueprint pointer follows the ownership/publication synthesis",
-      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
+      "post_edit_source_sha256": "2c520a8c522db4347ba238bd330b6097eb0f0c7c9bf9b424fd19e8f93cfdbacc"
     },
     {
       "component": "Job ownership and recovery",
@@ -182,7 +182,7 @@
       "evidence": "E08",
       "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
       "implementation_disposition": "retained ownership example and analysis; added blueprint pointer at shared synthesis",
-      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
+      "post_edit_source_sha256": "2c520a8c522db4347ba238bd330b6097eb0f0c7c9bf9b424fd19e8f93cfdbacc"
     },
     {
       "component": "Job ownership and recovery",
@@ -196,7 +196,7 @@
       "evidence": "E08",
       "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
+      "post_edit_source_sha256": "2c520a8c522db4347ba238bd330b6097eb0f0c7c9bf9b424fd19e8f93cfdbacc"
     },
     {
       "component": "Job ownership and recovery",
@@ -210,7 +210,7 @@
       "evidence": "E08",
       "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
       "implementation_disposition": "shortened scenario setup; retained test construction and concurrency scope",
-      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
+      "post_edit_source_sha256": "cfa7fcc41308844b196826aab1ef91788e5f87f772ee852e85dd357fcb8805eb"
     },
     {
       "component": "Job ownership and recovery",
@@ -224,7 +224,7 @@
       "evidence": "E08",
       "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
+      "post_edit_source_sha256": "cfa7fcc41308844b196826aab1ef91788e5f87f772ee852e85dd357fcb8805eb"
     },
     {
       "component": "Job ownership and recovery",
@@ -238,7 +238,7 @@
       "evidence": "E08, E37",
       "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
       "implementation_disposition": "replaced repeated stale-worker scenario; retained mechanism distinctions and explicit-state terminology",
-      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
+      "post_edit_source_sha256": "cfa7fcc41308844b196826aab1ef91788e5f87f772ee852e85dd357fcb8805eb"
     },
     {
       "component": "Job ownership and recovery",
@@ -252,7 +252,7 @@
       "evidence": "E08, E37",
       "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
+      "post_edit_source_sha256": "c06521e6c1f82581b67f3e288f7e493a5feed00de0b0ed3f0789fb864df051d0"
     },
     {
       "component": "Job ownership and recovery",
@@ -266,7 +266,7 @@
       "evidence": "E08, E37, E51",
       "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
       "implementation_disposition": "compressed inventory; foregrounded correspondence maintenance",
-      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
+      "post_edit_source_sha256": "c06521e6c1f82581b67f3e288f7e493a5feed00de0b0ed3f0789fb864df051d0"
     },
     {
       "component": "Resource models and execution design",
@@ -294,7 +294,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -308,7 +308,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -322,7 +322,7 @@
       "evidence": "E26, E27",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -336,7 +336,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "replaced unsupported deployment-sweep particulars with bounded-concurrency design and dated cache-admission evidence",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -350,7 +350,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -364,7 +364,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -378,7 +378,7 @@
       "evidence": "E28",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -392,7 +392,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -406,7 +406,7 @@
       "evidence": "E27",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -420,7 +420,7 @@
       "evidence": "E29",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -434,7 +434,7 @@
       "evidence": "E27",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -448,7 +448,7 @@
       "evidence": "E26, E27, E28, E29",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained model family; added integrated construction pointer",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -462,7 +462,7 @@
       "evidence": "E26",
       "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
+      "post_edit_source_sha256": "3367ba85df6faa4f2624e8519ffcf7f74380e34eea81b6996047df9b481f4ef0"
     },
     {
       "component": "Resource models and execution design",
@@ -490,7 +490,7 @@
       "evidence": "E26, E27",
       "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
       "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
-      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
+      "post_edit_source_sha256": "c06521e6c1f82581b67f3e288f7e493a5feed00de0b0ed3f0789fb864df051d0"
     }
   ],
   "integration_report": "book/editorial/docable-blueprint-integration-report.md"

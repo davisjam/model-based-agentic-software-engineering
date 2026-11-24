@@ -355,6 +355,21 @@
     "book/assets/mage-in-practice-map.svg": {
       "approved_date": "2026-11-20",
       "reason": "Author approved four-quadrant chapter map with central cycle, equal boxes, top headings, and separate caption."
+    },
+    "book/assets/handbook-computation-architecture.svg": {
+      "approved_date": "2026-11-24",
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "candidate_sha256": "9614513ad86d47cfbbea7d72261e909884dbc74b091a3c50bbc195c3bd8e72cb"
+    },
+    "book/assets/handbook-recovery-architecture.svg": {
+      "approved_date": "2026-11-24",
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "candidate_sha256": "f30cc4fc981fa955c4e5b30a85b6e83657684a897a08804ca563e3cfa7ea3747"
+    },
+    "book/assets/handbook-resource-architecture.svg": {
+      "approved_date": "2026-11-24",
+      "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+      "candidate_sha256": "716e36b7d672f01fb18dfab8b4a5256879985f312e077b8f83c8ecbf3a19688e"
     }
   }
 }

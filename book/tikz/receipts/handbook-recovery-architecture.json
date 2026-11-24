@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/handbook-recovery-architecture.svg",
+  "candidate": "book/tikz/figures/handbook-recovery-architecture.tex",
+  "source_sha256": "5169af9f29db99754deaa810c3d0649c7232f353afdef58781bdf8347e1430c9",
+  "candidate_sha256": "f30cc4fc981fa955c4e5b30a85b6e83657684a897a08804ca563e3cfa7ea3747",
+  "decision": "author-directed blueprint figure",
+  "revision_date": "2026-11-24",
+  "reviewed_visually": true,
+  "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+  "claim": "Three commitments in job recovery. The Redis lease records in-flight work by job ID and issue epoch; it does not identify an owning worker. A database compare-and-set protects acquisition of the selected merge claim, while publication persists the artifact before updating durable job state. The inline path bypasses that merge claim. These operations cross separate stores; recovery and assurance address their different failure windows.",
+  "topology": "A document job enters an in-flight accounting lease in Redis, storing job ID and issue epoch, not worker identity. The inline chunkless path bypasses the protected merge claim; the merge path must win a database compare-and-set. Both paths persist the artifact before updating durable job state and reaching completed or failed status. A separate recovery panel distinguishes stale-lease reissue, guarded stale release, interrupted effects, and interrupted publication. Three assurance rows distinguish the runtime claim constraint, bounded interleaving exploration, and temporal delivery and sweep assumptions.",
+  "alt": "A document job enters an in-flight accounting lease in Redis, storing job ID and issue epoch, not worker identity. The inline chunkless path bypasses the protected merge claim; the merge path must win a database compare-and-set. Both paths persist the artifact before updating durable job state and reaching completed or failed status. A separate recovery panel distinguishes stale-lease reissue, guarded stale release, interrupted effects, and interrupted publication. Three assurance rows distinguish the runtime claim constraint, bounded interleaving exploration, and temporal delivery and sweep assumptions.",
+  "required_terms": [
+    "Document job",
+    "(job ID)",
+    "Inline path",
+    "(chunkless)",
+    "Merge path",
+    "(with claim)",
+    "1. In-flight lease",
+    "(job accounting in Redis)"
+  ],
+  "bw_encoding": "Black outlines and arrows; white boxes; light gray distinguishes table labels. Headings bold, body labels regular.",
+  "generator": "book/figures/blueprints-20261124/a8.py",
+  "questions": [],
+  "review_scope": "Native pool: 143 candidates fit, zero geometry findings, 1638 typography checks pass. Browser SVG fonts and final full-book pages visually inspected. Captions remain separate manuscript text. Figure numbers derive from the book sequence rather than the target-image labels."
+}

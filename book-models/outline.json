@@ -1655,7 +1655,7 @@
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 100
+              "block_index": 99
             }
           ]
         },
@@ -1665,42 +1665,42 @@
           "heading_text": "Margins and Engineering Freedom",
           "topic_sentence": "Alignment can do more than determine whether an implementation satisfies an obligation.",
           "id_source": "explicit",
-          "block_index": 102,
+          "block_index": 101,
           "points": [
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible.",
-              "block_index": 104
+              "block_index": 103
             },
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 112
+              "block_index": 111
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 114
+              "block_index": 113
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 116
+              "block_index": 115
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 122
+              "block_index": 121
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 125
+              "block_index": 124
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 130
+              "block_index": 129
             }
           ]
         }
@@ -2150,7 +2150,7 @@
           "heading_text": "Redesigning the Critical Path",
           "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
           "id_source": "explicit",
-          "block_index": 58,
+          "block_index": 59,
           "points": []
         },
         {
@@ -2159,7 +2159,7 @@
           "heading_text": "The Second Resource Model",
           "topic_sentence": "The critical-path model explained which dependencies could determine latency.",
           "id_source": "explicit",
-          "block_index": 64,
+          "block_index": 65,
           "points": []
         },
         {
@@ -2168,7 +2168,7 @@
           "heading_text": "Predicting Latency",
           "topic_sentence": "Critical-path analysis also supports quantitative latency predictions when operation costs are available.",
           "id_source": "explicit",
-          "block_index": 69,
+          "block_index": 70,
           "points": []
         },
         {
@@ -2177,7 +2177,7 @@
           "heading_text": "Predicting the Cost of a Design Change",
           "topic_sentence": "A proposed intermediate representation can be inserted into the dependency graph before it is implemented.",
           "id_source": "explicit",
-          "block_index": 73,
+          "block_index": 74,
           "points": []
         },
         {
@@ -2186,7 +2186,7 @@
           "heading_text": "Use Prediction Error as Evidence",
           "topic_sentence": "Implementation eventually supplies measurements to compare with the model’s predictions.",
           "id_source": "explicit",
-          "block_index": 75,
+          "block_index": 76,
           "points": []
         },
         {
@@ -2195,7 +2195,7 @@
           "heading_text": "Preserving and Revising Models",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 80,
+          "block_index": 81,
           "points": []
         },
         {
@@ -2204,7 +2204,7 @@
           "heading_text": "What Carries Forward",
           "topic_sentence": "DocAble did not turn observed wall-clock time into the durable control.",
           "id_source": "explicit",
-          "block_index": 81,
+          "block_index": 82,
           "points": []
         },
         {
@@ -2213,7 +2213,7 @@
           "heading_text": "Models Get Falsified; the Obligation Survives",
           "topic_sentence": "A ratchet does not make the current model true forever.",
           "id_source": "explicit",
-          "block_index": 84,
+          "block_index": 85,
           "points": []
         },
         {
@@ -2222,7 +2222,7 @@
           "heading_text": "The Resulting Model Family",
           "topic_sentence": "[ref:interlude-model-family] collects the models and the engineering questions each addresses.",
           "id_source": "explicit",
-          "block_index": 92,
+          "block_index": 90,
           "points": []
         },
         {
@@ -2231,7 +2231,7 @@
           "heading_text": "Modeling Inside the Implementation Loop",
           "topic_sentence": "This sequence took about three days inside the existing governed engineering environment.",
           "id_source": "explicit",
-          "block_index": 97,
+          "block_index": 95,
           "points": []
         }
       ],
@@ -2709,7 +2709,7 @@
           "section_id": "the-computation-graph-a-representation-that-took-over-execution",
           "level": 3,
           "heading_text": "Computation Declarations Shared by Execution and Analysis",
-          "topic_sentence": "The computation declarations described in [ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] support both execution and analysis.",
+          "topic_sentence": "The computation model introduced in [ref:2.3-structural:heading:what-computations-depend-on-one-another] became reusable infrastructure within DocAble's factory.",
           "id_source": "explicit",
           "block_index": 86,
           "points": [

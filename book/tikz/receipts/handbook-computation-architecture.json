@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/handbook-computation-architecture.svg",
+  "candidate": "book/tikz/figures/handbook-computation-architecture.tex",
+  "source_sha256": "857d7809c7326783620773303cf2965728c6222e1ef71cb8bf6f5cb4187e7c3f",
+  "candidate_sha256": "9614513ad86d47cfbbea7d72261e909884dbc74b091a3c50bbc195c3bd8e72cb",
+  "decision": "author-directed blueprint figure",
+  "revision_date": "2026-11-24",
+  "reviewed_visually": true,
+  "reason": "Matches author-provided layout in the current Appendix A typography, with evidence-backed semantic corrections.",
+  "claim": "Computation declarations and their consumers. Office uses shared registry metadata for scheduling and analytical projections. PDF maintains typed analytical declarations alongside executable passes and checks their correspondence. Both arrangements support analysis through stable computation identities. Coverage checks must also establish that the compared population includes the computations that actually execute.",
+  "topology": "Office registry declarations feed scheduling and an edge emitter; only the emitter supplies the Office analytical graph. PDF typed declarations project the PDF analytical graph. Dashed checks compare the executable population with declarations and the analytical graph. Both graphs support dependency queries, critical-path analysis, mutation classification, and measurement or coverage. ShouldRun is an execution-applicability condition.",
+  "alt": "Office registry declarations feed scheduling and an edge emitter; only the emitter supplies the Office analytical graph. PDF typed declarations project the PDF analytical graph. Dashed checks compare the executable population with declarations and the analytical graph. Both graphs support dependency queries, critical-path analysis, mutation classification, and measurement or coverage. ShouldRun is an execution-applicability condition.",
+  "required_terms": [
+    "OFFICE",
+    "Computation registry",
+    "Identity (stable name)",
+    "Reads / writes (artifacts)",
+    "Before / after (order)",
+    "ShouldRun (applicability)",
+    "Executable pipeline",
+    "Registered passes"
+  ],
+  "bw_encoding": "Black outlines and arrows; white boxes; light gray distinguishes table labels. Headings bold, body labels regular.",
+  "generator": "book/figures/blueprints-20261124/a7.py",
+  "questions": [],
+  "review_scope": "Native pool: 143 candidates fit, zero geometry findings, 1638 typography checks pass. Browser SVG fonts and final full-book pages visually inspected. Captions remain separate manuscript text. Figure numbers derive from the book sequence rather than the target-image labels."
+}

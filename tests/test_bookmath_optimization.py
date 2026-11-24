@@ -11,6 +11,14 @@ NS = {'m': 'http://www.w3.org/1998/Math/MathML'}
 
 
 class OptimizationMathTests(unittest.TestCase):
+    def test_temporal_progress_keeps_leads_to_distinct_from_transition(self):
+        formula = r'\mathrm{Submitted} \leadsto \mathrm{Terminal}'
+        math = ET.fromstring(to_mathml(formula))
+        operators = [n.text for n in math.findall('.//m:mo', NS)]
+        self.assertIn('⇝', operators)
+        self.assertNotIn('→', operators)
+        self.assertIn('⇝', to_typst(formula))
+
     def test_policy_objective_and_continued_constraints_are_semantic_math(self):
         formula = (r'\begin{aligned}\min_{\pi\in\Pi}&\mathbb{E}_{\pi}[C]\\'
                    r'\text{subject to}&D\ge 1,\\'

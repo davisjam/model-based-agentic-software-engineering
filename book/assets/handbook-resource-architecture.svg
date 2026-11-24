@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="960" viewBox="0 0 440 320" role="img" aria-labelledby="title desc"><title id="title">Resource-aware remediation execution</title><desc id="desc">Streaming extraction separates an input document into a structural skeleton and external media payloads. The central execution path uses a computation graph, configured concurrency limits, active computations, and streamed recombination to produce an output document. Payload references resolve for active consumers and recombination, not for the graph itself. Measurements test the resource and performance models; a side table distinguishes residency, dependency, performance, and measurement roles.</desc><defs><marker id="arrow" markerWidth="4.5" markerHeight="4" refX="4.4" refY="2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L4.5,2 L0,4 Z" fill="black"/></marker></defs><rect width="440" height="320" fill="white"/>
+<path d="M181,16 L181,28" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M181,61 L181,77" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M181,119 L181,131" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M181,173 L181,185" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M181,227 L181,239" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M181,272 L181,284" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M110,47 L48.5,47 L48.5,71" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M252,47 L338,47 L338,71" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M97,96 L110,96" fill="none" stroke="black" stroke-width="0.75" marker-end="url(#arrow)"/>
+<path d="M338,113 L338,125 L265,125 L265,207 L252,207" fill="none" stroke="black" stroke-width="0.75" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M265,207 L265,255 L252,255" fill="none" stroke="black" stroke-width="0.75" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M110,208 L95,208" fill="none" stroke="black" stroke-width="0.75" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M90,236 L90,313 L359,313 L359,290" fill="none" stroke="black" stroke-width="0.75" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<rect x="120" y="0" width="122" height="16" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="11.3" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Input document</text>
+<rect x="110" y="28" width="142" height="33" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="38.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Streaming extraction</text>
+<text x="118" y="49.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Parse structure</text>
+<text x="118" y="58.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Separate media payloads</text>
+<rect x="0" y="71" width="97" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="48.5" y="81.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Structural skeleton</text>
+<text x="8" y="92.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  XML / relationships</text>
+<text x="8" y="101.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Document structure</text>
+<text x="8" y="110.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Media references</text>
+<rect x="278" y="71" width="120" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="338.0" y="81.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">External media store</text>
+<text x="286" y="92.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Content hashes</text>
+<text x="286" y="101.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Original media bytes</text>
+<text x="286" y="110.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  On-demand retrieval</text>
+<rect x="110" y="77" width="142" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="87.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Computation graph</text>
+<text x="118" y="98.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Declared dependencies</text>
+<text x="118" y="107.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Ready computations</text>
+<text x="118" y="116.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Stable computation IDs</text>
+<rect x="110" y="131" width="142" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="141.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Resource admission</text>
+<text x="118" y="152.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Memory envelope</text>
+<text x="118" y="161.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Concurrency limit: active ≤ K</text>
+<text x="118" y="170.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Cap calibrated to working set</text>
+<rect x="110" y="185" width="142" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="195.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Active computations</text>
+<text x="118" y="206.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Execute permitted work</text>
+<text x="118" y="215.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Bound active working set</text>
+<text x="118" y="224.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Resolve needed media</text>
+<rect x="110" y="239" width="142" height="33" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="249.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Streaming recombination</text>
+<text x="118" y="260.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Keep structural changes</text>
+<text x="118" y="269.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Restore original media bytes</text>
+<rect x="120" y="284" width="122" height="16" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="181.0" y="295.3" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Output document</text>
+<rect x="5" y="194" width="90" height="42" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="50.0" y="204.5" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Measurements</text>
+<text x="13" y="215.0" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Memory use</text>
+<text x="13" y="224.3" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Latency / duration</text>
+<text x="13" y="233.6" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">•  Cost</text>
+<text x="44" y="269" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="italic" fill="black">Test assumptions;</text>
+<text x="44" y="281" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="italic" fill="black">revise models</text>
+<text x="279" y="121" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="italic" fill="black">retrieve media</text>
+<rect x="278" y="138" width="162" height="152" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="359" y="151" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.2" font-weight="bold" font-style="normal" fill="black">Models and their uses</text>
+<rect x="283" y="159" width="68" height="27" rx="0" fill="#eeeeee" stroke="black" stroke-width=".75"/>
+<rect x="351" y="159" width="84" height="27" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="317" y="170" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">Residency</text>
+<text x="317" y="180" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">model</text>
+<text x="356" y="170" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">Bounds memory;</text>
+<text x="356" y="180" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">guides admission.</text>
+<rect x="283" y="190" width="68" height="27" rx="0" fill="#eeeeee" stroke="black" stroke-width=".75"/>
+<rect x="351" y="190" width="84" height="27" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="317" y="201" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">Dependency</text>
+<text x="317" y="211" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">model</text>
+<text x="356" y="206" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">Defines ready work.</text>
+<rect x="283" y="221" width="68" height="27" rx="0" fill="#eeeeee" stroke="black" stroke-width=".75"/>
+<rect x="351" y="221" width="84" height="27" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="317" y="232" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">Performance</text>
+<text x="317" y="242" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">model</text>
+<text x="356" y="232" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">Evaluates execution</text>
+<text x="356" y="242" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">policies.</text>
+<rect x="283" y="252" width="68" height="27" rx="0" fill="#eeeeee" stroke="black" stroke-width=".75"/>
+<rect x="351" y="252" width="84" height="27" rx="0" fill="white" stroke="black" stroke-width=".75"/>
+<text x="317" y="268" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="black">Measurements</text>
+<text x="356" y="263" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">Tests assumptions;</text>
+<text x="356" y="273" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="black">informs revision.</text></svg>

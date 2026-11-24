@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="936" viewBox="0 0 440 312" role="img" aria-labelledby="title desc"><title id="title">Three commitments in job recovery</title><desc id="desc">A document job enters an in-flight accounting lease in Redis, storing job ID and issue epoch, not worker identity. The inline chunkless path bypasses the protected merge claim; the merge path must win a database compare-and-set. Both paths persist the artifact before updating durable job state and reaching completed or failed status. A separate recovery panel distinguishes stale-lease reissue, guarded stale release, interrupted effects, and interrupted publication. Three assurance rows distinguish the runtime claim constraint, bounded interleaving exploration, and temporal delivery and sweep assumptions.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2 L0,4 Z" fill="black"/></marker></defs><rect width="440" height="312" fill="white"/>
+<path d="M106.57777777777777,30 L106.57777777777777,53" fill="none" stroke="black" stroke-width="0.9"/>
+<path d="M58.666666666666664,53 L159.37777777777777,53" fill="none" stroke="black" stroke-width="0.9"/>
+<path d="M58.666666666666664,53 L58.666666666666664,67" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M159.37777777777777,53 L159.37777777777777,67" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M35.199999999999996,119 L35.199999999999996,211" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M147.64444444444445,119 L147.64444444444445,140" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M151.55555555555554,192 L151.55555555555554,211" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<path d="M107.55555555555556,263 L107.55555555555556,281" fill="none" stroke="black" stroke-width="0.9" marker-end="url(#arrow)"/>
+<rect x="48.888888888888886" y="2" width="115.37777777777778" height="28" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="106.57777777777777" y="14" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">Document job</text>
+<text x="106.57777777777777" y="25" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" font-style="normal" fill="black">(job ID)</text>
+<text x="24.444444444444443" y="44" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.4" font-weight="bold" font-style="italic" fill="black">Inline path</text>
+<text x="24.444444444444443" y="54" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.4" font-weight="bold" font-style="italic" fill="black">(chunkless)</text>
+<text x="187.73333333333332" y="44" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.4" font-weight="bold" font-style="italic" fill="black">Merge path</text>
+<text x="187.73333333333332" y="54" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.4" font-weight="bold" font-style="italic" fill="black">(with claim)</text>
+<rect x="2.933333333333333" y="67" width="212.17777777777778" height="52" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="109.02222222222223" y="79" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">1. In-flight lease</text>
+<text x="109.02222222222223" y="90" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" font-style="normal" fill="black">(job accounting in Redis)</text>
+<text x="18.577777777777776" y="103" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="25.42222222222222" y="103" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Job ID + issue epoch; no worker ID</text>
+<text x="18.577777777777776" y="114" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="25.42222222222222" y="114" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Conditional reissue after staleness check</text>
+<rect x="71.37777777777778" y="140" width="147.64444444444445" height="52" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="145.2" y="152" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">2. Protected effect claim</text>
+<text x="145.2" y="163" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" font-style="normal" fill="black">(merge path only)</text>
+<text x="81.15555555555555" y="176" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="88.0" y="176" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Database compare-and-set (CAS)</text>
+<text x="81.15555555555555" y="187" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="88.0" y="187" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">One winner for this merge claim</text>
+<rect x="1.9555555555555555" y="211" width="213.15555555555554" height="52" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="108.53333333333333" y="223" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">3. Publication</text>
+<text x="108.53333333333333" y="234" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" font-style="normal" fill="black">(persist result and update job)</text>
+<text x="17.599999999999998" y="247" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="24.444444444444443" y="247" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Persist artifact (e.g., PDF)</text>
+<text x="17.599999999999998" y="258" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="24.444444444444443" y="258" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Then update job row (state, outcome)</text>
+<rect x="40.08888888888889" y="281" width="136.88888888888889" height="27" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="108.53333333333333" y="293" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">Terminal job</text>
+<text x="108.53333333333333" y="304" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.5" font-weight="normal" font-style="normal" fill="black">(completed or failed)</text>
+<rect x="256.17777777777775" y="36" width="181.86666666666667" height="102" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="266.93333333333334" y="49" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">Failure and recovery</text>
+<text x="270.84444444444443" y="62" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="277.68888888888887" y="62" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Lease stale → conditional reissue</text>
+<text x="270.84444444444443" y="84" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="277.68888888888887" y="84" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Guarded stale release → ignore</text>
+<text x="270.84444444444443" y="106" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="277.68888888888887" y="106" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Effect interrupted → inspect claim</text>
+<text x="270.84444444444443" y="117" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">•</text>
+<text x="277.68888888888887" y="117" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">Publication interrupted → inspect</text>
+<text x="277.68888888888887" y="73" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">(recheck staleness)</text>
+<text x="277.68888888888887" y="95" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">(epoch mismatch)</text>
+<text x="277.68888888888887" y="128" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="normal" font-style="normal" fill="black">artifact and durable job state</text>
+<rect x="256.17777777777775" y="151" width="181.86666666666667" height="134" rx="0" fill="white" stroke="black" stroke-width="0.8"/>
+<text x="265.9555555555555" y="164" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10.8" font-weight="bold" font-style="normal" fill="black">Distinct assurance mechanisms</text>
+<rect x="265.9555555555555" y="174" width="165.24444444444444" height="31" rx="1" fill="white" stroke="black" stroke-width="0.8"/>
+<rect x="265.9555555555555" y="174" width="62.577777777777776" height="31" rx="1" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="297.2444444444444" y="186" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">Runtime</text>
+<text x="297.2444444444444" y="196" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">constraint</text>
+<text x="332.44444444444446" y="182" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">Atomic compare-and-set</text>
+<text x="332.44444444444446" y="192" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">protects the selected</text>
+<text x="332.44444444444446" y="202" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">merge claim.</text>
+<rect x="265.9555555555555" y="211" width="165.24444444444444" height="31" rx="1" fill="white" stroke="black" stroke-width="0.8"/>
+<rect x="265.9555555555555" y="211" width="62.577777777777776" height="31" rx="1" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="297.2444444444444" y="223" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">Explicit-state</text>
+<text x="297.2444444444444" y="233" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">exploration</text>
+<text x="332.44444444444446" y="219" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">Bounded exploration of</text>
+<text x="332.44444444444446" y="229" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">stale-release and</text>
+<text x="332.44444444444446" y="239" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">recovery interleavings.</text>
+<rect x="265.9555555555555" y="248" width="165.24444444444444" height="31" rx="1" fill="white" stroke="black" stroke-width="0.8"/>
+<rect x="265.9555555555555" y="248" width="62.577777777777776" height="31" rx="1" fill="#eaeaea" stroke="black" stroke-width="0.8"/>
+<text x="297.2444444444444" y="260" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">Temporal</text>
+<text x="297.2444444444444" y="270" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="9.2" font-weight="bold" font-style="normal" fill="black">analysis</text>
+<text x="332.44444444444446" y="256" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">Delivery and sweep</text>
+<text x="332.44444444444446" y="266" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">assumptions govern</text>
+<text x="332.44444444444446" y="276" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="9.0" font-weight="normal" font-style="normal" fill="black">eventual termination.</text></svg>
