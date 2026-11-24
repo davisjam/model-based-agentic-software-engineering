@@ -2157,7 +2157,7 @@
           "section_id": "predicting-latency",
           "level": 3,
           "heading_text": "Predicting Latency",
-          "topic_sentence": "Running more computations concurrently in the cloud would introduce additional costs for starting workers, transferring information, and coordinating their work.",
+          "topic_sentence": "Running more computations concurrently in the cloud would introduce overhead for starting workers, transferring information, and coordinating their work.",
           "id_source": "explicit",
           "block_index": 60,
           "points": []

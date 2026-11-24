@@ -152,7 +152,7 @@ These were two different engineering decisions. I could change how the existing 
 
 \subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}
 
-Improving the GenAI operations was an obvious way to try to reduce latency. But how much of the processing time was actually spent on GenAI? Dividing remediation among workers could require several workers to perform the same document-processing operations. I wanted to know whether eliminating that repeated work would be more profitable than accelerating the GenAI calls.
+Improving the GenAI operations was an obvious way to try to reduce latency. But how much of the processing time was actually spent on GenAI? Dividing remediation among workers could require several workers to perform the same document-processing operations. I wanted to know whether eliminating that repeated work offered a better opportunity to reduce latency than accelerating the GenAI calls.
 
 Let \(R\) be the number of remediation rounds, \(F\) the elapsed time required for one whole-document processing invocation, and \(G\) the contribution of the remaining GenAI operations and their distribution to elapsed time. In a simplified execution model, whole-document processing occurs once per remediation round and once more when applying the accumulated changes. If invocation costs are similar and these costs do not overlap, the total elapsed time is
 
@@ -167,7 +167,7 @@ I could also test this model against measurements. Suppose a single-invocation d
 
 \subsection{Predicting Latency}\label{heading:predicting-latency}
 
-Running more computations concurrently in the cloud would introduce additional costs for starting workers, transferring information, and coordinating their work. Would the reduction in latency justify those costs? I could use the dependency graph and estimates of operation times to investigate the question before changing the execution architecture.
+Running more computations concurrently in the cloud would introduce overhead for starting workers, transferring information, and coordinating their work. Would the additional concurrency save more time than this overhead consumed? I could use the dependency graph and estimates of operation times to investigate the question before changing the execution architecture.
 
 For the representative workload used during this analysis, the relevant GenAI chain had three dependent levels whose per-call times add to an irreducible floor (\autoref{interlude-latency-floor}).
 
