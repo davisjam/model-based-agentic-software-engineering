@@ -1,6 +1,6 @@
 {
   "source": "book/assets/build-stages-timeline.svg",
-  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
   "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
   "required_terms": [
     "STAGE / DATES",
@@ -29,7 +29,7 @@
     "Measure, redesign, optimize, re-platform"
   ],
   "bw_encoding": "Bare uppercase column headings and one rule replace the enclosing boxes. Black type, seven black stage markers and a black timeline spine carry the retrospective sequence.",
-  "redesign": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+  "redesign": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
   "questions": [],
   "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to October: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
   "qa": {
@@ -38,7 +38,7 @@
     "width_pt": 394.922,
     "height_pt": 412.369,
     "monochrome": true,
-    "inspection": "Final native proof and revised SVG inspected: footer removed; headings unboxed above one rule, date July–October, all seven rows preserved.10pt authored type retained."
+    "inspection": "Final native proof and revised SVG inspected: footer removed; headings unboxed above one rule, date July\u2013October, all seven rows preserved.10pt authored type retained."
   },
   "style_review": {
     "source": "book/assets/build-stages-timeline.svg",
@@ -54,7 +54,7 @@
     "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective footer removed.",
     "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
     "shape": "No visible boxes. Three text columns align the seven timeline rows.",
-    "visual_review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+    "visual_review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
@@ -308,12 +308,12 @@
       },
       {
         "semantic_role": "Author-requested header treatment/date range",
-        "candidate_text": "July–October",
+        "candidate_text": "July\u2013October",
         "candidate_style": "regular",
         "authorization": "Author Figure5.2 correction,2026-11-11"
       }
     ],
-    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
     "checks": [
       {
         "text": "Deployment / iteration / optimization",
@@ -364,7 +364,7 @@
         "italic": false
       },
       {
-        "text": "July–October",
+        "text": "July\u2013October",
         "bold": false,
         "italic": false
       }
@@ -405,7 +405,7 @@
     "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
     "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
     "decision": "refined",
-    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       390.25799560546875,
@@ -435,7 +435,7 @@
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "after_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
       "after_dimensions_bp": [
         394.922,
@@ -457,10 +457,10 @@
   "revision_history": [
     {
       "date": "2026-11-11",
-      "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+      "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
       "previous": {
         "source": "book/assets/build-stages-timeline.svg",
-        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
         "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
         "required_terms": [
           "Stage / dates",
@@ -878,10 +878,10 @@
     },
     {
       "date": "2026-11-11",
-      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "previous": {
         "source": "book/assets/build-stages-timeline.svg",
-        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
         "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
         "required_terms": [
           "STAGE / DATES",
@@ -911,7 +911,7 @@
           "Retrospective stages, not a preplanned roadmap."
         ],
         "bw_encoding": "Bare uppercase column headings and one rule replace the enclosing boxes. Black type, seven black stage markers and a black timeline spine carry the retrospective sequence.",
-        "redesign": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+        "redesign": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
         "questions": [],
         "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to October: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
         "qa": {
@@ -920,7 +920,7 @@
           "width_pt": 394.922,
           "height_pt": 440.184,
           "monochrome": true,
-          "inspection": "Final native proof and revised SVG inspected: headings unboxed above one rule, date July–October, all rows/labels preserved.10pt authored type retained."
+          "inspection": "Final native proof and revised SVG inspected: headings unboxed above one rule, date July\u2013October, all rows/labels preserved.10pt authored type retained."
         },
         "style_review": {
           "source": "book/assets/build-stages-timeline.svg",
@@ -936,7 +936,7 @@
           "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective note remains italic.",
           "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
           "shape": "No visible boxes. Three text columns align the seven timeline rows.",
-          "visual_review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "visual_review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
           "validation": {
             "date": "2026-11-11",
             "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
@@ -1216,12 +1216,12 @@
             },
             {
               "semantic_role": "Author-requested header treatment/date range",
-              "candidate_text": "July–October",
+              "candidate_text": "July\u2013October",
               "candidate_style": "regular",
               "authorization": "Author Figure5.2 correction,2026-11-11"
             }
           ],
-          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
           "checks": [
             {
               "text": "Deployment / iteration / optimization",
@@ -1276,7 +1276,7 @@
               "italic": false
             },
             {
-              "text": "July–October",
+              "text": "July\u2013October",
               "bold": false,
               "italic": false
             }
@@ -1317,7 +1317,7 @@
           "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
           "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
           "decision": "refined",
-          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
           "reviewed_visually": true,
           "baseline_dimensions_bp": [
             390.25799560546875,
@@ -1347,7 +1347,7 @@
           },
           "page_layout": {
             "decision": "refined",
-            "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
             "after_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
             "after_dimensions_bp": [
               394.922,
@@ -1425,5 +1425,19 @@
     "date": "2026-11-11",
     "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
     "decision": "approved"
+  },
+  "layout_revision": {
+    "date": "2026-11-23",
+    "reason": "Author-requested reduction of vertical whitespace without changing text size or column widths.",
+    "source_sha256": "94029ec42a97059c65b975e642344009138600dc784851c3bbe5006a4decfd07",
+    "candidate_sha256": "8f7c1bf7f0cbdf7b53bfc5835f5f07740b328f017c9457cd17b651c9e7de6fc9",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "page": 55,
+    "width_pt": 394.922,
+    "height_pt": 356.626,
+    "links": [],
+    "visual_review": "Passed: labels fit, no clipping or overlaps, intended connections preserved.",
+    "geometry_findings": 0,
+    "typography_findings": 0
   }
 }

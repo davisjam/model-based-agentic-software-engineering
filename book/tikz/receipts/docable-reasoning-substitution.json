@@ -1,7 +1,7 @@
 {
   "source": "book/assets/docable-reasoning-substitution.svg",
   "claim": "Substitutable reasoning, controlled mutation. Different reasoning strategies inspect the document model and propose supported edits through a common typed changeset interface. A controlled applier executes those edits; provenance and independent validation provide evidence about the result. The drawing shows the PDF changeset path. Some PDF operations still mutate directly outside this interface.",
-  "topology": "Three equal alternatives converge on a typed changeset, controlled applier, structured PDF document model, and result/evidence. A separate model-inspection return arrow reaches the whole alternatives region. A dashed note marks the incomplete changeset coverage.",
+  "topology": "Three equal alternatives converge on a typed changeset, controlled applier, structured PDF document model, and result/evidence. A separate model-inspection return arrow reaches the whole alternatives region. The caption states incomplete changeset coverage.",
   "required_terms": [
     "REASONING STRATEGIES",
     "Structured",
@@ -23,14 +23,12 @@
     "independent validation",
     "Inspect",
     "document",
-    "model",
-    "Some PDF operations still mutate directly",
-    "outside the common changeset interface."
+    "model"
   ],
-  "bw_encoding": "Only the shared alternatives region uses 5% gray, to group the three reasoning strategies; every stage and boundary note is white.",
-  "redesign": "New architecture figure. Compact explicit geometry, 405 \u00d7 400 bp color and 389.5 \u00d7 396.5 bp native; not a relabeling of the provenance figure.",
+  "bw_encoding": "Only the shared alternatives region uses 5% gray, to group the three reasoning strategies; every stage is white.",
+  "redesign": "Author-requested compression: coverage qualification moved to caption; inter-stage gaps reduced from 19 to 16 bp; text and architecture preserved.",
   "questions": [],
-  "alt": "Three equal reasoning-strategy boxes\u2014structured pipeline, general-purpose agent, and human-directed editing\u2014converge on a typed changeset containing target, operation, and arguments from a closed mutation vocabulary. The PDF path continues through a controlled applier that resolves targets, checks preconditions, applies supported mutations, and records outcomes; a structured document model of typed PDF objects; and a result with applied-operation provenance and independent validation. A return arrow makes the model available to all reasoning strategies for inspection. A separate dashed note says that some PDF operations still mutate directly outside the common changeset interface. Other formats have their own model implementations.",
+  "alt": "Three equal reasoning-strategy boxes\u2014structured pipeline, general-purpose agent, and human-directed editing\u2014converge on a typed changeset containing target, operation, and arguments from a closed mutation vocabulary. The PDF path continues through a controlled applier that resolves targets, checks preconditions, applies supported mutations, and records outcomes; a structured document model of typed PDF objects; and a result with applied-operation provenance and independent validation. A return arrow makes the model available to all reasoning strategies for inspection. Other formats have their own model implementations.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; production mage-figures.sty and preview crop",
     "warnings": [],
@@ -389,28 +387,6 @@
         "semantic_role": "relation",
         "candidate_text": "model",
         "candidate_style": "italic"
-      },
-      {
-        "source_text": "Some PDF operations still mutate directly",
-        "source_style": {
-          "font-size": "9.5",
-          "font-weight": "400",
-          "font-style": "normal"
-        },
-        "semantic_role": "strategy or explanation",
-        "candidate_text": "Some PDF operations still mutate directly",
-        "candidate_style": "regular"
-      },
-      {
-        "source_text": "outside the common changeset interface.",
-        "source_style": {
-          "font-size": "9.5",
-          "font-weight": "400",
-          "font-style": "normal"
-        },
-        "semantic_role": "strategy or explanation",
-        "candidate_text": "outside the common changeset interface.",
-        "candidate_style": "regular"
       }
     ],
     "reason": "New paired artwork shares the same label text and semantic emphasis at 9.5\u201310.5 pt. Body faces are inherited from the production book style; color proof uses bundled static Source Sans 3 faces.",
@@ -519,16 +495,6 @@
         "text": "model",
         "bold": false,
         "italic": true
-      },
-      {
-        "text": "Some PDF operations still mutate directly",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "outside the common changeset interface.",
-        "bold": false,
-        "italic": false
       }
     ],
     "validation": {
@@ -554,5 +520,19 @@
     "date": "2026-11-11",
     "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5",
     "decision": "approved"
+  },
+  "layout_revision": {
+    "date": "2026-11-23",
+    "reason": "Author-requested height reduction without changing font sizes; coverage caveat moved to caption.",
+    "source_sha256": "fc970d4a1a909e0963b8b408fa7d8f740d96949a336b41ddbd9de4b2af29c963",
+    "candidate_sha256": "228c092f36835fbb7778a39a0790c5b7d0b62280a7efcc91810d2904cb5a8eae",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "page": 123,
+    "width_pt": 389.521,
+    "height_pt": 337.522,
+    "links": [],
+    "visual_review": "Passed: labels fit, no clipping or overlaps, intended connections preserved.",
+    "geometry_findings": 0,
+    "typography_findings": 0
   }
 }

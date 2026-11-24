@@ -53,7 +53,7 @@ for ax,key,title,no,yt in [(axs[1,0],'retained_agent_starts','(c) Dispatches',11
  ax.set_title(title,loc='left',fontsize=11,pad=10);ax.set_yticks(yt);ax.set_ylim(0,yt[-1]*1.2)
 save(fig,'docable-seip-longitudinal-261109','Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.')
 sizes=read('code_size_mapped.csv');groups=json.loads((D/'size_groups.json').read_text());sx=[int(r['project_week']) for r in sizes];rat=read('size_ratios.csv')
-fig,axs=plt.subplots(2,1,figsize=(6.25,6.6));fig.subplots_adjust(left=.12,right=.98,bottom=.08,top=.92,hspace=.62)
+fig,axs=plt.subplots(2,1,figsize=(6.25,5.1));fig.subplots_adjust(left=.12,right=.98,bottom=.10,top=.92,hspace=.45)
 for ax,g,title in zip(axs,['production','apparatus'],['(a) Production implementation','(b) Engineering apparatus']):
  pairs=groups[g];bands=ax.stackplot(sx,*[[int(r[k]) for r in sizes] for k,l in pairs],colors=[str(.93-i*.10) for i in range(len(pairs))],edgecolor='.25',linewidth=.45,labels=[l for k,l in pairs]);
  for band,hatch in zip(bands,['','///','...','\\\\','xx','--','++']):band.set_hatch(hatch)

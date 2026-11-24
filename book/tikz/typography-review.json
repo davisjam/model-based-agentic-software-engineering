@@ -29974,28 +29974,6 @@
           "semantic_role": "relation",
           "candidate_text": "model",
           "candidate_style": "italic"
-        },
-        {
-          "source_text": "Some PDF operations still mutate directly",
-          "source_style": {
-            "font-size": "9.5",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "strategy or explanation",
-          "candidate_text": "Some PDF operations still mutate directly",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "outside the common changeset interface.",
-          "source_style": {
-            "font-size": "9.5",
-            "font-weight": "400",
-            "font-style": "normal"
-          },
-          "semantic_role": "strategy or explanation",
-          "candidate_text": "outside the common changeset interface.",
-          "candidate_style": "regular"
         }
       ],
       "reason": "New paired artwork shares the same label text and semantic emphasis at 9.5–10.5 pt. Body faces are inherited from the production book style; color proof uses bundled static Source Sans 3 faces.",
@@ -30104,16 +30082,6 @@
           "text": "model",
           "bold": false,
           "italic": true
-        },
-        {
-          "text": "Some PDF operations still mutate directly",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "outside the common changeset interface.",
-          "bold": false,
-          "italic": false
         }
       ],
       "validation": {

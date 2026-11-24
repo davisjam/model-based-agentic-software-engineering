@@ -9,7 +9,55 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 import json
+import re
 from pathlib import Path
+
+
+def numbered_sections(records, slugs=None):
+    """Expected publication numbers, independent of legacy coda suppression flags."""
+    numbers = []
+    for record in records:
+        if slugs is not None and record['slug'] not in slugs:
+            continue
+        if record.get('is_part_page') or record.get('is_matter'):
+            continue
+        if 1 <= record['part'] <= 7:
+            numbers.append(f"{record['part']}.{record['chapter']}")
+        else:
+            appendix = re.match(r'^([A-Z]\.\d+)\s', record['chapter_title'])
+            if appendix:
+                numbers.append(appendix[1])
+    return numbers
+
+
+def inspect_numbered_bookmarks(outline, numbers):
+    """Check pypdf's nested outline for numbered sections at section depth."""
+    entries = []
+    def walk(items, level=1):
+        for item in items:
+            if isinstance(item, list):
+                walk(item, level + 1)
+            else:
+                entries.append((level, str(item.get('/Title', ''))))
+    walk(outline)
+    findings = []
+    for number in numbers:
+        matches = [(level, title) for level, title in entries
+                   if re.match(re.escape(number) + r'\s', title)]
+        if len(matches) != 1:
+            findings.append(f"section {number}: expected one numbered bookmark, found {len(matches)}")
+        elif matches[0][0] != 2:
+            findings.append(f"section {number}: bookmark must be nested under its chapter or appendix (level 2)")
+    return findings
+
+
+def check_numbered_bookmarks(path, records, slugs=None):
+    from pypdf import PdfReader
+    numbers = numbered_sections(records, slugs)
+    findings = inspect_numbered_bookmarks(PdfReader(path).outline, numbers)
+    if findings:
+        raise RuntimeError(f"PDF bookmark gate failed for {path}:\n" + '\n'.join(findings))
+    print(f"PDF bookmarks: {len(numbers)} numbered sections verified in {Path(path).name}")
 
 
 def _object(value):

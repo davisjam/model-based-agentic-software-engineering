@@ -1,6 +1,31 @@
 """Negative controls for meaningful tagging, including PDF 2 namespace aliases."""
 import unittest
-from pdf_structure import inspect_catalog
+from pdf_structure import inspect_catalog, numbered_sections, inspect_numbered_bookmarks
+
+
+class BookmarkTests(unittest.TestCase):
+    def test_legacy_coda_flag_cannot_hide_a_missing_number(self):
+        records = [dict(slug='closing', part=7, chapter=5,
+                        chapter_title='Closing', is_coda=True)]
+        numbers = numbered_sections(records)
+        self.assertEqual(numbers, ['7.5'])
+        outline = [{'/Title': 'The Profession'}, [{'/Title': 'Closing'}]]
+        self.assertTrue(inspect_numbered_bookmarks(outline, numbers))
+        outline[1][0]['/Title'] = '7.5 Closing'
+        self.assertEqual(inspect_numbered_bookmarks(outline, numbers), [])
+
+    def test_appendix_sections_must_nest_under_appendix(self):
+        outline = [{'/Title': 'Appendix A'}, {'/Title': 'A.1 Blueprint'}]
+        self.assertTrue(inspect_numbered_bookmarks(outline, ['A.1']))
+        self.assertEqual(inspect_numbered_bookmarks([outline[0], [outline[1]]], ['A.1']), [])
+
+    def test_excerpt_excludes_other_chapters_and_front_matter(self):
+        records = [dict(slug='front', part=0, chapter=1, chapter_title='Preface', is_matter=True),
+                   dict(slug='intro', part=7, chapter=0, chapter_title='Profession', is_part_page=True),
+                   dict(slug='closing', part=7, chapter=5, chapter_title='Closing'),
+                   dict(slug='blueprint', part=10, chapter=1, chapter_title='A.1 Blueprint')]
+        self.assertEqual(numbered_sections(records), ['7.5', 'A.1'])
+        self.assertEqual(numbered_sections(records, {'closing'}), ['7.5'])
 
 
 def element(role, kids=0, **extra):

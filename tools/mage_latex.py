@@ -733,6 +733,10 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'agentic-engineering-factories', (.15, .35, .50),
                                   row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'docable-requirements', (.32, .68),
+                                  row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'factory-census-specimens', (.20, .25, .23, .32),
+                                  row_gap_bp=0, row_stretch=1)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
     latex = layout_selected_table(latex, 'practicing-brownfield-exits', (.18, .40, .42),
@@ -759,7 +763,7 @@ def _prepare_record(task):
     # a float can otherwise interrupt the new heading and its first paragraph.
     latex = keep_tables_together(latex, in_place_labels=frozenset({
         'handbook-substitution-models', 'docable-evaluation-questions',
-        'agentic-engineering-factories'}))
+        'agentic-engineering-factories', 'factory-census-specimens'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
@@ -786,13 +790,13 @@ def _prepare_record(task):
         # symbolic references carry A.6/B.3 and a matching hyperlink destination.
         heading = (r'\section*{' + title + '}\n'
                    + r'\refstepcounter{section}\label{chapter:' + slug + '}\n'
-                   + r'\addcontentsline{toc}{chapter}{' + title + '}')
+                   + r'\addcontentsline{toc}{section}{' + title + '}')
         section_number -= 1
     else:
-        prefix = f"{record['part']}.{section_number} " if section_page and 0 < record['part'] < 9 and section_number else ''
+        prefix = bb._chap_ref(record).lstrip('§') + ' ' if section_page and bb._chap_ref(record) else ''
         command = r'\section*{' if section_page else r'\chapter*{'
         heading = (command + prefix + title + '}\n' + r'\phantomsection\label{chapter:' + slug
-                   + '}\n' + r'\addcontentsline{toc}{chapter}{' + title + '}')
+                   + '}\n' + r'\addcontentsline{toc}{' + ('section' if section_page else 'chapter') + '}{' + prefix + title + '}')
     # A title immediately followed by a subheading needs room for both and some
     # prose; LaTeX's ordinary keep-with-next can break between stacked headings.
     opening = re.sub(r'^\s*(?:<!--.*?-->\s*)*', '', raw, flags=re.S)

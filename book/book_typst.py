@@ -2629,13 +2629,9 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
     return ch.slug in bb._APPENDICES_DIVIDER_SLUGS
 
 
-#: The in-part UNNUMBERED codas — the terminal closings (the per-Part Summary
-#: sections). Web twin: each record's `is_coda` flag, read from `<!-- coda: true -->`. The IR carries no
-#: flags, so match on the minted slug exactly as `_is_part_page`/`_is_appendix_divider` do. Each sorts last
-#: in its Part by its `N.M-` filename but prints no number. Register a new terminal coda's slug here.
-_CODA_SLUGS = frozenset({
-    "7.5-what-cannot-be-delegated",
-})
+#: Legacy Typst compatibility: all main-chapter closings now retain section numbers.
+#: Keep this empty in agreement with the canonical manuscript (see book/BUILD.md).
+_CODA_SLUGS = frozenset()
 
 
 def _is_coda(ch: "ir.Chapter") -> bool:

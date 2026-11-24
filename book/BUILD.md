@@ -74,6 +74,11 @@ The **directory tree encodes the ordering**. A chapter lives at `part<N>/<N>.<M>
 number and chapter number are explicit in the path. The build walks the tree, derives `PART.CHAPTER`
 from the path, and reads the title metadata from each file.
 
+Main-chapter sections, including summaries and codas, retain their section numbers in the body,
+contents, and PDF bookmarks. Do not mark these closings `coda: true` (the legacy flag suppresses
+numbering). Appendix section bookmarks belong beneath their appendix, not alongside chapter
+bookmarks. The PDF build checks numbered section bookmarks against the manuscript records.
+
 ```
 book/
   frontmatter/    0.0-acknowledgments.md … 0.5-preface.md (6 chapters)                              (Part 0 — Front Matter)

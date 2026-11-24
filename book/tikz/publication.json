@@ -5,7 +5,7 @@
   "approved_monochrome": {
     "book/assets/book-map.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454"
     },
     "book/assets/mage-method.svg": {
@@ -173,13 +173,14 @@
     },
     "book/assets/build-stages-timeline.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July–October dates retained.",
+      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July\u2013October dates retained.",
       "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16"
     },
     "book/assets/docable-seip-longitudinal-261109.svg": {
       "approved_date": "2026-11-11",
       "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
-      "reason": "Author explicitly approved revised Figure 5.3 and publication after reviewing the sidebar proof."
+      "reason": "Author explicitly approved revised Figure 5.3 and publication after reviewing the sidebar proof. Author requested a roughly 10% reduction on 2026-11-23; retain the existing data, layout, and approximately 9pt minimum type.",
+      "max_print_height_bp": 340.3
     },
     "book/assets/docable-work-order-flow.svg": {
       "approved_date": "2026-11-23",
@@ -310,7 +311,7 @@
     },
     "book/assets/established-traditions-new-composition.svg": {
       "approved_date": "2026-11-14",
-      "reason": "Author approved Figure 7.3 with the PL / compilers label Types · DSLs."
+      "reason": "Author approved Figure 7.3 with the PL / compilers label Types \u00b7 DSLs."
     },
     "book/assets/mage-dynamic-model.svg": {
       "approved_date": "2026-11-14",

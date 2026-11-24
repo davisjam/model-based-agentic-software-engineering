@@ -6765,7 +6765,7 @@ def build_pdf() -> int:
     import book_ir
     sys.path.insert(0, str(ROOT / "tools"))
     import mage_latex
-    from pdf_structure import check_pdf
+    from pdf_structure import check_pdf, check_numbered_bookmarks
     from pdf_optimize import deduplicate_pdf
 
     _emit_writing_style_export()
@@ -6787,6 +6787,7 @@ def build_pdf() -> int:
                   sections=len(re.findall(r"\\section\*?\{", source)),
                   tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}") + source.count(r"\captionof{table}"),
                   figures=count_print_figures(source))
+        check_numbered_bookmarks(pdf_out, book_ir.book_records(include_appendices=True, for_print=True))
         import mage_tikz_links
         figure_manifest = json.loads((driver.parent / 'grayscale-figures.json').read_text())
         mage_tikz_links.verify_book(pdf_out, driver.with_suffix('.aux'), figure_manifest,
@@ -6974,12 +6975,14 @@ def build_pdf_split() -> int:
     import mage_tikz_review
     import mage_tikz_links
     from latex_build import compile_tex
-    from pdf_structure import check_pdf
+    from pdf_structure import check_pdf, check_numbered_bookmarks
 
     import mage_assets
 
     doc = book_ir.parse_book(include_appendices=True, for_print=True)
     sections = _pdf_split_sections(doc)
+    bookmark_records = book_ir.book_records(include_appendices=True, for_print=True)
+    bookmark_slugs = dict(sections)
     try:
         figure_pool, figure_manifest = mage_tikz_review.compile_candidates()
     except (RuntimeError, ValueError, OSError) as error:
@@ -7027,12 +7030,14 @@ def build_pdf_split() -> int:
             destination = HERE / (name + ".pdf")
             stamp = driver.with_suffix(".cache.json")
             if _section_is_current(stamp, key, destination):
+                check_numbered_bookmarks(destination, bookmark_records, bookmark_slugs[suffix])
                 reused.append(suffix)
                 return suffix, (f"Section PDF: {destination.name} "
                                 f"({_pdf_page_count(destination)} pages) — reused, inputs unchanged"), None
             pdf = compile_tex(driver, texmf_cache=_my_cache())
             check_pdf(pdf, single_page_tables=True, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
+            check_numbered_bookmarks(pdf, bookmark_records, bookmark_slugs[suffix])
             mage_tikz_links.verify_book(pdf, driver.with_suffix('.aux'), active_figures,
                                         anchor_prefix='tikz-figure:')
             shutil.copy2(pdf, destination)

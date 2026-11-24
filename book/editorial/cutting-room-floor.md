@@ -26797,3 +26797,327 @@ Repository instructions, chat rules, review skills, CI configuration, and workfl
 
 GitLab\textquotesingle s internal playbook also makes acceptance depend on the surrounding pipeline. Its failing-test-first practice is backed by a CI job that fails when the test count decreases unless an explicit bypass label is present, addressing agents that remove tests to obtain a passing result~\citep{gitlab2026playbook}. A test-count check cannot establish that the remaining tests express the right requirements. It does make one recurring way of evading them consequential at admission. GitLab illustrates how an existing development platform can extend its controls to agentic work, preserving established boundaries between performing an action, supplying evidence, and authorizing a change.
 ```
+
+
+## 2026-11-23 — Chapter 5 product/factory distinction and reasoning substitution
+
+Source revision: `1f084e175689e0e2144e4c06dc78a7c3f6d71f2b`. Author-directed restructuring and compression; deployment incident moved to §5.3.2.
+
+### Remove unique concept checklist.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 22.
+
+```latex
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{This section illustrates}\label{heading:illustrates}
+
+✓ The Modeling Principle · ✓ The Alignment Principle · ✓ Governance Conversion · ✓ Residual Human Judgment
+\end{quote}
+```
+
+### Merge opening around the factory as the subject.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 31.
+
+```latex
+% <!-- point: one-engineer-directed-a-fleet | One engineer directed coding agents while engineering both the remediation product and its factory; the final snapshot records production source, supporting source, and model modules. | terms: fleet-scale -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+I built DocAble by directing multiple coding agents. The product was a document-accessibility remediation service; the factory was the production system through which I directed changes to that service. I was engineering both. The product had to improve accessibility while preserving the document properties its users depended on. The factory had to organize implementation and preserve consequential engineering decisions as agents changed the system.
+
+% <!-- point: a-factory-contains-more-than-its-fabricators | DocAble’s governed engineering environment was part of a factory that also included people, agents, processes, and arrangements governing engineering decisions. -->
+
+The governed engineering environment developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} formed part of this factory. Its models described the product and selected engineering obligations; its tools and controls helped agents perform work and established which changes could be accepted. The factory also included the people and agents doing the work, the processes through which changes moved, and the arrangements governing engineering decisions.
+```
+
+### State the measurement window and inventory directly.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 42.
+
+```latex
+The record examined here spans \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. At the final snapshot, DocAble contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of supporting source, including tests, checks, tools, infrastructure, models, and indexed documentation. The history identified \magevalue{seip_models} model modules. These measurements describe the resulting system and its engineering environment; they do not measure how much useful work each line or model represents.
+```
+
+### Clarify the two repairs and their preventive/admission roles.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 51.
+
+```latex
+A failure could require two repairs: changing the product and changing how future changes to it were governed.
+```
+
+### Identify the product chronology as context.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 152.
+
+```latex
+I began with PowerPoint, then generalized the system to Word and Excel and added PDF support as colleagues brought other documents (R1). Each new format tested assumptions that my own files had not exposed. Putting \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} online introduced authentication, deployment, institutional use, and unfamiliar workloads (R8). Users then found outputs that passed existing checkers while losing semantic equivalence, prompting validation grounded more directly in accessibility standards (R4). When the Department of Justice extended the deadline, I shifted more attention toward production hardening (R7).
+```
+
+### Introduce what the product-development figure establishes.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 154.
+
+```latex
+\autoref{build-stages-timeline} records the sequence. The stages mark changes in the engineering problem, not merely larger quantities of implementation. Supporting another format could reveal a weakness in the shared architecture; serving users could reveal a missing obligation that no development fixture had exercised.
+```
+
+### Clarify product versus factory in caption.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 160.
+
+```latex
+\caption[DocAble's development stages]{\emph{The build, in stages.} DocAble expanded from a feasibility probe through format support, institutional operation, and hardening. Each stage introduced obligations that changed the product and the environment governing its implementation.}
+```
+
+### Relocate deployment-cost incident to Production Economics; preserve its author-account scope.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 164.
+
+```latex
+% Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
+One operational surprise came from Google Cloud. I had asked Claude to deploy DocAble, and it did. What I had not specified was the full deployment lifecycle, including how obsolete deployments should be retired. Eventually I noticed that the service was costing roughly \$40 per day when I expected something closer to \$5. I asked Claude to investigate. It reported approximately 2,000 obsolete deployments that had accumulated without being cleaned up. The cloud bill was about \$1,000.
+
+% Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
+The repair was to complete the lifecycle model by adding a cleanup step for obsolete deployments. Claude had done what I asked---and had neglected what I had omitted.
+```
+
+### Make the transition from product development to factory development explicit.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 175.
+
+```latex
+The preceding account describes how the engineering problem changed as DocAble developed. Repository history provides a different view: how implementation activity and the supporting engineering machinery changed over time. The reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
+```
+
+### Describe the engineering action directly.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 197.
+
+```latex
+Week 11 marks a deliberate change in my engineering practice. Notes from May 22 and 24 describe replacing repeated agent audits with deterministic checks, supported by typing, lint-authoring, and repair campaigns.
+```
+
+### Establish how the factory sustained the architectural separation.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 360.
+
+```latex
+The factory's models and controlled operations also make it possible to change how remediation decisions are made. DocAble separates the reasoning that proposes a repair from the machinery that changes the document. A new reasoning strategy can therefore reuse document models, supported operations, and validation machinery rather than reconstructing them. This separation also lets us ask whether more general reasoning earns its additional cost.
+```
+
+### Retain experiment design and limitations while foregrounding reusable representations.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 391.
+
+```latex
+Experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make?
+```
+
+### Compress the cost and repair-loop experiments while preserving accounting scope, dates, quality limitations, and the engineering decision.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 393.
+
+```latex
+% <!-- point: reasoning-substitution-cost-depends-on-context-and-quality | A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+I had expected that a more capable agent might sometimes lower total cost by inspecting the document more broadly and avoiding repeated specialized calls. An experiment in September 2026 compared the pipeline with an agent using DocAble's document tools on one handwritten PDF. It pointed the other way on cost. The pipeline's metered inference cost was about \$0.0419; the estimated agent execution cost was \$2.29.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of the agent's accumulated context accounted for much of the estimate. Both approaches had produced outputs with no failures on the evaluated veraPDF checks. The agent recovered more of the reference document structure, but had seen the reference sequence; this cost experiment could not establish an unbiased quality comparison.
+
+% <!-- point: a-completed-coached-loop-did-not-improve-the-measured-documents | In a November 2026 two-PDF evaluation, a completed second coached pass closed no additional findings on the harder document and cost $3.57 versus $1.35 for one pass; the clean document stopped after one pass in both arms. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+A November evaluation tested a narrower question: could a coached repair loop improve an agent's result? The loop inspected remaining findings and could request another repair pass. On two PDFs, it closed no additional findings beyond the single-pass agent. The harder document completed a second pass but retained the same 15 findings; its cost rose from \$1.35 to \$3.57. The other document had no remaining findings after one pass, so the loop stopped. The result did not justify promoting the loop to production. Both configurations already shared recently added document operations; a second round of reasoning supplied no measured benefit on this pair.
+```
+
+### Conclude on the factory sustaining reusable interfaces and evaluation across product changes.
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, line 403.
+
+```latex
+The unresolved question is where additional reasoning earns its cost. Difficult semantic cases may justify a frontier agent, and an agent can help investigate failures or test what the specialized pipeline misses. Those uses require evidence about the quality gained as well as the inference bill. DocAble's architecture lets us investigate them while retaining the document representations, supported operations, and validation machinery already built. That retained work is engineering capital: a new reasoning strategy can inherit it without reproducing the engineering decisions it embodies.
+```
+
+
+## 2026-11-23 — Chapter 5 model inventory and operational structure
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, working revision based on `1f084e175`. Removed or replaced to apply the author’s heading, table, caption, and section-division edits. The figure qualification moves into its caption.
+
+### Original line 229
+
+```latex
+\subsection{What the Factory Knows}
+```
+
+### Original line 235
+
+```latex
+\footnote{I use ``what the factory knows'' as shorthand for engineering knowledge represented in its models, procedures, and records. The factory does not possess understanding or exercise judgment; people and agents use these representations, while its mechanisms can evaluate or enforce selected obligations.}
+```
+
+### Original line 315
+
+```latex
+% <!-- pullquote -->
+
+\begin{quote}
+Modeling made engineering knowledge explicit and reusable. Alignment made selected obligations enforceable.
+\end{quote}
+
+
+```
+
+### Original line 387
+
+```latex
+\subsection{From a Priority to Completed Work}\label{heading:from-a-priority-to-completed-work}
+
+
+```
+
+### Original line 423
+
+```latex
+\subsection{What Escalated Failures Became}
+```
+
+### Original line 427
+
+```latex
+The workflow organized routine changes, but it also exposed failures that required changes to the factory itself.
+```
+
+### Original line 427
+
+```latex
+Three episodes illustrate the latter process:
+```
+
+### Original line 360
+
+```latex
+\caption[Substitutable reasoning over the PDF changeset interface]{Substitutable reasoning, controlled mutation. Different reasoning strategies inspect the document model and propose supported edits through a common typed changeset interface. A controlled applier executes those edits; provenance and independent validation provide evidence about the result. The drawing shows the PDF changeset path. Some PDF operations still mutate directly outside this interface.}
+
+```
+
+### Original line 277
+
+```latex
+Composed cross-service state-machine model with per-invariant facts
+```
+
+### Original line 277
+
+```latex
+Exhaustive-state checkers; the workers\textquotesingle{} own transition tables
+```
+
+### Original line 277
+
+```latex
+Legal progress and termination are reasoned over states and transitions, not a multi-thousand-line worker
+```
+
+### Original line 280
+
+```latex
+Peak-memory sizing model that upper-bounds a job and derives the deployment memory tier
+```
+
+### Original line 280
+
+```latex
+A resource bound is inspected directly rather than reconstructed from allocation behavior
+```
+
+### Original line 282
+
+```latex
+Deployment dependency map plus a checked typed call-edge mirror
+```
+
+### Original line 282
+
+```latex
+Ownership and boundaries are read from the map, not rediscovered per change
+```
+
+### Original line 284
+
+```latex
+Entitlement decision table --- the single policy authority for the admission decision
+```
+
+### Original line 284
+
+```latex
+The admission rule is one table; changing policy is editing a model, not hunting scattered conditionals
+```
+
+### Original line 287
+
+```latex
+Registry of external seams plus structured-document mutation interfaces
+```
+
+### Original line 287
+
+```latex
+Format-specific static restrictions and runtime write-authority checks
+```
+
+### Original line 289
+
+```latex
+Recorded remediation-pass provenance stamps projected into a derived changelog
+```
+
+### Original line 289
+
+```latex
+Diagnosis is a lookup over evidence, not a cross-file investigation
+```
+
+
+## 2026-11-23 — Chapter 5 product, factory, and GEE clarification
+
+Replaced at the author’s request with concrete definitions, a clarified development rule, and a shorter cost qualification. Working source based on `1f084e175`; private evidence references retained.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:25
+
+```latex
+Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} examined engineering decisions that shaped DocAble's product and the models and controls used to govern its development. Here the focus shifts to the software factory itself: the engineering environment and production processes through which I directed coding agents to build and change DocAble. The governed engineering environment (GEE) developed in those chapters formed part of this factory. Its models represented the product and selected engineering obligations; its tools and controls helped agents perform work and established which changes could be accepted. The factory also included the agents and people performing the work, the processes through which changes moved, and the arrangements governing engineering decisions.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:101
+
+```latex
+\section{Building the Factory}
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:128
+
+```latex
+\textbf{The resulting system should be good, fast, and cheap.} This was partly a requirement for DocAble and partly a test of agentic software engineering itself. I wanted to know whether agents could help build a production system that was not merely fast to develop, but good enough to trust, fast enough to matter, and cheap enough to deploy at scale. I therefore made all three requirements for the factory.
+```
+
+### book/latex/sources/part5/5.3-evaluating-docable.tex:139
+
+```latex
+  \textbf{Cost to build the product and factory.} I estimate that developing DocAble over six months cost approximately \$110,000: \$90,000 in engineering labor and \$20,000 in cloud expenditure. This investment produced both the remediation service and the reusable engineering machinery supporting its development.
+
+  % Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
+  Some of this expenditure reflected my limited experience with cloud operations, rather than a necessary cost of developing DocAble. For example, I directed Claude to deploy the service to Google Cloud without specifying how obsolete deployments should be retired. Approximately 2,000 obsolete deployments accumulated, increasing daily expenditure from an expected \$5 to roughly \$40 and contributing to a cloud bill of about \$1,000. Adding deployment cleanup corrected the problem. My software-development experience did not prevent operational oversights, and the reported costs should not be interpreted as those of an optimized production environment.
+```
+
+
+## 2026-11-23 — Clarify completed attempts
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex:71`, working revision based on `1f084e175`. Replaced ambiguous denominator with completed/total counts using the existing measurement keys.
+
+```latex
+DocAble produced outputs for \magevalue{seip_eval_completed} attempts and failed on one PDF.
+```

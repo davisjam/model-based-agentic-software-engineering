@@ -68,7 +68,7 @@ The student outputs document an institutional workflow rather than expert-verifi
 \textbf{Semantic accessibility} asks what information the document conveys. A GPT-5.2 rubric assessment examined text transcripts, with the original identified and the two outputs presented under randomized labels concealing their provenance. The model judged individual criteria and supplied transcript evidence. A deterministic scorer credited improvements and penalized regressions relative to the original; an output-score difference within one point defined the parity band. The rubric was refined on the development partition before the validation run.
 
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
-\textbf{Results against the human reference.} DocAble produced outputs for \magevalue{seip_eval_completed} attempts and failed on one PDF. \autoref{docable-human-remediation-results} summarizes the comparative accessibility findings.
+\textbf{Results against the human reference.} DocAble completed \magevalue{seip_eval_completed} of \magevalue{seip_eval_attempts} remediation attempts; one PDF failed. \autoref{docable-human-remediation-results} summarizes the comparative accessibility findings.
 
 \begin{figure}[htbp]
 \centering
@@ -136,7 +136,8 @@ These quantities show that the specialized system can produce remediation output
   \textbf{Cost to operate the product.} The preceding measurements establish low inference expenditure and short processing times. Full cloud execution costs and the human effort needed to review or correct outputs remain additional costs.
 \item
   % Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
-  \textbf{Cost to build the product and factory.} I estimate that developing DocAble over six months cost approximately \$110,000: \$90,000 in engineering labor and \$20,000 in cloud expenditure. This investment produced both the remediation service and the reusable engineering machinery supporting its development.
+  % Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
+  \textbf{Cost to build the product and factory.} I estimate that developing DocAble over six months cost approximately \$110,000: \$90,000 in engineering labor and \$20,000 in cloud expenditure. This investment produced both the remediation service and its supporting engineering machinery. Some expenditure was avoidable: despite my software-development experience, I had limited cloud-operations expertise. For example, I omitted cleanup requirements when directing Claude to deploy DocAble, allowing approximately 2,000 obsolete deployments to accumulate and contributing to a cloud bill of about \$1,000. These figures do not represent optimized development costs.
 \item
   % Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
   % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement

@@ -139,7 +139,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 6.1-toward-a-theory-of-mage
 
-  - **[DERIVED]** (know) After this section, the reader can recall the entitlement failure from Chapter 2. — _anchor: ts: Recall the entitlement failure from Chapter 2._
 
 ### Lesson 6.2-what-the-theory-predicts
 
@@ -164,6 +163,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 
 ### Lesson 7.4-the-engineer
+
+
+### Lesson 7.5-what-cannot-be-delegated
 
 
 ## Module 9 — Conclusion
