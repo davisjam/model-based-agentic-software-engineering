@@ -744,6 +744,8 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'stalled-work-diagnosis', (.18, .39, .43),
                                   row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'interlude-model-family', (.35, .65),
+                                  row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'theory-experimental-comparisons', (.20, .45, .35),
@@ -842,6 +844,10 @@ def _prepare_record(task):
     opening = re.sub(r'^\s*(?:<!--.*?-->\s*)*', '', raw, flags=re.S)
     if section_page and re.match(r'#{2,6}\s', opening):
         heading = r'\Needspace{8\baselineskip}' + '\n' + heading
+    if section_page and record['part'] == 4 and record.get('chapter_title') == 'Summary':
+        # Keep the reviewed five-item summary and its chapter transition on one
+        # page, instead of stranding the transition's last lines on a new page.
+        heading = r'\Needspace{.65\textheight}' + '\n' + heading
     latex = latex.replace(source_heading, heading, 1)
     counters = r'\setcounter{chapter}{' + str(record['part'] if isinstance(record['part'], int) else 0) + '}\n'
     counters += r'\renewcommand{\thechapter}{' + (chapter_letter[1] if chapter_letter else r'\arabic{chapter}') + '}\n'
