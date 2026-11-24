@@ -172,6 +172,8 @@ Make sure you checked the version you are about to accept. A release check can r
 
 \subsection{Testing Against Models}\label{heading:tests-and-models-work-together}
 
+% <!-- index-def: generative-validation -->
+
 Tests can evaluate whether an implementation satisfies obligations expressed in a model. Different testing methods organize that evidence differently. A regression test preserves a particular case and makes a recurrence easier to diagnose. Such tests remain useful as a system acquires more explicit models~\citep{winters2020}. \emph{Property-based testing} evaluates an executable property over generated inputs. The engineer chooses the property and ensures that the generator exercises the cases that matter; QuickCheck provides a framework for this approach~\citep{claessen2000quickcheck}.
 
 \emph{Model-based testing} uses an explicit account of expected behavior to construct operations, evaluate their results, or both. A behavioral model can supply the test oracle---the rule for evaluating the result---across many sequences. It need not reproduce the entire implementation; it needs enough behavior to answer the engineering question~\citep{utting2012taxonomy}. Property-based and model-based testing can be combined. Hypothesis's stateful testing, for example, can generate sequences of actions and compare a real system with a simpler model. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.

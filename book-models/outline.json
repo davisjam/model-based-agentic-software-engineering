@@ -1602,7 +1602,7 @@
           "heading_text": "Failure Models and Testing the Tests",
           "topic_sentence": "Testing expected behavior is not enough when a system must also respond correctly to failures.",
           "id_source": "explicit",
-          "block_index": 64,
+          "block_index": 65,
           "points": []
         },
         {
@@ -1611,7 +1611,7 @@
           "heading_text": "Choosing Mechanisms and Preserving Freedom",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 77,
+          "block_index": 78,
           "points": []
         },
         {
@@ -1620,42 +1620,42 @@
           "heading_text": "Matching Mechanisms to Obligations",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "explicit",
-          "block_index": 78,
+          "block_index": 79,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand.",
-              "block_index": 80
+              "block_index": 81
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol.",
-              "block_index": 82
+              "block_index": 83
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior.",
-              "block_index": 84
+              "block_index": 85
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it.",
-              "block_index": 86
+              "block_index": 87
             },
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 99
+              "block_index": 100
             }
           ]
         },
@@ -1665,42 +1665,42 @@
           "heading_text": "Margins and Engineering Freedom",
           "topic_sentence": "Alignment can do more than determine whether an implementation satisfies an obligation.",
           "id_source": "explicit",
-          "block_index": 101,
+          "block_index": 102,
           "points": [
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible.",
-              "block_index": 103
+              "block_index": 104
             },
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 111
+              "block_index": 112
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 113
+              "block_index": 114
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 115
+              "block_index": 116
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 121
+              "block_index": 122
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 124
+              "block_index": 125
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 129
+              "block_index": 130
             }
           ]
         }
