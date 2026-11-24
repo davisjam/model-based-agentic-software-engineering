@@ -8,7 +8,7 @@
 
 % <!-- section-terms: independent-obligation, semantic-gap, agreement-vs-correctness -->
 
-\section{Independent Obligations and Evidence}\label{heading:agreement-is-not-correctness}
+\section{What Alignment Means}\label{heading:agreement-is-not-correctness}
 
 % <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
 
@@ -26,9 +26,13 @@ A check may inform a later decision, or a gate may use its result to refuse an a
 The obligation can also reside directly in a type, permission, schema, test, or policy.
 What matters is that it is distinguishable from the implementation being judged and that a mechanism can enforce the resulting decision. Design by Contract provides a familiar precedent for expressing obligations independently of implementation through preconditions, postconditions, and invariants~\citep{meyer1997oosc}.
 
+The term Alignment requires some care. In artificial intelligence, alignment concerns making AI systems behave consistently with human intentions, preferences, or values~\citep{gabriel2020artificial,ji2024ai}. MAGE addresses a narrower engineering problem. Rather than establishing that an agent's objectives are aligned with those of its user, the engineer establishes an environment in which selected obligations can be evaluated and enforced despite the agent's fallibility. An agent may misunderstand an architectural rule or propose a forbidden operation; the environment can nevertheless refuse the operation or reject the resulting work.
+
 % <!-- point: drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims | Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim. | terms: agreement-vs-correctness, independent-obligation -->
 
-\textbf{Correspondence} asks whether an engineering model and its implementation agree over the relationships the model claims to represent. A drift check evaluates that declared correspondence and surfaces disagreements. \textbf{Conformance} asks whether the implementation satisfies an independent engineering obligation, which may be represented in the same model. \textbf{Acceptance} is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model.
+The terminology also connects to established software-engineering concepts. \textbf{Correspondence} asks whether an engineering model and its implementation agree over the relationships the model claims to represent~\citep{murphy1995reflexion}. A drift check evaluates that declared correspondence and surfaces disagreements. \textbf{Conformance} asks whether the implementation satisfies an independent engineering obligation, which may be represented in the same model~\citep{passos2010conformance}. \textbf{Acceptance} is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model. These distinctions matter because agreement is not necessarily correctness, and evidence of correctness does not by itself authorize an action.
+
+MAGE uses Alignment for the engineering activity that connects selected obligations to the mechanisms governing work. It includes establishing what must hold, obtaining evidence where that obligation can be evaluated, and making the appropriate actions or results depend on that evidence. Correspondence and conformance are relationships that Alignment may evaluate; acceptance is one decision it may govern. The engineer chooses which obligations warrant such treatment and which implementation choices should remain open.
 
 % <!-- point: an-obligation-can-test-one-of-three-relations | Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable. | terms: independent-obligation, agreement-vs-correctness -->
 

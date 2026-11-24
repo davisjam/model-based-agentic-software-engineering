@@ -31125,3 +31125,20 @@ The formulation gives the research agenda a decision problem to address. The pro
 These experiments would establish effects only for the tasks, agents, and engineering environments studied. Replication across organizations and task families would show how far the relationships extend. Testing them outside software would require additional evidence that the relevant obligations can be represented and evaluated adequately, as the scope conditions above suggest.
 
 ```
+
+
+## 2026-11-24 — Alignment terminology clarification
+
+Source revision: `7aea18196`. Replaced §3.2.1 correspondence paragraph (lines 35–35) and glossary entry (line 62) to distinguish MAGE Alignment from AI alignment and model agreement; the chapter retains the formal principle.
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`.
+
+```latex
+\textbf{Correspondence} asks whether an engineering model and its implementation agree over the relationships the model claims to represent. A drift check evaluates that declared correspondence and surfaces disagreements. \textbf{Conformance} asks whether the implementation satisfies an independent engineering obligation, which may be represented in the same model. \textbf{Acceptance} is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model.
+```
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+
+```latex
+\textbf{Alignment Principle.} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. Some obligations can be enforced directly on actions or artifacts; explicit models let the environment state and check richer properties, including acceptable bounds on variation.
+```
