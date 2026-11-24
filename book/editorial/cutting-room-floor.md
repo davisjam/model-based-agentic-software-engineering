@@ -32915,3 +32915,593 @@ Section: `\subsection{Substituting the Reasoning Engine}\label{heading:exploring
 ```latex
 Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost --- the cheapest-adequate-judge rule of \magevalue{sec:engineering-the-environment} applied to the fabricator rather than to the validator.
 ```
+
+
+## 2026-11-24 — Chapter 4 targeted refinement
+
+Source revision: `5ed1425a63bcb15323de7374c044f747d954a9d9`. User packet `cfdda62c-8b9c-4308-a6e6-a4f3faa74e0f`. The chapter structure remains; this pass removes local repetition and clarifies technical meaning. Original text and citations are preserved below before replacement.
+
+### `book/latex/sources/part4/00-part-intro.tex` — original lines 18–18
+
+Packet opening replacement; retain roadmap.
+
+```latex
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} examined Modeling and Alignment separately. In practice, they interact. An implementation may reveal a missing requirement, an analysis may suggest a different design, or a failed change may expose an obligation that should be enforced. Engineers must decide what to revise, what to preserve, and which lessons should govern later work.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 30–30
+
+Packet active/passive caption.
+
+```latex
+\caption{\emph{Active and passive alignment.} Active alignment brings an implementation into conformance with modeled obligations, including newly introduced obligations that deliberately differ from the current system. The retained models, mechanisms, and governance become engineering capital when subsequent changes benefit from them. Passive alignment uses them to evaluate subsequent changes and preserve the properties already brought under governance.}
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 38–40
+
+Packet merge kernel definition.
+
+```latex
+The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage. Together, these models form the alignment kernel.
+
+\magevalue{chapter:modeling} organized models by the properties they represent. The kernel tells us which properties to protect first: those that an upcoming transformation must preserve. We can then protect additional properties under those existing constraints (\autoref{alignment-kernel}).
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 61–61
+
+Packet exploratory scope.
+
+```latex
+An implementation that would previously have taken days of engineering effort might now take minutes.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 65–67
+
+Packet preserve personal paragraph and consolidate governance conversion.
+
+```latex
+That is part of engineering. The next step is to decide whether the newly discovered obligation should become explicit, so that future work does not have to discover it again.
+
+When an engineering episode reveals a property that subsequent work must preserve, we can record that property in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. The resulting model or control becomes available to subsequent engineering, regardless of whether we discovered the property through Modeling, Realization, or Evaluation.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 82–84
+
+Packet delete redundant closing bridge.
+
+```latex
+
+The following sections illustrate these dynamics through problems I encountered while engineering DocAble. We begin with a performance problem whose solution led me to develop several related models of the same system.
+
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 9–11
+
+Packet delete duplicative section intro.
+
+```latex
+Brownfield engineering applies Modeling and Alignment to knowledge already distributed across a system's code, tests, documents, and operational practice.
+
+
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 16–16
+
+Packet contextual opening with canonical section token.
+
+```latex
+In the preceding episode, new engineering questions led me to construct new models. In an existing system, we often face a different problem: the knowledge we need is already present, but scattered across implementations, tests, documentation, and the memories of engineers.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 24–24
+
+Packet domain-recovery subheading.
+
+```latex
+As DocAble grew, I became concerned
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 33–33
+
+Packet shared vocabulary wording.
+
+```latex
+These records made the shared concepts visible across the format-specific implementations without requiring those implementations to be combined.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 39–39
+
+Packet interpret unchanged metric; two concepts refer to worked examples not exhaustive migration.
+
+```latex
+The aggregate density finding count nevertheless did not decrease during that removal stage. The recovery had made particular concepts explicit and changed how code used them; a file-level density threshold did not measure that achievement.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 50–50
+
+Packet descriptive comparison subheading.
+
+```latex
+Recovering a model need not immediately lead to changes in the implementation.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 77–77
+
+Packet inset question.
+
+```latex
+Is the model at the wrong grain?
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 91–91
+
+Packet procedure introduction.
+
+```latex
+I used the following Audit → Drain → Promote procedure when introducing new checks into DocAble:
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 96–96
+
+Packet final phrase table; retain purpose and distinction.
+
+```latex
+make the check enforceable at the appropriate boundary so that subsequent work cannot reintroduce the violations it detects.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 102–102
+
+Packet clarification adapted to E30: threshold plus suppression, no invented review-completion gate.
+
+```latex
+The check used to discover a problem is not always suitable for enforcement. In DocAble, primitive density helped identify code worth examining, but primitive-heavy code was not necessarily wrong. Investigation revealed more specific problems that could be prevented with types, constraints, or lints. The density threshold could block a change with an internal-boundary finding, but deciding whether it warranted an exemption, cleanup, or a recovered model still required review.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 9–11
+
+Packet merged opening.
+
+```latex
+So far, we have applied Modeling and Alignment to the system we are building. We can apply them to the machinery we use to build it as well. Agents are dispatched, work is integrated, checks are executed, and failures require recovery. These activities have structures, behaviors, resource requirements, and obligations of their own.
+
+As DocAble grew, I encountered problems in this engineering machinery much as I encountered problems in the product. Some required new models, others required changes to the implementation, and others exposed shortcomings in the controls I had already established.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 13–13
+
+Packet title; preserve stable label.
+
+```latex
+\section{Modeling Engineering Work}
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 23–23
+
+Packet recovery procedure distinction; E32 does not establish separately constructed lifecycle model.
+
+```latex
+The same modeling technique we used for remediation jobs in \magevalue{chapter:modeling} applies to engineering work. We can represent the states in which an assignment or integration operation may find itself, the transitions available from each state, and the properties that recovery must preserve. In this case, the important distinction was between work already completed successfully and the operation that had encountered a failure.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 27–27
+
+Packet separate packaged-procedure example; newly verified historical context hook.
+
+```latex
+A mechanically observable event could trigger the procedure without determining its every step. For example, reaching a context threshold can cause a hook to request a handoff that the agent must still compose. Automate the arrival of the decision procedure, not every decision.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 29–29
+
+Packet episode conclusion.
+
+```latex
+The incident had revealed an inadequacy in my engineering environment rather than in DocAble's remediation software. I responded in much the same way: identify the distinction the existing implementation failed to preserve, represent it explicitly, and establish a mechanism that subsequent work could use.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 38–38
+
+Packet remove incidental month.
+
+```latex
+Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 47–47
+
+Packet attention versus admission clarification; retain candidate identity.
+
+```latex
+A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 72–72
+
+Packet negative-test precision; following Chapter3 callback retained.
+
+```latex
+This is closely related to mutation testing and fault injection. We deliberately introduce a defect to evaluate the machinery responsible for detecting or handling it.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 74–76
+
+Packet replace closing restatements with episode conclusion.
+
+```latex
+As the system changes, the representations and mechanisms used to evaluate it can become inadequate. A check may continue to execute successfully while no longer examining the property it was intended to establish. Maintaining the engineering environment therefore requires evaluating the correspondence between its controls and the obligations they enforce, just as maintaining the product requires evaluating its correspondence with engineering intent.
+
+These episodes illustrate that Modeling and Alignment apply to the engineering environment as well as to the product. The environment has its own architecture, behavior, resource requirements, and obligations. We can model these properties, evaluate the environment's operation, and revise its implementation as we discover deficiencies. Improvements to this environment can then benefit many subsequent changes to the product.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 9–9
+
+Packet summary opener.
+
+```latex
+The preceding chapters developed Modeling and Alignment as complementary engineering activities. This chapter examined how they work together as a system and its engineering environment evolve.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 13–13
+
+Packet summary item2.
+
+```latex
+Active alignment brings a system into conformance with engineering intent. Passive alignment protects the resulting properties against subsequent changes.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 14–14
+
+Packet summary item3.
+
+```latex
+An alignment kernel establishes properties that further engineering must preserve.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 15–15
+
+Packet summary item4.
+
+```latex
+\textbf{Develop and revise models as engineering questions arise.} One engineering problem can lead to several related models. Their analyses can guide design, while measurements and failures can expose shortcomings in the models themselves.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 16–16
+
+Packet summary item5.
+
+```latex
+We can apply Modeling and Alignment to that machinery, improving its operation and the evidence it provides.
+```
+
+
+### Technical episode and Appendix A.9 consistency
+
+The same packet and source revision apply. The unmatched capacity-model example is preserved here pending an identified measurement receipt.
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 10–10
+
+Section: `opening`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Let us see how these ideas work together in an engineering problem I encountered while building DocAble. I began with a working system, discovered a property I had neglected to model, and changed the implementation to satisfy a new obligation. That change opened up further opportunities to improve the system, each of which raised new engineering questions.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 12–12
+
+Section: `opening`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The initial problem was memory exhaustion when processing large PowerPoint presentations. Solving it required reconsidering what DocAble retained in memory and how it divided remediation work among workers. I then developed models of execution, latency, and cost to investigate alternative designs. As I implemented and measured those designs, I discovered shortcomings in the models themselves. By the end of the episode, I had both a different architecture and a collection of related models and controls that would guide subsequent engineering.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 19–19
+
+Section: `\subsection{One Document, One Worker}\label{heading:one-document-one-worker}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces the architectural progression from whole-document execution through page chunking to skeletonized residency.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 29–31
+
+Section: `\subsection{One Document, One Worker}\label{heading:one-document-one-worker}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The document therefore served as both the user\textquotesingle s artifact and the worker\textquotesingle s in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the foundation model as needed.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 37–37
+
+Section: `\subsection{Dividing the Document among Workers}\label{heading:pages-as-the-unit-of-scale}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+My first response was to introduce ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b). Each worker processed a portion of the document, retaining the structure and media needed to remediate those pages. The resulting patches were then recombined into the complete document.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 40–45
+
+Section: `\subsection{Dividing the Document among Workers}\label{heading:pages-as-the-unit-of-scale}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Chunking worked across a much broader workload: ordinary teaching presentations and hundreds of documents from multiple universities. Page ranges gave each ChunkWorker a practical bound on its working state, and experience provided no reason to replace that design merely because another architecture was possible.
+
+This architecture accommodated the inputs encountered so far. The page boundary gradually became part of how DocAble was understood: a document was divided into chunks because chunks were how large documents were processed. A roughly 250 MB media-heavy presentation eventually exceeded that operating regime.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 58–58
+
+Section: `\subsection{Separating Document Structure from Media}\label{heading:a-new-class-of-input}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required reconsidering the arrangement itself.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 61–61
+
+Section: `\subsection{Separating Document Structure from Media}\label{heading:a-new-class-of-input}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Chunking reduced the amount of media resident in each worker, but memory consumption still depended on the media contained in that chunk. The residency model exposed a different possibility: retain the document's structure while keeping its media outside the worker's persistent working set (\autoref{interlude-execution-unit}, panel c).
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 63–63
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 66–66
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The memory problem came from coupling document structure to media residency: total media size increased the worker\textquotesingle s persistent working set even though most remediation operations needed only the document\textquotesingle s structural skeleton. Skeletonization removes that coupling. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 71–71
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The corresponding memory invariant states the property directly:
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 76–76
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 81–81
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The four terms bound memory for the rolling stream buffer, structural skeleton, handles, and remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 90–90
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 92–96
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+My original requirement concerned the operations DocAble had to perform on a document. It did not distinguish the information those operations required from the memory costs of the implementation. The residency model made that distinction explicit. A worker could retain the document’s structural representation while retrieving media as needed, rather than retaining the entire media payload throughout processing.
+
+The resulting design removed aggregate media payload size from the principal memory-residency term. The worker still required memory for document structure, active computations, and streaming buffers. The model therefore predicted a particular improvement in scaling behavior, rather than constant memory consumption under every possible change in document size.
+
+Changing the architecture to satisfy the residency model is active alignment. Once correspondence is established, the model and invariant checks provide passive alignment: later changes must preserve the memory property or justify revising the model and its checks. The memory obligation became part of the alignment kernel for the execution changes that followed.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 100–100
+
+Section: `\subsection{Model the Cause, Not Just the Symptom}\label{heading:why-one-level-deeper-matters}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+\subsection{Model the Cause, Not Just the Symptom}\label{heading:why-one-level-deeper-matters}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 102–104
+
+Section: `\subsection{Model the Cause, Not Just the Symptom}\label{heading:why-one-level-deeper-matters}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Measuring peak memory tells us how much memory the worker consumed. It does not tell us why. The residency model explains how document structure and media contribute to memory consumption, and predicts how memory should change as we vary the input.
+
+We need both the model and the measurements. The model helps us predict the behavior of documents we have not yet processed; measurements help us discover whether the model is correct. Ousterhout describes this practice as measuring one level deeper~\citep{ousterhout2018}. The additional measurement is worthwhile when it helps us understand the mechanism responsible for the observed behavior.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 113–113
+
+Section: `\subsection{Memory as an Obligation for Subsequent Changes}\label{heading:memory-did-not-stop-mattering}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+That coupling became explicit in the engineering machinery. The frontier-worker design bounded active calls with a semaphore and modeled its footprint as the concurrency limit multiplied by the per-call working set. Wider work therefore required more batches rather than an unbounded resident set. In a later latency campaign, production shipment of a deck-to-PDF cache was conditional on bounding its memory use and spilling cached artifacts to external storage. The earlier resource model had become part of the environment within which the later one operated.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 137–137
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The graph explains the ordering. Independent work can run together; a consumer waits only for information it needs from upstream. Pages do not create those dependencies. Information does. The executor repeatedly schedules the ready frontier, records its outputs, and advances to the next frontier as dependencies are satisfied.\magefootnote{topo-dag}{This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 139–139
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+I could now reconsider the design of ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 143–143
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+For the present problem, the architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. I did not need to implement both scheduling policies merely because I could imagine them. The dependency model let me investigate their likely consequences before committing to either implementation. Separating the graph from its executor lets us change the scheduling policy later without redesigning remediation. In the realized architecture, that execution-driving representation remains distinct from richer analytical projections built over the same computation identities. The distinction matters later: a model may govern realization while another view of the same structure serves analysis.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 167–167
+
+Section: `\subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Let \emph{R} be the number of remediation rounds, \emph{F} the cost of producing the whole document once, and \emph{G} the remaining GenAI work. The model represented execution without page chunks as
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 173–173
+
+Section: `\subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+For example, suppose a document requires four remediation rounds, whole-document production takes 10 seconds, and the remaining GenAI work takes 20 seconds. The model predicts \emph{T} = (4+1)(10) + 20 = 70 seconds. Fifty of those seconds come from producing the document five times: once for each remediation round and once more to apply the accumulated changes. Cutting the GenAI work in half would save 10 seconds; eliminating two production rounds would save 20. In this example, we spend too much time rebuilding the document. The model therefore identifies repeated whole-document production as a quantity worth attacking.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 175–175
+
+Section: `\subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+I could also test whether this model was correct. Its calibration procedure inverted observed execution times to recover its components, and it rejected any fit whose inferred costs came out negative. Measurement could therefore disagree with the engineering account rather than merely supplying another number to optimize against.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 189–189
+
+Section: `\subsection{Predicting Latency}\label{heading:predicting-latency}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+For the representative 37-image workload, local concurrency of six required seven waves, yielding a predicted latency of about 33 seconds. Modeled cloud concurrency of 64 could execute that frontier in one wave; including estimated cold-start and round-trip costs gave about 11.5 seconds, a roughly 2.9× improvement. The prediction depended on those overhead estimates and required staging measurements before cutover. The local cap also reflected memory: concurrent ChunkWorkers each held format-native document state. Skeletonization reduced that per-worker residency, making wider execution feasible without multiplying the same large media working set.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 193–193
+
+Section: `\subsection{Predicting the Cost of a Design Change}\label{heading:predicting-the-cost-of-a-design-change}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+Before implementing a proposed intermediate representation, I could add its production and consumption to the dependency graph. I could then recompute the critical path, the number of execution rounds, and the amount of work available for concurrent execution. A computation outside the critical path might add no latency, provided that sufficient resources were available. One that extended the critical path would increase the predicted latency and might require another distributed execution round. These predictions helped me decide which designs were worth implementing and measuring.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 197–199
+
+Section: `\subsection{Learning from Prediction Errors}\label{heading:use-prediction-error-as-evidence}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+A useful feature of a quantitative model is that we can test its predictions. When measured latency differs substantially from a prediction, we have another engineering problem to investigate. Have we estimated a parameter incorrectly? Have we misunderstood a dependency? Have we omitted a computation or a source of overhead? Alternatively, the implementation might not follow the modeled design.
+
+Each explanation calls for a different response. We can revise a parameter, change the structure of the model, investigate an omitted mechanism, or correct the implementation. We can then repeat the analysis and compare its prediction with further measurements. \autoref{interlude-prediction-residual} illustrates this process and the possible sources of a prediction error.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 210–211
+
+Section: `\subsection{Learning from Prediction Errors}\label{heading:use-prediction-error-as-evidence}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+What should remain durable when the models themselves change?
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 219–219
+
+Section: `\subsection{Preserving Performance Obligations}\label{heading:what-carries-forward}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+I chose not to use observed wall-clock time as the basis for the performance ratchet. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 221–221
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 224–224
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The memory model also made predictions that I could test independently of the implementation’s apparent success. Some of those predictions turned out to be wrong. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 227–227
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+I also recorded how each measurement was obtained. A measured quantity might describe a particular document, workload, configuration, or revision of the software. Comparing measurements obtained under different conditions could otherwise lead me to revise a model that was correct for its original assumptions. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it. A process-level measurement may omit memory included in the container's total.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 241–242
+
+Section: `\subsection{The Resulting Model Family}\label{heading:the-resulting-model-family}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 282–282
+
+Section: `\subsection{The Resulting Model Family}\label{heading:the-resulting-model-family}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+These models take different forms because they answer different questions. Some are typed graphs, some quantitative functions, some declarations of entities and invariants. They stay separate and compose through shared identities and explicit relationships. The remediation graph and fact catalogue supply the static dependency structure, and the batch model supplies per-call cost; the critical-path model combines the two into latency. The distribution model describes where work runs and which coordination costs that arrangement introduces. The media-residency model supplies the independent memory bound that makes the execution design affordable.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 308–308
+
+Section: `\subsection{Using the Models to Evaluate Subsequent Changes}\label{heading:model-aware-change-impact}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+This episode began with Evaluation: DocAble could not process a document. It led to Modeling and then to changes in the implementation, which exposed further engineering questions. Measurements revealed shortcomings in some of my models, while other models identified properties that I wanted subsequent implementations to preserve. I could not have specified all seven models at the beginning of the episode, because I did not yet know which questions I would need to answer.
+```
+
+### `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex` — original lines 12–12
+
+Section: `\section{Conceptual Design}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The residency model uses the same bound as \autoref{4.2-one-problem-many-models:heading:remove-media-from-the-working-set}:
+```
+
+### `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex` — original lines 16–16
+
+Section: `\section{Conceptual Design}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+```
+
+### `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex` — original lines 20–20
+
+Section: `\section{Conceptual Design}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+The terms bound the rolling stream buffers, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. Architecture bounds stream buffers; workload limits bound structural size and reference count; configuration limits active concurrency. Measurements must establish the working set of each media consumer, including decoded images, rendering, and temporary allocations. Externalizing bytes alone does not establish the bound.
+```
+
+### `book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex` — original lines 107–107
+
+Section: `\section{Realization}`. Technical refinement: distinguish quantities, evidence status, and model assumptions; remove local repetition.
+
+```latex
+where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) accounts for reasoning work and its distribution. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
+```

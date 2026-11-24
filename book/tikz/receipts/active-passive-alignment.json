@@ -1,42 +1,58 @@
 {
   "source": "book/assets/active-passive-alignment.svg",
-  "claim": "Active alignment brings the system into conformance with new or previously violated obligations. Retained models and mechanisms then support passive preservation and become capital when later work benefits.",
-  "topology": "Two sequential panels; active compare/modify/evaluate feedback then passive change/evaluate feedback with retained models.",
+  "claim": "Two stacked shaded panels. Active alignment uses models with intended obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until conformance and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to preserve obligations. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
+  "topology": "Two stacked shaded panels. Active alignment uses models with intended obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until conformance and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to preserve obligations. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
   "required_terms": [
-    "Active alignment: convergence",
-    "Models M",
-    "Compare\\ gaps",
-    "Modify\\ agents",
-    "Evaluate\\ alignment",
-    "Aligned\\ S' ",
-    "Passive alignment: preservation",
-    "Once active alignment succeeds, retain the models and mechanisms.",
-    "Proposed change  S",
-    "Models M",
-    "Evaluate against models",
-    "Updated system S'",
-    "Models, mechanisms, and governance remain as engineering capital for every change."
+    "Active Alignment",
+    "(convergence)",
+    "Use the models to",
+    "change the system until",
+    "it satisfies them.",
+    "Passive Alignment",
+    "(preservation)",
+    "The same models and",
+    "mechanisms keep the",
+    "system aligned.",
+    "Intended",
+    "obligations",
+    "Compare",
+    "and detect",
+    "gaps",
+    "Modify",
+    "the system",
+    "(with agents)",
+    "Evaluate",
+    "and check",
+    "alignment",
+    "Aligned",
+    "system",
+    "Repeat until conformance",
+    "Once active alignment succeeds,",
+    "retain the models and mechanisms.",
+    "Known obligations",
+    "Proposed",
+    "Evaluate the",
+    "change against",
+    "the models",
+    "Updated",
+    "Admit or reject",
+    "Continue preserving obligations"
   ],
   "bw_encoding": "Light-gray panels distinguish the two alignment modes; stacks denote retained models.",
-  "redesign": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+  "redesign": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel.",
   "questions": [],
-  "alt": "Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
+  "alt": "Two stacked shaded panels. Active alignment uses models with intended obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until conformance and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to preserve obligations. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
   "qa": {
-    "date": "2026-11-13",
-    "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-    "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
-    "page": 1,
-    "width_bp": 448.421,
-    "height_bp": 242.423,
-    "minimum_prose_font_pt": 9,
-    "unapproved_compile_diagnostics": 0,
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/active-passive-alignment.pdf",
+    "proof_sha256": "e33d0aae2f0b909b33391fe6fe579ba2d8d0dd70afef98a0ddc77b1e8e1492aa",
+    "width_bp": 448.4209899902344,
+    "height_bp": 242.42300415039062,
+    "reviewed_visually": true,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
-    "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
-    "semantic_typography_checks": 33,
-    "monochrome_pixels": true,
-    "status": "passed",
-    "scope": "Native and SVG proofs visually inspected."
+    "semantic_typography_checks": 34,
+    "typography_findings": 0,
+    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
   },
   "style_review": {
     "source": "book/assets/active-passive-alignment.svg",
@@ -104,177 +120,22 @@
   "typography_review": {
     "source": "book/assets/active-passive-alignment.svg",
     "candidate": "book/tikz/figures/active-passive-alignment.tex",
-    "decision": "refined",
-    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
-    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
-    "evidence": [
-      {
-        "candidate_text": "Active Alignment",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "(convergence)",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Use the models to",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "change the system until",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "it satisfies them.",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Passive Alignment",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "(preservation)",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "The same models and",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "mechanisms keep the",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "system aligned.",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "New obligations",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Compare",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "and detect",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "gaps",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Modify",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "the system",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "(with agents)",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Evaluate",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "and check",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "alignment",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Aligned",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "system",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Repeat until correspondence",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Once active alignment succeeds,",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "retain the models and mechanisms.",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Known obligations",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Proposed",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Evaluate the",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "change against",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "the models",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Updated",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Admit or reject",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Continue protecting correspondence",
-        "candidate_style": "italic",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      }
-    ],
-    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+    "source_sha256": "36400d7ad83fae2ac22809511da3c6209705d65235466fa6d60701c78c461c98",
+    "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed",
+    "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/active-passive-alignment.pdf",
+      "proof_sha256": "e33d0aae2f0b909b33391fe6fe579ba2d8d0dd70afef98a0ddc77b1e8e1492aa",
+      "width_bp": 448.4209899902344,
+      "height_bp": 242.42300415039062,
+      "reviewed_visually": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 34,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+    },
+    "reviewed_visually": true,
     "checks": [
       {
         "text": "Active Alignment",
@@ -327,7 +188,12 @@
         "italic": true
       },
       {
-        "text": "New obligations",
+        "text": "Intended",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "obligations",
         "bold": false,
         "italic": true
       },
@@ -387,7 +253,7 @@
         "italic": false
       },
       {
-        "text": "Repeat until correspondence",
+        "text": "Repeat until conformance",
         "bold": false,
         "italic": true
       },
@@ -437,82 +303,32 @@
         "italic": true
       },
       {
-        "text": "Continue protecting correspondence",
+        "text": "Continue preserving obligations",
         "bold": false,
         "italic": true
-      }
-    ],
-    "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
-      "page": 1,
-      "width_bp": 448.421,
-      "height_bp": 242.423,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
-      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
-      "semantic_typography_checks": 33,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs visually inspected."
-    },
-    "reviewed_visually": true,
-    "revision_history": [
-      {
-        "date": "2026-11-13",
-        "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
-      },
-      {
-        "date": "2026-11-13",
-        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ]
   },
   "layout_review": {
     "source": "book/assets/active-passive-alignment.svg",
     "candidate": "book/tikz/figures/active-passive-alignment.tex",
-    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
-    "baseline_candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
-    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
-    "decision": "refined",
-    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
-    "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      403.22601318359375,
-      275.6199951171875
-    ],
-    "contracts": {},
+    "source_sha256": "36400d7ad83fae2ac22809511da3c6209705d65235466fa6d60701c78c461c98",
+    "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed",
+    "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
-      "page": 1,
-      "width_bp": 448.421,
-      "height_bp": 242.423,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/active-passive-alignment.pdf",
+      "proof_sha256": "e33d0aae2f0b909b33391fe6fe579ba2d8d0dd70afef98a0ddc77b1e8e1492aa",
+      "width_bp": 448.4209899902344,
+      "height_bp": 242.42300415039062,
+      "reviewed_visually": true,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
-      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
-      "semantic_typography_checks": 33,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs visually inspected."
+      "semantic_typography_checks": 34,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
     },
-    "revision_history": [
-      {
-        "date": "2026-11-13",
-        "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
-      },
-      {
-        "date": "2026-11-13",
-        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
-      }
-    ],
-    "visual_review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+    "reviewed_visually": true,
+    "contracts": {}
   },
   "fidelity_review": {
     "source": "book/assets/active-passive-alignment.svg",
@@ -604,5 +420,466 @@
       }
     ]
   },
-  "reference_image_sha256": "234d2b9549a5a6f57675d01d362ab949155f02a8b552fbd41194ef47aa23377b"
+  "reference_image_sha256": "234d2b9549a5a6f57675d01d362ab949155f02a8b552fbd41194ef47aa23377b",
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by5bp within the unchanged panel.",
+      "previous": {
+        "claim": "Active alignment brings the system into conformance with new or previously violated obligations. Retained models and mechanisms then support passive preservation and become capital when later work benefits.",
+        "topology": "Two sequential panels; active compare/modify/evaluate feedback then passive change/evaluate feedback with retained models.",
+        "required_terms": [
+          "Active alignment: convergence",
+          "Models M",
+          "Compare\\ gaps",
+          "Modify\\ agents",
+          "Evaluate\\ alignment",
+          "Aligned\\ S' ",
+          "Passive alignment: preservation",
+          "Once active alignment succeeds, retain the models and mechanisms.",
+          "Proposed change  S",
+          "Models M",
+          "Evaluate against models",
+          "Updated system S'",
+          "Models, mechanisms, and governance remain as engineering capital for every change."
+        ],
+        "bw_encoding": "Light-gray panels distinguish the two alignment modes; stacks denote retained models.",
+        "redesign": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+        "questions": [],
+        "alt": "Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
+        "qa": {
+          "date": "2026-11-13",
+          "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+          "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
+          "page": 1,
+          "width_bp": 448.421,
+          "height_bp": 242.423,
+          "minimum_prose_font_pt": 9,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+          "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+          "semantic_typography_checks": 33,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "scope": "Native and SVG proofs visually inspected."
+        },
+        "layout_review": {
+          "source": "book/assets/active-passive-alignment.svg",
+          "candidate": "book/tikz/figures/active-passive-alignment.tex",
+          "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+          "baseline_candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
+          "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+          "decision": "refined",
+          "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            403.22601318359375,
+            275.6199951171875
+          ],
+          "contracts": {},
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+            "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
+            "page": 1,
+            "width_bp": 448.421,
+            "height_bp": 242.423,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+            "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+            "semantic_typography_checks": 33,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs visually inspected."
+          },
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+            },
+            {
+              "date": "2026-11-13",
+              "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+            }
+          ],
+          "visual_review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+        },
+        "typography_review": {
+          "source": "book/assets/active-passive-alignment.svg",
+          "candidate": "book/tikz/figures/active-passive-alignment.tex",
+          "decision": "refined",
+          "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+          "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+          "evidence": [
+            {
+              "candidate_text": "Active Alignment",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "(convergence)",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Use the models to",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "change the system until",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "it satisfies them.",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Passive Alignment",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "(preservation)",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "The same models and",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "mechanisms keep the",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "system aligned.",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "New obligations",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Compare",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "and detect",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "gaps",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Modify",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "the system",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "(with agents)",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Evaluate",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "and check",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "alignment",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Aligned",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "system",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Repeat until correspondence",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Once active alignment succeeds,",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "retain the models and mechanisms.",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Known obligations",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Proposed",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Evaluate the",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "change against",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "the models",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Updated",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Admit or reject",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Continue protecting correspondence",
+              "candidate_style": "italic",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            }
+          ],
+          "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+          "checks": [
+            {
+              "text": "Active Alignment",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(convergence)",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Use the models to",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "change the system until",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "it satisfies them.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Passive Alignment",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(preservation)",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "The same models and",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "mechanisms keep the",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "system aligned.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "New obligations",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Compare",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "and detect",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "gaps",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Modify",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "the system",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(with agents)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Evaluate",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "and check",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "alignment",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Aligned",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "system",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Repeat until correspondence",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Once active alignment succeeds,",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "retain the models and mechanisms.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Known obligations",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Proposed",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Evaluate the",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "change against",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "the models",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Updated",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Admit or reject",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Continue protecting correspondence",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+            "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
+            "page": 1,
+            "width_bp": 448.421,
+            "height_bp": 242.423,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+            "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+            "semantic_typography_checks": 33,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs visually inspected."
+          },
+          "reviewed_visually": true,
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+            },
+            {
+              "date": "2026-11-13",
+              "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha256": "36400d7ad83fae2ac22809511da3c6209705d65235466fa6d60701c78c461c98",
+  "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed"
 }

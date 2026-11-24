@@ -34,14 +34,14 @@ def render_map(rows):
     f=Figure(440,230,'MAGE in practice: Chapter 4','Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.')
     for row,(x,y) in zip(rows,[(1,1),(227,1),(1,133),(227,133)]):
         f.rect(x,y,212,116 if y==1 else 96)
-        f.text(x+10,y+16,row['heading'].replace('  ',' '),size=9.5,bold=True,anchor='start',ref='chapter:'+row['target'])
+        f.text(x+10,y+(16 if y==1 else 22),row['heading'].replace('  ',' '),size=9.5,bold=True,anchor='start',ref='chapter:'+row['target'])
         for j,line in enumerate(row['bullets']):
             lines=line
-            if line=='Modeling before and after realization':lines='Modeling before and after\nrealization'
+            if line=='Modeling before, during, and after realization':lines='Modeling before, during, and after\nrealization'
             if line=='Learning from prediction and measurement':lines='Learning from prediction\nand measurement'
             f.text(x+10,y+39+j*20,lines,size=9.5,anchor='start')
     # The motif occupies the inner corners, not a separate diagram row.
-    f.rect(139,91,162,54,stroke=False,r=0)
+    f.rect(139,94,162,51,stroke=True,r=10)
     f.path([(200,111),(180,124)],both=True);f.path([(240,111),(260,124)],both=True);f.path([(199,133),(241,133)],both=True)
     f.text(220,103,'Model',bold=True,size=11.5)
     f.text(169,133,'Evaluate',bold=True,size=11.5)
@@ -98,8 +98,59 @@ def residual():
         f.path([(336,y+15),(316 if x==220 else 348,y+15)])
     return f.result()
 
+def analysis_before_build():
+    f=Figure(444,276,'Analyzing dependency graphs to redesign execution','Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.')
+    for x,title,sub in [(73,'(a) Identify the\ncritical path','Diagnosis'),(219,'(b) Decompose\nan operation','Same dependencies'),(369,'(c) Remove an\nunnecessary dependency','Change the information structure')]:
+        f.text(x,13,title,size=10,bold=True);f.text(x,35,sub,size=9,italic=True)
+    f.path([(146,1),(146,221)],False);f.path([(292,1),(292,274)],False)
+    for x,y,label,gray in [(57,48,'A (1 s)',0),(23,84,'B (8 s)',8),(91,84,'C (2 s)',0),(23,120,'D (2 s)',0),(91,120,'E (2 s)',0),(57,156,'F (1 s)',0)]:f.box(x,y,32,18,label,size=9,gray=gray,bold=bool(gray))
+    for a,b in [((66,66),(39,84)),((80,66),(107,84)),((39,102),(39,120)),((107,102),(107,120)),((39,138),(66,156)),((107,138),(80,156))]:f.path([a,b])
+    f.text(39,191,'12 s',bold=True,size=9);f.text(107,191,'6 s',bold=True,size=9)
+    f.text(73,211,'Critical path:\nA → B → D → F',bold=True,size=9)
+    f.box(202,48,34,18,'A (1 s)',size=9)
+    for x,sub in [(160,'1'),(203,'2'),(246,'3')]:
+        f.box(x,84,32,28,'B'+sub+'\n(3 s)',size=9,bold=True,gray=8)
+        f.path([(219,66),(x+16,84)]);f.path([(x+16,112),(219,130)])
+    f.box(203,130,32,18,'D (2 s)',size=9);f.box(203,166,32,18,'F (1 s)',size=9);f.path([(219,148),(219,166)])
+    f.text(219,201,'New critical path: 7 s',bold=True,size=9);f.text(219,215,'Illustrative; ignoring overhead',italic=True,size=9)
+    # Preserve subscript notation in both projections.
+    for i in range(1,4):
+        f.s=[s.replace('>B'+str(i)+'</text>','>B<tspan baseline-shift="sub" font-size="7">'+str(i)+'</tspan></text>')for s in f.s]
+        f.t=[s.replace('{B'+str(i)+'};',r'{\(B_'+str(i)+r'\)};')for s in f.t]
+    for y,i in [(50,1),(90,2)]:
+        f.box(303,y,44,18,'Image '+str(i),size=9);f.box(366,y-5,45,28,'Gen\nalt '+str(i),size=9,bold=True,gray=8);f.path([(347,y+9),(366,y+9)])
+    f.path([(388.5,73),(388.5,85)]);f.text(369,125,'Before: serial dependency',size=9,italic=True)
+    f.box(301,145,136,24,'Shared rendered context',size=9,bold=True,gray=8)
+    for x,i in [(301,1),(387,2)]:
+        f.box(x,183,50,28,'Gen\nalt '+str(i),size=9,bold=True,gray=8);f.path([(x+25,169),(x+25,183)])
+        f.box(x,225,50,18,'Image '+str(i),size=9);f.path([(x+25,225),(x+25,211)])
+    f.text(369,261,'After: independent operations\nconsume shared context',size=9,italic=True)
+    f.rect(6,238,13,10,gray=8,r=2);f.text(25,243,'Dominant or modified operation',size=9,anchor='start')
+    f.rect(6,259,13,10,r=2);f.text(25,264,'Other operation',size=9,anchor='start')
+    f.path([(153,264),(174,264)]);f.text(180,264,'Dependency',size=9,anchor='start')
+    return f.result()
+
+def recovery():
+    f=Figure(444,262,'Recovering models from an existing codebase','Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.')
+    f.box(143,2,156,20,'EXISTING CODEBASE',size=10,bold=True)
+    f.rect(116,34,210,34);f.text(221,41,'Candidate locations:',size=10,bold=True);f.text(221,52,'primitive density · repeated shapes',size=9);f.text(221,62,'component / boundary view',size=9)
+    f.path([(221,22),(221,34)]);f.box(143,80,156,20,'Classify findings',size=10,bold=True);f.path([(221,68),(221,80)])
+    f.text(57,90,'Candidates identify\npotential work.',size=9,italic=True)
+    f.path([(221,100),(221,108)],False);f.path([(74,108),(368,108)],False)
+    for x,label,action in [(7,'Appropriate implementation','Accept / exempt'),(154,'Missing model','Construct the model'),(301,'Implementation cleanup','Codemod')]:
+        f.box(x,122,134,20,label,size=9.5,bold=True,gray=8 if x==154 else 0);f.path([(x+67,108),(x+67,122)])
+        if x!=154:f.box(x+4,154,126,22,action,size=10,italic=True)
+        else:
+            f.rect(153,154,136,30);f.text(221,162,'Construct the model',size=10,bold=True);f.text(221,176,'Types and relationships',size=10)
+        f.path([(x+67,142),(x+67,154)])
+    f.rect(111,196,220,30);f.text(221,204,'Update code that uses the model',size=10,bold=True);f.text(221,218,'Enforce selected obligations',size=9.5,bold=True);f.path([(221,184),(221,196)])
+    f.box(123,238,196,22,'Improved models and controls',size=10,bold=True,gray=8);f.path([(221,226),(221,238)])
+    f.path([(319,249),(442,249),(442,12),(299,12)])
+    f.text(379,6,'next pass',size=9,italic=True)
+    return f.result()
+
 def generate(output_root):
-    for stem,fn in [('interlude-execution-unit',residency),('interlude-latency-floor',latency),('interlude-prediction-residual',residual)]:
+    for stem,fn in [('interlude-analysis-before-build',analysis_before_build),('discovering-models-migration',recovery),('interlude-execution-unit',residency),('interlude-latency-floor',latency),('interlude-prediction-residual',residual)]:
         s,t=fn()
         for path,value in [(output_root/'book/assets'/f'{stem}.svg',s),(output_root/'book/tikz/figures'/f'{stem}.tex',t)]:
             path.parent.mkdir(parents=True,exist_ok=True);path.write_text(value)

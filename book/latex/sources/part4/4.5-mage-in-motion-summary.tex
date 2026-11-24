@@ -6,14 +6,14 @@
 
 \chapter{Summary}
 
-The preceding chapters developed Modeling and Alignment as complementary engineering activities. This chapter examined how they work together as a system and its engineering environment evolve.
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} developed Modeling and Alignment separately. This chapter examined how they interact as a system and its engineering environment evolve.
 
 \begin{enumerate}
 \item \textbf{Model, Realize, and Evaluate in the order the problem demands.} We can model before implementation, recover models from existing implementations, or develop models in response to measurements and failures.
-\item \textbf{Establish and preserve alignment.} Active alignment brings a system into conformance with engineering intent. Passive alignment protects the resulting properties against subsequent changes.
-\item \textbf{Protect existing obligations during transformations.} An alignment kernel establishes properties that further engineering must preserve. The kernel can grow as we establish new obligations.
-\item \textbf{Develop and revise models as engineering questions arise.} One engineering problem can lead to several related models. Their analyses can guide design, while measurements and failures can expose shortcomings in the models themselves.
-\item \textbf{Engineer the engineering environment.} The machinery through which agents perform work has properties and obligations of its own. We can apply Modeling and Alignment to that machinery, improving its operation and the evidence it provides.
+\item \textbf{Establish and preserve alignment.} Active alignment changes a system to satisfy modeled obligations. Passive alignment protects those obligations during subsequent changes.
+\item \textbf{Protect existing obligations during transformations.} An alignment kernel protects properties that further engineering must preserve. The kernel can grow as we establish new obligations.
+\item \textbf{Develop and revise models as we learn.} One engineering problem can lead to several related models. Their analyses guide design, while measurements can expose shortcomings in the models themselves.
+\item \textbf{Engineer the engineering environment.} The machinery through which agents perform work has properties and obligations of its own. We can apply Modeling and Alignment to that machinery.
 \end{enumerate}
 
 As I applied these ideas to DocAble, I found myself engineering two systems: the document-accessibility service and the environment in which agents developed and maintained it. The latter increasingly determined how quickly I could change the former, how much judgment those changes required of me, and what evidence I could obtain about their results. \magevalue{chapter:software-factories} examines this second system as a software factory.

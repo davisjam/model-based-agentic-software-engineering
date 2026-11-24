@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>185</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>187</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -453,7 +453,7 @@
 </div>
 <div class="section s2" id="sec-4-1-the-dynamics-of-mage--establish-a-kernel-before-expanding">
 <div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Establishing an Alignment Kernel</a></div>
-<p class="topic">The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage.</p>
+<p class="topic">Chapter 2 organized models by the properties they represent.</p>
 </div>
 <div class="section s2" id="sec-4-1-the-dynamics-of-mage--greenfield-and-brownfield-mage">
 <div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Modeling Before, During, and After Implementation</a></div>
@@ -468,7 +468,7 @@
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--one-document-one-worker">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">One Document, One Worker</a></div>
-<p class="topic">DocAble originally treated an entire document as one unit of execution.</p>
+<p class="topic">Originally, one DocAble worker processed an entire document.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--pages-as-the-unit-of-scale">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Dividing the Document among Workers</a></div>
@@ -479,11 +479,11 @@
 <p class="topic">Dividing documents into page ranges reduced the amount of content each worker processed, but did not remove the underlying dependence on document size.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--remove-media-from-the-working-set">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Remove Media from the Working Set</a></div>
-<p class="topic">The memory problem came from coupling document structure to media residency: total media size increased the worker&#x27;s persistent working set even though most remediation operations needed only the document&#x27;s structural skeleton.</p>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Skeletonizing the Document</a></div>
+<p class="topic">I introduced a representation that retained the document’s structure but kept its media elsewhere.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--why-one-level-deeper-matters">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Model the Cause, Not Just the Symptom</a></div>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Measuring and Explaining Memory Consumption</a></div>
 <p class="topic">Measuring peak memory tells us how much memory the worker consumed.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--memory-did-not-stop-mattering">
@@ -516,7 +516,7 @@
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--use-prediction-error-as-evidence">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Learning from Prediction Errors</a></div>
-<p class="topic">A useful feature of a quantitative model is that we can test its predictions.</p>
+<p class="topic">When measured latency differs substantially from a prediction, we have another engineering problem to investigate.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--preserving-and-revising-models">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Preserving and Revising Models</a></div>
@@ -527,7 +527,7 @@
 <p class="topic">As I developed these models, I had to decide which of their properties should constrain subsequent engineering.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--models-get-falsified-the-obligation-survives">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Models Get Falsified; the Obligation Survives</a></div>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Revising Models without Abandoning Obligations</a></div>
 <p class="topic">The memory model also made predictions that I could test independently of the implementation’s apparent success.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
@@ -543,11 +543,19 @@
 <h3 id="ch-4-3-brownfield-engineering"><span class="tier-kick">Lesson</span><a href="../book/4.3-brownfield-engineering.html" class="ch-link">4.3-brownfield-engineering</a> <span class="ch-slug">4.3-brownfield-engineering</span></h3>
 <div class="section s2" id="sec-4-3-brownfield-engineering--start-from-the-system-you-own">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Engineering an Existing System</a></div>
-<p class="topic">In the preceding episode, new engineering questions led me to construct new models.</p>
+<p class="topic">In §4.2, I constructed models to answer new engineering questions about DocAble.</p>
 </div>
 <div class="section s2" id="sec-4-3-brownfield-engineering--recover-latent-models">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Discovering Latent Models</a></div>
 <p class="topic">We can recover models from several sources.</p>
+</div>
+<div class="section s3" id="sec-4-3-brownfield-engineering--recovering-domain-concepts">
+<div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Recovering Domain Concepts</a></div>
+<p class="topic">As DocAble grew, I became concerned that some important domain concepts remained implicit in its implementation.</p>
+</div>
+<div class="section s3" id="sec-4-3-brownfield-engineering--comparing-existing-designs">
+<div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Comparing Existing Designs</a></div>
+<p class="topic">Recovering a model need not immediately lead to changes in the implementation.</p>
 </div>
 <div class="section s2" id="sec-4-3-brownfield-engineering--reconcile-the-map-and-the-territory">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">From Recovered Models to Enforcement</a></div>
@@ -555,13 +563,13 @@
 </div>
 <div class="section s3" id="sec-4-3-brownfield-engineering--audit-drain-promote-move">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Introducing Enforcement into an Existing System</a></div>
-<p class="topic">I used the following Audit → Drain → Promote procedure when introducing new checks into DocAble:</p>
+<p class="topic">When introducing new checks into DocAble, I often used a three-stage procedure: Audit, Drain, Promote.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-4-4-engineering-the-environment"><span class="tier-kick">Lesson</span><a href="../book/4.4-engineering-the-environment.html" class="ch-link">4.4-engineering-the-environment</a> <span class="ch-slug">4.4-engineering-the-environment</span></h3>
 <div class="section s2" id="sec-4-4-engineering-the-environment--lifecycle-models-and-recovery">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Modeling Engineering Work</a></div>
+<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Modeling Recovery</a></div>
 <p class="topic">A method has to survive terrible, horrible, no good, very bad days, too.</p>
 </div>
 <div class="section s2" id="sec-4-4-engineering-the-environment--when-validation-becomes-the-bottleneck">

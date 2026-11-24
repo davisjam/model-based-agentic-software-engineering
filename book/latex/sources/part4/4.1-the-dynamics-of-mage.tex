@@ -27,7 +27,7 @@ Once the implementation conforms to the new model, the same mechanisms can serve
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/active-passive-alignment-3fad069f0b.pdf}
-\caption{\emph{Active and passive alignment.} Active alignment brings an implementation into conformance with modeled obligations, including newly introduced obligations that deliberately differ from the current system. The retained models, mechanisms, and governance become engineering capital when subsequent changes benefit from them. Passive alignment uses them to evaluate subsequent changes and preserve the properties already brought under governance.}
+\caption{\emph{Active and passive alignment.} Active alignment changes an implementation to satisfy modeled obligations. Once established, the same models and mechanisms can serve passive alignment, evaluating subsequent changes and preserving those obligations.}
 \label{active-passive-alignment}
 \end{figure}
 
@@ -35,9 +35,7 @@ Active alignment presents a particular danger. In directing agents to satisfy a 
 
 \section{Establishing an Alignment Kernel}\label{heading:establish-a-kernel-before-expanding}
 
-The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage. Together, these models form the alignment kernel.
-
-\magevalue{chapter:modeling} organized models by the properties they represent. The kernel tells us which properties to protect first: those that an upcoming transformation must preserve. We can then protect additional properties under those existing constraints (\autoref{alignment-kernel}).
+\magevalue{chapter:modeling} organized models by the properties they represent. Here we must make a different choice: which properties should we protect first? Before undertaking a transformation, we should identify the properties it must preserve and establish the models and controls needed to protect them. Together, these form the alignment kernel (\autoref{alignment-kernel}).
 
 The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
 
@@ -58,13 +56,11 @@ In an existing system, we can recover models from the implementation. We might d
 
 Even when developing a new system, we need not begin with its models. An exploratory implementation can help us understand the problem. We might ask an agent to implement a proposed feature, examine the resulting software, and discover that the feature requires distinctions we had not anticipated. We can then make those distinctions explicit in a model and direct the agent to revise the implementation.
 
-Commodity intelligence makes this approach particularly attractive. An implementation that would previously have taken days of engineering effort might now take minutes. We can afford to investigate alternatives by building them, provided that the experiments do not jeopardize properties we have already established.
+Commodity intelligence makes this approach particularly attractive. An exploratory implementation that once took days might now take minutes. We can afford to investigate alternatives by building them, provided that the experiments do not jeopardize properties we have already established.
 
 There is a corresponding danger. Agents can introduce abstractions, interfaces, and mechanisms faster than we can decide whether we need them. An exploratory implementation may contain useful engineering discoveries alongside unnecessary complexity~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Recovering a model from that implementation does not require us to preserve its design.
 
-Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. The next step is to decide whether the newly discovered obligation should become explicit, so that future work does not have to discover it again.
-
-When an engineering episode reveals a property that subsequent work must preserve, we can record that property in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. The resulting model or control becomes available to subsequent engineering, regardless of whether we discovered the property through Modeling, Realization, or Evaluation.
+Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. If I want subsequent work to preserve the newly discovered property, I can express it in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. It can follow Modeling, Realization, or Evaluation.
 
 % <!-- box-family: inset -->
 % <!-- inset-domain: SOFTWARE ENGINEERING -->
@@ -79,5 +75,3 @@ MAGE permits these approaches but does not prescribe when models must be constru
 
 The distinction concerns the role of models rather than their position in a development process. We use models to understand a system, direct its realization, and evaluate its properties. Any of these activities can motivate further modeling.
 \end{bookbox}
-
-The following sections illustrate these dynamics through problems I encountered while engineering DocAble. We begin with a performance problem whose solution led me to develop several related models of the same system.

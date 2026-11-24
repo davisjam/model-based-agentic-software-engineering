@@ -11,6 +11,17 @@ NS = {'m': 'http://www.w3.org/1998/Math/MathML'}
 
 
 class OptimizationMathTests(unittest.TestCase):
+    def test_concurrency_wave_count_preserves_ceiling_and_fraction(self):
+        formula = r'\lceil \frac{37}{6}\rceil=7'
+        math = ET.fromstring(to_mathml(formula))
+        operators = [n.text for n in math.findall('.//m:mo', NS)]
+        self.assertEqual(operators, ['⌈', '⌉', '='])
+        fraction = math.find('.//m:mfrac', NS)
+        self.assertEqual([''.join(n.itertext()) for n in fraction], ['37', '6'])
+        self.assertIn('frac(37, 6)', to_typst(formula))
+        self.assertIn('⌈', to_typst(formula))
+        self.assertIn('⌉', to_typst(formula))
+
     def test_temporal_progress_keeps_leads_to_distinct_from_transition(self):
         formula = r'\mathrm{Submitted} \leadsto \mathrm{Terminal}'
         math = ET.fromstring(to_mathml(formula))

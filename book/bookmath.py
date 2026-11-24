@@ -61,6 +61,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "ldots": ("…", "dots.h"),
     "dots": ("…", "dots.h"),
     "mid": ("∣", "|"),
+    "lceil": ("⌈", '"⌈"'),
+    "rceil": ("⌉", '"⌉"'),
     "approx": ("≈", "approx"),
     "cup": ("∪", "union"),
     "cap": ("∩", "inter"),  # typst ≥0.13 removed `sect`; `inter` is the ∩ symbol under the pinned v0.15.1
@@ -307,8 +309,7 @@ class _P:
     def parse_cmd(self) -> dict:
         _, name = self.next()
         if name in ("frac", "dfrac"):
-            # `\dfrac` is `\frac` forced to display style; block equations are already display style and
-            # the book uses no inline fractions, so the two render identically here.
+            # `\dfrac` forces display style; both commands retain the same fraction structure here.
             num = self.parse_atom()
             den = self.parse_atom()
             return {"k": "frac", "num": num, "den": den}

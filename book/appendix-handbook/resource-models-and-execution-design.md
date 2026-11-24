@@ -8,11 +8,11 @@ A document-processing service can exhaust worker memory even when its individual
 
 DocAble’s media-separation design distinguishes document structure from aggregate media residency. A streaming transformation extracts media into external storage and retains references in a smaller structural skeleton. Operations that need only the structure can use the skeleton; media consumers resolve the references or require a representation with the media restored. Recombination must also stream: buffering the complete payload on output recreates the memory problem. [ref:interlude-execution-unit] contrasts this arrangement with whole-document and page-partitioned processing.
 
-The residency model uses the same bound as [ref:4.2-one-problem-many-models:heading:remove-media-from-the-working-set]:
+Including baseline resident memory, the whole-worker residency requirement uses the same bound as [ref:4.2-one-problem-many-models:heading:remove-media-from-the-working-set]:
 
-<!-- eq: \begin{aligned} \operatorname{RSS}_{\mathrm{peak}} &\le C,\\ C &= M_{\mathrm{stream}} + M_{\mathrm{skeleton}} + M_{\mathrm{handles}} + M_{\mathrm{work}}. \end{aligned} -->
+<!-- eq: \begin{aligned} \operatorname{RSS}_{\mathrm{peak}} &\le C,\\ C &= M_{\mathrm{base}} + M_{\mathrm{stream}} + M_{\mathrm{skeleton}} + M_{\mathrm{handles}} + M_{\mathrm{work}}. \end{aligned} -->
 
-The terms bound the rolling stream buffers, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. Architecture bounds stream buffers; workload limits bound structural size and reference count; configuration limits active concurrency. Measurements must establish the working set of each media consumer, including decoded images, rendering, and temporary allocations. Externalizing bytes alone does not establish the bound.
+The baseline term \(M_{\mathrm{base}}\) bounds the runtime and other baseline resident memory, including memory-management headroom. The remaining terms bound the rolling stream buffers, resident structural skeleton, handles, and active remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size. Architecture bounds stream buffers; workload limits bound structural size and reference count; configuration limits active concurrency. Measurements must establish the working set of each media consumer, including decoded images, rendering, and temporary allocations. Externalizing bytes alone does not establish the bound.
 
 Dependency declarations then identify ready computations, while mutation restrictions and resource limits constrain which may execute together. [ref:chapter:appendix-a-remediation-computation-graph] describes those declarations and their consumers. A performance model evaluates candidate policies using operation costs, dependency paths, concurrency limits, and deployment overhead.
 
@@ -79,7 +79,7 @@ Repeated production adds a different cost. DocAble’s time-complexity model use
 
 <!-- eq: T(d) \approx (R+1)F(d)+G(d), -->
 
-where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) accounts for reasoning work and its distribution. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
+where \(R\) counts production rounds, \(F(d)\) is elapsed time for parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) is the contribution of reasoning operations and their distribution to elapsed time. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar, that the two contributions do not overlap, and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
 
 ### Retain Structural Performance Checks {.unnumbered}
 

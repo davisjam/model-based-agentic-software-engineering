@@ -4700,11 +4700,11 @@
     {
       "source": "book/assets/active-passive-alignment.svg",
       "candidate": "book/tikz/figures/active-passive-alignment.tex",
-      "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+      "source_sha256": "36400d7ad83fae2ac22809511da3c6209705d65235466fa6d60701c78c461c98",
       "baseline_candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
-      "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+      "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed",
       "decision": "refined",
-      "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+      "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         403.22601318359375,
@@ -4712,21 +4712,16 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-        "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
-        "page": 1,
-        "width_bp": 448.421,
-        "height_bp": 242.423,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/active-passive-alignment.pdf",
+        "proof_sha256": "e33d0aae2f0b909b33391fe6fe579ba2d8d0dd70afef98a0ddc77b1e8e1492aa",
+        "width_bp": 448.4209899902344,
+        "height_bp": 242.42300415039062,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
-        "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
-        "semantic_typography_checks": 33,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs visually inspected."
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "revision_history": [
         {
@@ -4736,6 +4731,33 @@
         {
           "date": "2026-11-13",
           "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by5bp within the unchanged panel.",
+          "previous": {
+            "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+            "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+            "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+              "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
+              "page": 1,
+              "width_bp": 448.421,
+              "height_bp": 242.423,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+              "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+              "semantic_typography_checks": 33,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs visually inspected."
+            }
+          }
         }
       ],
       "visual_review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
@@ -4743,11 +4765,11 @@
     {
       "source": "book/assets/alignment-kernel.svg",
       "candidate": "book/tikz/figures/alignment-kernel.tex",
-      "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+      "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
       "baseline_candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
       "decision": "refined",
-      "reason": "Review candidate addressing author feedback: distinguish numbered actions 1\u20134 from models M_A\u2013M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+      "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         413.8110046386719,
@@ -4755,26 +4777,16 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
-        "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
-        "page": 1,
-        "width_bp": 252.573,
-        "height_bp": 212.506,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
+        "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
+        "width_bp": 252.572998046875,
+        "height_bp": 224.50599670410156,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
-        "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
-        "semantic_typography_checks": 15,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "chapter_wrap_tested": false,
-        "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+        "semantic_typography_checks": 16,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "page_layout": {
         "decision": "review candidate",
@@ -4827,6 +4839,40 @@
           "monochrome_pixels": true,
           "status": "passed",
           "chapter_wrap_tested": false
+        }
+      ],
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+          "previous": {
+            "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+            "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+            "reason": "Review candidate addressing author feedback: distinguish numbered actions 1\u20134 from models M_A\u2013M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+              "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+              "page": 1,
+              "width_bp": 252.573,
+              "height_bp": 212.506,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+              "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+              "semantic_typography_checks": 15,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "chapter_wrap_tested": false,
+              "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+            }
+          }
         }
       ]
     },
@@ -5212,20 +5258,22 @@
     {
       "source": "book/assets/interlude-analysis-before-build.svg",
       "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-      "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
-      "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+      "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+      "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+      "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
       "validation": {
-        "page": 1,
-        "width_bp": 449.972,
-        "height_bp": 349.974,
-        "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
-        "minimum_prose_font_pt": 9,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+        "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+        "width_bp": 449.97198486328125,
+        "height_bp": 281.9739990234375,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "semantic_typography_checks": 7,
-        "unapproved_compile_diagnostics": 0
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "contracts": {
         "peer_groups": [],
@@ -5246,7 +5294,32 @@
         "reviewed_visually": true,
         "decision": "recomposed",
         "reason": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context."
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain9pt labels and10pt panel headings; authored height falls from344bp to276bp.",
+          "previous": {
+            "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
+            "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+            "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+            "contracts": {
+              "peer_groups": [],
+              "terminal_exceptions": []
+            },
+            "validation": {
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 349.974,
+              "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
+              "minimum_prose_font_pt": 9,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 7,
+              "unapproved_compile_diagnostics": 0
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-latency-floor.svg",
@@ -5473,20 +5546,22 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
-      "source_sha256": "5caa0fd2f3b9db6daae956f59d433a86d874cc2e6768c41bd8df9bb2f6df6224",
-      "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10",
+      "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+      "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+      "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/discovering-models-migration.pdf",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+        "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
         "width_bp": 449.97198486328125,
-        "height_bp": 350.0539855957031,
+        "height_bp": 267.9750061035156,
         "reviewed_visually": true,
-        "semantic_typography_checks": 24,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 18,
         "typography_findings": 0,
-        "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
       "contracts": {},
@@ -5554,6 +5629,26 @@
               "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+          "previous": {
+            "source_sha256": "5caa0fd2f3b9db6daae956f59d433a86d874cc2e6768c41bd8df9bb2f6df6224",
+            "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10",
+            "reason": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/discovering-models-migration.pdf",
+              "width_bp": 449.97198486328125,
+              "height_bp": 350.0539855957031,
+              "reviewed_visually": true,
+              "semantic_typography_checks": 24,
+              "typography_findings": 0,
+              "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+            }
+          }
         }
       ]
     },
@@ -5617,11 +5712,11 @@
     {
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
-      "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+      "source_sha256": "3254b991fb322b21e625ef848f508e3c40a9a89fb6e1d181fdc454d0b1fe0834",
       "baseline_candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-      "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
+      "candidate_sha256": "82aaa0366e2ad0c63b20c0d04154f2c4c3ea4294c55784eeb99c07d8e896552b",
       "decision": "redrawn",
-      "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
+      "reason": "Reduce each of the four 16bp connector gaps by 15% to 13.6bp. Node dimensions, labels, fonts, and dependency spine remain unchanged.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         394.6319885253906,
@@ -5629,21 +5724,16 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-        "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
-        "page": 1,
-        "width_bp": 446.122,
-        "height_bp": 310.671,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/two-evidence-boundaries.pdf",
+        "proof_sha256": "850806ffcf60963a8d57ba1333d770b61f82b51920a7689687bf1c71d8a1f4b3",
+        "width_bp": 446.12200927734375,
+        "height_bp": 301.0719909667969,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
-        "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
         "semantic_typography_checks": 33,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs visually inspected."
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "revision_history": [
         {
@@ -5653,6 +5743,33 @@
         {
           "date": "2026-11-13",
           "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Reduce each of the four16bp connector gaps by15% to13.6bp. Node dimensions, labels, fonts, and dependency spine remain unchanged.",
+          "previous": {
+            "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+            "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
+            "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+              "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
+              "page": 1,
+              "width_bp": 446.122,
+              "height_bp": 310.671,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
+              "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+              "semantic_typography_checks": 33,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs visually inspected."
+            }
+          }
         }
       ],
       "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
@@ -11566,8 +11683,8 @@
       "source": "book/assets/mage-in-practice-map.svg",
       "candidate": "book/tikz/figures/mage-in-practice-map.tex",
       "decision": "author-directed chapter map",
-      "source_sha256": "49ae06b5f93f44b5ae59329c39c8397138d587a3551e113f4954738e558793c2",
-      "candidate_sha256": "7a99b1bf0f2af0c9471e36582f65bc172cce1d42dbe814cb677681e2975b86bb",
+      "source_sha256": "df9dc852fdb4daa8aafc2f0edf800355290b995edb4554d5140f9645269d752b",
+      "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
       "contracts": {},
       "revision_history": [
         {
@@ -11599,20 +11716,42 @@
               "scope": "Standalone proof inspected at final print dimensions; panel text retained at 9.5pt, cycle labels 11.5pt."
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
+          "previous": {
+            "source_sha256": "49ae06b5f93f44b5ae59329c39c8397138d587a3551e113f4954738e558793c2",
+            "candidate_sha256": "7a99b1bf0f2af0c9471e36582f65bc172cce1d42dbe814cb677681e2975b86bb",
+            "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/mage-in-practice-map.pdf",
+              "width_bp": 445.9729919433594,
+              "height_bp": 235.97500610351562,
+              "reviewed_visually": true,
+              "semantic_typography_checks": 21,
+              "typography_findings": 0,
+              "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+            }
+          }
         }
       ],
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/mage-in-practice-map.pdf",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/mage-in-practice-map.pdf",
+        "proof_sha256": "acf32b2271d3f644ef6f093a241fbb34e48cb949309bb1db172360615b28040f",
         "width_bp": 445.9729919433594,
         "height_bp": 235.97500610351562,
         "reviewed_visually": true,
+        "geometry_findings": 0,
         "semantic_typography_checks": 21,
         "typography_findings": 0,
-        "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "reviewed_visually": true,
-      "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship."
+      "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes."
     },
     {
       "source": "book/assets/handbook-computation-architecture.svg",

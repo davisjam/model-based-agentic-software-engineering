@@ -1,7 +1,7 @@
 {
   "source": "book/assets/discovering-models-migration.svg",
-  "claim": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
-  "topology": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+  "claim": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+  "topology": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
   "required_terms": [
     "EXISTING CODEBASE",
     "Candidate locations:",
@@ -13,58 +13,30 @@
     "Appropriate implementation",
     "Accept / exempt",
     "Missing model",
-    "NAME THE MODEL",
+    "Construct the model",
+    "Types and relationships",
     "Implementation cleanup",
     "Codemod",
-    "Typed vocabulary",
-    "Explicit relations",
-    "Update the consuming code",
+    "Update code that uses the model",
     "Enforce selected obligations",
-    "(types; lints; drift guard)",
     "Improved models and controls",
-    "next pass",
-    "KEY",
-    "Step or artifact",
-    "Model concept",
-    "or controls"
+    "next pass"
   ],
-  "bw_encoding": "Light gray distinguishes the missing model and resulting improved models/controls. All steps and branch labels retain the original geometry.",
-  "redesign": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+  "bw_encoding": "Light gray identifies the missing-model branch and improved models and controls. The return arrow marks the next pass; no separate key is needed.",
+  "redesign": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
   "questions": [],
-  "alt": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+  "alt": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
   "qa": {
-    "date": "2026-11-23",
-    "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
-    "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
-    "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
-    "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
-    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
-    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
-    "page": 2,
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+    "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
     "width_bp": 449.97198486328125,
-    "height_bp": 350.0539855957031,
-    "authored_type_sizes_pt": [
-      9,
-      9.5,
-      10
-    ],
-    "minimum_prose_font_pt": 9,
-    "fonts": [
-      "SourceSans3-Bold",
-      "SourceSans3-It",
-      "SourceSans3-Regular"
-    ],
-    "unapproved_compile_diagnostics": 0,
-    "geometry_findings": 0,
-    "semantic_typography_checks": 20,
-    "typography_findings": 0,
-    "svg_overflow_findings": 0,
-    "monochrome_pixels": true,
+    "height_bp": 267.9750061035156,
     "reviewed_visually": true,
-    "status": "passed",
-    "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
-    "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
-    "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+    "geometry_findings": 0,
+    "semantic_typography_checks": 18,
+    "typography_findings": 0,
+    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
   },
   "svg_qa": {
     "overflow_findings": 0,
@@ -80,111 +52,43 @@
   "layout_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
-    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+    "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+    "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
+    "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
     "validation": {
-      "date": "2026-11-23",
-      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
-      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
-      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
-      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
-      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
-      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
-      "page": 2,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+      "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
       "width_bp": 449.97198486328125,
-      "height_bp": 350.0539855957031,
-      "authored_type_sizes_pt": [
-        9,
-        9.5,
-        10
-      ],
-      "minimum_prose_font_pt": 9,
-      "fonts": [
-        "SourceSans3-Bold",
-        "SourceSans3-It",
-        "SourceSans3-Regular"
-      ],
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 20,
-      "typography_findings": 0,
-      "svg_overflow_findings": 0,
-      "monochrome_pixels": true,
+      "height_bp": 267.9750061035156,
       "reviewed_visually": true,
-      "status": "passed",
-      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
-      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
-      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+      "geometry_findings": 0,
+      "semantic_typography_checks": 18,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
-    "contracts": {},
-    "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
-    "page_layout": {
-      "after_dimensions_bp": [
-        449.97198486328125,
-        350.0539855957031
-      ],
-      "after_font_sizes_pt": [
-        9,
-        9.5,
-        10
-      ],
-      "decision": "recomposed",
-      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
-      "reviewed_visually": true
-    },
-    "compaction_review": {
-      "date": "2026-11-23",
-      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
-      "native_and_svg_inspected": true
-    }
+    "reviewed_visually": true,
+    "contracts": {}
   },
   "typography_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
-    "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+    "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
+    "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
     "validation": {
-      "date": "2026-11-23",
-      "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
-      "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
-      "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
-      "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
-      "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
-      "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
-      "page": 2,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+      "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
       "width_bp": 449.97198486328125,
-      "height_bp": 350.0539855957031,
-      "authored_type_sizes_pt": [
-        9,
-        9.5,
-        10
-      ],
-      "minimum_prose_font_pt": 9,
-      "fonts": [
-        "SourceSans3-Bold",
-        "SourceSans3-It",
-        "SourceSans3-Regular"
-      ],
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 20,
-      "typography_findings": 0,
-      "svg_overflow_findings": 0,
-      "monochrome_pixels": true,
+      "height_bp": 267.9750061035156,
       "reviewed_visually": true,
-      "status": "passed",
-      "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
-      "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
-      "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+      "geometry_findings": 0,
+      "semantic_typography_checks": 18,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
+    "reviewed_visually": true,
     "checks": [
       {
         "text": "EXISTING CODEBASE",
@@ -192,27 +96,37 @@
         "italic": false
       },
       {
-        "text": "Weak signals:",
+        "text": "Candidate locations:",
         "bold": true,
         "italic": false
       },
       {
-        "text": "primitive density \u00b7 repeated shapes component / boundary view",
+        "text": "primitive density \u00b7 repeated shapes",
         "bold": false,
         "italic": false
       },
       {
-        "text": "PARTITION FINDINGS",
+        "text": "component / boundary view",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Classify findings",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Weak signals locate potential work.",
+        "text": "Candidates identify",
         "bold": false,
         "italic": true
       },
       {
-        "text": "LEGITIMATE SHAPE",
+        "text": "potential work.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Appropriate implementation",
         "bold": true,
         "italic": false
       },
@@ -222,17 +136,22 @@
         "italic": true
       },
       {
-        "text": "LATENT CONCEPT",
+        "text": "Missing model",
         "bold": true,
         "italic": false
       },
       {
-        "text": "NAME THE MODEL",
+        "text": "Construct the model",
         "bold": true,
         "italic": false
       },
       {
-        "text": "MECHANICAL DEBT",
+        "text": "Types and relationships",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation cleanup",
         "bold": true,
         "italic": false
       },
@@ -242,27 +161,17 @@
         "italic": true
       },
       {
-        "text": "Typed vocabulary Explicit relations",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "MIGRATE CONSUMERS",
+        "text": "Update code that uses the model",
         "bold": true,
         "italic": false
       },
       {
-        "text": "NARROWER ENFORCEMENT",
+        "text": "Enforce selected obligations",
         "bold": true,
         "italic": false
       },
       {
-        "text": "(types; lints; drift guard)",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "STRONGER MODEL SUBSTRATE",
+        "text": "Improved models and controls",
         "bold": true,
         "italic": false
       },
@@ -270,130 +179,8 @@
         "text": "next pass",
         "bold": false,
         "italic": true
-      },
-      {
-        "text": "KEY",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Step or artifact",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "Model concept or substrate",
-        "bold": false,
-        "italic": false
       }
-    ],
-    "evidence": [
-      {
-        "candidate_text": "EXISTING CODEBASE",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Weak signals:",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "primitive density \u00b7 repeated shapes component / boundary view",
-        "candidate_style": "regular",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "PARTITION FINDINGS",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Weak signals locate potential work.",
-        "candidate_style": "italic",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "LEGITIMATE SHAPE",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Accept / exempt",
-        "candidate_style": "italic",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "LATENT CONCEPT",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "NAME THE MODEL",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "MECHANICAL DEBT",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Codemod",
-        "candidate_style": "italic",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Typed vocabulary Explicit relations",
-        "candidate_style": "regular",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "MIGRATE CONSUMERS",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "NARROWER ENFORCEMENT",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "(types; lints; drift guard)",
-        "candidate_style": "italic",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "STRONGER MODEL SUBSTRATE",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "next pass",
-        "candidate_style": "italic",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "KEY",
-        "candidate_style": "bold",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Step or artifact",
-        "candidate_style": "regular",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      },
-      {
-        "candidate_text": "Model concept or substrate",
-        "candidate_style": "regular",
-        "semantic_role": "recovery stage, artifact, or process annotation"
-      }
-    ],
-    "compaction_review": {
-      "date": "2026-11-23",
-      "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
-      "native_and_svg_inspected": true
-    }
+    ]
   },
   "style_review": {
     "source": "book/assets/discovering-models-migration.svg",
@@ -615,6 +402,396 @@
         "questions": [],
         "alt": "Weak signals from an existing codebase\u2014primitive density, repeated shapes, component/boundary view\u2014locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded."
       }
+    },
+    {
+      "date": "2026-11-24",
+      "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+      "previous": {
+        "claim": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+        "topology": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+        "required_terms": [
+          "EXISTING CODEBASE",
+          "Candidate locations:",
+          "primitive density \u00b7 repeated shapes",
+          "component / boundary view",
+          "Classify findings",
+          "Candidates identify",
+          "potential work.",
+          "Appropriate implementation",
+          "Accept / exempt",
+          "Missing model",
+          "NAME THE MODEL",
+          "Implementation cleanup",
+          "Codemod",
+          "Typed vocabulary",
+          "Explicit relations",
+          "Update the consuming code",
+          "Enforce selected obligations",
+          "(types; lints; drift guard)",
+          "Improved models and controls",
+          "next pass",
+          "KEY",
+          "Step or artifact",
+          "Model concept",
+          "or controls"
+        ],
+        "bw_encoding": "Light gray distinguishes the missing model and resulting improved models/controls. All steps and branch labels retain the original geometry.",
+        "redesign": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+        "questions": [],
+        "alt": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+        "qa": {
+          "date": "2026-11-23",
+          "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+          "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+          "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+          "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+          "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+          "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+          "page": 2,
+          "width_bp": 449.97198486328125,
+          "height_bp": 350.0539855957031,
+          "authored_type_sizes_pt": [
+            9,
+            9.5,
+            10
+          ],
+          "minimum_prose_font_pt": 9,
+          "fonts": [
+            "SourceSans3-Bold",
+            "SourceSans3-It",
+            "SourceSans3-Regular"
+          ],
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 20,
+          "typography_findings": 0,
+          "svg_overflow_findings": 0,
+          "monochrome_pixels": true,
+          "reviewed_visually": true,
+          "status": "passed",
+          "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+          "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+          "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+        },
+        "layout_review": {
+          "source": "book/assets/discovering-models-migration.svg",
+          "candidate": "book/tikz/figures/discovering-models-migration.tex",
+          "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+          "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+          "validation": {
+            "date": "2026-11-23",
+            "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+            "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+            "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+            "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+            "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+            "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+            "page": 2,
+            "width_bp": 449.97198486328125,
+            "height_bp": 350.0539855957031,
+            "authored_type_sizes_pt": [
+              9,
+              9.5,
+              10
+            ],
+            "minimum_prose_font_pt": 9,
+            "fonts": [
+              "SourceSans3-Bold",
+              "SourceSans3-It",
+              "SourceSans3-Regular"
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 20,
+            "typography_findings": 0,
+            "svg_overflow_findings": 0,
+            "monochrome_pixels": true,
+            "reviewed_visually": true,
+            "status": "passed",
+            "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+            "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+            "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
+          "contracts": {},
+          "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
+          "page_layout": {
+            "after_dimensions_bp": [
+              449.97198486328125,
+              350.0539855957031
+            ],
+            "after_font_sizes_pt": [
+              9,
+              9.5,
+              10
+            ],
+            "decision": "recomposed",
+            "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+            "reviewed_visually": true
+          },
+          "compaction_review": {
+            "date": "2026-11-23",
+            "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+            "native_and_svg_inspected": true
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/discovering-models-migration.svg",
+          "candidate": "book/tikz/figures/discovering-models-migration.tex",
+          "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+          "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+          "validation": {
+            "date": "2026-11-23",
+            "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
+            "proof_png": "/tmp/mage-ch4-figure-compact-20261123/native-2.png",
+            "svg_proof_png": "/tmp/mage-ch4-figure-compact-20261123/svg-2.png",
+            "proof_sha256": "fef9fc9b7e5863b7eb54ab31efb2aca4754078164d2146c86e6c93b5b3096cb1",
+            "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
+            "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
+            "page": 2,
+            "width_bp": 449.97198486328125,
+            "height_bp": 350.0539855957031,
+            "authored_type_sizes_pt": [
+              9,
+              9.5,
+              10
+            ],
+            "minimum_prose_font_pt": 9,
+            "fonts": [
+              "SourceSans3-Bold",
+              "SourceSans3-It",
+              "SourceSans3-Regular"
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 20,
+            "typography_findings": 0,
+            "svg_overflow_findings": 0,
+            "monochrome_pixels": true,
+            "reviewed_visually": true,
+            "status": "passed",
+            "validation_scope": "Two-figure isolated production-style proof; native and paired SVG inspected. Final assembled chapter remains for parent layout review.",
+            "geometry_audit": "/tmp/mage-ch4-figure-compact-20261123/geometry.json",
+            "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
+          "checks": [
+            {
+              "text": "EXISTING CODEBASE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Weak signals:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "primitive density \u00b7 repeated shapes component / boundary view",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "PARTITION FINDINGS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Weak signals locate potential work.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "LEGITIMATE SHAPE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Accept / exempt",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "LATENT CONCEPT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "NAME THE MODEL",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "MECHANICAL DEBT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Codemod",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Typed vocabulary Explicit relations",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "MIGRATE CONSUMERS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "NARROWER ENFORCEMENT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(types; lints; drift guard)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "STRONGER MODEL SUBSTRATE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "next pass",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "KEY",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Step or artifact",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Model concept or substrate",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "evidence": [
+            {
+              "candidate_text": "EXISTING CODEBASE",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Weak signals:",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "primitive density \u00b7 repeated shapes component / boundary view",
+              "candidate_style": "regular",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "PARTITION FINDINGS",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Weak signals locate potential work.",
+              "candidate_style": "italic",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "LEGITIMATE SHAPE",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Accept / exempt",
+              "candidate_style": "italic",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "LATENT CONCEPT",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "NAME THE MODEL",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "MECHANICAL DEBT",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Codemod",
+              "candidate_style": "italic",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Typed vocabulary Explicit relations",
+              "candidate_style": "regular",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "MIGRATE CONSUMERS",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "NARROWER ENFORCEMENT",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "(types; lints; drift guard)",
+              "candidate_style": "italic",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "STRONGER MODEL SUBSTRATE",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "next pass",
+              "candidate_style": "italic",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "KEY",
+              "candidate_style": "bold",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Step or artifact",
+              "candidate_style": "regular",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            },
+            {
+              "candidate_text": "Model concept or substrate",
+              "candidate_style": "regular",
+              "semantic_role": "recovery stage, artifact, or process annotation"
+            }
+          ],
+          "compaction_review": {
+            "date": "2026-11-23",
+            "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
+            "native_and_svg_inspected": true
+          }
+        }
+      }
     }
   ],
   "chapter4_revision_20261124": {
@@ -631,5 +808,7 @@
       "typography_findings": 0,
       "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
     }
-  }
+  },
+  "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+  "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69"
 }

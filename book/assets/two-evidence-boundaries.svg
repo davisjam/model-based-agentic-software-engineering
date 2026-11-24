@@ -1,56 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 308" width="446" height="308" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 298.4" width="446" height="298.4" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Model-aware change impact</title>
 <desc id="desc">A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. Models, obligations, and evidence form three shaded bands connected by single downward arrows on a central spine.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
 <rect x="156" y="1" width="202" height="35" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
 <text x="257" y="15" text-anchor="middle" font-size="10" font-weight="700">Proposed change</text>
 <text x="257" y="28" text-anchor="middle" font-size="9">Increase worker concurrency</text>
-<path d="M257 36 L257 52" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<rect x="70" y="52" width="374" height="66" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
-<rect x="76" y="61" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="132" y="75" text-anchor="middle" font-size="9.5" font-weight="700">Execution model</text>
-<text x="132" y="87" text-anchor="middle" font-size="9">(work and dependencies)</text>
-<rect x="201" y="61" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="257" y="75" text-anchor="middle" font-size="9.5" font-weight="700">Memory model</text>
-<text x="257" y="87" text-anchor="middle" font-size="9">(resource bounds)</text>
-<rect x="326" y="61" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="382" y="75" text-anchor="middle" font-size="9.5" font-weight="700">Latency model</text>
-<text x="382" y="87" text-anchor="middle" font-size="9">(response time)</text>
-<text x="257" y="104" text-anchor="middle" font-size="9" font-style="italic">Related models: concurrency constrained by memory;</text>
-<text x="257" y="115" text-anchor="middle" font-size="9" font-style="italic">latency depends on work and memory.</text>
-<text x="4" y="76" text-anchor="start" font-size="9" font-weight="700">Affected</text>
-<text x="4" y="88" text-anchor="start" font-size="9" font-weight="700">models</text>
-<text x="4" y="151" text-anchor="start" font-size="9" font-weight="700">Potentially</text>
-<text x="4" y="163" text-anchor="start" font-size="9" font-weight="700">affected</text>
-<text x="4" y="175" text-anchor="start" font-size="9" font-weight="700">obligations</text>
-<text x="4" y="213" text-anchor="start" font-size="9" font-weight="700">Required</text>
-<text x="4" y="225" text-anchor="start" font-size="9" font-weight="700">evidence</text>
-<text x="4" y="237" text-anchor="start" font-size="9">(evaluation)</text>
-<path d="M257 118 L257 134" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<rect x="70" y="134" width="374" height="48" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
-<rect x="76" y="141" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="132" y="155" text-anchor="middle" font-size="9.5" font-weight="700">Legal ordering</text>
-<text x="132" y="168" text-anchor="middle" font-size="9">(no violated dependencies)</text>
-<rect x="201" y="141" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="257" y="155" text-anchor="middle" font-size="9.5" font-weight="700">Peak memory</text>
-<text x="257" y="168" text-anchor="middle" font-size="9">(within budget)</text>
-<rect x="326" y="141" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="382" y="155" text-anchor="middle" font-size="9.5" font-weight="700">Latency budget</text>
-<text x="382" y="168" text-anchor="middle" font-size="9">(within target)</text>
-<path d="M257 182 L257 198" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<rect x="70" y="198" width="374" height="54" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
-<rect x="76" y="206" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<rect x="201" y="206" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<rect x="326" y="206" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="132" y="221" text-anchor="middle" font-size="9.5" font-weight="700">Correctness tests</text>
-<text x="132" y="235" text-anchor="middle" font-size="9">(ordering and results)</text>
-<text x="257" y="217" text-anchor="middle" font-size="9.5" font-weight="700">Memory analysis</text>
-<text x="257" y="228" text-anchor="middle" font-size="9.5" font-weight="700">or measurement</text>
-<text x="257" y="240" text-anchor="middle" font-size="9">(peak RSS)</text>
-<text x="382" y="221" text-anchor="middle" font-size="9.5" font-weight="700">Performance test</text>
-<text x="382" y="235" text-anchor="middle" font-size="9">(end-to-end latency)</text>
-<path d="M257 252 L257 268" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<rect x="78" y="268" width="358" height="37" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="257" y="283" text-anchor="middle" font-size="10" font-weight="700">Admission decision</text>
-<text x="257" y="297" text-anchor="middle" font-size="9" font-style="italic">Evaluate affected obligations with required evidence</text>
+<path d="M257 36 L257 49.6" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="70" y="49.6" width="374" height="66" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
+<rect x="76" y="58.6" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="132" y="72.6" text-anchor="middle" font-size="9.5" font-weight="700">Execution model</text>
+<text x="132" y="84.6" text-anchor="middle" font-size="9">(work and dependencies)</text>
+<rect x="201" y="58.6" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="257" y="72.6" text-anchor="middle" font-size="9.5" font-weight="700">Memory model</text>
+<text x="257" y="84.6" text-anchor="middle" font-size="9">(resource bounds)</text>
+<rect x="326" y="58.6" width="112" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="382" y="72.6" text-anchor="middle" font-size="9.5" font-weight="700">Latency model</text>
+<text x="382" y="84.6" text-anchor="middle" font-size="9">(response time)</text>
+<text x="257" y="101.6" text-anchor="middle" font-size="9" font-style="italic">Related models: concurrency constrained by memory;</text>
+<text x="257" y="112.6" text-anchor="middle" font-size="9" font-style="italic">latency depends on work and memory.</text>
+<text x="4" y="73.6" text-anchor="start" font-size="9" font-weight="700">Affected</text>
+<text x="4" y="85.6" text-anchor="start" font-size="9" font-weight="700">models</text>
+<text x="4" y="146.2" text-anchor="start" font-size="9" font-weight="700">Potentially</text>
+<text x="4" y="158.2" text-anchor="start" font-size="9" font-weight="700">affected</text>
+<text x="4" y="170.2" text-anchor="start" font-size="9" font-weight="700">obligations</text>
+<text x="4" y="205.8" text-anchor="start" font-size="9" font-weight="700">Required</text>
+<text x="4" y="217.8" text-anchor="start" font-size="9" font-weight="700">evidence</text>
+<text x="4" y="229.8" text-anchor="start" font-size="9">(evaluation)</text>
+<path d="M257 115.6 L257 129.2" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="70" y="129.2" width="374" height="48" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
+<rect x="76" y="136.2" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="132" y="150.2" text-anchor="middle" font-size="9.5" font-weight="700">Legal ordering</text>
+<text x="132" y="163.2" text-anchor="middle" font-size="9">(no violated dependencies)</text>
+<rect x="201" y="136.2" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="257" y="150.2" text-anchor="middle" font-size="9.5" font-weight="700">Peak memory</text>
+<text x="257" y="163.2" text-anchor="middle" font-size="9">(within budget)</text>
+<rect x="326" y="136.2" width="112" height="33" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="382" y="150.2" text-anchor="middle" font-size="9.5" font-weight="700">Latency budget</text>
+<text x="382" y="163.2" text-anchor="middle" font-size="9">(within target)</text>
+<path d="M257 177.2 L257 190.8" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="70" y="190.8" width="374" height="54" rx="6" fill="#f2f2f2" stroke="#111" stroke-width=".7"/>
+<rect x="76" y="198.8" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<rect x="201" y="198.8" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<rect x="326" y="198.8" width="112" height="38" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="132" y="213.8" text-anchor="middle" font-size="9.5" font-weight="700">Correctness tests</text>
+<text x="132" y="227.8" text-anchor="middle" font-size="9">(ordering and results)</text>
+<text x="257" y="209.8" text-anchor="middle" font-size="9.5" font-weight="700">Memory analysis</text>
+<text x="257" y="220.8" text-anchor="middle" font-size="9.5" font-weight="700">or measurement</text>
+<text x="257" y="232.8" text-anchor="middle" font-size="9">(peak RSS)</text>
+<text x="382" y="213.8" text-anchor="middle" font-size="9.5" font-weight="700">Performance test</text>
+<text x="382" y="227.8" text-anchor="middle" font-size="9">(end-to-end latency)</text>
+<path d="M257 244.8 L257 258.4" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
+<rect x="78" y="258.4" width="358" height="37" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="257" y="273.4" text-anchor="middle" font-size="10" font-weight="700">Admission decision</text>
+<text x="257" y="287.4" text-anchor="middle" font-size="9" font-style="italic">Evaluate affected obligations with required evidence</text>
 </svg>

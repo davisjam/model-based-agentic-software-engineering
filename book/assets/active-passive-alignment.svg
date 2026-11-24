@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 240" width="446" height="240" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Active and passive alignment</title>
-<desc id="desc">Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes.</desc>
+<desc id="desc">Two stacked shaded panels. Active alignment uses models with intended obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until conformance and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to preserve obligations. The retained models, mechanisms, and governance are engineering capital for subsequent changes.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
 <rect x="1" y="1" width="442" height="99" rx="6" fill="#f2f2f2" stroke="#888" stroke-width=".45"/>
 <rect x="1" y="128" width="442" height="109" rx="6" fill="#f2f2f2" stroke="#888" stroke-width=".45"/>
@@ -16,11 +16,12 @@
 <text x="11" y="180" text-anchor="start" font-size="9" font-style="italic">The same models and</text>
 <text x="11" y="192" text-anchor="start" font-size="9" font-style="italic">mechanisms keep the</text>
 <text x="11" y="204" text-anchor="start" font-size="9" font-style="italic">system aligned.</text>
-<rect x="112" y="28" width="68" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<rect x="110" y="30" width="68" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<rect x="108" y="32" width="68" height="32" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="45" text-anchor="middle" font-size="9.5">Models M</text>
-<text x="142" y="57" text-anchor="middle" font-size="9" font-style="italic">New obligations</text>
+<rect x="112" y="28" width="68" height="37" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<rect x="110" y="30" width="68" height="37" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<rect x="108" y="32" width="68" height="37" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="42" text-anchor="middle" font-size="9.5">Models M</text>
+<text x="142" y="53" text-anchor="middle" font-size="9" font-style="italic">Intended</text>
+<text x="142" y="64" text-anchor="middle" font-size="9" font-style="italic">obligations</text>
 <rect x="192" y="26" width="47" height="43" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
 <rect x="251" y="26" width="57" height="43" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
 <rect x="320" y="26" width="50" height="43" rx="4" fill="white" stroke="#111" stroke-width=".7"/>
@@ -42,7 +43,7 @@
 <path d="M308 47 L320 47" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
 <path d="M370 47 L382 47" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
 <path d="M345 69 L345 82 L215.5 82 L215.5 69" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<text x="275.5" y="94" text-anchor="middle" font-size="9" font-style="italic">Repeat until correspondence</text>
+<text x="275.5" y="94" text-anchor="middle" font-size="9" font-style="italic">Repeat until conformance</text>
 <path d="M128.5 100 L128.5 124" fill="none" stroke="#111" stroke-width="1" marker-end="url(#arrow)"/>
 <text x="140" y="110" text-anchor="start" font-size="9" font-style="italic">Once active alignment succeeds,</text>
 <text x="140" y="122" text-anchor="start" font-size="9" font-style="italic">retain the models and mechanisms.</text>
@@ -66,5 +67,5 @@
 <path d="M296 195 L336 195" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
 <text x="330" y="172" text-anchor="middle" font-size="9" font-style="italic">Admit or reject</text>
 <path d="M368.5 211 L368.5 223 L148.5 223 L148.5 211" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
-<text x="258.5" y="235" text-anchor="middle" font-size="9" font-style="italic">Continue protecting correspondence</text>
+<text x="258.5" y="235" text-anchor="middle" font-size="9" font-style="italic">Continue preserving obligations</text>
 </svg>

@@ -15042,8 +15042,8 @@
       "source": "book/assets/active-passive-alignment.svg",
       "candidate": "book/tikz/figures/active-passive-alignment.tex",
       "decision": "refined",
-      "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
-      "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+      "source_sha256": "36400d7ad83fae2ac22809511da3c6209705d65235466fa6d60701c78c461c98",
+      "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed",
       "evidence": [
         {
           "candidate_text": "Active Alignment",
@@ -15211,7 +15211,7 @@
           "semantic_role": "Heading, explanatory label, or process annotation."
         }
       ],
-      "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+      "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel.",
       "checks": [
         {
           "text": "Active Alignment",
@@ -15264,7 +15264,12 @@
           "italic": true
         },
         {
-          "text": "New obligations",
+          "text": "Intended",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "obligations",
           "bold": false,
           "italic": true
         },
@@ -15324,7 +15329,7 @@
           "italic": false
         },
         {
-          "text": "Repeat until correspondence",
+          "text": "Repeat until conformance",
           "bold": false,
           "italic": true
         },
@@ -15374,27 +15379,22 @@
           "italic": true
         },
         {
-          "text": "Continue protecting correspondence",
+          "text": "Continue preserving obligations",
           "bold": false,
           "italic": true
         }
       ],
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-        "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
-        "page": 1,
-        "width_bp": 448.421,
-        "height_bp": 242.423,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/active-passive-alignment.pdf",
+        "proof_sha256": "e33d0aae2f0b909b33391fe6fe579ba2d8d0dd70afef98a0ddc77b1e8e1492aa",
+        "width_bp": 448.4209899902344,
+        "height_bp": 242.42300415039062,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
-        "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
-        "semantic_typography_checks": 33,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs visually inspected."
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "reviewed_visually": true,
       "revision_history": [
@@ -15405,6 +15405,199 @@
         {
           "date": "2026-11-13",
           "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by5bp within the unchanged panel.",
+          "previous": {
+            "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+            "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+            "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+            "checks": [
+              {
+                "text": "Active Alignment",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(convergence)",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Use the models to",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "change the system until",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "it satisfies them.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Passive Alignment",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(preservation)",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "The same models and",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "mechanisms keep the",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "system aligned.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "New obligations",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Compare",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "and detect",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "gaps",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Modify",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "the system",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(with agents)",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Evaluate",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "and check",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "alignment",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Aligned",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "system",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Repeat until correspondence",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Once active alignment succeeds,",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "retain the models and mechanisms.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Known obligations",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Proposed",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Evaluate the",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "change against",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "the models",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Updated",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Admit or reject",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Continue protecting correspondence",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+              "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
+              "page": 1,
+              "width_bp": 448.421,
+              "height_bp": 242.423,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+              "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+              "semantic_typography_checks": 33,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs visually inspected."
+            }
+          }
         }
       ]
     },
@@ -15412,8 +15605,8 @@
       "source": "book/assets/alignment-kernel.svg",
       "candidate": "book/tikz/figures/alignment-kernel.tex",
       "decision": "refined",
-      "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+      "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
+      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
       "evidence": [
         {
           "source_text": "Identify the kernel",
@@ -15494,7 +15687,7 @@
           }
         }
       ],
-      "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
+      "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
       "checks": [
         {
           "text": "Identify the kernel",
@@ -15562,37 +15755,32 @@
           "italic": false
         },
         {
-          "text": "Each model narrows",
+          "text": "Each new obligation",
           "bold": false,
           "italic": false
         },
         {
-          "text": "later change.",
+          "text": "constrains subsequent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "changes.",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
-        "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
-        "page": 1,
-        "width_bp": 252.573,
-        "height_bp": 212.506,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
+        "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
+        "width_bp": 252.572998046875,
+        "height_bp": 224.50599670410156,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
-        "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
-        "semantic_typography_checks": 15,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "chapter_wrap_tested": false,
-        "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+        "semantic_typography_checks": 16,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "validation_history": [
         {
@@ -15628,7 +15816,118 @@
           "status": "passed",
           "chapter_wrap_tested": false
         }
-      ]
+      ],
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+          "previous": {
+            "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+            "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+            "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
+            "checks": [
+              {
+                "text": "Identify the kernel",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Actively align",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Extend",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Repeat",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Kernel",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Governed surface",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "grows over time",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Model properties",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "protected.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Change the system",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "the kernel.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Add models under",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "constraints.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Each model narrows",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "later change.",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+              "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+              "page": 1,
+              "width_bp": 252.573,
+              "height_bp": 212.506,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+              "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+              "semantic_typography_checks": 15,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "chapter_wrap_tested": false,
+              "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+            }
+          }
+        }
+      ],
+      "reviewed_visually": true
     },
     {
       "source": "book/assets/agentic-engineering-cycle.svg",
@@ -17265,35 +17564,47 @@
     {
       "source": "book/assets/interlude-analysis-before-build.svg",
       "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-      "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
-      "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+      "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+      "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+      "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
       "validation": {
-        "page": 1,
-        "width_bp": 449.972,
-        "height_bp": 349.974,
-        "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
-        "minimum_prose_font_pt": 9,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+        "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+        "width_bp": 449.97198486328125,
+        "height_bp": 281.9739990234375,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "semantic_typography_checks": 7,
-        "unapproved_compile_diagnostics": 0
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "checks": [
+        {
+          "text": "(a) Identify the",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "critical path",
+          "bold": true,
+          "italic": false
+        },
         {
           "text": "Diagnosis",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Two modeling responses",
+          "text": "(b) Decompose",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Remove an unnecessary serial constraint.",
-          "bold": false,
+          "text": "an operation",
+          "bold": true,
           "italic": false
         },
         {
@@ -17302,17 +17613,142 @@
           "italic": true
         },
         {
+          "text": "(c) Remove an",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "unnecessary dependency",
+          "bold": true,
+          "italic": false
+        },
+        {
           "text": "Change the information structure",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Legend",
+          "text": "A (1 s)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "B (8 s)",
           "bold": true,
           "italic": false
         },
         {
+          "text": "C (2 s)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D (2 s)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "E (2 s)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "F (1 s)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "12 s",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "6 s",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Critical path:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "A \u2192B \u2192D \u2192F",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(3 s)",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "New critical path: 7 s",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Illustrative; ignoring overhead",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Image 1",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Gen",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "alt 1",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Image 2",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "alt 2",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Before: serial dependency",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Shared rendered context",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "After: independent operations",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "consume shared context",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Dominant or modified operation",
+          "bold": false,
+          "italic": false
+        },
+        {
           "text": "Other operation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Dependency",
           "bold": false,
           "italic": false
         }
@@ -17352,6 +17788,64 @@
           "candidate_text": "Other operation",
           "candidate_style": "regular",
           "semantic_role": "panel heading, annotation or legend"
+        }
+      ],
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain9pt labels and10pt panel headings; authored height falls from344bp to276bp.",
+          "previous": {
+            "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
+            "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+            "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+            "checks": [
+              {
+                "text": "Diagnosis",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Two modeling responses",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Remove an unnecessary serial constraint.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Same dependencies",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Change the information structure",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Legend",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Other operation",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 349.974,
+              "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
+              "minimum_prose_font_pt": 9,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 7,
+              "unapproved_compile_diagnostics": 0
+            }
+          }
         }
       ]
     },
@@ -17978,20 +18472,22 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
-      "source_sha256": "5caa0fd2f3b9db6daae956f59d433a86d874cc2e6768c41bd8df9bb2f6df6224",
-      "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10",
+      "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+      "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+      "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/discovering-models-migration.pdf",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+        "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
         "width_bp": 449.97198486328125,
-        "height_bp": 350.0539855957031,
+        "height_bp": 267.9750061035156,
         "reviewed_visually": true,
-        "semantic_typography_checks": 24,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 18,
         "typography_findings": 0,
-        "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
       "checks": [
@@ -18046,8 +18542,13 @@
           "italic": false
         },
         {
-          "text": "NAME THE MODEL",
+          "text": "Construct the model",
           "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Types and relationships",
+          "bold": false,
           "italic": false
         },
         {
@@ -18061,17 +18562,7 @@
           "italic": true
         },
         {
-          "text": "Typed vocabulary",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Explicit relations",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Update the consuming code",
+          "text": "Update code that uses the model",
           "bold": true,
           "italic": false
         },
@@ -18079,11 +18570,6 @@
           "text": "Enforce selected obligations",
           "bold": true,
           "italic": false
-        },
-        {
-          "text": "(types; lints; drift guard)",
-          "bold": false,
-          "italic": true
         },
         {
           "text": "Improved models and controls",
@@ -18094,26 +18580,6 @@
           "text": "next pass",
           "bold": false,
           "italic": true
-        },
-        {
-          "text": "KEY",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Step or artifact",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Model concept",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "or controls",
-          "bold": false,
-          "italic": false
         }
       ],
       "evidence": [
@@ -18368,6 +18834,147 @@
               "typography_audit": "/tmp/mage-ch4-figure-compact-20261123/typography.json"
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+          "previous": {
+            "source_sha256": "5caa0fd2f3b9db6daae956f59d433a86d874cc2e6768c41bd8df9bb2f6df6224",
+            "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10",
+            "reason": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+            "checks": [
+              {
+                "text": "EXISTING CODEBASE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Candidate locations:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "primitive density \u00b7 repeated shapes",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "component / boundary view",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Classify findings",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Candidates identify",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "potential work.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Appropriate implementation",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Accept / exempt",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Missing model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "NAME THE MODEL",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Implementation cleanup",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Codemod",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Typed vocabulary",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Explicit relations",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Update the consuming code",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Enforce selected obligations",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(types; lints; drift guard)",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Improved models and controls",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "next pass",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "KEY",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Step or artifact",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Model concept",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "or controls",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/discovering-models-migration.pdf",
+              "width_bp": 449.97198486328125,
+              "height_bp": 350.0539855957031,
+              "reviewed_visually": true,
+              "semantic_typography_checks": 24,
+              "typography_findings": 0,
+              "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+            }
+          }
         }
       ]
     },
@@ -18561,8 +19168,8 @@
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
       "decision": "refined",
-      "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
-      "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
+      "source_sha256": "3254b991fb322b21e625ef848f508e3c40a9a89fb6e1d181fdc454d0b1fe0834",
+      "candidate_sha256": "82aaa0366e2ad0c63b20c0d04154f2c4c3ea4294c55784eeb99c07d8e896552b",
       "evidence": [
         {
           "candidate_text": "Proposed change",
@@ -18730,7 +19337,7 @@
           "semantic_role": "Heading, explanatory label, or process annotation."
         }
       ],
-      "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
+      "reason": "Reduce each of the four 16bp connector gaps by 15% to 13.6bp. Node dimensions, labels, fonts, and dependency spine remain unchanged.",
       "checks": [
         {
           "text": "Proposed change",
@@ -18899,21 +19506,16 @@
         }
       ],
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-        "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
-        "page": 1,
-        "width_bp": 446.122,
-        "height_bp": 310.671,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/two-evidence-boundaries.pdf",
+        "proof_sha256": "850806ffcf60963a8d57ba1333d770b61f82b51920a7689687bf1c71d8a1f4b3",
+        "width_bp": 446.12200927734375,
+        "height_bp": 301.0719909667969,
+        "reviewed_visually": true,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
-        "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
         "semantic_typography_checks": 33,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs visually inspected."
+        "typography_findings": 0,
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "reviewed_visually": true,
       "revision_history": [
@@ -18924,6 +19526,199 @@
         {
           "date": "2026-11-13",
           "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Reduce each of the four16bp connector gaps by15% to13.6bp. Node dimensions, labels, fonts, and dependency spine remain unchanged.",
+          "previous": {
+            "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+            "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
+            "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
+            "checks": [
+              {
+                "text": "Proposed change",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Increase worker concurrency",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Execution model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(work and dependencies)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Memory model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(resource bounds)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Latency model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(response time)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Related models: concurrency constrained by memory;",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "latency depends on work and memory.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Affected",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "models",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Potentially",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "affected",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "obligations",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Required",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "evidence",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(evaluation)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Legal ordering",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(no violated dependencies)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Peak memory",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(within budget)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Latency budget",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(within target)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Correctness tests",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(ordering and results)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Memory analysis",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "or measurement",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(peak RSS)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Performance test",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(end-to-end latency)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Admission decision",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Evaluate affected obligations with required evidence",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+              "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
+              "page": 1,
+              "width_bp": 446.122,
+              "height_bp": 310.671,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
+              "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+              "semantic_typography_checks": 33,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs visually inspected."
+            }
+          }
         }
       ]
     },
@@ -34330,8 +35125,8 @@
       "source": "book/assets/mage-in-practice-map.svg",
       "candidate": "book/tikz/figures/mage-in-practice-map.tex",
       "decision": "author-directed chapter map",
-      "source_sha256": "49ae06b5f93f44b5ae59329c39c8397138d587a3551e113f4954738e558793c2",
-      "candidate_sha256": "7a99b1bf0f2af0c9471e36582f65bc172cce1d42dbe814cb677681e2975b86bb",
+      "source_sha256": "df9dc852fdb4daa8aafc2f0edf800355290b995edb4554d5140f9645269d752b",
+      "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
       "evidence": [],
       "questions": [],
       "checks": [
@@ -34351,7 +35146,7 @@
           "italic": false
         },
         {
-          "text": "Modeling before and after",
+          "text": "Modeling before, during, and after",
           "bold": false,
           "italic": false
         },
@@ -34492,20 +35287,148 @@
               "scope": "Standalone proof inspected at final print dimensions; panel text retained at 9.5pt, cycle labels 11.5pt."
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
+          "previous": {
+            "source_sha256": "49ae06b5f93f44b5ae59329c39c8397138d587a3551e113f4954738e558793c2",
+            "candidate_sha256": "7a99b1bf0f2af0c9471e36582f65bc172cce1d42dbe814cb677681e2975b86bb",
+            "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+            "checks": [
+              {
+                "text": "\u00a74.1 The Dynamics of MAGE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Active and passive alignment",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Establishing an alignment kernel",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Modeling before and after",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "realization",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "\u00a74.2 One Problem, Many Models",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Discovering new engineering questions",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Developing related models",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Learning from prediction",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "and measurement",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "\u00a74.3 Brownfield Engineering",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Recovering latent models",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Reconciling models and implementation",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Introducing enforcement",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "\u00a74.4 Engineering the Environment",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Modeling engineering work",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Improving its execution",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Evaluating and revising its controls",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Evaluate",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Realize",
+                "bold": true,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/mage-in-practice-map.pdf",
+              "width_bp": 445.9729919433594,
+              "height_bp": 235.97500610351562,
+              "reviewed_visually": true,
+              "semantic_typography_checks": 21,
+              "typography_findings": 0,
+              "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+            }
+          }
         }
       ],
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/mage-in-practice-map.pdf",
+        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/mage-in-practice-map.pdf",
+        "proof_sha256": "acf32b2271d3f644ef6f093a241fbb34e48cb949309bb1db172360615b28040f",
         "width_bp": 445.9729919433594,
         "height_bp": 235.97500610351562,
         "reviewed_visually": true,
+        "geometry_findings": 0,
         "semantic_typography_checks": 21,
         "typography_findings": 0,
-        "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
       },
       "reviewed_visually": true,
-      "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship."
+      "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes."
     },
     {
       "source": "book/assets/handbook-computation-architecture.svg",

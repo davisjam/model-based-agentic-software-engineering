@@ -8,7 +8,7 @@
     "\u00a74.1 The Dynamics of MAGE",
     "Active and passive alignment",
     "Establishing an alignment kernel",
-    "Modeling before and after",
+    "Modeling before, during, and after",
     "realization",
     "\u00a74.2 One Problem, Many Models",
     "Discovering new engineering questions",
@@ -73,11 +73,46 @@
         "questions": [],
         "alt": "Four equal section panels surround a Model, Realize, Evaluate cycle. Section titles and numbers come from the book source. The panels describe alignment dynamics, related models, brownfield recovery, and maintenance of the engineering environment. These activities overlap rather than form a fixed sequence."
       }
+    },
+    {
+      "date": "2026-11-24",
+      "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
+      "previous": {
+        "claim": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
+        "topology": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
+        "required_terms": [
+          "\u00a74.1 The Dynamics of MAGE",
+          "Active and passive alignment",
+          "Establishing an alignment kernel",
+          "Modeling before and after",
+          "realization",
+          "\u00a74.2 One Problem, Many Models",
+          "Discovering new engineering questions",
+          "Developing related models",
+          "Learning from prediction",
+          "and measurement",
+          "\u00a74.3 Brownfield Engineering",
+          "Recovering latent models",
+          "Reconciling models and implementation",
+          "Introducing enforcement",
+          "\u00a74.4 Engineering the Environment",
+          "Modeling engineering work",
+          "Improving its execution",
+          "Evaluating and revising its controls",
+          "Model",
+          "Evaluate",
+          "Realize"
+        ],
+        "bw_encoding": "White nodes, dark labels and arrows. Position and labels carry the distinctions without tonal categories.",
+        "redesign": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+        "questions": [],
+        "alt": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed."
+      }
     }
   ],
   "claim": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
   "topology": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
-  "redesign": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+  "redesign": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
   "bw_encoding": "White nodes, dark labels and arrows. Position and labels carry the distinctions without tonal categories.",
   "chapter4_revision_20261124": {
     "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
@@ -93,5 +128,167 @@
       "typography_findings": 0,
       "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
     }
+  },
+  "qa": {
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/mage-in-practice-map.pdf",
+    "proof_sha256": "acf32b2271d3f644ef6f093a241fbb34e48cb949309bb1db172360615b28040f",
+    "width_bp": 445.9729919433594,
+    "height_bp": 235.97500610351562,
+    "reviewed_visually": true,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 21,
+    "typography_findings": 0,
+    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+  },
+  "source_sha256": "df9dc852fdb4daa8aafc2f0edf800355290b995edb4554d5140f9645269d752b",
+  "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
+  "layout_review": {
+    "source": "book/assets/mage-in-practice-map.svg",
+    "candidate": "book/tikz/figures/mage-in-practice-map.tex",
+    "source_sha256": "df9dc852fdb4daa8aafc2f0edf800355290b995edb4554d5140f9645269d752b",
+    "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
+    "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/mage-in-practice-map.pdf",
+      "proof_sha256": "acf32b2271d3f644ef6f093a241fbb34e48cb949309bb1db172360615b28040f",
+      "width_bp": 445.9729919433594,
+      "height_bp": 235.97500610351562,
+      "reviewed_visually": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 21,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+    },
+    "reviewed_visually": true,
+    "contracts": {}
+  },
+  "typography_review": {
+    "source": "book/assets/mage-in-practice-map.svg",
+    "candidate": "book/tikz/figures/mage-in-practice-map.tex",
+    "source_sha256": "df9dc852fdb4daa8aafc2f0edf800355290b995edb4554d5140f9645269d752b",
+    "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
+    "reason": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/mage-in-practice-map.pdf",
+      "proof_sha256": "acf32b2271d3f644ef6f093a241fbb34e48cb949309bb1db172360615b28040f",
+      "width_bp": 445.9729919433594,
+      "height_bp": 235.97500610351562,
+      "reviewed_visually": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 21,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+    },
+    "reviewed_visually": true,
+    "checks": [
+      {
+        "text": "\u00a74.1 The Dynamics of MAGE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Active and passive alignment",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Establishing an alignment kernel",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Modeling before, during, and after",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "realization",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u00a74.2 One Problem, Many Models",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Discovering new engineering questions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Developing related models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Learning from prediction",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and measurement",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u00a74.3 Brownfield Engineering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Recovering latent models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Reconciling models and implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Introducing enforcement",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "\u00a74.4 Engineering the Environment",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Modeling engineering work",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Improving its execution",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Evaluating and revising its controls",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Evaluate",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Realize",
+        "bold": true,
+        "italic": false
+      }
+    ]
   }
 }

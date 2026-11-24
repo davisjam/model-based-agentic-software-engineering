@@ -12,7 +12,7 @@
 >
 > *Model, Realize, Evaluate—in whatever order the engineering problem calls for.*
 
-Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} examined Modeling and Alignment separately. In practice, they interact. An implementation may reveal a missing requirement, an analysis may suggest a different design, or a failed change may expose an obligation that should be enforced. Engineers must decide what to revise, what to preserve, and which lessons should govern later work.
+In Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}}, we studied models and controls largely in isolation. But an engineer rarely has the luxury of attending to just one property of a system. A change that improves performance may threaten correctness; a model that helps us understand the architecture may reveal a better design. In this chapter, we will see how these engineering activities interact.
 
 This chapter follows those decisions through several engineering episodes. [ref:chapter:4.1-the-dynamics-of-mage] examines how Modeling, Realization, and Evaluation interact as a system evolves. [ref:chapter:4.2-one-problem-many-models] follows one engineering problem through several related models, while [ref:chapter:4.3-brownfield-engineering] examines how to recover and govern knowledge in existing systems. Finally, [ref:chapter:4.4-engineering-the-environment] follows the modeling of engineering work, improvements to its execution, and revisions to its controls. [ref:mage-in-practice-map] provides a map of these activities.
 

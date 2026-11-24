@@ -6,7 +6,7 @@
 <text x="11" y="20.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.1 The Dynamics of MAGE</text>
 <text x="11" y="43.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Active and passive alignment</text>
 <text x="11" y="63.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Establishing an alignment kernel</text>
-<text x="11" y="77.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Modeling before and after</text>
+<text x="11" y="77.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Modeling before, during, and after</text>
 <text x="11" y="89.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">realization</text>
 <rect x="227" y="1" width="212" height="116" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <text x="237" y="20.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.2 One Problem, Many Models</text>
@@ -15,16 +15,16 @@
 <text x="237" y="77.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Learning from prediction</text>
 <text x="237" y="89.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">and measurement</text>
 <rect x="1" y="133" width="212" height="96" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
-<text x="11" y="152.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.3 Brownfield Engineering</text>
+<text x="11" y="158.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.3 Brownfield Engineering</text>
 <text x="11" y="175.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Recovering latent models</text>
 <text x="11" y="195.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Reconciling models and implementation</text>
 <text x="11" y="215.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Introducing enforcement</text>
 <rect x="227" y="133" width="212" height="96" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
-<text x="237" y="152.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.4 Engineering the Environment</text>
+<text x="237" y="158.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">§4.4 Engineering the Environment</text>
 <text x="237" y="175.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Modeling engineering work</text>
 <text x="237" y="195.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Improving its execution</text>
 <text x="237" y="215.3" text-anchor="start" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="400" font-style="normal">Evaluating and revising its controls</text>
-<rect x="139" y="91" width="162" height="54" rx="0" fill="rgb(255,255,255)" stroke="none" stroke-width=".65"/>
+<rect x="139" y="94" width="162" height="51" rx="10" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <path d="M200,111 L180,124" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
 <path d="M240,111 L260,124" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
 <path d="M199,133 L241,133" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>

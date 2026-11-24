@@ -150,7 +150,8 @@
     "book/assets/alignment-kernel.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author approved revised black-and-white review Figure 4.3 in the sidebar; remove its color companion from the PDF.",
-      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142"
+      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+      "refinement_20261124": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation."
     },
     "book/assets/interlude-graph-two-partitions.svg": {
       "approved_date": "2026-11-11",
@@ -255,11 +256,14 @@
     "book/assets/discovering-models-migration.svg": {
       "approved_date": "2026-11-24",
       "reason": "Author-directed Chapter 4 revision: Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
-      "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10"
+      "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
+      "refinement_20261124": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels."
     },
     "book/assets/active-passive-alignment.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved after footer removal and moving its engineering-capital point into the caption."
+      "reason": "Author approved after footer removal and moving its engineering-capital point into the caption.",
+      "candidate_sha256": "7680e9451e7738a68f993ab58c5e1208c16ed626ed472d6f30033e36fcb997ed",
+      "refinement_20261124": "Use intended obligations, conformance, and preservation terminology. Wrap the longer intended-obligations label at the existing type size; extend its stacked card by 5bp within the unchanged panel."
     },
     "book/assets/probability-in-the-software-factory.svg": {
       "approved_date": "2026-11-13",
@@ -267,7 +271,9 @@
     },
     "book/assets/two-evidence-boundaries.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved the revised Figure 4.11."
+      "reason": "Author approved the revised Figure 4.11.",
+      "candidate_sha256": "82aaa0366e2ad0c63b20c0d04154f2c4c3ea4294c55784eeb99c07d8e896552b",
+      "refinement_20261124": "Reduce each of the four 16bp connector gaps by 15% to 13.6bp. Node dimensions, labels, fonts, and dependency spine remain unchanged."
     },
     "book/assets/docable-validation-scheduling.svg": {
       "approved_date": "2026-11-13",
@@ -300,7 +306,9 @@
     },
     "book/assets/interlude-analysis-before-build.svg": {
       "approved_date": "2026-11-14",
-      "reason": "Author approved Figure 4.7 with equal spacing beneath the two lower panel headings."
+      "reason": "Author approved Figure 4.7 with equal spacing beneath the two lower panel headings.",
+      "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
+      "refinement_20261124": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp."
     },
     "book/assets/where-effort-moves.svg": {
       "approved_date": "2026-11-14",
@@ -353,7 +361,8 @@
     "book/assets/mage-in-practice-map.svg": {
       "approved_date": "2026-11-24",
       "reason": "Author-directed Chapter 4 revision: Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
-      "candidate_sha256": "5121023c33aca7de788b3f06f2970187e2bba79fd601a290ee8d426636347d71"
+      "candidate_sha256": "7facbe391aa4d0c112c74eeb1c1fa2b3c90d8fe9b7b11e444b9b4c72434f829f",
+      "refinement_20261124": "Add a deliberate outlined white enclosure around the unordered bidirectional motif; keep quadrant borders clean and separate headings from the enclosure. Add Modeling before, during, and after realization. Preserve overall dimensions and type sizes."
     },
     "book/assets/handbook-computation-architecture.svg": {
       "approved_date": "2026-11-24",

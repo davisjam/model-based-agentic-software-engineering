@@ -13,7 +13,7 @@
   <desc id="akDesc">Left, a numbered four-step procedure: 1 identify the kernel — model the properties that
     must stay protected while the system changes; 2 actively align — use the models to change the system
     until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already
-    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat
+    established; 4 repeat — each new obligation constrains subsequent changes. Right, a flat
     concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested
     rings. An annotation notes that the governed surface grows over time; another that each new model is
     admitted under the constraints of the models inside it; and a third that active alignment operates
@@ -56,8 +56,8 @@
     <circle cx="60" cy="444" r="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
     <text x="60" y="451" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">4</text>
     <text x="92" y="438" font-size="20" font-weight="700" fill="#1c1917">Repeat</text>
-    <text x="92" y="462" font-size="19" fill="#1c1917">each new model narrows what later</text>
-    <text x="92" y="484" font-size="19" fill="#1c1917">change is allowed to do</text>
+    <text x="92" y="462" font-size="19" fill="#1c1917">Each new obligation constrains</text>
+    <text x="92" y="484" font-size="19" fill="#1c1917">subsequent changes.</text>
   </g>
 
   <!-- ===== Right: the concentric kernel ===== -->

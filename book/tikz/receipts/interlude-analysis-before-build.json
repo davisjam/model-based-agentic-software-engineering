@@ -1,102 +1,127 @@
 {
   "source": "book/assets/interlude-analysis-before-build.svg",
-  "claim": "Analyzing dependency graphs to redesign execution. (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.",
-  "topology": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context.",
+  "claim": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
+  "topology": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
   "required_terms": [
+    "(a) Identify the",
+    "critical path",
     "Diagnosis",
-    "Two modeling responses",
-    "Remove an unnecessary serial constraint.",
+    "(b) Decompose",
+    "an operation",
     "Same dependencies",
+    "(c) Remove an",
+    "unnecessary dependency",
     "Change the information structure",
-    "Legend",
-    "Other operation"
+    "A (1 s)",
+    "B (8 s)",
+    "C (2 s)",
+    "D (2 s)",
+    "E (2 s)",
+    "F (1 s)",
+    "12 s",
+    "6 s",
+    "Critical path:",
+    "A \u2192B \u2192D \u2192F",
+    "(3 s)",
+    "New critical path: 7 s",
+    "Illustrative; ignoring overhead",
+    "Image 1",
+    "Gen",
+    "alt 1",
+    "Image 2",
+    "alt 2",
+    "Before: serial dependency",
+    "Shared rendered context",
+    "After: independent operations",
+    "consume shared context",
+    "Dominant or modified operation",
+    "Other operation",
+    "Dependency"
   ],
-  "bw_encoding": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order.",
-  "redesign": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+  "bw_encoding": "Gray identifies dominant or modified operations, white identifies other operations, and directed arrows express dependencies. All three panels preserve their technical distinctions without color.",
+  "redesign": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
   "questions": [],
-  "alt": "A weighted graph branches after A. The path through B and D takes 12 seconds, while the path through C and E takes 6 seconds. Three concurrent 3-second parts of B shorten the critical path to 7 seconds before overhead. In DocAble, two image-description operations become independent when each receives its image and shared rendered page context.",
+  "alt": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
   "qa": {
-    "page": 1,
-    "width_bp": 449.972,
-    "height_bp": 349.974,
-    "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
-    "minimum_prose_font_pt": 9,
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+    "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+    "width_bp": 449.97198486328125,
+    "height_bp": 281.9739990234375,
+    "reviewed_visually": true,
     "geometry_findings": 0,
-    "semantic_typography_checks": 7,
-    "unapproved_compile_diagnostics": 0
+    "semantic_typography_checks": 34,
+    "typography_findings": 0,
+    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
   },
   "reference_image_sha256": "3dff4a3ab374ada9ce45e4b02af4e54d23422db5192921f6b5a1338bf7d18fd9",
   "layout_review": {
     "source": "book/assets/interlude-analysis-before-build.svg",
     "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-    "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
-    "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+    "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
+    "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
     "validation": {
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 349.974,
-      "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
-      "minimum_prose_font_pt": 9,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+      "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+      "width_bp": 449.97198486328125,
+      "height_bp": 281.9739990234375,
+      "reviewed_visually": true,
       "geometry_findings": 0,
-      "semantic_typography_checks": 7,
-      "unapproved_compile_diagnostics": 0
+      "semantic_typography_checks": 34,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
     },
+    "reviewed_visually": true,
     "contracts": {
       "peer_groups": [],
       "terminal_exceptions": []
-    },
-    "visual_review": "Both paths total 12 and 6 seconds respectively. Splitting B reduces the modeled critical path to 7 seconds before overhead. Each independent image description has two inputs.",
-    "page_layout": {
-      "after_dimensions_bp": [
-        449.972,
-        349.974
-      ],
-      "after_font_sizes_pt": [
-        9,
-        10,
-        11,
-        12
-      ],
-      "reviewed_visually": true,
-      "decision": "recomposed",
-      "reason": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context."
     }
   },
   "typography_review": {
     "source": "book/assets/interlude-analysis-before-build.svg",
     "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-    "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
-    "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+    "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+    "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
+    "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
     "validation": {
-      "page": 1,
-      "width_bp": 449.972,
-      "height_bp": 349.974,
-      "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
-      "minimum_prose_font_pt": 9,
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+      "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+      "width_bp": 449.97198486328125,
+      "height_bp": 281.9739990234375,
+      "reviewed_visually": true,
       "geometry_findings": 0,
-      "semantic_typography_checks": 7,
-      "unapproved_compile_diagnostics": 0
+      "semantic_typography_checks": 34,
+      "typography_findings": 0,
+      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
     },
+    "reviewed_visually": true,
     "checks": [
+      {
+        "text": "(a) Identify the",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "critical path",
+        "bold": true,
+        "italic": false
+      },
       {
         "text": "Diagnosis",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Two modeling responses",
+        "text": "(b) Decompose",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Remove an unnecessary serial constraint.",
-        "bold": false,
+        "text": "an operation",
+        "bold": true,
         "italic": false
       },
       {
@@ -105,56 +130,144 @@
         "italic": true
       },
       {
+        "text": "(c) Remove an",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "unnecessary dependency",
+        "bold": true,
+        "italic": false
+      },
+      {
         "text": "Change the information structure",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Legend",
+        "text": "A (1 s)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "B (8 s)",
         "bold": true,
+        "italic": false
+      },
+      {
+        "text": "C (2 s)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D (2 s)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "E (2 s)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "F (1 s)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "12 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "6 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Critical path:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "A \u2192B \u2192D \u2192F",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(3 s)",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "New critical path: 7 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Illustrative; ignoring overhead",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Image 1",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Gen",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "alt 1",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Image 2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "alt 2",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Before: serial dependency",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Shared rendered context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "After: independent operations",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "consume shared context",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Dominant or modified operation",
+        "bold": false,
         "italic": false
       },
       {
         "text": "Other operation",
         "bold": false,
         "italic": false
-      }
-    ],
-    "evidence": [
-      {
-        "candidate_text": "Diagnosis",
-        "candidate_style": "italic",
-        "semantic_role": "panel heading, annotation or legend"
       },
       {
-        "candidate_text": "Two modeling responses",
-        "candidate_style": "bold",
-        "semantic_role": "panel heading, annotation or legend"
-      },
-      {
-        "candidate_text": "Remove an unnecessary serial constraint.",
-        "candidate_style": "regular",
-        "semantic_role": "panel heading, annotation or legend"
-      },
-      {
-        "candidate_text": "Same dependencies",
-        "candidate_style": "italic",
-        "semantic_role": "panel heading, annotation or legend"
-      },
-      {
-        "candidate_text": "Change the information structure",
-        "candidate_style": "italic",
-        "semantic_role": "panel heading, annotation or legend"
-      },
-      {
-        "candidate_text": "Legend",
-        "candidate_style": "bold",
-        "semantic_role": "panel heading, annotation or legend"
-      },
-      {
-        "candidate_text": "Other operation",
-        "candidate_style": "regular",
-        "semantic_role": "panel heading, annotation or legend"
+        "text": "Dependency",
+        "bold": false,
+        "italic": false
       }
     ]
   },
@@ -250,5 +363,172 @@
     "receipt": "book/tikz/receipts/interlude-analysis-before-build.json",
     "reviewed": true,
     "rationale": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order."
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain9pt labels and10pt panel headings; authored height falls from344bp to276bp.",
+      "previous": {
+        "claim": "Analyzing dependency graphs to redesign execution. (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble\u2019s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.",
+        "topology": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context.",
+        "required_terms": [
+          "Diagnosis",
+          "Two modeling responses",
+          "Remove an unnecessary serial constraint.",
+          "Same dependencies",
+          "Change the information structure",
+          "Legend",
+          "Other operation"
+        ],
+        "bw_encoding": "Gray fill marks the expensive or modified work. White boxes denote other operations. Arrowheads show prerequisite order.",
+        "redesign": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+        "questions": [],
+        "alt": "A weighted graph branches after A. The path through B and D takes 12 seconds, while the path through C and E takes 6 seconds. Three concurrent 3-second parts of B shorten the critical path to 7 seconds before overhead. In DocAble, two image-description operations become independent when each receives its image and shared rendered page context.",
+        "qa": {
+          "page": 1,
+          "width_bp": 449.972,
+          "height_bp": 349.974,
+          "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
+          "minimum_prose_font_pt": 9,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 7,
+          "unapproved_compile_diagnostics": 0
+        },
+        "layout_review": {
+          "source": "book/assets/interlude-analysis-before-build.svg",
+          "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+          "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
+          "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+          "validation": {
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
+            "minimum_prose_font_pt": 9,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 7,
+            "unapproved_compile_diagnostics": 0
+          },
+          "contracts": {
+            "peer_groups": [],
+            "terminal_exceptions": []
+          },
+          "visual_review": "Both paths total 12 and 6 seconds respectively. Splitting B reduces the modeled critical path to 7 seconds before overhead. Each independent image description has two inputs.",
+          "page_layout": {
+            "after_dimensions_bp": [
+              449.972,
+              349.974
+            ],
+            "after_font_sizes_pt": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "reviewed_visually": true,
+            "decision": "recomposed",
+            "reason": "The upper weighted graph branches at A and joins at F. The lower left splits B into three parallel children. The lower right compares a chain between image descriptions with two independent consumers of the same page context."
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/interlude-analysis-before-build.svg",
+          "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
+          "source_sha256": "fb439132acd83a11e7bb278ae0c67a54e3a3e2772bd0b15172a354af59aa4cde",
+          "candidate_sha256": "affd5b28e7ad22e37f6764f2083387a4692b00c26d93dbd0b952b908acd5a3ba",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Follow the weighted critical path, then compare two distinct redesigns: split an expensive operation or remove an unnecessary information dependency.",
+          "validation": {
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "proof_sha256": "345f646927540339521b8d7bf9d2e18608cd88006ae27cf691bc4427c786dee1",
+            "minimum_prose_font_pt": 9,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 7,
+            "unapproved_compile_diagnostics": 0
+          },
+          "checks": [
+            {
+              "text": "Diagnosis",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Two modeling responses",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Remove an unnecessary serial constraint.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Same dependencies",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Change the information structure",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Legend",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Other operation",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "evidence": [
+            {
+              "candidate_text": "Diagnosis",
+              "candidate_style": "italic",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Two modeling responses",
+              "candidate_style": "bold",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Remove an unnecessary serial constraint.",
+              "candidate_style": "regular",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Same dependencies",
+              "candidate_style": "italic",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Change the information structure",
+              "candidate_style": "italic",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Legend",
+              "candidate_style": "bold",
+              "semantic_role": "panel heading, annotation or legend"
+            },
+            {
+              "candidate_text": "Other operation",
+              "candidate_style": "regular",
+              "semantic_role": "panel heading, annotation or legend"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+  "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c"
 }
