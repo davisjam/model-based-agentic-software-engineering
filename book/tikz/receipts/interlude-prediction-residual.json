@@ -1,43 +1,33 @@
 {
   "source": "book/assets/interlude-prediction-residual.svg",
-  "claim": "Modeling through prediction and measurement: analysis informs implementation; measured discrepancies direct investigation and iterative model refinement. Values are illustrative; an acceptable residual addresses the selected prediction, not all system obligations.",
-  "topology": "(a) Problem → Model → Analyze → Prediction / design → Implementation → Measurement → Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s → Observed 17.8 s → Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model → Reanalyze (e.g., new prediction) → Implement change → Measure again → Residual acceptable? Yes leads to Keep the change; No returns to Update the model.",
+  "claim": "Compare predictions with implementation measurements, then investigate and revise. An illustrative residual may reflect a wrong value, incorrect relation, missing mechanism, or implementation error; prediction agreement alone does not establish design acceptability.",
+  "topology": "Compare predictions with implementation measurements, then investigate and revise. An illustrative residual may reflect a wrong value, incorrect relation, missing mechanism, or implementation error; prediction agreement alone does not establish design acceptability.",
   "required_terms": [
-    "(a) The engineering loop",
-    "(b) One prediction error",
-    "(c) Revise and repeat",
+    "(a) Prediction and measurement",
+    "(b) Investigating a prediction error",
+    "Model and analyze",
+    "Predict",
+    "Implement",
+    "Measure",
+    "Compare with prediction",
+    "Investigate and revise",
+    "Predicted: 11.5 s",
+    "Observed: 17.8 s",
     "Residual: +6.3 s",
-    "Problem",
-    "Analyze",
-    "Prediction / design",
-    "Implementation",
-    "Measurement",
-    "Explain residual",
-    "Model predicts 11.5 s",
-    "Observed 17.8 s",
+    "Possible explanations",
     "Wrong",
-    "parameter",
+    "value",
+    "Incorrect",
     "relation",
     "Missing",
     "mechanism",
-    "Update the model",
-    "Reanalyze",
-    "(e.g., new prediction)",
-    "Implement change",
-    "Measure again",
-    "Residual",
-    "acceptable?",
-    "No",
-    "Yes",
-    "Keep the change",
-    "refine model"
+    "Implementation",
+    "error"
   ],
-  "bw_encoding": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
-  "redesign": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
-  "questions": [
-    "Review candidate; prose/caption integration and retirement of the duplicate modeling-cycle figure are separately coordinated."
-  ],
-  "alt": "(a) Problem → Model → Analyze → Prediction / design → Implementation → Measurement → Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s → Observed 17.8 s → Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model → Reanalyze (e.g., new prediction) → Implement change → Measure again → Residual acceptable? Yes leads to Keep the change; No returns to Update the model.",
+  "bw_encoding": "Only the residual receives light gray emphasis. Flow arrows distinguish dependencies from the explicitly labeled revision loop.",
+  "redesign": "Author-directed diptych: prediction/measurement/revision loop plus four possible explanations for an illustrative residual. Remove duplicated third panel and its invalid implication that prediction agreement establishes design acceptability.",
+  "questions": [],
+  "alt": "Compare predictions with implementation measurements, then investigate and revise. An illustrative residual may reflect a wrong value, incorrect relation, missing mechanism, or implementation error; prediction agreement alone does not establish design acceptability.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -458,5 +448,65 @@
   },
   "author_reference": "/var/folders/l1/cnm7hcx94cz75djz3dd0ny_00000gs/T/codex-clipboard-84265843-1ee4-4ecd-949a-afc9af71b9a1.png",
   "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
-  "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
+  "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "previous": {
+        "claim": "Modeling through prediction and measurement: analysis informs implementation; measured discrepancies direct investigation and iterative model refinement. Values are illustrative; an acceptable residual addresses the selected prediction, not all system obligations.",
+        "topology": "(a) Problem \u2192 Model \u2192 Analyze \u2192 Prediction / design \u2192 Implementation \u2192 Measurement \u2192 Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s \u2192 Observed 17.8 s \u2192 Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model \u2192 Reanalyze (e.g., new prediction) \u2192 Implement change \u2192 Measure again \u2192 Residual acceptable? Yes leads to Keep the change; No returns to Update the model.",
+        "required_terms": [
+          "(a) The engineering loop",
+          "(b) One prediction error",
+          "(c) Revise and repeat",
+          "Residual: +6.3 s",
+          "Problem",
+          "Analyze",
+          "Prediction / design",
+          "Implementation",
+          "Measurement",
+          "Explain residual",
+          "Model predicts 11.5 s",
+          "Observed 17.8 s",
+          "Wrong",
+          "parameter",
+          "relation",
+          "Missing",
+          "mechanism",
+          "Update the model",
+          "Reanalyze",
+          "(e.g., new prediction)",
+          "Implement change",
+          "Measure again",
+          "Residual",
+          "acceptable?",
+          "No",
+          "Yes",
+          "Keep the change",
+          "refine model"
+        ],
+        "bw_encoding": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
+        "redesign": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
+        "questions": [
+          "Review candidate; prose/caption integration and retirement of the duplicate modeling-cycle figure are separately coordinated."
+        ],
+        "alt": "(a) Problem \u2192 Model \u2192 Analyze \u2192 Prediction / design \u2192 Implementation \u2192 Measurement \u2192 Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s \u2192 Observed 17.8 s \u2192 Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model \u2192 Reanalyze (e.g., new prediction) \u2192 Implement change \u2192 Measure again \u2192 Residual acceptable? Yes leads to Keep the change; No returns to Update the model."
+      }
+    }
+  ],
+  "chapter4_revision_20261124": {
+    "reason": "Author-directed diptych: prediction/measurement/revision loop plus four possible explanations for an illustrative residual. Remove duplicated third panel and its invalid implication that prediction agreement establishes design acceptability.",
+    "source_sha256": "8b6a3420a7763d0ef22ad906d98eb40c24a747783b206d7b249d13479f2c1025",
+    "candidate_sha256": "a2de0ed64d690081f90eb18b893cb43d30c0461aed72f7bbc3490bb3537f68ee",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/interlude-prediction-residual.pdf",
+      "width_bp": 449.97198486328125,
+      "height_bp": 242.97500610351562,
+      "reviewed_visually": true,
+      "semantic_typography_checks": 20,
+      "typography_findings": 0,
+      "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+    }
+  }
 }

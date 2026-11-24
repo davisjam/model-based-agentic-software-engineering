@@ -1,56 +1,26 @@
 {
   "source": "book/assets/interlude-execution-unit.svg",
-  "claim": "Chunking reduces the execution unit while skeletonization separates resident structure and references from externally stored media; these are independent architectural dimensions.",
-  "topology": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+  "claim": "Whole-document workers retain structure and all media. Page workers retain a portion of both. Skeletonized workers retain structure and references while media resides outside their memory.",
+  "topology": "Whole-document workers retain structure and all media. Page workers retain a portion of both. Skeletonized workers retain structure and references while media resides outside their memory.",
   "required_terms": [
-    "(a) Whole-document",
-    "execution",
-    "(b) Page-chunked",
-    "(c) Skeletonized",
-    "Document",
-    "Worker",
+    "(a) Whole document",
+    "(b) Page chunks",
+    "(c) Skeletonization",
+    "Worker memory",
     "Structure",
     "Media",
-    "(all resident)",
-    "Output",
-    "Pages 1–10",
-    "Pages 11–20",
-    "Pages 21–30",
-    "Merge",
-    "(skeletonized)",
+    "Worker 1",
+    "Worker 2",
     "Media references",
-    "GenAI",
-    "service",
-    "External",
-    "media",
-    "•",
-    "One worker retains the",
-    "complete document.",
-    "Structure and all media",
-    "are resident.",
-    "Memory scales with the",
-    "document payload.",
-    "The document is",
-    "partitioned into page",
-    "chunks.",
-    "Each worker retains",
-    "the chunk’s structure",
-    "and media.",
-    "A smaller working set",
-    "per worker reduces",
-    "memory.",
-    "The worker retains",
-    "structure and media",
-    "references.",
-    "Media is not resident,",
-    "but streamed on demand.",
-    "Media is processed by a",
-    "GenAI service."
+    "External media",
+    "All media retained",
+    "Media retained per chunk",
+    "Media retrieved as needed"
   ],
-  "bw_encoding": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
-  "redesign": "Author-requested prose-sharing footprint: shorten connector gaps and page-worker cards without changing font sizes, labels, or topology.",
+  "bw_encoding": "Gray denotes media payload; white denotes structure and media references. Worker boundaries show residency.",
+  "redesign": "Author-directed compact residency comparison. Retain structure/media vocabulary and media shading while removing repeated input/output pipeline boxes and bullets. Media references stay white because they are references, not resident media. Caption supplies the engineering interpretation.",
   "questions": [],
-  "alt": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+  "alt": "Whole-document workers retain structure and all media. Page workers retain a portion of both. Skeletonized workers retain structure and references while media resides outside their memory.",
   "qa": {
     "compiler": "LuaLaTeX; no shell escape; shared mage-figures.sty",
     "warnings": [],
@@ -85,8 +55,8 @@
       "geometry_findings": 0,
       "status": "passed",
       "source_geometry_checks": [
-        "three equal142×430bp panels",
-        "three equal108×45bp page workers"
+        "three equal142\u00d7430bp panels",
+        "three equal108\u00d745bp page workers"
       ],
       "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
       "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
@@ -170,19 +140,19 @@
       },
       {
         "semantic_role": "Panel label, worker state, or reference bullet",
-        "candidate_text": "Pages 1–10",
+        "candidate_text": "Pages 1\u201310",
         "candidate_style": "regular",
         "authorization": "Author-requested working-set triptych,2026-11-11"
       },
       {
         "semantic_role": "Panel label, worker state, or reference bullet",
-        "candidate_text": "Pages 11–20",
+        "candidate_text": "Pages 11\u201320",
         "candidate_style": "regular",
         "authorization": "Author-requested working-set triptych,2026-11-11"
       },
       {
         "semantic_role": "Panel label, worker state, or reference bullet",
-        "candidate_text": "Pages 21–30",
+        "candidate_text": "Pages 21\u201330",
         "candidate_style": "regular",
         "authorization": "Author-requested working-set triptych,2026-11-11"
       },
@@ -230,7 +200,7 @@
       },
       {
         "semantic_role": "Panel label, worker state, or reference bullet",
-        "candidate_text": "•",
+        "candidate_text": "\u2022",
         "candidate_style": "regular",
         "authorization": "Author-requested working-set triptych,2026-11-11"
       },
@@ -296,7 +266,7 @@
       },
       {
         "semantic_role": "Panel label, worker state, or reference bullet",
-        "candidate_text": "the chunk’s structure",
+        "candidate_text": "the chunk\u2019s structure",
         "candidate_style": "regular",
         "authorization": "Author-requested working-set triptych,2026-11-11"
       },
@@ -420,17 +390,17 @@
         "italic": false
       },
       {
-        "text": "Pages 1–10",
+        "text": "Pages 1\u201310",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Pages 11–20",
+        "text": "Pages 11\u201320",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Pages 21–30",
+        "text": "Pages 21\u201330",
         "bold": false,
         "italic": false
       },
@@ -470,7 +440,7 @@
         "italic": false
       },
       {
-        "text": "•",
+        "text": "\u2022",
         "bold": false,
         "italic": false
       },
@@ -525,7 +495,7 @@
         "italic": false
       },
       {
-        "text": "the chunk’s structure",
+        "text": "the chunk\u2019s structure",
         "bold": false,
         "italic": false
       },
@@ -596,8 +566,8 @@
       "geometry_findings": 0,
       "status": "passed",
       "source_geometry_checks": [
-        "three equal142×430bp panels",
-        "three equal108×45bp page workers"
+        "three equal142\u00d7430bp panels",
+        "three equal108\u00d745bp page workers"
       ],
       "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
       "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
@@ -651,8 +621,8 @@
       "geometry_findings": 0,
       "status": "passed",
       "source_geometry_checks": [
-        "three equal142×430bp panels",
-        "three equal108×45bp page workers"
+        "three equal142\u00d7430bp panels",
+        "three equal108\u00d745bp page workers"
       ],
       "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
       "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
@@ -892,9 +862,9 @@
           "Media",
           "(all resident)",
           "Output",
-          "Pages 1–10",
-          "Pages 11–20",
-          "Pages 21–30",
+          "Pages 1\u201310",
+          "Pages 11\u201320",
+          "Pages 21\u201330",
           "Merge",
           "(skeletonized)",
           "Media references",
@@ -902,7 +872,7 @@
           "service",
           "External",
           "media",
-          "•",
+          "\u2022",
           "One worker retains the",
           "complete document.",
           "Structure and all media",
@@ -913,7 +883,7 @@
           "partitioned into page",
           "chunks.",
           "Each worker retains",
-          "the chunk’s structure",
+          "the chunk\u2019s structure",
           "and media.",
           "A smaller working set",
           "per worker reduces",
@@ -936,7 +906,7 @@
           "width_pt": 449.972,
           "height_pt": 553.971,
           "monochrome": true,
-          "inspection": "Reference SVG and native PDF inspected at final size. Equal panels, visible worker/media boundaries, complete request/return paths, parallel chunk fan-out/merge, and no clipped bullet text. Authored type10.2–11.2pt; no shrink."
+          "inspection": "Reference SVG and native PDF inspected at final size. Equal panels, visible worker/media boundaries, complete request/return paths, parallel chunk fan-out/merge, and no clipped bullet text. Authored type10.2\u201311.2pt; no shrink."
         },
         "style_review": {
           "source": "book/assets/interlude-execution-unit.svg",
@@ -973,8 +943,8 @@
             "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
             "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
             "source_geometry_checks": [
-              "three equal142×546bp panels",
-              "three equal108×62bp page workers"
+              "three equal142\u00d7546bp panels",
+              "three equal108\u00d762bp page workers"
             ],
             "status": "passed"
           },
@@ -1057,19 +1027,19 @@
             },
             {
               "semantic_role": "Panel label, worker state, or reference bullet",
-              "candidate_text": "Pages 1–10",
+              "candidate_text": "Pages 1\u201310",
               "candidate_style": "regular",
               "authorization": "Author-requested working-set triptych,2026-11-11"
             },
             {
               "semantic_role": "Panel label, worker state, or reference bullet",
-              "candidate_text": "Pages 11–20",
+              "candidate_text": "Pages 11\u201320",
               "candidate_style": "regular",
               "authorization": "Author-requested working-set triptych,2026-11-11"
             },
             {
               "semantic_role": "Panel label, worker state, or reference bullet",
-              "candidate_text": "Pages 21–30",
+              "candidate_text": "Pages 21\u201330",
               "candidate_style": "regular",
               "authorization": "Author-requested working-set triptych,2026-11-11"
             },
@@ -1117,7 +1087,7 @@
             },
             {
               "semantic_role": "Panel label, worker state, or reference bullet",
-              "candidate_text": "•",
+              "candidate_text": "\u2022",
               "candidate_style": "regular",
               "authorization": "Author-requested working-set triptych,2026-11-11"
             },
@@ -1183,7 +1153,7 @@
             },
             {
               "semantic_role": "Panel label, worker state, or reference bullet",
-              "candidate_text": "the chunk’s structure",
+              "candidate_text": "the chunk\u2019s structure",
               "candidate_style": "regular",
               "authorization": "Author-requested working-set triptych,2026-11-11"
             },
@@ -1307,17 +1277,17 @@
               "italic": false
             },
             {
-              "text": "Pages 1–10",
+              "text": "Pages 1\u201310",
               "bold": false,
               "italic": false
             },
             {
-              "text": "Pages 11–20",
+              "text": "Pages 11\u201320",
               "bold": false,
               "italic": false
             },
             {
-              "text": "Pages 21–30",
+              "text": "Pages 21\u201330",
               "bold": false,
               "italic": false
             },
@@ -1357,7 +1327,7 @@
               "italic": false
             },
             {
-              "text": "•",
+              "text": "\u2022",
               "bold": false,
               "italic": false
             },
@@ -1412,7 +1382,7 @@
               "italic": false
             },
             {
-              "text": "the chunk’s structure",
+              "text": "the chunk\u2019s structure",
               "bold": false,
               "italic": false
             },
@@ -1492,8 +1462,8 @@
             "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
             "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
             "source_geometry_checks": [
-              "three equal142×546bp panels",
-              "three equal108×62bp page workers"
+              "three equal142\u00d7546bp panels",
+              "three equal108\u00d762bp page workers"
             ],
             "status": "passed"
           },
@@ -1555,8 +1525,8 @@
             "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
             "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
             "source_geometry_checks": [
-              "three equal142×546bp panels",
-              "three equal108×62bp page workers"
+              "three equal142\u00d7546bp panels",
+              "three equal108\u00d762bp page workers"
             ],
             "status": "passed"
           },
@@ -1614,12 +1584,68 @@
             "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
             "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
             "source_geometry_checks": [
-              "three equal142×546bp panels",
-              "three equal108×62bp page workers"
+              "three equal142\u00d7546bp panels",
+              "three equal108\u00d762bp page workers"
             ],
             "status": "passed"
           }
         }
+      }
+    },
+    {
+      "date": "2026-11-24",
+      "previous": {
+        "claim": "Chunking reduces the execution unit while skeletonization separates resident structure and references from externally stored media; these are independent architectural dimensions.",
+        "topology": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+        "required_terms": [
+          "(a) Whole-document",
+          "execution",
+          "(b) Page-chunked",
+          "(c) Skeletonized",
+          "Document",
+          "Worker",
+          "Structure",
+          "Media",
+          "(all resident)",
+          "Output",
+          "Pages 1\u201310",
+          "Pages 11\u201320",
+          "Pages 21\u201330",
+          "Merge",
+          "(skeletonized)",
+          "Media references",
+          "GenAI",
+          "service",
+          "External",
+          "media",
+          "\u2022",
+          "One worker retains the",
+          "complete document.",
+          "Structure and all media",
+          "are resident.",
+          "Memory scales with the",
+          "document payload.",
+          "The document is",
+          "partitioned into page",
+          "chunks.",
+          "Each worker retains",
+          "the chunk\u2019s structure",
+          "and media.",
+          "A smaller working set",
+          "per worker reduces",
+          "memory.",
+          "The worker retains",
+          "structure and media",
+          "references.",
+          "Media is not resident,",
+          "but streamed on demand.",
+          "Media is processed by a",
+          "GenAI service."
+        ],
+        "bw_encoding": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
+        "redesign": "Author-requested prose-sharing footprint: shorten connector gaps and page-worker cards without changing font sizes, labels, or topology.",
+        "questions": [],
+        "alt": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media."
       }
     }
   ],
@@ -1644,8 +1670,8 @@
       "geometry_findings": 0,
       "status": "passed",
       "source_geometry_checks": [
-        "three equal142×430bp panels",
-        "three equal108×45bp page workers"
+        "three equal142\u00d7430bp panels",
+        "three equal108\u00d745bp page workers"
       ],
       "proof_sha256": "49660aa71104877005307191ffe74523e86ba4c59210f3dfdb60c03aacd20979",
       "inspection": "Visually inspected compact layout; fonts, labels, connections, and peer alignment retained."
@@ -1657,6 +1683,21 @@
       "layout": "actual manuscript caption;11pt book class;MAGE house style;original SVG rendered to PDF at450bp text width",
       "unapproved_compile_diagnostics": 0,
       "visual_review": "One page; diagram and complete caption fit without overlap or clipping."
+    }
+  },
+  "chapter4_revision_20261124": {
+    "reason": "Author-directed compact residency comparison. Retain structure/media vocabulary and media shading while removing repeated input/output pipeline boxes and bullets. Media references stay white because they are references, not resident media. Caption supplies the engineering interpretation.",
+    "source_sha256": "41946f494ddc1d616876ac2f8d59edc0f9f3028d815d5facfc6f945817816d61",
+    "candidate_sha256": "a32ccc9b6ada01875bb14a3c1120f1ea3bd180d65437df669222f3304ebb4c52",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/interlude-execution-unit.pdf",
+      "width_bp": 449.97198486328125,
+      "height_bp": 223.97500610351562,
+      "reviewed_visually": true,
+      "semantic_typography_checks": 13,
+      "typography_findings": 0,
+      "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
     }
   }
 }

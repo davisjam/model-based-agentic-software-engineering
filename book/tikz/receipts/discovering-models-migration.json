@@ -1,33 +1,37 @@
 {
   "source": "book/assets/discovering-models-migration.svg",
-  "claim": "*Discovering latent models in an existing system.* Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.",
-  "topology": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
+  "claim": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
+  "topology": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
   "required_terms": [
     "EXISTING CODEBASE",
-    "Weak signals:",
-    "primitive density · repeated shapes component / boundary view",
-    "PARTITION FINDINGS",
-    "Weak signals locate potential work.",
-    "LEGITIMATE SHAPE",
+    "Candidate locations:",
+    "primitive density \u00b7 repeated shapes",
+    "component / boundary view",
+    "Classify findings",
+    "Candidates identify",
+    "potential work.",
+    "Appropriate implementation",
     "Accept / exempt",
-    "LATENT CONCEPT",
+    "Missing model",
     "NAME THE MODEL",
-    "MECHANICAL DEBT",
+    "Implementation cleanup",
     "Codemod",
-    "Typed vocabulary Explicit relations",
-    "MIGRATE CONSUMERS",
-    "NARROWER ENFORCEMENT",
+    "Typed vocabulary",
+    "Explicit relations",
+    "Update the consuming code",
+    "Enforce selected obligations",
     "(types; lints; drift guard)",
-    "STRONGER MODEL SUBSTRATE",
+    "Improved models and controls",
     "next pass",
     "KEY",
     "Step or artifact",
-    "Model concept or substrate"
+    "Model concept",
+    "or controls"
   ],
-  "bw_encoding": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
-  "redesign": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+  "bw_encoding": "Light gray distinguishes the missing model and resulting improved models/controls. All steps and branch labels retain the original geometry.",
+  "redesign": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
   "questions": [],
-  "alt": "Weak signals from an existing codebase—primitive density, repeated shapes, component/boundary view—locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded.",
+  "alt": "Candidate locations in an existing codebase are classified as appropriate implementation, missing model, or implementation cleanup. A missing model is named and represented, the code that uses it is updated, and selected obligations are enforced. Improved models and controls inform the next pass.",
   "qa": {
     "date": "2026-11-23",
     "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
@@ -117,7 +121,7 @@
     },
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
     "contracts": {},
-    "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
     "page_layout": {
       "after_dimensions_bp": [
         449.97198486328125,
@@ -145,7 +149,7 @@
     "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "reason": "Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
     "validation": {
       "date": "2026-11-23",
       "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
@@ -193,7 +197,7 @@
         "italic": false
       },
       {
-        "text": "primitive density · repeated shapes component / boundary view",
+        "text": "primitive density \u00b7 repeated shapes component / boundary view",
         "bold": false,
         "italic": false
       },
@@ -295,7 +299,7 @@
         "semantic_role": "recovery stage, artifact, or process annotation"
       },
       {
-        "candidate_text": "primitive density · repeated shapes component / boundary view",
+        "candidate_text": "primitive density \u00b7 repeated shapes component / boundary view",
         "candidate_style": "regular",
         "semantic_role": "recovery stage, artifact, or process annotation"
       },
@@ -439,10 +443,10 @@
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
     "fill": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
-    "bold": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "bold": "Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
     "routing": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
     "shape": "Modestly rounded rectangles denote findings, steps, and artifacts; consistent gray fill identifies the discovered concept and reinforced model substrate.",
-    "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "visual_review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
     "book_references": [],
     "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch.",
     "compaction_review": {
@@ -498,7 +502,7 @@
       "icons_and_symbols": "Three-way partition is explicit. Gray role is explained by a small unboxed key; no ornamental symbols added.",
       "links_and_groups": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
       "annotation_placement": "Weak signals locate potential work sits beside the detection/partition step; next pass labels the perimeter return. Enforcement examples stay inside the enforcement node.",
-      "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5–10pt."
+      "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5\u201310pt."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
@@ -514,7 +518,7 @@
     "width_bp": 449.97198486328125,
     "height_bp": 350.0539855957031,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
     "compaction_review": {
       "date": "2026-11-23",
       "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
@@ -566,7 +570,7 @@
     "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/discovering-models-migration.json",
     "reviewed": true,
-    "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
     "compaction_review": {
       "date": "2026-11-23",
       "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
@@ -577,5 +581,55 @@
     "date": "2026-11-23",
     "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
     "native_and_svg_inspected": true
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "previous": {
+        "claim": "*Discovering latent models in an existing system.* Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.",
+        "topology": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
+        "required_terms": [
+          "EXISTING CODEBASE",
+          "Weak signals:",
+          "primitive density \u00b7 repeated shapes component / boundary view",
+          "PARTITION FINDINGS",
+          "Weak signals locate potential work.",
+          "LEGITIMATE SHAPE",
+          "Accept / exempt",
+          "LATENT CONCEPT",
+          "NAME THE MODEL",
+          "MECHANICAL DEBT",
+          "Codemod",
+          "Typed vocabulary Explicit relations",
+          "MIGRATE CONSUMERS",
+          "NARROWER ENFORCEMENT",
+          "(types; lints; drift guard)",
+          "STRONGER MODEL SUBSTRATE",
+          "next pass",
+          "KEY",
+          "Step or artifact",
+          "Model concept or substrate"
+        ],
+        "bw_encoding": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
+        "redesign": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+        "questions": [],
+        "alt": "Weak signals from an existing codebase\u2014primitive density, repeated shapes, component/boundary view\u2014locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded."
+      }
+    }
+  ],
+  "chapter4_revision_20261124": {
+    "reason": "Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+    "source_sha256": "5caa0fd2f3b9db6daae956f59d433a86d874cc2e6768c41bd8df9bb2f6df6224",
+    "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/discovering-models-migration.pdf",
+      "width_bp": 449.97198486328125,
+      "height_bp": 350.0539855957031,
+      "reviewed_visually": true,
+      "semantic_typography_checks": 24,
+      "typography_findings": 0,
+      "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+    }
   }
 }

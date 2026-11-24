@@ -111,6 +111,9 @@ where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, docu
 % Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: implementation-and-measurement
 DocAble's performance ratchet counts production rounds, logical GenAI calls, capture operations, and renders. Small deterministic fixtures establish baselines for these quantities. The comparison rejects execution-mode mismatches; a change that increases a protected count fails the corresponding check unless the baseline is deliberately revised. Repeated runs also test whether the counts are stable.
 
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/blueprint-A9-archaeology.md | kind: implementation
+A fifth quantity, the number of GenAI hops, carries an audit-only label and is excluded from the four upper-bound comparisons. A separate test nevertheless compares it with the seeded value and can fail. The label alone therefore does not establish whether a measurement is advisory; the consumer and its acceptance rule determine the consequence.
+
 Structural counts expose additional work without depending on machine-specific wall-clock measurements. They do not establish production latency or memory consumption, and their coverage is limited to the exercised workflows. Improvements should lower the relevant baseline; increases require an engineering decision about whether the additional work is justified.
 
 \section{Adaptation and Limits}

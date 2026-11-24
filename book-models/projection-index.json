@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 649,
+    "total_sites": 646,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 314,
+      "book-web": 311,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -104,16 +104,12 @@
             "occ": 6
           },
           {
-            "file": "book/web/docs/4.3-brownfield-engineering.md",
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 2
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 27
-          },
-          {
-            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
-            "occ": 1
+            "occ": 9
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -201,7 +197,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
@@ -209,11 +205,11 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 12
+            "occ": 16
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 16
+            "occ": 12
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -247,7 +243,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 56
+            "occ": 55
           }
         ]
       },
@@ -608,7 +604,7 @@
             "occ": 5
           },
           {
-            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "file": "book/web/docs/appendix-b-operating-a-gee.md",
             "occ": 3
           },
           {
@@ -945,7 +941,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 52
+            "occ": 53
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -977,7 +973,7 @@
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
-            "occ": 36
+            "occ": 38
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
@@ -985,7 +981,7 @@
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
@@ -997,23 +993,23 @@
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
-            "occ": 25
+            "occ": 21
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 17
+            "occ": 21
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 35
+            "occ": 37
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 41
+            "occ": 23
           },
           {
             "file": "book/web/docs/4.5-mage-in-motion-summary.md",
-            "occ": 7
+            "occ": 13
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1129,7 +1125,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 7
+            "occ": 18
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
@@ -1141,7 +1137,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 13
+            "occ": 18
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
@@ -1153,7 +1149,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 148
+            "occ": 146
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1169,7 +1165,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 178
+            "occ": 170
           },
           {
             "file": "book/web/docs/index.md",
@@ -1177,7 +1173,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 28
+            "occ": 27
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1193,7 +1189,7 @@
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 27
+            "occ": 29
           },
           {
             "file": "book/web/docs/part-5-intro.md",
@@ -1343,15 +1339,7 @@
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/4.5-mage-in-motion-summary.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
@@ -1397,7 +1385,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 18
+            "occ": 16
           }
         ]
       },
@@ -1517,7 +1505,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 45
+            "occ": 46
           },
           {
             "file": "book/web/docs/2.2-constructing-and-using-engineering-models.md",
@@ -1569,19 +1557,19 @@
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
-            "occ": 35
+            "occ": 25
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 52
+            "occ": 55
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 36
+            "occ": 22
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 27
+            "occ": 1
           },
           {
             "file": "book/web/docs/4.5-mage-in-motion-summary.md",
@@ -1685,11 +1673,11 @@
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 5
+            "occ": 7
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
@@ -1709,7 +1697,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 149
+            "occ": 143
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -2222,10 +2210,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/5.1-software-factory.md",
             "occ": 1
           },
@@ -2249,7 +2233,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -2383,7 +2367,7 @@
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
-            "occ": 5
+            "occ": 7
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
@@ -2395,6 +2379,10 @@
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 2
           },
           {
@@ -2403,7 +2391,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 6
+            "occ": 1
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -2454,6 +2442,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/appendix-b-brownfield-migration.md",
+            "occ": 11
+          },
+          {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
             "occ": 2
           },
@@ -2501,7 +2493,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 38
+            "occ": 40
           }
         ]
       },
@@ -2852,10 +2844,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 1
           }
@@ -2863,7 +2851,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       },

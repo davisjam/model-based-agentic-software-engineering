@@ -374,7 +374,7 @@ The chapters of MAGE serve different purposes and should not be edited toward a 
 
 **Purpose and reader outcome.** Chapter 4 integrates Modeling and Alignment into an evolving engineering practice. It explains active and passive alignment, incremental development of an alignment kernel, the emergence of related models from engineering problems, brownfield model recovery, and maintenance of the governed engineering environment. The reader should understand how to practice MAGE without assuming that modeling precedes implementation, that models remain correct indefinitely, or that engineering follows a fixed sequence of phases.
 
-**Voice and organization.** Continue the textbook style of Chapters 2–3, but with a stronger emphasis on worked engineering episodes and the sequence of decisions. The extended DocAble memory, execution, and latency case is particularly important: an observed problem motivates a model, the model enables an intervention, and the intervention exposes further questions. Preserve this causal progression, including unsuccessful hypotheses, revised models, measurements, and tradeoffs. First-person accounts are appropriate when they reveal why an engineering decision was made or how understanding changed. Generalize from the episode after the reader has seen the relevant evidence. Do not compress the sequence into a list of lessons or rewrite it as though the final architecture had been planned from the beginning. This chapter teaches engineering as an iterative intellectual activity, not a prescribed workflow.
+**Voice and organization.** Make this the chapter in which the reader watches an engineer work. Use a short conceptual introduction followed by sustained episodes of engineering the product, recovering knowledge from an existing implementation, and improving the engineering environment itself. The extended DocAble memory, execution, and latency case is particularly important: an observed problem motivates a model, the model enables an intervention, and the intervention exposes further questions. Preserve this causal progression, including unsuccessful hypotheses, revised models, measurements, and tradeoffs. Use first-person past tense for the author’s engineering decisions, identify actions performed by Claude or other agents, and use present tense when developing a general lesson with the reader. Mark hypothetical extensions explicitly. Generalize after the relevant evidence rather than interrupting the episodes with adoption manuals. Chapters 2–3 teach the constituent activities, Appendix A explains construction, and Appendix B carries practical adoption and operation guidance. Integrate relocated material at those destinations without duplicating existing explanations. Do not rewrite an episode as though the final architecture had been planned from the beginning. Modeling, Realization, and Evaluation need no fixed starting point or order.
 
 ### Chapter 5 — DocAble Among Other Software Factories
 
@@ -448,16 +448,11 @@ An inset belongs to the chapter's reading sequence. Its opening should pick up a
 
 Audit each inset with the prose immediately before and after it. Check both reading paths: entering the inset and skipping it. Track the later book-wide pass in [review.md](review.md).
 
-Use the green **MAGE Move** family for a short reusable engineering practice, such as
-Governance conversion, Ratcheteering, or Audit → Drain → Promote. Author it as
-`\begin{bookbox}{move}{Title}` with a stable label, `box-family: move`, and
-`mage-box-prefix: MAGE Move —` metadata. The shared PDF, HTML, and EPUB renderers
-provide a pale-green fill, a thin green left rule, square corners, and a labeled
-title. Keep each short move together on one printed page; color alone must not
-identify its role. Scholarly connections remain lavender insets, case records
-remain evidence, and comparisons of phenomena use ordinary tables rather than
-another box family. A move should name the practice and explain what to do;
-leave the motivating episode and its evidence in the main narrative.
+In Chapter 4, retain useful named techniques as ordinary headings, enumerations, or
+emphasized terms rather than green **MAGE Move** boxes. The engineering episode and
+its evidence belong in the main narrative. Use a scholarly inset only where its
+connection helps the reader understand that episode; place foundational explanations
+in Chapters 2–3 and extended practical procedures in Appendix B.
 
 Once a term has been taught, use the term without re-teaching it.
 

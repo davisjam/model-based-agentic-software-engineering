@@ -1,6 +1,3 @@
-% mage-auto-heading: alignment-changes-the-system
-% mage-auto-heading: establish-a-kernel-before-expanding
-% mage-auto-heading: greenfield-and-brownfield-mage
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: MAGE in Motion: Engineering Through Models -->
@@ -9,13 +6,23 @@
 
 \chapter{The Dynamics of MAGE}
 
-The models and controls established for one change become part of the environment for the next. An engineer may introduce a model to guide a transformation, then retain it to protect the resulting system against later changes. A failed implementation may expose an obligation that was never represented, while a measurement may show that a model omitted an important interaction. Engineering therefore involves revising models and controls as well as using them.
+In Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num}, we examined how to model a system and how to enforce selected obligations. But the system we are engineering does not stand still. We introduce new requirements, discover problems with our designs, and learn things about the system that we did not know when we began. We must revise our models and controls as well as our implementation.
 
-Three ideas help organize that work. Alignment can establish conformance with modeled obligations or preserve it through subsequent changes. Engineers can introduce new models incrementally while an alignment kernel protects properties already brought under governance. Models can also emerge from implementation and investigation rather than being specified completely in advance.
+Three ideas help organize this work:
 
-\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}
+\begin{enumerate}
+\item \textbf{Establish and preserve alignment} (\cref{4.1-the-dynamics-of-mage:heading:alignment-changes-the-system}). We can use models to bring about changes to a system, then use them to evaluate subsequent changes.
+\item \textbf{Establish an alignment kernel} (\cref{4.1-the-dynamics-of-mage:heading:establish-a-kernel-before-expanding}). Before undertaking a transformation, protect the properties that the transformation must preserve.
+\item \textbf{Model as we learn} (\cref{4.1-the-dynamics-of-mage:heading:greenfield-and-brownfield-mage}). We need not construct all our models before implementation. Implementation and evaluation can help us discover what should be modeled.
+\end{enumerate}
 
-Alignment can establish correspondence with a model or preserve it as the system changes. These two modes are active and passive alignment, illustrated in \autoref{active-passive-alignment}.
+\section{Active and Passive Alignment}\label{heading:alignment-changes-the-system}
+
+In \magevalue{chapter:alignment}, we primarily used Alignment to preserve properties of a system as agents changed it. For example, an architectural model might specify which components may communicate, while a check prevents agents from introducing prohibited dependencies. We will call this passive alignment.
+
+But suppose we have decided to change the architecture itself. We can revise the architectural model to describe the structure we want, even though the implementation does not yet have that structure. We can then direct agents to modify the implementation, using the model and its checks to identify the remaining work. We will call this active alignment.
+
+Once the implementation conforms to the new model, the same mechanisms can serve passive alignment, protecting the new architecture against subsequent changes. \autoref{active-passive-alignment} illustrates these two uses of Alignment.
 
 \begin{figure}[htbp]
 \centering
@@ -24,17 +31,13 @@ Alignment can establish correspondence with a model or preserve it as the system
 \label{active-passive-alignment}
 \end{figure}
 
-In active alignment, an engineer may deliberately introduce a mismatch between the models and the implementation. Sometimes we \emph{want} the model and the code to disagree. A new model expresses an obligation that the existing system does not yet satisfy. Rather than weakening the model to describe the current implementation, the engineer directs agents to change the system until it conforms. The environment evaluates the resulting work against the obligation, exposing remaining gaps for further correction. This process can also begin when an existing obligation is found to be violated; the essential feature is that the implementation changes to satisfy the model.
+Active alignment presents a particular danger. In directing agents to satisfy a new model, we may inadvertently damage properties established by earlier engineering. An agent restructuring a service to satisfy a new architectural model might violate an existing security requirement. How can we protect what we have already accomplished while undertaking further transformations?
 
-Once the system satisfies the obligation, the same models and alignment mechanisms can serve a different purpose. Passive alignment evaluates subsequent changes against the established obligations, constraining or refusing changes that would violate them. The engineer need not prescribe how each change is implemented, provided the result remains acceptable. Models and checks introduced to direct one transformation thus become engineering capital when subsequent work benefits from them.
-
-This matters because active alignment is not necessarily behavior preserving. Asking an agent to make a state machine explicit, replace an architectural boundary, separate storage from computation, or satisfy a new ownership model may require substantial changes to the realization. Those changes may satisfy the new model while damaging some other property that has not yet been made visible to the environment. That possibility creates an ordering problem.
-
-\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}
+\section{Establishing an Alignment Kernel}\label{heading:establish-a-kernel-before-expanding}
 
 The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage. Together, these models form the alignment kernel.
 
-\magevalue{chapter:modeling} organized models by the properties they represent. The kernel tells us which properties to protect first: those that an upcoming transformation must preserve. We can then expand the governed surface under those existing constraints (\autoref{alignment-kernel}).
+\magevalue{chapter:modeling} organized models by the properties they represent. The kernel tells us which properties to protect first: those that an upcoming transformation must preserve. We can then protect additional properties under those existing constraints (\autoref{alignment-kernel}).
 
 The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
 
@@ -47,108 +50,34 @@ The order is system-dependent. For a conventional information system, behavioral
 
 This ordering is a form of risk-driven engineering. Boehm's spiral model organized development around identifying and resolving risks, while risk-driven software architecture similarly asks engineers to invest in architectural knowledge where uncertainty threatens consequential decisions~\citep{boehm1988spiral,fairbanks2010}. The alignment kernel applies that judgment to the properties that must survive an upcoming transformation. An engineer should consider what the transformation might damage, the consequences of that damage, and whether the available evidence would detect it. A property that is expensive to recover, difficult to observe, or capable of invalidating subsequent work may warrant protection before other models are introduced.
 
-Cheap implementation changes this calculation. Agents can rapidly explore alternatives and carry out substantial transformations, but that speed does not make the consequences of an incorrect transformation inexpensive. Nor does every uncertainty justify a model or control. Where failure is cheap and reversible, exploratory implementation may provide better information than modeling in advance. Where a transformation threatens properties on which the system already depends, those obligations should enter the kernel before the transformation proceeds. The objective is not to model everything first, but to protect what the next change cannot safely put at risk.
+The alignment kernel need not be comprehensive. Where failure is cheap and reversible, an exploratory implementation may teach us more than modeling in advance. But before undertaking a transformation that could damage properties on which the system already depends, we should establish adequate protection for those properties. Newly established obligations can then join the kernel, protecting the results of one transformation during the next.
 
-A newly aligned model can join the protected environment for the next episode. Adoption therefore proceeds incrementally; it does not require a complete model of the system before governance begins.
+\section{Modeling Before, During, and After Implementation}\label{heading:greenfield-and-brownfield-mage}
 
-The kernel should grow only while additional models justify their cost. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the properties that subsequent changes must preserve are adequately protected.
+In an existing system, we can recover models from the implementation. We might derive a dependency graph from source code, examine execution traces to recover a behavioral model, or inspect several implementations of a policy to identify the decisions they make. We can then decide which properties describe the system as it happens to exist and which properties we wish to preserve.
 
-\section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}
+Even when developing a new system, we need not begin with its models. An exploratory implementation can help us understand the problem. We might ask an agent to implement a proposed feature, examine the resulting software, and discover that the feature requires distinctions we had not anticipated. We can then make those distinctions explicit in a model and direct the agent to revise the implementation.
 
-Incremental adoption is easiest to see in a brownfield system. We already have a working system. Engineers can observe it, identify consequential properties, induce models from the implementation and their own knowledge, actively align the system where correspondence is missing, and retain the resulting models and mechanisms in the GEE. The governed surface grows around a system that was already running.
+Commodity intelligence makes this approach particularly attractive. An implementation that would previously have taken days of engineering effort might now take minutes. We can afford to investigate alternatives by building them, provided that the experiments do not jeopardize properties we have already established.
 
-A greenfield project might appear to invite the opposite strategy: construct the models first, align implementation to them, and only then allow the system to emerge. That is sometimes appropriate when obligations are already well understood. It is not the general MAGE prescription.
-
-% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
-Software changes because requirements are incomplete, abstractions prove wrong, and interactions become consequential only after something runs. A specification can constrain implementation choices without eliminating uncertainty about which choices should ultimately be fixed. Sometimes we learn more by waiting to decide. Engineers can use exploratory implementations to expose missing requirements, useful abstractions, resource constraints, and assumptions that were invisible on paper, then decide what should become explicit structure. The parallel document-format implementations in \hyperref[3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement]{\magevalue{sec:models-and-the-semantic-gap}} illustrate this route to Modeling: they let me investigate common structure before deciding what should be shared.
-
-Modeling may therefore precede implementation, follow it, or develop alongside it. A known resource bound may belong in the alignment kernel before a transformation begins; a missing architectural relationship may become visible only after several implementations expose it. The sequence matters less than identifying which properties must be preserved and what evidence is needed before accepting the next change.
-
-\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}
-
-Agentic implementation makes this strategy unusually cheap. In that setting, even vibe coding has a legitimate engineering role: it can serve as a kind of 3D printer for software, rapidly realizing a loose specification so that engineers can learn about the system they actually need. The mistake is not using cheap implementation. The mistake is confusing an exploratory realization with a sufficiently governed one.
-
-An exploratory implementation can become a production system. Engineers can recover models from the prototype, decide which properties must be preserved, and actively align the implementation with those obligations. Alternatively, they can use what the prototype taught them to construct a new implementation against explicit models. Either route is legitimate. Before a system is relied upon, however, its consequential properties need more than a successful demonstration: they need adequate evidence and, where justified, mechanisms that preserve them through subsequent changes.
-
-Cheap implementation has another consequence: agents can produce unnecessary complexity at extraordinary speed. In my experience, coding agents readily introduce abstractions, architectural layers, and mechanisms that are reasonable in isolation but inappropriate for the system at hand. A design pattern may be sound, yet add more machinery than the problem warrants; a general solution may accommodate cases the system will never encounter. Empirical studies of AI-generated changes identify overengineering and poor contextual fit as reasons for rejection or reversion~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Agents can also explain and defend these choices convincingly. The engineer must judge whether the proposed structure fits the actual requirements, existing architecture, and likely evolution of the system. Parsimony is therefore an active engineering responsibility: ask whether the design works, then ask whether it needs to be that complicated.
+There is a corresponding danger. Agents can introduce abstractions, interfaces, and mechanisms faster than we can decide whether we need them. An exploratory implementation may contain useful engineering discoveries alongside unnecessary complexity~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Recovering a model from that implementation does not require us to preserve its design.
 
 Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. The next step is to decide whether the newly discovered obligation should become explicit, so that future work does not have to discover it again.
 
-A useful rule is to distinguish three kinds of decisions. If a choice follows mechanically from an established model, generate it rather than asking an agent to reason it out repeatedly. If several implementations satisfy the obligations, delegate the choice and let the agent explore them. If experience reveals a consequential decision that later work will face again, preserve it in the engineering environment. That may mean recording a model, adding a constraint, or establishing a check. The point is not to eliminate judgment, but to spend it where it is needed rather than repeatedly making the same decision.
-
-% <!-- print-keep-with-next: 8 -->
-
-These decisions become more frequent as agents accelerate implementation. The increased rate of work also changes what engineers can learn from experience, through three related forms of amplification (\autoref{phenomena-amplification}).
-
-{\footnotesize
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.25}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.27}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.48}}@{}}
-\caption[Three forms of amplification]{\emph{Three forms of amplification.} Faster implementation creates opportunities to explore alternatives, refine intent, and recognize related observations.}\label{phenomena-amplification}\tabularnewline
-\toprule\noalign{}
-Phenomenon & What changes & Engineering opportunity \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-Phenomenon & What changes & Engineering opportunity \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Implementation amplification & Alternatives become cheaper to realize & Implement, measure, and reject designs that previously cost too much to try. \\
-Comprehension amplification & Intent can be refined through rapid trials & Use working software to expose misunderstandings and revise the representation. \\
-Connection amplification & Related observations occur closer together & Recognize shared causes, missing relationships, or architectural gaps. \\
-\end{longtable}
-}
-
-You can only learn from what you can observe. A change can satisfy its functional goal while worsening performance, security, or maintainability. Fast implementation therefore increases the importance of measuring beneath the visible outcome.
-
-In DocAble, related failures sometimes arrived quickly enough that what first appeared to be separate defects became recognizable as symptoms of a missing architectural concept. The shared relationship became a system model, which in turn enabled static analyses that prevented several classes of failure. Speed had changed what the engineer could see.
-
-The engineer still judges which alternatives are worth exploring and which apparent connections matter. When experience reveals a recurring lesson, governance conversion preserves it in the environment so that later work can use the resulting representation, procedure, or control.
-
-% <!-- box-family: move -->
-
-% mage-box-prefix: MAGE Move —
-
-\begin{bookbox}{move}{Governance conversion}
-\label{heading:move-governance-conversion}
-When a recurring failure, repeated judgment, or newly discovered relationship warrants preservation, record it in durable engineering structure: a model, evidence, a procedure, or an enforced obligation. Establish how subsequent work will use it. The engineer decides what deserves preservation; governance conversion makes the resulting decision available beyond the episode in which it arose. \magevalue{sec:governance-conversion} develops the move in full.
-\end{bookbox}
+When an engineering episode reveals a property that subsequent work must preserve, we can record that property in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. The resulting model or control becomes available to subsequent engineering, regardless of whether we discovered the property through Modeling, Realization, or Evaluation.
 
 % <!-- box-family: inset -->
-
 % <!-- inset-domain: SOFTWARE ENGINEERING -->
-
 % <!-- index-def: specification-driven-development -->
-
 % mage-box-prefix: Inset —
-
-% <!-- print-keep-with-next: 20 -->
-
 \begin{bookbox}{inset}{Spec-driven development and engineering through models}
 \label{inset-sdd-engineering-through-models}
-\textbf{Spec-driven development (SDD)} provides workflows for organizing implementation and evaluation around specifications. These workflows can support MAGE, but do not replace its broader concern with modeling consequential properties and enforcing selected engineering obligations as a system evolves.
-
-In SDD, explicit specifications guide agentic implementation and evaluation. The tools organize that work in different ways~\citep{agarwal2026sddpractice}. GitHub's Spec Kit argues for specifications as primary artifacts from which code is derived~\citep{githubspeckit2026sdd}. OpenSpec preserves capability specifications while recording proposed and completed changes; Conductor combines shared project context with specifications and plans for individual changes~\citep{openspec2026concepts, ballinger2025conductor}. Specifications can evolve as implementation and operating experience expose missing requirements.
-
-Test-driven development (TDD) offers a useful analogy: its test → implement → refactor cycle organizes programming, while the team still has to decide how to evaluate interactions and the assembled system~\citep{fowler2023tdd}. TDD is also a form of specification-first development: tests express selected requirements as executable checks before implementation. The implementation remains free to change as long as it satisfies those checks. Tests necessarily specify only selected inputs and properties. An SDD workflow similarly contributes to engineering a system without settling every question about its representations, obligations, and evidence.
+Spec-driven development organizes agentic implementation around explicit specifications, often progressing from requirements to design and then to implementation tasks~\citep{agarwal2026sddpractice,githubspeckit2026sdd,openspec2026concepts,ballinger2025conductor}. This arrangement resembles test-driven development (TDD), in which we establish expected behavior through tests before implementing it~\citep{fowler2023tdd}. Both approaches give the implementer a representation of what the resulting software should accomplish.
 
 % Evidence: E25 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E25.md | kind: author-account
-My practice in building DocAble often followed a different sequence. I first asked agents to implement working functionality, using tests to establish that particular behaviors worked. Once I had enough implementation to understand the problem better, I asked agents to recover explicit models of the system’s structure and behavior. I then revisited the tests: did they actually check the obligations those models expressed? Some tests needed stronger assertions, others needed additional cases, and some obligations called for different forms of analysis or enforcement. This was not test-driven development in the usual temporal sense. Implementation helped discover what needed to be modeled; the models then helped determine what the tests needed to establish.
+MAGE permits these approaches but does not prescribe when models must be constructed. In developing DocAble, I often implemented a feature before discovering which aspects of its design warranted explicit representation. I then recovered or constructed models and used them to guide further implementation. Other engineering problems, particularly those involving substantial risk, warranted modeling and analysis before implementation.
 
+The distinction concerns the role of models rather than their position in a development process. We use models to understand a system, direct its realization, and evaluate its properties. Any of these activities can motivate further modeling.
 \end{bookbox}
 
-\autoref{agentic-engineering-cycle} brings these recurring activities together. Alignment operates throughout the work, while governance conversion can preserve a consequential lesson wherever it arises.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/agentic-engineering-cycle.pdf}
-\caption{\emph{Agentic engineering through models.} Modeling, realization, and evaluation recur as a system evolves. Alignment operates throughout; governance conversion can make a consequential lesson durable during any activity.}
-\label{agentic-engineering-cycle}
-\end{figure}
-
-The engineers supervising this process do not begin without understanding. They had enough understanding to state the problem, write the loose specification, judge the prototype, and recognize what it gets wrong. The task is to move consequential parts of that understanding out of human memory and into explicit representations that agents and the engineering environment can use. Because agents can perform both implementation and much of the mechanical work of model induction quickly, this transition need not be a long separate modeling phase.
-
-Leave degrees of freedom open while variation produces useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the implementation to it. The next episode follows an existing system whose memory failure prompted a new residency model. That model changed which execution designs were worth considering, while later measurements forced further revisions.
+The following sections illustrate these dynamics through problems I encountered while engineering DocAble. We begin with a performance problem whose solution led me to develop several related models of the same system.

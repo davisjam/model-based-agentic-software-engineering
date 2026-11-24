@@ -3,13 +3,29 @@
   "candidate": "book/tikz/figures/mage-in-practice-map.tex",
   "generator": "tools/mage_practice_map.py",
   "data": "book/data/mage-practice-map.json",
-  "alt": "Four equal section panels surround a Model, Realize, Evaluate cycle. Section titles and numbers come from the book source. The panels describe alignment dynamics, related models, brownfield recovery, and maintenance of the engineering environment. These activities overlap rather than form a fixed sequence.",
+  "alt": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
   "required_terms": [
+    "\u00a74.1 The Dynamics of MAGE",
+    "Active and passive alignment",
+    "Establishing an alignment kernel",
+    "Modeling before and after",
+    "realization",
+    "\u00a74.2 One Problem, Many Models",
+    "Discovering new engineering questions",
+    "Developing related models",
+    "Learning from prediction",
+    "and measurement",
+    "\u00a74.3 Brownfield Engineering",
+    "Recovering latent models",
+    "Reconciling models and implementation",
+    "Introducing enforcement",
+    "\u00a74.4 Engineering the Environment",
+    "Modeling engineering work",
+    "Improving its execution",
+    "Evaluating and revising its controls",
     "Model",
-    "Realize",
     "Evaluate",
-    "MAGE",
-    "in Practice"
+    "Realize"
   ],
   "questions": [],
   "author_direction": "2026-11-20: implement approved second reference image in black and white with equally sized boxes and top headings; caption outside artwork; derive titles from the book.",
@@ -43,6 +59,39 @@
         "reviewed_visually": true,
         "scope": "Standalone figure proof; whole-book layout verified separately."
       }
+    },
+    {
+      "date": "2026-11-24",
+      "previous": {
+        "required_terms": [
+          "Model",
+          "Realize",
+          "Evaluate",
+          "MAGE",
+          "in Practice"
+        ],
+        "questions": [],
+        "alt": "Four equal section panels surround a Model, Realize, Evaluate cycle. Section titles and numbers come from the book source. The panels describe alignment dynamics, related models, brownfield recovery, and maintenance of the engineering environment. These activities overlap rather than form a fixed sequence."
+      }
     }
-  ]
+  ],
+  "claim": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
+  "topology": "Four section panels surround a compact triangle of Model, Realize, and Evaluate connected in both directions. No starting point or fixed order is prescribed.",
+  "redesign": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+  "bw_encoding": "White nodes, dark labels and arrows. Position and labels carry the distinctions without tonal categories.",
+  "chapter4_revision_20261124": {
+    "reason": "Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+    "source_sha256": "49ae06b5f93f44b5ae59329c39c8397138d587a3551e113f4954738e558793c2",
+    "candidate_sha256": "5121023c33aca7de788b3f06f2970187e2bba79fd601a290ee8d426636347d71",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/mage-in-practice-map.pdf",
+      "width_bp": 445.9729919433594,
+      "height_bp": 235.97500610351562,
+      "reviewed_visually": true,
+      "semantic_typography_checks": 21,
+      "typography_findings": 0,
+      "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+    }
+  }
 }

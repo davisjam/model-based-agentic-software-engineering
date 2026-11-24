@@ -137,14 +137,14 @@
       "candidate_sha256": "937e25375858a4c9c766fe6900696cc9a28a907b5fb5f943b2a4796de6bd2b57"
     },
     "book/assets/interlude-execution-unit.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author explicitly approved the consolidated black-and-white review Figure 4.5; publish only this native artwork and remove the companion from the PDF. Author requested compact geometry on2026-11-19 so figures share pages with prose; labels, fonts, and topology retained.",
-      "candidate_sha256": "b041cab0fe8b2b0fd8bb1aafcfb42ebb1524b95f027af163f5ff95165e1b2f22"
+      "approved_date": "2026-11-24",
+      "reason": "Author-directed Chapter 4 revision: Author-directed compact residency comparison. Retain structure/media vocabulary and media shading while removing repeated input/output pipeline boxes and bullets. Media references stay white because they are references, not resident media. Caption supplies the engineering interpretation.",
+      "candidate_sha256": "a32ccc9b6ada01875bb14a3c1120f1ea3bd180d65437df669222f3304ebb4c52"
     },
     "book/assets/interlude-prediction-residual.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author explicitly approved the consolidated black-and-white review Figure 4.10; publish only this native artwork and remove the companion from the PDF.",
-      "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
+      "approved_date": "2026-11-24",
+      "reason": "Author-directed Chapter 4 revision: Author-directed diptych: prediction/measurement/revision loop plus four possible explanations for an illustrative residual. Remove duplicated third panel and its invalid implication that prediction agreement establishes design acceptability.",
+      "candidate_sha256": "a2de0ed64d690081f90eb18b893cb43d30c0461aed72f7bbc3490bb3537f68ee"
     },
     "book/assets/engineer-agent-interaction.svg": {
       "approved_date": "2026-11-24",
@@ -167,9 +167,9 @@
       "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5"
     },
     "book/assets/interlude-latency-floor.svg": {
-      "approved_date": "2026-11-11",
-      "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
-      "reason": "Author approved the revised Figure 4.9 dependency-graph draft in the sidebar."
+      "approved_date": "2026-11-24",
+      "candidate_sha256": "ed4f08aa71359a84fdadf08dea01841a03a2c235a659ca380d37f23d8f29f184",
+      "reason": "Author-directed Chapter 4 revision: Author-directed compact parallel-path fragment; three GenAI dependencies retain durations rounded to two decimals and explicit estimated/measured markers. Repair tasks remain independent. Caption bounds the7.7-second floor to the modeled workload, not the entire system."
     },
     "book/assets/build-stages-timeline.svg": {
       "approved_date": "2026-11-11",
@@ -257,8 +257,9 @@
       "reason": "Author approved B&W Figure 3.13 with footer removed and evaluated, not enforced subtitle. Retain the decision tree and existing outlines."
     },
     "book/assets/discovering-models-migration.svg": {
-      "approved_date": "2026-11-13",
-      "reason": "Author approved current Figure 4.10: Discovering latent models in an existing system."
+      "approved_date": "2026-11-24",
+      "reason": "Author-directed Chapter 4 revision: Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
+      "candidate_sha256": "ddfa535923433229760ac718963d62056bc293a2521b371016025aa506e19c10"
     },
     "book/assets/active-passive-alignment.svg": {
       "approved_date": "2026-11-13",
@@ -354,8 +355,9 @@
       "candidate_sha256": "fa56a3155908278142d2ae316f19faeac8242b4a5e4e0df25f81e1c8a8a3b10b"
     },
     "book/assets/mage-in-practice-map.svg": {
-      "approved_date": "2026-11-20",
-      "reason": "Author approved four-quadrant chapter map with central cycle, equal boxes, top headings, and separate caption."
+      "approved_date": "2026-11-24",
+      "reason": "Author-directed Chapter 4 revision: Author-directed compact four-quadrant map with a bidirectional Model/Realize/Evaluate triangle. Remove redundant captions, circle and central title. Natural text heights replace excessive blank space; all labels retain9.5pt and activity names11.5pt. Diagonals encode the deliberately triangular, unordered relationship.",
+      "candidate_sha256": "5121023c33aca7de788b3f06f2970187e2bba79fd601a290ee8d426636347d71"
     },
     "book/assets/handbook-computation-architecture.svg": {
       "approved_date": "2026-11-24",

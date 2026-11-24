@@ -1,7 +1,3 @@
-% mage-auto-heading: start-from-the-system-you-own
-% mage-auto-heading: recover-latent-models
-% mage-auto-heading: reconcile-the-map-and-the-territory
-% mage-auto-heading: invest-where-it-pays
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: MAGE in Motion: Engineering Through Models -->
@@ -10,90 +6,58 @@
 
 \chapter{Brownfield Engineering}
 
-The preceding episode followed one problem through several related models. Brownfield engineering extends this work to the knowledge already distributed across a system's code, tests, documents, and operational practice. Which representations remain trustworthy, which obligations are already enforced, and what must be recovered or repaired before the next consequential change?
+Brownfield engineering applies Modeling and Alignment to knowledge already distributed across a system's code, tests, documents, and operational practice.
 
-\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}
+\section{Engineering an Existing System}\label{heading:start-from-the-system-you-own}
 
 % <!-- index-def: greenfield -->
-
 % <!-- index-def: brownfield-migration -->
 
-Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Lehman's work on software evolution describes systems adapting to changing environments while complexity tends to increase unless engineers act to control it~\citep{lehman1985}. Their models and governance mechanisms require corresponding maintenance. Brownfield engineering therefore includes recovering the representations and controls a system already owns, establishing which remain trustworthy, and repairing or retiring those that have drifted.
+In the preceding episode, new engineering questions led me to construct new models. In an existing system, we often face a different problem: the knowledge we need is already present, but scattered across implementations, tests, documentation, and the memories of engineers.
 
-The objective is not to model the entire existing system before agents can work on it. It is to make the next consequential change safely, then improve the engineering environment so that later changes become easier to govern. Existing tests, permissions, architecture documents, and review practices are starting points. Some already enforce useful obligations; others depend on someone remembering what to check. The work is to discover which is which, establish what can be trusted, and strengthen the environment one important property at a time.
+Some of that knowledge describes deliberate engineering decisions; some describes implementation choices that nobody intended to preserve. Before we can use recovered models to direct further work, we must distinguish the two. Brownfield engineering therefore involves discovering useful representations, reconciling them with engineering intent, and establishing which properties should govern subsequent changes. As a system evolves, its models and controls also need maintenance~\citep{lehman1985}.
 
+\section{Discovering Latent Models}\label{heading:recover-latent-models}
 
+We can recover models from several sources. Static analysis exposes structural relationships~\citep{ducasse2009architecture,garcia2013groundtruth}; dynamic analysis exposes observed behavior~\citep{cornelissen2009dynamic,ammons2002mining}; and interviews with experienced engineers can reveal the reasons for both~\citep{bjornson2008knowledge,anandayuvaraj2026failures}. Agents can combine these techniques, investigating a system and proposing representations for engineering review. The engineer must still determine whether the recovered structures reflect the intended design.
 
-A fast-built system may need to author models that implementation never made explicit. An established organization may instead need to reconcile fragmented ADRs, schemas, tests, ownership records, and operating procedures. Both start by inventorying what remains useful; neither requires a complete governed environment before work begins. The age of the implementation also does not settle its intent: a new regulated system can have firm obligations, while a mature product may still be exploring what users need.
-
-Recovery becomes worthwhile when engineers or agents repeatedly reconstruct the same concept, cross the same hidden boundary, or search the same unproductive region. An explicit representation can then cost less than continued rediscovery. The implementation often already contains the evidence, expressed repeatedly without a shared name.
-
-\section{Recover Latent Models}\label{heading:recover-latent-models}
-
-Begin with two questions. \emph{What does the organization already reason through?} Which documents, schemas, graphs, tests, or configurations repeatedly save engineers from reconstructing the system from raw implementation? These are candidates for recovered models.
-
-\emph{What is already enforced?} Which permissions, types, CI checks, reviews, and operational gates govern work, and which obligations do they help enforce? A mature system may already contain substantial local Alignment even when its system-level representations are weak.
-
-Several techniques can help recover models from an existing system:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Static program analysis.} Analyze source code, types, dependencies, and configurations to recover structural relationships without executing the system~\citep{ducasse2009architecture}. For example, extract a component dependency graph from imports and calls, then compare it with the intended architecture. The graph supplies evidence about dependencies; identifying architectural boundaries also requires interpreting the roles those components play~\citep{garcia2013groundtruth}.
-\item
-  \textbf{Dynamic program analysis.} Analyze execution traces, logs, and test results to recover models of system behavior~\citep{cornelissen2009dynamic, ammons2002mining}. For example, traces of job submission, retry, and completion can suggest a lifecycle state machine. The resulting model describes observed executions, which may omit important behaviors or include defects.
-\item
-  \textbf{Agentic program analysis.} Direct a coding agent to investigate a subsystem and propose models of its architecture, behavior, or invariants. The agent can combine static and dynamic methods, following leads through source inspection, repository search, tests, and execution traces. Require evidence for each proposed relationship or behavioral claim, and distinguish observed implementation from inferred engineering intent.
-\item
-  \textbf{Interview engineers.} Ask experienced maintainers about architectural rules, behavioral assumptions, and recurring decisions that are not adequately documented~\citep{bjornson2008knowledge}. Walking through a recent change or failure can expose knowledge that engineers routinely use but the implementation does not explicitly represent~\citep{anandayuvaraj2026failures}. Compare this account with the recovered models and investigate disagreements about what the system does or ought to do.
-\end{itemize}
-
-These techniques produce candidate representations for engineering review. Engineers must determine which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
+As DocAble grew, I became concerned that some important domain concepts remained implicit in its implementation. Agents could encounter those concepts repeatedly without recognizing that they were working with the same underlying engineering abstraction. I wanted a way to identify places where an explicit representation might improve the design.
 
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
-Repeated implementation structures offer another source of candidate models. DocAble used a primitive-density detector to identify interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such interfaces can indicate that a domain concept is being reconstructed repeatedly rather than represented explicitly. They can also be appropriate. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
+One technique I investigated was primitive density: identifying concentrations of primitive values that might collectively represent a domain concept. The detector examined interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such concentrations are not necessarily defects. They identify places worth investigating. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
 
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
-\autoref{discovering-latent-models} shows three principal dispositions. Some findings describe legitimate implementation structure, such as protocol adapters or test fixtures, and warrant no architectural change. Others call for mechanical cleanup or annotations. A smaller group may reveal missing domain concepts. In DocAble, document mutators repeatedly passed the same language and provenance information, while alt-text mutations carried recurring description and attribution state. Examining these patterns together exposed concepts worth representing explicitly. The important question was which repeated structures expressed engineering knowledge that later work should preserve, not how many primitive-heavy interfaces existed.
+During June 8--10, I repeatedly reclassified findings as I investigated them with the agents. Some concentrations of primitive values were appropriate for their purpose. Others represented concepts that deserved explicit treatment, while still others could be addressed through ordinary implementation cleanup. Protocol adapters and test fixtures often legitimately used primitive values. Other findings needed annotations or local cleanup. \autoref{discovering-latent-models} shows these three kinds of response.
 
-Giving the concept a name is only the beginning. The engineer must recover a representation that captures the underlying concept, migrate its consumers, and establish appropriate correspondence and enforcement.
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+The document mutators supplied a concrete example. Separate implementations passed a language tag and the name of the pass making the change as primitive parameters. Examining those interfaces together exposed a shared concept: a language change carrying both its intended value and its attribution. The agents introduced a \texttt{LanguageMutationSpec} record for that payload. A corresponding \texttt{AltTextMutationSpec} grouped a description, optional title, and attribution. These records made the shared concepts visible across the format-specific implementations without requiring those implementations to be combined.
 
-Suppose a module implements a state machine through scattered conditionals and complex decision rules. Investigation reveals that several functions depend on the same states and transitions, but no shared representation defines them. The engineer can recover a state-machine model with named states, permitted transitions, and the conditions governing each transition. Making this model explicit can reveal inconsistent or missing transitions, and gives engineers a concise representation for understanding the behavior and supervising future changes. The next step is to migrate the functions that previously encoded those rules independently so that they use the shared model. Agents and codemods can perform much of this migration, while tests help establish that intended behavior is preserved.
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+The migration proceeded in stages. The agents first added methods accepting the records, then changed the callers and tests to use them. They marked the replaced primitive-parameter methods obsolete and subsequently removed them. The new interfaces required the shared records, while their boundary validation rejected empty language tags or descriptions. This did not settle every policy: full language-tag validation remained a separate responsibility, and the records allowed an empty attribution field. One old method also remained because it used a null value to mean ``clear the alt text,'' which the new record did not express. That exception exposed another design decision, rather than a reason to force unlike operations into the same model.
 
-The explicit model also makes specific rules easier to enforce. Types can restrict the states that functions accept, validators can check permitted transitions, and lints can detect code that bypasses the shared representation. Later agents can reason about the system using the recovered models. Another pass over the codebase may reveal further concepts worth recovering.
-
-Recovering a model also creates an obligation to maintain its correspondence with the implementation. As agents migrate existing code to use the new representation, they can establish traceability relationships between model elements and the code that implements them. Static checks can then detect deleted or renamed implementation elements whose model references remain, while runtime traces can reveal modeled operations that are no longer observed or execution paths absent from the model. These checks help prevent subsequent changes from silently invalidating the recovered model. They do not establish semantic correctness, but they make discrepancies visible for investigation and, where appropriate, enforcement.
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+Removing the old methods prevented later callers from using those signatures, and the revised test projects built against the new interfaces. The aggregate density finding count nevertheless did not decrease during that removal stage. The recovery had made particular concepts explicit and changed how code used them; a file-level density threshold did not measure that achievement.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/discovering-models-migration-a4d6667ebf.pdf}
-\caption{\emph{Discovering latent models in an existing system.} Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.}
+\caption{\emph{Discovering latent models in an existing system.} Candidate locations require investigation, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.}
 \label{discovering-latent-models}
 \end{figure}
 
-% <!-- box-family: evidence -->
+The detector helped me find places where the implementation might contain knowledge worth representing. It did not tell me which knowledge mattered or what form its representation should take. Those remained engineering decisions. Once I had made them, agents could help construct the models and modify the code that used the newly represented concepts.
 
-% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
-\begin{quote}
-\mbox{}%
-\subsection{Field record --- Primitive-density recovery}\label{heading:field-record-primitive-density}
-
-During the June 8--10 recovery work, findings were repeatedly reclassified as engineers resolved them. Some needed annotations or mechanical cleanup; others belonged to protocol boundaries or test fixtures and warranted exemptions. A smaller group exposed shared concepts worth modeling or design decisions that needed further judgment. The dispositions included annotate, exempt, extract a model, redesign, retire, and defer for judgment. The same weak signal thus led to several remedies; a declining finding count cannot be read as a count of recovered models.
-\end{quote}
-
-A recovered model need not immediately govern execution or require previously separate implementations to be combined.
+Recovering a model need not immediately lead to changes in the implementation. Sometimes we first need a representation that lets us compare existing designs.
 
 % Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
-DocAble's four document-processing pipelines use different engines for good reasons. PDF processing often requires inferring structure that an Office document already records. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
+DocAble's four document-processing pipelines used different engines for good reasons. PDF processing often required inferring structure that an Office document already recorded. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
 
 % Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
-As a preliminary step, we introduced a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let us compare policies, explain legitimate differences, and identify choices worth reconsidering. We did not merge the engines or make the model execute their policies. As we evaluate those differences, we can revise the model to reflect our engineering decisions and determine which correspondences warrant enforcement.
+As a preliminary step, I directed the agents to introduce a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let me compare policies, explain legitimate differences, and identify choices worth reconsidering. I did not merge the engines or make the model execute their policies. In this case, Modeling preceded any decision about active alignment. I first needed to understand the differences among the implementations before deciding which differences, if any, should disappear.
 
-\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}
+\section{From Recovered Models to Enforcement}\label{heading:reconcile-the-map-and-the-territory}
 
-Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.
-
-Consider an inherited architecture wiki that no longer matches the code. Comparing the two reveals descriptions that need updating and discrepancies that may indicate defects. Verified claims can become part of a queryable model; unresolved claims remain advisory. The inset works through the judgment needed before changing either the model or the code.
+A recovered model may disagree with the implementation, with existing documentation, or with the engineer's understanding of the intended design. Before we can use it to direct or evaluate subsequent work, we must determine which representation should govern the property in question. The following inset illustrates the judgment needed before changing either the model or the code.
 
 % <!-- box-family: inset -->
 
@@ -118,51 +82,23 @@ Suppose a recovered architecture diagram appears to route every database access 
 Resolve the intended obligation and the model\textquotesingle s scope before acting. Changing code to satisfy a mistaken model can introduce a defect; changing the model merely to match defective code can hide one. Reconciliation requires deciding which explanation fits the disagreement.
 \end{bookbox}
 
-Reconciliation determines which claims need correction and which obligations should govern the implementation. Changing the implementation to satisfy those obligations is active alignment. Passive alignment then requires checks on continued correspondence; a gate can reject detected violations where enforcement is justified. Keeping the model available supports reasoning, but does not supply that check.
+Once we have established the intended property, we may discover that the implementation contains many violations of it. Immediately rejecting every violation could prevent otherwise useful engineering work. We can instead introduce enforcement incrementally.
 
 % <!-- index-def: audits-into-lints -->
 
-Even a correct rule may be unsuitable for immediate enforcement. A legacy codebase may already contain hundreds of violations. Making the rule blocking would stop development before those violations could be repaired. Instead, introduce it in three stages.
+\subsection{Introducing Enforcement into an Existing System}\label{heading:audit-drain-promote-move}
 
-% <!-- box-family: move -->
+I used the following Audit → Drain → Promote procedure when introducing new checks into DocAble:
 
-% mage-box-prefix: MAGE Move —
+\begin{enumerate}
+\item \textbf{Audit.} Introduce a check that identifies violations without yet rejecting work on their account. Examine the findings to determine whether the proposed obligation and its evaluation mechanism are appropriate.
+\item \textbf{Drain.} Direct agents to resolve the existing violations. Where necessary, revise the model or establish explicit exceptions for cases the original obligation did not adequately describe.
+\item \textbf{Promote.} Once the implementation satisfies the obligation, make the check enforceable at the appropriate boundary so that subsequent work cannot reintroduce the violations it detects.
+\end{enumerate}
 
-\begin{bookbox}{move}{Audit → Drain → Promote}
-\label{heading:audit-drain-promote-move}
-\textbf{Audit.} Run the new check without blocking commits. Record the violations it detects.
-
-\textbf{Drain.} Repair existing violations, using tests and other evidence to check that intended behavior is preserved.
-
-\textbf{Promote.} Once existing violations are resolved, make the check blocking so new violations it detects are rejected.
-\end{bookbox}
-
-Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
-
+Auditing establishes where the implementation and the proposed obligation disagree. Draining is a form of active alignment. Promoting the check establishes passive alignment for subsequent changes. Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
 
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
 The check used to discover a problem is not always suitable for enforcement. In DocAble, primitive density helped identify code worth examining, but primitive-heavy code was not necessarily wrong. Investigation revealed more specific problems that could be prevented with types, constraints, or lints. The density threshold could block a change with an internal-boundary finding, but deciding whether it warranted an exemption, cleanup, or a recovered model still required review.
 
-\section{Invest Where It Pays}\label{heading:invest-where-it-pays}
-
-Prioritize recovery where explicit structure can reduce recurring work:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Knowledge is repeatedly reconstructed.} Engineers and agents keep re-deriving the same facts from raw implementation.
-\item
-  \textbf{Recurring failures expose missing structure.} The same class of defect returns because nothing represents or enforces the obligation it violates.
-\item
-  \textbf{Consequential properties are hard to evaluate.} A property that matters cannot be checked without a representation at the right grain.
-\item
-  \textbf{Fragmentation blocks useful joins.} The facts exist, but they live in disconnected representations that cannot answer questions together.
-\item
-  \textbf{Recurring judgment is expensive enough to convert.} A repeated human decision has become stable and frequent enough to encode.
-\end{itemize}
-
-Compare the expected loss with the cost of building and maintaining a response. Frequent reconstruction may justify a shared model; cheap recurring failures may justify a lint or procedure. Consequential failures can warrant stronger evidence or prevention even before they occur. The choice depends on recurrence, consequence, detectability, reversibility, and how stable the obligation is.
-
-Consider the cost of maintaining a model as well as building it. Models drift, checks require calibration, and skills age. Build the smallest asset that resolves the recurring problem, and retire it when its value no longer justifies carrying it. \magevalue{chapter:theory} develops this economic tradeoff; the immediate decision is which inherited structure will help the next engineering task.
-
-Recovering one model is useful: a concept the system had been expressing for years gains a name, a representation, and perhaps an enforced obligation. Repeating the process changes something larger --- the environment in which subsequent engineering occurs. {[}appendix: appendix-b-brownfield-migration{]} turns this recovery process into an incremental migration procedure, with exit criteria for deciding when a recovered representation or control is ready to govern subsequent work.
+Brownfield engineering does not require us to recover a complete model of the system before changing it. We can recover the knowledge needed for the next engineering problem, reconcile it with our intent, and protect the resulting obligations as we proceed. \autoref{chapter:appendix-b-brownfield-migration} develops a practical migration procedure based on these activities.

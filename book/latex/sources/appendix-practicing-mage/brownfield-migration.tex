@@ -1,6 +1,6 @@
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
-An existing system already contains engineering knowledge and controls in its tests, configuration, documentation, permissions, and operating procedures. Brownfield adoption begins by identifying which of these a selected kind of work depends upon, then determining what must be recovered, reconciled, or enforced. The objective is not comprehensive modeling or universal enforcement, but dependable support for the work being delegated.
+An existing system already contains engineering knowledge and controls in its tests, configuration, documentation, permissions, and operating procedures. Brownfield adoption begins by identifying which of these a selected kind of work depends upon, then determining what must be recovered, reconciled, or enforced. The objective is not comprehensive modeling or universal enforcement, but dependable support for the work being delegated. Prioritize knowledge that engineers repeatedly reconstruct, properties that are difficult to evaluate, and relationships split across representations that cannot yet answer the required question together.
 
 Model coverage and enforcement are separate questions. A system may have extensive documentation with little effective enforcement, or strong tests and permissions with few explicit system models. \cref{recovering-and-extending-governance} recalls the recovery and alignment techniques developed in \magevalue{chapter:one-problem-many-models}, including \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}}; \autoref{practicing-brownfield-exits} organizes their application into four stages with exit criteria.
 
@@ -15,7 +15,17 @@ Model coverage and enforcement are separate questions. A system may have extensi
 
 Apply the four stages in \autoref{practicing-brownfield-exits} to one surface at a time. Their exit criteria describe what must become dependable before the next investment can rely on it. They are not dates in a rollout plan. A new discrepancy can send one obligation back to reconciliation while other parts of the environment continue to operate.
 
-Agents can perform much of this work. They can inventory existing representations, recover candidate models from source and configuration, construct traceability links, and compare models with their implementations, using the techniques in \autoref{4.3-brownfield-engineering:heading:recover-latent-models}. This can make brownfield migration substantially less expensive than manual reconstruction. The resulting models still need validation: an agent may misunderstand the architecture or faithfully recover a defect as though it were intended behavior. Engineers should review consequential claims and unresolved discrepancies. Where model--implementation correspondence can be checked independently through reliable analyses or tests, that evidence can reduce the need for manual review. Agreement establishes correspondence within the checks' scope, however, not that the recovered model expresses the intended design.
+Choose recovery techniques according to the knowledge the work requires:
+
+\begin{itemize}
+\tightlist
+\item \textbf{Static analysis.} Extract types, imports, calls, and configuration relationships without executing the system. A recovered dependency graph still requires interpretation of component roles before it can establish architectural boundaries~\citep{ducasse2009architecture,garcia2013groundtruth}.
+\item \textbf{Dynamic analysis.} Use traces, logs, and test results to recover observed behavior, such as a job's submission, retry, and completion transitions. Observed executions can omit important behaviors or include defects~\citep{cornelissen2009dynamic,ammons2002mining}.
+\item \textbf{Agent investigation.} Direct an agent to combine source inspection, repository search, tests, and execution traces. Require evidence for each proposed relationship and distinguish observed behavior from inferred intent.
+\item \textbf{Maintainer interviews.} Walk through a recent change or failure with experienced engineers to recover reasons and assumptions that the implementation does not record. Compare their accounts with the recovered models and investigate disagreements~\citep{bjornson2008knowledge,anandayuvaraj2026failures}.
+\end{itemize}
+
+Agents can perform much of this work, including inventorying representations, constructing traceability links, and comparing models with their implementations. \autoref{4.3-brownfield-engineering:heading:recover-latent-models} illustrates how findings from such investigations can lead to new models and controls. This can make brownfield migration substantially less expensive than manual reconstruction. The resulting models still need validation: an agent may misunderstand the architecture or faithfully recover a defect as though it were intended behavior. Engineers should review consequential claims and unresolved discrepancies. Where model--implementation correspondence can be checked independently through reliable analyses or tests, that evidence can reduce the need for manual review. Agreement establishes correspondence within the checks' scope, however, not that the recovered model expresses the intended design.
 
 {\footnotesize
 \begin{longtable}[]{@{}p{.16\linewidth}p{.36\linewidth}p{.38\linewidth}@{}}

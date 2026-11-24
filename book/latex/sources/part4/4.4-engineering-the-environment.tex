@@ -6,157 +6,45 @@
 
 \chapter{Engineering the Environment}
 
-The models and controls developed through engineering episodes become part of the environment inherited by later work. That environment must itself be engineered. It must supply agents with useful knowledge and procedures, produce evidence for accepting their work, operate reliably as work proceeds, and remain trustworthy as the system changes. These responsibilities meet in practice: the models available to an agent affect the evidence reviewers need, while validation schedules determine when that evidence can support acceptance.
+So far, we have applied Modeling and Alignment to the system we are building. We can apply them to the machinery we use to build it as well. Agents are dispatched, work is integrated, checks are executed, and failures require recovery. These activities have structures, behaviors, resource requirements, and obligations of their own.
 
-\section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}
+As DocAble grew, I encountered problems in this engineering machinery much as I encountered problems in the product. Some required new models, others required changes to the implementation, and others exposed shortcomings in the controls I had already established.
 
-The engineering environment can improve recurring work by supplying agents with better representations, procedures, tools, and context, and by enforcing selected obligations independently of their judgments. Some artifacts serve both purposes. A model may guide implementation while supplying properties to a validator; a runbook may inform an agent while invoking checks and gates that govern its actions.
+\section{Modeling Engineering Work}\label{heading:lifecycle-models-and-recovery}
 
-Distributed cognition provides a useful frame for this composition: reasoning can be performed by a system of people, representations, procedures, and artifacts rather than one isolated individual. The inset explains the connection~\citep{hutchins1995cognition}.
-
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: COGNITIVE SCIENCE -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{The GEE as a Distributed Cognitive System}
-\label{inset-distributed-cognitive-system}
-Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it~\citep{hutchins1995cognition}. In agentic engineering, models and procedures preserve knowledge outside the agent's context, tools perform operations directly, and people or agents supply the remaining judgment.
-
-The form of an external representation can also change the operations required to solve a problem~\citep{zhang1994representations}. A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
-
-A GEE adds another step. Its surrounding machinery can sometimes act on the represented property. A dependency model may help an agent understand the architecture, but a validator can also compare an observed dependency with an architectural obligation, and a gate can refuse the change. The environment therefore does not merely distribute cognition across reasoners and artifacts. For selected obligations, it can enforce what those representations express.
-\end{bookbox}
-
-Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape subsequent action~\citep{argyris1978organizational}. Governance conversion applies that distinction to engineering: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
-
-\subsection{Package Recurring Judgment}\label{heading:package-recurring-judgment}
-
-Skills preserve recurring procedures and judgment for later work. A useful skill packages the representations, examples, heuristics, decision procedures, and tools that help an agent perform a recurring task without reconstructing the practice from general knowledge. Its value depends on what a fresh agent can use, not on the package's length or file format.
-
-Recent work explores deriving reusable skills from execution traces~\citep{ni2026trace2skill}. Related techniques use execution evidence to diagnose harness defects~\citep{chen2026harnessfix} or revise the harness from observability data~\citep{lin2026agentic}. These techniques propose changes to different parts of the engineering environment; engineers still decide which procedures, assumptions, and obligations later work should inherit.
-
-% <!-- index-def: standing-context -->
-
-Delivering the packaged knowledge is its own engineering problem. Loading everything all the time is the obvious solution, and often a bad one: every rule, model, example, and failure lesson competes for attention, so a larger context can make navigation harder rather than easier. Separate the small standing context that must remain continuously salient from the richer slices retrieved when the task makes them relevant, and treat the delivery as an intervention whose effect can be measured. \textbf{Context delivery changes what the reasoner can see; by itself, it does not change what the environment permits.}
-
-\section{Evaluate the Work}\label{heading:validate-the-change-not-the-producers-story}
-
-\subsection{Establish Adequate Evidence}\label{heading:establish-adequate-evidence}
-
-Every engineering process must decide what evidence justifies accepting a change. Code review, testing, analysis, measurement, and expert judgment remain available; agentic implementation increases the rate at which the environment must use them. The obligation determines what evidence is needed. When it is settled, evaluation can ask whether the change satisfies it. When it remains uncertain---whether users want a feature, which workflow they prefer, or which tradeoff is acceptable---the evidence must instead come from experimentation. The environment can govern that experiment and preserve known constraints while the engineer learns what to require.
-
-The representation determines which judgments are feasible---what we can decide depends on what we can see. Ask what representation preserves the distinction the obligation requires and what evaluation can decide it at acceptable cost. In DocAble, pixel variance was cheap to measure but could not establish whether a low-variance image carried semantic content. Tightening the threshold could not recover information the representation omitted; that question required semantic evaluation. Conversely, a representation that makes the relevant states or relations explicit may turn an expensive judgment into a mechanical check.
-
-\textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement.
-
-For a settled obligation, the producer\textquotesingle s own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated independently of the judgment seeking admission. \textbf{For consequential changes, prefer evidence that can challenge the producer\textquotesingle s own claim rather than relying on self-report alone. Where the consequence warrants it, place admission control outside the producer\textquotesingle s ability to redefine success.}
-
-Docker\textquotesingle s reported coding workflow uses an independent reviewer with its own model invocation, a determinized test suite, and a human gate to evaluate agent-produced changes. The agents may open a pull request; they may not merge one~\citep{delapena2026fleet}.
-
-% <!-- index-def: oracle -->
-
-Software testing calls the means of deciding whether an observed result is correct an \emph{oracle}; its usefulness depends on whether its verdict addresses the intended obligation.
-
-Evidence can come from several sources. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
-
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: SOFTWARE ENGINEERING -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{The oracle problem}
-\label{inset-oracle-asymmetry}
-A longstanding difficulty in software testing is that executing a program can be much easier than deciding whether its result is correct. Testing research calls this the oracle problem~\citep{barr2015oracle}. For a sorting function, checking that the output is ordered is insufficient: an implementation that returns an empty list would pass that check. The oracle must also establish that the output contains the same values, with the same multiplicities, as the input.
-
-Complex behavior may require properties, reference implementations, metamorphic relations, models, runtime evidence, or human judgment. Agents can cheaply produce implementations and test inputs, but more candidates do not supply the criteria for accepting them. Before expanding the search, the engineer must identify evidence that can distinguish an acceptable result from a plausible but incorrect one.
-
-Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior~\citep{anthropic2026migration, carlini2026ccompiler, faulkner2026vinext, toub2026copilotrust}. Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.
-\end{bookbox}
-
-% <!-- index-def: property-test-models-the-output -->
-
-% <!-- index-def: generative-validation -->
-
-Generative validation searches for counterexamples to a property, as discussed in \magevalue{sec:constraints-sensors-validators-gates}. For sorting, generated empty lists, duplicates, and different input orders can test whether the result is an ordered permutation. A failure may reveal a law worth checking beyond the original example. A run without a counterexample still depends on which inputs the generator could reach; test count and line coverage alone do not establish that the property holds.
-
-Establishing adequate evidence for an obligation is one problem. Determining which obligations a proposed change might affect is another.
-
-\subsection{Model-Aware Change Impact}\label{heading:model-aware-change-impact}
-
-As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck. One way to reduce that burden is to determine which obligations a change might affect, then select the evidence needed to establish that they still hold. The models and traceability relationships developed through MAGE offer a basis for doing so: explicit relationships among models, implementation elements, and obligations can guide the selection of tests, analyses, and measurements.
-
-Consider a proposed increase in DocAble's worker concurrency, using the execution, memory, and latency models developed in \autoref{4.2-one-problem-many-models:heading:the-resulting-model-family}. The changed code may be confined to the executor, but its consequences extend beyond it. The execution model describes which operations can run together; the memory model constrains the resources consumed by concurrent work; and the latency model predicts how scheduling choices affect completion time. \autoref{model-aware-change-impact} follows these relationships from the proposed change to potentially affected obligations and the evidence needed to evaluate them. Correct execution order, peak memory, and latency may require different checks, even though the change originated in one part of the implementation.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
-\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
-\label{model-aware-change-impact}
-\end{figure}
-
-This approach builds on established work in software change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Its value in MAGE is that the models identify engineering questions, not merely implementation dependencies. A change to concurrency may warrant renewed memory analysis even if no memory-management code was modified. Conversely, sufficiently complete model relationships may justify omitting evaluations for obligations unaffected by the change.
-
-The limitation is the completeness of the relationships being used. A missing dependency, an outdated model, or an incorrect link between a model and its implementation can conceal an affected obligation. Model-aware impact analysis therefore supplies evidence for selecting evaluations, not a guarantee that unselected checks are unnecessary. Where the relevant relationships are incomplete or uncertain, broader validation remains appropriate. An affected obligation may also require human judgment rather than an automated check.
-
-Model-aware impact analysis extends the role of engineering models beyond directing implementation and evaluating its results. By connecting changes to the obligations they may disturb, those models can also help determine where evaluation effort is needed. The benefit grows as the rate of implementation increases, provided the cost of maintaining the relationships remains justified by the evaluation work they save.
-
-\section{Operate the Environment}\label{heading:operate-the-environment}
-
-\subsection{Lifecycle Models and Recovery}\label{heading:lifecycle-models-and-recovery}
-
-A method has to survive terrible, horrible, no good, very bad days, too. Full disks, conflicted branches, vanished agents, stalled queues, flaking tests---the quotidian catastrophes of software engineering. Engineers often know how to recover, but that knowledge may live only in someone\textquotesingle s head, where an autonomous agent cannot reliably reach it. Do not neglect operations when applying Modeling and Alignment.
-
-Lifecycle models represent healthy progress and important failure states. Events make consequential transitions observable. Runbooks preserve sanctioned reactions, including where judgment remains. Metrics expose the quantities needed to judge whether the loop is healthy. Together they support an operating loop: recognize the state, surface the right reaction, take the appropriate action, and observe what happened next.
+A method has to survive terrible, horrible, no good, very bad days, too. Full disks, conflicted branches, vanished agents, stalled queues, flaking tests---the quotidian catastrophes of software engineering.
 
 % Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: incident
-A lifecycle model starts with the healthy path of a recurring activity --- how a bug moves from reported to fixed, how an agent moves from dispatched to landed --- then names the failure states that matter and the sanctioned recovery from each. Pair prohibitions with recovery paths. "Never use this destructive merge command" leaves a stuck agent with a prohibition and no exit; "when this state occurs, do not use X; use Y because it preserves the already-applied work" supplies the missing path. In one DocAble incident, the orchestrator aborted a partly completed cherry-pick sequence and discarded earlier successful picks. The resulting rule specified \texttt{git cherry-pick --quit} for leaving that sequence without undoing those picks.
+In one DocAble incident, my orchestrating agent attempted to recover from a partly completed cherry-pick sequence. It aborted the sequence, discarding earlier successful picks along with the unsuccessful one. I needed the agent to distinguish abandoning the current operation from undoing work that had already succeeded.
+
+% Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: incident
+The resulting rule specified \texttt{git cherry-pick --quit} for leaving the sequence without undoing the earlier picks. Unlike \texttt{--abort}, this operation cleared the sequencer state while preserving the commits already applied. It did not resolve the conflict; that work remained. The automated cherry-pick procedure used \texttt{--quit} when it encountered a conflict, preserving the successful work for subsequent recovery.
+
+The same modeling technique we used for remediation jobs in \magevalue{chapter:modeling} applies to engineering work. We can represent the states in which an assignment or integration operation may find itself, the transitions available from each state, and the properties that recovery must preserve. In this case, the important distinction was between work already completed successfully and the operation that had encountered a failure.
 
 % <!-- index-def: deterministic-firing -->
 
-Operation improves further when an important transition can make the right procedure arrive at the right moment. Do not rely on an actor to remember to inspect the lifecycle, notice that a transition happened, retrieve the right procedure, and invoke it. Where a recurring event is mechanically observable and a standard response is useful, bind the reaction to the event. A mechanical trigger does not require a mechanical response: \textbf{the firing can be deterministic while the payload still contains judgment.} An agent reaches a context threshold, and a hook deterministically requests a handoff the agent must still compose. A deployment fails a health check, and the event opens a recovery path an engineer must still judge. Automate the arrival of the decision procedure, not every decision.
+Not every recovery decision needs to be made mechanically. I could establish a procedure for investigating a particular failure, specify when that procedure should be invoked, and leave the agent to exercise judgment within it. A mechanically observable event could trigger the procedure without determining its every step. For example, reaching a context threshold can cause a hook to request a handoff that the agent must still compose. Automate the arrival of the decision procedure, not every decision.
 
-% <!-- index-def: runbook -->
-
-% <!-- index-def: deterministic-vs-judgment-split -->
-
-Runbooks preserve how an experienced engineer reasons through a recurring situation. Their steps can require different kinds of decisions:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Execute} when a step is mechanically determined and can become an executable operation.
-\item
-  \textbf{Delegate} when a step requires bounded judgment. Supply the relevant state, choices, criteria, and required output.
-\item
-  \textbf{Escalate} when a decision requires human judgment or authority. Prepare the evidence and surface the decision explicitly.
-\end{itemize}
-
-Where possible, surround a step requiring judgment with deterministic work. Prepare the data mechanically before the decision, then execute and measure mechanically afterward. Preserve the rationale separately from the execution trace. The judgment remains judgment, but its inputs and consequences become easier to replay and check. Runbooks can drift, so their procedures need the same maintenance discipline as other engineering models.
-
-% <!-- index-def: measure-one-level-deeper -->
-
-As in \magevalue{sec:interlude-one-problem-many-models}, operational measurement should expose the quantity that explains the problem rather than a convenient proxy~\citep{ousterhout2018}. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
-
-The validation machinery itself also needs operational management.
+The incident had revealed an inadequacy in my engineering environment rather than in DocAble's remediation software. I responded in much the same way: identify the distinction the existing implementation failed to preserve, represent it explicitly, and establish a mechanism that subsequent work could use.
 
 % <!-- point: validation-placement-became-a-factory-design-decision | A validation bottleneck prompted independent scheduling of broad checks, with cheap checks before merge and full validation before deployment; the redesign traded detection delay and attribution cost against integration cost. -->
 
-\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}
+\section{Improving the Execution of Engineering Work}\label{heading:when-validation-becomes-the-bottleneck}
 
-Model-aware change-impact analysis addresses which evaluations a change requires. A separate problem is how to execute those evaluations without unnecessarily delaying engineering work. Even when the right checks have been selected, they consume time and computational resources. Running them synchronously can delay dispatch of subsequent development work---underutilizing agent capacity---while running them asynchronously can overwhelm the available infrastructure. The engineering environment must therefore determine when evaluations run, how they share resources, and which results must block further work.
+As I increased the number of agents developing DocAble, the engineering environment encountered resource problems of its own. Agents could produce changes faster than some of the machinery could evaluate them. One particularly instructive example concerned the scheduling of validation.
 
-% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report
-DocAble's agents eventually outpaced the infrastructure that checked their work. Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
 
-An initial asynchronous arrangement launched expensive checks in the background after each merge. That removed the wait before the next merge, but it did not reduce the work being requested. Each merge still started another expensive run. A burst of merges therefore launched a burst of validation workers and overloaded the host. Moving validation off the critical path had exchanged waiting for resource contention.
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+An initial asynchronous arrangement launched expensive checks in the background after each merge. Making validation asynchronous reduced the time an agent spent waiting for it. It did not reduce the amount of validation work the host performed. As more agents completed changes, more validation runs competed for the same resources and overloaded the host. I had changed when the work occurred without addressing how much work occurred.
 
-% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
-The redesign separated broad validation from the arrival of individual changes, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks were scheduled every thirty minutes against new commits on the main branch, in an isolated worktree, with a lock permitting only one sweep at a time. Several merges could therefore be evaluated together. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+I therefore separated the scheduling of the expensive validation sweep from the arrival of individual merges. Several changes could be examined by one sweep, and a lock prevented overlapping sweeps. Inexpensive checks remained synchronous at the merge boundary, while broader validation ran separately, as \autoref{docable-validation-scheduling} shows.
 
-The arrangement distinguishes three enforcement boundaries. Per-merge checks protect rapid integration, scheduled checks examine the accumulated changes without blocking each merge, and predeployment validation protects the released artifact. Asynchronous evaluation does not mean that its results are ignored: a scheduled failure can still interrupt subsequent work. The engineer chooses which obligations require immediate evidence and which can tolerate delayed evaluation, taking account of the consequences of failure.
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+Broad repository checks were scheduled every thirty minutes against new commits on the main branch, in an isolated worktree. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
 
 \begin{figure}[htbp]
 \centering
@@ -166,70 +54,23 @@ The arrangement distinguishes three enforcement boundaries. Per-merge checks pro
 \label{docable-validation-scheduling}
 \end{figure}
 
-The gain came at the cost of delayed defect detection and harder diagnosis. A defect could remain on the main branch until the next sweep found it. If several changes had merged since the last successful check, the failure had to be traced to one of them. The appropriate schedule therefore depends on how long the project can tolerate a broken main branch and how effectively the environment can diagnose and repair it. The same bottleneck reasoning used for document processing in \magevalue{sec:interlude-one-problem-many-models} applies to the engineering environment itself: measure where work accumulates, distinguish latency from aggregate resource demand, and account for the consequences of changing the execution schedule.
+This arrangement reduced contention, but it also changed when I could discover certain defects. A change could be integrated before the next broad validation sweep, and several intervening changes could make a subsequent failure harder to localize. I therefore had to decide which obligations required evidence before integration and which could be evaluated later. The per-merge, scheduled, and predeployment checks supplied evidence at different boundaries; a scheduled failure could still interrupt subsequent work.
 
-Other stalls require different diagnoses. Before adding another mechanism, establish what kind of problem you have.
+I had encountered a related engineering problem while redesigning document processing in \magevalue{sec:interlude-one-problem-many-models}. In both cases, the event that initiated work did not necessarily define the best way to execute that work. Separating the arrival of work from its execution schedule gave me additional design choices.
 
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: PRACTICE -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{When work stalls, diagnose before adding machinery}
-\label{inset-diagnose-before-machinery}
-Repeated failure does not always call for another control. Before you build one, ask which part of the loop is limiting the work. \autoref{stalled-work-diagnosis} distinguishes four possible limits and the changes each calls for.
-
-{\footnotesize
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.18}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.43}}@{}}
-\caption[Diagnosing stalled work]{\emph{Diagnosing stalled work.} Four possible limits on engineering work and the changes each calls for.}\label{stalled-work-diagnosis}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Limit
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-The question
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-If that is the gap
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Searcher & Can the available intelligence find a good candidate? & Change the foundation model, tools, decomposition, or search strategy. \\
-Model & Is consequential structure missing from the representation? & Make it explicit. \\
-Oracle & Can the environment tell good candidates from bad? & Strengthen the evidence, validation, or simulation. \\
-Target & Do we know what "good" even means? & Stop building and learn. \\
-\end{longtable}
-}
-
-A stronger reasoner does not settle an unknown requirement; another validator does not supply a missing abstraction; more modeling cannot answer a product question whose answer must come from users or deployment.
-\end{bookbox}
-
-\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}
-
-As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate. Keeping this engineering capital useful requires maintenance. A model may drift from the implementation, while a gate continues to enforce an obsolete policy. Noisy controls and broken evidence pipelines can make their verdicts difficult to trust; skills can preserve procedures whose assumptions have expired. Engineers therefore need to observe, reconcile, repair, and sometimes retire these structures, just as they do for the system those structures govern.
+\section{Evaluating and Revising the Controls}\label{heading:engineering-capital-depreciates}
 
 % Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
-An audit of DocAble's models found that ten providers appeared to have the required uniqueness checks. Every test passed. Closer inspection showed that all ten checks examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to each provider. Duplicate source records could therefore overwrite one another without triggering a failure. The checks established a true property of the wrong collection.
+An audit of my engineering models appeared to show that ten providers had the required uniqueness checks. Every check passed. Unfortunately, all ten were checking the wrong thing.
 
 % Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
-The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This suggests a general maintenance practice: \textbf{construct a violation of an obligation, run the actual check, and establish that it detects the violation.} Where enforcement is intended, also test whether the resulting verdict prevents the work from proceeding. A passing control should have evidence that it can fail for the right reason. In \href{3.3-constraints-sensors-validators-gates.html}{\magevalue{sec:constraints-sensors-validators-gates}}, the consumer mistook an incomplete validation for a clean result; here, the uniqueness checks examined the wrong records.
+Each check examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to its provider. Two source records could claim the same identifier and silently overwrite one another as the provider's catalog was constructed. Checking the shared graph could not establish uniqueness in those original records. The checks established a true property of the wrong collection.
 
-Audit models, mechanisms, procedures, and evidence pipelines together:
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This gave us evidence that the revised check would detect the violation it was intended to find. Where an obligation is enforced at an admission boundary, we can also test whether the detected violation prevents admission.
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Does it still describe or govern the intended system?} Check for changed assumptions, obsolete obligations, and evidence whose revision or operating conditions no longer match the work.
-\item
-  \textbf{Who uses it, and for what decision?} A representation may support reasoning, queries, generation, or checking. Where enforcement is intended, verify that the mechanism still consumes the current model and acts on violations.
-\item
-  \textbf{Does its benefit justify its cost?} Consider maintenance effort, false alarms, delayed work, and the consequence and recurrence of the failure it addresses.
-\item
-  \textbf{Should it be repaired, replaced, or retired?} Preserve useful knowledge while removing machinery whose original purpose no longer warrants its upkeep.
-\end{itemize}
+This is closely related to mutation testing and fault injection. We deliberately introduce a defect to evaluate the machinery responsible for detecting or handling it. The subject of evaluation is now the engineering control rather than the product it ordinarily evaluates. In \magevalue{sec:constraints-sensors-validators-gates}, the consumer mistook an incomplete validation for a clean result; here, the uniqueness checks examined the wrong records.
 
-Retirement belongs to the same discipline as governance conversion. \magevalue{sec:brownfield-engineering} applies the same test when deciding what inherited structure to recover.
+As the system changes, the representations and mechanisms used to evaluate it can become inadequate. A check may continue to execute successfully while no longer examining the property it was intended to establish. Maintaining the engineering environment therefore requires evaluating the correspondence between its controls and the obligations they enforce, just as maintaining the product requires evaluating its correspondence with engineering intent.
+
+These episodes illustrate that Modeling and Alignment apply to the engineering environment as well as to the product. The environment has its own architecture, behavior, resource requirements, and obligations. We can model these properties, evaluate the environment's operation, and revise its implementation as we discover deficiencies. Improvements to this environment can then benefit many subsequent changes to the product.

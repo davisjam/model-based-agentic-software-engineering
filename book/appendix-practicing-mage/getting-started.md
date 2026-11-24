@@ -36,6 +36,8 @@ The choice of modeling approach is also an economic decision. More explicit sema
 
 ### Establish the Delegation Boundary {#establish-the-delegation-boundary}
 
+Distinguish choices that follow mechanically from a model from choices that require judgment. Generate a mechanically determined result where a suitable generator exists. When several implementations satisfy the obligations, delegate the choice among them. When experience reveals a recurring decision that later work will face again, consider preserving it in a model, procedure, or control rather than reconstructing it each time.
+
 A structured work order can preserve the intent governing one change: the requested behavior, relevant constraints, acceptance criteria, and links to longer-lived system models. It need not duplicate those models. Nor must a completed work order remain synchronized with the evolving product; it records the intent and evidence associated with a particular engineering decision. Current architectural models make different claims and require maintenance as the system changes.
 
 For the first trial, state what the agent may change, what evidence will support acceptance, and what should stop the work. Separate the producing agent’s completion report from the evidence used to evaluate it. Existing tests, analyses, measurements, and review procedures may already provide much of that evidence. When they do not settle a consequential question, name the remaining judgment and who must exercise it. Keep an escalation path for a mistaken premise, an unavailable dependency, or an obligation the environment cannot adequately evaluate.

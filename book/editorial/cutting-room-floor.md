@@ -31625,3 +31625,1293 @@ The result is a stronger model substrate for subsequent engineering work.
 ```latex
 Price upkeep as well as construction.
 ```
+
+
+## 2026-11-24 — Chapter 4 dynamics and episode revision
+
+Source revision: `db897d1f5110d96a528e4d00a06b5dccfe9c3204`. User packets `ea045243-284c-4079-9626-d204c32bbace` and `1ca854de-19a8-43f2-977f-2457ab609658`; latter supplies precise replacements. Original passages below preserve the cuts and their citations. Distributed cognition moves to Chapter 2; organizational learning and the oracle example to Chapter 3; practical procedures and diagnostics to Appendix B; the fifth performance-counter distinction to Appendix A. General amplification already taught in Chapter 6 is not repeated as another table. Figure 4.4 and MAGE Move styling leave Chapter 4. Historical evidence remains in the ignored evidence archive.
+
+### `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex` — original lines 3–3
+
+Section: `opening`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+An existing system already contains engineering knowledge and controls in its tests, configuration, documentation, permissions, and operating procedures. Brownfield adoption begins by identifying which of these a selected kind of work depends upon, then determining what must be recovered, reconciled, or enforced. The objective is not comprehensive modeling or universal enforcement, but dependable support for the work being delegated.
+```
+
+### `book/latex/sources/appendix-practicing-mage/brownfield-migration.tex` — original lines 18–18
+
+Section: `\subsection{Audit, Synchronize, Govern, Extend}\label{heading:audit-synchronize-govern-extend}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Agents can perform much of this work. They can inventory existing representations, recover candidate models from source and configuration, construct traceability links, and compare models with their implementations, using the techniques in \autoref{4.3-brownfield-engineering:heading:recover-latent-models}. This can make brownfield migration substantially less expensive than manual reconstruction. The resulting models still need validation: an agent may misunderstand the architecture or faithfully recover a defect as though it were intended behavior. Engineers should review consequential claims and unresolved discrepancies. Where model--implementation correspondence can be checked independently through reliable analyses or tests, that evidence can reduce the need for manual review. Agreement establishes correspondence within the checks' scope, however, not that the recovered model expresses the intended design.
+```
+
+### `book/latex/sources/appendix-practicing-mage/measuring-mage.tex` — original lines 63–63
+
+Section: `\subsection{Evaluating the Engineering Environment}\label{heading:evaluating-the-engineering-environment}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Correspondence alone does not establish that the model expresses the right requirement, as \autoref{3.2-models-and-the-semantic-gap:heading:agreement-is-not-correctness} explains. Check the machinery as well: a validator may inspect the wrong artifact, or a gate may fail to act on a finding. These failures undermine both acceptance and the metrics used to evaluate it.
+```
+
+### `book/latex/sources/appendix-practicing-mage/measuring-mage.tex` — original lines 69–69
+
+Section: `\subsection{Diagnosing Changes in Performance}\label{heading:diagnosing-changes-in-performance}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Changes in engineering outcomes should prompt investigation of both the work and the machinery supporting it. Declining throughput may reflect validation latency, queueing, or increased human intervention. More escaped defects may indicate gaps in model coverage, ineffective checks, or enforcement failures. Rising engineering effort may reflect repeated reconstruction, difficult review, or recovery work. Conversely, additional controls and a larger support codebase do not necessarily indicate improvement; their costs and interactions must be considered.
+```
+
+### `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex` — original lines 44–45
+
+Section: `\subsection{Keep the Checking Process Operational}\label{heading:keep-the-checking-process-operational}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Validation has its own operating costs. Cheap checks can run synchronously at integration boundaries, providing immediate feedback and preventing selected defects from entering the main branch. More expensive analyses may run periodically or before release. The choice trades feedback latency against computing cost and the risk of admitting work before broader evidence is available. A background check reduces the time an engineer waits, but does not necessarily reduce the work performed.
+```
+
+### `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex` — original lines 47–47
+
+Section: `\subsection{Keep the Checking Process Operational}\label{heading:keep-the-checking-process-operational}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+DocAble encountered this tradeoff when an expensive validation sweep ran after every merge. Bursts of completed work produced bursts of validation, overloading the host despite asynchronous execution. The revised arrangement gave the sweep an independent schedule and a lock, separating its frequency from merge arrivals and preventing overlapping runs. Cheap merge checks remained synchronous, while broader checks continued before release. Periodic validation reduces coupling between merge throughput and validation cost, but leaves an interval during which some defects may remain undetected.
+```
+
+### `book/latex/sources/part4/00-part-intro.tex` — original lines 13–13
+
+Section: `\subsection{Key Ideas}\label{heading:the-mage-cycle}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Engineering rarely proceeds from a complete model to a finished implementation. Engineers learn as they work: implementations reveal missing requirements, analyses challenge assumptions, and failures expose decisions that should have been made explicit. Models and controls must therefore evolve with the system. Consequential lessons can become part of the environment inherited by subsequent work.
+```
+
+### `book/latex/sources/part4/00-part-intro.tex` — original lines 15–15
+
+Section: `\subsection{Key Ideas}\label{heading:the-mage-cycle}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\emph{Model → Realize → Evaluate}
+```
+
+### `book/latex/sources/part4/00-part-intro.tex` — original lines 20–20
+
+Section: `\subsection{Key Ideas}\label{heading:the-mage-cycle}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+This chapter follows those decisions through several engineering episodes. \cref{chapter:4.1-the-dynamics-of-mage} examines how Modeling, Realization, and Evaluation interact as a system evolves. \cref{chapter:4.2-one-problem-many-models} follows one engineering problem through several related models, while \cref{chapter:4.3-brownfield-engineering} examines how to recover and govern knowledge in existing systems. Finally, \cref{chapter:4.4-engineering-the-environment} considers how to equip, evaluate, operate, and maintain the environment supporting this work. \autoref{mage-in-practice-map} provides a map of these activities.
+```
+
+### `book/latex/sources/part4/00-part-intro.tex` — original lines 25–25
+
+Section: `\subsection{Key Ideas}\label{heading:the-mage-cycle}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\caption{\emph{MAGE in practice.} Engineering proceeds through repeated Modeling, Realization, and Evaluation. This chapter develops four complementary activities: establishing and revising alignment, developing models as new questions arise, recovering and governing knowledge in existing systems, and maintaining the engineering environment. The activities overlap; their results inform subsequent work.}
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 1–3
+
+Section: `opening`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% mage-auto-heading: alignment-changes-the-system
+% mage-auto-heading: establish-a-kernel-before-expanding
+% mage-auto-heading: greenfield-and-brownfield-mage
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 12–12
+
+Section: `\chapter{The Dynamics of MAGE}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The models and controls established for one change become part of the environment for the next. An engineer may introduce a model to guide a transformation, then retain it to protect the resulting system against later changes. A failed implementation may expose an obligation that was never represented, while a measurement may show that a model omitted an important interaction. Engineering therefore involves revising models and controls as well as using them.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 14–14
+
+Section: `\chapter{The Dynamics of MAGE}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Three ideas help organize that work. Alignment can establish conformance with modeled obligations or preserve it through subsequent changes. Engineers can introduce new models incrementally while an alignment kernel protects properties already brought under governance. Models can also emerge from implementation and investigation rather than being specified completely in advance.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 16–16
+
+Section: `\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 18–18
+
+Section: `\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Alignment can establish correspondence with a model or preserve it as the system changes. These two modes are active and passive alignment, illustrated in \autoref{active-passive-alignment}.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 27–27
+
+Section: `\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+In active alignment, an engineer may deliberately introduce a mismatch between the models and the implementation. Sometimes we \emph{want} the model and the code to disagree. A new model expresses an obligation that the existing system does not yet satisfy. Rather than weakening the model to describe the current implementation, the engineer directs agents to change the system until it conforms. The environment evaluates the resulting work against the obligation, exposing remaining gaps for further correction. This process can also begin when an existing obligation is found to be violated; the essential feature is that the implementation changes to satisfy the model.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 29–33
+
+Section: `\section{Alignment Changes the System}\label{heading:alignment-changes-the-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Once the system satisfies the obligation, the same models and alignment mechanisms can serve a different purpose. Passive alignment evaluates subsequent changes against the established obligations, constraining or refusing changes that would violate them. The engineer need not prescribe how each change is implemented, provided the result remains acceptable. Models and checks introduced to direct one transformation thus become engineering capital when subsequent work benefits from them.
+
+This matters because active alignment is not necessarily behavior preserving. Asking an agent to make a state machine explicit, replace an architectural boundary, separate storage from computation, or satisfy a new ownership model may require substantial changes to the realization. Those changes may satisfy the new model while damaging some other property that has not yet been made visible to the environment. That possibility creates an ordering problem.
+
+\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 37–37
+
+Section: `\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\magevalue{chapter:modeling} organized models by the properties they represent. The kernel tells us which properties to protect first: those that an upcoming transformation must preserve. We can then expand the governed surface under those existing constraints (\autoref{alignment-kernel}).
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 50–50
+
+Section: `\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Cheap implementation changes this calculation. Agents can rapidly explore alternatives and carry out substantial transformations, but that speed does not make the consequences of an incorrect transformation inexpensive. Nor does every uncertainty justify a model or control. Where failure is cheap and reversible, exploratory implementation may provide better information than modeling in advance. Where a transformation threatens properties on which the system already depends, those obligations should enter the kernel before the transformation proceeds. The objective is not to model everything first, but to protect what the next change cannot safely put at risk.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 52–52
+
+Section: `\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A newly aligned model can join the protected environment for the next episode. Adoption therefore proceeds incrementally; it does not require a complete model of the system before governance begins.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 54–54
+
+Section: `\section{Establish a Kernel Before Expanding}\label{heading:establish-a-kernel-before-expanding}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The kernel should grow only while additional models justify their cost. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the properties that subsequent changes must preserve are adequately protected.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 56–56
+
+Section: `\section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 58–58
+
+Section: `\section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Incremental adoption is easiest to see in a brownfield system. We already have a working system. Engineers can observe it, identify consequential properties, induce models from the implementation and their own knowledge, actively align the system where correspondence is missing, and retain the resulting models and mechanisms in the GEE. The governed surface grows around a system that was already running.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 60–73
+
+Section: `\section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A greenfield project might appear to invite the opposite strategy: construct the models first, align implementation to them, and only then allow the system to emerge. That is sometimes appropriate when obligations are already well understood. It is not the general MAGE prescription.
+
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+Software changes because requirements are incomplete, abstractions prove wrong, and interactions become consequential only after something runs. A specification can constrain implementation choices without eliminating uncertainty about which choices should ultimately be fixed. Sometimes we learn more by waiting to decide. Engineers can use exploratory implementations to expose missing requirements, useful abstractions, resource constraints, and assumptions that were invisible on paper, then decide what should become explicit structure. The parallel document-format implementations in \hyperref[3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement]{\magevalue{sec:models-and-the-semantic-gap}} illustrate this route to Modeling: they let me investigate common structure before deciding what should be shared.
+
+Modeling may therefore precede implementation, follow it, or develop alongside it. A known resource bound may belong in the alignment kernel before a transformation begins; a missing architectural relationship may become visible only after several implementations expose it. The sequence matters less than identifying which properties must be preserved and what evidence is needed before accepting the next change.
+
+\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}
+
+Agentic implementation makes this strategy unusually cheap. In that setting, even vibe coding has a legitimate engineering role: it can serve as a kind of 3D printer for software, rapidly realizing a loose specification so that engineers can learn about the system they actually need. The mistake is not using cheap implementation. The mistake is confusing an exploratory realization with a sufficiently governed one.
+
+An exploratory implementation can become a production system. Engineers can recover models from the prototype, decide which properties must be preserved, and actively align the implementation with those obligations. Alternatively, they can use what the prototype taught them to construct a new implementation against explicit models. Either route is legitimate. Before a system is relied upon, however, its consequential properties need more than a successful demonstration: they need adequate evidence and, where justified, mechanisms that preserve them through subsequent changes.
+
+Cheap implementation has another consequence: agents can produce unnecessary complexity at extraordinary speed. In my experience, coding agents readily introduce abstractions, architectural layers, and mechanisms that are reasonable in isolation but inappropriate for the system at hand. A design pattern may be sound, yet add more machinery than the problem warrants; a general solution may accommodate cases the system will never encounter. Empirical studies of AI-generated changes identify overengineering and poor contextual fit as reasons for rejection or reversion~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Agents can also explain and defend these choices convincingly. The engineer must judge whether the proposed structure fits the actual requirements, existing architecture, and likely evolution of the system. Parsimony is therefore an active engineering responsibility: ask whether the design works, then ask whether it needs to be that complicated.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 77–77
+
+Section: `\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A useful rule is to distinguish three kinds of decisions. If a choice follows mechanically from an established model, generate it rather than asking an agent to reason it out repeatedly. If several implementations satisfy the obligations, delegate the choice and let the agent explore them. If experience reveals a consequential decision that later work will face again, preserve it in the engineering environment. That may mean recording a model, adding a constraint, or establishing a check. The point is not to eliminate judgment, but to spend it where it is needed rather than repeatedly making the same decision.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 79–79
+
+Section: `\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- print-keep-with-next: 8 -->
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 81–81
+
+Section: `\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+These decisions become more frequent as agents accelerate implementation. The increased rate of work also changes what engineers can learn from experience, through three related forms of amplification (\autoref{phenomena-amplification}).
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 83–117
+
+Section: `\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.25}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.27}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.48}}@{}}
+\caption[Three forms of amplification]{\emph{Three forms of amplification.} Faster implementation creates opportunities to explore alternatives, refine intent, and recognize related observations.}\label{phenomena-amplification}\tabularnewline
+\toprule\noalign{}
+Phenomenon & What changes & Engineering opportunity \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Phenomenon & What changes & Engineering opportunity \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Implementation amplification & Alternatives become cheaper to realize & Implement, measure, and reject designs that previously cost too much to try. \\
+Comprehension amplification & Intent can be refined through rapid trials & Use working software to expose misunderstandings and revise the representation. \\
+Connection amplification & Related observations occur closer together & Recognize shared causes, missing relationships, or architectural gaps. \\
+\end{longtable}
+}
+
+You can only learn from what you can observe. A change can satisfy its functional goal while worsening performance, security, or maintainability. Fast implementation therefore increases the importance of measuring beneath the visible outcome.
+
+In DocAble, related failures sometimes arrived quickly enough that what first appeared to be separate defects became recognizable as symptoms of a missing architectural concept. The shared relationship became a system model, which in turn enabled static analyses that prevented several classes of failure. Speed had changed what the engineer could see.
+
+The engineer still judges which alternatives are worth exploring and which apparent connections matter. When experience reveals a recurring lesson, governance conversion preserves it in the environment so that later work can use the resulting representation, procedure, or control.
+
+% <!-- box-family: move -->
+
+% mage-box-prefix: MAGE Move —
+
+\begin{bookbox}{move}{Governance conversion}
+\label{heading:move-governance-conversion}
+When a recurring failure, repeated judgment, or newly discovered relationship warrants preservation, record it in durable engineering structure: a model, evidence, a procedure, or an enforced obligation. Establish how subsequent work will use it. The engineer decides what deserves preservation; governance conversion makes the resulting decision available beyond the episode in which it arose. \magevalue{sec:governance-conversion} develops the move in full.
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex` — original lines 120–154
+
+Section: `\section{What Cheap Implementation Changes}\label{heading:what-cheap-implementation-changes}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% <!-- index-def: specification-driven-development -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Spec-driven development and engineering through models}
+\label{inset-sdd-engineering-through-models}
+\textbf{Spec-driven development (SDD)} provides workflows for organizing implementation and evaluation around specifications. These workflows can support MAGE, but do not replace its broader concern with modeling consequential properties and enforcing selected engineering obligations as a system evolves.
+
+In SDD, explicit specifications guide agentic implementation and evaluation. The tools organize that work in different ways~\citep{agarwal2026sddpractice}. GitHub's Spec Kit argues for specifications as primary artifacts from which code is derived~\citep{githubspeckit2026sdd}. OpenSpec preserves capability specifications while recording proposed and completed changes; Conductor combines shared project context with specifications and plans for individual changes~\citep{openspec2026concepts, ballinger2025conductor}. Specifications can evolve as implementation and operating experience expose missing requirements.
+
+Test-driven development (TDD) offers a useful analogy: its test → implement → refactor cycle organizes programming, while the team still has to decide how to evaluate interactions and the assembled system~\citep{fowler2023tdd}. TDD is also a form of specification-first development: tests express selected requirements as executable checks before implementation. The implementation remains free to change as long as it satisfies those checks. Tests necessarily specify only selected inputs and properties. An SDD workflow similarly contributes to engineering a system without settling every question about its representations, obligations, and evidence.
+
+% Evidence: E25 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E25.md | kind: author-account
+My practice in building DocAble often followed a different sequence. I first asked agents to implement working functionality, using tests to establish that particular behaviors worked. Once I had enough implementation to understand the problem better, I asked agents to recover explicit models of the system’s structure and behavior. I then revisited the tests: did they actually check the obligations those models expressed? Some tests needed stronger assertions, others needed additional cases, and some obligations called for different forms of analysis or enforcement. This was not test-driven development in the usual temporal sense. Implementation helped discover what needed to be modeled; the models then helped determine what the tests needed to establish.
+
+\end{bookbox}
+
+\autoref{agentic-engineering-cycle} brings these recurring activities together. Alignment operates throughout the work, while governance conversion can preserve a consequential lesson wherever it arises.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/agentic-engineering-cycle.pdf}
+\caption{\emph{Agentic engineering through models.} Modeling, realization, and evaluation recur as a system evolves. Alignment operates throughout; governance conversion can make a consequential lesson durable during any activity.}
+\label{agentic-engineering-cycle}
+\end{figure}
+
+The engineers supervising this process do not begin without understanding. They had enough understanding to state the problem, write the loose specification, judge the prototype, and recognize what it gets wrong. The task is to move consequential parts of that understanding out of human memory and into explicit representations that agents and the engineering environment can use. Because agents can perform both implementation and much of the mechanical work of model induction quickly, this transition need not be a long separate modeling phase.
+
+Leave degrees of freedom open while variation produces useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the implementation to it. The next episode follows an existing system whose memory failure prompted a new residency model. That model changed which execution designs were worth considering, while later measurements forced further revisions.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 10–10
+
+Section: `\chapter{One Problem, Many Models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A large PowerPoint presentation exposed a memory problem in DocAble. The system handled ordinary documents, but this input exceeded the worker\textquotesingle s memory budget. I needed to understand why memory consumption grew with document size before deciding how to change the implementation.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 12–16
+
+Section: `\chapter{One Problem, Many Models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Several familiar techniques were available: reduce the working set, separate structure from media, partition execution, or change where data resides. Each could reduce memory consumption, but each would also affect other properties of the system. The engineering question was which relationship needed to change.
+
+The initial problem was memory exhaustion. Later changes raised questions about latency, throughput, and execution cost. I did not begin with a plan to construct a family of models. Each model emerged because an observed failure or a proposed improvement exposed a relationship worth understanding.
+
+We follow this episode in three parts. First, a model of media residency changes how the document is represented in memory. That change then permits a reconsideration of execution boundaries and exposes new questions about latency and cost. Finally, measurements challenge the resulting models, while selected obligations become part of the engineering environment.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 28–28
+
+Section: `\subsection{One Document, One Worker}\label{heading:one-document-one-worker}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\caption{\emph{Three stages of DocAble\textquotesingle s document processing architecture.} (a) Initially, one worker retained the complete document, including its media. (b) Page chunking reduced the working set per worker, but each chunk still retained its media. (c) Skeletonization separated document structure from media, retaining only structure and references in worker memory while streaming media on demand. Chunking changed the execution unit; skeletonization changed the residency requirement.}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 36–36
+
+Section: `\subsection{One Document, One Worker}\label{heading:one-document-one-worker}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable. The resulting architecture worked on ordinary inputs. Larger documents exposed the omission. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 38–38
+
+Section: `\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 41–44
+
+Section: `\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+DocAble\textquotesingle s response was ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b).
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The new representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 56–57
+
+Section: `\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The 250 MB presentation made me question the tradeoff itself. Most of the file consisted of media, but many remediation operations needed only the document\textquotesingle s structure. Why was the worker retaining all that media?
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 59–63
+
+Section: `\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+That question led to a different representation rather than another reduction in chunk size.
+
+\subsection{A New Class of Input}\label{heading:a-new-class-of-input}
+
+A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 104–104
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+While this architecture was being developed, agents sometimes proposed removing operations or state that looked expensive but were essential to correct remediation. The fixtures available at the time would not necessarily have exposed every resulting semantic failure. The engineering model supplied a distinction the surface objective did not: which relationships the system depends on, and which resource costs follow from the current realization. Agents could use that structure to correct their account of the system before changing it.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 106–106
+
+Section: `\subsection{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The model also let me judge which relationships an optimization had to preserve while the realization changed faster than I could reconstruct its behavior from code and tests.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 110–110
+
+Section: `\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 112–112
+
+Section: `\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+An end-to-end measurement says whether the outcome moved. It does not say why it moved. Peak worker memory is the outcome; media residency is the mechanism that produces it. A model of the mechanism answers the further question: which relationship generated the improvement, and whether that explanation is compatible with the work the system must still perform.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 114–115
+
+Section: `\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+Measurement tests the residency model\textquotesingle s explanation. A peak-memory figure reports what happened on the inputs in one sweep; the model predicts which changes to those inputs should change the result. Comparing the two can expose a missing relationship, as a later sweep did in this case. The engineer needs both: measurements to test the account, and an account of memory growth to assess the next unfamiliar document.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 117–117
+
+Section: `\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Ousterhout puts the same instruction compactly: measure one level deeper~\citep{ousterhout2018}. One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 119–119
+
+Section: `\subsection{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 121–121
+
+Section: `\subsection{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Bringing memory under governance did not make memory disappear. It changed the conditions under which later performance work could proceed. The next questions increasingly concerned latency, throughput, and compute cost, but proposed answers remained subject to the memory relationships already made explicit. A faster design that exceeded the deployment\textquotesingle s memory budget was not an improvement.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 123–123
+
+Section: `\subsection{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Memory came first because the two failures differ in kind: out-of-memory failure prevented processing altogether, whereas inefficient execution increased latency and cost while still producing a result. The later service-sizing model recorded that priority in a one-sided safety margin: exhausting memory kills the process, while over-provisioning costs money. Another domain might prioritize safety, latency, or numerical accuracy; the ordering must follow the consequences.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 134–136
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Page chunking had originally served two purposes: it partitioned remediation work and reduced the memory required by each worker. Skeletonization largely removed the second reason. I could now reconsider the execution boundary without immediately exceeding the worker\textquotesingle s memory budget.
+
+The question was no longer how many pages a worker could hold. It was which operations could execute independently, and which had to wait for information produced by other operations.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 154–154
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+This reframes ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 158–158
+
+Section: `\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+For the present problem, the architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. Separating the graph from its executor lets us change the scheduling policy later without redesigning remediation. In the realized architecture, that execution-driving representation remains distinct from richer analytical projections built over the same computation identities. The distinction matters later: a model may govern realization while another view of the same structure serves analysis.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 178–178
+
+Section: `\subsection{The Second Resource Model}\label{heading:the-second-resource-model}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{The Second Resource Model}\label{heading:the-second-resource-model}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 180–180
+
+Section: `\subsection{The Second Resource Model}\label{heading:the-second-resource-model}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The critical-path model explained which dependencies could determine latency. A second model captured a different source of cost: repeated whole-document work. Let \emph{R} be the number of remediation rounds, \emph{F} the cost of producing the whole document once, and \emph{G} the remaining GenAI work. The model represented execution without page chunks as
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 188–188
+
+Section: `\subsection{The Second Resource Model}\label{heading:the-second-resource-model}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The model was also falsifiable. Its calibration procedure inverted observed execution times to recover its components, and it rejected any fit whose inferred costs came out negative. Measurement could therefore disagree with the engineering account rather than merely supplying another number to optimize against.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 198–198
+
+Section: `\subsection{Predicting Latency}\label{heading:predicting-latency}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\caption{\emph{The GenAI critical path in a schematic fragment of DocAble’s remediation graph.} Independent remediation computations can execute concurrently, but section summarization, document summarization, and alt-text generation form a dependent chain. For the modeled workload, their estimated and measured durations contribute approximately 7.7 seconds of serial latency, which additional workers alone cannot eliminate.}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 206–206
+
+Section: `\subsection{Predicting the Cost of a Design Change}\label{heading:predicting-the-cost-of-a-design-change}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A proposed intermediate representation can be inserted into the dependency graph before it is implemented. Recomputing the critical path, execution rounds, peak width, and overhead shows where it could add cost. An IR off the critical path may add no serial latency; one that deepens the chain adds its call time to the floor and may require another distributed round. These are predictions to test, but they help decide which candidate is worth building.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 208–208
+
+Section: `\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 210–210
+
+Section: `\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question. \autoref{interlude-prediction-residual} connects the general engineering loop in panel a to an illustrative prediction error in panel b and the refinement of the model in panel c.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 215–215
+
+Section: `\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\caption{\emph{Modeling through prediction and measurement.} (a) An engineering problem motivates a model whose analysis informs implementation. Measurements test its predictions and may require the model to be revised. (b) A discrepancy between predicted and observed latency directs investigation toward an incorrect parameter, an incorrect relationship, or a missing mechanism. The numerical values are illustrative. (c) The revised model is tested again until its residual is acceptable for the question being investigated.}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 219–219
+
+Section: `\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The queue overhead may have been underestimated. Two apparently independent nodes may share a serialized resource, or media loading may introduce a cost the latency model omitted. A close prediction supplies evidence that the model captures dominant mechanisms; a miss directs investigation toward a wrong parameter, a missing relation, or an implementation problem.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 225–225
+
+Section: `\subsection{What Carries Forward}\label{heading:what-carries-forward}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{What Carries Forward}\label{heading:what-carries-forward}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 228–231
+
+Section: `\subsection{What Carries Forward}\label{heading:what-carries-forward}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+DocAble did not turn observed wall-clock time into the durable control. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
+
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
+A fifth quantity, the number of GenAI hops, carries an audit-only label and is excluded from the four upper-bound comparisons. A separate test nevertheless compares it with the seeded value and can fail. The label alone therefore does not establish whether a measurement is advisory; the consumer and its acceptance rule determine the consequence. \autoref{chapter:appendix-a-resource-models-and-execution-design} explains the distinction.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 236–236
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A ratchet does not make the current model true forever. Several memory hypotheses in this episode were later falsified. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 239–239
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The measurements carried their own provenance. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it. A process-level measurement may omit memory included in the container\textquotesingle s total. Recording the measurement\textquotesingle s origin makes that difference visible and helps engineers decide which parameters need to be measured again.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 242–242
+
+Section: `\subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Nor was the memory work finished before the execution-time work began. We were still investigating memory consumption while the time models were being built. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The retained controls preserve the resource obligation even when the model used to evaluate it changes.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 298–298
+
+Section: `\subsection{Modeling Inside the Implementation Loop}\label{heading:three-days}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Modeling Inside the Implementation Loop}\label{heading:three-days}
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 300–300
+
+Section: `\subsection{Modeling Inside the Implementation Loop}\label{heading:three-days}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+This sequence took about three days inside the existing governed engineering environment. It included skeletonization and streaming, typed-patch work, reconsidering ChunkWorker, remediation and fact graphs, quantitative analysis, the chunkless execution design, and corrections when assumptions proved wrong. The timescale matters because modeling could participate in the implementation loop rather than follow it as a separate documentation phase.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex` — original lines 302–302
+
+Section: `\subsection{Modeling Inside the Implementation Loop}\label{heading:three-days}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The seven models arrived one at a time. Larger inputs exposed a memory problem; changing how media was stored made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each model answered a question raised by the work. Together, they let me predict the consequences of proposed changes and test those predictions against measurements. When the measurements disagreed, I revised the models.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 1–4
+
+Section: `opening`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% mage-auto-heading: start-from-the-system-you-own
+% mage-auto-heading: recover-latent-models
+% mage-auto-heading: reconcile-the-map-and-the-territory
+% mage-auto-heading: invest-where-it-pays
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 13–13
+
+Section: `\chapter{Brownfield Engineering}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The preceding episode followed one problem through several related models. Brownfield engineering extends this work to the knowledge already distributed across a system's code, tests, documents, and operational practice. Which representations remain trustworthy, which obligations are already enforced, and what must be recovered or repaired before the next consequential change?
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 15–15
+
+Section: `\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 21–21
+
+Section: `\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Lehman's work on software evolution describes systems adapting to changing environments while complexity tends to increase unless engineers act to control it~\citep{lehman1985}. Their models and governance mechanisms require corresponding maintenance. Brownfield engineering therefore includes recovering the representations and controls a system already owns, establishing which remain trustworthy, and repairing or retiring those that have drifted.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 23–23
+
+Section: `\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The objective is not to model the entire existing system before agents can work on it. It is to make the next consequential change safely, then improve the engineering environment so that later changes become easier to govern. Existing tests, permissions, architecture documents, and review practices are starting points. Some already enforce useful obligations; others depend on someone remembering what to check. The work is to discover which is which, establish what can be trusted, and strengthen the environment one important property at a time.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 27–51
+
+Section: `\section{Start from the System You Own}\label{heading:start-from-the-system-you-own}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A fast-built system may need to author models that implementation never made explicit. An established organization may instead need to reconcile fragmented ADRs, schemas, tests, ownership records, and operating procedures. Both start by inventorying what remains useful; neither requires a complete governed environment before work begins. The age of the implementation also does not settle its intent: a new regulated system can have firm obligations, while a mature product may still be exploring what users need.
+
+Recovery becomes worthwhile when engineers or agents repeatedly reconstruct the same concept, cross the same hidden boundary, or search the same unproductive region. An explicit representation can then cost less than continued rediscovery. The implementation often already contains the evidence, expressed repeatedly without a shared name.
+
+\section{Recover Latent Models}\label{heading:recover-latent-models}
+
+Begin with two questions. \emph{What does the organization already reason through?} Which documents, schemas, graphs, tests, or configurations repeatedly save engineers from reconstructing the system from raw implementation? These are candidates for recovered models.
+
+\emph{What is already enforced?} Which permissions, types, CI checks, reviews, and operational gates govern work, and which obligations do they help enforce? A mature system may already contain substantial local Alignment even when its system-level representations are weak.
+
+Several techniques can help recover models from an existing system:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Static program analysis.} Analyze source code, types, dependencies, and configurations to recover structural relationships without executing the system~\citep{ducasse2009architecture}. For example, extract a component dependency graph from imports and calls, then compare it with the intended architecture. The graph supplies evidence about dependencies; identifying architectural boundaries also requires interpreting the roles those components play~\citep{garcia2013groundtruth}.
+\item
+  \textbf{Dynamic program analysis.} Analyze execution traces, logs, and test results to recover models of system behavior~\citep{cornelissen2009dynamic, ammons2002mining}. For example, traces of job submission, retry, and completion can suggest a lifecycle state machine. The resulting model describes observed executions, which may omit important behaviors or include defects.
+\item
+  \textbf{Agentic program analysis.} Direct a coding agent to investigate a subsystem and propose models of its architecture, behavior, or invariants. The agent can combine static and dynamic methods, following leads through source inspection, repository search, tests, and execution traces. Require evidence for each proposed relationship or behavioral claim, and distinguish observed implementation from inferred engineering intent.
+\item
+  \textbf{Interview engineers.} Ask experienced maintainers about architectural rules, behavioral assumptions, and recurring decisions that are not adequately documented~\citep{bjornson2008knowledge}. Walking through a recent change or failure can expose knowledge that engineers routinely use but the implementation does not explicitly represent~\citep{anandayuvaraj2026failures}. Compare this account with the recovered models and investigate disagreements about what the system does or ought to do.
+\end{itemize}
+
+These techniques produce candidate representations for engineering review. Engineers must determine which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 54–54
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Repeated implementation structures offer another source of candidate models. DocAble used a primitive-density detector to identify interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such interfaces can indicate that a domain concept is being reconstructed repeatedly rather than represented explicitly. They can also be appropriate. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 57–57
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\autoref{discovering-latent-models} shows three principal dispositions. Some findings describe legitimate implementation structure, such as protocol adapters or test fixtures, and warrant no architectural change. Others call for mechanical cleanup or annotations. A smaller group may reveal missing domain concepts. In DocAble, document mutators repeatedly passed the same language and provenance information, while alt-text mutations carried recurring description and attribution state. Examining these patterns together exposed concepts worth representing explicitly. The important question was which repeated structures expressed engineering knowledge that later work should preserve, not how many primitive-heavy interfaces existed.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 59–59
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Giving the concept a name is only the beginning. The engineer must recover a representation that captures the underlying concept, migrate its consumers, and establish appropriate correspondence and enforcement.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 61–61
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Suppose a module implements a state machine through scattered conditionals and complex decision rules. Investigation reveals that several functions depend on the same states and transitions, but no shared representation defines them. The engineer can recover a state-machine model with named states, permitted transitions, and the conditions governing each transition. Making this model explicit can reveal inconsistent or missing transitions, and gives engineers a concise representation for understanding the behavior and supervising future changes. The next step is to migrate the functions that previously encoded those rules independently so that they use the shared model. Agents and codemods can perform much of this migration, while tests help establish that intended behavior is preserved.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 63–65
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The explicit model also makes specific rules easier to enforce. Types can restrict the states that functions accept, validators can check permitted transitions, and lints can detect code that bypasses the shared representation. Later agents can reason about the system using the recovered models. Another pass over the codebase may reveal further concepts worth recovering.
+
+Recovering a model also creates an obligation to maintain its correspondence with the implementation. As agents migrate existing code to use the new representation, they can establish traceability relationships between model elements and the code that implements them. Static checks can then detect deleted or renamed implementation elements whose model references remain, while runtime traces can reveal modeled operations that are no longer observed or execution paths absent from the model. These checks help prevent subsequent changes from silently invalidating the recovered model. They do not establish semantic correctness, but they make discrepancies visible for investigation and, where appropriate, enforcement.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 70–70
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\caption{\emph{Discovering latent models in an existing system.} Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.}
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 74–74
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- box-family: evidence -->
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 76–84
+
+Section: `\section{Recover Latent Models}\label{heading:recover-latent-models}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+\begin{quote}
+\mbox{}%
+\subsection{Field record --- Primitive-density recovery}\label{heading:field-record-primitive-density}
+
+During the June 8--10 recovery work, findings were repeatedly reclassified as engineers resolved them. Some needed annotations or mechanical cleanup; others belonged to protocol boundaries or test fixtures and warranted exemptions. A smaller group exposed shared concepts worth modeling or design decisions that needed further judgment. The dispositions included annotate, exempt, extract a model, redesign, retire, and defer for judgment. The same weak signal thus led to several remedies; a declining finding count cannot be read as a count of recovered models.
+\end{quote}
+
+A recovered model need not immediately govern execution or require previously separate implementations to be combined.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 87–87
+
+Section: `\subsection{Field record --- Primitive-density recovery}\label{heading:field-record-primitive-density}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+DocAble's four document-processing pipelines use different engines for good reasons. PDF processing often requires inferring structure that an Office document already records. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 90–90
+
+Section: `\subsection{Field record --- Primitive-density recovery}\label{heading:field-record-primitive-density}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+As a preliminary step, we introduced a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let us compare policies, explain legitimate differences, and identify choices worth reconsidering. We did not merge the engines or make the model execute their policies. As we evaluate those differences, we can revise the model to reflect our engineering decisions and determine which correspondences warrant enforcement.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 92–92
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 94–96
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.
+
+Consider an inherited architecture wiki that no longer matches the code. Comparing the two reveals descriptions that need updating and discrepancies that may indicate defects. Verified claims can become part of a queryable model; unresolved claims remain advisory. The inset works through the judgment needed before changing either the model or the code.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 121–121
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Reconciliation determines which claims need correction and which obligations should govern the implementation. Changing the implementation to satisfy those obligations is active alignment. Passive alignment then requires checks on continued correspondence; a gate can reject detected violations where enforcement is justified. Keeping the model available supports reasoning, but does not supply that check.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 125–125
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Even a correct rule may be unsuitable for immediate enforcement. A legacy codebase may already contain hundreds of violations. Making the rule blocking would stop development before those violations could be repaired. Instead, introduce it in three stages.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 127–127
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- box-family: move -->
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 129–129
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% mage-box-prefix: MAGE Move —
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 131–141
+
+Section: `\section{Reconcile the Map and the Territory}\label{heading:reconcile-the-map-and-the-territory}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\begin{bookbox}{move}{Audit → Drain → Promote}
+\label{heading:audit-drain-promote-move}
+\textbf{Audit.} Run the new check without blocking commits. Record the violations it detects.
+
+\textbf{Drain.} Repair existing violations, using tests and other evidence to check that intended behavior is preserved.
+
+\textbf{Promote.} Once existing violations are resolved, make the check blocking so new violations it detects are rejected.
+\end{bookbox}
+
+Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex` — original lines 146–168
+
+Section: `\section{Invest Where It Pays}\label{heading:invest-where-it-pays}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Invest Where It Pays}\label{heading:invest-where-it-pays}
+
+Prioritize recovery where explicit structure can reduce recurring work:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Knowledge is repeatedly reconstructed.} Engineers and agents keep re-deriving the same facts from raw implementation.
+\item
+  \textbf{Recurring failures expose missing structure.} The same class of defect returns because nothing represents or enforces the obligation it violates.
+\item
+  \textbf{Consequential properties are hard to evaluate.} A property that matters cannot be checked without a representation at the right grain.
+\item
+  \textbf{Fragmentation blocks useful joins.} The facts exist, but they live in disconnected representations that cannot answer questions together.
+\item
+  \textbf{Recurring judgment is expensive enough to convert.} A repeated human decision has become stable and frequent enough to encode.
+\end{itemize}
+
+Compare the expected loss with the cost of building and maintaining a response. Frequent reconstruction may justify a shared model; cheap recurring failures may justify a lint or procedure. Consequential failures can warrant stronger evidence or prevention even before they occur. The choice depends on recurrence, consequence, detectability, reversibility, and how stable the obligation is.
+
+Consider the cost of maintaining a model as well as building it. Models drift, checks require calibration, and skills age. Build the smallest asset that resolves the recurring problem, and retire it when its value no longer justifies carrying it. \magevalue{chapter:theory} develops this economic tradeoff; the immediate decision is which inherited structure will help the next engineering task.
+
+Recovering one model is useful: a concept the system had been expressing for years gains a name, a representation, and perhaps an enforced obligation. Repeating the process changes something larger --- the environment in which subsequent engineering occurs. {[}appendix: appendix-b-brownfield-migration{]} turns this recovery process into an incremental migration procedure, with exit criteria for deciding when a recovered representation or control is ready to govern subsequent work.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 9–9
+
+Section: `\chapter{Engineering the Environment}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The models and controls developed through engineering episodes become part of the environment inherited by later work. That environment must itself be engineered. It must supply agents with useful knowledge and procedures, produce evidence for accepting their work, operate reliably as work proceeds, and remain trustworthy as the system changes. These responsibilities meet in practice: the models available to an agent affect the evidence reviewers need, while validation schedules determine when that evidence can support acceptance.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 11–11
+
+Section: `\section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 13–13
+
+Section: `\section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The engineering environment can improve recurring work by supplying agents with better representations, procedures, tools, and context, and by enforcing selected obligations independently of their judgments. Some artifacts serve both purposes. A model may guide implementation while supplying properties to a validator; a runbook may inform an agent while invoking checks and gates that govern its actions.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 15–112
+
+Section: `\section{Equip the Reasoner}\label{heading:the-gee-as-a-distributed-cognitive-system}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Distributed cognition provides a useful frame for this composition: reasoning can be performed by a system of people, representations, procedures, and artifacts rather than one isolated individual. The inset explains the connection~\citep{hutchins1995cognition}.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: COGNITIVE SCIENCE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{The GEE as a Distributed Cognitive System}
+\label{inset-distributed-cognitive-system}
+Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it~\citep{hutchins1995cognition}. In agentic engineering, models and procedures preserve knowledge outside the agent's context, tools perform operations directly, and people or agents supply the remaining judgment.
+
+The form of an external representation can also change the operations required to solve a problem~\citep{zhang1994representations}. A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
+
+A GEE adds another step. Its surrounding machinery can sometimes act on the represented property. A dependency model may help an agent understand the architecture, but a validator can also compare an observed dependency with an architectural obligation, and a gate can refuse the change. The environment therefore does not merely distribute cognition across reasoners and artifacts. For selected obligations, it can enforce what those representations express.
+\end{bookbox}
+
+Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape subsequent action~\citep{argyris1978organizational}. Governance conversion applies that distinction to engineering: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
+
+\subsection{Package Recurring Judgment}\label{heading:package-recurring-judgment}
+
+Skills preserve recurring procedures and judgment for later work. A useful skill packages the representations, examples, heuristics, decision procedures, and tools that help an agent perform a recurring task without reconstructing the practice from general knowledge. Its value depends on what a fresh agent can use, not on the package's length or file format.
+
+Recent work explores deriving reusable skills from execution traces~\citep{ni2026trace2skill}. Related techniques use execution evidence to diagnose harness defects~\citep{chen2026harnessfix} or revise the harness from observability data~\citep{lin2026agentic}. These techniques propose changes to different parts of the engineering environment; engineers still decide which procedures, assumptions, and obligations later work should inherit.
+
+% <!-- index-def: standing-context -->
+
+Delivering the packaged knowledge is its own engineering problem. Loading everything all the time is the obvious solution, and often a bad one: every rule, model, example, and failure lesson competes for attention, so a larger context can make navigation harder rather than easier. Separate the small standing context that must remain continuously salient from the richer slices retrieved when the task makes them relevant, and treat the delivery as an intervention whose effect can be measured. \textbf{Context delivery changes what the reasoner can see; by itself, it does not change what the environment permits.}
+
+\section{Evaluate the Work}\label{heading:validate-the-change-not-the-producers-story}
+
+\subsection{Establish Adequate Evidence}\label{heading:establish-adequate-evidence}
+
+Every engineering process must decide what evidence justifies accepting a change. Code review, testing, analysis, measurement, and expert judgment remain available; agentic implementation increases the rate at which the environment must use them. The obligation determines what evidence is needed. When it is settled, evaluation can ask whether the change satisfies it. When it remains uncertain---whether users want a feature, which workflow they prefer, or which tradeoff is acceptable---the evidence must instead come from experimentation. The environment can govern that experiment and preserve known constraints while the engineer learns what to require.
+
+The representation determines which judgments are feasible---what we can decide depends on what we can see. Ask what representation preserves the distinction the obligation requires and what evaluation can decide it at acceptable cost. In DocAble, pixel variance was cheap to measure but could not establish whether a low-variance image carried semantic content. Tightening the threshold could not recover information the representation omitted; that question required semantic evaluation. Conversely, a representation that makes the relevant states or relations explicit may turn an expensive judgment into a mechanical check.
+
+\textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement.
+
+For a settled obligation, the producer\textquotesingle s own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated independently of the judgment seeking admission. \textbf{For consequential changes, prefer evidence that can challenge the producer\textquotesingle s own claim rather than relying on self-report alone. Where the consequence warrants it, place admission control outside the producer\textquotesingle s ability to redefine success.}
+
+Docker\textquotesingle s reported coding workflow uses an independent reviewer with its own model invocation, a determinized test suite, and a human gate to evaluate agent-produced changes. The agents may open a pull request; they may not merge one~\citep{delapena2026fleet}.
+
+% <!-- index-def: oracle -->
+
+Software testing calls the means of deciding whether an observed result is correct an \emph{oracle}; its usefulness depends on whether its verdict addresses the intended obligation.
+
+Evidence can come from several sources. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{The oracle problem}
+\label{inset-oracle-asymmetry}
+A longstanding difficulty in software testing is that executing a program can be much easier than deciding whether its result is correct. Testing research calls this the oracle problem~\citep{barr2015oracle}. For a sorting function, checking that the output is ordered is insufficient: an implementation that returns an empty list would pass that check. The oracle must also establish that the output contains the same values, with the same multiplicities, as the input.
+
+Complex behavior may require properties, reference implementations, metamorphic relations, models, runtime evidence, or human judgment. Agents can cheaply produce implementations and test inputs, but more candidates do not supply the criteria for accepting them. Before expanding the search, the engineer must identify evidence that can distinguish an acceptable result from a plausible but incorrect one.
+
+Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior~\citep{anthropic2026migration, carlini2026ccompiler, faulkner2026vinext, toub2026copilotrust}. Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.
+\end{bookbox}
+
+% <!-- index-def: property-test-models-the-output -->
+
+% <!-- index-def: generative-validation -->
+
+Generative validation searches for counterexamples to a property, as discussed in \magevalue{sec:constraints-sensors-validators-gates}. For sorting, generated empty lists, duplicates, and different input orders can test whether the result is an ordered permutation. A failure may reveal a law worth checking beyond the original example. A run without a counterexample still depends on which inputs the generator could reach; test count and line coverage alone do not establish that the property holds.
+
+Establishing adequate evidence for an obligation is one problem. Determining which obligations a proposed change might affect is another.
+
+\subsection{Model-Aware Change Impact}\label{heading:model-aware-change-impact}
+
+As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck. One way to reduce that burden is to determine which obligations a change might affect, then select the evidence needed to establish that they still hold. The models and traceability relationships developed through MAGE offer a basis for doing so: explicit relationships among models, implementation elements, and obligations can guide the selection of tests, analyses, and measurements.
+
+Consider a proposed increase in DocAble's worker concurrency, using the execution, memory, and latency models developed in \autoref{4.2-one-problem-many-models:heading:the-resulting-model-family}. The changed code may be confined to the executor, but its consequences extend beyond it. The execution model describes which operations can run together; the memory model constrains the resources consumed by concurrent work; and the latency model predicts how scheduling choices affect completion time. \autoref{model-aware-change-impact} follows these relationships from the proposed change to potentially affected obligations and the evidence needed to evaluate them. Correct execution order, peak memory, and latency may require different checks, even though the change originated in one part of the implementation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
+\label{model-aware-change-impact}
+\end{figure}
+
+This approach builds on established work in software change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Its value in MAGE is that the models identify engineering questions, not merely implementation dependencies. A change to concurrency may warrant renewed memory analysis even if no memory-management code was modified. Conversely, sufficiently complete model relationships may justify omitting evaluations for obligations unaffected by the change.
+
+The limitation is the completeness of the relationships being used. A missing dependency, an outdated model, or an incorrect link between a model and its implementation can conceal an affected obligation. Model-aware impact analysis therefore supplies evidence for selecting evaluations, not a guarantee that unselected checks are unnecessary. Where the relevant relationships are incomplete or uncertain, broader validation remains appropriate. An affected obligation may also require human judgment rather than an automated check.
+
+Model-aware impact analysis extends the role of engineering models beyond directing implementation and evaluating its results. By connecting changes to the obligations they may disturb, those models can also help determine where evaluation effort is needed. The benefit grows as the rate of implementation increases, provided the cost of maintaining the relationships remains justified by the evaluation work they save.
+
+\section{Operate the Environment}\label{heading:operate-the-environment}
+
+\subsection{Lifecycle Models and Recovery}\label{heading:lifecycle-models-and-recovery}
+
+A method has to survive terrible, horrible, no good, very bad days, too. Full disks, conflicted branches, vanished agents, stalled queues, flaking tests---the quotidian catastrophes of software engineering. Engineers often know how to recover, but that knowledge may live only in someone\textquotesingle s head, where an autonomous agent cannot reliably reach it. Do not neglect operations when applying Modeling and Alignment.
+
+Lifecycle models represent healthy progress and important failure states. Events make consequential transitions observable. Runbooks preserve sanctioned reactions, including where judgment remains. Metrics expose the quantities needed to judge whether the loop is healthy. Together they support an operating loop: recognize the state, surface the right reaction, take the appropriate action, and observe what happened next.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 115–115
+
+Section: `\subsection{Lifecycle Models and Recovery}\label{heading:lifecycle-models-and-recovery}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+A lifecycle model starts with the healthy path of a recurring activity --- how a bug moves from reported to fixed, how an agent moves from dispatched to landed --- then names the failure states that matter and the sanctioned recovery from each. Pair prohibitions with recovery paths. "Never use this destructive merge command" leaves a stuck agent with a prohibition and no exit; "when this state occurs, do not use X; use Y because it preserves the already-applied work" supplies the missing path. In one DocAble incident, the orchestrator aborted a partly completed cherry-pick sequence and discarded earlier successful picks. The resulting rule specified \texttt{git cherry-pick --quit} for leaving that sequence without undoing those picks.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 119–119
+
+Section: `\subsection{Lifecycle Models and Recovery}\label{heading:lifecycle-models-and-recovery}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Operation improves further when an important transition can make the right procedure arrive at the right moment. Do not rely on an actor to remember to inspect the lifecycle, notice that a transition happened, retrieve the right procedure, and invoke it. Where a recurring event is mechanically observable and a standard response is useful, bind the reaction to the event. A mechanical trigger does not require a mechanical response: \textbf{the firing can be deterministic while the payload still contains judgment.} An agent reaches a context threshold, and a hook deterministically requests a handoff the agent must still compose. A deployment fails a health check, and the event opens a recovery path an engineer must still judge. Automate the arrival of the decision procedure, not every decision.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 121–143
+
+Section: `\subsection{Lifecycle Models and Recovery}\label{heading:lifecycle-models-and-recovery}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- index-def: runbook -->
+
+% <!-- index-def: deterministic-vs-judgment-split -->
+
+Runbooks preserve how an experienced engineer reasons through a recurring situation. Their steps can require different kinds of decisions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Execute} when a step is mechanically determined and can become an executable operation.
+\item
+  \textbf{Delegate} when a step requires bounded judgment. Supply the relevant state, choices, criteria, and required output.
+\item
+  \textbf{Escalate} when a decision requires human judgment or authority. Prepare the evidence and surface the decision explicitly.
+\end{itemize}
+
+Where possible, surround a step requiring judgment with deterministic work. Prepare the data mechanically before the decision, then execute and measure mechanically afterward. Preserve the rationale separately from the execution trace. The judgment remains judgment, but its inputs and consequences become easier to replay and check. Runbooks can drift, so their procedures need the same maintenance discipline as other engineering models.
+
+% <!-- index-def: measure-one-level-deeper -->
+
+As in \magevalue{sec:interlude-one-problem-many-models}, operational measurement should expose the quantity that explains the problem rather than a convenient proxy~\citep{ousterhout2018}. A worker count may be a poor proxy for memory pressure; measure the pressure. A marker on disk may not establish liveness; record lifecycle state explicitly. A whole-project cloud bill tells you what you spent; cost by service may tell you what to change. Keep measurement separate from enforcement: a metric supplies evidence, a validator may interpret that evidence against an obligation, and a gate may act on the resulting verdict.
+
+The validation machinery itself also needs operational management.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 147–147
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 149–149
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Model-aware change-impact analysis addresses which evaluations a change requires. A separate problem is how to execute those evaluations without unnecessarily delaying engineering work. Even when the right checks have been selected, they consume time and computational resources. Running them synchronously can delay dispatch of subsequent development work---underutilizing agent capacity---while running them asynchronously can overwhelm the available infrastructure. The engineering environment must therefore determine when evaluations run, how they share resources, and which results must block further work.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 151–152
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report
+DocAble's agents eventually outpaced the infrastructure that checked their work. Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 154–154
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+An initial asynchronous arrangement launched expensive checks in the background after each merge. That removed the wait before the next merge, but it did not reduce the work being requested. Each merge still started another expensive run. A burst of merges therefore launched a burst of validation workers and overloaded the host. Moving validation off the critical path had exchanged waiting for resource contention.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 156–157
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
+The redesign separated broad validation from the arrival of individual changes, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks were scheduled every thirty minutes against new commits on the main branch, in an isolated worktree, with a lock permitting only one sweep at a time. Several merges could therefore be evaluated together. A blocking failure raised an alert and stopped new agent dispatch until the orchestrator acknowledged or handled it; acknowledgment permitted work to resume while repair was tracked separately. Before deployment, the full validation suite ran against the candidate being shipped.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 159–159
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The arrangement distinguishes three enforcement boundaries. Per-merge checks protect rapid integration, scheduled checks examine the accumulated changes without blocking each merge, and predeployment validation protects the released artifact. Asynchronous evaluation does not mean that its results are ignored: a scheduled failure can still interrupt subsequent work. The engineer chooses which obligations require immediate evidence and which can tolerate delayed evaluation, taking account of the consequences of failure.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 169–169
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The gain came at the cost of delayed defect detection and harder diagnosis. A defect could remain on the main branch until the next sweep found it. If several changes had merged since the last successful check, the failure had to be traced to one of them. The appropriate schedule therefore depends on how long the project can tolerate a broken main branch and how effectively the environment can diagnose and repair it. The same bottleneck reasoning used for document processing in \magevalue{sec:interlude-one-problem-many-models} applies to the engineering environment itself: measure where work accumulates, distinguish latency from aggregate resource demand, and account for the consequences of changing the execution schedule.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 171–171
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Other stalls require different diagnoses. Before adding another mechanism, establish what kind of problem you have.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 173–213
+
+Section: `\subsection{Scheduling Validation}\label{heading:when-validation-becomes-the-bottleneck}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: PRACTICE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{When work stalls, diagnose before adding machinery}
+\label{inset-diagnose-before-machinery}
+Repeated failure does not always call for another control. Before you build one, ask which part of the loop is limiting the work. \autoref{stalled-work-diagnosis} distinguishes four possible limits and the changes each calls for.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.18}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.43}}@{}}
+\caption[Diagnosing stalled work]{\emph{Diagnosing stalled work.} Four possible limits on engineering work and the changes each calls for.}\label{stalled-work-diagnosis}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Limit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+The question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+If that is the gap
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Searcher & Can the available intelligence find a good candidate? & Change the foundation model, tools, decomposition, or search strategy. \\
+Model & Is consequential structure missing from the representation? & Make it explicit. \\
+Oracle & Can the environment tell good candidates from bad? & Strengthen the evidence, validation, or simulation. \\
+Target & Do we know what "good" even means? & Stop building and learn. \\
+\end{longtable}
+}
+
+A stronger reasoner does not settle an unknown requirement; another validator does not supply a missing abstraction; more modeling cannot answer a product question whose answer must come from users or deployment.
+\end{bookbox}
+
+\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}
+
+As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate. Keeping this engineering capital useful requires maintenance. A model may drift from the implementation, while a gate continues to enforce an obsolete policy. Noisy controls and broken evidence pipelines can make their verdicts difficult to trust; skills can preserve procedures whose assumptions have expired. Engineers therefore need to observe, reconcile, repair, and sometimes retire these structures, just as they do for the system those structures govern.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 216–216
+
+Section: `\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+An audit of DocAble's models found that ten providers appeared to have the required uniqueness checks. Every test passed. Closer inspection showed that all ten checks examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to each provider. Duplicate source records could therefore overwrite one another without triggering a failure. The checks established a true property of the wrong collection.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 219–219
+
+Section: `\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This suggests a general maintenance practice: \textbf{construct a violation of an obligation, run the actual check, and establish that it detects the violation.} Where enforcement is intended, also test whether the resulting verdict prevents the work from proceeding. A passing control should have evidence that it can fail for the right reason. In \href{3.3-constraints-sensors-validators-gates.html}{\magevalue{sec:constraints-sensors-validators-gates}}, the consumer mistook an incomplete validation for a clean result; here, the uniqueness checks examined the wrong records.
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 221–221
+
+Section: `\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Audit models, mechanisms, procedures, and evidence pipelines together:
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 223–233
+
+Section: `\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Does it still describe or govern the intended system?} Check for changed assumptions, obsolete obligations, and evidence whose revision or operating conditions no longer match the work.
+\item
+  \textbf{Who uses it, and for what decision?} A representation may support reasoning, queries, generation, or checking. Where enforcement is intended, verify that the mechanism still consumes the current model and acts on violations.
+\item
+  \textbf{Does its benefit justify its cost?} Consider maintenance effort, false alarms, delayed work, and the consequence and recurrence of the failure it addresses.
+\item
+  \textbf{Should it be repaired, replaced, or retired?} Preserve useful knowledge while removing machinery whose original purpose no longer warrants its upkeep.
+\end{itemize}
+```
+
+### `book/latex/sources/part4/4.4-engineering-the-environment.tex` — original lines 235–235
+
+Section: `\section{Maintain the Machinery}\label{heading:engineering-capital-depreciates}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Retirement belongs to the same discipline as governance conversion. \magevalue{sec:brownfield-engineering} applies the same test when deciding what inherited structure to recover.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 9–9
+
+Section: `\chapter{Summary}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Modeling and Alignment are not one-time activities preceding implementation. The DocAble episodes showed how implementation, measurement, and failure can expose missing engineering knowledge, while explicit models and controls make that knowledge available to subsequent work. The resulting environment evolves alongside the system it governs. Five practices characterize this process.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 12–23
+
+Section: `\chapter{Summary}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Use implementation to learn what should be modeled.} Trying several implementations can reveal which choices matter and which can remain open. The results of a trial are evidence an engineer can use in deciding what to preserve and whether to accept the work.
+\item
+  \textbf{Establish an alignment kernel before undertaking consequential transformations.} An alignment kernel protects the properties that a proposed transformation could put at risk. Those risks determine which models and controls must be in place before work begins.
+\item
+  \textbf{Introduce governance incrementally.} In an existing system, recover the structure already in use and audit the proposed checks against it. Verify their coverage and resolve existing violations before making the checks blocking.
+\item
+  \textbf{Match representations and evidence to the obligation.} Choose the simplest model that preserves the required distinction and the least costly evaluation that can reliably decide it. Independent evidence must be capable of exposing an error in the agent’s account of its own work.
+\item
+  \textbf{Maintain engineering capital rather than accumulating machinery.} Revisit what each model describes and what each check actually measures. Repair misleading checks and retire controls whose benefit no longer justifies their upkeep.
+```
+
+### `book/latex/sources/part4/4.5-mage-in-motion-summary.tex` — original lines 26–26
+
+Section: `\chapter{Summary}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+These practices change more than the way an engineer directs individual agents. They create a production environment in which models, controls, evidence, and implementation machinery can be developed and maintained as reusable assets. \magevalue{chapter:software-factories} examines that environment as a software factory, using DocAble and published industrial accounts to investigate how organizations produce and govern software when implementation becomes inexpensive.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex` — original lines 340–340
+
+Section: `\subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+% <!-- point: model-selection-was-an-engineering-decision | Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator. -->
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex` — original lines 343–343
+
+Section: `\subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}`. Replaced, condensed, or integrated at the packet-specified destination to teach Chapter 4 through engineering episodes.
+
+```latex
+Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost --- the cheapest-adequate-judge rule of \magevalue{sec:engineering-the-environment} applied to the fabricator rather than to the validator.
+```

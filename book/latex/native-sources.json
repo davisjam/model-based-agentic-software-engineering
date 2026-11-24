@@ -90,8 +90,8 @@
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
-      "source_hash": "5478468959613c4d7d08dfa5e0e6efb869156465bed819da2983028aabe6ff45",
-      "projection_hash": "fc9c8a987ba78dad1b03f5f01877c13b5676ae0928995068ceef27c8d455e10e"
+      "source_hash": "fc5d9cbac3ca0cba6c86810a26df4854a25d97ae1059016114837fb021519b61",
+      "projection_hash": "85f4b45dfa5625357ee54330ea2a15a7e69b1d90d8acbb3bdd7c8968b33fd9b2"
     },
     {
       "source": "book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex",
@@ -144,8 +144,8 @@
     {
       "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
       "projection": "book/part3/3.2-models-and-the-semantic-gap.md",
-      "source_hash": "e148dbe0cdc2d8fd1fdbe5e42c70f3b3c47025338755b3d0d84d11ec4559878d",
-      "projection_hash": "f856a79975d7e56a8e2fb3462b4b19e2c3b45610b92342bb5103dc88db0058fa"
+      "source_hash": "e92b40d911f15baad05e4f703bb0576fe675f33a93d0646883744f4a771f2caa",
+      "projection_hash": "5e7d854ad562e2dc0b83a81d4ae550d5bdee0556b5ae9109d52f28b6286ded62"
     },
     {
       "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
@@ -156,8 +156,8 @@
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
       "projection": "book/part3/3.4-governance-conversion.md",
-      "source_hash": "40e2475ef3863e8c7f6d205e4d669f932acdd8aa8ed80a4ec115eee0716d1312",
-      "projection_hash": "c216a9a75546c6ac3571beb4ec6e395a1dd0625621a5fbb9ddef4b9ea1924f72"
+      "source_hash": "25d5929cbf514204c56f62045aad51a451f5a1f006145d944ed7dada2aefd628",
+      "projection_hash": "c02e689779a07a60f1dd570dec9c1776f75042d98c5342d251cd7aaf5af63ed4"
     },
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
@@ -174,38 +174,38 @@
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
       "projection": "book/part4/00-part-intro.md",
-      "source_hash": "54af1c51a9bc8ec14e13c5e5a46ad9e8a4b2fc7550b9109684f4201db26d6181",
-      "projection_hash": "61a710321a4477a9e7cbf4da43136dcff96c846378544e946c8c3cb4c933df8c"
+      "source_hash": "0e39c52b64972e3c9510d226b4274efc388679496fa491e29e57e5ce6d68afdc",
+      "projection_hash": "1bb1b8a903db4d887ea69a1634ceb74e3855ab2e5aed8078cfd2cb4bda853b57"
     },
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "d49f295281044d9141ef5967a14feeacf9852c40e3fe9d338729b2aca2ad6e36",
-      "projection_hash": "8ec987c6b37f4d2a95415d856dca68041d2b435abbb96e55ea8e9f3d50b0ad18"
+      "source_hash": "de622d5d6993a8b8d50bc9b923dcab01bf006fe268c3434f43aa2d61bee83dec",
+      "projection_hash": "047d2464eb150d12ebcc3d1fefeec98b431c4e585ca537c60b124ec0e244cff2"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
       "projection": "book/part4/4.2-one-problem-many-models.md",
-      "source_hash": "7511366a242d200efc99444545c6146832268d70890e798fb2a582c607517d0c",
-      "projection_hash": "4e1a6b608e3693ec162e9a27029bc8341e1cece0ef1312046ec87cb1edf1358d"
+      "source_hash": "2b77c03ce3aa085ee8bc3282400b9d98e4ce72d24bbec3a91679dc81d47f5e83",
+      "projection_hash": "3cefb48ffaa2cebd7634df93bc4b7b5fee84b32c2b519fd95cc5ac8bd7460ef8"
     },
     {
       "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
       "projection": "book/part4/4.3-brownfield-engineering.md",
-      "source_hash": "9acefc28253e00e690e61f9a9aed8ad33eb7cb31cab41740936cbbc212797631",
-      "projection_hash": "3b4302c6e7c96ba84117b584910fc81cd670f6107384f840955c597c900efc53"
+      "source_hash": "46a8b8d06ade46a800977220399b90a18f869c99fd95b81431d7397d91b8aad5",
+      "projection_hash": "0ba0c8afe97778a7689cb4a64adac70914a3c9d39a6691f7bb93c810ce42a4d7"
     },
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "70e69d47837cc9196e88c9bbc40b17915c1ea46794711ab36d9b6b9ea9661d07",
-      "projection_hash": "b5ad60f9ac4bf953b7a63ef93db89d6fa64c9cc161c3bd711ff6e4efa14527e9"
+      "source_hash": "1d7cfdabed49ae359adb5ebbd11ba905120f3bc04e7192851b2ea9be2bb7f56d",
+      "projection_hash": "0f31eb7d671f0c93a8895b5c1f311359f1cd115611a2e4efa9ae59abbb2a9321"
     },
     {
       "source": "book/latex/sources/part4/4.5-mage-in-motion-summary.tex",
       "projection": "book/part4/4.5-mage-in-motion-summary.md",
-      "source_hash": "1df8ff8307eda49f0fc40e0cd8b7a5bad121aa680899a8a7e9a33596c26758cd",
-      "projection_hash": "b80a635024959f9ac6777205097c8a83fc0a912ef0a6d79031e818acfdc99c34"
+      "source_hash": "a048bf071318d73d2f580677fd207fe461ab8e2ff74ba37f53ea99dfc73bac01",
+      "projection_hash": "84fc5e825addea2e3ce649a9c1b45e39581e8852962f10b66f374b0d19b16ef5"
     },
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",
@@ -222,8 +222,8 @@
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "0860ff5c9070d060bf84cb9fba4240e13a33a57764a9c6cf2101bf87ac36f89a",
-      "projection_hash": "f922c3fd4b6c815f3c2e6b9340f14b0b9b52d29c88e8038a234811aacb3b9a88"
+      "source_hash": "0f37effb18c99647e32d401ccbaffae8db9f19186b1a08d8f7a27c6ebac0048e",
+      "projection_hash": "be37ceee5c38cead75f475fa9caf01a590caf06771f79c9037d98c0b387c14e7"
     },
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
@@ -252,14 +252,14 @@
     {
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
-      "source_hash": "7d6a701ff7a5fc8742acaa17f6825e93e133769c0b8f6143b2db9644868467cc",
-      "projection_hash": "924711c452a611a9329d2f4709aa7ebb5bfe43dd78007800402b7db1ded05291"
+      "source_hash": "e2e9dd10e81e6f3376d53a37f7e3621f44a4d623b6d6509eb8895e539807ad94",
+      "projection_hash": "c7aa07e7e63a33d8daec2cfa547e19b145962dcce00110172ebe9e1d3eb3d88d"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
       "projection": "book/part6/6.2-what-the-theory-predicts.md",
-      "source_hash": "5317f3c413b86323449b96d3810a922ae59ed6851b16cae68e7f7f285eadd6f7",
-      "projection_hash": "4f69b3ed2a6195039ef2d526a961a2594d2e3e336fe6de899e687f21210b4d6e"
+      "source_hash": "6c8ff2b5d6665787f83d2b5475ebfef41f861af92953b082d6d38e8d333899d2",
+      "projection_hash": "97febffa98a6a821ed32ad2ba70e765bcce5b23065fc576f3533daa98424f17e"
     },
     {
       "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
@@ -992,26 +992,26 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/brownfield-migration.tex",
       "projection": "book/appendix-practicing-mage/brownfield-migration.md",
-      "source_hash": "1270bdc8e2516e3f59ea77d4e47830a23c68ecbedb098f387bed3259c1d5e640",
-      "projection_hash": "7f3c178a2dbc80ee9c7e24d3f56aaf3d0018968e16856930b585181682a942df"
+      "source_hash": "3b6735bf9bf97aa2c6df6dbed5585a177ad4fd4cb02e8215ae32ebea696b74df",
+      "projection_hash": "ed2ad6603c36495bbf8bb5ec907045c6363b1cb5790b717eed11e724f075af2f"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/getting-started.tex",
       "projection": "book/appendix-practicing-mage/getting-started.md",
-      "source_hash": "e79614ebbcc478a90de5d4fc6f75124918ea2fe5a98e2ec78c137b401358765d",
-      "projection_hash": "addb61fd3fd1dd1fe6675668ce7cab086cb6a16f09e287a118daef57b9aa4c00"
+      "source_hash": "8571f3ffc208725e250c60ff1ddaa7ed6041917646caa7247fda5dfe8dcc9c38",
+      "projection_hash": "a7896c708f4a84c459bd459593e1cea4e54d2efd1311982609d5cd0c9f2582f5"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/measuring-mage.tex",
       "projection": "book/appendix-practicing-mage/measuring-mage.md",
-      "source_hash": "b1c51a35c9cada24b71ec6eb1ed38f2ee8b41f737d8620a09d94c7cdf4d3b475",
-      "projection_hash": "e91c290359f934d2b9cf30c63d490dd73dc7dbc26a0cae31e724f353d6e59b3f"
+      "source_hash": "27defb7d6f5be0bb72d685052c272562f349be2fb8982d96b92c9d75a35a5fea",
+      "projection_hash": "7ed39104198f0709ae3d1ec2130b7aecbd5bc33f9bf8d7e80a411651a966d1f2"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
       "projection": "book/appendix-practicing-mage/operating-a-gee.md",
-      "source_hash": "bf0aef8d65da01eb31ad628e03e58263b19162621c583a125cd201e5a062f62e",
-      "projection_hash": "3b5cdc75738016e60bc75c8e8b702507cf901c6f93ddb231ec8c661b855fc8cf"
+      "source_hash": "36d13e3d2cb7269f1cc06f03857b6ae1f9ced63b3b7b8301a2fba82185cbe77e",
+      "projection_hash": "1328647b2f41a0279ebf57df4b52468753f521e591ee7a2d44951d9bdf1b55fc"
     },
     {
       "source": "book/latex/sources/appendix-handbook/model-driven-deployment.tex",
@@ -1073,8 +1073,8 @@
       "source": "book/latex/sources/appendix-handbook/resource-models-and-execution-design.tex",
       "projection": "book/appendix-handbook/resource-models-and-execution-design.md",
       "publication_status": "published",
-      "source_hash": "79befb90093e7ba637706009bff7bd7c0e48ba1a964e4378332b99cc70dcc0a1",
-      "projection_hash": "67f4b26f5c6f5c1359c7a3400a944e84f839672805945bd94379cc9b37c77445"
+      "source_hash": "110a6eb25203bb9fdf2f4da5951bdb06deba2de3e07065900fe93f9cb978ab38",
+      "projection_hash": "ef28bc7080c6f425a179abda5228005a65756e45eed9f7b482ad6df8ccd22cfb"
     }
   ],
   "engine_hash": "ef6f66bc872fdb3a8fca3c0b66f79f724ed20ccee47418f91bda188448331316",

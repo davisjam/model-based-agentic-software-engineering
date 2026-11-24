@@ -1,36 +1,28 @@
 {
   "source": "book/assets/interlude-latency-floor.svg",
-  "claim": "The modeled GenAI dependency chain supplies a serial latency floor that added workers alone cannot remove; independent computations can overlap it.",
-  "topology": "Extract document fans out to the section-summary → document-summary → alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime.",
+  "claim": "Three sequential GenAI calls form an approximately 7.7-second latency floor for this modeled workload. Structure and metadata repairs may proceed concurrently.",
+  "topology": "Three sequential GenAI calls form an approximately 7.7-second latency floor for this modeled workload. Structure and metadata repairs may proceed concurrently.",
   "required_terms": [
-    "1.777 s",
-    "4.1049 s",
     "Section",
     "summary",
+    "1.78 s*",
     "Document",
     "Generate",
     "alt text",
-    "(estimated)",
-    "(measured)",
+    "4.10 s\u2020",
     "Extract",
     "document",
-    "Repair structure",
-    "(validators, rules, …)",
-    "Repair metadata",
-    "(types, properties, …)",
     "Apply",
     "changes",
-    "GenAI call",
-    "Must precede",
-    "GenAI critical path (dependent chain)",
-    "Other independent work (illustrative)",
-    "GenAI latency floor: 1.777 + 1.777 + 4.1049",
-    "7.7 s"
+    "Repair structure",
+    "Repair metadata",
+    "GenAI latency floor",
+    "*Estimated; \u2020 measured."
   ],
-  "bw_encoding": "Heavy 1.3pt rounded outlines identify GenAI calls; ordinary computations use 0.6pt outlines. A 5% gray dashed enclosure groups the dependent chain. Thin black arrows mean must precede. Timing floor has pale gray emphasis. Meaning remains readable without color.",
-  "redesign": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+  "bw_encoding": "White nodes, dark labels and arrows. Position and labels carry the distinctions without tonal categories.",
+  "redesign": "Author-directed compact parallel-path fragment; three GenAI dependencies retain durations rounded to two decimals and explicit estimated/measured markers. Repair tasks remain independent. Caption bounds the7.7-second floor to the modeled workload, not the entire system.",
   "questions": [],
-  "alt": "Extract document fans out to the section-summary → document-summary → alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime.",
+  "alt": "Three sequential GenAI calls form an approximately 7.7-second latency floor for this modeled workload. Structure and metadata repairs may proceed concurrently.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -209,7 +201,7 @@
         "italic": false
       },
       {
-        "text": "(validators, rules, …)",
+        "text": "(validators, rules, \u2026)",
         "bold": false,
         "italic": false
       },
@@ -219,7 +211,7 @@
         "italic": false
       },
       {
-        "text": "(types, properties, …)",
+        "text": "(types, properties, \u2026)",
         "bold": false,
         "italic": false
       },
@@ -435,10 +427,63 @@
       "sha256": "9ea7e73b98c5d510f41e19b09e0ee5a698661943eb852a9377f86d4c83751b8d"
     }
   ],
-  "evidence_notes": "Readout: floor 7.6589 s; crossover whole-pipeline prediction 11.4589 s; text_summary estimated 1.777 s; vision_alt_text measured 4.1049 s (51 samples). Model lines 237–240 and 629–680 distinguish the typed section-summary→doc-summary relation from the annotated runtime doc-summary→alt-text consumer relation absent from remediation_graph DATA_FLOW. Generic repair branches are illustrative; no exact policy edge is claimed.",
+  "evidence_notes": "Readout: floor 7.6589 s; crossover whole-pipeline prediction 11.4589 s; text_summary estimated 1.777 s; vision_alt_text measured 4.1049 s (51 samples). Model lines 237\u2013240 and 629\u2013680 distinguish the typed section-summary\u2192doc-summary relation from the annotated runtime doc-summary\u2192alt-text consumer relation absent from remediation_graph DATA_FLOW. Generic repair branches are illustrative; no exact policy edge is claimed.",
   "author_approval": {
     "date": "2026-11-11",
     "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
     "decision": "approved"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "previous": {
+        "claim": "The modeled GenAI dependency chain supplies a serial latency floor that added workers alone cannot remove; independent computations can overlap it.",
+        "topology": "Extract document fans out to the section-summary \u2192 document-summary \u2192 alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime.",
+        "required_terms": [
+          "1.777 s",
+          "4.1049 s",
+          "Section",
+          "summary",
+          "Document",
+          "Generate",
+          "alt text",
+          "(estimated)",
+          "(measured)",
+          "Extract",
+          "document",
+          "Repair structure",
+          "(validators, rules, \u2026)",
+          "Repair metadata",
+          "(types, properties, \u2026)",
+          "Apply",
+          "changes",
+          "GenAI call",
+          "Must precede",
+          "GenAI critical path (dependent chain)",
+          "Other independent work (illustrative)",
+          "GenAI latency floor: 1.777 + 1.777 + 4.1049",
+          "7.7 s"
+        ],
+        "bw_encoding": "Heavy 1.3pt rounded outlines identify GenAI calls; ordinary computations use 0.6pt outlines. A 5% gray dashed enclosure groups the dependent chain. Thin black arrows mean must precede. Timing floor has pale gray emphasis. Meaning remains readable without color.",
+        "redesign": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+        "questions": [],
+        "alt": "Extract document fans out to the section-summary \u2192 document-summary \u2192 alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime."
+      }
+    }
+  ],
+  "chapter4_revision_20261124": {
+    "reason": "Author-directed compact parallel-path fragment; three GenAI dependencies retain durations rounded to two decimals and explicit estimated/measured markers. Repair tasks remain independent. Caption bounds the7.7-second floor to the modeled workload, not the entire system.",
+    "source_sha256": "af6053070636bbd1029f884f6f809e557daeaaa714f476faf36421332ae2c3c4",
+    "candidate_sha256": "ed4f08aa71359a84fdadf08dea01841a03a2c235a659ca380d37f23d8f29f184",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch4-dynamics-20261124/figures/interlude-latency-floor.pdf",
+      "width_bp": 449.97198486328125,
+      "height_bp": 189.97500610351562,
+      "reviewed_visually": true,
+      "semantic_typography_checks": 15,
+      "typography_findings": 0,
+      "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+    }
   }
 }

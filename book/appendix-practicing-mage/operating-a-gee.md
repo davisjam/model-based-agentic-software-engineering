@@ -24,17 +24,25 @@ The heading-detection assignment illustrates what the dispatch brief must preser
 
 DocAble records the agent’s plan and progress in durable commit metadata. Early checks verify selected execution prerequisites, including the expected worktree and branch, before substantial work begins. These records help locate and recover work but do not establish its correctness. Completion review examines the integrated revision against the work order’s acceptance obligations. Failed or interrupted work returns with its unresolved obligations and reusable artifacts identified, rather than being assigned again from the beginning.
 
+<!-- index-def: standing-context -->
+
+Reusable skills can supply procedures, examples, and tools that recur across assignments. Keep the standing context small enough to remain useful, and retrieve richer material when the task calls for it. A procedure’s availability does not establish that an agent will invoke it or follow it correctly; consequential prerequisites and acceptance conditions may require separate checks. Research on deriving skills from execution traces and revising harnesses from execution evidence offers ways to propose improvements, whose assumptions and effects still need engineering review [cite: ni2026trace2skill;chen2026harnessfix;lin2026agentic].
+
 The companion [epic](https://davisjam.github.io/model-based-agentic-software-engineering/downloads/EPIC-TEMPLATE-starter.md), [design-document](https://davisjam.github.io/model-based-agentic-software-engineering/downloads/design-doc-template-starter.md), and [dispatch-brief](https://davisjam.github.io/model-based-agentic-software-engineering/downloads/agent-brief-starter.md) starters supply field structures for these assignments.
 
 ### Keep the Checking Process Operational {#keep-the-checking-process-operational}
 
-Validation has its own operating costs. Cheap checks can run synchronously at integration boundaries, providing immediate feedback and preventing selected defects from entering the main branch. More expensive analyses may run periodically or before release. The choice trades feedback latency against computing cost and the risk of admitting work before broader evidence is available. A background check reduces the time an engineer waits, but does not necessarily reduce the work performed.
-
-DocAble encountered this tradeoff when an expensive validation sweep ran after every merge. Bursts of completed work produced bursts of validation, overloading the host despite asynchronous execution. The revised arrangement gave the sweep an independent schedule and a lock, separating its frequency from merge arrivals and preventing overlapping runs. Cheap merge checks remained synchronous, while broader checks continued before release. Periodic validation reduces coupling between merge throughput and validation cost, but leaves an interval during which some defects may remain undetected.
+Schedule validation according to the cost of obtaining evidence and the consequences of obtaining it late. In DocAble, expensive validation triggered after every merge overloaded the host. Separating its schedule from merge arrivals reduced contention, while inexpensive checks remained synchronous. {{sec:engineering-the-environment}} examines the engineering decisions and tradeoffs involved.
 
 The operating process must also establish that scheduled checks actually execute and that their findings receive the intended response. In one DocAble configuration, a timer was declared but not installed; another hook happened to run the checks, concealing the gap. In a separate incident, an alert was marked resolved while its underlying check still failed. These failures distinguish configuration from execution, detection from acknowledgment, and acknowledgment from verified repair. Evidence should identify the revision examined and remain visible until the condition is resolved or an engineer explicitly accepts the exception.
 
 ### Make Recovery Improve Later Work {#make-recovery-improve-later-work}
+
+<!-- index-def: runbook -->
+
+<!-- index-def: deterministic-vs-judgment-split -->
+
+A recovery runbook can separate three kinds of step: execute a mechanically determined operation, delegate bounded judgment with its relevant state and criteria, or escalate a decision requiring human authority. Prepare inputs mechanically where possible, preserve the rationale for a judgment, and record the resulting actions and evidence. This makes the procedure easier to replay and check without pretending that every decision is deterministic.
 
 Recovery can reveal a missing model, an implicit obligation, or a control that fails to act. The engineering question is whether the same problem is likely to recur and what subsequent work should inherit from its repair. DocAble’s completed-phase gate addresses duplicate dispatch by refusing a new assignment when its resolved phase record says the work is complete. Further work requires explicit reopening or an authorized override; an unresolved phase does not trigger this particular refusal ([ref:chapter:appendix-a-governed-delegation]).
 

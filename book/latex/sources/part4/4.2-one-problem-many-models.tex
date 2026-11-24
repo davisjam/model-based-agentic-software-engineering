@@ -7,13 +7,9 @@
 \chapter{One Problem, Many Models}
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-A large PowerPoint presentation exposed a memory problem in DocAble. The system handled ordinary documents, but this input exceeded the worker\textquotesingle s memory budget. I needed to understand why memory consumption grew with document size before deciding how to change the implementation.
+Let us see how these ideas work together in an engineering problem I encountered while building DocAble. I began with a working system, discovered a property I had neglected to model, and changed the implementation to satisfy a new obligation. That change opened up further opportunities to improve the system, each of which raised new engineering questions.
 
-Several familiar techniques were available: reduce the working set, separate structure from media, partition execution, or change where data resides. Each could reduce memory consumption, but each would also affect other properties of the system. The engineering question was which relationship needed to change.
-
-The initial problem was memory exhaustion. Later changes raised questions about latency, throughput, and execution cost. I did not begin with a plan to construct a family of models. Each model emerged because an observed failure or a proposed improvement exposed a relationship worth understanding.
-
-We follow this episode in three parts. First, a model of media residency changes how the document is represented in memory. That change then permits a reconsideration of execution boundaries and exposes new questions about latency and cost. Finally, measurements challenge the resulting models, while selected obligations become part of the engineering environment.
+The initial problem was memory exhaustion when processing large PowerPoint presentations. Solving it required reconsidering what DocAble retained in memory and how it divided remediation work among workers. I then developed models of execution, latency, and cost to investigate alternative designs. As I implemented and measured those designs, I discovered shortcomings in the models themselves. By the end of the episode, I had both a different architecture and a collection of related models and controls that would guide subsequent engineering.
 
 \section{Modeling Memory Residency}\label{heading:modeling-memory-residency}
 
@@ -25,7 +21,7 @@ DocAble originally treated an entire document as one unit of execution. A long-r
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-execution-unit-3ac64b0b5d.pdf}
-\caption{\emph{Three stages of DocAble\textquotesingle s document processing architecture.} (a) Initially, one worker retained the complete document, including its media. (b) Page chunking reduced the working set per worker, but each chunk still retained its media. (c) Skeletonization separated document structure from media, retaining only structure and references in worker memory while streaming media on demand. Chunking changed the execution unit; skeletonization changed the residency requirement.}
+\caption{\emph{Three approaches to document residency.} (a) One worker retains the document structure and its media. (b) Dividing the document into chunks reduces the content assigned to each worker. (c) Separating document structure from media allows workers to retrieve media as needed rather than retain the entire payload.}
 \label{interlude-execution-unit}
 \end{figure}
 
@@ -33,15 +29,12 @@ DocAble originally treated an entire document as one unit of execution. A long-r
 The document therefore served as both the user\textquotesingle s artifact and the worker\textquotesingle s in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the foundation model as needed.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable. The resulting architecture worked on ordinary inputs. Larger documents exposed the omission. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
+The resulting architecture worked on ordinary inputs, but larger documents exposed its limitations. Teaching presentations contained more slides, images, and other media than a single worker could comfortably hold in memory. I needed to reduce the amount of document content each worker processed at once. I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable.
 
-\subsection{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}
-
-% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-DocAble\textquotesingle s response was ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b).
+\subsection{Dividing the Document among Workers}\label{heading:pages-as-the-unit-of-scale}
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-The new representation treated contiguous pages as independent work partitions. For a presentation, a chunk contained a range of slides together with the document state needed to remediate them; the system later recombined the resulting patches into the complete artifact.
+My first response was to introduce ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b). Each worker processed a portion of the document, retaining the structure and media needed to remediate those pages. The resulting patches were then recombined into the complete document.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 Each worker now handled only part of the document, and multiple chunks could run concurrently. More importantly, chunking reduced the memory required by an individual worker. Memory affects both infrastructure cost and cold-start behavior, so a smaller worker was useful even for documents that did not strictly require chunking to fit.
@@ -53,14 +46,9 @@ This architecture accommodated the inputs encountered so far. The page boundary 
 
 Smaller chunks could reduce memory consumption further, but they would also reduce the context available for semantic judgments and increase coordination costs. Chunking therefore presented a tradeoff between memory use and the information available to each operation.
 
-% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-The 250 MB presentation made me question the tradeoff itself. Most of the file consisted of media, but many remediation operations needed only the document\textquotesingle s structure. Why was the worker retaining all that media?
+\subsection{Separating Document Structure from Media}\label{heading:a-new-class-of-input}
 
-That question led to a different representation rather than another reduction in chunk size.
-
-\subsection{A New Class of Input}\label{heading:a-new-class-of-input}
-
-A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.
+Dividing documents into page ranges reduced the amount of content each worker processed, but did not remove the underlying dependence on document size. I therefore examined what a worker actually needed to retain in memory. A presentation contains both the structure needed to reason about its contents and the media associated with that structure. Did the worker need to retain all that media throughout remediation?
 
 Modern Office documents use Office Open XML (OOXML). A \texttt{.pptx}, \texttt{.docx}, or \texttt{.xlsx} file is a package containing many parts. Much of its semantic structure is XML: text, slides, relationships, identifiers, and references among objects. Large binary assets such as images and other media live alongside those XML parts inside the package.
 
@@ -101,26 +89,25 @@ That claim depends on bounded streaming buffers, a structural skeleton whose siz
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The implementation enforces the assumptions behind the bound as invariants; measurement checks that the realized system behaves as the model predicts. The PDF path already shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed; the corresponding OOXML media-size sweep remains a designed validation step.
 
-While this architecture was being developed, agents sometimes proposed removing operations or state that looked expensive but were essential to correct remediation. The fixtures available at the time would not necessarily have exposed every resulting semantic failure. The engineering model supplied a distinction the surface objective did not: which relationships the system depends on, and which resource costs follow from the current realization. Agents could use that structure to correct their account of the system before changing it.
+My original requirement concerned the operations DocAble had to perform on a document. It did not distinguish the information those operations required from the memory costs of the implementation. The residency model made that distinction explicit. A worker could retain the document’s structural representation while retrieving media as needed, rather than retaining the entire media payload throughout processing.
 
-The model also let me judge which relationships an optimization had to preserve while the realization changed faster than I could reconstruct its behavior from code and tests.
+The resulting design removed aggregate media payload size from the principal memory-residency term. The worker still required memory for document structure, active computations, and streaming buffers. The model therefore predicted a particular improvement in scaling behavior, rather than constant memory consumption under every possible change in document size.
 
 Changing the architecture to satisfy the residency model is active alignment. Once correspondence is established, the model and invariant checks provide passive alignment: later changes must preserve the memory property or justify revising the model and its checks. The memory obligation became part of the alignment kernel for the execution changes that followed.
 
-\subsection{Why One Level Deeper Matters}\label{heading:why-one-level-deeper-matters}
+% <!-- index-def: measure-one-level-deeper -->
 
-An end-to-end measurement says whether the outcome moved. It does not say why it moved. Peak worker memory is the outcome; media residency is the mechanism that produces it. A model of the mechanism answers the further question: which relationship generated the improvement, and whether that explanation is compatible with the work the system must still perform.
+\subsection{Model the Cause, Not Just the Symptom}\label{heading:why-one-level-deeper-matters}
 
-% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
-Measurement tests the residency model\textquotesingle s explanation. A peak-memory figure reports what happened on the inputs in one sweep; the model predicts which changes to those inputs should change the result. Comparing the two can expose a missing relationship, as a later sweep did in this case. The engineer needs both: measurements to test the account, and an account of memory growth to assess the next unfamiliar document.
+Measuring peak memory tells us how much memory the worker consumed. It does not tell us why. The residency model explains how document structure and media contribute to memory consumption, and predicts how memory should change as we vary the input.
 
-Ousterhout puts the same instruction compactly: measure one level deeper~\citep{ousterhout2018}. One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
+We need both the model and the measurements. The model helps us predict the behavior of documents we have not yet processed; measurements help us discover whether the model is correct. Ousterhout describes this practice as measuring one level deeper~\citep{ousterhout2018}. The additional measurement is worthwhile when it helps us understand the mechanism responsible for the observed behavior.
 
-\subsection{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}
+\subsection{Memory as an Obligation for Subsequent Changes}\label{heading:memory-did-not-stop-mattering}
 
-Bringing memory under governance did not make memory disappear. It changed the conditions under which later performance work could proceed. The next questions increasingly concerned latency, throughput, and compute cost, but proposed answers remained subject to the memory relationships already made explicit. A faster design that exceeded the deployment\textquotesingle s memory budget was not an improvement.
+I could now investigate ways to reduce latency and cost, but the new designs still had to satisfy the memory obligation. A faster implementation that exhausted worker memory would not be an improvement.
 
-Memory came first because the two failures differ in kind: out-of-memory failure prevented processing altogether, whereas inefficient execution increased latency and cost while still producing a result. The later service-sizing model recorded that priority in a one-sided safety margin: exhausting memory kills the process, while over-provisioning costs money. Another domain might prioritize safety, latency, or numerical accuracy; the ordering must follow the consequences.
+I had prioritized memory because running out of it prevented DocAble from processing a document at all, whereas inefficient execution made processing slower or more expensive. The service-sizing model later captured this asymmetry: allocating too much memory costs money; allocating too little can kill the process. Other engineering problems may require us to protect safety, timing, or numerical accuracy first.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 That coupling became explicit in the engineering machinery. The frontier-worker design bounded active calls with a semaphore and modeled its footprint as the concurrency limit multiplied by the per-call working set. Wider work therefore required more batches rather than an unbounded resident set. In a later latency campaign, production shipment of a deck-to-PDF cache was conditional on bounding its memory use and spilling cached artifacts to external storage. The earlier resource model had become part of the environment within which the later one operated.
@@ -131,9 +118,7 @@ The memory model also changed which execution choices were worth reconsidering. 
 
 \subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}
 
-Page chunking had originally served two purposes: it partitioned remediation work and reduced the memory required by each worker. Skeletonization largely removed the second reason. I could now reconsider the execution boundary without immediately exceeding the worker\textquotesingle s memory budget.
-
-The question was no longer how many pages a worker could hold. It was which operations could execute independently, and which had to wait for information produced by other operations.
+Skeletonization also gave me a reason to reconsider the execution architecture. I had introduced ChunkWorker to limit memory consumption by dividing documents into page ranges. With that problem addressed differently, was partitioning work by page still the best way to organize remediation?
 
 A page tells us where content occurs, not which computations depend on which others. The computation model introduced in \autoref{2.3-structural:heading:what-computations-depend-on-one-another} and connected to scheduling in \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} identifies registered computations and the information dependencies among them. The question here was whether those dependencies could support a better execution policy.
 
@@ -151,11 +136,11 @@ The same graph admits different execution policies. \autoref{interlude-graph-two
 
 The graph explains the ordering. Independent work can run together; a consumer waits only for information it needs from upstream. Pages do not create those dependencies. Information does. The executor repeatedly schedules the ready frontier, records its outputs, and advances to the next frontier as dependencies are satisfied.\magefootnote{topo-dag}{This is ordinary topological traversal of a directed acyclic graph, familiar from compilers, build systems, and dependency schedulers.}
 
-This reframes ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.
+I could now reconsider the design of ChunkWorker. Page-oriented and frontier-oriented execution are not different remediation graphs. They are different ways of partitioning the same graph. Page execution groups work by where it occurs; frontier execution groups work by when it is ready.
 
 Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so page identity no longer needs to determine execution. It can survive as metadata on graph nodes---useful for locality, debugging, rate limiting, or failure isolation---without remaining the fundamental unit of executable remediation.
 
-For the present problem, the architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. There is no need to build a strategy hierarchy merely because two policies are conceivable. Separating the graph from its executor lets us change the scheduling policy later without redesigning remediation. In the realized architecture, that execution-driving representation remains distinct from richer analytical projections built over the same computation identities. The distinction matters later: a model may govern realization while another view of the same structure serves analysis.
+For the present problem, the architecture therefore needs only a clean seam between the remediation graph and its executor: the graph supplies ready work and its dependencies; the executor consumes them. The executor can schedule by frontier now and exploit page locality later if measurements justify it. I did not need to implement both scheduling policies merely because I could imagine them. The dependency model let me investigate their likely consequences before committing to either implementation. Separating the graph from its executor lets us change the scheduling policy later without redesigning remediation. In the realized architecture, that execution-driving representation remains distinct from richer analytical projections built over the same computation identities. The distinction matters later: a model may govern realization while another view of the same structure serves analysis.
 
 \subsection{Redesigning the Critical Path}\label{heading:analyze-before-you-build}
 
@@ -175,9 +160,11 @@ Another possibility is to reconsider the dependencies themselves. In DocAble’s
 
 The model exposed a distinction between the existing implementation and the information the operations actually needed. Each image required adequate surrounding context, but not necessarily the preceding image’s generated description. Rendering the surrounding pages once supplied a shared visual representation that each image-description operation could consume independently. Panel (c) shows how changing the information dependencies removed the serial chain.
 
-\subsection{The Second Resource Model}\label{heading:the-second-resource-model}
+\subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}
 
-The critical-path model explained which dependencies could determine latency. A second model captured a different source of cost: repeated whole-document work. Let \emph{R} be the number of remediation rounds, \emph{F} the cost of producing the whole document once, and \emph{G} the remaining GenAI work. The model represented execution without page chunks as
+The execution model told me which computations could proceed independently. To compare execution designs, I also needed to understand their costs. In particular, dividing remediation among workers could require several workers to perform the same document-processing operations.
+
+Let \emph{R} be the number of remediation rounds, \emph{F} the cost of producing the whole document once, and \emph{G} the remaining GenAI work. The model represented execution without page chunks as
 
 \[
 T = (R+1)\,F + G
@@ -185,7 +172,7 @@ T = (R+1)\,F + G
 
 For example, suppose a document requires four remediation rounds, whole-document production takes 10 seconds, and the remaining GenAI work takes 20 seconds. The model predicts \emph{T} = (4+1)(10) + 20 = 70 seconds. Fifty of those seconds come from producing the document five times: once for each remediation round and once more to apply the accumulated changes. Cutting the GenAI work in half would save 10 seconds; eliminating two production rounds would save 20. In this example, we spend too much time rebuilding the document. The model therefore identifies repeated whole-document production as a quantity worth attacking.
 
-The model was also falsifiable. Its calibration procedure inverted observed execution times to recover its components, and it rejected any fit whose inferred costs came out negative. Measurement could therefore disagree with the engineering account rather than merely supplying another number to optimize against.
+I could also test whether this model was correct. Its calibration procedure inverted observed execution times to recover its components, and it rejected any fit whose inferred costs came out negative. Measurement could therefore disagree with the engineering account rather than merely supplying another number to optimize against.
 
 \subsection{Predicting Latency}\label{heading:predicting-latency}
 
@@ -195,7 +182,7 @@ Critical-path analysis also supports quantitative latency predictions when opera
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-latency-floor-818a3f4133.pdf}
 % Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
-\caption{\emph{The GenAI critical path in a schematic fragment of DocAble’s remediation graph.} Independent remediation computations can execute concurrently, but section summarization, document summarization, and alt-text generation form a dependent chain. For the modeled workload, their estimated and measured durations contribute approximately 7.7 seconds of serial latency, which additional workers alone cannot eliminate.}
+\caption{\emph{The GenAI critical path in a fragment of DocAble’s remediation graph.} Arrows indicate execution dependencies. Other remediation computations can proceed concurrently, but the three GenAI calls must execute in sequence. Their estimated and measured durations imply a latency floor of approximately 7.7 seconds for this modeled workload.}
 \label{interlude-latency-floor}
 \end{figure}
 
@@ -203,43 +190,44 @@ For the representative 37-image workload, local concurrency of six required seve
 
 \subsection{Predicting the Cost of a Design Change}\label{heading:predicting-the-cost-of-a-design-change}
 
-A proposed intermediate representation can be inserted into the dependency graph before it is implemented. Recomputing the critical path, execution rounds, peak width, and overhead shows where it could add cost. An IR off the critical path may add no serial latency; one that deepens the chain adds its call time to the floor and may require another distributed round. These are predictions to test, but they help decide which candidate is worth building.
+Before implementing a proposed intermediate representation, I could add its production and consumption to the dependency graph. I could then recompute the critical path, the number of execution rounds, and the amount of work available for concurrent execution. A computation outside the critical path might add no latency, provided that sufficient resources were available. One that extended the critical path would increase the predicted latency and might require another distributed execution round. These predictions helped me decide which designs were worth implementing and measuring.
 
-\subsection{Use Prediction Error as Evidence}\label{heading:use-prediction-error-as-evidence}
+\subsection{Learning from Prediction Errors}\label{heading:use-prediction-error-as-evidence}
 
-Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question. \autoref{interlude-prediction-residual} connects the general engineering loop in panel a to an illustrative prediction error in panel b and the refinement of the model in panel c.
+A useful feature of a quantitative model is that we can test its predictions. When measured latency differs substantially from a prediction, we have another engineering problem to investigate. Have we estimated a parameter incorrectly? Have we misunderstood a dependency? Have we omitted a computation or a source of overhead? Alternatively, the implementation might not follow the modeled design.
+
+Each explanation calls for a different response. We can revise a parameter, change the structure of the model, investigate an omitted mechanism, or correct the implementation. We can then repeat the analysis and compare its prediction with further measurements. \autoref{interlude-prediction-residual} illustrates this process and the possible sources of a prediction error.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-prediction-residual-358697131d.pdf}
-\caption{\emph{Modeling through prediction and measurement.} (a) An engineering problem motivates a model whose analysis informs implementation. Measurements test its predictions and may require the model to be revised. (b) A discrepancy between predicted and observed latency directs investigation toward an incorrect parameter, an incorrect relationship, or a missing mechanism. The numerical values are illustrative. (c) The revised model is tested again until its residual is acceptable for the question being investigated.}
+\caption{\emph{Learning through prediction and measurement.} (a) A model supports predictions that can be compared with measurements of the implementation. Disagreement motivates investigation and revision. (b) A prediction error can arise from an incorrect parameter, an incorrect relationship, a missing mechanism, or an implementation that does not follow the modeled design. The numerical values are illustrative.}
 \label{interlude-prediction-residual}
 \end{figure}
 
-The queue overhead may have been underestimated. Two apparently independent nodes may share a serialized resource, or media loading may introduce a cost the latency model omitted. A close prediction supplies evidence that the model captures dominant mechanisms; a miss directs investigation toward a wrong parameter, a missing relation, or an implementation problem.
+For example, queue overhead may have been underestimated. Two apparently independent computations may share a serialized resource, or media loading may introduce a cost the latency model omitted.
 
 What should remain durable when the models themselves change?
 
 \section{Preserving and Revising Models}\label{heading:preserving-and-revising-models}
 
-\subsection{What Carries Forward}\label{heading:what-carries-forward}
+\subsection{Preserving Performance Obligations}\label{heading:what-carries-forward}
+
+As I developed these models, I had to decide which of their properties should constrain subsequent engineering. Some models helped me understand the system or compare designs. Others expressed obligations that later implementations needed to preserve. A useful prediction did not necessarily warrant a new enforcement mechanism.
 
 % Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
-DocAble did not turn observed wall-clock time into the durable control. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
-
-% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
-A fifth quantity, the number of GenAI hops, carries an audit-only label and is excluded from the four upper-bound comparisons. A separate test nevertheless compares it with the seeded value and can fail. The label alone therefore does not establish whether a measurement is advisory; the consumer and its acceptance rule determine the consequence. \autoref{chapter:appendix-a-resource-models-and-execution-design} explains the distinction.
+I chose not to use observed wall-clock time as the basis for the performance ratchet. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. The environment therefore preserves part of the \emph{explanation} for performance rather than a number that only reproduces on the machine that produced it.
 
 \subsection{Models Get Falsified; the Obligation Survives}\label{heading:models-get-falsified-the-obligation-survives}
 
 % Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
-A ratchet does not make the current model true forever. Several memory hypotheses in this episode were later falsified. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
+The memory model also made predictions that I could test independently of the implementation’s apparent success. Some of those predictions turned out to be wrong. One held that a PDF library\textquotesingle s whole-file object model kept roughly 2.4 GiB resident; measurement found about 1 MiB live, because the file was memory-mapped and the image bytes never entered the managed heap. Another projected that moving rendering off the worker would recover 90 to 120 MiB; the landed measurement recovered about 6, because rendering was already running off the worker. A later adversarial sweep found a scaling dimension the bound had not covered at all: peak memory rose with decoded image area rather than with stored media size. The response was to extend the model and add an admission gate that refuses inputs outside the declared envelope. A capacity model elsewhere in the same environment was eventually caught about twofold too low against dozens of measured sweeps, and its parameter was recalibrated rather than the measurement discounted.
 
 % Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
-The measurements carried their own provenance. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it. A process-level measurement may omit memory included in the container\textquotesingle s total. Recording the measurement\textquotesingle s origin makes that difference visible and helps engineers decide which parameters need to be measured again.
+I also recorded how each measurement was obtained. A measured quantity might describe a particular document, workload, configuration, or revision of the software. Comparing measurements obtained under different conditions could otherwise lead me to revise a model that was correct for its original assumptions. A figure taken on a development host was marked as such and did not become the value of record until the deployment environment reproduced it. A process-level measurement may omit memory included in the container's total.
 
 % Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
-Nor was the memory work finished before the execution-time work began. We were still investigating memory consumption while the time models were being built. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The retained controls preserve the resource obligation even when the model used to evaluate it changes.
+Nor was the memory work finished before the execution-time work began. I was still investigating memory consumption while developing the time models. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The retained controls preserve the resource obligation even when the model used to evaluate it changes.
 
 
 The episode therefore left more than a revised implementation. It left several models whose relationships could support later decisions, even as their parameters and assumptions continued to change.
@@ -295,8 +283,26 @@ These models take different forms because they answer different questions. Some 
 
 Some answers follow from structure; others depend on calibrated measurements. The critical path identifies ordering that more workers cannot remove, while a latency prediction depends on operation times and coordination costs. Keeping those sources of knowledge distinct makes disagreement informative: a measurement can require a new parameter, a revised relation, or another model. \autoref{chapter:appendix-a-resource-models-and-execution-design} brings the resulting resource, execution, and measurement relationships together as a construction blueprint.
 
-\subsection{Modeling Inside the Implementation Loop}\label{heading:three-days}
+\subsection{Using the Models to Evaluate Subsequent Changes}\label{heading:model-aware-change-impact}
 
-This sequence took about three days inside the existing governed engineering environment. It included skeletonization and streaming, typed-patch work, reconsidering ChunkWorker, remediation and fact graphs, quantitative analysis, the chunkless execution design, and corrections when assumptions proved wrong. The timescale matters because modeling could participate in the implementation loop rather than follow it as a separate documentation phase.
+The models developed during this episode also helped me reason about changes I had not yet undertaken. Suppose I wanted to increase the number of workers processing a document concurrently. Which properties would I need to evaluate before accepting that change?
 
-The seven models arrived one at a time. Larger inputs exposed a memory problem; changing how media was stored made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each model answered a question raised by the work. Together, they let me predict the consequences of proposed changes and test those predictions against measurements. When the measurements disagreed, I revised the models.
+The execution model would help me identify the work that could proceed concurrently. The residency model would help me estimate the memory required by that work. The latency and cost models would help me assess whether the additional concurrency was worthwhile. Other models could identify ownership and ordering obligations affected by the proposed change.
+
+\autoref{model-aware-change-impact} illustrates how these relationships can help determine which evaluations a proposed change requires. Rather than asking an agent to reconstruct the relevant engineering obligations from the implementation, we can follow the relationships among the models, the affected components, and the available checks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
+\label{model-aware-change-impact}
+\end{figure}
+
+This use of model relationships builds on change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Such an analysis is only as complete as the relationships it represents. It can identify evaluations warranted by known dependencies, but it cannot establish that we have represented every property the change might affect. \autoref{chapter:appendix-a-model-based-test-selection} develops the corresponding engineering machinery.
+
+
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: dated-case-evidence
+This episode began with Evaluation: DocAble could not process a document. It led to Modeling and then to changes in the implementation, which exposed further engineering questions. Measurements revealed shortcomings in some of my models, while other models identified properties that I wanted subsequent implementations to preserve. I could not have specified all seven models at the beginning of the episode, because I did not yet know which questions I would need to answer.
