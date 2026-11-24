@@ -16,7 +16,7 @@ A foundation model produces probabilistic outputs; a harness turns selected outp
 
 % <!-- index-def: agent -->
 
-Guidance influences behavior; enforcement determines what the environment will permit or accept. A prompt, brief, example, or playbook can make one action more likely than another. A permission boundary can forbid an action, while a validator and gate can refuse a result. Feedback can return evidence to the reasoner---a failing test, an observed call, a measured latency, or a validator's explanation---so that subsequent work can respond. The distinction matters when choosing where to intervene: the environment must be able to constrain the relevant action or determine whether the resulting work is accepted, rather than merely advising the reasoner.
+Guidance tells an agent what to do. Enforcement limits what it can do or what we will accept. A prompt, brief, example, or playbook can make one action more likely than another. A permission boundary can forbid an action, while a validator and gate can refuse a result. Feedback can return evidence to the reasoner---a failing test, an observed call, a measured latency, or a validator's explanation---so that subsequent work can respond. The distinction matters when choosing where to intervene: the environment must be able to constrain the relevant action or determine whether the resulting work is accepted, rather than merely advising the reasoner.
 
 \autoref{alignment-overview} shows how models connect to enforcement. Constraints restrict actions or states; sensors obtain evidence about artifacts and executions; gates evaluate that evidence and determine whether work may proceed. These functions may be combined in one mechanism, and their assurance extends only to the obligations and evidence they cover.
 
@@ -52,7 +52,7 @@ Where the environment intervenes determines what it can examine and control. \au
 
 % <!-- index-def: reasoning-input -->
 
-The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do much of their work: a finite reasoner benefits when relevant system knowledge is externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown. Guidance can make an acceptable realization more likely; a sound constraint or admission mechanism can instead rule out a represented class of unacceptable realizations within the surface it governs. Guidance improves the producer's odds; enforcement changes what admission must trust.
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do much of their work: a finite reasoner benefits when relevant system knowledge is externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown. An instruction may help an agent avoid a mistake. A sound control can prevent certain mistakes or refuse the resulting work. Guidance improves the producer's odds; enforcement changes what admission must trust.
 
 \[
 \text{guidance: }p_i \uparrow \qquad \text{enforcement: selected }J_i\text{ need not be trusted for admission}
@@ -95,7 +95,7 @@ The third enforcement boundary is the \textbf{artifact or runtime boundary}: the
 
 % <!-- point: the-four-boundaries-do-not-form-a-monotonic-scale | The four boundaries do not form a monotonic weak-to-strong scale. | terms: intervention-boundary, guidance-vs-enforcement -->
 
-These locations do not form a monotonic scale from weak to strong. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
+A later check is not necessarily a stronger check. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
 
 % <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
 

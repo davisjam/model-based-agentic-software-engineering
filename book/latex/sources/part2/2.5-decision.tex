@@ -44,7 +44,7 @@ Finite balance & Insufficient credit for the request & Reject for insufficient c
 
 \textbf{Semantics.} Each row specifies conditions and the corresponding admission and charging decision. Read across the row whose conditions hold. A prepaid customer with five credits can proceed and spends the five; with four credits, the same request is rejected. For an unlimited subscription covering the work, the service admits the request without drawing on a balance.
 
-The input to the decision must preserve every distinction that can change its outcome. Suppose a caller supplies only the number of prepaid credits. A customer who has spent the last credit and an unlimited subscriber who never bought credits can both have a balance of zero. The table gives them different answers. No revision to a rule that sees only the balance can recover the missing entitlement.
+To make the right decision, we must know the facts that could change it. Suppose a caller supplies only the number of prepaid credits. A customer who has spent the last credit and an unlimited subscriber who never bought credits can both have a balance of zero. The table gives them different answers. No revision to a rule that sees only the balance can recover the missing entitlement.
 
 % <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms. -->
 

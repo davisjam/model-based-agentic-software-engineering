@@ -120,7 +120,7 @@ An instruction to use the billing API can guide an agent, but it does not exclud
 
 % <!-- point: a-validator-turns-evidence-into-a-judgment | The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions. | terms: validator, gate -->
 
-A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. Policy-based access-control architectures distinguish the decision about whether access is permitted from the enforcement of that decision~\citep{rfc2753,oasis2017xacml}. The same distinction applies here: a correct verdict provides no barrier unless the admission mechanism acts on it. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
+A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. Policy-based access-control architectures distinguish the decision about whether access is permitted from the enforcement of that decision~\citep{rfc2753,oasis2017xacml}. The same distinction applies here: finding a violation does not stop it. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
 
 % <!-- index-def: validator -->
 
@@ -167,7 +167,7 @@ A human reviewer might recognize the forbidden connection and refuse the merge u
 
 % <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs. | terms: validator, gate -->
 
-Evidence must also correspond to the candidate being accepted. A release check can regenerate it rather than trust the producing agent's report or results from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This makes acceptance independent of the agent's account of its work.
+Make sure you checked the version you are about to accept. A release check can regenerate the evidence rather than trust the producing agent's report or results from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This makes acceptance independent of the agent's account of its work.
 
 
 \subsection{Testing Against Models}\label{heading:tests-and-models-work-together}

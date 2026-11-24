@@ -31248,3 +31248,152 @@ We do not know the optimal policy. Cost and transition functions remain uncalibr
 Effects established for particular tasks, agents, and environments require replication before broader transfer can be justified. Within those limits, evidence can guide where to invest in reusable engineering structure, where to rely on probabilistic reasoning, and where human judgment remains necessary. The economically appropriate division of labor can change as the technology and the work change.
 
 ```
+
+
+## 2026-11-24 — Chapters 2–4 plain-language copyedits
+
+Source revision: `e1242255e`. Author-requested local simplifications, retaining authority, granularity, active alignment, parsimony, and the residual explanation. The hypothetical performance calculation remains explicitly an example. Superseded wording is preserved below.
+
+Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 34.
+
+```latex
+The form of the context matters as well as its availability.
+```
+
+Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 54.
+
+```latex
+A further decision concerns the model’s authority.
+```
+
+Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 68.
+
+```latex
+Choosing a model also means choosing its granularity.
+```
+
+Source: `book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex`, line 19.
+
+```latex
+Useful models can originate in requirements, existing systems, or exploratory implementation.
+```
+
+Source: `book/latex/sources/part2/2.2-constructing-and-using-engineering-models.tex`, line 80.
+
+```latex
+An engineering concern alone does not determine the choice of model.
+```
+
+Source: `book/latex/sources/part2/2.5-decision.tex`, line 47.
+
+```latex
+The input to the decision must preserve every distinction that can change its outcome.
+```
+
+Source: `book/latex/sources/part2/2.6-system-knowledge.tex`, line 83.
+
+```latex
+Prefer references to a common source over independently maintained copies of the same fact.
+```
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, line 19.
+
+```latex
+Guidance influences behavior; enforcement determines what the environment will permit or accept.
+```
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, line 55.
+
+```latex
+Guidance can make an acceptable realization more likely; a sound constraint or admission mechanism can instead rule out a represented class of unacceptable realizations within the surface it governs.
+```
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, line 98.
+
+```latex
+These locations do not form a monotonic scale from weak to strong.
+```
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, line 92.
+
+```latex
+The source of a model does not determine whether it supplies an independent obligation.
+```
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, line 116.
+
+```latex
+A second problem is placement. An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.
+```
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, line 123.
+
+```latex
+The same distinction applies here: a correct verdict provides no barrier unless the admission mechanism acts on it.
+```
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, line 170.
+
+```latex
+Evidence must also correspond to the candidate being accepted. A release check can regenerate it rather than trust the producing agent's report or results from an earlier revision.
+```
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, line 56.
+
+```latex
+An inventory assembled from existing controls alone would omit any obligation for which no control was built.
+```
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`, line 14.
+
+```latex
+No engineered environment begins with every future obligation already represented and mechanized. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, or a format mutation must cross a particular seam. Others become visible only when work exposes a failure nobody represented or controlled.
+```
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, line 27.
+
+```latex
+In active alignment, an engineer may deliberately introduce a mismatch between the models and the implementation.
+```
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, line 37.
+
+```latex
+The kernel instead concerns their order of introduction:
+```
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, line 58.
+
+```latex
+A realization already exists.
+```
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, line 63.
+
+```latex
+Leaving some choices unsettled can therefore have information value.
+```
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, line 73.
+
+```latex
+Parsimony is therefore an active engineering responsibility: deciding not only whether a design works, but whether its complexity is justified.
+```
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 186.
+
+```latex
+The model therefore identifies repeated whole-document production as a quantity worth attacking.
+```
+
+Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex`, line 59.
+
+```latex
+The third disposition requires more than naming a repeated structure.
+```
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, line 50.
+
+```latex
+The representation determines which judgments are feasible.
+```
