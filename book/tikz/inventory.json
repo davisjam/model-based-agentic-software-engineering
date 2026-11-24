@@ -528,7 +528,7 @@
   {
     "chapter": "3.2-governance-mechanisms",
     "source": "assets/models-to-engineering-machinery.svg",
-    "caption": "*From engineering models to engineering machinery.* Engineers and agents can interpret models to construct implementations and checks. Models with sufficiently defined semantics can also support mechanical analysis, generation, and derivation of checks, in whole or in part. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.",
+    "caption": "*From engineering models to engineering machinery.* Engineers and agents can use models to analyze systems, construct implementations, and establish evaluation machinery. Models with sufficiently defined semantics can also support mechanical analysis, generation, and direct interpretation. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
@@ -536,7 +536,7 @@
     "data": [],
     "conversion": "Native TikZ and matching monochrome SVG, following the author-requested three-branch teaching diagram",
     "svg_title": "From engineering models to engineering machinery",
-    "svg_description": "An engineering model supports three parallel uses: analyze the model, generate all or part of a realization, and derive checks. Model analysis produces evidence about the model. A generated implementation and derived tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.",
+    "svg_description": "An engineering model supports three parallel uses: analyze the model, construct a realization, and construct evaluation machinery. The construction branches include types and configuration, transition rules, code or structures, tests and expected results, runtime monitors, data validators, and verification requirements. Model analysis produces evidence about the model. An implementation and tests, monitors, or validators feed implementation evaluation, which produces distinct implementation evidence. A separate semantic-commitment strip applies to all three uses: less explicit meaning requires more interpretation; more explicit meaning creates more opportunities for mechanization. The uses are choices, not stages or a maturity ranking.",
     "native_source": "book/tikz/figures/models-to-engineering-machinery.tex"
   },
   {
@@ -633,7 +633,7 @@
   {
     "chapter": "4.1-the-dynamics-of-mage",
     "source": "assets/alignment-kernel.svg",
-    "caption": "*Incrementally extending the alignment kernel.* The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in Chapter 2 becoming governing constraints over time.",
+    "caption": "*Incrementally extending the alignment kernel.* The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in {{chapter:modeling}} becoming governing constraints over time. Engineers may also revise or retire obligations when the requirements change.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -641,7 +641,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Incrementally extending the alignment kernel",
-    "svg_description": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region."
+    "svg_description": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that must stay protected while the system changes; 2 actively align — use the models to change the system until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already established; 4 reassess and repeat — extend or revise the kernel as engineering obligations change. Right, a flat concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested rings. An annotation notes that the governed surface grows over time; another that each new model is admitted under the constraints of the models inside it; and a third that active alignment operates within the protected region."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",

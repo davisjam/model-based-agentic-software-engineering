@@ -407,6 +407,13 @@ def compatibility(source: Path, output: Path):
     text = re.sub(r'\\magevalue\{([^}]+)\}', lambda m: token('{{' + m[1] + '}}'), text)
     text = re.sub(r'\\(?:autoref|cref)\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
     text = re.sub(r'\\cite[pt]\{([^}]+)\}', lambda m: token('[cite: ' + m[1].replace(',', ';') + ']'), text)
+    # Chapter 4's episode conclusions remain ordinary emphasized paragraphs in
+    # web/EPUB, with the same label and content as the native print command.
+    while r'\engineeringlesson{' in text:
+        start = text.index(r'\engineeringlesson{')
+        body = argument(text[start:], r'\engineeringlesson')
+        full = r'\engineeringlesson{' + body + '}'
+        text = text[:start] + r'\emph{Lesson: ' + body + '}' + text[start + len(full):]
     footnotes = {}
     while r'\magefootnote{' in text:
         start = text.index(r'\magefootnote{')
@@ -1133,6 +1140,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
 \newcommand{\mageaside}[1]{\footnote{#1}}
 \newcommand{\magefootnote}[2]{\footnote{#2}}
 \newcommand{\magerule}[1]{\begin{center}\rule{0.5\linewidth}{0.4pt}\end{center}}
+\newcommand{\engineeringlesson}[1]{\par\smallskip\noindent\textit{Lesson: #1}\par\smallskip}
 \begin{document}
 \pagenumbering{roman}
 ''' + cover_tex() + '\n'.join(body) + '\n' + r'\end{document}' + '\n')

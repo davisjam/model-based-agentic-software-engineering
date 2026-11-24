@@ -15,6 +15,19 @@ The graph's analysis computes a declared order and detects cycles; tests include
 % Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: implementation
 Correspondence has a similarly concrete boundary. The anchor check compares modeled commands, lifecycle events, scripts, and entry symbols with configured wiring. It can detect a missing command or a mismatched firing event within its inspected population. Finding the expected function name does not establish that its behavior remains suitable. When a control's meaning changes, review the represented requirements as well as its address.
 
+\section{Reuse Machinery Across Obligations}\label{heading:handbook-reusable-evaluation}
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+A recurring class of obligations can justify a common representation and evaluator. DocAble's component model declares permitted imports for selected Python components; one checker applies those declarations to the corresponding source files. An additional boundary extends the checked population without another checker. Construct such a mechanism around explicit identities, the meaning of each declaration, and a rule for selecting its population. Test both a forbidden import and an allowed one, and distinguish a component with no declared boundary from one whose imports satisfy its boundary.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Models can also determine what verification machinery must exist. DocAble derives a verification tier from an invariant's participating lanes, coordination primitive, and temporal operator. Its policy assigns concurrent safety obligations to explicit-state exploration, concurrent liveness obligations to a temporal specification, and ordinary sequential obligations to property tests. A reusable lint maps each tier to a required artifact kind and checks that a reference of that kind resolves to a file. The mapping must cover every tier; a new tier without a mapping is itself a finding. The machinery applies across models, with blocking enforcement for selected models and advisory findings while others are brought into conformance.
+
+This construction separates three decisions: how to classify an obligation, which artifact its class requires, and whether that artifact supplies adequate evidence. The first two can follow an explicit policy; the last still requires examination of the test or specification. Challenge the mechanism with a missing reference, a wrong artifact kind, a nonexistent file, and an unmapped tier. A vacuous checker can pass an existence check, so artifact presence must not stand for adequate verification.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Keep artifact correspondence separate from execution as well. DocAble derives a temporal property definition from its model and checks that the TLA+ specification contains the corresponding property; the state and action definitions require separate construction. The parity check is blocking, but running TLC remains a separate activity. If an adoption requires analysis on every relevant change, it also needs an execution gate and evidence that the analysis runs on the candidate being admitted.
+
 \section{Recurring Engineering Moves}\label{heading:handbook-composition-procedure}
 
 % Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation

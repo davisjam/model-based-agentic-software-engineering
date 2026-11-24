@@ -36,7 +36,9 @@ The document mutators supplied a concrete example. Separate implementations pass
 The migration proceeded in stages. The agents first added methods accepting the records, then changed the callers and tests to use them. They marked the replaced primitive-parameter methods obsolete and subsequently removed them. The new interfaces required the shared records, while their boundary validation rejected empty language tags or descriptions. This did not settle every policy: full language-tag validation remained a separate responsibility, and the records allowed an empty attribution field. One old method also remained because it used a null value to mean ``clear the alt text,'' which the new record did not express. That exception exposed another design decision, rather than a reason to force unlike operations into the same model.
 
 % Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
-Removing the old methods prevented later callers from using those signatures, and the revised test projects built against the new interfaces. The aggregate density finding count nevertheless did not decrease during that stage. I had recovered two useful domain concepts and changed how the code expressed them, but the detector's count did not reflect that improvement. A measure that helps us find engineering work need not be a good measure of the work's success.
+Removing the old methods prevented later callers from using those signatures, and the revised test projects built against the new interfaces. The aggregate density finding count nevertheless did not decrease during that stage. I had recovered two useful domain concepts and changed how the code expressed them, but the detector's count did not reflect that improvement.
+
+\engineeringlesson{A measure that helps us find engineering work need not be a good measure of the work's success.}
 
 \begin{figure}[htbp]
 \centering
@@ -45,7 +47,7 @@ Removing the old methods prevented later callers from using those signatures, an
 \label{discovering-latent-models}
 \end{figure}
 
-The detector helped me find places where the implementation might contain knowledge worth representing. It did not tell me which knowledge mattered or what form its representation should take. Those remained engineering decisions. Once I had made them, agents could help construct the models and modify the code that used the newly represented concepts.
+The primitive-density detector served initially as a sensor, in the terminology of \autoref{3.2-governance-mechanisms:heading:constraints-sensors-and-gates}. Its findings helped me identify places worth investigating. They did not tell me which domain concepts mattered or how to represent them. Once I had made those decisions, agents could construct the models and modify the code that used them.
 
 \subsection{Comparing Existing Designs}\label{heading:comparing-existing-designs}
 
@@ -55,11 +57,13 @@ Recovering a model need not immediately lead to changes in the implementation. S
 DocAble's four document-processing pipelines used different engines for good reasons. PDF processing often required inferring structure that an Office document already recorded. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
 
 % Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
-As a preliminary step, I directed the agents to introduce a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let me compare policies, explain legitimate differences, and identify choices worth reconsidering. I did not merge the engines or make the model execute their policies. In this case, Modeling preceded any decision about active alignment. I first needed to understand the differences among the implementations before deciding which differences, if any, should disappear.
+As a preliminary step, I directed the agents to introduce a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let me compare policies, explain legitimate differences, and identify choices worth reconsidering. I did not merge the engines or make the model execute their policies.
+
+\engineeringlesson{We can model existing designs to understand their differences without committing to eliminate those differences. Modeling need not lead to active alignment.}
 
 \section{From Recovered Models to Enforcement}\label{heading:reconcile-the-map-and-the-territory}
 
-A recovered model may disagree with the implementation, with existing documentation, or with the engineer's understanding of the intended design. Before we can use it to direct or evaluate subsequent work, we must determine which representation should govern the property in question. The following inset illustrates the judgment needed before changing either the model or the code.
+Recall the distinction between correspondence and conformance introduced in \autoref{3.1-from-engineering-models-to-enforcement:heading:agreement-is-not-correctness}. When a recovered model disagrees with the implementation, we have identified a discrepancy, but we have not necessarily identified a violation. Before changing either artifact, we must determine what the system ought to do and whether the model represents that obligation adequately.
 
 % <!-- box-family: inset -->
 
@@ -90,7 +94,7 @@ Once we have established the intended property, we may discover that the impleme
 
 \subsection{Introducing Enforcement into an Existing System}\label{heading:audit-drain-promote-move}
 
-When introducing new checks into DocAble, I often used a three-stage procedure: Audit, Drain, Promote.
+When introducing new checks into DocAble, I often used a three-stage procedure: Audit, Drain, Promote. We encountered this sequence in \autoref{3.1-from-engineering-models-to-enforcement:heading:docable-from-correspondence-to-enforcement}, when I repaired the coverage of DocAble\textquotesingle s Office computation checks before making them blocking.
 
 \begin{enumerate}
 \item \textbf{Audit.} Introduce a check that identifies violations without yet rejecting work on their account. Examine the findings to determine whether the proposed obligation and its evaluation mechanism are appropriate.
@@ -100,7 +104,11 @@ When introducing new checks into DocAble, I often used a three-stage procedure: 
 
 Auditing establishes where the implementation and the proposed obligation disagree. Draining is a form of active alignment. Promoting the check establishes passive alignment for subsequent changes. Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
 
+I call the introduction of an authoritative model that deliberately disagrees with an existing implementation, followed by engineering work to bring the implementation into conformance, \emph{ratcheteering}. Audit, Drain, Promote is one way to undertake such a transformation.
+
 % Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
 In DocAble, the primitive-density threshold could block acceptance when an internal-boundary finding remained, but an explicit exemption could permit appropriate primitive-heavy code. The detector identified code that warranted investigation; I still had to decide whether it needed an exemption, cleanup, or a recovered model. The lint enforced the threshold and its exemptions; it did not verify that this review had occurred. More specific controls could then protect the obligations discovered during that investigation.
+
+\engineeringlesson{We can improve an engineering environment while continuing to use it. Introducing checks in advisory mode, resolving existing violations, and then enforcing the checks allows us to strengthen governance incrementally.}
 
 Brownfield engineering does not require us to recover a complete model of the system before changing it. We can recover the knowledge needed for the next engineering problem, reconcile it with our intent, and protect the resulting obligations as we proceed. \autoref{chapter:appendix-b-brownfield-migration} develops a practical migration procedure based on these activities.

@@ -35475,3 +35475,787 @@ Debt makes future work pay again for today\textquotesingle s expedience; capital
 Governance conversion adds durable structure, but the accumulated mechanisms do not necessarily work well together. They may compete for resources, impose incompatible requirements, or remain in place after their obligations have changed. The next section examines how to model and maintain the controls themselves.
 
 ```
+
+
+## Chapter 4 explicit episode lessons — 2026-11-24
+
+Pre-edit source retained before consolidating episode conclusions, adding the requested italic lessons, and applying targeted Chapter 3 callbacks. Earlier technical accounts remain authoritative; these snapshots preserve passages and citations affected by the editorial pass.
+
+### 00-part-intro.tex
+
+Source: `book/latex/sources/part4/00-part-intro.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–29.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:the-mage-cycle}
+
+Engineering rarely proceeds from a complete model to a finished implementation. Engineers learn as they work: implementations reveal missing requirements, analyses challenge assumptions, and failures expose decisions that should have been made explicit. Models and controls must therefore evolve with the system. What we learn while engineering one change can help us engineer the next.
+
+\emph{Model, Realize, Evaluate---in whatever order the engineering problem calls for.}
+\end{quote}
+
+In Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num}, we studied models and controls largely in isolation. But an engineer rarely has the luxury of attending to just one property of a system. A change that improves performance may threaten correctness; a model that helps us understand the architecture may reveal a better design. In this chapter, we will see how these engineering activities interact.
+
+The episodes in this chapter come from my efforts to build and operate DocAble, not from exercises designed to illustrate MAGE. In many cases, I could have developed more precise models, undertaken more extensive analyses, or established stronger guarantees. But I was building a system for people to use, and I had a limited amount of time in which to do so. I had to decide which engineering questions warranted further investigation, how much evidence was sufficient, and when to turn my attention to another problem. These decisions are as much a part of engineering as the construction of the models and mechanisms themselves.
+
+We will examine these interactions through several engineering episodes. \cref{chapter:4.1-the-dynamics-of-mage} examines how Modeling, Realization, and Evaluation interact as a system evolves. \cref{chapter:4.2-one-problem-many-models} follows one engineering problem through several related models, while \cref{chapter:4.3-brownfield-engineering} examines how to recover and govern knowledge in existing systems. Finally, \cref{chapter:4.4-engineering-the-environment} follows the modeling of engineering work, improvements to its execution, and revisions to its controls. \autoref{mage-in-practice-map} provides a map of these activities.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-in-practice-map.pdf}
+\caption{\emph{MAGE in practice.} Modeling, Realization, and Evaluation recur throughout engineering, without a prescribed order. This chapter examines their interaction in developing new designs, recovering knowledge from existing systems, and improving the environment in which agents work.}
+\label{mage-in-practice-map}
+\end{figure}
+
+```
+
+### 4.1-the-dynamics-of-mage.tex
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–75.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: The Dynamics of MAGE -->
+
+\chapter{The Dynamics of MAGE}
+
+In Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num}, we examined how to model a system and how to enforce selected obligations. But the system we are engineering does not stand still. We introduce new requirements, discover problems with our designs, and learn things about the system that we did not know when we began. We must revise our models and controls as well as our implementation.
+
+Three ideas help organize this work:
+
+\begin{enumerate}
+\item \textbf{Establish and preserve alignment} (\cref{4.1-the-dynamics-of-mage:heading:alignment-changes-the-system}). We can use models to bring about changes to a system, then use them to evaluate subsequent changes.
+\item \textbf{Establish an alignment kernel} (\cref{4.1-the-dynamics-of-mage:heading:establish-a-kernel-before-expanding}). Before undertaking a transformation, protect the properties that the transformation must preserve.
+\item \textbf{Model as we learn} (\cref{4.1-the-dynamics-of-mage:heading:greenfield-and-brownfield-mage}). We need not construct all our models before implementation. Implementation and evaluation can help us discover what should be modeled.
+\end{enumerate}
+
+\section{Active and Passive Alignment}\label{heading:alignment-changes-the-system}
+
+In \magevalue{chapter:alignment}, we primarily used Alignment to preserve properties of a system as agents changed it. For example, an architectural model might specify which components may communicate, while a check prevents agents from introducing prohibited dependencies. We will call this passive alignment.
+
+But suppose we have decided to change the architecture itself. We can revise the architectural model to describe the structure we want, even though the implementation does not yet have that structure. We can then direct agents to modify the implementation, using the model and its checks to identify the remaining work. We will call this active alignment.
+
+Once the implementation conforms to the new model, the same mechanisms can serve passive alignment, protecting the new architecture against subsequent changes. \autoref{active-passive-alignment} illustrates these two uses of Alignment.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/active-passive-alignment-3fad069f0b.pdf}
+\caption{\emph{Active and passive alignment.} Active alignment changes an implementation to satisfy modeled obligations. Once established, the same models and mechanisms can serve passive alignment, evaluating subsequent changes and preserving those obligations.}
+\label{active-passive-alignment}
+\end{figure}
+
+Active alignment presents a particular danger. In directing agents to satisfy a new model, we may inadvertently damage properties established by earlier engineering. An agent restructuring a service to satisfy a new architectural model might violate an existing security requirement. How can we protect what we have already accomplished while undertaking further transformations?
+
+\section{Establishing an Alignment Kernel}\label{heading:establish-a-kernel-before-expanding}
+
+\magevalue{chapter:modeling} organized models by the properties they represent. Here we must make a different choice: which properties should we protect first? Before undertaking a transformation, we should identify the properties it must preserve and establish the models and controls needed to protect them. Together, these form the alignment kernel (\autoref{alignment-kernel}).
+
+The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/alignment-kernel-e0de0325d8.pdf}
+\caption{\emph{Incrementally extending the alignment kernel.} The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in \magevalue{chapter:modeling} becoming governing constraints over time.}
+\label{alignment-kernel}
+\end{figure}
+
+This ordering is a form of risk-driven engineering. Boehm's spiral model organized development around identifying and resolving risks, while risk-driven software architecture similarly asks engineers to invest in architectural knowledge where uncertainty threatens consequential decisions~\citep{boehm1988spiral,fairbanks2010}. The alignment kernel applies that judgment to the properties that must survive an upcoming transformation. An engineer should consider what the transformation might damage, the consequences of that damage, and whether the available evidence would detect it. A property that is expensive to recover, difficult to observe, or capable of invalidating subsequent work may warrant protection before other models are introduced.
+
+The alignment kernel need not be comprehensive. Where failure is cheap and reversible, an exploratory implementation may teach us more than modeling in advance. But before undertaking a transformation that could damage properties on which the system already depends, we should establish adequate protection for those properties. Newly established obligations can then join the kernel, protecting the results of one transformation during the next. As the system's requirements change, we may also revise the kernel itself.
+
+\section{Modeling Before, During, and After Implementation}\label{heading:greenfield-and-brownfield-mage}
+
+In an existing system, we can recover models from the implementation. We might derive a dependency graph from source code, examine execution traces to recover a behavioral model, or inspect several implementations of a policy to identify the decisions they make. We can then decide which properties describe the system as it happens to exist and which properties we wish to preserve.
+
+Even when developing a new system, we need not begin with its models. An exploratory implementation can help us understand the problem. We might ask an agent to implement a proposed feature, examine the resulting software, and discover that the feature requires distinctions we had not anticipated. We can then make those distinctions explicit in a model and direct the agent to revise the implementation.
+
+Commodity intelligence makes this approach particularly attractive. An exploratory implementation that once took days might now take minutes. We can afford to investigate alternatives by building them, provided that the experiments do not jeopardize properties we have already established.
+
+There is a corresponding danger. Agents can introduce abstractions, interfaces, and mechanisms faster than we can decide whether we need them. An exploratory implementation may contain useful engineering discoveries alongside unnecessary complexity~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Recovering a model from that implementation does not require us to preserve its design.
+
+Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. If I want subsequent work to preserve the newly discovered property, I can express it in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. It can follow Modeling, Realization, or Evaluation.
+
+% <!-- box-family: inset -->
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+% <!-- index-def: specification-driven-development -->
+% mage-box-prefix: Inset —
+\begin{bookbox}{inset}{Spec-driven development and engineering through models}
+\label{inset-sdd-engineering-through-models}
+Spec-driven development organizes agentic implementation around explicit specifications, often progressing from requirements to design and then to implementation tasks~\citep{agarwal2026sddpractice,githubspeckit2026sdd,openspec2026concepts,ballinger2025conductor}. This arrangement resembles test-driven development (TDD), in which we establish expected behavior through tests before implementing it~\citep{fowler2023tdd}. Both approaches give the implementer a representation of what the resulting software should accomplish.
+
+% Evidence: E25 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E25.md | kind: author-account
+MAGE permits these approaches but does not prescribe when models must be constructed. In developing DocAble, I often implemented a feature before discovering which aspects of its design warranted explicit representation. I then recovered or constructed models and used them to guide further implementation. Other engineering problems, particularly those involving substantial risk, warranted modeling and analysis before implementation. In MAGE, what matters is what a model helps us understand or accomplish, rather than when we construct it.
+\end{bookbox}
+
+```
+
+### 4.2-one-problem-many-models.tex
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–301.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: One Problem, Many Models -->
+
+\chapter{One Problem, Many Models}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Let us see how these ideas work together. While building DocAble, I encountered a problem processing large PowerPoint presentations. I had a working system, but I had neglected to model one of its resource requirements. Satisfying that requirement led me to reconsider the architecture and, in turn, to ask further engineering questions.
+
+I began by modeling what DocAble retained in memory. I then developed models of execution, latency, and cost to investigate alternative designs. Notice how the questions change as the episode proceeds. Each model helps answer a question, but the answer may give me reason to ask another. I must also decide which of the properties I discover should constrain subsequent changes to the system.
+
+\section{Modeling Memory Residency}\label{heading:modeling-memory-residency}
+
+\subsection{One Document, One Worker}\label{heading:one-document-one-worker}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Originally, one DocAble worker processed an entire document. The worker ran in Kubernetes: it opened the document, retained the information needed for remediation in memory, modified the document, and produced the result. \autoref{interlude-execution-unit} traces the architectural changes that followed.
+
+When a GenAI operation needed an image, the worker retrieved it from the document already in memory.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-execution-unit-3ac64b0b5d.pdf}
+\caption{\emph{Three approaches to document residency.} (a) One worker retains the document structure and its media. (b) Dividing the document into chunks reduces the content assigned to each worker. (c) Separating document structure from media allows workers to retrieve media as needed rather than retain the entire payload.}
+\label{interlude-execution-unit}
+\end{figure}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The resulting architecture worked on ordinary inputs, but larger documents exposed its limitations. Teaching presentations contained more slides, images, and other media than a single worker could comfortably hold in memory. I needed to reduce the amount of document content each worker processed at once. I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable.
+
+\subsection{Dividing the Document among Workers}\label{heading:pages-as-the-unit-of-scale}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+My first response was to introduce ChunkWorker, which divided a document into page ranges (\autoref{interlude-execution-unit}, panel b). Each worker retained the structure and media needed to remediate its pages, and the resulting patches were recombined into the complete document. Multiple chunks could run concurrently, and each worker required less memory. Smaller workers could also reduce infrastructure costs and improve cold-start behavior.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Chunking worked across a much broader workload, including hundreds of teaching documents from multiple universities. I had other features to develop and other problems to solve. I had little reason to replace a working architecture merely because a better one might exist. Eventually, however, a media-heavy presentation of roughly 250 MB exceeded the limits of this design.
+
+I could have reduced the chunk size further, but smaller chunks would also reduce the context available for semantic judgments and increase coordination costs. I now had reason to reconsider the design rather than continue adjusting its parameters.
+
+\subsection{Separating Document Structure from Media}\label{heading:a-new-class-of-input}
+
+Dividing documents into page ranges reduced the amount of content each worker processed, but did not remove the underlying dependence on document size. I therefore examined what a worker actually needed to retain in memory. A presentation contains both the structure needed to reason about its contents and the media associated with that structure. Did the worker need to retain all that media throughout remediation?
+
+Modern Office documents use Office Open XML (OOXML). A \texttt{.pptx}, \texttt{.docx}, or \texttt{.xlsx} file is a package containing many parts. Much of its semantic structure is XML: text, slides, relationships, identifiers, and references among objects. Large binary assets such as images and other media live alongside those XML parts inside the package.
+
+The structural portion is comparatively small. It is largely text, and even an unusually large Office document may require only low megabytes to represent its semantic skeleton. The media payload can be hundreds of megabytes. Most remediation operations need only the structural portion; they may reach into the media, but not every media byte need be resident at once.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Until this point, I had largely accepted the working representation supplied by the document library. Opening an OOXML package brought its structure and media into the worker's object graph. That was convenient while the documents fit in memory. The larger presentation gave me a reason to separate the two.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+
+\subsection{Skeletonizing the Document}\label{heading:remove-media-from-the-working-set}
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+I introduced a representation that retained the document's structure but kept its media elsewhere. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves references to that media in a much smaller structural skeleton. I call this transformation skeletonization.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Remediation then operates on the skeleton (\autoref{interlude-execution-unit}, panel c). If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document\textquotesingle s complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Chunking had enabled me to process the documents encountered so far. But how much memory should I allocate to each worker? In the cloud, I pay for the memory I allocate. If I allocate too much, I waste money. If I allocate too little, the hosting service kills the worker before it finishes processing the document. Processing one large presentation successfully would not tell me how much memory to allocate for the next. I needed a model that would let me predict memory consumption from the contents of a document.
+
+% Evidence: E26/E27/E29 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/README.md | kind: source-reconciliation; no new experiment
+To bound the whole worker, I must include its runtime and other baseline memory as well as the memory needed to process the document. The residency requirement is:
+
+\[
+\begin{aligned}
+\operatorname{RSS}_{\mathrm{peak}} &\le C,\\
+C &= M_{\mathrm{base}} + M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
+   + M_{\mathrm{handles}} + M_{\mathrm{work}}.
+\end{aligned}
+\]
+
+Here \(M_{\mathrm{base}}\) bounds the worker\textquotesingle s runtime and other baseline resident memory, including the headroom needed for memory management. The remaining terms bound the rolling stream buffer, structural skeleton, handles, and remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The bound depends on bounded streaming buffers, a structural skeleton whose size remains inside the declared envelope, and bounded active state at each media consumer. The write path must stream too; buffering the complete payload before writing would merely move the memory spike. Pathological structure, oversized individual objects, excessive concurrency, or an unmodeled resource can still exhaust memory.
+
+% <!-- index-def: measure-one-level-deeper -->
+
+\subsection{Measuring and Explaining Memory Consumption}\label{heading:why-one-level-deeper-matters}
+
+I intended to use the residency model to make decisions about worker memory allocations. Before relying on it, I needed evidence that it explained the memory consumption I observed. Measuring peak memory tells us how much memory the worker consumed. It does not tell us why. The residency model explains how document structure and media contribute to memory consumption, and predicts how memory should change as we vary the input. Measurements let us test that explanation. Ousterhout describes this practice of investigating the mechanism behind a measured quantity as measuring one level deeper~\citep{ousterhout2018}.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The implementation has to preserve these assumptions; measurement tests whether memory behaves as the model predicts. A PDF recombination experiment shows approximately flat peak-RSS scaling across a count-scaled media sweep when each object is flushed. That result supports the tested recombination path; the corresponding OOXML media-size sweep remains a designed validation step.
+
+Changing the architecture to satisfy the residency model is active alignment. Once conformance is established, the model and invariant checks provide passive alignment: later changes must preserve the memory property or justify revising the model and its checks. The memory obligation became part of the alignment kernel for the execution changes that followed.
+
+\subsection{Memory as an Obligation for Subsequent Changes}\label{heading:memory-did-not-stop-mattering}
+
+With memory consumption better understood, I could turn my attention to latency and cost. But the work I had just done would be wasted if the next architectural change caused workers to run out of memory again. A faster implementation that exhausted worker memory would not be an improvement. This is the role of the alignment kernel introduced in \cref{4.1-the-dynamics-of-mage:heading:establish-a-kernel-before-expanding}: it protects obligations that further engineering must preserve.
+
+I had prioritized memory because running out of it prevented DocAble from processing a document at all, whereas inefficient execution made processing slower or more expensive. Other engineering problems may require us to protect safety, timing, or numerical accuracy first.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+For example, I could not simply increase the number of concurrent GenAI calls without considering their combined memory requirements. I used a semaphore to limit active calls and modeled their memory consumption as the concurrency limit multiplied by the memory required per call. Later, when considering a cache for rendered presentations, I required its memory use to be bounded and larger cached artifacts to be stored externally before shipment. The memory obligation constrained both designs.
+
+The memory model also changed which execution choices were worth reconsidering. We turn next to the dependencies that determine how remediation work can be scheduled.
+
+\section{Modeling Execution and Latency}\label{heading:modeling-execution-and-latency}
+
+\subsection{Why Are We Still Chunking?}\label{heading:why-are-we-still-chunking}
+
+Skeletonization also gave me a reason to reconsider the execution architecture. I had introduced ChunkWorker to limit memory consumption by dividing documents into page ranges. I was still paying the coordination costs of a design whose original purpose was to reduce memory consumption. With that problem addressed differently, was partitioning work by page still the best way to organize remediation?
+
+A page tells us where content occurs, not which computations depend on which others. The computation model introduced in \autoref{2.3-structural:heading:what-computations-depend-on-one-another} and connected to scheduling in \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} identifies registered computations and the information dependencies among them. The question here was whether those dependencies could support a better execution policy.
+
+Consider alt-text generation. Each page can first be analyzed independently. Those analyses supply information used to construct shared document context. Once that context exists, the GenAI queries for individual images can proceed independently. The dependency graph identifies which computations require earlier results; for a particular job, the computations whose prerequisites are satisfied form the ready frontier. An executor can schedule that frontier subject to resource and mutation restrictions.
+
+The same graph admits different execution policies. \autoref{interlude-graph-two-partitions} shows the distinction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-graph-two-partitions-8ab535d9c3.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: design-and-implementation
+\caption{\emph{Two execution policies over the same remediation graph.} (a) Page-oriented execution groups computations by where their artifacts occur. (b) Frontier execution groups computations by when their prerequisites are satisfied. The computations and their dependencies are unchanged; only their scheduling differs.}
+\label{interlude-graph-two-partitions}
+\end{figure}
+
+Skeletonization removed the memory pressure that had made page ranges the natural execution boundary. Page identity could remain useful for locality, debugging, rate limiting, or failure isolation without determining how all remediation work was scheduled.
+
+I therefore separated the remediation graph from its executor. The graph described the work and its dependencies; the executor determined how to schedule that work. I could schedule by frontier and later exploit page locality if measurements justified it, without redesigning remediation.
+
+A frontier executor can repeatedly schedule computations whose prerequisites have been satisfied, record their outputs, and identify the next set of ready computations. The dependency ordering is an ordinary topological traversal of a directed acyclic graph; the executor must also respect the applicable resource and mutation constraints.\magefootnote{topo-dag}{Topological traversal is familiar from compilers, build systems, and dependency schedulers.}
+
+I also did not need to implement every scheduling policy I could imagine. The dependency model let me investigate alternative policies before committing to their implementation. I could retain the execution model while constructing other representations of the same computations for analysis.
+
+\subsection{Using the Graph to Find and Remove Bottlenecks}\label{heading:analyze-before-you-build}
+
+More workers cost money. Before increasing concurrency, I wanted to know whether the additional workers would actually reduce latency. Which computations could run concurrently, and which would have to wait for others? Critical-path analysis helps distinguish these possibilities. \autoref{interlude-analysis-before-build} illustrates two ways to shorten a critical path: decomposing expensive work or changing the dependencies among operations.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-analysis-before-build-1d6121ea6a.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: illustration-and-case
+\caption{\emph{Analyzing dependency graphs to redesign execution.} (a) Critical-path analysis identifies the longest weighted dependency chain, which sets a latency floor of 12 seconds in this illustrative graph. Two possible responses are shown. (b) Decomposing the dominant operation into independent suboperations reduces the modeled critical path to 7 seconds, excluding coordination overhead. (c) Changing the information dependencies can remove a serial constraint altogether. In DocAble’s image-description pipeline, replacing propagation of previously generated descriptions with shared rendered context allowed the image-description operations to proceed independently.}
+\label{interlude-analysis-before-build}
+\end{figure}
+
+Panel (a) shows a weighted dependency graph. Its critical path, \(A \to B \to D \to F\), takes 12 seconds, compared with 6 seconds for the alternative path. Adding workers cannot shorten the critical path without changing the work or its dependencies. One possibility is to decompose the dominant operation. In panel (b), splitting B into three independent operations reduces the modeled critical path from 12 to 7 seconds.
+
+Another possibility is to reconsider the dependencies themselves. In DocAble’s contextual image-description pipeline, each generated description was passed to the next image-description operation. The resulting chain had depth proportional to the number of images. For \(N\) images, with each GenAI call taking roughly \(t\), the serial latency floor approached \(N \cdot t\). Adding workers could not remove that dependency.
+
+The model exposed a distinction between the existing implementation and the information the operations actually needed. Each image required adequate surrounding context, but not necessarily the preceding image’s generated description. Rendering the surrounding pages once supplied a shared visual representation that each image-description operation could consume independently. Panel (c) shows how changing the information dependencies removed the serial chain.
+
+These were two different engineering decisions. I could change how the existing computations were scheduled, or I could reconsider which computations and dependencies the remediation actually required. The graph helped me distinguish a limitation of the executor from a limitation of the design itself.
+
+\subsection{Modeling the Cost of Repeated Document Processing}\label{heading:the-second-resource-model}
+
+Improving the GenAI operations was an obvious way to try to reduce latency. But how much of the processing time was actually spent on GenAI? Dividing remediation among workers could require several workers to perform the same document-processing operations. I wanted to know whether eliminating that repeated work offered a better opportunity to reduce latency than accelerating the GenAI calls.
+
+Let \(R\) be the number of remediation rounds, \(F\) the elapsed time required for one whole-document processing invocation, and \(G\) the contribution of the remaining GenAI operations and their distribution to elapsed time. In a simplified execution model, whole-document processing occurs once per remediation round and once more when applying the accumulated changes. If invocation costs are similar and these costs do not overlap, the total elapsed time is
+
+\[
+T = (R+1)\,F + G
+\]
+
+For example, suppose a document requires four remediation rounds, each whole-document processing invocation takes 10 seconds, and the remaining GenAI operations contribute 20 seconds to elapsed time. The model predicts \(T = (4+1)(10) + 20 = 70\) seconds. Fifty of those seconds come from processing the document five times: once for each remediation round and once more to apply the accumulated changes. Cutting the GenAI contribution in half would save 10 seconds; eliminating two production rounds would save 20. In this example, we spend too much time rebuilding the document. Improving the GenAI operations might be worthwhile, but the model suggests that eliminating repeated document processing offers another opportunity.
+
+% Evidence: E26/E27/E29 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/README.md | kind: source-reconciliation; no new experiment
+I could also test this model against measurements. Suppose a single-invocation design takes \(T_1=F+G\), while a repeated-round design takes \(T_R=(R+1)F+G\). If the two designs share these component costs, their measured execution times let me estimate \(F\) and \(G\). A negative estimate would contradict the assumptions of the model rather than provide a useful calibration.
+
+\subsection{Predicting Latency}\label{heading:predicting-latency}
+
+Running more computations concurrently in the cloud would introduce overhead for starting workers, transferring information, and coordinating their work. Would the additional concurrency save more time than this overhead consumed? I could use the dependency graph and estimates of operation times to investigate the question before changing the execution architecture.
+
+For the representative workload used during this analysis, the relevant GenAI chain had three dependent levels whose per-call times add to an irreducible floor (\autoref{interlude-latency-floor}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-latency-floor-818a3f4133.pdf}
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: derived-analysis
+\caption{\emph{The GenAI critical path in a fragment of DocAble’s remediation graph.} Arrows indicate execution dependencies. Other remediation computations can proceed concurrently, but the three GenAI calls must execute in sequence. Their estimated and measured durations imply a latency floor of approximately 7.7 seconds for this modeled workload.}
+\label{interlude-latency-floor}
+\end{figure}
+
+With local concurrency limited to six, the representative 37-image workload required \(\lceil \frac{37}{6}\rceil=7\) waves of image-description calls. Adding their estimated durations to the two preceding summary operations and a small CPU allowance yielded a predicted latency of about 33 seconds. With cloud concurrency of 64, those calls could execute in one wave. Even after accounting for estimated cold-start and round-trip costs, the predicted latency fell to about 11.5 seconds, a roughly 2.9× improvement. The prediction depended on those overhead estimates and required staging measurements before cutover. The local cap also reflected memory: concurrent ChunkWorkers each held format-native document state. Skeletonization reduced that per-worker residency, making wider execution feasible without multiplying the same large media working set.
+
+\subsection{Evaluating a Design Before Implementing It}\label{heading:predicting-the-cost-of-a-design-change}
+
+Implementing an architectural alternative merely to discover that it would be too slow is an expensive way to evaluate a design. I could instead investigate some of its performance consequences using the models I had already developed.
+
+Before implementing a proposed intermediate representation, I could add its production and consumption to the dependency graph. I could then recompute the critical path, the number of execution rounds, and the amount of work available for concurrent execution. A new computation might add no latency if it fits within the available slack on a noncritical path and sufficient execution resources are available. One that extended the critical path would increase the predicted latency and might require another distributed execution round. These predictions helped me decide which designs were worth implementing and measuring.
+
+\subsection{Learning from Prediction Errors}\label{heading:use-prediction-error-as-evidence}
+
+I was using these predictions to decide which designs were worth implementing. If the predictions were substantially wrong, I might be making poor engineering decisions even when the resulting software worked. I therefore had reason to investigate discrepancies between predicted and measured performance. The error may lie in our estimates, our understanding of the system, or the implementation itself. \autoref{interlude-prediction-residual} illustrates several possibilities and the process of revising and testing the model.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-prediction-residual-358697131d.pdf}
+\caption{\emph{Learning through prediction and measurement.} (a) A model supports predictions that can be compared with measurements of the implementation. Disagreement motivates investigation and revision. (b) A prediction error can arise from an incorrect parameter, an incorrect relationship, a missing mechanism, or an implementation that does not follow the modeled design. The numerical values are illustrative.}
+\label{interlude-prediction-residual}
+\end{figure}
+
+For example, queue overhead may have been underestimated. Two apparently independent computations may share a serialized resource, or media loading may introduce a cost the latency model omitted. A discrepancy between prediction and measurement is therefore useful even when the implementation appears to work: it tells us that some part of our understanding needs investigation.
+
+\section{Preserving and Revising Models}\label{heading:preserving-and-revising-models}
+
+\subsection{Preserving Performance Obligations}\label{heading:what-carries-forward}
+
+As I developed these models, I had to decide which of their properties should constrain subsequent engineering. Some models helped me understand the system or compare designs. Others expressed obligations that later implementations needed to preserve. A useful prediction did not necessarily warrant a new enforcement mechanism.
+
+Having invested time in improving performance, I did not want subsequent agents to undo those improvements. But requiring every implementation to reproduce a particular benchmark time would make acceptance depend on hosts, services, cold starts, and other environmental effects. What could I require subsequent implementations to preserve instead?
+
+% Evidence: E29 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E29.md | kind: mechanism-and-practice
+The performance ratchet holds structural quantities instead --- the quantities the model says contribute to execution cost: production rounds, GenAI calls, capture invocations, and render invocations. Tests count each quantity deterministically on two fixed fixtures and fail when a count exceeds its frozen baseline. The review discipline permits lowering a baseline freely but requires a named justification in its history before raising it. I could thus protect some of the properties responsible for performance without requiring every machine to reproduce the same benchmark time.
+
+\subsection{Revising Models without Abandoning Obligations}\label{heading:models-get-falsified-the-obligation-survives}
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+% Evidence: E26/E27/E29 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/README.md | kind: source-reconciliation; no new experiment
+The memory model also made predictions that I could test independently of the implementation's apparent success. Some of those predictions turned out to be wrong. I had attributed roughly 2.4 GiB of memory to a PDF library's retained document graph. A probe that walked an image-heavy PDF and forced garbage collection found about 1 MiB of live managed graph. That was not the process's total resident memory: the library used memory mapping, and resident mapped pages and other allocations required separate accounting. The result showed that I had attributed the large memory requirement to the wrong holder.
+
+Another design projected a worker footprint of 90 to 120 MiB after rendering changes. The investigation instead found that rendering already ran elsewhere and that moving the remaining worker-side rendering machinery would recover only about 6 MiB. A later adversarial sweep exposed a different omission: peak memory grew with decoded image area, not just stored media size. I extended the model and added an admission gate for inputs outside the declared envelope.
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+I also recorded how each measurement was obtained. A measured quantity might describe a particular document, workload, configuration, or revision of the software. Comparing measurements obtained under different conditions could otherwise lead me to revise a model that was correct for its original assumptions. A figure taken on a development host was marked as such and did not become the value used in the model until the deployment environment reproduced it. A process-level measurement may omit memory included in the container's total.
+
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+Nor was the memory work finished before the execution-time work began. I was still investigating memory consumption while developing the time models. I wanted subsequent changes to preserve acceptable memory consumption, not necessarily the first model I had constructed to explain it. Later work could challenge the model, recalibrate it, or replace it with a better one. What it could not do was disregard the memory requirement. The alignment kernel protected the obligation, not my original explanation of how to satisfy it.
+
+The episode therefore left more than a revised implementation. It left several models whose relationships could support later decisions, even as their parameters and assumptions continued to change.
+
+\subsection{Combining Models to Answer Engineering Questions}\label{heading:the-resulting-model-family}
+
+I could no longer make decisions about concurrency by considering latency alone. Increasing concurrency could reduce processing time while increasing memory consumption and coordination costs. I needed to use several of the models together. \autoref{interlude-model-family} collects the seven models and the engineering questions each addresses.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6500}}@{}}
+\caption[Models for large-file remediation]{Models for large-file remediation.}\label{interlude-model-family}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: model
+Media residency & What must reside in worker memory? How should memory scale with media size? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
+Batch execution & How do batch size and concurrency affect latency, cost, and truncation risk? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
+Critical path & What sets the latency floor? Which nodes are optimization targets? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
+Distribution & Where should ready work execute? What coordination costs does that introduce? \\
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: model
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: model
+Remediation graph & What work exists, and what depends on what? \\
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
+Fact / IR catalogue & Which derived facts feed later computations? How deep is the information-dependency chain? \\
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: model
+Image fidelity & What representation of media is required, and what does rendering it cost? \\
+\end{longtable}
+}
+
+These models take different forms because they answer different questions. The remediation graph and fact catalogue describe the computations and their information dependencies. The batch model supplies estimates of operation costs, which the critical-path model uses to predict latency. The distribution model describes where computations execute and the costs of coordinating them. The media-residency model constrains how much work can execute concurrently. By relating the models, I could investigate engineering questions that none answered on its own.
+
+Some answers follow from structure; others depend on calibrated measurements. The critical path identifies ordering that more workers cannot remove, while a latency prediction depends on operation times and coordination costs. Keeping those sources of knowledge distinct makes disagreement informative: a measurement can require a new parameter, a revised relation, or another model. \autoref{chapter:appendix-a-resource-models-and-execution-design} brings the resulting resource, execution, and measurement relationships together as a construction blueprint.
+
+\subsection{Using the Models to Evaluate Subsequent Changes}\label{heading:model-aware-change-impact}
+
+The models developed during this episode also helped me reason about changes I had not yet undertaken. Suppose I wanted to increase the number of workers processing a document concurrently. Which properties would I need to evaluate before accepting that change?
+
+The execution model would help me identify the work that could proceed concurrently. The residency model would help me estimate the memory required by that work. The latency and cost models would help me assess whether the additional concurrency was worthwhile. Other models could identify ownership and ordering obligations affected by the proposed change.
+
+\autoref{model-aware-change-impact} illustrates how these relationships can help determine which evaluations a proposed change requires. Rather than asking an agent to reconstruct the relevant engineering obligations from the implementation, we can follow the relationships among the models, the affected components, and the available checks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
+\label{model-aware-change-impact}
+\end{figure}
+
+This use of model relationships builds on change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Such an analysis is only as complete as the relationships it represents. It can identify evaluations warranted by known dependencies, but it cannot establish that we have represented every property the change might affect. \autoref{chapter:appendix-a-model-based-test-selection} develops the corresponding engineering machinery.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
+% Evidence: E28 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E28.md | kind: dated-case-evidence
+This episode began with a document DocAble could not process. Investigating the failure led me to construct a model, change the implementation, and discover further engineering questions. I pursued some of those questions because they offered opportunities to improve the system; others could wait. Measurements revealed shortcomings in some of my models, while other models identified properties I wanted subsequent implementations to preserve. I could not have specified all seven models at the beginning, because I did not yet know which questions I would need to answer.
+
+```
+
+### 4.3-brownfield-engineering.tex
+
+Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–106.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: Brownfield Engineering -->
+
+\chapter{Brownfield Engineering}
+
+\section{Engineering an Existing System}\label{heading:start-from-the-system-you-own}
+
+% <!-- index-def: greenfield -->
+% <!-- index-def: brownfield-migration -->
+
+In \magevalue{sec:interlude-one-problem-many-models}, I constructed models to answer new engineering questions about DocAble. Another kind of modeling problem arises when we want to recover knowledge already present in a system, but scattered across its implementation, tests, documentation, and the memories of its engineers.
+
+Some of that knowledge describes deliberate engineering decisions; some describes implementation choices that nobody intended to preserve. Before we can use recovered models to direct further work, we must distinguish the two. Brownfield engineering therefore involves discovering useful representations, reconciling them with engineering intent, and establishing which properties should govern subsequent changes.
+
+\section{Discovering Latent Models}\label{heading:recover-latent-models}
+
+We can recover models from several sources. Static analysis exposes structural relationships~\citep{ducasse2009architecture,garcia2013groundtruth}; dynamic analysis exposes observed behavior~\citep{cornelissen2009dynamic,ammons2002mining}; and interviews with experienced engineers can reveal the reasons for both~\citep{bjornson2008knowledge,anandayuvaraj2026failures}. Agents can combine these techniques, investigating a system and proposing representations for engineering review. The engineer must still determine whether the recovered structures reflect the intended design.
+
+\subsection{Recovering Domain Concepts}\label{heading:recovering-domain-concepts}
+
+As DocAble grew, I became concerned that some important domain concepts remained implicit in its implementation. Agents could encounter those concepts repeatedly without recognizing that they were working with the same underlying engineering abstraction. I wanted a way to identify places where an explicit representation might improve the design.
+
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+One technique I investigated was primitive density: identifying concentrations of primitive values that might collectively represent a domain concept. The detector examined interfaces expressed heavily through bare strings, integers, tuples, and other low-level values. Such concentrations are not necessarily defects. They identify places worth investigating. The detector produced hundreds of findings, but those findings did not imply hundreds of missing models.
+
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+During June 8--10, I repeatedly reclassified findings as I investigated them with the agents. Some concentrations of primitive values were appropriate for their purpose. Others represented concepts that deserved explicit treatment, while still others could be addressed through ordinary implementation cleanup. Protocol adapters and test fixtures often legitimately used primitive values. Other findings needed annotations or local cleanup. \autoref{discovering-latent-models} shows these three kinds of response.
+
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+The document mutators supplied a concrete example. Separate implementations passed a language tag and the name of the pass making the change as primitive parameters. Examining those interfaces together exposed a shared concept: a language change carrying both its intended value and its attribution. The agents introduced a \texttt{LanguageMutationSpec} record for that payload. A corresponding \texttt{AltTextMutationSpec} grouped a description, optional title, and attribution. The different document engines could now use the same vocabulary without sharing the same implementation.
+
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+The migration proceeded in stages. The agents first added methods accepting the records, then changed the callers and tests to use them. They marked the replaced primitive-parameter methods obsolete and subsequently removed them. The new interfaces required the shared records, while their boundary validation rejected empty language tags or descriptions. This did not settle every policy: full language-tag validation remained a separate responsibility, and the records allowed an empty attribution field. One old method also remained because it used a null value to mean ``clear the alt text,'' which the new record did not express. That exception exposed another design decision, rather than a reason to force unlike operations into the same model.
+
+% Evidence: E30 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-dynamics-20261124/primitive-recovery.md | kind: historical-audit-and-implementation
+Removing the old methods prevented later callers from using those signatures, and the revised test projects built against the new interfaces. The aggregate density finding count nevertheless did not decrease during that stage. I had recovered two useful domain concepts and changed how the code expressed them, but the detector's count did not reflect that improvement. A measure that helps us find engineering work need not be a good measure of the work's success.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/discovering-models-migration-a4d6667ebf.pdf}
+\caption{\emph{Discovering latent models in an existing system.} Candidate locations require investigation, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.}
+\label{discovering-latent-models}
+\end{figure}
+
+The detector helped me find places where the implementation might contain knowledge worth representing. It did not tell me which knowledge mattered or what form its representation should take. Those remained engineering decisions. Once I had made them, agents could help construct the models and modify the code that used the newly represented concepts.
+
+\subsection{Comparing Existing Designs}\label{heading:comparing-existing-designs}
+
+Recovering a model need not immediately lead to changes in the implementation. Sometimes we first need a representation that lets us compare existing designs.
+
+% Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
+DocAble's four document-processing pipelines used different engines for good reasons. PDF processing often required inferring structure that an Office document already recorded. But the pipelines had also developed differences in policy, such as how much surrounding context to supply when describing an image. Those choices were embedded in separate implementations, making it difficult to determine whether their differences were intentional.
+
+% Evidence: E31 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E31.md | kind: audit-and-model
+As a preliminary step, I directed the agents to introduce a shared policy model that recorded each format's existing choices and linked them to the corresponding implementation. The model was initially descriptive: it let me compare policies, explain legitimate differences, and identify choices worth reconsidering. I did not merge the engines or make the model execute their policies. In this case, Modeling preceded any decision about active alignment. I first needed to understand the differences among the implementations before deciding which differences, if any, should disappear.
+
+\section{From Recovered Models to Enforcement}\label{heading:reconcile-the-map-and-the-territory}
+
+A recovered model may disagree with the implementation, with existing documentation, or with the engineer's understanding of the intended design. Before we can use it to direct or evaluate subsequent work, we must determine which representation should govern the property in question. The following inset illustrates the judgment needed before changing either the model or the code.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{When the model and the code disagree}
+\label{inset-model-code-disagreement}
+Suppose a recovered architecture diagram appears to route every database access through a repository layer, but code inspection finds a direct database call. The disagreement alone does not tell you which artifact to change. There are three possibilities to investigate:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Is the model wrong?} The direct call may be an intended exception that the model omitted. Confirm the exception and represent it.
+\item
+  \textbf{Does the model omit relevant detail?} The diagram may group several components into one service, so its arrows do not establish which internal calls pass through the repository layer. Inspect those calls before inferring a violation.
+\item
+  \textbf{Is the implementation wrong?} If the repository boundary is an intended obligation and applies to this call, the direct call violates it. Correct the implementation.
+\end{itemize}
+
+Resolve the intended obligation and the model\textquotesingle s scope before acting. Changing code to satisfy a mistaken model can introduce a defect; changing the model merely to match defective code can hide one. Reconciliation requires deciding which explanation fits the disagreement.
+\end{bookbox}
+
+Once we have established the intended property, we may discover that the implementation contains many violations of it. Immediately rejecting every violation could prevent otherwise useful engineering work. We can instead introduce enforcement incrementally.
+
+% <!-- index-def: audits-into-lints -->
+
+\subsection{Introducing Enforcement into an Existing System}\label{heading:audit-drain-promote-move}
+
+When introducing new checks into DocAble, I often used a three-stage procedure: Audit, Drain, Promote.
+
+\begin{enumerate}
+\item \textbf{Audit.} Introduce a check that identifies violations without yet rejecting work on their account. Examine the findings to determine whether the proposed obligation and its evaluation mechanism are appropriate.
+\item \textbf{Drain.} Direct agents to resolve the existing violations. Where necessary, revise the model or establish explicit exceptions for cases the original obligation did not adequately describe.
+\item \textbf{Promote.} Once the implementation satisfies the obligation, require the check to pass before accepting the relevant change, so that subsequent work cannot reintroduce the violations it detects.
+\end{enumerate}
+
+Auditing establishes where the implementation and the proposed obligation disagree. Draining is a form of active alignment. Promoting the check establishes passive alignment for subsequent changes. Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
+
+% Evidence: E30 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E30.md | kind: audit-and-mechanism
+In DocAble, the primitive-density threshold could block acceptance when an internal-boundary finding remained, but an explicit exemption could permit appropriate primitive-heavy code. The detector identified code that warranted investigation; I still had to decide whether it needed an exemption, cleanup, or a recovered model. The lint enforced the threshold and its exemptions; it did not verify that this review had occurred. More specific controls could then protect the obligations discovered during that investigation.
+
+Brownfield engineering does not require us to recover a complete model of the system before changing it. We can recover the knowledge needed for the next engineering problem, reconcile it with our intent, and protect the resulting obligations as we proceed. \autoref{chapter:appendix-b-brownfield-migration} develops a practical migration procedure based on these activities.
+
+```
+
+### 4.4-engineering-the-environment.tex
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–77.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: Engineering the Environment -->
+
+\chapter{Engineering the Environment}
+
+So far, we have applied Modeling and Alignment to the system we are building. We can apply them to the machinery we use to build it as well. Agents are dispatched, work is integrated, checks are executed, and failures require recovery. As DocAble grew, I found myself engineering these activities much as I engineered the remediation software itself.
+
+\section{Engineering Recovery Procedures}\label{heading:lifecycle-models-and-recovery}
+
+A method has to survive terrible, horrible, no good, very bad days, too. Full disks, conflicted branches, vanished agents, stalled queues, flaking tests---the quotidian catastrophes of software engineering.
+
+% Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: incident
+In one DocAble incident, my orchestrating agent attempted to recover from a partly completed cherry-pick sequence. It aborted the sequence, discarding earlier successful picks along with the unsuccessful one. I needed the agent to distinguish abandoning the current operation from undoing work that had already succeeded.
+
+% Evidence: E32 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E32.md | kind: incident
+The resulting rule specified \texttt{git cherry-pick --quit} for leaving the sequence without undoing the earlier picks. Unlike \texttt{--abort}, this operation cleared the sequencer state while preserving the commits already applied. It did not resolve the conflict; that work remained. The automated cherry-pick procedure used \texttt{--quit} when it encountered a conflict, preserving the successful work for subsequent recovery.
+
+The important distinction was between work already completed and the operation that had failed. This is the same kind of distinction we represented in the lifecycle models of \magevalue{chapter:modeling}. A recovery procedure must account for the state in which an operation failed, which transitions remain available, and which completed work those transitions must preserve.
+
+% <!-- index-def: deterministic-firing -->
+
+Not every recovery decision needs to be made mechanically. I could establish a procedure for investigating a particular failure, specify when that procedure should be invoked, and leave the agent to exercise judgment within it. A mechanically observable event could trigger the procedure without determining its every step.
+
+% Evidence: E32 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/findings.md | kind: implementation
+I used the same approach elsewhere in the environment. For example, reaching a context threshold could trigger a handoff procedure, while leaving the agent to compose the handoff itself. Automate the arrival of the decision procedure, not every decision.
+
+The recovery failure taught me something about engineering work that I had not previously specified: abandoning a failed operation should not undo work that had already succeeded. I could preserve that distinction in the recovery procedure, rather than asking every subsequent agent to rediscover it.
+
+% <!-- point: validation-placement-became-a-factory-design-decision | A validation bottleneck prompted independent scheduling of broad checks, with cheap checks before merge and full validation before deployment; the redesign traded detection delay and attribution cost against integration cost. -->
+
+\section{Improving the Execution of Engineering Work}\label{heading:when-validation-becomes-the-bottleneck}
+
+As I increased the number of agents developing DocAble, the engineering environment encountered resource problems of its own. Agents could produce changes faster than some of the machinery could evaluate them. One particularly instructive example concerned the scheduling of validation.
+
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+At one point, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
+
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+An initial asynchronous arrangement launched expensive checks in the background after each merge. Making validation asynchronous reduced the time an agent spent waiting for it. It did not reduce the amount of validation work the host performed. As more agents completed changes, more validation runs competed for the same resources and overloaded the host. I had changed when the work occurred without addressing how much work occurred.
+
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+I therefore separated the scheduling of the expensive validation sweep from the arrival of individual merges. Several changes could be examined by one sweep, and a lock prevented overlapping sweeps. Inexpensive checks remained synchronous at the merge boundary, while broader validation ran separately, as \autoref{docable-validation-scheduling} shows.
+
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: historical-report-and-implementation
+Broad repository checks were scheduled every thirty minutes against new commits on the main branch, in an isolated worktree. A blocking failure raised an alert and paused new agent dispatch. The orchestrator had to acknowledge or address the failure before dispatch could resume; acknowledgment did not establish that the defect had been repaired. The repair remained separately tracked, and deployment still required the full validation suite to pass against the candidate being shipped.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-validation-scheduling.pdf}
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: implementation
+\caption{\emph{Separating integration from broad validation.} Shaded boxes identify validation work; initially, full validation delayed subsequent changes. The redesigned pipeline runs inexpensive checks before each merge, broad checks periodically against accumulated changes, and full validation before deployment. Separating these schedules reduces repeated computation and blocking latency, but delays detection of failures that escape the per-merge checks.}
+\label{docable-validation-scheduling}
+\end{figure}
+
+This arrangement reduced contention, but it also changed when I could discover certain defects. A change could be integrated before the next broad validation sweep, and several intervening changes could make a subsequent failure harder to localize. I therefore had to decide which obligations required evidence before integration and which could be evaluated later. The per-merge, scheduled, and predeployment checks supplied evidence at different boundaries; a scheduled failure could still interrupt subsequent work.
+
+I had encountered a related engineering problem while redesigning document processing in \magevalue{sec:interlude-one-problem-many-models}. In both cases, I had initially grouped work according to how it arrived rather than how it could be executed economically. Separating the arrival of work from its execution schedule gave me additional design choices.
+
+\section{Evaluating and Revising the Controls}\label{heading:engineering-capital-depreciates}
+
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+An audit of my engineering models appeared to show that ten providers had the required uniqueness checks. Every check passed. Unfortunately, all ten were checking the wrong thing.
+
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+Each check examined identifiers in a shared graph, where uniqueness was already guaranteed, rather than the source records belonging to its provider. Two source records could claim the same identifier and silently overwrite one another as the provider's catalog was constructed. Checking the shared graph could not establish uniqueness in those original records. The checks established a true property of the wrong collection.
+
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+The repair changed both the checks and the evidence for trusting them. Each check examined its provider's source records, and a test deliberately introduced a duplicate that the check had to reject. This gave me evidence that the revised checks could detect the violations they were intended to find. Where an obligation is enforced at an admission boundary, we can also test whether the detected violation prevents admission.
+
+This negative test serves a purpose similar to mutation testing and fault injection: we deliberately introduce a violation to evaluate the machinery responsible for detecting or handling it. The subject of evaluation is now the engineering control rather than the product it ordinarily evaluates. In \magevalue{sec:constraints-sensors-validators-gates}, the consumer mistook an incomplete validation for a clean result; here, the uniqueness checks examined the wrong records.
+
+% <!-- print-keep-with-next: 6 -->
+
+The uniqueness checks had become part of the environment I trusted to evaluate subsequent work. Yet they needed evaluation themselves. Just as I had tested and revised my models of document processing, I needed to test and revise the mechanisms that governed its development.
+
+```
+
+### 4.5-mage-in-motion-summary.tex
+
+Source: `book/latex/sources/part4/4.5-mage-in-motion-summary.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`, lines 1–21.
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: MAGE in Motion: Engineering Through Models -->
+
+% <!-- chapter-title: Summary -->
+
+\chapter{Summary}
+
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} developed Modeling and Alignment separately. This chapter examined how they interact as a system and its engineering environment evolve.
+
+\begin{enumerate}
+\item \textbf{Model, Realize, and Evaluate in the order the problem demands.} We can model before implementation, recover models from existing implementations, or develop models in response to measurements and failures.
+\item \textbf{Establish and preserve alignment.} Active alignment changes a system to satisfy modeled obligations. Passive alignment protects those obligations during subsequent changes.
+\item \textbf{Protect existing obligations during transformations.} An alignment kernel protects properties that further engineering must preserve. We can extend or revise the kernel as the system and its requirements change.
+\item \textbf{Develop and revise models as we learn.} One engineering problem can lead to several related models. Their analyses guide design, while measurements can expose shortcomings in the models themselves.
+\item \textbf{Engineer the engineering environment.} The machinery through which agents perform work has properties and obligations of its own. We can apply Modeling and Alignment to that machinery.
+\end{enumerate}
+
+Throughout these episodes, I had to decide how much engineering each problem warranted. Chunking was an adequate solution until I encountered documents it could not process. Some models were useful for comparing designs without becoming obligations for subsequent work. Some predictions warranted further experiments, while others were sufficient to guide a decision. Part of learning to engineer with agents is learning when to invest in models and controls, and when to get on with building the system.
+
+As I applied these ideas to DocAble, I found myself engineering two systems: the document-accessibility service and the environment in which agents developed and maintained it. The latter increasingly determined how quickly I could change the former, how much judgment those changes required of me, and what evidence I could obtain about their results. \magevalue{chapter:software-factories} examines this second system as a software factory.
+
+```
+
+
+## Reusable model-driven machinery — 3.2-governance-mechanisms.tex — 2026-11-24
+
+Source: `book/latex/sources/part3/3.2-governance-mechanisms.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Replaced original examples with the new pinned investigation, clarified execution/evidence boundaries, and removed the repeated Chapter 4 incident preview.
+
+Original lines 195–196:
+
+```latex
+\item \textbf{Generate a realization.} A schema can generate interface types, a state machine can supply the transition rules for a workflow engine, and an architectural model can determine parts of a deployment configuration.
+\item \textbf{Derive checks.} A state-transition model can supply test sequences and their expected results~\citep{utting2012taxonomy}. A temporal specification can supply a runtime monitor for properties that can be evaluated over observed executions~\citep{bartocci2018runtime}. A schema can supply validators for data exchanged between services.
+
+```
+
+Original lines 202–202:
+
+```latex
+\caption{\emph{From engineering models to engineering machinery.} Engineers and agents can interpret models to construct implementations and checks. Models with sufficiently defined semantics can also support mechanical analysis, generation, and derivation of checks, in whole or in part. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.}
+
+```
+
+Original lines 214–224:
+
+```latex
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+I used several of these arrangements in DocAble. Recall the service dependencies discussed in \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models}. Connecting two services in the cloud requires more than supplying one service with the other’s address. The calling service also needs permission to invoke its dependency. DocAble derives the required invocation grants from its deployment dependency map and the identities under which its services execute. Rather than ask an agent to determine the necessary grants each time I change the deployment, I can reuse the machinery that derives them. The cloud authorization mechanism enforces the installed permissions (\autoref{chapter:appendix-a-model-driven-deployment}).
+
+% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
+I also applied this approach to the governance machinery itself. DocAble has several mechanisms that must execute in a particular order. Rather than specify a complete execution sequence, I record the required ordering relationships. A topological sort computes a sequence satisfying those relationships or reports a cycle. I must decide which mechanisms need to precede others, but I need not work out the entire sequence again whenever I add a mechanism. \autoref{3.5-when-guardrails-collide:heading:docable-interacting-governance-mechanisms} examines this arrangement and the engineering problems that motivated it.
+
+Greater semantic commitment gives us more opportunities for mechanization. With less commitment, we rely more on engineers and agents to interpret the representation. Neither arrangement is intrinsically preferable. A short description reviewed by a knowledgeable engineer may be entirely adequate for an obligation that changes frequently or rarely needs evaluation. For hundreds of architectural obligations evaluated against thousands of changes, a common representation and checking mechanism may be a better investment.
+
+Nor does greater semantic commitment necessarily restrict implementation freedom. We can specify the permitted transitions of a job precisely while leaving its implementation largely open. As \autoref{3.1-from-engineering-models-to-enforcement:heading:independent-obligations-and-evidence} established, we must still determine whether the model expresses the intended obligation and whether the resulting evidence is adequate.
+
+Commodity intelligence changes the cost of these arrangements. Agents can help formalize obligations, construct generators, and develop the machinery that analyzes models or checks implementations. We may find it economical to mechanize engineering activities that we previously performed by hand.
+
+```
+
+Original lines 289–289:
+
+```latex
+A separate incident concerned the coverage of the checker itself (\autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates}): DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
+
+```
+
+Original lines 354–354:
+
+```latex
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+
+```
+
+
+## Reusable model-driven machinery — 3.4-governance-conversion.tex — 2026-11-24
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Replaced original examples with the new pinned investigation, clarified execution/evidence boundaries, and removed the repeated Chapter 4 incident preview.
+
+
+## Reusable model-driven machinery — 3.5-when-guardrails-collide.tex — 2026-11-24
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Replaced original examples with the new pinned investigation, clarified execution/evidence boundaries, and removed the repeated Chapter 4 incident preview.
+
+Original lines 104–104:
+
+```latex
+The governance graph records conflicts and their resolutions, including ordering, merging mechanisms, separating execution points, or accepting an interaction. Recall the example of mechanically deriving an execution sequence from ordering relationships in \autoref{3.2-governance-mechanisms:heading:constructing-and-evaluating-governance-mechanisms}. Topological sorting computes a sequence from the declared ordering constraints and reports cycles; a separate check compares the governance model with the configured mechanisms.
+
+```
+
+
+## Reuse across tasks and obligations — part5/5.2-inside-docables-software-factory.tex — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Corrected factual scope against the supplied investigation and developed requested cross-chapter implications.
+
+Original lines 281–281:
+
+```latex
+May this user submit this document? & Authoritative entitlement decision table & The front door at upload time & Admission policy can be changed in one table rather than scattered conditionals \\
+
+```
+
+Original lines 299–299:
+
+```latex
+\textbf{Property facts → verification tier → required checker → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts: how many concurrent lanes touch it, whether it is a safety or a liveness property, what state it ranges over. From those facts the model \emph{derives} a verification tier --- an invariant crossing multiple concurrent lanes demands exhaustive state-space exploration; a single-lane invariant demands a property test; a temporal obligation demands a model checker run. The tier is not advice: a check walks the model and fails when a mandated checker does not exist on disk. The supervisor need not choose a checker class afresh for every invariant. The encoded rule derives that requirement from the declared property facts, and the environment rejects a missing checker.
+
+```
+
+
+## Reuse across tasks and obligations — part6/6.4-research-agenda.tex — 2026-11-24
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Corrected factual scope against the supplied investigation and developed requested cross-chapter implications.
+
+Original lines 39–39:
+
+```latex
+Governed engineering environment (GEE) & Number and coverage of constraints, sensors, and gates; obligations with independent checks; model–implementation correspondence; violations detected or blocked; false rejections; human interventions; control maintenance cost; changes admitted without human inspection & Capacity to direct, evaluate, and govern implementation \\
+
+```
+
+
+## Reuse across tasks and obligations — appendix-handbook/model-driven-deployment.tex — 2026-11-24
+
+Source: `book/latex/sources/appendix-handbook/model-driven-deployment.tex`, revision `235bab6b276559486b2a603cffe3d9cf957fb033`. Corrected factual scope against the supplied investigation and developed requested cross-chapter implications.
+
+Original lines 63–63:
+
+```latex
+The architectural contract states which calls are intended; the deployment map supplies the configuration actually used. The grant plan derives concrete permissions from those declarations and the runtime identities. When the contract and deployment map disagree, a correspondence check identifies the discrepancy, but an engineer must decide which declaration to change. A correct derivation does not establish that the resulting permission is installed.
+
+```
+
+
+### Chapter 6 reuse exposition — 2026-11-24 review
+
+Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, uncommitted new draft. Express the reusable mechanism without attributing a construction event to source inspection.
+
+```latex
+By establishing a common representation of permitted dependencies, I could construct one mechanism that evaluated many architectural obligations. Subsequent obligations expressed in the same vocabulary did not require another checker.
+
+Once I had established a representation of permitted dependencies and constructed a checker for it, adding another dependency restriction required extending the model rather than constructing another checker.
+```

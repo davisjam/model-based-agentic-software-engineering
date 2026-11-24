@@ -18,7 +18,7 @@ Three ideas help organize this work:
 
 \section{Active and Passive Alignment}\label{heading:alignment-changes-the-system}
 
-In \magevalue{chapter:alignment}, we primarily used Alignment to preserve properties of a system as agents changed it. For example, an architectural model might specify which components may communicate, while a check prevents agents from introducing prohibited dependencies. We will call this passive alignment.
+In \magevalue{chapter:alignment}, we examined how models and governance mechanisms can protect engineering obligations during implementation. Suppose a system already satisfies an architectural model. We can use checks to prevent subsequent changes from violating its obligations. We will call this passive alignment.
 
 But suppose we have decided to change the architecture itself. We can revise the architectural model to describe the structure we want, even though the implementation does not yet have that structure. We can then direct agents to modify the implementation, using the model and its checks to identify the remaining work. We will call this active alignment.
 
@@ -42,7 +42,7 @@ The order is system-dependent. For a conventional information system, behavioral
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/alignment-kernel-e0de0325d8.pdf}
-\caption{\emph{Incrementally extending the alignment kernel.} The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in \magevalue{chapter:modeling} becoming governing constraints over time.}
+\caption{\emph{Incrementally extending the alignment kernel.} The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in \magevalue{chapter:modeling} becoming governing constraints over time. Engineers may also revise or retire obligations when the requirements change.}
 \label{alignment-kernel}
 \end{figure}
 
@@ -58,7 +58,7 @@ Even when developing a new system, we need not begin with its models. An explora
 
 Commodity intelligence makes this approach particularly attractive. An exploratory implementation that once took days might now take minutes. We can afford to investigate alternatives by building them, provided that the experiments do not jeopardize properties we have already established.
 
-There is a corresponding danger. Agents can introduce abstractions, interfaces, and mechanisms faster than we can decide whether we need them. An exploratory implementation may contain useful engineering discoveries alongside unnecessary complexity~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Recovering a model from that implementation does not require us to preserve its design.
+There is a corresponding danger. Agents can introduce abstractions, interfaces, and mechanisms faster than we can decide whether we need them. An exploratory implementation may contain useful engineering discoveries alongside unnecessary complexity~\citep{oukhay2026aicodedoesntstick,ogenrwot2026patchtrack}. Recovering a model from that implementation does not require us to preserve its design. Nor must we immediately commit to a precise representation. A preliminary model may help us understand the design before we decide which of its properties warrant more precise modeling and mechanical enforcement.
 
 Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. If I want subsequent work to preserve the newly discovered property, I can express it in a model and, where appropriate, establish a mechanism to enforce it. This is the governance conversion introduced in \magevalue{sec:governance-conversion}. It can follow Modeling, Realization, or Evaluation.
 

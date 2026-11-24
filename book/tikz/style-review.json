@@ -2855,25 +2855,28 @@
       "decision": "refined",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
-      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+      "status": "passed",
+      "source_sha256": "4bc0dfec8dafb07ac4014e8bf99fa776522b20a0b1974bfc4c671235e88345df",
+      "candidate_sha256": "ae502e0285bbaef15527519c8f183cd196529da4e788e9f259f5ce7b3979f3b9",
       "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
       "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
       "routing": "Three downward arrows connect the closely positioned numbered steps; concentric layer containment remains unchanged.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-      "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+      "visual_review": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type. Parent verified the revised rendered figure.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
-        "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
-        "width_bp": 252.572998046875,
-        "height_bp": 224.50599670410156,
-        "reviewed_visually": true,
+        "status": "passed",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 45,
+        "width_bp": 252.573,
+        "height_bp": 224.506,
         "geometry_findings": 0,
-        "semantic_typography_checks": 16,
         "typography_findings": 0,
-        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
       "book_references": [],
       "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors.",
@@ -2910,6 +2913,11 @@
           "monochrome_pixels": true,
           "status": "passed",
           "chapter_wrap_tested": false
+        },
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
         }
       ],
       "revision_history": [
@@ -2942,9 +2950,45 @@
               "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "change": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+          "previous": {
+            "source": "book/assets/alignment-kernel.svg",
+            "candidate": "book/tikz/figures/alignment-kernel.tex",
+            "receipt": "book/tikz/receipts/alignment-kernel.json",
+            "decision": "refined",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+            "status": "reviewed",
+            "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
+            "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+            "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
+            "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
+            "routing": "Three downward arrows connect the closely positioned numbered steps; concentric layer containment remains unchanged.",
+            "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+            "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
+              "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
+              "width_bp": 252.572998046875,
+              "height_bp": 224.50599670410156,
+              "reviewed_visually": true,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 16,
+              "typography_findings": 0,
+              "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+            },
+            "book_references": [],
+            "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors.",
+            "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+            "reviewed_visually": true
+          }
         }
       ],
-      "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+      "reason": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
       "reviewed_visually": true
     },
     {
@@ -4272,44 +4316,91 @@
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-      "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-      "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+      "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+      "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+      "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-        "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-        "page": 1,
+        "date": "2026-11-24",
+        "status": "passed",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 70,
         "width_bp": 449.972,
         "height_bp": 349.974,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-        "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-        "semantic_typography_checks": 23,
+        "typography_findings": 0,
+        "unapproved_compile_diagnostics": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs inspected."
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/style-review.json",
       "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-      "status": "reviewed",
+      "status": "passed",
       "fill": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
       "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling.",
       "routing": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
       "shape": "Modestly rounded rectangles denote production stages and outputs; a dashed enclosure groups production. A nested acceptable-region box depicts a subset of possible realizations, whose points are alternatives.",
-      "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+      "visual_review": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography. Parent verified the revised rendered figure.",
       "book_references": [],
       "routing_exceptions": "Matching base structure across Chapters 5 and 6.",
       "revision_history": [
         {
           "date": "2026-11-13",
           "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        },
+        {
+          "date": "2026-11-24",
+          "change": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
+          "previous": {
+            "source": "book/assets/probability-in-the-software-factory.svg",
+            "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+            "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+            "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+            "decision": "refined",
+            "reviewed_visually": true,
+            "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+              "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 349.974,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+              "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+              "semantic_typography_checks": 23,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs inspected."
+            },
+            "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/style-review.json",
+            "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+            "status": "reviewed",
+            "fill": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
+            "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling.",
+            "routing": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
+            "shape": "Modestly rounded rectangles denote production stages and outputs; a dashed enclosure groups production. A nested acceptable-region box depicts a subset of possible realizations, whose points are alternatives.",
+            "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+            "book_references": [],
+            "routing_exceptions": "Matching base structure across Chapters 5 and 6."
+          }
+        }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
         }
       ]
     },
@@ -6863,25 +6954,25 @@
     {
       "source": "book/assets/models-to-engineering-machinery.svg",
       "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
-      "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
-      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+      "source_sha256": "e92c946dfc938ffb6062b1722ea606b012f1fa611db6216692fbee33e958b158",
+      "candidate_sha256": "8e4283a5c8b5813e673e98d7b9f2bd50526649d1529ed8bb09e2ffeb7ab7a592",
       "decision": "new",
       "reviewed_visually": true,
-      "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image’s miniature paragraphs.",
+      "reason": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
-        "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
-        "page": 1,
-        "width_bp": 448.6199951171875,
-        "height_bp": 308.62200927734375,
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
-        "semantic_typography_checks": 28,
-        "typography_findings": 0,
         "status": "passed",
-        "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
-        "geometry_findings": 0
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 37,
+        "width_bp": 448.62,
+        "height_bp": 332.621,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
       "fill": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades.",
       "bold": "Bold10pt names models, uses, and evidence; ordinary10pt gives examples. Italics distinguish model intent and the spectrum’s scope.",
@@ -6890,7 +6981,52 @@
       "book_references": [],
       "routing_exceptions": [],
       "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
-      "status": "passed"
+      "status": "passed",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "change": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
+          "previous": {
+            "source": "book/assets/models-to-engineering-machinery.svg",
+            "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+            "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+            "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+            "decision": "new",
+            "reviewed_visually": true,
+            "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image’s miniature paragraphs.",
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+              "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+              "page": 1,
+              "width_bp": 448.6199951171875,
+              "height_bp": 308.62200927734375,
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "semantic_typography_checks": 28,
+              "typography_findings": 0,
+              "status": "passed",
+              "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+              "geometry_findings": 0
+            },
+            "fill": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades.",
+            "bold": "Bold10pt names models, uses, and evidence; ordinary10pt gives examples. Italics distinguish model intent and the spectrum’s scope.",
+            "routing": "Solid orthogonal arrows express inputs and outputs; the left model-evidence branch does not feed implementation evaluation. The separate spectrum arrow indicates semantic commitment, not a process or relative ranking of branches.",
+            "shape": "Rounded boxes group named concepts. Equal peer activity boxes and aligned output bands establish parallel choices.",
+            "book_references": [],
+            "routing_exceptions": [],
+            "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
+            "status": "passed"
+          }
+        }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
+        }
+      ]
     }
   ],
   "semantic_typography_review": "book/tikz/typography-review.json",

@@ -8,7 +8,7 @@
     "rationale": "White destination boxes; light gray only groups the software-engineering case. Main argument destinations and case label remain bold. Appendix reference destinations use regular weight.",
     "source_sha256": "98b839e863f25ccb486083ed6583f029838d446dc06816cb72b37ac32e20c8e2",
     "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454",
-    "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+    "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-20",
@@ -334,7 +334,7 @@
       },
       {
         "date": "2026-11-12",
-        "reason": "Author-requested Figure2.5 compact layout: 315\u00d7228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations \u2192 Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+        "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
         "previous_source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
         "previous_candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
         "archive": "book/editorial/figure-2-5-compact-20261112/before/grayscale-review.json"
@@ -516,7 +516,7 @@
     "receipt": "book/tikz/receipts/canonical-structural.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in \u00a72.3.1.",
+    "rationale": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in §2.3.1.",
     "source_sha256": "1b393b4f8e94cc4313f6c8629d3f86474593359e483306428f62d18ce9e3a2a9",
     "candidate_sha256": "b204e0b403bb2accff2bb8bc752a3636bcb81a1386a0a2385a48d6a229cf7a17",
     "revision_history": [
@@ -993,7 +993,7 @@
     "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+    "rationale": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
     "source_sha256": "4501167c1e92ff6c3212f5f8016c8640c1f051bec81b84b7d61920bf83cb6829",
     "candidate_sha256": "a0b486d04ab9fc9d97137b6356cf9fd60ecc19c335c3a9cce823499c11c71a56",
     "revision_history": [
@@ -1073,7 +1073,7 @@
       },
       {
         "date": "2026-11-17",
-        "reason": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+        "reason": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
         "previous_review": {
           "validation": {
             "date": "2026-11-11",
@@ -1096,7 +1096,7 @@
       }
     ],
     "semantic_revision_20261117": {
-      "description": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+      "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
       "proof": "book/latex/build/style-figure-proof.pdf",
       "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
       "page": 3,
@@ -1311,7 +1311,7 @@
       }
     ],
     "reviewed_visually": true,
-    "reason": "Restore the original SVG\u2019s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
+    "reason": "Restore the original SVG’s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
@@ -1385,7 +1385,7 @@
     "candidate_sha256": "80560be3766dcc967720147d9cccac7103b16281d669fb5ce9cc26cffbfead1e",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
+    "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/compact-branches-20261113/candidates.pdf",
@@ -1415,7 +1415,7 @@
     "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment\u2019s controls and evidence requirements.",
+    "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
     "validation": {
       "page": 1,
       "width_bp": 449.972,
@@ -1867,20 +1867,23 @@
     "receipt": "book/tikz/receipts/alignment-kernel.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
-    "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
-    "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+    "rationale": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+    "source_sha256": "4bc0dfec8dafb07ac4014e8bf99fa776522b20a0b1974bfc4c671235e88345df",
+    "candidate_sha256": "ae502e0285bbaef15527519c8f183cd196529da4e788e9f259f5ce7b3979f3b9",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
-      "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
-      "width_bp": 252.572998046875,
-      "height_bp": 224.50599670410156,
-      "reviewed_visually": true,
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 45,
+      "width_bp": 252.573,
+      "height_bp": 224.506,
       "geometry_findings": 0,
-      "semantic_typography_checks": 16,
       "typography_findings": 0,
-      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
     "validation_history": [
       {
@@ -1903,6 +1906,11 @@
         "monochrome_pixels": true,
         "status": "passed",
         "chapter_wrap_tested": false
+      },
+      {
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ],
     "revision_history": [
@@ -1912,7 +1920,7 @@
         "previous": {
           "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
           "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
-          "rationale": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original\u2019s single green family. Containment and M_A\u2013M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1\u20134 with directed progression.",
+          "rationale": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
           "validation": {
             "date": "2026-11-11",
             "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
@@ -1936,9 +1944,37 @@
             "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
           }
         }
+      },
+      {
+        "date": "2026-11-24",
+        "change": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+        "previous": {
+          "source": "book/assets/alignment-kernel.svg",
+          "candidate": "book/tikz/figures/alignment-kernel.tex",
+          "receipt": "book/tikz/receipts/alignment-kernel.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+          "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
+          "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
+            "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
+            "width_bp": 252.572998046875,
+            "height_bp": 224.50599670410156,
+            "reviewed_visually": true,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 16,
+            "typography_findings": 0,
+            "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+          },
+          "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+          "reviewed_visually": true
+        }
       }
     ],
-    "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+    "reason": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
     "reviewed_visually": true
   },
   {
@@ -2044,8 +2080,8 @@
             "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
             "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
             "source_geometry_checks": [
-              "three equal142\u00d7546bp panels",
-              "three equal108\u00d762bp page workers"
+              "three equal142×546bp panels",
+              "three equal108×62bp page workers"
             ],
             "status": "passed"
           }
@@ -2072,8 +2108,8 @@
       "geometry_audit_sha256": "bd727e5d32f74350944bedecf88df84275f7bcd974b1ad00517f64c4b96318a4",
       "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
       "source_geometry_checks": [
-        "three equal142\u00d7534bp panels",
-        "three equal108\u00d762bp page workers"
+        "three equal142×534bp panels",
+        "three equal108×62bp page workers"
       ],
       "status": "passed"
     }
@@ -2330,12 +2366,12 @@
     "revision_history": [
       {
         "date": "2026-11-24",
-        "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+        "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9–10pt labels.",
         "previous": {
           "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
           "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
           "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
-          "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5\u201310 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+          "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
           "validation": {
             "date": "2026-11-23",
             "proof": "/tmp/mage-ch4-figure-compact-20261123/proof.pdf",
@@ -2378,8 +2414,8 @@
         "previous": {
           "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
           "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
-          "rationale": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9–10pt labels.",
+          "rationale": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9–10pt labels.",
           "validation": {
             "date": "2026-11-24",
             "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
@@ -2534,7 +2570,7 @@
     "revision_history": [
       {
         "date": "2026-11-11",
-        "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+        "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
         "previous": {
           "source": "book/assets/build-stages-timeline.svg",
           "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -2548,7 +2584,7 @@
       },
       {
         "date": "2026-11-11",
-        "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+        "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
         "previous": {
           "source": "book/assets/build-stages-timeline.svg",
           "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -2862,36 +2898,75 @@
   {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
     "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
     "reviewed": true,
-    "rationale": "Light-gray acceptable region inside possible realizations.",
+    "rationale": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+      },
+      {
+        "date": "2026-11-24",
+        "change": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
+        "previous": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/grayscale-review.json",
+          "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+          "reviewed": true,
+          "rationale": "Light-gray acceptable region inside possible realizations."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
@@ -3508,7 +3583,7 @@
     "candidate_sha256": "e6b35ac8f32cf1dc294a8f547e1cd61ff96c221051e757592753ca2fea1320e6",
     "title_revision_review": {
       "date": "2026-11-09",
-      "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+      "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
         "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
@@ -3731,7 +3806,7 @@
     "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
     "reviewed": true,
-    "rationale": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5\u201310 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down."
+    "rationale": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down."
   },
   {
     "source": "book/assets/alignment-overview.svg",
@@ -3995,28 +4070,68 @@
   {
     "source": "book/assets/models-to-engineering-machinery.svg",
     "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
-    "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
-    "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+    "source_sha256": "e92c946dfc938ffb6062b1722ea606b012f1fa611db6216692fbee33e958b158",
+    "candidate_sha256": "8e4283a5c8b5813e673e98d7b9f2bd50526649d1529ed8bb09e2ffeb7ab7a592",
     "decision": "new",
     "reviewed_visually": true,
-    "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+    "reason": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
-      "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
-      "page": 1,
-      "width_bp": 448.6199951171875,
-      "height_bp": 308.62200927734375,
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "semantic_typography_checks": 28,
-      "typography_findings": 0,
       "status": "passed",
-      "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
-      "geometry_findings": 0
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 37,
+      "width_bp": 448.62,
+      "height_bp": 332.621,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
     "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
     "reviewed": true,
-    "rationale": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades."
+    "rationale": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
+    "revision_history": [
+      {
+        "date": "2026-11-24",
+        "change": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
+        "previous": {
+          "source": "book/assets/models-to-engineering-machinery.svg",
+          "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+          "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+          "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+          "decision": "new",
+          "reviewed_visually": true,
+          "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image’s miniature paragraphs.",
+          "validation": {
+            "date": "2026-11-24",
+            "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+            "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+            "page": 1,
+            "width_bp": 448.6199951171875,
+            "height_bp": 308.62200927734375,
+            "minimum_prose_font_pt": 10,
+            "unapproved_compile_diagnostics": 0,
+            "semantic_typography_checks": 28,
+            "typography_findings": 0,
+            "status": "passed",
+            "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+            "geometry_findings": 0
+          },
+          "receipt": "book/tikz/receipts/models-to-engineering-machinery.json",
+          "reviewed": true,
+          "rationale": "Light gray identifies the three model-mediated activities. The input model, produced artifacts, evidence, evaluation, and commitment strip remain white. No gradient or ranking shades."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
+      }
+    ]
   }
 ]

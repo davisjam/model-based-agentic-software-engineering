@@ -11,14 +11,14 @@
       "source_sha256": "98b839e863f25ccb486083ed6583f029838d446dc06816cb72b37ac32e20c8e2",
       "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454",
       "decision": "refined",
-      "review": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "review": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "checks": "Source SVG and native raster inspected; chapter sequence and grouping retained; both new appendix destinations verified; native geometry and16 semantic typography checks passed.",
       "dimensions_cm": [
         6.8002,
         13.34
       ],
       "strict_compile_diagnostics": [],
-      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "reviewed_visually": true,
       "validation": {
         "date": "2026-11-20",
@@ -53,7 +53,7 @@
               13.9292
             ],
             "strict_compile_diagnostics": [],
-            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2\u20135 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling."
+            "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling."
           }
         }
       ]
@@ -200,7 +200,7 @@
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
       "candidate_sha256": "86da898f5b67fb517ffad6d3e571333b7884cece0352674fe557e1b418ecfdad",
       "decision": "refined",
-      "original_visual_grammar": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box \u2014 the production system at\n    scholaccess.com \u2014 with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern \u2014 what it does, not yet how.",
+      "original_visual_grammar": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box — the production system at\n    scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern — what it does, not yet how.",
       "review": "Replaced generic text boxes with document pictograms, text bars, folded corners, a warning badge and a native vector checkmark. Dashed undescribed-image area contrasts with solid described-image area. Accessibility labels and explanatory annotations sit below the documents. Main text is 11 pt; status pills and system subtitle are 10.5 pt; headings are 12 pt.",
       "checks": [
         "Rendered original compared with native TikZ candidate",
@@ -378,7 +378,7 @@
       "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
       "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
       "decision": "refined",
-      "review": "Author-requested Figure2.5 compact layout: 315\u00d7228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations \u2192 Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+      "review": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
       "checks": {
         "icons_and_symbols": "Five stages and external feedback preserved. Only footer transition removed as authorized.",
         "links_and_groups": "One forward chain and decisions-to-model feedback; engineering decisions retain both design and enforcement selection.",
@@ -410,7 +410,7 @@
         },
         {
           "date": "2026-11-12",
-          "reason": "Author-requested Figure2.5 compact layout: 315\u00d7228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations \u2192 Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+          "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
           "previous_source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
           "previous_candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
           "archive": "book/editorial/figure-2-5-compact-20261112/before/fidelity-review.json"
@@ -609,7 +609,7 @@
       "source_sha256": "1b393b4f8e94cc4313f6c8629d3f86474593359e483306428f62d18ce9e3a2a9",
       "candidate_sha256": "b204e0b403bb2accff2bb8bc752a3636bcb81a1386a0a2385a48d6a229cf7a17",
       "decision": "refined",
-      "review": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in \u00a72.3.1.",
+      "review": "The Question asks whether Web can bypass API. The Analysis tests Database reachability after removing API, as in the worked example in §2.3.1.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         10.2137,
@@ -1131,7 +1131,7 @@
       "source_sha256": "4501167c1e92ff6c3212f5f8016c8640c1f051bec81b84b7d61920bf83cb6829",
       "candidate_sha256": "a0b486d04ab9fc9d97137b6356cf9fd60ecc19c335c3a9cce823499c11c71a56",
       "decision": "refined",
-      "review": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+      "review": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         15.874,
@@ -1227,7 +1227,7 @@
         },
         {
           "date": "2026-11-17",
-          "reason": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+          "reason": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
           "previous_review": {
             "validation": {
               "date": "2026-11-11",
@@ -1251,7 +1251,7 @@
         }
       ],
       "semantic_revision_20261117": {
-        "description": "Unowned \u2192 Owned(A,7) \u2192 Reclaimable \u2192 Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
+        "description": "Unowned → Owned(A,7) → Reclaimable → Owned(B,8). A callout at Owned(B,8) rejects release(A,7) and preserves the current (B,8) claim. The valid release(B,8) returns to Unowned. No rejected A7-to-B8 transition is shown.",
         "proof": "book/latex/build/style-figure-proof.pdf",
         "proof_sha256": "2a5c38b751abbc23b840116af45fde154328b4df4332670732e6f370ef702fbb",
         "page": 3,
@@ -1323,7 +1323,7 @@
       "source_sha256": "a10d57e12297abb8c976b0f2baab231a11e040eebb17c29d7f60655b8a2a9e00",
       "candidate_sha256": "4cc812a03c83eb105d371763f5ea1f9517b6f28133917f1efe5eb4c2e733a955",
       "decision": "refined",
-      "review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book\u2019s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+      "review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         7.4389,
@@ -1459,7 +1459,7 @@
         "author_approval": "pending"
       },
       "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
-      "review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry \u2192 hub \u2192 Deployment topology \u2192 hub \u2192 Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+      "review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
       "checks": "Reference topology with explicit subsequent user correction; native and SVG renders inspected; all seven labels and semantic type checked.",
       "strict_compile_diagnostics": [],
       "dimensions_cm": [
@@ -1490,7 +1490,7 @@
         }
       ],
       "reviewed_visually": true,
-      "reason": "Restore the original SVG\u2019s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
+      "reason": "Restore the original SVG’s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
       "validation": {
         "date": "2026-11-12",
         "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
@@ -1575,7 +1575,7 @@
       "width_bp": 449.972,
       "height_bp": 323.974,
       "monochrome": true,
-      "review": "Inspected native print and SVG rendered proofs at 2\u00d7 and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions."
+      "review": "Inspected native print and SVG rendered proofs at 2× and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions."
     },
     {
       "source": "book/assets/coherence-triangle.svg",
@@ -1598,7 +1598,7 @@
       "candidate_sha256": "80560be3766dcc967720147d9cccac7103b16281d669fb5ce9cc26cffbfead1e",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
+      "reason": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion.",
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/compact-branches-20261113/candidates.pdf",
@@ -1636,7 +1636,7 @@
       "width_bp": 447.302,
       "height_bp": 182.74,
       "monochrome": true,
-      "review": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10\u201311pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion. Inspected rendered proof: clear labels and no overlaps."
+      "review": "Compress vertical padding and inter-row gaps while preserving all labels, the four-column comparison, and authored 10–11pt type. Join the two scope annotations into single lines. Reduce drawing height from about 272bp to about 180bp so drawing and existing caption occupy at most one-third of a letter page. No content or caption deletion. Inspected rendered proof: clear labels and no overlaps."
     },
     {
       "source": "book/assets/three-relations.svg",
@@ -1645,7 +1645,7 @@
       "candidate_sha256": "515d8f75419a968a5a81c06a783daf1342662fd551aed8756915bec43ef56657",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment\u2019s controls and evidence requirements.",
+      "reason": "Distinguish agreement with the model, satisfaction of an independent obligation, and admission under the wider environment’s controls and evidence requirements.",
       "validation": {
         "page": 1,
         "width_bp": 449.972,
@@ -1688,9 +1688,9 @@
       "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
       "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/fidelity-review.json",
       "checks": {
-        "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+        "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
         "annotation_placement": "Braces sit below the event ranges they describe. Short vertical arrows connect events, named boundaries, and obligations.",
-        "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author\u2019s request; removed X/Y and excluded browser execution from the earlier-check brace."
+        "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author’s request; removed X/Y and excluded browser execution from the earlier-check brace."
       },
       "validation": {
         "date": "2026-11-24",
@@ -1726,7 +1726,7 @@
       "width_bp": 449.62,
       "height_bp": 207.491,
       "monochrome": true,
-      "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+      "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
       "author_review": {
         "approved_date": "2026-11-13",
         "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
@@ -1741,9 +1741,9 @@
             "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
             "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
             "checks": {
-              "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+              "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
               "annotation_placement": "Braces sit below the event ranges they describe. Short vertical arrows connect events, named boundaries, and obligations.",
-              "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author\u2019s request; removed X/Y and excluded browser execution from the earlier-check brace."
+              "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author’s request; removed X/Y and excluded browser execution from the earlier-check brace."
             },
             "validation": {
               "date": "2026-11-13",
@@ -2262,40 +2262,26 @@
         "annotation_placement": "Growth and protected-region notes remain outside rings.",
         "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
       },
-      "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
-        ],
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 392.6719970703125,
-      "height_bp": 255.4929962158203,
       "monochrome": true,
-      "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
-      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
-      "review": "Review candidate addressing author feedback: distinguish numbered actions 1\u20134 from models M_A\u2013M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+      "source_sha256": "4bc0dfec8dafb07ac4014e8bf99fa776522b20a0b1974bfc4c671235e88345df",
+      "candidate_sha256": "ae502e0285bbaef15527519c8f183cd196529da4e788e9f259f5ce7b3979f3b9",
+      "review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
       "decision": "refined",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
-        "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
-        "width_bp": 252.572998046875,
-        "height_bp": 224.50599670410156,
-        "reviewed_visually": true,
+        "status": "passed",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 45,
+        "width_bp": 252.573,
+        "height_bp": 224.506,
         "geometry_findings": 0,
-        "semantic_typography_checks": 16,
         "typography_findings": 0,
-        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
-      "dimensions_cm": [
-        8.9102,
-        7.4967
-      ],
-      "strict_compile_diagnostics": [],
       "validation_history": [
         {
           "date": "2026-11-11",
@@ -2317,6 +2303,11 @@
           "monochrome_pixels": true,
           "status": "passed",
           "chapter_wrap_tested": false
+        },
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
         }
       ],
       "revision_history": [
@@ -2355,10 +2346,63 @@
               "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
             }
           }
+        },
+        {
+          "date": "2026-11-24",
+          "change": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+          "previous": {
+            "source": "book/assets/alignment-kernel.svg",
+            "candidate": "book/tikz/figures/alignment-kernel.tex",
+            "checks": {
+              "icons_and_symbols": "Restored ellipsis for continuing model layers.",
+              "links_and_groups": "Four concentric protection rings and ordered procedure retained.",
+              "annotation_placement": "Growth and protected-region notes remain outside rings.",
+              "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+            },
+            "font_qa": {
+              "rendered_prose_sizes_tex_pt": [
+                9.0,
+                10.0
+              ],
+              "minimum": 9,
+              "final_size_no_scaling": true
+            },
+            "geometry_findings": [],
+            "compiler_diagnostics": [],
+            "width_bp": 392.6719970703125,
+            "height_bp": 255.4929962158203,
+            "monochrome": true,
+            "source_sha256": "5a2833d1c73ace87b85ffddb7edd7b732a389e6ff09dc65b32982918be96f348",
+            "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+            "review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+            "decision": "refined",
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-refinement-20261124/figures/alignment-kernel.pdf",
+              "proof_sha256": "a4071f812838cbc97ce1aa1c7761bed548cf5caa82bfb4d89f6573196944246e",
+              "width_bp": 252.572998046875,
+              "height_bp": 224.50599670410156,
+              "reviewed_visually": true,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 16,
+              "typography_findings": 0,
+              "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+            },
+            "dimensions_cm": [
+              8.9102,
+              7.4967
+            ],
+            "strict_compile_diagnostics": [],
+            "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
+            "reviewed_visually": true
+          }
         }
       ],
-      "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
-      "reviewed_visually": true
+      "reason": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+      "reviewed_visually": true,
+      "geometry_findings": 0,
+      "width_bp": 252.573,
+      "height_bp": 224.506
     },
     {
       "source": "book/assets/agentic-engineering-cycle.svg",
@@ -2498,8 +2542,8 @@
               "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
               "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
               "source_geometry_checks": [
-                "three equal142\u00d7546bp panels",
-                "three equal108\u00d762bp page workers"
+                "three equal142×546bp panels",
+                "three equal108×62bp page workers"
               ],
               "status": "passed"
             }
@@ -2526,8 +2570,8 @@
         "geometry_audit_sha256": "bd727e5d32f74350944bedecf88df84275f7bcd974b1ad00517f64c4b96318a4",
         "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
         "source_geometry_checks": [
-          "three equal142\u00d7534bp panels",
-          "three equal108\u00d762bp page workers"
+          "three equal142×534bp panels",
+          "three equal108×62bp page workers"
         ],
         "status": "passed"
       }
@@ -2864,7 +2908,7 @@
         "icons_and_symbols": "Three-way partition is explicit. Gray role is explained by a small unboxed key; no ornamental symbols added.",
         "links_and_groups": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
         "annotation_placement": "Weak signals locate potential work sits beside the detection/partition step; next pass labels the perimeter return. Enforcement examples stay inside the enforcement node.",
-        "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5\u201310pt."
+        "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5–10pt."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
@@ -2880,7 +2924,7 @@
       "width_bp": 449.97198486328125,
       "height_bp": 350.0539855957031,
       "monochrome": true,
-      "review": "Native and SVG proofs inspected at print size and2\u00d7. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9\u201310pt size. No internal figure heading/caption or unused connector exists.",
+      "review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
       "compaction_review": {
         "date": "2026-11-23",
         "reason": "Reduced authored vertical geometry 8%, retaining every label, font size, branch classification, tonal role, and next-pass return; minimum terminal approach retained.",
@@ -2889,7 +2933,7 @@
       "revision_history": [
         {
           "date": "2026-11-24",
-          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9\u201310pt labels.",
+          "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from344.08bp to262bp with unchanged9–10pt labels.",
           "previous": {
             "source_sha256": "c6f960f8fe5baa1a28ae86844ab4e05dd879c04dc5a1a352d0cfb3037d6e6bac",
             "candidate_sha256": "6ab5cdbc864f9ec1febf5339f9dd1af3460b19d187d950c09d8da79f0f4c0f0a",
@@ -2898,7 +2942,7 @@
               "icons_and_symbols": "Three-way partition is explicit. Gray role is explained by a small unboxed key; no ornamental symbols added.",
               "links_and_groups": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
               "annotation_placement": "Weak signals locate potential work sits beside the detection/partition step; next pass labels the perimeter return. Enforcement examples stay inside the enforcement node.",
-              "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5\u201310pt."
+              "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5–10pt."
             },
             "validation": {
               "date": "2026-11-23",
@@ -2942,12 +2986,12 @@
           "previous": {
             "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
             "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-            "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+            "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9–10pt labels.",
             "checks": {
               "icons_and_symbols": "Three-way partition is explicit. Gray role is explained by a small unboxed key; no ornamental symbols added.",
               "links_and_groups": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
               "annotation_placement": "Weak signals locate potential work sits beside the detection/partition step; next pass labels the perimeter return. Enforcement examples stay inside the enforcement node.",
-              "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5\u201310pt."
+              "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5–10pt."
             },
             "validation": {
               "date": "2026-11-24",
@@ -3173,12 +3217,12 @@
       "monochrome": true,
       "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
       "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
-      "review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "decision": "refined",
       "revision_history": [
         {
           "date": "2026-11-11",
-          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
           "previous": {
             "source": "book/assets/build-stages-timeline.svg",
             "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -3208,7 +3252,7 @@
         },
         {
           "date": "2026-11-11",
-          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July\u2013October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
           "previous": {
             "source": "book/assets/build-stages-timeline.svg",
             "candidate": "book/tikz/figures/build-stages-timeline.tex",
@@ -3231,7 +3275,7 @@
             "monochrome": true,
             "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
             "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
-            "review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July\u2013September to July\u2013October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
             "decision": "refined",
             "validation": {
               "date": "2026-11-11",
@@ -3655,27 +3699,25 @@
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-      "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-      "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+      "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+      "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+      "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-        "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-        "page": 1,
+        "date": "2026-11-24",
+        "status": "passed",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 70,
         "width_bp": 449.972,
         "height_bp": 349.974,
-        "minimum_prose_font_pt": 9,
-        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-        "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-        "semantic_typography_checks": 23,
+        "typography_findings": 0,
+        "unapproved_compile_diagnostics": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "scope": "Native and SVG proofs inspected."
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/fidelity-review.json",
       "checks": {
@@ -3683,22 +3725,70 @@
         "annotation_placement": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
         "source_adaptations": "Native typography, compact line breaks, external caption."
       },
-      "font_qa": {
-        "minimum": 9,
-        "final_size_no_scaling": true
-      },
-      "geometry_findings": [],
-      "compiler_diagnostics": [],
-      "width_bp": 449.972,
-      "height_bp": 349.974,
       "monochrome": true,
       "review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
       "revision_history": [
         {
           "date": "2026-11-13",
           "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        },
+        {
+          "date": "2026-11-24",
+          "change": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
+          "previous": {
+            "source": "book/assets/probability-in-the-software-factory.svg",
+            "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+            "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+            "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+            "decision": "refined",
+            "reviewed_visually": true,
+            "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+              "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 349.974,
+              "minimum_prose_font_pt": 9,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+              "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+              "semantic_typography_checks": 23,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Native and SVG proofs inspected."
+            },
+            "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/fidelity-review.json",
+            "checks": {
+              "relationships": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+              "annotation_placement": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+              "source_adaptations": "Native typography, compact line breaks, external caption."
+            },
+            "font_qa": {
+              "minimum": 9,
+              "final_size_no_scaling": true
+            },
+            "geometry_findings": [],
+            "compiler_diagnostics": [],
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "monochrome": true,
+            "review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+          }
         }
-      ]
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
+        }
+      ],
+      "geometry_findings": 0,
+      "width_bp": 449.972,
+      "height_bp": 349.974
     },
     {
       "source": "book/assets/determinization-frontier.svg",
@@ -3752,7 +3842,7 @@
       "width_bp": 409.973,
       "height_bp": 352.974,
       "monochrome": true,
-      "review": "Native and SVG proofs inspected at print size and2\u00d7. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text."
+      "review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text."
     },
     {
       "source": "book/assets/return-governability.svg",
@@ -3946,7 +4036,7 @@
       "source_sha256": "4e853982509c9fac383b3983d5d508b040085f4005cbc62ad9ab439c7f597d44",
       "candidate_sha256": "993cf7c2c57662cce206f27fc66bea836fb6fcaa9de49b50598eef23848dbb7a",
       "decision": "retained",
-      "original_visual_grammar": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes \u2014 TEST for\n    examples, LINT for structure, PROVE for semantics \u2014 applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible \u2014 a placement rule folded into prose, not a node.",
+      "original_visual_grammar": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes — TEST for\n    examples, LINT for structure, PROVE for semantics — applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible — a placement rule folded into prose, not a node.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Coverage is the joined result, distinct from obligation/evidence preparation.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -3986,7 +4076,7 @@
       "source_sha256": "5be7fa1b505035c9b68b829f9188ead3a4046e3dd398426c8ffe3f22bd4e80d4",
       "candidate_sha256": "197ffc52af59e1f218fcf0212489f4df1900c54f82a189f842fa025fe158ee44",
       "decision": "retained",
-      "original_visual_grammar": "An operating model states expected state. The solid load-bearing path runs WATCH \u2014 which\n    observes the runtime \u2014 to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
+      "original_visual_grammar": "An operating model states expected state. The solid load-bearing path runs WATCH — which\n    observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model is separated from watch/respond operations; optional attachments retain dashed borders.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4026,7 +4116,7 @@
       "source_sha256": "7b8f72a37247549d9f8a82c711ef64bba271344f233deb577e2e89bb0a081a2c",
       "candidate_sha256": "00a736ec1293ced905dd17cea09ec7699076a74699e178d59d6f31e39a33761a",
       "decision": "retained",
-      "original_visual_grammar": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT \u2014 where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
+      "original_visual_grammar": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Control machinery and interpretation share a governance shade; updated estate has a lighter result shade.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4046,7 +4136,7 @@
       "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
       "candidate_sha256": "790253494423203c2fc99a361d073ece3db2215273e9e19d471e7aca615a90fe",
       "decision": "retained",
-      "original_visual_grammar": "Engineering knowledge \u2014 models, rules, decisions \u2014 feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
+      "original_visual_grammar": "Engineering knowledge — models, rules, decisions — feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Knowledge/action endpoints differ from intermediate context delivery; dashed reinforcement remains optional.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4066,7 +4156,7 @@
       "source_sha256": "3e98e21e43701dafaa032467eb24103865eecf3213618978fe1aeb9675177a18",
       "candidate_sha256": "d660df8b04c4f4ddd3bd2d8a7845c32a6cff56faa8e25f45e553a94d52cd3438",
       "decision": "retained",
-      "original_visual_grammar": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION \u2014 the smallest set\n    that keeps the capability claim honest \u2014 which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism.",
+      "original_visual_grammar": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION — the smallest set\n    that keeps the capability claim honest — which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Capability and resulting stack share a shade; failure diagnosis and composition emphasized; guarantees differ from mechanisms.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4086,7 +4176,7 @@
       "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
       "candidate_sha256": "52c5c3666884b2e3e27fda1e344a3058c23d1f1343f23ee6e63266b458dc75d6",
       "decision": "retained",
-      "original_visual_grammar": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree \u2014 make one authoritative.\n    Copies drift from authority \u2014 derive, don't copy. Model and reality diverge \u2014 check correspondence.\n    Assurance has invisible holes \u2014 derive the obligation set. Checks are too early or too late \u2014 put enforcement\n    where the property is legible. Actions evade governance \u2014 close the action surface. Rules exist but aren't\n    present at the decision \u2014 deliver knowledge where the decision occurs. Why gets lost after the change \u2014 carry\n    cause with consequence. Operators reconstruct the same procedure \u2014 externalize the judgment. Changes have\n    hidden dependents \u2014 make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea \u2014 improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
+      "original_visual_grammar": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree — make one authoritative.\n    Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.\n    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement\n    where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't\n    present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry\n    cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have\n    hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Problem and engineering-move columns regain their two distinct visual families.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4146,7 +4236,7 @@
       "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
       "candidate_sha256": "31c7e09d5b1ad41315b452db5dec2b501d90ad5b7838c56d346caf46d7c7adfc",
       "decision": "retained",
-      "original_visual_grammar": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it \u2014 this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model \u2014 this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
+      "original_visual_grammar": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it — this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model — this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Claimed model is shaded versus white realized system; both directional checks remain explicit.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4166,7 +4256,7 @@
       "source_sha256": "2dfd8a16b7e21aef837d53cdecc66d2a596a7b632f4dba5537b5d0c206e6c683",
       "candidate_sha256": "caa97980ec06722a0919e9b8dabc61ec14cef1e69177c5a40bb9b442ccf1e3ce",
       "decision": "retained",
-      "original_visual_grammar": "A vertical flow. A model derives the set of things that must be assured \u2014 what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
+      "original_visual_grammar": "A vertical flow. A model derives the set of things that must be assured — what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model-derived required and covered sets share light shade; gap and resulting finding visibly distinct from evidence.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4186,7 +4276,7 @@
       "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
       "candidate_sha256": "f002d431c146984c1484db1f5890f8cb42ee22f6617883496afa282c74bcdf92",
       "decision": "retained",
-      "original_visual_grammar": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary \u2014 the last point before the point of no return. The consequence sits at the end of the line.",
+      "original_visual_grammar": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary — the last point before the point of no return. The consequence sits at the end of the line.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Distinct timeline positions and explicit CHECK/RE-CHECK/point-of-no-return labels preserve the modes; marker shapes refined separately.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4206,7 +4296,7 @@
       "source_sha256": "ba8caab75008adcd9423043d11afe98db78c66edc8efb5fa70e5b90f5e155f5f",
       "candidate_sha256": "9b07a4574f3faad63d889d3ae5b5509191e74d40a7f016416aae06fa352ea58c",
       "decision": "retained",
-      "original_visual_grammar": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes \u2014\n    a raw surface, another raw surface, a helper, and unknown paths \u2014 drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.",
+      "original_visual_grammar": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —\n    a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. One governing seam is emphasized; existing dashed open routes versus solid closed routes already convey mode.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4226,7 +4316,7 @@
       "source_sha256": "df88d4411203a5feb493daa5314e28605a099fe11abf8a97c413a22fdeba519a",
       "candidate_sha256": "f9bc5c762dd5634f51a884ba1cefcef3527e9ca543765c620d43f8205292f61d",
       "decision": "refined",
-      "original_visual_grammar": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid \u2014 the roles are legible by shape and weight, not colour.",
+      "original_visual_grammar": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid — the roles are legible by shape and weight, not colour.",
       "review": "Restored narrowing selection/funnel silhouette rather than a generic heavy gate box; selection binds context, not enforcement.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4266,7 +4356,7 @@
       "source_sha256": "28413f164799af996f1078f9445592951afeda95a949f43213654214d916541c",
       "candidate_sha256": "3d8e1887bb2b80b621d1f650d19b37decf0ae38c3e46153dce41ec0f77acf610",
       "decision": "retained",
-      "original_visual_grammar": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated \u2014 a procedure \u2014 and what still needs contextual reasoning \u2014 guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain.",
+      "original_visual_grammar": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated — a procedure — and what still needs contextual reasoning — guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model family shares light gray; reasoning guidance differs from generated procedure; operator remains a distinct recipient.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4286,7 +4376,7 @@
       "source_sha256": "ff7cf1a20308694e176f3279afafd9eb3702567c665fd1c1df752803a5a5a2b1",
       "candidate_sha256": "1c5809eb2088b2fe163723654c22e71337faf524bcb3603c02462b5a96add435",
       "decision": "retained",
-      "original_visual_grammar": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents \u2014 the blast radius \u2014 is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward.",
+      "original_visual_grammar": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents — the blast radius — is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Blocking control and affected-set query are darker than deriving model; unaffected control stays white/dashed.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4346,7 +4436,7 @@
       "source_sha256": "bf5090147143a1ee1b761991c5f6aa4275aa304fb643cd8ce18406498fd9e824",
       "candidate_sha256": "cbbafbd1812f04c7a3bd2e43dcdb3d1548755c2431b3204bc4a0883a78f8a181",
       "decision": "refined",
-      "original_visual_grammar": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow \u2014 the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour.",
+      "original_visual_grammar": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow — the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour.",
       "review": "Restored explicit crossed no-reentry extension from DONE and double-bar lease/CAS authorization. Invariant panel returned to neutral border; it states a condition, not an admission gate.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4366,7 +4456,7 @@
       "source_sha256": "3222d90375057239bc272c30803a77ef99da399bd6ff80713511225f5f889bdf",
       "candidate_sha256": "c1d8259127d51c33b75d69e023d56c086c11b4b857c61aaf829f24d37411eb09",
       "decision": "retained",
-      "original_visual_grammar": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here \u2014 the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour.",
+      "original_visual_grammar": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. All original boxes belong to one representation family; topology versus policy is already separated by row and dashed derived edge. No extra shade needed.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4386,7 +4476,7 @@
       "source_sha256": "4e268a25e1780d09590a68f3814e13a6b6175f39cfcd7ab407fba7509aad76ea",
       "candidate_sha256": "2ebf4deacaa921e76139fe7082af33a149e34f4e90a2704343a70ba0d66e1b60",
       "decision": "refined",
-      "original_visual_grammar": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate \u2014 the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
+      "original_visual_grammar": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate — the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.",
       "review": "Restored double-bar admission-gate glyph on yes branch; report-only alternative remains unguarded.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4406,7 +4496,7 @@
       "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
       "candidate_sha256": "99759d2d9fec43e1241c706b19ead05045cf23d01829faa82d024011ec824dbf",
       "decision": "refined",
-      "original_visual_grammar": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box \u2014 free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
+      "original_visual_grammar": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
       "review": "Restored guarded completion-audit branch glyph, distinct from ordinary generated documentation branch.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4426,7 +4516,7 @@
       "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
       "candidate_sha256": "f25362df25c301a9f841cd330af0b2eee50628450e93671713d7287268c961b9",
       "decision": "retained",
-      "original_visual_grammar": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears \u2014 composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
+      "original_visual_grammar": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears — composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. All nodes are one model family; dashed derived correspondence and heavy joined-view border preserve grouping without invented categories.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4446,7 +4536,7 @@
       "source_sha256": "94a7e9a14d520968fc7f1c28b400873efdb6bd6dccb350c9c24949d6ac46343c",
       "candidate_sha256": "cd1f9df71afc48587175c38cd15e27a417897fa786ceced06ec5db3540127d29",
       "decision": "retained",
-      "original_visual_grammar": "A two-by-two matrix with two independent axes. The columns are enforcement reach \u2014\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary \u2014\n    running thin on the left to strong on the right. The rows are representation reach \u2014 how much of the\n    important system can be reasoned about through trustworthy externalized structure \u2014 running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
+      "original_visual_grammar": "A two-by-two matrix with two independent axes. The columns are enforcement reach —\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary —\n    running thin on the left to strong on the right. The rows are representation reach — how much of the\n    important system can be reasoned about through trustworthy externalized structure — running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Two independent dimensions: rich representation row shaded; strong enforcement column heavy border. Thin row/weak column remain white/thin.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4466,7 +4556,7 @@
       "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
       "candidate_sha256": "81ff591cf6a6b7e897dbbd6bd6cee5250b2835311ef1ed80b1ef01966df1628c",
       "decision": "retained",
-      "original_visual_grammar": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence \u2014 reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
+      "original_visual_grammar": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence — reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Governance, governed environment and operations regain distinct tones; communication/people stay neutral.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4506,7 +4596,7 @@
       "source_sha256": "4eb626135dffc711438b454f42520afdb1b5b54120b37c51e2a7309cb5c405a9",
       "candidate_sha256": "51b9ce1b20788eecb2ea5814f8c228822ced841abcd8f85a57e1e6abf4bf9183",
       "decision": "retained",
-      "original_visual_grammar": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space \u2014 the choices the governing obligations leave open \u2014 within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
+      "original_visual_grammar": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space — the choices the governing obligations leave open — within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Diagnosis/evidence share a shade; durable governance inheritance differs from simple history.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4546,7 +4636,7 @@
       "source_sha256": "2e586275c1e8854b78c44eb10c679e08c57a466c81592f809398d828a5f6c4a9",
       "candidate_sha256": "22a5dc3a20a73d7b21b12af4fe28cc41e5ec6a403d882f7e18de1a2d99a5f8b6",
       "decision": "retained",
-      "original_visual_grammar": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties \u2014 architecture, behavior, data flow, access policy, invariants \u2014 about the realization \u2014\n    implementation, tests, static analysis, runtime evidence, memory safety \u2014 or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
+      "original_visual_grammar": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —\n    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Model evidence differs from realized evidence; alignment and established claim share governance emphasis.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4566,7 +4656,7 @@
       "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
       "candidate_sha256": "6300ed106c099548670c95badd03f1306cb50e38cd0b92bf2f1c365e917ffd59",
       "decision": "retained",
-      "original_visual_grammar": "Five lifecycle surfaces \u2014 Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance \u2014 are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
+      "original_visual_grammar": "Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Autonomous reasoning and alignment regain distinct visual modes; resulting governed environment matches alignment.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4606,7 +4696,7 @@
       "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
       "candidate_sha256": "10c4c62e6ee4d4d26bd701b48272c01f5479f323e0cafbce450253a79f848c39",
       "decision": "retained",
-      "original_visual_grammar": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent \u2014 models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results \u2014 while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
+      "original_visual_grammar": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent — models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results — while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
       "review": "No additional missing symbol, detail/feedback link, or misplaced annotation found. Same agent role shaded equally in both modes; governed environment separately emphasized; expanded dashed authority boundary retained.",
       "checks": [
         "Compared original SVG raster with compiled candidate",
@@ -4781,7 +4871,7 @@
       "source_sha256": "1d2d8f28de3fea0b6da2c8fb5d40e3b2a62eba200a8b0c4b097d741ea0d0a140",
       "candidate_sha256": "0e2a170af1a1eea29ccc5991b125c1aa947c9388c966da47f085e54ba0ba906f",
       "decision": "refined",
-      "original_visual_grammar": "A diverging bar chart of git churn on two code paths across the four\n    study windows. For each window, additions rise above a zero baseline and deletions fall\n    below it, drawn as one bar per path: web/, the Python web service and worker, in blue,\n    and backend/, the C# command-line tool and rule engine, in red. Mechanization is the\n    add-and-delete peak for both paths \u2014 backend/ alone adds 941,120 lines and deletes\n    286,378 in that window. After mechanization the deletions collapse: backend/ falls to\n    just 3,767 deleted lines at hardening, and both paths go net-additive in the later\n    windows as the built environment stabilizes the code. Absolute counts include generated\n    and vendored files, so this is a churn signal, not a count of hand-authored source.",
+      "original_visual_grammar": "A diverging bar chart of git churn on two code paths across the four\n    study windows. For each window, additions rise above a zero baseline and deletions fall\n    below it, drawn as one bar per path: web/, the Python web service and worker, in blue,\n    and backend/, the C# command-line tool and rule engine, in red. Mechanization is the\n    add-and-delete peak for both paths — backend/ alone adds 941,120 lines and deletes\n    286,378 in that window. After mechanization the deletions collapse: backend/ falls to\n    just 3,767 deleted lines at hardening, and both paths go net-additive in the later\n    windows as the built environment stabilizes the code. Absolute counts include generated\n    and vendored files, so this is a churn signal, not a count of hand-authored source.",
       "review": "One linear scale above and below zero replaces the original unequal positive/negative scales. All16 exact counts from the native evidence table; fills distinguish paths, sign distinguishes additions/deletions. Restored external units and interpretive annotations at 10 pt.",
       "checks": [
         "Rendered original compared with native TikZ candidate",
@@ -4886,7 +4976,7 @@
       ],
       "title_revision_review": {
         "date": "2026-11-09",
-        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
         "validation": {
           "proof": "latex/build/tikz/candidates.pdf",
           "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
@@ -5095,7 +5185,7 @@
         "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
         "direct_labels_checked_against_frozen_data": true
       },
-      "review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses \u2190 0 \u2192 Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the \u00b11 parity band, and document\u2013criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+      "review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
       "strict_compile_diagnostics": [],
       "validation_history": [
         {
@@ -5154,9 +5244,9 @@
       "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/fidelity-review.json",
       "checks": {
         "icons_and_symbols": "The diamond gate precedes implementation and requires evidence of refined selection for the initial commit. The only dashed edge carries refined scope from planning to selection; it is not a lifecycle feedback loop.",
-        "links_and_groups": "Workflow: initial agent context \u2192 planning \u2192 refined agent context \u2192 Git precommit gate \u2192 implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+        "links_and_groups": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
         "annotation_placement": "The left margin identifies actor, dynamic selection, and resource rows. At start of task and After planning qualify selection timing; Refined scope labels the dashed planning-to-selection edge. Gate text names Git precommit and evidence of refined selection. Standing instructions are explicitly available throughout.",
-        "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9\u201310 pt. The incorrect final Commit allowed annotation is removed. No label is silently truncated."
+        "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9–10 pt. The incorrect final Commit allowed annotation is removed. No label is silently truncated."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
@@ -5172,7 +5262,7 @@
       "width_bp": 445.047,
       "height_bp": 305.572,
       "monochrome": true,
-      "review": "Both native and live-text SVG proofs inspected at print size and 2\u00d7. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9\u201310 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author\u2019s bootstrap workflow."
+      "review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow."
     },
     {
       "source": "book/assets/alignment-overview.svg",
@@ -5626,25 +5716,25 @@
     {
       "source": "book/assets/models-to-engineering-machinery.svg",
       "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
-      "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
-      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+      "source_sha256": "e92c946dfc938ffb6062b1722ea606b012f1fa611db6216692fbee33e958b158",
+      "candidate_sha256": "8e4283a5c8b5813e673e98d7b9f2bd50526649d1529ed8bb09e2ffeb7ab7a592",
       "decision": "new",
       "reviewed_visually": true,
-      "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image\u2019s miniature paragraphs.",
+      "reason": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
-        "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
-        "page": 1,
-        "width_bp": 448.6199951171875,
-        "height_bp": 308.62200927734375,
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
-        "semantic_typography_checks": 28,
-        "typography_findings": 0,
         "status": "passed",
-        "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
-        "geometry_findings": 0
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+        "page": 37,
+        "width_bp": 448.62,
+        "height_bp": 332.621,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
       },
       "checks": [
         "Three parallel choices retained",
@@ -5652,7 +5742,54 @@
         "Commitment strip applies to all three branches",
         "No maturity ranking or unconditional correctness claim"
       ],
-      "monochrome": true
+      "monochrome": true,
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "change": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions.",
+          "previous": {
+            "source": "book/assets/models-to-engineering-machinery.svg",
+            "candidate": "book/tikz/figures/models-to-engineering-machinery.tex",
+            "source_sha256": "225828f43f5276cdc41aa30e35198f4864cc6c56682b00211cb4e13f4de06624",
+            "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd",
+            "decision": "new",
+            "reviewed_visually": true,
+            "reason": "Three parallel uses share an engineering model. Model analysis terminates in model evidence; implementation and derived checks feed implementation evaluation and a distinct evidence result. A separate semantic-commitment strip explicitly applies to all three uses, avoiding a maturity ladder. Readable10pt text and short bullet labels replace the reference image’s miniature paragraphs.",
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch3-mechanization-20261124/proof.pdf",
+              "proof_sha256": "2c852324636fe1323bb006a1bae9e89f14383576b7d764bd3b8ecbbd4b274c38",
+              "page": 1,
+              "width_bp": 448.6199951171875,
+              "height_bp": 308.62200927734375,
+              "minimum_prose_font_pt": 10,
+              "unapproved_compile_diagnostics": 0,
+              "semantic_typography_checks": 28,
+              "typography_findings": 0,
+              "status": "passed",
+              "scope": "Standalone native figure and font-loaded Chromium SVG inspected. Chapter placement remains parent integration check.",
+              "geometry_findings": 0
+            },
+            "checks": [
+              "Three parallel choices retained",
+              "Model evidence separated from implementation evidence",
+              "Commitment strip applies to all three branches",
+              "No maturity ranking or unconditional correctness claim"
+            ],
+            "monochrome": true
+          }
+        }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
+        }
+      ],
+      "geometry_findings": 0,
+      "width_bp": 448.62,
+      "height_bp": 332.621
     }
   ],
   "last_revised_date": "2026-11-24"

@@ -64,6 +64,12 @@ The PDF projection compares relationships derived from these typed declarations 
 
 Measurements join to graph nodes through stable, format-qualified computation identities. Coverage and timing consumers use the same identity mapping, so unresolved names can be reported rather than silently discarded. Missing observations remain distinguishable from measured zero cost.
 
+### Attach Analyses to a Shared Population {.unnumbered}
+
+Several analyses can use the same computation population without adding their facts to the execution registry. DocAble’s analytical graph has an attribute-provider registry: each provider joins a particular kind of information, such as configuration posture, cost, complexity, or latency, to stable computation identities. The registry permits one provider for each attribute and rejects coverage claims for nodes outside the graph. Adding an analytical question requires a provider, rather than another independently maintained inventory of computations.
+
+Some providers derive their values from each node’s classification and therefore cover newly added nodes without per-node code. Others require measurements or judgments of their own; a new node does not acquire a measured latency merely because it appears in the graph. Keep each provider’s source and coverage explicit, and test that its claims concern the current node population. These analytical attributes do not make the Python projection an execution authority. For example, a modeled configuration posture remains distinct from the configuration supplied to a runtime call.
+
 ### Check the Population and the Relationships {.unnumbered}
 
 The registry’s ordering test registers a reader before its producer and checks that the derived order reverses them. Other tests challenge cycles, missing producers, conflicting writers, and explicit ordering. Projection tests distinguish data from control inputs. A negative test removes the PDF router’s declared outputs and checks that their projected edges disappear. Correspondence findings from either format block admission.

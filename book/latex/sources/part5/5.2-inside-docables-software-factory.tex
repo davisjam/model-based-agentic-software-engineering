@@ -192,6 +192,8 @@ The source composition gives a different view of the investment (\autoref{suppor
 % Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
 Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21, and 31 it was approximately 2.6, 3.6, and \magevalue{seip_support_ratio}, respectively; it reached about 4.5 at week 17. The last snapshot contains \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. These are measurements at ten sampled revisions, with interpolation between them. A larger ratio is not a target. Tests, models, and operating tools carry different obligations, and supporting source earns its upkeep only while later work benefits from it.
 
+The size of the apparatus also says little about the scope of its application. One checker may protect a single obligation, while another may govern hundreds of obligations expressed in a common model. The coverage of the latter can grow without a corresponding increase in checking code.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/docable-seip-composition-261109-68ce0c8bdb.pdf}
@@ -278,7 +280,8 @@ How much memory can a job need? & Peak-memory bound and derived deployment tier 
 % Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
 Which services exist, and what may call what? & Deployment dependency map and checked typed call-edge mirror & Grant planner; correspondence checks; agents localizing changes & Ownership and boundaries can be read from the map for each change \\
 % Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: implementation
-May this user submit this document? & Authoritative entitlement decision table & The front door at upload time & Admission policy can be changed in one table rather than scattered conditionals \\
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+May this user submit this document? & Entitlement decision model and shared parity corpus & Python and TypeScript tests; server migration remains incomplete & Admission policy is explicit and comparable across runtimes; existing server decision paths still require reconciliation \\
 % Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: implementation-scope
 % Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation-scope
 What may touch a document format\textquotesingle s internals? & External-seam registry and document-mutation interfaces & Static format restrictions; runtime write-authority checks & Selected mutation paths are constrained by designated boundaries \\
@@ -296,7 +299,8 @@ In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-mode
 % <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
 
 % Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: dated-case-evidence
-\textbf{Property facts → verification tier → required checker → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts: how many concurrent lanes touch it, whether it is a safety or a liveness property, what state it ranges over. From those facts the model \emph{derives} a verification tier --- an invariant crossing multiple concurrent lanes demands exhaustive state-space exploration; a single-lane invariant demands a property test; a temporal obligation demands a model checker run. The tier is not advice: a check walks the model and fails when a mandated checker does not exist on disk. The supervisor need not choose a checker class afresh for every invariant. The encoded rule derives that requirement from the declared property facts, and the environment rejects a missing checker.
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+\textbf{Property facts → verification tier → required artifact → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts, including its participating computation lanes, coordination primitive, and temporal obligation. From those facts, the model \emph{derives} a verification tier. For obligations involving coordination among concurrent participants, the policy requires an explicit-state checker for safety or a temporal specification for liveness; ordinary sequential obligations can require property tests. A reusable check requires a reference of the prescribed kind whose file exists. This requirement blocks admission for the models brought under enforcement; newly incorporated models can initially report advisory findings. The supervisor need not choose a verification technique afresh for every invariant, but must still establish that the declared facts and verification artifact are adequate. The gate checks that the artifact is provided; it does not establish that its analysis has run. TLC execution remains a separate activity.
 
 % Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
 % <!-- point: the-iam-join-derives-grants | The IAM join: deployment dependencies × deployed service names × runtime identity derive the invoker-grant plan; application results and live authorization provide different evidence. | terms: alignment-principle -->
@@ -326,6 +330,10 @@ The computation model introduced in \autoref{2.3-structural:heading:what-computa
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 The same infrastructure supported the execution redesign in \autoref{4.2-one-problem-many-models:heading:modeling-execution-and-latency} and remains available for evaluating subsequent changes without reconstructing the pipeline from source code. Analytical projections remain distinct from the machinery that schedules work. \autoref{chapter:appendix-a-remediation-computation-graph} describes the integrated construction and the checks that maintain it.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Some of this machinery accommodates more obligations as DocAble's models grow, without corresponding changes to the machinery itself. Recall the architectural checker in \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization}. Adding another component boundary extends what the checker governs. Similarly, adding another invariant extends the population for which the factory derives verification requirements. These investments provide reusable capacity for changing both DocAble and its engineering environment.
 
 \subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
 
@@ -456,6 +464,9 @@ As DocAble's engineering environment developed, my role changed with it. \autore
 
 % Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
 Initially, I read, judged, and merged agents' changes. As implementation outpaced my attention, I delegated evaluation to other agents, then replaced recurring decidable findings with deterministic checks. Specialized reviewers, named ownership zones, and boundary rules allowed me to direct work without inspecting every change. Eventually, architectural, behavioral, and ownership models provided system-level views for planning and evaluation. I could make decisions about the system without routinely reconstructing its implementation.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+Some decisions about the factory itself also became easier to realize. Once I had established reusable machinery for evaluating architectural dependencies, for example, I could introduce another dependency restriction by extending the model. I could change what the factory governed without designing another mechanism to govern it.
 
 \begin{figure}[htbp]
 \centering

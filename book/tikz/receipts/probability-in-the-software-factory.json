@@ -1,6 +1,6 @@
 {
   "source": "book/assets/probability-in-the-software-factory.svg",
-  "claim": "*Probability in the software factory.* Engineers encode consequential intent; agents fulfill the encoded obligations. The two probability terms condition on representation R, omitted for legibility. The encoded property also defines the acceptable region for realizations, allowing independent evidence to inform admission or rejection.",
+  "claim": "*Probability in the software factory.* Engineers encode consequential intent; agents and machinery fulfill the encoded obligations. The two probability terms condition on representation R, omitted for legibility. The encoded property also defines the acceptable region for realizations, allowing independent evidence to inform admission or rejection.",
   "topology": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
   "required_terms": [
     "SOFTWARE FACTORY",
@@ -14,7 +14,7 @@
     "correct encoding",
     "fulfill encoded obligations",
     "Engineers authorize intent.",
-    "Agents interpret, implement, and correct.",
+    "Agents and machinery realize encoded intent.",
     "Supplies the tolerance",
     "Measurement:",
     "tests, PBT, analysis, simulation, human judgment",
@@ -28,98 +28,83 @@
     "Revise / reject"
   ],
   "bw_encoding": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
-  "redesign": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+  "redesign": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
   "questions": [],
   "alt": "Engineering intent is encoded as a property and fulfilled through a fabricator to produce a realization. The encoded property also supplies tolerance for possible realizations; independent measurement informs admission or rejection.",
   "qa": {
-    "date": "2026-11-13",
-    "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-    "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-    "page": 1,
+    "date": "2026-11-24",
+    "status": "passed",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+    "page": 70,
     "width_bp": 449.972,
     "height_bp": 349.974,
-    "minimum_prose_font_pt": 9,
-    "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-    "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-    "semantic_typography_checks": 23,
+    "typography_findings": 0,
+    "unapproved_compile_diagnostics": 0,
     "monochrome_pixels": true,
-    "status": "passed",
-    "scope": "Native and SVG proofs inspected."
+    "reviewed_visually": true,
+    "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
   },
   "svg_qa": {
-    "overflow_findings": 0,
-    "palette_font_findings": 0,
-    "source_font_faces": [
-      "SourceSans3-Bold",
-      "SourceSans3-It",
-      "SourceSans3-Regular"
-    ]
+    "status": "passed",
+    "scope": "Parent verified updated native and SVG figures; see current proof record."
   },
   "historical_receipt": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/probability-in-the-software-factory.json",
   "reference_image_sha256": "50cd3f19f44835b1822101bce71dfec5f25e94b4daabf782aa26f10e5f4d7bb4",
   "layout_review": {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/layout-review.json",
+    "reviewed_visually": true,
     "contracts": {},
-    "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
-    "revision_history": [
+    "validation_history": [
       {
-        "date": "2026-11-13",
-        "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
   "typography_review": {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/typography-review.json",
+    "reviewed_visually": true,
     "checks": [
       {
         "text": "SOFTWARE FACTORY",
@@ -177,7 +162,7 @@
         "italic": false
       },
       {
-        "text": "Agents interpret, implement, and correct.",
+        "text": "Agents and machinery realize encoded intent.",
         "bold": false,
         "italic": false
       },
@@ -237,258 +222,628 @@
         "italic": false
       }
     ],
-    "evidence": [
+    "validation_history": [
       {
-        "candidate_text": "SOFTWARE FACTORY",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "PROCESS DESIGN:",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "how production proceeds",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "PRODUCTION PROCESS",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Engineering intent",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Encoded property",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Fabricator",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Realization",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "correct encoding",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "fulfill encoded obligations",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Engineers authorize intent.",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Agents interpret, implement, and correct.",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Supplies the tolerance",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Measurement:",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "tests, PBT, analysis, simulation, human judgment",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "POSSIBLE REALIZATIONS",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Acceptable region",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "TOLERANCE",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "acceptable product variation",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "within tolerance",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "outside tolerance",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Admitted change",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Revise / reject",
-        "candidate_style": "regular",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      }
-    ],
-    "revision_history": [
-      {
-        "date": "2026-11-13",
-        "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
   "style_review": {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/style-review.json",
-    "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-    "status": "reviewed",
-    "fill": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
-    "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling.",
-    "routing": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
-    "shape": "Modestly rounded rectangles denote production stages and outputs; a dashed enclosure groups production. A nested acceptable-region box depicts a subset of possible realizations, whose points are alternatives.",
-    "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
-    "book_references": [],
-    "routing_exceptions": "Matching base structure across Chapters 5 and 6.",
-    "revision_history": [
+    "reviewed_visually": true,
+    "validation_history": [
       {
-        "date": "2026-11-13",
-        "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
   "fidelity_review": {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/fidelity-review.json",
-    "checks": {
-      "relationships": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
-      "annotation_placement": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
-      "source_adaptations": "Native typography, compact line breaks, external caption."
-    },
-    "font_qa": {
-      "minimum": 9,
-      "final_size_no_scaling": true
-    },
-    "geometry_findings": [],
-    "compiler_diagnostics": [],
-    "width_bp": 449.972,
-    "height_bp": 349.974,
-    "monochrome": true,
-    "review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
-    "revision_history": [
+    "reviewed_visually": true,
+    "validation_history": [
       {
-        "date": "2026-11-13",
-        "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
   "grayscale_review": {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-    "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-    "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
-    "decision": "refined",
-    "reviewed_visually": true,
-    "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+    "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+    "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+    "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
     "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
-      "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
-      "page": 1,
+      "date": "2026-11-24",
+      "status": "passed",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+      "page": 70,
       "width_bp": 449.972,
       "height_bp": 349.974,
-      "minimum_prose_font_pt": 9,
-      "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
-      "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
-      "semantic_typography_checks": 23,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Native and SVG proofs inspected."
+      "reviewed_visually": true,
+      "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
     },
-    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/grayscale-review.json",
-    "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
-    "reviewed": true,
-    "rationale": "Light-gray acceptable region inside possible realizations.",
-    "revision_history": [
+    "reviewed_visually": true,
+    "validation_history": [
       {
-        "date": "2026-11-13",
-        "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        "date": "2026-11-24",
+        "status": "requires-rendered-review",
+        "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
       }
     ]
   },
-  "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
-  "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac"
+  "source_sha256": "5aab83bed95f6d45bb3cc2d76b84f43575118a46ef9b366d6f8269a551cf2b22",
+  "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "change": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
+      "previous": {
+        "source": "book/assets/probability-in-the-software-factory.svg",
+        "claim": "*Probability in the software factory.* Engineers encode consequential intent; agents fulfill the encoded obligations. The two probability terms condition on representation R, omitted for legibility. The encoded property also defines the acceptable region for realizations, allowing independent evidence to inform admission or rejection.",
+        "topology": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
+        "required_terms": [
+          "SOFTWARE FACTORY",
+          "PROCESS DESIGN:",
+          "how production proceeds",
+          "PRODUCTION PROCESS",
+          "Engineering intent",
+          "Encoded property",
+          "Fabricator",
+          "Realization",
+          "correct encoding",
+          "fulfill encoded obligations",
+          "Engineers authorize intent.",
+          "Agents interpret, implement, and correct.",
+          "Supplies the tolerance",
+          "Measurement:",
+          "tests, PBT, analysis, simulation, human judgment",
+          "POSSIBLE REALIZATIONS",
+          "Acceptable region",
+          "TOLERANCE",
+          "acceptable product variation",
+          "within tolerance",
+          "outside tolerance",
+          "Admitted change",
+          "Revise / reject"
+        ],
+        "bw_encoding": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
+        "redesign": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+        "questions": [],
+        "alt": "Engineering intent is encoded as a property and fulfilled through a fabricator to produce a realization. The encoded property also supplies tolerance for possible realizations; independent measurement informs admission or rejection.",
+        "qa": {
+          "date": "2026-11-13",
+          "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+          "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+          "page": 1,
+          "width_bp": 449.972,
+          "height_bp": 349.974,
+          "minimum_prose_font_pt": 9,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+          "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+          "semantic_typography_checks": 23,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "scope": "Native and SVG proofs inspected."
+        },
+        "svg_qa": {
+          "overflow_findings": 0,
+          "palette_font_findings": 0,
+          "source_font_faces": [
+            "SourceSans3-Bold",
+            "SourceSans3-It",
+            "SourceSans3-Regular"
+          ]
+        },
+        "historical_receipt": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/probability-in-the-software-factory.json",
+        "reference_image_sha256": "50cd3f19f44835b1822101bce71dfec5f25e94b4daabf782aa26f10e5f4d7bb4",
+        "layout_review": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/layout-review.json",
+          "contracts": {},
+          "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+            }
+          ]
+        },
+        "typography_review": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/typography-review.json",
+          "checks": [
+            {
+              "text": "SOFTWARE FACTORY",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "PROCESS DESIGN:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "how production proceeds",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "PRODUCTION PROCESS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Engineering intent",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Encoded property",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Fabricator",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Realization",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "correct encoding",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "fulfill encoded obligations",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Engineers authorize intent.",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Agents interpret, implement, and correct.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Supplies the tolerance",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Measurement:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "tests, PBT, analysis, simulation, human judgment",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "POSSIBLE REALIZATIONS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Acceptable region",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "TOLERANCE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "acceptable product variation",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "within tolerance",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "outside tolerance",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Admitted change",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Revise / reject",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "evidence": [
+            {
+              "candidate_text": "SOFTWARE FACTORY",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "PROCESS DESIGN:",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "how production proceeds",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "PRODUCTION PROCESS",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Engineering intent",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Encoded property",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Fabricator",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Realization",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "correct encoding",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "fulfill encoded obligations",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Engineers authorize intent.",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Agents interpret, implement, and correct.",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Supplies the tolerance",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Measurement:",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "tests, PBT, analysis, simulation, human judgment",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "POSSIBLE REALIZATIONS",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Acceptable region",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "TOLERANCE",
+              "candidate_style": "bold",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "acceptable product variation",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "within tolerance",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "outside tolerance",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Admitted change",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            },
+            {
+              "candidate_text": "Revise / reject",
+              "candidate_style": "regular",
+              "semantic_role": "Heading, explanatory label, or process annotation."
+            }
+          ],
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+            }
+          ]
+        },
+        "style_review": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/style-review.json",
+          "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+          "status": "reviewed",
+          "fill": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes.",
+          "bold": "Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling.",
+          "routing": "Engineering intent → Encoded property → Fabricator → Realization. Separate brackets identify P(E) correct encoding and P(F|E) fulfillment of encoded obligations. Encoded property also points downward to supply tolerance; realization points downward for measurement. A candidate inside the acceptable subset leads to admitted change; a candidate outside leads to revise/reject. No measurement or acceptance arrow returns to the fabricator.",
+          "shape": "Modestly rounded rectangles denote production stages and outputs; a dashed enclosure groups production. A nested acceptable-region box depicts a subset of possible realizations, whose points are alternatives.",
+          "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "book_references": [],
+          "routing_exceptions": "Matching base structure across Chapters 5 and 6.",
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+            }
+          ]
+        },
+        "fidelity_review": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/fidelity-review.json",
+          "checks": {
+            "relationships": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+            "annotation_placement": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+            "source_adaptations": "Native typography, compact line breaks, external caption."
+          },
+          "font_qa": {
+            "minimum": 9,
+            "final_size_no_scaling": true
+          },
+          "geometry_findings": [],
+          "compiler_diagnostics": [],
+          "width_bp": 449.972,
+          "height_bp": 349.974,
+          "monochrome": true,
+          "review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+            }
+          ]
+        },
+        "grayscale_review": {
+          "source": "book/assets/probability-in-the-software-factory.svg",
+          "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+          "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+          "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+            "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 349.974,
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+            "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
+            "semantic_typography_checks": 23,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Native and SVG proofs inspected."
+          },
+          "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/grayscale-review.json",
+          "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+          "reviewed": true,
+          "rationale": "Light-gray acceptable region inside possible realizations.",
+          "revision_history": [
+            {
+              "date": "2026-11-13",
+              "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+            }
+          ]
+        },
+        "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+        "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac"
+      }
+    }
+  ],
+  "reason": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography.",
+  "validation": {
+    "date": "2026-11-24",
+    "status": "passed",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "de941bab85e7dc2f2a198dd6c14d2c5f01ada98093b48c6d82c903a1ecaaf692",
+    "page": 70,
+    "width_bp": 449.972,
+    "height_bp": 349.974,
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "monochrome_pixels": true,
+    "reviewed_visually": true,
+    "notes": "Parent inspected rendered native figure at 2x: labels fit, arrows remain clear, authored type preserved."
+  },
+  "reviewed_visually": true,
+  "validation_history": [
+    {
+      "date": "2026-11-24",
+      "status": "requires-rendered-review",
+      "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
+    }
+  ]
 }

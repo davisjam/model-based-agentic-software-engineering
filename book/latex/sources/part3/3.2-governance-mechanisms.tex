@@ -192,14 +192,14 @@ Consider the architectural obligation that \texttt{Reporting} must obtain billin
 
 \begin{enumerate}
 \item \textbf{Analyze the model.} A model checker can explore a behavioral model for violations of an invariant. A constraint solver can find configurations that satisfy a collection of requirements. A proof assistant can check a proof of a formally expressed property.
-\item \textbf{Generate a realization.} A schema can generate interface types, a state machine can supply the transition rules for a workflow engine, and an architectural model can determine parts of a deployment configuration.
-\item \textbf{Derive checks.} A state-transition model can supply test sequences and their expected results~\citep{utting2012taxonomy}. A temporal specification can supply a runtime monitor for properties that can be evaluated over observed executions~\citep{bartocci2018runtime}. A schema can supply validators for data exchanged between services.
+\item \textbf{Construct a realization.} A schema can generate interface types, a state machine can supply the transition rules for a workflow engine, and an architectural model can determine parts of a deployment configuration.
+\item \textbf{Construct evaluation machinery.} A state-transition model can supply test sequences and their expected results~\citep{utting2012taxonomy}. A temporal specification can supply a runtime monitor for properties that can be evaluated over observed executions~\citep{bartocci2018runtime}. A schema can supply validators for data exchanged between services.
 \end{enumerate}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/models-to-engineering-machinery.pdf}
-\caption{\emph{From engineering models to engineering machinery.} Engineers and agents can interpret models to construct implementations and checks. Models with sufficiently defined semantics can also support mechanical analysis, generation, and derivation of checks, in whole or in part. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.}
+\caption{\emph{From engineering models to engineering machinery.} Engineers and agents can use models to analyze systems, construct implementations, and establish evaluation machinery. Models with sufficiently defined semantics can also support mechanical analysis, generation, and direct interpretation. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.}
 \label{models-to-engineering-machinery}
 \end{figure}
 
@@ -211,17 +211,32 @@ Who constructs that machinery is a separate decision. An engineer can write a re
 
 Recall the job lifecycle in \autoref{2.4-behavioral:heading:states-transitions-and-behavioral-analysis}. We can analyze its transitions to determine whether the modeled behavior permits a job to finish before it starts. We can use those transitions to implement the lifecycle, or to construct tests of an independently developed implementation. The same model can serve all three purposes without prescribing how jobs are stored, scheduled, or processed.
 
-% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
-I used several of these arrangements in DocAble. Recall the service dependencies discussed in \autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models}. Connecting two services in the cloud requires more than supplying one service with the other’s address. The calling service also needs permission to invoke its dependency. DocAble derives the required invocation grants from its deployment dependency map and the identities under which its services execute. Rather than ask an agent to determine the necessary grants each time I change the deployment, I can reuse the machinery that derives them. The cloud authorization mechanism enforces the installed permissions (\autoref{chapter:appendix-a-model-driven-deployment}).
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+\textbf{DocAble: Reusable Checking Machinery.} In DocAble's Python implementation, the component model declares which other components a component may import from. These declarations give architectural restrictions a common representation instead of leaving each one to project instructions or a separately constructed check.
 
-% Evidence: E24 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E24.md | kind: dated-case-evidence
-I also applied this approach to the governance machinery itself. DocAble has several mechanisms that must execute in a particular order. Rather than specify a complete execution sequence, I record the required ordering relationships. A topological sort computes a sequence satisfying those relationships or reports a cycle. I must decide which mechanisms need to precede others, but I need not work out the entire sequence again whenever I add a mechanism. \autoref{3.5-when-guardrails-collide:heading:docable-interacting-governance-mechanisms} examines this arrangement and the engineering problems that motivated it.
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+A reusable checker reads the declarations, examines imports in the implementation, and identifies forbidden dependencies. The same checker evaluates every component for which an import boundary is declared, and its blocking verdict prevents a violating change from being accepted. Components without a declared boundary are outside this check's scope; shared code and external libraries follow its common allowance rules.
 
-Greater semantic commitment gives us more opportunities for mechanization. With less commitment, we rely more on engineers and agents to interpret the representation. Neither arrangement is intrinsically preferable. A short description reviewed by a knowledgeable engineer may be entirely adequate for an obligation that changes frequently or rarely needs evaluation. For hundreds of architectural obligations evaluated against thousands of changes, a common representation and checking mechanism may be a better investment.
+When I introduce another architectural obligation of this kind, I need only extend the model. I need not construct another checker. The machinery is reusable because the declarations have a precise, common meaning. I must still decide which dependencies to permit, and this mechanism examines Python imports rather than every possible interaction between components.
 
-Nor does greater semantic commitment necessarily restrict implementation freedom. We can specify the permitted transitions of a job precisely while leaving its implementation largely open. As \autoref{3.1-from-engineering-models-to-enforcement:heading:independent-obligations-and-evidence} established, we must still determine whether the model expresses the intended obligation and whether the resulting evidence is adequate.
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+\textbf{DocAble: Direct Interpretation and Generation.} DocAble's job-state machinery reads a table of permitted transitions. If a proposed transition is absent from the table, the operation is refused. Changing the table changes which transitions the machinery permits, without generating a separate implementation of the state machine.
 
-Commodity intelligence changes the cost of these arrangements. Agents can help formalize obligations, construct generators, and develop the machinery that analyzes models or checks implementations. We may find it economical to mechanize engineering activities that we previously performed by hand.
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+For other purposes, generating an artifact is more convenient. DocAble's component model describes how services are packaged into container images. The Dockerfiles were previously maintained separately and repeatedly became inconsistent. DocAble now generates their contents from the component model. A separate blocking check regenerates the expected contents and refuses changes that would leave the committed files inconsistent with the model.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+We can also generate only part of an artifact. Some of DocAble's behavioral models express obligations using temporal logic. DocAble derives the corresponding property definitions in TLA+ mechanically, while the specification of the states and transitions is constructed separately. The model contains enough information to determine the property, but not enough to determine the complete specification.
+
+These arrangements eliminate different kinds of repeated engineering work. A reusable checker saves us from constructing another checker for each obligation. Direct interpretation saves us from maintaining a separate realization of the modeled rules. Generation saves us from constructing and maintaining artifacts whose contents can be determined from a model. We can combine these arrangements within the same engineering environment.
+
+Greater semantic commitment gives us more opportunities for mechanization. With less commitment, we rely more on engineers and agents to interpret the representation. A short description reviewed by a knowledgeable engineer may be entirely adequate for an obligation that changes frequently or rarely needs evaluation. For hundreds of architectural obligations evaluated against thousands of changes, a common representation and checking mechanism may be a better investment.
+
+The cost of establishing such machinery can be amortized in two ways. We can reuse it to evaluate the same obligations across many changes, and we can reuse it to evaluate additional obligations expressed in the same modeling vocabulary. The latter becomes particularly valuable as the system grows.
+
+Nor does greater semantic commitment necessarily restrict implementation freedom. We can specify the permitted transitions of a job precisely while leaving its implementation largely open. The additional precision concerns the meaning of the obligation, not necessarily the number of choices available to the implementor.
+
+Commodity intelligence changes the cost of these arrangements. Agents can help formalize obligations, construct generators, and develop reusable analysis and checking machinery. We may find it economical to mechanize engineering activities that we previously performed by hand. \magevalue{chapter:theory} examines this tradeoff in more detail.
 
 % <!-- box-family: inset -->
 % <!-- inset-domain: FORMAL METHODS -->
@@ -286,7 +301,7 @@ A validator, sensor, or gate is itself software whose behavior may be incorrect.
 This approach exposed an incorrect interpretation of output from DocAble's accessibility checker. If the underlying validation program timed out or failed to run, the checker could report an informational issue while returning zero failed checks. A caller consulting only that count could mistake an incomplete evaluation for a clean document. The checker had reported the failure, but its consumer treated the absence of reported violations as evidence that validation had succeeded. The missing distinction was between ``no violations found'' and ``validation did not complete.'' Modeling these outcomes separately exposed the error in how the result was interpreted.
 
 % Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
-A separate incident concerned the coverage of the checker itself (\autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates}): DocAble's uniqueness checks passed while examining the wrong records. An audit exposed the missing coverage, and the repair added a deliberately introduced duplicate that the corrected check had to reject.
+The uniqueness-check incident in \autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates} illustrates how deliberately introducing a violation can help us evaluate a repaired control.
 
 Agentic implementation changes the economics of this work. Agents can help construct mutants, fault-injection harnesses, and regression tests, making systematic challenges to the checking machinery less expensive. The engineer still decides which faults matter and whether the experiments adequately represent them. A mutation score is not a reliability guarantee: it depends on the mutations selected, and some mutants preserve the program's behavior. Fault injection likewise covers only the failure conditions and responses exercised. Both techniques provide something more useful than a larger test count: evidence that selected violations can actually be detected.
 
@@ -320,6 +335,21 @@ Why observe a behavior when we could prevent it? Because we may not yet know whe
 
 The obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior~\citep{baier-katoen2008,lamport2002}.
 
+\subsection{Deriving Verification Requirements}\label{heading:deriving-verification-requirements}
+
+As an engineering environment acquires more models and obligations, choosing how to evaluate each one can itself become a recurring engineering activity. Can we use models to help make that choice?
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+DocAble's verification policy distinguishes obligations involving ordinary sequences of operations from those involving coordination among concurrent participants. For example, checking that a sequence of job-state transitions is permitted requires different evidence from establishing that competing workers cannot both acquire the same claim. The policy also distinguishes safety properties, which forbid undesirable behavior, from liveness properties, which require progress.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+The model of an invariant identifies its participants, the coordination primitives involved, and the form of its temporal obligation. From these declarations, DocAble derives a verification requirement. Under this policy, an obligation involving concurrent coordination may require explicit-state exploration for a safety property or temporal model checking for a liveness property. Other behavioral obligations can be assigned property-based tests. This is a policy for DocAble's engineering environment, rather than a general rule for choosing verification techniques.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+A reusable checker examines the modeled invariants and requires each to identify a verification artifact of the prescribed kind whose path resolves on disk. When I add another invariant within this policy's scope, the same machinery derives its verification requirement and checks for the required artifact. The requirement is blocking for models whose existing findings have been resolved; newly introduced model populations can begin in advisory mode while the required machinery is constructed.
+
+This arrangement does not generate the verification artifact, run it, or establish that it is adequate. An engineer or agent must still construct the test or formal specification and establish that it evaluates the intended obligation. The machinery mechanizes part of the decision about what evidence to obtain, together with a check that the corresponding artifact has been provided.
+
 % <!-- section-terms: constraint -->
 
 \subsection{Establishing That a Required Operation Occurred}\label{heading:establishing-that-a-required-operation-occurred}
@@ -351,7 +381,8 @@ The operation succeeds only while the stored state matches the required prior st
 For the ownership protocol introduced in \autoref{2.4-behavioral:heading:distinguishing-a-current-owner-from-a-returning-one}, a finite model can explore interleavings of claim acquisition, expiry, replacement, and release. This addresses a different question from the atomic runtime operation: whether the modeled transitions permit a forbidden ownership state. DocAble uses a purpose-built explicit-state checker to explore interleavings of its ownership model within stated bounds and search for violations of this property.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The analysis establishes a property of the represented protocol, not of every possible implementation. Tests or other evidence must separately establish that the implementation follows it.
 
 % Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
-A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The environment checks that the stated temporal property agrees with the engineering model. Running TLC itself remains a separate activity rather than a required check on every change. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
 
 % <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
 
@@ -482,5 +513,8 @@ The same restraint applies to tolerance. Making an acceptable boundary explicit 
 % <!-- point: three-different-reasons-non-enforcement-is-sometimes-the-engineered-result | An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result. | terms: residual, governance-conversion -->
 
 Different concerns can warrant different stopping points. A team may record service cost while leaving the spending decision to a human, rather than imposing a hard daily ceiling. It may review a trend in incident reports without setting a required number, which would reward the count instead of the improvement. A design decision may require context that the available checks cannot evaluate adequately. In each case, engineers should make the remaining judgment or policy choice explicit instead of treating non-enforcement as an accidental omission.
+
+% Evidence: AA4 | source: book/data/local-evidence/automated-alignment-11242026/records/AA4.md | kind: pinned-repository-investigation
+DocAble illustrates an intermediate arrangement. Each task delegated to a GenAI model requires a policy concerning acceptable errors and the quality of its results. The environment constructs a contract entry for every declared task, so introducing a new task cannot silently omit its policy entry. The entries carry provisional defaults and record their policy-authored provenance; their presence does not establish measured error behavior or a suitable quality threshold. Assessing and refining that policy remains an engineering decision. We can mechanize the requirement to record a policy without mechanizing the judgment that makes it appropriate.
 
 These choices can change as the system evolves. An obligation that initially requires human interpretation may recur often enough to justify a more precise representation and a mechanical evaluator. Conversely, an obligation that changes frequently may be more economical to express in prose and evaluate through review.

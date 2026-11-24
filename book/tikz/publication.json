@@ -5,7 +5,7 @@
   "approved_monochrome": {
     "book/assets/book-map.svg": {
       "approved_date": "2026-11-20",
-      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2\u20135 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
+      "reason": "Author requested two subordinate appendix reference destinations below the main argument: Appendix A Engineering Blueprints and Appendix B Practicing MAGE. Existing chapter order, chapter geometry, shaded Chapters 2–5 group, opening/closing questions, and 10pt print type remain. Dashed connectors have no arrowheads and do not extend the central argument sequence.",
       "candidate_sha256": "193d646c67e5696d3fd235e8235714b019571fb4dd5ab3c6914d081c16b6a454"
     },
     "book/assets/mage-method.svg": {
@@ -151,8 +151,19 @@
     "book/assets/alignment-kernel.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author approved revised black-and-white review Figure 4.3 in the sidebar; remove its color companion from the PDF.",
-      "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
-      "refinement_20261124": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation."
+      "candidate_sha256": "ae502e0285bbaef15527519c8f183cd196529da4e788e9f259f5ce7b3979f3b9",
+      "refinement_20261124": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "previous": {
+            "approved_date": "2026-11-11",
+            "reason": "Author approved revised black-and-white review Figure 4.3 in the sidebar; remove its color companion from the PDF.",
+            "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
+            "refinement_20261124": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation."
+          }
+        }
+      ]
     },
     "book/assets/interlude-graph-two-partitions.svg": {
       "approved_date": "2026-11-11",
@@ -171,7 +182,7 @@
     },
     "book/assets/build-stages-timeline.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July\u2013October dates retained.",
+      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July–October dates retained.",
       "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16"
     },
     "book/assets/docable-seip-longitudinal-261109.svg": {
@@ -262,7 +273,7 @@
       "approved_date": "2026-11-24",
       "reason": "Author-directed Chapter 4 revision: Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
       "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c",
-      "refinement_20261124": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+      "refinement_20261124": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9–10pt labels.",
       "terminology_20261124": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes."
     },
     "book/assets/active-passive-alignment.svg": {
@@ -273,7 +284,18 @@
     },
     "book/assets/probability-in-the-software-factory.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved Figure 6.1 with reduced vertical separation between production and tolerance."
+      "reason": "Author approved Figure 6.1 with reduced vertical separation between production and tolerance.",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "previous": {
+            "approved_date": "2026-11-13",
+            "reason": "Author approved Figure 6.1 with reduced vertical separation between production and tolerance."
+          }
+        }
+      ],
+      "candidate_sha256": "b98ae7d6cd678e7f6756b2c1cd72896e7e9befe703ceec4c4368ad7cdea9ab04",
+      "refinement_20261124": "Replace the agent-only realization annotation with Agents and machinery realize encoded intent. Preserve all geometry and typography."
     },
     "book/assets/two-evidence-boundaries.svg": {
       "approved_date": "2026-11-13",
@@ -323,7 +345,7 @@
     },
     "book/assets/established-traditions-new-composition.svg": {
       "approved_date": "2026-11-14",
-      "reason": "Author approved Figure 7.3 with the PL / compilers label Types \u00b7 DSLs."
+      "reason": "Author approved Figure 7.3 with the PL / compilers label Types · DSLs."
     },
     "book/assets/mage-dynamic-model.svg": {
       "approved_date": "2026-11-24",
@@ -389,7 +411,18 @@
     "book/assets/models-to-engineering-machinery.svg": {
       "approved_date": "2026-11-24",
       "reason": "Author requested this three-branch figure with separated evidence and semantic-commitment strip. Native and SVG proofs pass visual, geometry, and typography review.",
-      "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd"
+      "candidate_sha256": "8e4283a5c8b5813e673e98d7b9f2bd50526649d1529ed8bb09e2ffeb7ab7a592",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "previous": {
+            "approved_date": "2026-11-24",
+            "reason": "Author requested this three-branch figure with separated evidence and semantic-commitment strip. Native and SVG proofs pass visual, geometry, and typography review.",
+            "candidate_sha256": "4101e73790c7bdd494fe0f08538523c4f2cf79fee33ff618364a09a51b39b7fd"
+          }
+        }
+      ],
+      "refinement_20261124": "Broaden the branch labels to Construct a realization and Construct evaluation machinery; retain realization examples and add Verification requirements. Keep 10pt type, extend the three operation boxes by 24bp for the wrapped heading and added bullet, and translate downstream rows by 24bp. Preserve widths, topology, and evidence distinctions."
     }
   }
 }

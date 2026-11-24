@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>201</b> sections · <b>49</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>203</b> sections · <b>50</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -417,6 +417,10 @@
 <p class="topic">*Model checking* and *model-based testing* answer different questions.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can model checking* and *model-based testing* answer different questions. <span class="prov">derived</span></span></li></ul></div>
 </div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--deriving-verification-requirements">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Deriving Verification Requirements</a></div>
+<p class="topic">As an engineering environment acquires more models and obligations, choosing how to evaluate each one can itself become a recurring engineering activity.</p>
+</div>
 <div class="section s3" id="sec-3-2-governance-mechanisms--establishing-that-a-required-operation-occurred">
 <div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Establishing That a Required Operation Occurred</a></div>
 <p class="topic">We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative.</p>
@@ -507,7 +511,7 @@
 <h3 id="ch-4-1-the-dynamics-of-mage"><span class="tier-kick">Lesson</span><a href="../book/4.1-the-dynamics-of-mage.html" class="ch-link">4.1-the-dynamics-of-mage</a> <span class="ch-slug">4.1-the-dynamics-of-mage</span></h3>
 <div class="section s2" id="sec-4-1-the-dynamics-of-mage--alignment-changes-the-system">
 <div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Active and Passive Alignment</a></div>
-<p class="topic">In Chapter 3, we primarily used Alignment to preserve properties of a system as agents changed it.</p>
+<p class="topic">In Chapter 3, we examined how models and governance mechanisms can protect engineering obligations during implementation.</p>
 </div>
 <div class="section s2" id="sec-4-1-the-dynamics-of-mage--establish-a-kernel-before-expanding">
 <div class="sec-h"><a href="../book/4.1-the-dynamics-of-mage.html">Establishing an Alignment Kernel</a></div>
@@ -546,7 +550,7 @@
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--memory-did-not-stop-mattering">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Memory as an Obligation for Subsequent Changes</a></div>
-<p class="topic">With memory consumption better understood, I could turn my attention to latency and cost.</p>
+<p class="topic">I had prioritized memory because running out of it prevented DocAble from processing a document at all, whereas inefficient execution made processing slower or more expensive.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--modeling-execution-and-latency">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Modeling Execution and Latency</a></div>
@@ -580,13 +584,13 @@
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Preserving and Revising Models</a></div>
 <p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
-<div class="section s3" id="sec-4-2-one-problem-many-models--what-carries-forward">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Preserving Performance Obligations</a></div>
-<p class="topic">As I developed these models, I had to decide which of their properties should constrain subsequent engineering.</p>
-</div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--models-get-falsified-the-obligation-survives">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Revising Models without Abandoning Obligations</a></div>
 <p class="topic">The memory model also made predictions that I could test independently of the implementation’s apparent success.</p>
+</div>
+<div class="section s3" id="sec-4-2-one-problem-many-models--what-carries-forward">
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Preserving Performance Obligations</a></div>
+<p class="topic">As I developed these models, I had to decide which of their properties should constrain subsequent engineering.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Combining Models to Answer Engineering Questions</a></div>
@@ -617,7 +621,8 @@
 </div>
 <div class="section s2" id="sec-4-3-brownfield-engineering--reconcile-the-map-and-the-territory">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">From Recovered Models to Enforcement</a></div>
-<p class="topic">A recovered model may disagree with the implementation, with existing documentation, or with the engineer’s understanding of the intended design.</p>
+<p class="topic">Recall the distinction between correspondence and conformance introduced in [ref:3.1-from-engineering-models-to-enforcement:heading:agreement-is-not-correctness].</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can recall the distinction between correspondence and conformance introduced in …. <span class="prov">derived</span></span></li></ul></div>
 </div>
 <div class="section s3" id="sec-4-3-brownfield-engineering--audit-drain-promote-move">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Introducing Enforcement into an Existing System</a></div>
@@ -841,6 +846,10 @@
 <div class="section s3" id="sec-6-2-what-the-theory-predicts--how-engineering-capital-accumulates">
 <div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">How Engineering Capital Accumulates</a></div>
 <p class="topic">We build engineering capital by making things that help with later work.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--reuse-across-tasks-and-obligations-reuse-across-tasks-and-obligations-unnumbered">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Reuse Across Tasks and Obligations {#reuse-across-tasks-and-obligations .unnumbered}</a></div>
+<p class="topic">Engineering capital can earn its return in two ways.</p>
 </div>
 <div class="section s3" id="sec-6-2-what-the-theory-predicts--the-return-on-engineering-capital">
 <div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">The Return on Engineering Capital</a></div>

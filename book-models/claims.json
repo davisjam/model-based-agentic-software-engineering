@@ -70,10 +70,10 @@
         "a constraint — prevents the error",
         "a sensor — observes it after the fact and produces evidence"
       ],
-      "home": "prevention-and-observation",
+      "home": "constraints-sensors-and-gates",
       "asserted_at": [
         "the-mage-method",
-        "prevention-and-observation"
+        "constraints-sensors-and-gates"
       ],
       "contradicted_by": "Conflating evidence production, evaluation, and enforcement — assuming that recording evidence evaluates it or that a verdict controls whether work may proceed.",
       "watch_phrases": [],
@@ -83,7 +83,7 @@
         "big-idea:alignment-principle"
       ],
       "provenance": "stated",
-      "anchor": "Preface Alignment Principle + 3.3 prevention-and-observation: a quality goal splits into a constraint (prevent) and a sensor (observe); the sensor produces evidence, a validator judges it.",
+      "anchor": "Preface Alignment Principle + Chapter 3 Constraints, Sensors, and Gates: a quality goal splits into a constraint (prevent) and a sensor (observe); the sensor produces evidence, a validator judges it.",
       "word_count": 17
     },
     {
@@ -310,9 +310,9 @@
       "kind": "scope-boundary",
       "statement": "A model is not a governance mechanism until something reads or enforces it.",
       "distinguishes": [],
-      "home": "prevention-and-observation",
+      "home": "constraints-sensors-and-gates",
       "asserted_at": [
-        "prevention-and-observation"
+        "constraints-sensors-and-gates"
       ],
       "contradicted_by": "Prose counting a bare model — read by nothing, enforced by nothing — as a governance mechanism.",
       "watch_phrases": [
@@ -323,7 +323,7 @@
         "definition:model"
       ],
       "provenance": "implicit",
-      "anchor": "3.3 Prevention, Observation, and Admission: the architectural model states the billing boundary; module visibility, instrumented tests, and a merge gate act on it. The distinction is demonstrated by the worked example rather than repeated as a separate definition.",
+      "anchor": "Chapter 3 Constraints, Sensors, and Gates: the architectural model states the billing boundary; module visibility, instrumented tests, and a merge gate act on it. The distinction is demonstrated by the worked example rather than repeated as a separate definition.",
       "word_count": 13
     },
     {
