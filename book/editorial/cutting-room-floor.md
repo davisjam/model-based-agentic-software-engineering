@@ -31525,3 +31525,103 @@ The preceding experiments could help engineers choose how to organize work, not 
 ```latex
 The cost model in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} compares engineering arrangements. Routing asks how to choose and revise them over a sequence of tasks. We seek enough acceptable delivery, satisfaction of the applicable assurance obligations, and expected use of human attention within the available budget, at the lowest expected total cost. The arrangement may change between tasks, and investments in the GEE may change which choices are economical later. Expressing this as an optimization makes the choices, constraints, and opportunities for improvement explicit; it does not supply a ready-made decision procedure.
 ```
+
+## Targeted follow-up copyedits in Chapters 3, 4, and 6 — 24 November 2026
+
+Source revision: `49fbe28e926328592bfd1d0b7bed9a17a251f815`. At the author’s request, simplify only the named sites. Preserve mathematical assumptions and formal propositions. Adjacent repetitions at the guidance/enforcement and routing sites are folded into the supplied replacements.
+
+### `book/latex/sources/part6/00-part-intro.tex`, source line 19
+
+```latex
+The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+```
+
+### `book/latex/sources/part6/00-part-intro.tex`, source line 21
+
+```latex
+The question is how engineers make that inheritance useful:
+```
+
+### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, source line 87
+
+```latex
+Even perfectly reliable realization cannot, by itself, establish that the encoded obligations were right. Holding encoding quality fixed, as conditional realization approaches certainty, faithful production approaches \(P(E\mid R)\). The practical consequence is to examine the encoding when better agents keep faithfully producing the wrong thing.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source line 70
+
+```latex
+The innovation is useful when it exposes consequential structure that existing representations did not make practically available. A novel diagram alone would not establish that result.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source line 104
+
+```latex
+Alignment changes whether the result can acquire consequence.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex`, source line 190
+
+```latex
+We do not yet know how to solve this problem generally. The costs and effects of representations, controls, and agent capabilities depend on the work, and the relevant functions have not been calibrated.
+```
+
+### `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, source line 55
+
+```latex
+An instruction may help an agent avoid a mistake. A sound control can prevent certain mistakes or refuse the resulting work. Guidance improves the producer's odds; enforcement changes what admission must trust.
+```
+
+### `book/latex/sources/part3/3.4-governance-conversion.tex`, source line 59
+
+```latex
+The conversion can land in one of five places:
+```
+
+### `book/latex/sources/part3/3.4-governance-conversion.tex`, source line 110
+
+```latex
+The capital must be something future work can actually inherit.
+```
+
+### `book/latex/sources/part3/3.4-governance-conversion.tex`, source line 134
+
+```latex
+These dispositions call for different engineering decisions; human review
+```
+
+### `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, source line 54
+
+```latex
+The kernel is large enough when the consequential degrees of freedom are under control.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source line 158
+
+```latex
+The graph/executor seam preserves the degree of freedom without spending it.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source line 242
+
+```latex
+A memory front was still open while the time models were being built.
+```
+
+### `book/latex/sources/part4/4.2-one-problem-many-models.tex`, source line 294
+
+```latex
+The distribution model supplies the execution topology the coordination taxes are charged against.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex`, source line 63
+
+```latex
+The result is a stronger model substrate for subsequent engineering work.
+```
+
+### `book/latex/sources/part4/4.3-brownfield-engineering.tex`, source line 166
+
+```latex
+Price upkeep as well as construction.
+```

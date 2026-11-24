@@ -14,6 +14,6 @@ We begin with three questions: did the agent produce what the engineer intended,
 >
 > Agentic capacity makes implementation work cheaper, but more implementation does not necessarily mean more engineering progress. MAGE addresses the relationship between the two.
 >
-> The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+> Successful delegation requires engineers to express what they want and agents to produce it. But engineering does not consist of one attempt. Systems change repeatedly, and the work done today can make tomorrow’s work easier or harder.
 >
-> The question is how engineers make that inheritance useful: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
+> The question is how engineers make today’s work useful for later tasks: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
