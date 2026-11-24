@@ -1,4 +1,4 @@
-"""The three Chapter 6 research directions as a typed, drift-checked index.
+"""The four Chapter 6 proposition-testing directions as a typed, drift-checked index.
 
 Active joins resolve only against the four theoretical propositions. RA1–RA4
 check schema, proposition and source joins, and the authored count. RA5 checks
@@ -24,7 +24,7 @@ _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 
 #: The ratified count — encode the author's set so a silent add/drop reddens (the theory model's
 #: EXPECT_PROPOSITIONS analogue: the count guard is the backstop against silent agenda drift).
-EXPECT_AGENDA_ITEMS = 3
+EXPECT_AGENDA_ITEMS = 4
 
 #: The coda index columns (the header the projection emits and the page carries; parity is exact).
 _COLUMNS = ("Kind", "Open direction", "Home")
@@ -249,7 +249,7 @@ def parity_findings(model: "AgendaModel | None" = None) -> "list[str]":
     """Each active research direction must occur exactly once as a heading in its actual home.
 
     The retired coda table and unused seven-topic SVG are no longer projection targets.
-    The active three-direction index follows the native-source Markdown projection.
+    The active four-direction index follows the native-source Markdown projection.
     """
     import re
     if model is None:

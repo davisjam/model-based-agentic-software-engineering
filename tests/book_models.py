@@ -684,7 +684,7 @@ def check_supporting_sources():
 
 
 def check_research_agenda():
-    """Check the three research directions, strict joins, count, and source-heading parity."""
+    """Check the four proposition-testing directions, strict joins, count, and source-heading parity."""
     import research_agenda_model as ram  # noqa: E402 — path set above; the book-model package
 
     issues = list(ram.all_findings())

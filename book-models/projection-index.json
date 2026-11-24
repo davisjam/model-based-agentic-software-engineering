@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 648,
+    "total_sites": 649,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 313,
+      "book-web": 314,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -145,7 +145,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 8
+            "occ": 5
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -649,7 +649,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1049,7 +1049,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 58
+            "occ": 52
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1201,7 +1201,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -1251,7 +1251,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 86
+            "occ": 84
           },
           {
             "file": "catalogue-figure.html",
@@ -1411,7 +1411,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 5
+            "occ": 6
           }
         ],
         "website-theory": [
@@ -1613,7 +1613,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -2127,7 +2127,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "catalogue-figure.html",
@@ -2422,6 +2422,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/6.3-scope-conditions.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
             "occ": 23
           },
@@ -2497,7 +2501,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 37
+            "occ": 38
           }
         ]
       },
@@ -2573,7 +2577,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",

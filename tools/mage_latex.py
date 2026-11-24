@@ -746,6 +746,8 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),
                                   row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'theory-experimental-comparisons', (.22, .43, .35),
+                                  row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-evaluation-questions', (.40, .60),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'agentic-engineering-factories', (.15, .35, .50),
@@ -796,6 +798,7 @@ def _prepare_record(task):
         'mage-outcomes',
         # Introduce the proposition map before P1 and retain P2's comparison in place.
         'mage-propositions', 'modeling-alignment-quadrants',
+        'engineering-measures', 'theory-experimental-comparisons',
         # Keep the baseline discussion complete before the metrics table.
         'practicing-primary-readings'}))
     # Headings repeat between chapters; make destination identities unambiguous.

@@ -1,6 +1,6 @@
 {
-  "_provenance": "Hand-authored index of the three directions in Chapter 6 Research Agenda; related_propositions resolves only to active P1–P4 records. The three source headings and joins are checked against the chapter.",
-  "_intent": "Index the compact research directions without creating a second research program or reproducing proposition text.",
+  "_provenance": "Hand-authored index of the four proposition-testing directions in Chapter 6 Testing the Theory; related_propositions resolves only to active P1–P4 records. Source headings and joins are checked against the chapter.",
+  "_intent": "Index the four empirical tests, supported by shared measurement and experimental design and culminating in engineering routing, without reproducing proposition text.",
   "kinds": [
     {
       "id": "frontier",
@@ -40,22 +40,32 @@
   "agenda": [
     {
       "id": "representation-engineering",
-      "title": "Representation Engineering",
+      "title": "Testing Representation Leverage (P1)",
       "kind": "frontier",
       "status": "open",
-      "one_line": "Select, recover or invent useful representations and test their leverage, correspondence and enforcement potential.",
+      "one_line": "Distinguish representation form from obligation completeness, and compare designed, recovered, and invented representations.",
       "source_section": "6.4-research-agenda",
       "related_propositions": [
-        "P1-representation-leverage",
+        "P1-representation-leverage"
+      ]
+    },
+    {
+      "id": "representation-enabled-enforcement",
+      "title": "Testing Representation-Enabled Enforcement (P2)",
+      "kind": "measurement",
+      "status": "open",
+      "one_line": "Cross producer access to models with independent enforcement; measure escaped violations, false rejection, repair, and correct delivery.",
+      "source_section": "6.4-research-agenda",
+      "related_propositions": [
         "P2-representation-enabled-enforcement"
       ]
     },
     {
       "id": "governance-and-engineering-capital",
-      "title": "Governance and Engineering Capital",
+      "title": "Testing Governance Conversion (P3)",
       "kind": "dynamics",
       "status": "open",
-      "one_line": "Track inherited capability, conversion, propagation, maintenance and retirement under credible comparisons.",
+      "one_line": "Track reuse of models, procedures, instructions, and controls, including originator independence, maintenance, retirement, and full cost.",
       "source_section": "6.4-research-agenda",
       "related_propositions": [
         "P3-governance-conversion-and-engineering-capital"
@@ -63,15 +73,12 @@
     },
     {
       "id": "capacity-and-environment",
-      "title": "Capacity and Environment",
+      "title": "Testing Governable Acceleration (P4)",
       "kind": "measurement",
       "status": "open",
-      "one_line": "Compare capability and environment jointly, including review under fixed human attention and misleading evidence.",
+      "one_line": "Cross agentic capacity with specified environmental investments and assess durable delivery and review under fixed human attention.",
       "source_section": "6.4-research-agenda",
       "related_propositions": [
-        "P1-representation-leverage",
-        "P2-representation-enabled-enforcement",
-        "P3-governance-conversion-and-engineering-capital",
         "P4-governable-acceleration"
       ]
     }
