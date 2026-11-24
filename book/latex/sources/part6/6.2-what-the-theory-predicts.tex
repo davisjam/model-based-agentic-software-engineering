@@ -1,7 +1,3 @@
-% mage-auto-heading: proposition-representation-leverage
-% mage-auto-heading: proposition-representation-enabled-enforcement
-% mage-auto-heading: proposition-governance-conversion-and-engineering-capital
-% mage-auto-heading: proposition-governable-acceleration
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: The Theory -->
@@ -10,69 +6,93 @@
 
 \chapter{What the Theory Predicts}
 
-% <!-- point: predictions-fall-into-three-families | Four theoretical propositions connect representation leverage, representation-enabled enforcement, inherited engineering capital and governable acceleration. -->
+% <!-- point: predictions-fall-into-three-families | Four theoretical propositions connect representation leverage, representation-enabled enforcement, accumulated engineering capital and governable acceleration. -->
 
-The theory makes four connected propositions. A useful representation can change the work required to reason about a system. It can also make selected obligations available for independent enforcement. When the resulting knowledge and mechanisms remain useful, later work inherits engineering capacity. Additional agentic capacity then acts through that inherited environment, amplifying its fit or exposing its inadequacy.
+\magevalue{sec:toward-a-theory-of-mage} modeled whether delegated work satisfies its intended obligations, what acceptable delivery costs, and how engineering changes the environment available for later work. These models identify quantities to examine. The propositions below state how particular engineering mechanisms are expected to affect them.
 
-These are theoretical relationships, informed by the cases rather than established as general findings. Each needs a mechanism, conditions under which it should matter, and a way evidence could show it to be wrong. \magevalue{sec:research-agenda} develops a compact set of comparisons for that purpose.
+A theoretical proposition states a relationship that should hold under identifiable conditions and that evidence could challenge. \autoref{mage-propositions} provides a map of four such claims. We develop their mechanisms and examples before considering what would support or contradict them; \magevalue{sec:research-agenda} develops the corresponding comparisons.
 
-\section{P1: Representation Leverage}\label{heading:proposition-representation-leverage}
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.34}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
+\caption[Four propositions of MAGE theory]{\emph{Four propositions of MAGE theory.} Each identifies a predicted relationship and the evidence needed to evaluate it.}\label{mage-propositions}\tabularnewline
+\toprule\noalign{}
+Proposition & Predicted relationship & What a comparison must establish \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Proposition & Predicted relationship & What a comparison must establish \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P1. Representation leverage & Useful representations reduce reconstruction and extend reasoning capacity & Correct delivery and reasoning cost at matched quality, including representation upkeep \\
+P2. Representation-enabled enforcement & Explicit models make selected obligations independently enforceable & Defect escape, false rejection, and correct delivery for adequately covered obligations \\
+P3. Governance conversion and engineering capital & Reusable engineering knowledge improves subsequent work & Later capability and cost relative to local repair or on-demand reconstruction \\
+P4. Governable acceleration & The effects of additional agentic capacity depend on the engineering environment & Capacity-by-environment effects on durable throughput, defect escape, and human attention \\
+\end{longtable}
+}
+
+\section{Proposition 1: Representation Leverage (P1)}\label{heading:p1-representation-leverage}
 
 % <!-- point: p1-representation-leverage | Trustworthy task-relevant representations can reduce reconstruction and extend reasoning reach at matched quality and resources, when their value justifies construction and upkeep. -->
 
-\textbf{Trustworthy, task-relevant representations can reduce reconstruction and extend the work that humans and agents can complete at a given quality and resource budget.} They do so by exposing the distinctions and relationships needed for the task while suppressing implementation detail that would otherwise have to be reconstructed. The benefit depends on what the representation preserves, how it is used, and what it costs to build and maintain.
+\emph{Proposition 1. Trustworthy, task-relevant representations reduce the reasoning required to complete engineering work at a given quality level and extend the range of work that engineers and agents can accomplish.}
+
+The encoding–realization model in \autoref{6.1-toward-a-theory-of-mage:heading:encoding-and-realization} treats the representation as part of the conditions under which an agent performs a task. A representation can help the engineer state the intended obligations, help the agent fulfill them, or both. It also has a cost. The accounting in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} asks whether the information it preserves saves enough reasoning or enables enough additional work to justify constructing and maintaining it.
+
+\subsection{Why Representations Change Reasoning}\label{heading:why-representations-change-reasoning}
 
 % <!-- point: reconstruction-precedes-reasoning-about-the-question | DocAble’s large-document representation exposes the choice between purchasing more context and reducing what each judgment requires. -->
-
 
 % Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: implementation
 % <!-- point: context-postpones-but-a-model-changes-the-problem | DocAble’s HTML/CSS export was estimated at roughly 590,000 tokens against a 272,000-token context; windowing and compression reduced the information required for each judgment. -->
 
 % Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: historical-report
-DocAble encountered this problem when representing large documents for remediation. In September 2026, one document's HTML/CSS export was estimated at roughly 590,000 tokens using a characters-divided-by-four heuristic, against a 272,000-token context window. A more costly foundation model with a larger context window was one possible response. Another was to change the representation: windowing and whole-document compression reduced the information required for each judgment. The engineering choice was not simply how much context to purchase, but how much reasoning the representation could save.
+Consider an agent asked to remediate a large document. The agent needs information about the document's content and structure, but presenting the entire document may exceed its working context. DocAble encountered this problem in September 2026, when one document's HTML/CSS export was estimated at roughly 590,000 tokens using a characters-divided-by-four heuristic, against a 272,000-token context window. A foundation model with a larger context window was one possible response. Another was to reduce the information needed for each decision. Windowing and whole-document compression reduced the information required for individual judgments. The engineering choice concerned both the available inference capacity and the reasoning burden imposed by the representation.
 
 % <!-- point: the-general-move-presents-consequential-structure | A representation can change the reasoning required, a mechanism established in external-representation research and applied here to maintained engineering models. -->
 
-Research on external representations has long shown that how information is organized changes the work required to reason with it~\citep{larkin1987diagram, zhang1994representations}. Models apply that principle to engineering questions by exposing consequential structure directly. A dependency graph, for example, can make permitted service relationships available without requiring an engineer or agent to reconstruct them from scattered implementation details.
+This is an instance of representation leverage: the representation changes the work required of the reasoner. A dependency graph similarly makes service relationships available without requiring an engineer or agent to reconstruct them from source code. State machines expose transitions, contracts expose obligations, and assurance arguments relate claims to evidence. Research on external representations has long shown that the organization of information changes the effort required to reason with it~\citep{larkin1987diagram, zhang1994representations}.
 
 % <!-- point: a-model-shortens-the-reasoning-path | A useful model can preserve earlier reasoning so that later work begins with the consequential structure, while remaining bounded by its coverage. -->
 
-This can shorten the reasoning path, rather than merely make each step cheaper. The environment preserves some work that would otherwise be repeated before the engineering question could even be addressed. State machines expose transitions; contracts expose obligations; assurance arguments relate claims to evidence. Such representations may bring a demanding task within the human-agent system's effective reasoning horizon, or make an already tractable task cheaper. They cannot provide distinctions they omit, and an agent still has to use the representation appropriately.
+The benefit can be greater than a reduction in inference cost. A representation may bring a task within the effective reasoning horizon of a human or agent that could not otherwise complete it reliably. The representation must preserve the distinctions needed for the task, however. Compressing a document is useful only if the information discarded is unnecessary for the judgments that follow. A smaller representation that omits a consequential relationship may make reasoning cheaper while making the result worse.
 
-% <!-- point: second-problem-maintain-each-models-claimed-correspondence | The second problem is maintaining the specific correspondence each model claims, cheaply enough to expose divergence early. -->
-
-Once a model exists, maintenance becomes a second problem. ``Keep the model equal to the code'' is too crude. A model of permitted dependencies should disagree with code that violates them. A requirements model may intentionally describe an intended state the current implementation has not reached. The engineering problem is to state and maintain the \textbf{correspondence each model claims}---for architecture, behavior, process, invariants, lineage, or other views---cheaply enough to expose meaningful divergence near the change that created it.
-
-% <!-- point: third-problem-model-quality-beyond-fidelity | Correspondence is necessary but insufficient: a synchronized model may still miss the distinctions an engineering decision requires. -->
-
-A synchronized model can still be useless for the question at hand. Test suites provide the familiar warning: an oracle may faithfully reproduce implementation behavior while failing to express the requirement.\magefootnote{oracle-overfit}{Automation that optimizes against a visible oracle can satisfy that oracle while violating properties it does not check~\citep{smith2015overfitting}. A recent audit of a coding benchmark likewise identified flawed tests alongside contamination~\citep{openai2026swebench}. Neither fidelity to an artifact nor success against a visible test establishes that the intended obligation was adequately represented.} Model evaluation must therefore ask both whether the claimed correspondence is trustworthy and whether the representation preserves the distinctions needed by the decisions that use it. Stale or poorly chosen models can confidently direct reasoning toward the wrong result, adding cost rather than saving it.
+\subsection{Recovering and Inventing Representations}\label{heading:recovering-and-inventing-representations}
 
 % <!-- point: representations-human-designed-induced-and-innovated | Representations can be designed, recovered from existing systems, or invented to expose previously impractical relationships; each requires validation for its claimed use. -->
 
-The proposition does not require engineers to design every representation in advance. \magevalue{chapter:one-problem-many-models} showed how implementation signals and commodity intelligence can help recover latent models. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit, leaving engineers to determine whether the observed behavior is the behavior the system ought to have.
+The proposition does not require engineers to design every representation in advance. \cref{chapter:4.3-brownfield-engineering} showed how engineers and agents can recover consequential structure from existing implementations. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit, leaving engineers to determine whether the observed behavior is the behavior the system ought to have.
 
 Representation innovation goes beyond recovering latent structure. A reasoner may propose a different decomposition, relation, or state space that makes an engineering question tractable, even when that representation was neither supplied by an engineer nor plainly latent in the implementation. The innovation is useful when it exposes consequential structure that existing representations did not make practically available. A novel diagram alone would not establish that result.
 
 % <!-- point: discovery-does-not-confer-trust-a-representation-must-earn-it | Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims. -->
 
-Discovery does not confer trust. Like any model in \magevalue{chapter:modeling}, a machine-proposed representation claims a relationship to the system and must earn the trust placed in that claim. A recovered model can be checked against the implementation it purports to summarize; a genuinely novel abstraction poses the harder question of what evidence establishes that it preserves the distinctions required by its intended engineering use. The stronger the reasoning, assurance, or enforcement built on the representation, the stronger that evidence must be.
+A machine-proposed representation, like any model in \magevalue{chapter:modeling}, claims a relationship to the system. A recovered model can be checked against the implementation it purports to summarize; a genuinely novel abstraction poses the harder question of what evidence establishes that it preserves the distinctions required by its intended engineering use. Correspondence alone is insufficient: a synchronized model may omit the obligations that matter, while a model of intended architecture may correctly disagree with the current implementation.\magefootnote{oracle-overfit}{Automation that optimizes against a visible oracle can satisfy that oracle while violating properties it does not check~\citep{smith2015overfitting}. A recent audit of a coding benchmark likewise identified flawed tests alongside contamination~\citep{openai2026swebench}. Neither fidelity to an artifact nor success against a visible test establishes that the intended obligation was adequately represented.} The stronger the reasoning, assurance, or enforcement built on the representation, the stronger the evidence for its intended use must be.
 
 % <!-- point: p1-representation-leverage-can-fail | Representation leverage is challenged when apparent gains disappear at matched quality/resources or construction, interpretation and upkeep erase them. -->
 
-P1 would be challenged if these representations add interpretation and maintenance work without lowering reconstruction cost, preserving quality, or extending the scale of work completed. The comparison must include their construction and useful life. More capable agents may reduce the need for some representations by reconstructing the relevant knowledge cheaply; they may also make other representations economical to discover and maintain. The proposition concerns the value of the representation for the work, not the quantity of models an organization accumulates.
+P1 would be challenged if these representations add interpretation and maintenance work without improving correct delivery, reducing reconstruction cost at matched quality, or extending the scale of work completed. The comparison must include their construction and useful life. More capable agents may reduce the need for some representations by reconstructing the relevant knowledge cheaply; they may also make other representations economical to discover and maintain. The proposition concerns the value of the representation for the work, not the quantity of models an organization accumulates.
 
-\section{P2: Representation-Enabled Enforcement}\label{heading:proposition-representation-enabled-enforcement}
+\section{Proposition 2: Representation-Enabled Enforcement (P2)}\label{heading:p2-representation-enabled-enforcement}
 
 % <!-- point: p2-representation-enabled-enforcement | Representations can make selected obligations mechanically decidable, while Alignment enforces them independently of producer compliance. -->
 
-\textbf{An explicit representation can make a selected obligation mechanically decidable, allowing Alignment to enforce it independently of the producing agent's compliance.} Modeling supplies a form in which the property can be evaluated; Alignment supplies the mechanism that makes the result consequential. These contributions can reinforce one another, but neither should be mistaken for the other.
+\emph{Proposition 2. Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent's compliance.}
+
+The encoding–realization decomposition in \autoref{6.1-toward-a-theory-of-mage:heading:encoding-and-realization} concerns whether an agent fulfills the intended obligations. Alignment introduces a separate decision: whether the resulting work may be admitted. A gate that evaluates an obligation independently can reject a violating realization even if the agent misunderstands or ignores the requirement. This separates the reliability of production from the correctness of admitted work, while adding the evidence, rejection, and repair costs accounted for in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
+
+\subsection{Production and Admission}\label{heading:production-and-admission}
 
 % <!-- point: dependency-model-and-admission-make-distinct-contributions | A dependency model guides production; an independent gate governs which results are admitted, whether or not the producer consulted the model. -->
 
 Suppose an architectural rule forbids a service from depending on a database directly. Giving the agent a dependency model can help it choose a permitted design. A separate gate can compare the resulting dependency graph with the rule and reject a change that violates it. The first intervention helps the agent produce acceptable work; the second governs what is admitted when production goes wrong. The gate can still reject the forbidden dependency even if the agent never consulted the model.
 
 % Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
-DocAble's controlled-mutation interface illustrates the same separation (\autoref{chapter:appendix-a-controlled-mutation}): reasoning components propose document changes through typed operations, while a separate applier resolves their current targets and applies selected guards before mutation.
+DocAble's controlled-mutation interface illustrates the same separation (\autoref{chapter:appendix-a-controlled-mutation}). Reasoning components propose document changes through typed operations that identify their targets and intended effects. A separate applier resolves the current target and applies selected guards before mutation. Those guards act independently of whether the proposing reasoner has checked the corresponding conditions. The typed vocabulary exposes the operation and its obligations; the applier enforces the selected conditions at the point of mutation.
 
 The distinction also explains why equal protection can come at different cost. A producer without the model may repeatedly propose changes that the gate rejects. Supplying the model can reduce these collisions without changing the gate's guarantee. Conversely, a clear model without enforcement still leaves fulfillment dependent on the producer and whatever subsequent review occurs. \autoref{modeling-alignment-quadrants} separates these possibilities.
 
@@ -115,6 +135,8 @@ The strongest assurance claim is local to a covered property. If a sound admissi
 
 Most assurance is less decisive. Tests can miss failures, validators can reject useful work, and statistical checks can be uncertain. A lower escape rate may simply reflect rejecting more candidates. Comparisons therefore need independent assessment of correct delivery and false rejection as well as escaped failure, with the cost of sustaining delivery included. Independence here concerns the mechanism's ability to act without relying on the producer to obey; it does not mean that every source of error is statistically independent.
 
+\subsection{The Determinization Frontier}\label{heading:the-determinization-frontier}
+
 % <!-- point: representation-can-turn-reconstruction-into-a-predicate | A representation can expose the relation that a repeatable predicate needs, reducing per-instance semantic reconstruction for a covered obligation. -->
 
 Modeling can change which obligations admit such mechanisms. The dependency rule may be difficult to assess by repeatedly asking a reasoner to interpret source files, configuration, and conventions. Once an appropriate model exposes the relevant services and dependency edges, checking the forbidden relation becomes a repeatable predicate. The engineer still has to establish the graph's claimed correspondence with the system; the mechanical check is only as relevant as that correspondence makes it.
@@ -137,61 +159,69 @@ DocAble illustrates the distinction. Determining what an image means and writing
 
 The frontier does not imply that every judgment can become mechanical. Better representations may improve human or agent evaluation even when no definitive predicate is available. Where a property does become mechanically decidable, the question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
 
-\section{P3: Governance Conversion and Engineering Capital}\label{heading:proposition-governance-conversion-and-engineering-capital}
+\section{Proposition 3: Governance Conversion and Engineering Capital (P3)}\label{heading:p3-governance-conversion-and-engineering-capital}
 
 % <!-- point: p3-governance-conversion-and-engineering-capital | Useful engineering judgment can become inherited productive capacity, whose return depends on reuse or consequence, propagation, maintenance and continuing fit. -->
 
-\textbf{When engineering judgment becomes trustworthy, reusable structure, later work can inherit productive capacity rather than purchase the same reasoning again.} Governance conversion is one route to this engineering capital. A recurring failure can become a validator; an architectural distinction can become a model; an operational lesson can become a procedure. Up-front engineering and lessons transferred from other systems can create the same kind of inheritance before a local failure occurs.
+\emph{Proposition 3. Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.}
+
+The dynamic model in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} represents the environment available for task \(T_i\) as \(\mathcal{G}_i\). Work during one episode can change the representations, procedures, and controls available for the next. P3 predicts that some of those changes create productive capacity beyond the immediate implementation. Their return depends on what subsequent work can accomplish and on the construction and carrying costs in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
+
+Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of engineering capital.
+
+\subsection{How Engineering Capital Accumulates}\label{heading:how-engineering-capital-accumulates}
+
+A recurring failure may lead to a validator; an architectural distinction may become a model; an operational lesson may become a procedure. These changes preserve selected engineering judgments in forms that later engineers and agents can use without reconstructing the original reasoning. Engineering capital can also be created deliberately before a failure occurs or transferred from another system.
 
 % Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
-The completed-phase gate in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} illustrates the capital tradeoff: later work inherits the control, but its value depends on reuse, continuing fit, and the costs of construction and maintenance.
+DocAble's completed-phase gate illustrates the mechanism (\autoref{chapter:appendix-a-governed-delegation}). Repeated dispatch of completed work exposed a missing lifecycle control. The gate checks the recorded completion state before allowing a later assignment to proceed. When its phase-identity extractor misidentified a phase, the gate rejected legitimate work and required correction. The episode in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} thus exposes both sides of the investment: a reusable check over later work and machinery whose interpretation must itself be maintained.
 
 % <!-- point: capital-enables-work-beyond-defect-reduction | Engineering capital includes reasoning reach, earlier evidence, safer actions and cheaper recovery; fewer repeated defects are only one possible return. -->
 
 The return is broader than defect reduction. An architectural model may let an engineer assess a change that would otherwise be too expensive to understand. A typed operation can make a previously risky mutation routine. A validator can provide evidence earlier, and a recovery procedure can make a failed experiment cheap enough to attempt. In each case, earlier work has changed what later engineers and agents can accomplish, what they must reconstruct, or what risk they must bear.
 
-This is why the metaphor is capital rather than memory. A record can preserve information without changing the productive capacity of later work. An engineering asset becomes capital when later work can use it to gain capability, reduce cost, or control risk. A useful record can certainly do that; its format does not decide the question. The test is what the next engineer or agent can inherit.
-
-% <!-- point: capital-transfers-judgment-beyond-its-originator | Capital transfers judgment beyond its originator: a later reasoner benefits without reconstructing the reasoning. -->
-
-That inheritance need not depend on the continued presence of the engineer who supplied the original judgment. When an architectural distinction becomes a trustworthy model, a review judgment becomes a validator, or an operational lesson becomes a reliable procedure, some of the originating engineer\textquotesingle s productive capacity now lives in the GEE. A later engineer or agent can benefit from the result without reconstructing the reasoning that produced it.
+A record can preserve information without changing what later engineers or agents can accomplish. An engineering asset becomes capital when its reuse provides capability, reduces cost, or controls risk. A useful record can certainly do that; its format does not decide the question. When a model, validator, or procedure preserves the relevant distinction, its benefit need not depend on the continued presence of the engineer who supplied the original judgment. Later work can use the result without reconstructing all the reasoning that produced it.
 
 % <!-- point: capital-transfer-is-partial-judgment-needed-again-on-change | The transfer is partial: capital carries only what it represents, so change requires expert judgment again. -->
 
-The transfer is necessarily partial. Durable structure carries only the judgment it successfully represents or mechanizes. When requirements change, a new failure appears, or the representation itself becomes inadequate, engineering judgment is needed again. Engineering capital therefore does not eliminate expertise; it changes how often the organization must pay again for expert judgment on the same question.
+The transfer is necessarily partial. Durable structure carries only the judgment it successfully represents or mechanizes. When requirements change, a new failure appears, or the representation itself becomes inadequate, engineering judgment is needed again. Engineering capital changes which questions require fresh expert attention; it does not eliminate expertise.
 
 % <!-- point: governance-conversion-needs-diagnosis-and-authority | Shared learning requires a path from diagnosis to changes in the environment; local fixes and interpersonal memory may leave the original failure class intact. -->
 
-The organizational path matters. If an engineer diagnoses a recurring boundary error but can only repair the current patch, later agents may encounter the same problem. If that diagnosis changes the shared model and its validator, later work can inherit the distinction without waiting for the engineer to explain it again. The theory therefore predicts more consistent propagation where diagnosis is connected to authority over shared engineering structure. It does not require all authority to reside in one person.
+That benefit also depends on how an engineering lesson reaches later work. An engineer who can repair only the current patch may leave the same boundary error for later agents to encounter. Connecting the diagnosis to a shared model and validator makes the distinction available across changes. Authority can be distributed among people, but there must be a way to revise the shared environment.
+
+\subsection{The Return on Engineering Capital}\label{heading:the-return-on-engineering-capital}
 
 % <!-- point: debt-vs-capital-governance-includes-retirement | Debt makes change costly, capital makes it productive; neither is permanent, so governance includes retirement. -->
 
-The analogy to technical debt is intentional. Debt makes future change more expensive; capital makes future change more productive. Neither status is permanent. Capital depreciates as systems, obligations, and tools change. A validator can become noise, a model can drift, and a once-useful constraint can begin blocking legitimate work. Governance therefore includes maintenance, reconciliation, and retirement. \textbf{Accumulation is not the objective; productive capacity is.}
+The analogy to technical debt is intentional.\magefootnote{capital-and-debt}{Storey distinguishes technical, cognitive, and intent debt in AI-assisted software~\citep{storey2026}. A team can accumulate implementation faster than it maintains shared understanding or preserves why the system should behave as it does. Explicit models and evidence can preserve consequential understanding and intent as well as executable checks.} Debt makes future change more expensive; capital makes future change more productive. Neither status is permanent. Capital depreciates as systems, obligations, and tools change. A validator can become noise, a model can drift, and a once-useful constraint can begin blocking legitimate work. Governance therefore includes maintenance, reconciliation, and retirement.
 
 % <!-- point: capital-return-includes-construction-carrying-cost-and-comparison | A claim of capital return requires comparable work and full costs; reduced construction cost can move the threshold without guaranteeing a return. -->
 
-Estimating the return on engineering capital requires comparing later work with what the same work would have cost without the asset, under comparable capability, quality, and task conditions. The comparison must include construction and maintenance, the asset's useful life and loss of fit, and the value of human attention. Changing foundation-model capabilities and prices affect both sides: cheaper agents may lower the cost of constructing and maintaining an asset, but also the cost of reconstructing the same knowledge on demand. Inherited capacity pays where the value of the work it enables or saves justifies those costs over its useful life. The proposition identifies what must be measured without claiming known coefficients.
-
-% <!-- point: engineering-capital-preserves-knowledge-without-eliminating-expertise | Engineering capital can preserve consequential understanding and intent, addressing the cognitive and intent debt that may accompany rapidly accumulated implementation. -->
-
-This account also connects to Storey's distinction among technical, cognitive, and intent debt in AI-assisted software~\citep{storey2026}. A team can accumulate implementation faster than it maintains shared understanding or preserves why the system should behave as it does. Explicit models and evidence can give consequential understanding and intent a durable place to live.
+Estimating the return on engineering capital requires comparing later work with what the same work would have cost without the asset, under comparable capability, quality, and task conditions. The comparison must include construction and maintenance, the asset's useful life and loss of fit, and the value of human attention. Changing foundation-model capabilities and prices affect both sides: cheaper agents may lower the cost of constructing and maintaining an asset, but also the cost of reconstructing the same knowledge on demand. The investment pays where the value of the work it enables or saves justifies those costs over its useful life. The proposition identifies what must be measured without claiming known coefficients.
 
 % <!-- point: p3-capital-return-can-fail | The capital proposition is challenged when later work gains no useful capacity after construction/upkeep and alternative explanations are accounted for. -->
 
 P3 would be challenged if later work gains no useful capacity over local repair or on-demand reconstruction once the asset's full costs are counted. A decline in recurrence alone is insufficient: the engineer may have become more experienced, or the work may have changed. Reuse by later engineers or agents, including work performed without the originator, provides a stronger test of what the GEE actually preserves. The research agenda returns to how these comparisons can be made.
 
-\section{P4: Governable Acceleration}\label{heading:proposition-governable-acceleration}
+\section{Proposition 4: Governable Acceleration (P4)}\label{heading:p4-governable-acceleration}
 
 % <!-- point: p4-governable-acceleration | Additional agentic capacity can amplify the fit or inadequacy of the inherited GEE; durable gains depend on representation, assurance and adaptation. -->
 
-\textbf{The effect of additional agentic capacity depends on the GEE through which it acts.} Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection. Where the GEE fits poorly, the same capacity can instead produce more churn, intervention, or escaped failure. Raw implementation activity may rise in either case.
+\emph{Proposition 4. The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.}
 
-% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
-DocAble provides the motivating case: agentic implementation activity and its environment of models, validators, and operational controls changed together (\autoref{5.2-inside-docables-software-factory:heading:building-the-factory} and \autoref{5.2-inside-docables-software-factory:heading:inside-the-factory}). The case shows how those mechanisms were constructed and used, but does not isolate their effect on throughput or the effect of increasing agentic capacity.
+In \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model}, the likelihood of faithful production depends on the task, foundation model, and GEE. \autoref{mage-dynamic-model} relates agentic capacity and that environment to attempted work, realized performance, and subsequent adaptation. P4 predicts an interaction between these inputs: increasing implementation capacity should have different consequences depending on the representations and controls through which it operates.
+
+\subsection{Capacity and Environment}\label{heading:capacity-and-environment}
+
+Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection. Where the GEE fits poorly, the same capacity can instead produce more churn, intervention, or escaped failure. Raw implementation activity may rise in either case.
 
 % <!-- point: capacity-amplifies-the-environment-through-its-mechanisms | A capacity increase reaches durable output only through the specific representations and controls that support its task family. -->
 
 To examine this interaction, consider two agents making more changes against the same service boundary. An explicit dependency model may spare both agents repeated reconstruction; a gate may keep the covered architectural violation out of admitted work. Those mechanisms can support a higher rate of acceptable changes. If the model is stale or the gate enforces the wrong rule, more activity can instead multiply the resulting repair and review. The proposition concerns these mechanisms and their fit to the tasks, rather than a blanket advantage for a GEE described as stronger.
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+DocAble provides the motivating case: agentic implementation activity and its environment of models, validators, and operational controls changed together (\autoref{5.2-inside-docables-software-factory:heading:building-the-factory} and \autoref{5.2-inside-docables-software-factory:heading:inside-the-factory}). The case shows how those mechanisms were constructed and used, but does not isolate their effect on throughput or the effect of increasing agentic capacity.
 
 % <!-- point: fit-cannot-be-defined-only-by-success | GEE quality must be assessed separately from outcomes, or a claim that better GEEs perform better is circular. -->
 
@@ -200,6 +230,8 @@ To test that claim, GEE quality has to be characterized independently of the out
 % <!-- point: capacity-environment-substitution-and-complementarity-remain-open | Whether better environments substitute for raw reasoning capability or complement it is empirical and can vary across obligations and task families. -->
 
 Several outcomes are plausible. A good representation might let a weaker model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
+
+\subsection{When the Work Becomes More Demanding}\label{heading:when-the-work-becomes-more-demanding}
 
 % <!-- point: pressure-does-not-automatically-create-adaptation | Faster failure can reveal structural pressure, but adaptation requires diagnosis and authority; it may also involve retiring machinery. -->
 
@@ -214,30 +246,3 @@ More ambitious work exposes new demands on the environment. Larger tasks may int
 % <!-- point: p4-governable-acceleration-can-fail | The proposition requires an interaction between capacity and independently assessed environmental fit, judged by durable outcomes rather than approval speed. -->
 
 P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.
-
-% <!-- point: four-propositions-have-distinct-mechanisms | The four propositions concern different mechanisms and require different observations, even when one intervention contributes to several. -->
-
-\autoref{mage-propositions} collects the four propositions. They overlap in an engineered system, but they ask different questions: what reasoning the representation changes, what an independent mechanism can enforce, what later work inherits, and how those conditions affect the use of additional capacity.
-
-{\footnotesize
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.34}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
-\caption[Four theoretical propositions of MAGE]{\emph{Four theoretical propositions.} Each identifies a mechanism, its conditions, and a comparison needed to assess it. These are claims to investigate, not measured effects.}\label{mage-propositions}\tabularnewline
-\toprule\noalign{}
-Proposition & Mechanism & What a comparison must establish \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-Proposition & Mechanism & What a comparison must establish \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-P1 Representation leverage & Task-relevant structure reduces reconstruction & Reasoning reach or cost at matched quality, including fidelity and upkeep \\
-P2 Representation-enabled enforcement & Representation makes an obligation checkable; Alignment enforces it & Escape, false rejection and correct delivery for adequately covered obligations \\
-P3 Governance conversion and engineering capital & Later work inherits useful engineering judgment & Reused capacity and propagation net of construction, carrying cost and lost fit \\
-P4 Governable acceleration & Capacity acts through the environment's fit to the work & Capacity-by-environment effects on durable throughput, escape and human attention \\
-\end{longtable}
-}

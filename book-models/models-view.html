@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>184</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>189</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -774,36 +774,56 @@
 <div class="chapter">
 <h3 id="ch-6-2-what-the-theory-predicts"><span class="tier-kick">Lesson</span><a href="../book/6.2-what-the-theory-predicts.html" class="ch-link">6.2-what-the-theory-predicts</a> <span class="ch-slug">6.2-what-the-theory-predicts</span></h3>
 <div class="section s2" id="sec-6-2-what-the-theory-predicts--p1-representation-leverage">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">P1: Representation Leverage</a></div>
-<p class="topic">**Trustworthy, task-relevant representations can reduce reconstruction and extend the work that humans and agents can complete at a given quality and resource budget.** They do so by exposing the distinctions and relationships needed for the task while suppressing implementation detail that would otherwise have to be reconstructed.</p>
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Proposition 1: Representation Leverage (P1)</a></div>
+<p class="topic">*Proposition 1.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--why-representations-change-reasoning">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Why Representations Change Reasoning</a></div>
+<p class="topic">Consider an agent asked to remediate a large document.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--recovering-and-inventing-representations">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Recovering and Inventing Representations</a></div>
+<p class="topic">The proposition does not require engineers to design every representation in advance.</p>
 </div>
 <div class="section s2" id="sec-6-2-what-the-theory-predicts--p2-representation-enabled-enforcement">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">P2: Representation-Enabled Enforcement</a></div>
-<p class="topic">**An explicit representation can make a selected obligation mechanically decidable, allowing Alignment to enforce it independently of the producing agent’s compliance.** Modeling supplies a form in which the property can be evaluated; Alignment supplies the mechanism that makes the result consequential.</p>
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Proposition 2: Representation-Enabled Enforcement (P2)</a></div>
+<p class="topic">*Proposition 2.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--production-and-admission">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Production and Admission</a></div>
+<p class="topic">Suppose an architectural rule forbids a service from depending on a database directly.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--the-determinization-frontier">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">The Determinization Frontier</a></div>
+<p class="topic">Modeling can change which obligations admit such mechanisms.</p>
 </div>
 <div class="section s2" id="sec-6-2-what-the-theory-predicts--p3-governance-conversion-and-engineering-capital">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">P3: Governance Conversion and Engineering Capital</a></div>
-<p class="topic">**When engineering judgment becomes trustworthy, reusable structure, later work can inherit productive capacity rather than purchase the same reasoning again.** Governance conversion is one route to this engineering capital.</p>
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Proposition 3: Governance Conversion and Engineering Capital (P3)</a></div>
+<p class="topic">*Proposition 3.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--how-engineering-capital-accumulates">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">How Engineering Capital Accumulates</a></div>
+<p class="topic">A recurring failure may lead to a validator; an architectural distinction may become a model; an operational lesson may become a procedure.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--the-return-on-engineering-capital">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">The Return on Engineering Capital</a></div>
+<p class="topic">The analogy to technical debt is intentional.[^capital-and-debt] Debt makes future change more expensive; capital makes future change more productive.</p>
 </div>
 <div class="section s2" id="sec-6-2-what-the-theory-predicts--p4-governable-acceleration">
-<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">P4: Governable Acceleration</a></div>
-<p class="topic">**The effect of additional agentic capacity depends on the GEE through which it acts.** Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection.</p>
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Proposition 4: Governable Acceleration (P4)</a></div>
+<p class="topic">*Proposition 4.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--capacity-and-environment">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">Capacity and Environment</a></div>
+<p class="topic">Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection.</p>
+</div>
+<div class="section s3" id="sec-6-2-what-the-theory-predicts--when-the-work-becomes-more-demanding">
+<div class="sec-h"><a href="../book/6.2-what-the-theory-predicts.html">When the Work Becomes More Demanding</a></div>
+<p class="topic">Acceleration can also change how quickly inadequacy becomes visible.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-6-3-scope-conditions"><span class="tier-kick">Lesson</span><a href="../book/6.3-scope-conditions.html" class="ch-link">6.3-scope-conditions</a> <span class="ch-slug">6.3-scope-conditions</span></h3>
-<div class="section s2" id="sec-6-3-scope-conditions--return-governability-and-authority">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Return, Governability, and Authority</a></div>
-<p class="topic">Whether MAGE applies to a given engineering surface comes down to three questions:</p>
-</div>
-<div class="section s2" id="sec-6-3-scope-conditions--value-and-mechanizability">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Value and Mechanizability</a></div>
-<p class="topic">The preceding conditions identify when an engineering investment can be worthwhile and sustained.</p>
-</div>
-<div class="section s2" id="sec-6-3-scope-conditions--scope-beyond-software">
-<div class="sec-h"><a href="../book/6.3-scope-conditions.html">Scope Beyond Software</a></div>
-<p class="topic">Transfer beyond software requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations.</p>
-</div>
 </div>
 <div class="chapter">
 <h3 id="ch-6-4-research-agenda"><span class="tier-kick">Lesson</span><a href="../book/6.4-research-agenda.html" class="ch-link">6.4-research-agenda</a> <span class="ch-slug">6.4-research-agenda</span></h3>

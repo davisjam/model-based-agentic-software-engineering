@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 649,
+    "total_sites": 648,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 314,
+      "book-web": 313,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -137,7 +137,7 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 9
+            "occ": 13
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -547,7 +547,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "catalogue-figure.html",
@@ -1041,11 +1041,11 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 24
+            "occ": 32
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 16
+            "occ": 13
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -1251,7 +1251,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 84
+            "occ": 86
           },
           {
             "file": "catalogue-figure.html",
@@ -1359,7 +1359,7 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 6
+            "occ": 9
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -1605,11 +1605,11 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 28
+            "occ": 26
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -2127,7 +2127,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 32
           },
           {
             "file": "catalogue-figure.html",
@@ -2419,11 +2419,7 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -2501,7 +2497,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 38
+            "occ": 37
           }
         ]
       },

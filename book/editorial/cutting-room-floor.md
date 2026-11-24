@@ -30959,3 +30959,111 @@ Several easy-to-count quantities measure activity or investment rather than outc
 None of these descriptions supplies a measured effect size. Together they support a more focused question: under what conditions do representations, independent enforcement, and inherited engineering judgment turn additional agentic capacity into useful progress? The next section develops four propositions that evidence could challenge.
 
 ```
+
+
+## Chapter 6 §§6.2–6.3 restructuring — 2026-11-24
+
+The later editorial instruction favors developed examples and substantive subheadings over generic proposition summaries. Superseded §6.2 passages follow; complete original sources and both editor drafts are retained in the ignored evidence archive.
+
+```latex
+The theory makes four connected propositions. A useful representation can change the work required to reason about a system. It can also make selected obligations available for independent enforcement. When the resulting knowledge and mechanisms remain useful, later work inherits engineering capacity. Additional agentic capacity then acts through that inherited environment, amplifying its fit or exposing its inadequacy.
+
+These are theoretical relationships, informed by the cases rather than established as general findings. Each needs a mechanism, conditions under which it should matter, and a way evidence could show it to be wrong. \magevalue{sec:research-agenda} develops a compact set of comparisons for that purpose.
+
+
+% Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: implementation
+% <!-- point: context-postpones-but-a-model-changes-the-problem | DocAble’s HTML/CSS export was estimated at roughly 590,000 tokens against a 272,000-token context; windowing and compression reduced the information required for each judgment. -->
+
+Research on external representations has long shown that how information is organized changes the work required to reason with it~\citep{larkin1987diagram, zhang1994representations}. Models apply that principle to engineering questions by exposing consequential structure directly. A dependency graph, for example, can make permitted service relationships available without requiring an engineer or agent to reconstruct them from scattered implementation details.
+
+This can shorten the reasoning path, rather than merely make each step cheaper. The environment preserves some work that would otherwise be repeated before the engineering question could even be addressed. State machines expose transitions; contracts expose obligations; assurance arguments relate claims to evidence. Such representations may bring a demanding task within the human-agent system's effective reasoning horizon, or make an already tractable task cheaper. They cannot provide distinctions they omit, and an agent still has to use the representation appropriately.
+
+Once a model exists, maintenance becomes a second problem. ``Keep the model equal to the code'' is too crude. A model of permitted dependencies should disagree with code that violates them. A requirements model may intentionally describe an intended state the current implementation has not reached. The engineering problem is to state and maintain the \textbf{correspondence each model claims}---for architecture, behavior, process, invariants, lineage, or other views---cheaply enough to expose meaningful divergence near the change that created it.
+
+A synchronized model can still be useless for the question at hand. Test suites provide the familiar warning: an oracle may faithfully reproduce implementation behavior while failing to express the requirement.\magefootnote{oracle-overfit}{Automation that optimizes against a visible oracle can satisfy that oracle while violating properties it does not check~\citep{smith2015overfitting}. A recent audit of a coding benchmark likewise identified flawed tests alongside contamination~\citep{openai2026swebench}. Neither fidelity to an artifact nor success against a visible test establishes that the intended obligation was adequately represented.} Model evaluation must therefore ask both whether the claimed correspondence is trustworthy and whether the representation preserves the distinctions needed by the decisions that use it. Stale or poorly chosen models can confidently direct reasoning toward the wrong result, adding cost rather than saving it.
+
+The proposition does not require engineers to design every representation in advance. \magevalue{chapter:one-problem-many-models} showed how implementation signals and commodity intelligence can help recover latent models. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit, leaving engineers to determine whether the observed behavior is the behavior the system ought to have.
+
+Discovery does not confer trust. Like any model in \magevalue{chapter:modeling}, a machine-proposed representation claims a relationship to the system and must earn the trust placed in that claim. A recovered model can be checked against the implementation it purports to summarize; a genuinely novel abstraction poses the harder question of what evidence establishes that it preserves the distinctions required by its intended engineering use. The stronger the reasoning, assurance, or enforcement built on the representation, the stronger that evidence must be.
+
+This is why the metaphor is capital rather than memory. A record can preserve information without changing the productive capacity of later work. An engineering asset becomes capital when later work can use it to gain capability, reduce cost, or control risk. A useful record can certainly do that; its format does not decide the question. The test is what the next engineer or agent can inherit.
+
+That inheritance need not depend on the continued presence of the engineer who supplied the original judgment. When an architectural distinction becomes a trustworthy model, a review judgment becomes a validator, or an operational lesson becomes a reliable procedure, some of the originating engineer\textquotesingle s productive capacity now lives in the GEE. A later engineer or agent can benefit from the result without reconstructing the reasoning that produced it.
+
+The transfer is necessarily partial. Durable structure carries only the judgment it successfully represents or mechanizes. When requirements change, a new failure appears, or the representation itself becomes inadequate, engineering judgment is needed again. Engineering capital therefore does not eliminate expertise; it changes how often the organization must pay again for expert judgment on the same question.
+
+The organizational path matters. If an engineer diagnoses a recurring boundary error but can only repair the current patch, later agents may encounter the same problem. If that diagnosis changes the shared model and its validator, later work can inherit the distinction without waiting for the engineer to explain it again. The theory therefore predicts more consistent propagation where diagnosis is connected to authority over shared engineering structure. It does not require all authority to reside in one person.
+
+The analogy to technical debt is intentional. Debt makes future change more expensive; capital makes future change more productive. Neither status is permanent. Capital depreciates as systems, obligations, and tools change. A validator can become noise, a model can drift, and a once-useful constraint can begin blocking legitimate work. Governance therefore includes maintenance, reconciliation, and retirement. \textbf{Accumulation is not the objective; productive capacity is.}
+
+Estimating the return on engineering capital requires comparing later work with what the same work would have cost without the asset, under comparable capability, quality, and task conditions. The comparison must include construction and maintenance, the asset's useful life and loss of fit, and the value of human attention. Changing foundation-model capabilities and prices affect both sides: cheaper agents may lower the cost of constructing and maintaining an asset, but also the cost of reconstructing the same knowledge on demand. Inherited capacity pays where the value of the work it enables or saves justifies those costs over its useful life. The proposition identifies what must be measured without claiming known coefficients.
+
+This account also connects to Storey's distinction among technical, cognitive, and intent debt in AI-assisted software~\citep{storey2026}. A team can accumulate implementation faster than it maintains shared understanding or preserves why the system should behave as it does. Explicit models and evidence can give consequential understanding and intent a durable place to live.
+
+P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.34}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
+\caption[Four theoretical propositions of MAGE]{\emph{Four theoretical propositions.} Each identifies a mechanism, its conditions, and a comparison needed to assess it. These are claims to investigate, not measured effects.}\label{mage-propositions}\tabularnewline
+\toprule\noalign{}
+Proposition & Mechanism & What a comparison must establish \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Proposition & Mechanism & What a comparison must establish \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P1 Representation leverage & Task-relevant structure reduces reconstruction & Reasoning reach or cost at matched quality, including fidelity and upkeep \\
+P2 Representation-enabled enforcement & Representation makes an obligation checkable; Alignment enforces it & Escape, false rejection and correct delivery for adequately covered obligations \\
+P3 Governance conversion and engineering capital & Later work inherits useful engineering judgment & Reused capacity and propagation net of construction, carrying cost and lost fit \\
+P4 Governable acceleration & Capacity acts through the environment's fit to the work & Capacity-by-environment effects on durable throughput, escape and human attention \\
+\end{longtable}
+}
+
+```
+
+
+### Superseded §6.3 exposition
+
+Removed repeated scope conditions; retained the detailed inset and figure.
+
+```latex
+The four propositions are conditional. A representation can be expensive to keep current, a control can enforce the wrong obligation, and an organization can recognize a structural problem without being able to change it. These limits are part of the theory: they identify where the proposed engineering moves should earn their cost and where another arrangement may be better.
+
+Recurrence is the usual source of return. If the same architectural knowledge, review judgment, or failure class will be encountered hundreds of times, making it explicit once can avoid paying for the same reasoning repeatedly. But recurrence is not the only justification. A rare obligation with catastrophic consequences may warrant extensive modeling and assurance because preventing a single failure can repay the investment. The economic question is therefore broader: \textbf{does the expected reduction in future reasoning, risk, or recovery cost justify the construction and carrying cost of the asset?}
+
+Some properties can be represented precisely and settled mechanically: a schema conforms, a dependency is permitted, an invariant holds. Others admit statistical evidence but not a definitive predicate. Still others depend substantially on aesthetic, scientific, organizational, or social judgment. Governability is the degree to which an important obligation can be made explicit, supplied with relevant evidence, and evaluated with adequate reliability and acceptable cost. Deterministic checking is its strongest region, not its definition.
+
+The residual probabilistic surface is therefore not necessarily technical debt. Some judgment belongs there. The objective is not to minimize it blindly, but to avoid repeatedly purchasing expensive probabilistic reasoning or residual risk where a cheaper, adequate, and trustworthy representation or mechanism can do better.
+
+The organization also needs diagnostic capacity and authority to adapt. Repeated failures become useful evidence only when someone can recognize the missing abstraction, boundary, invariant, or control. That diagnosis must then have a path into the shared environment. A contractor may identify a recurring failure without permission to modify the client's development pipeline. A packaged agent system may allow task instructions while preventing changes to its underlying controls. The engineer can see the problem in either case, yet be unable to convert the diagnosis into a durable intervention.
+
+MAGE therefore requires sufficient control over the engineering environment rather than ownership of the software being developed. An engineer working on a proprietary platform may hold extensive governance authority, while a contractor with full source-code access may hold almost none. Authority need not reside in one person; it has to connect diagnosis to the environment.
+
+A single system can contain obligations suited to durable enforcement alongside obligations that still require expert judgment. The practical question is therefore not whether a project ``uses MAGE,'' but which properties deserve durable representation or enforcement, how strong the evidence should be, and which decisions should remain with experts.
+
+The preceding conditions identify when an engineering investment can be worthwhile and sustained. A further question is what form that investment should take. Important obligations differ in how much can be represented explicitly and how reliably their satisfaction can be evaluated. Consequence does not imply governability: structural loads, resource bounds, protocol states, and dependency relations may support calculation, exhaustive analysis, or proof, while other consequential obligations remain substantially qualitative. Organizations may nevertheless have strong reasons, or a legal duty, to evaluate them carefully.
+
+The historic-building and accessibility examples illustrate obligations that are important, explicit, and legally binding while still requiring judgment. Engineering can improve those judgments by making the obligation explicit, mechanizing the parts that can be checked, and gathering good evidence for the rest. The boundary can also move. Better models and measurements can turn judgments that once required an expert into properties the environment can check; better GenAI may make us willing to entrust increasingly difficult judgments to an artificial expert. Here, expert means a reasoner capable of making the judgment well enough for the consequence at stake, whether human or artificial. The goal is to give each obligation the strongest form of evaluation and enforcement the available evidence can support.
+\end{bookbox}
+
+Commodity intelligence can change this decision in two ways. First, it can lower the cost of constructing and maintaining models, validators, and other engineering machinery. An investment that was previously uneconomical may then become worthwhile, even though the obligation itself has not changed.
+
+Second, better representations, instrumentation, and evaluation can increase mechanizability. An obligation that initially required repeated expert judgment may yield narrower properties that can be checked reliably. For example, an architectural restriction reconstructed from source code may become a repeatable predicate over a dependency model. This is the determinization frontier from \magevalue{sec:what-the-theory-predicts}: Modeling changes what can be decided mechanically, and Alignment makes the resulting decision consequential.
+
+Not every obligation can or should become mechanical. Some judgments remain contextual or admit only probabilistic evidence; others can be automated but do not justify the investment. Explicit engineering can still improve how the remaining judgments are represented, informed, and reviewed.
+
+Neither movement implies a destination for software engineering as a whole. Many consequential questions remain open because the system's appropriate shape is still being discovered: which abstraction matters, which tradeoff users will accept, or which failure will dominate in operation. Implementation can be an experiment that produces information about the specification. Even a question that is closed today may reopen as users, dependencies, workloads, regulations, or adversaries change. Software evolution remains an outer loop around increasingly capable episodes of automated realization~\citep{lehman2003evolution}.
+
+The failure mode is \textbf{premature closure}. An explicit representation can make the wrong target easier to optimize. A small probabilistic surface is therefore not itself evidence of good engineering. MAGE asks which questions can be governed adequately now, which still need investigation, and what structure would help the next decision. It does not predict convergence toward complete specification.
+
+Transfer beyond software requires useful representations of the consequential state, credible correspondence between those representations and the system, and mechanisms adequate to govern the relevant obligations. Where those conditions are weak, better agents or expert judgment may remain the appropriate means of doing the work.
+
+These scope conditions are theoretical, informed by \magevalue{chapter:software-factories}; they are not estimates of how often MAGE will succeed across a population. \magevalue{chapter:profession} examines other domains and what the account implies for engineers. The research agenda asks how to test the relationships first, before treating that wider application as established.
+
+```

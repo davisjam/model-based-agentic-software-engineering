@@ -25,7 +25,7 @@ EXPECTED_IDS = (
     "P4-governable-acceleration",
 )
 EXPECT_PROPOSITIONS = 4
-_COLUMNS = ("Proposition", "Mechanism", "What a comparison must establish")
+_COLUMNS = ("Proposition", "Predicted relationship", "What a comparison must establish")
 _TABLE_HEADER = "| " + " | ".join(_COLUMNS) + " |"
 _TABLE_RULE = "|" + "---|" * len(_COLUMNS)
 
@@ -62,7 +62,7 @@ def derive_propositions(raw: dict | None = None) -> list[Proposition]:
 def render_table_rows(model: TheoryModel | None = None) -> list[str]:
     if model is None:
         model = derive_model()
-    return [f"| {p.short_id} {p.name} | {p.mechanism} | {p.core_quantity} |"
+    return [f"| {p.short_id}. {p.name} | {p.mechanism} | {p.core_quantity} |"
             for p in model.propositions]
 
 def render_propositions_table_md(model: TheoryModel | None = None) -> str:

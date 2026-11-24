@@ -199,8 +199,8 @@
       "id": "P1-representation-leverage",
       "short_id": "P1",
       "name": "Representation leverage",
-      "statement": "Trustworthy, task-relevant representations can reduce reconstruction and extend the work that humans and agents can complete at a given quality and resource budget.",
-      "mechanism": "Task-relevant structure reduces reconstruction",
+      "statement": "Trustworthy, task-relevant representations reduce the reasoning required to complete engineering work at a given quality level and extend the range of work that engineers and agents can accomplish.",
+      "mechanism": "Useful representations reduce reconstruction and extend reasoning capacity",
       "scope_conditions": [
         "Reconstruction and effective reasoning horizon, not merely context size.",
         "Trustworthy task-relevant distinctions, descriptive/normative correspondence, usefulness and upkeep.",
@@ -208,7 +208,7 @@
         "Representation innovation can expose previously impractical structure; held-out usefulness and independent validation remain necessary."
       ],
       "potential_disconfirmation": "No gain at matched quality/resources or benefit erased/reversed by stale, misleading or expensive representations.",
-      "core_quantity": "Reasoning reach or cost at matched quality, including fidelity and upkeep",
+      "core_quantity": "Correct delivery and reasoning cost at matched quality, including representation upkeep",
       "loops": [
         "L3-governance-adaptation"
       ],
@@ -235,8 +235,8 @@
       "id": "P2-representation-enabled-enforcement",
       "short_id": "P2",
       "name": "Representation-enabled enforcement",
-      "statement": "An explicit representation can make a selected obligation mechanically decidable, allowing Alignment to enforce it independently of the producing agent’s compliance.",
-      "mechanism": "Representation makes an obligation checkable; Alignment enforces it",
+      "statement": "Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent’s compliance.",
+      "mechanism": "Explicit models make selected obligations independently enforceable",
       "scope_conditions": [
         "Representation can make a selected obligation mechanically decidable.",
         "Alignment gives that obligation consequence independently of producer compliance.",
@@ -244,7 +244,7 @@
         "Imperfect controls may miss failures or reject good work; compare escape with correct delivery and cost, not escape alone."
       ],
       "potential_disconfirmation": "The representation does not make the relevant property reliably checkable, or assurance gains disappear once false rejection, coverage and cost are matched.",
-      "core_quantity": "Escape, false rejection and correct delivery for adequately covered obligations",
+      "core_quantity": "Defect escape, false rejection, and correct delivery for adequately covered obligations",
       "loops": [
         "L3-governance-adaptation"
       ],
@@ -266,8 +266,8 @@
       "id": "P3-governance-conversion-and-engineering-capital",
       "short_id": "P3",
       "name": "Governance conversion and engineering capital",
-      "statement": "When engineering judgment becomes trustworthy, reusable structure, later work can inherit productive capacity rather than purchase the same reasoning again.",
-      "mechanism": "Later work inherits useful engineering judgment",
+      "statement": "Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.",
+      "mechanism": "Reusable engineering knowledge improves subsequent work",
       "scope_conditions": [
         "Earlier judgment becomes inherited productive capacity: reasoning reach, useful abstractions, safer action, evidence, recovery—not only fewer defects.",
         "Lessons propagate to later work and beyond their originator through trustworthy shared structure.",
@@ -275,7 +275,7 @@
         "Construction/upkeep may become cheaper with agentic capability; that is conditional and does not prove every new asset pays."
       ],
       "potential_disconfirmation": "Later work gains no capability or cost/risk advantage over local repair or on-demand reconstruction once building and carrying the asset are counted.",
-      "core_quantity": "Reused capacity and propagation net of construction, carrying cost and lost fit",
+      "core_quantity": "Later capability and cost relative to local repair or on-demand reconstruction",
       "loops": [
         "L1-bootstrap",
         "L3-governance-adaptation"
@@ -303,8 +303,8 @@
       "id": "P4-governable-acceleration",
       "short_id": "P4",
       "name": "Governable acceleration",
-      "statement": "The effect of additional agentic capacity depends on the environment through which it acts: adequate fit can support durable progress, while poor fit can increase churn, intervention or escaped failure.",
-      "mechanism": "Capacity acts through the environment’s fit to the work",
+      "statement": "The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.",
+      "mechanism": "The effects of additional agentic capacity depend on the engineering environment",
       "scope_conditions": [
         "Capacity acts through the environment; it can amplify good fit or inadequacy.",
         "Adequate representations and assurance can turn capacity into durable useful work; weak fit may produce churn, escape or repeated intervention.",
@@ -312,7 +312,7 @@
         "Whether models/environment substitute for or complement raw reasoning capability is empirical."
       ],
       "potential_disconfirmation": "Added capacity has essentially the same durable outcome across independently measured environment conditions, or apparent benefits vanish at matched quality and task difficulty.",
-      "core_quantity": "Capacity-by-environment effects on durable throughput, escape and human attention",
+      "core_quantity": "Capacity-by-environment effects on durable throughput, defect escape, and human attention",
       "loops": [
         "L2-churn-discovery",
         "L3-governance-adaptation",

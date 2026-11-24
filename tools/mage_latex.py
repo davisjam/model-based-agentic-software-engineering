@@ -794,6 +794,8 @@ def _prepare_record(task):
         'handbook-job-recovery-failures',
         # Keep the outcome synthesis inside 6.1, before the propositions.
         'mage-outcomes',
+        # Introduce the proposition map before P1 and retain P2's comparison in place.
+        'mage-propositions', 'modeling-alignment-quadrants',
         # Keep the baseline discussion complete before the metrics table.
         'practicing-primary-readings'}))
     # Headings repeat between chapters; make destination identities unambiguous.
