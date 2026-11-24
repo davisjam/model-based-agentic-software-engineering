@@ -731,7 +731,7 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-evaluation-questions', (.40, .60),
                                   row_gap_bp=3, row_stretch=1.05)
-    latex = layout_selected_table(latex, 'agentic-engineering-factories', (.20, .35, .45),
+    latex = layout_selected_table(latex, 'agentic-engineering-factories', (.15, .35, .50),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
