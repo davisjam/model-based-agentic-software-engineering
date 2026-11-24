@@ -1,12 +1,12 @@
 {
   "source": "book/assets/discovering-models-migration.svg",
-  "claim": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
-  "topology": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+  "claim": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup through refactoring or other local changes. Improved models and controls inform the next pass.",
+  "topology": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup through refactoring or other local changes. Improved models and controls inform the next pass.",
   "required_terms": [
     "EXISTING CODEBASE",
     "Candidate locations:",
     "primitive density \u00b7 repeated shapes",
-    "component / boundary view",
+    "component and boundary analysis",
     "Classify findings",
     "Candidates identify",
     "potential work.",
@@ -16,27 +16,28 @@
     "Construct the model",
     "Types and relationships",
     "Implementation cleanup",
-    "Codemod",
+    "Refactor or clean up",
     "Update code that uses the model",
     "Enforce selected obligations",
     "Improved models and controls",
     "next pass"
   ],
   "bw_encoding": "Light gray identifies the missing-model branch and improved models and controls. The return arrow marks the next pass; no separate key is needed.",
-  "redesign": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+  "redesign": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
   "questions": [],
-  "alt": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+  "alt": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup through refactoring or other local changes. Improved models and controls inform the next pass.",
   "qa": {
     "date": "2026-11-24",
-    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
-    "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+    "proof": "book/_design/drafts/ch4-terminology-20261124/figures/discovering-models-migration.pdf",
+    "proof_sha256": "403837eddca19453e7ef748583f22579ae9b6f099dbbeaf34f34d2e8c51a9a6e",
+    "page": 2,
     "width_bp": 449.97198486328125,
     "height_bp": 267.9750061035156,
     "reviewed_visually": true,
     "geometry_findings": 0,
     "semantic_typography_checks": 18,
     "typography_findings": 0,
-    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+    "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
   },
   "svg_qa": {
     "overflow_findings": 0,
@@ -52,20 +53,21 @@
   "layout_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
-    "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-    "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+    "source_sha256": "2c6bca43083c297fb8adecb2e8d3011628d2b2f3ed6f42671c15fa35e5d975f1",
+    "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c",
+    "reason": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
-      "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+      "proof": "book/_design/drafts/ch4-terminology-20261124/figures/discovering-models-migration.pdf",
+      "proof_sha256": "403837eddca19453e7ef748583f22579ae9b6f099dbbeaf34f34d2e8c51a9a6e",
+      "page": 2,
       "width_bp": 449.97198486328125,
       "height_bp": 267.9750061035156,
       "reviewed_visually": true,
       "geometry_findings": 0,
       "semantic_typography_checks": 18,
       "typography_findings": 0,
-      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+      "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
     },
     "reviewed_visually": true,
     "contracts": {}
@@ -73,20 +75,21 @@
   "typography_review": {
     "source": "book/assets/discovering-models-migration.svg",
     "candidate": "book/tikz/figures/discovering-models-migration.tex",
-    "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
-    "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-    "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+    "source_sha256": "2c6bca43083c297fb8adecb2e8d3011628d2b2f3ed6f42671c15fa35e5d975f1",
+    "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c",
+    "reason": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
-      "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+      "proof": "book/_design/drafts/ch4-terminology-20261124/figures/discovering-models-migration.pdf",
+      "proof_sha256": "403837eddca19453e7ef748583f22579ae9b6f099dbbeaf34f34d2e8c51a9a6e",
+      "page": 2,
       "width_bp": 449.97198486328125,
       "height_bp": 267.9750061035156,
       "reviewed_visually": true,
       "geometry_findings": 0,
       "semantic_typography_checks": 18,
       "typography_findings": 0,
-      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+      "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
     },
     "reviewed_visually": true,
     "checks": [
@@ -106,7 +109,7 @@
         "italic": false
       },
       {
-        "text": "component / boundary view",
+        "text": "component and boundary analysis",
         "bold": false,
         "italic": false
       },
@@ -156,7 +159,7 @@
         "italic": false
       },
       {
-        "text": "Codemod",
+        "text": "Refactor or clean up",
         "bold": false,
         "italic": true
       },
@@ -792,6 +795,50 @@
           }
         }
       }
+    },
+    {
+      "date": "2026-11-24",
+      "reason": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
+      "previous": {
+        "claim": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+        "topology": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+        "required_terms": [
+          "EXISTING CODEBASE",
+          "Candidate locations:",
+          "primitive density \u00b7 repeated shapes",
+          "component / boundary view",
+          "Classify findings",
+          "Candidates identify",
+          "potential work.",
+          "Appropriate implementation",
+          "Accept / exempt",
+          "Missing model",
+          "Construct the model",
+          "Types and relationships",
+          "Implementation cleanup",
+          "Codemod",
+          "Update code that uses the model",
+          "Enforce selected obligations",
+          "Improved models and controls",
+          "next pass"
+        ],
+        "alt": "Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.",
+        "redesign": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+        "qa": {
+          "date": "2026-11-24",
+          "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+          "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+          "width_bp": 449.97198486328125,
+          "height_bp": 267.9750061035156,
+          "reviewed_visually": true,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 18,
+          "typography_findings": 0,
+          "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        },
+        "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+        "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69"
+      }
     }
   ],
   "chapter4_revision_20261124": {
@@ -809,6 +856,6 @@
       "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
     }
   },
-  "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
-  "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69"
+  "source_sha256": "2c6bca43083c297fb8adecb2e8d3011628d2b2f3ed6f42671c15fa35e5d975f1",
+  "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c"
 }

@@ -160,7 +160,8 @@
     "alignment-kernel": {
       "width_bp": 450,
       "placement": "centered",
-      "float_placement": "!htb"
+      "float_placement": "!htb",
+      "before_following_prose": true
     },
     "docable-reasoning-substitution": {
       "width_bp": 405,
@@ -254,6 +255,16 @@
     "realization-over-time": {
       "width_bp": 409.5,
       "placement": "centered"
+    },
+    "interlude-graph-two-partitions": {
+      "width_bp": 450,
+      "placement": "centered",
+      "before_following_prose": true
+    },
+    "interlude-analysis-before-build": {
+      "width_bp": 450,
+      "placement": "centered",
+      "before_following_prose": true
     }
   }
 }

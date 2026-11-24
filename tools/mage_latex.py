@@ -844,6 +844,9 @@ def _prepare_record(task):
     opening = re.sub(r'^\s*(?:<!--.*?-->\s*)*', '', raw, flags=re.S)
     if section_page and re.match(r'#{2,6}\s', opening):
         heading = r'\Needspace{8\baselineskip}' + '\n' + heading
+    if section_page and slug == '4.2-one-problem-many-models':
+        # Keep the two-paragraph introduction with its section heading.
+        heading = r'\Needspace{14\baselineskip}' + '\n' + heading
     if section_page and record['part'] == 4 and record.get('chapter_title') == 'Summary':
         # Keep the reviewed five-item summary and its chapter transition on one
         # page, instead of stranding the transition's last lines on a new page.

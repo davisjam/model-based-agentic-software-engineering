@@ -8,7 +8,7 @@
 
 So far, we have applied Modeling and Alignment to the system we are building. We can apply them to the machinery we use to build it as well. Agents are dispatched, work is integrated, checks are executed, and failures require recovery. As DocAble grew, I found myself engineering these activities much as I engineered the remediation software itself.
 
-\section{Modeling Recovery}\label{heading:lifecycle-models-and-recovery}
+\section{Engineering Recovery Procedures}\label{heading:lifecycle-models-and-recovery}
 
 A method has to survive terrible, horrible, no good, very bad days, too. Full disks, conflicted branches, vanished agents, stalled queues, flaking tests---the quotidian catastrophes of software engineering.
 
@@ -57,7 +57,7 @@ Broad repository checks were scheduled every thirty minutes against new commits 
 
 This arrangement reduced contention, but it also changed when I could discover certain defects. A change could be integrated before the next broad validation sweep, and several intervening changes could make a subsequent failure harder to localize. I therefore had to decide which obligations required evidence before integration and which could be evaluated later. The per-merge, scheduled, and predeployment checks supplied evidence at different boundaries; a scheduled failure could still interrupt subsequent work.
 
-I had encountered a related engineering problem while redesigning document processing in \magevalue{sec:interlude-one-problem-many-models}. In both cases, the event that initiated work did not necessarily define the best way to execute that work. Separating the arrival of work from its execution schedule gave me additional design choices.
+I had encountered a related engineering problem while redesigning document processing in \magevalue{sec:interlude-one-problem-many-models}. In both cases, I had initially grouped work according to how it arrived rather than how it could be executed economically. Separating the arrival of work from its execution schedule gave me additional design choices.
 
 \section{Evaluating and Revising the Controls}\label{heading:engineering-capital-depreciates}
 

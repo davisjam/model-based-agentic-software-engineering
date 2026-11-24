@@ -256,8 +256,9 @@
     "book/assets/discovering-models-migration.svg": {
       "approved_date": "2026-11-24",
       "reason": "Author-directed Chapter 4 revision: Author-directed terminology simplification; retain full geometry, classifications, model-building sequence, enforcement, and next-pass loop.",
-      "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
-      "refinement_20261124": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels."
+      "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c",
+      "refinement_20261124": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+      "terminology_20261124": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes."
     },
     "book/assets/active-passive-alignment.svg": {
       "approved_date": "2026-11-13",
@@ -307,8 +308,9 @@
     "book/assets/interlude-analysis-before-build.svg": {
       "approved_date": "2026-11-14",
       "reason": "Author approved Figure 4.7 with equal spacing beneath the two lower panel headings.",
-      "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
-      "refinement_20261124": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp."
+      "candidate_sha256": "adb4e6b7adc9a986d3259acc49cf18e5397a5d6fb40f9bfa6251aa8555dfcb95",
+      "refinement_20261124": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+      "terminology_20261124": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes."
     },
     "book/assets/where-effort-moves.svg": {
       "approved_date": "2026-11-14",

@@ -75,7 +75,7 @@ C &= M_{\mathrm{base}} + M_{\mathrm{stream}} + M_{\mathrm{skeleton}}
 Here \(M_{\mathrm{base}}\) bounds the worker\textquotesingle s runtime and other baseline resident memory, including the headroom needed for memory management. The remaining terms bound the rolling stream buffer, structural skeleton, handles, and remediation working set. Within the declared operating envelope, \(C\) is independent of aggregate media payload size.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
-Chunking had shown that the observed documents worked. Skeletonization supports a structural claim over a declared class of inputs: peak worker memory is bounded independently of total media size, provided the modeled path never retains the complete payload.
+Chunking had enabled me to process the documents encountered so far. Skeletonization supported a more general claim: within the modeled operating envelope, peak worker memory should be independent of total media size.
 
 % Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
 That claim depends on bounded streaming buffers, a structural skeleton whose size remains inside the declared envelope, and bounded active state at each media consumer. The write path must stream too; buffering the complete payload before writing would merely move the memory spike. Pathological structure, oversized individual objects, excessive concurrency, or an unmodeled resource can still exhaust memory.
@@ -122,7 +122,7 @@ The same graph admits different execution policies. \autoref{interlude-graph-two
 \label{interlude-graph-two-partitions}
 \end{figure}
 
-The executor can repeatedly schedule computations whose prerequisites have been satisfied, record their outputs, and identify the next set of ready computations. This is an ordinary topological traversal of a directed acyclic graph.\magefootnote{topo-dag}{Topological traversal is familiar from compilers, build systems, and dependency schedulers.}
+The executor can repeatedly schedule computations whose prerequisites have been satisfied, record their outputs, and identify the next set of ready computations. The dependency ordering is an ordinary topological traversal of a directed acyclic graph; the executor must also respect the applicable resource and mutation constraints.\magefootnote{topo-dag}{Topological traversal is familiar from compilers, build systems, and dependency schedulers.}
 
 The remediation graph itself need not change. What changes is how the executor groups its computations.
 
@@ -163,7 +163,7 @@ T = (R+1)\,F + G
 For example, suppose a document requires four remediation rounds, each whole-document processing invocation takes 10 seconds, and the remaining GenAI operations contribute 20 seconds to elapsed time. The model predicts \(T = (4+1)(10) + 20 = 70\) seconds. Fifty of those seconds come from processing the document five times: once for each remediation round and once more to apply the accumulated changes. Cutting the GenAI contribution in half would save 10 seconds; eliminating two production rounds would save 20. In this example, we spend too much time rebuilding the document.
 
 % Evidence: E26/E27/E29 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/README.md | kind: source-reconciliation; no new experiment
-I could also test whether this model was consistent with measurements. Given comparable execution times from a single-invocation design and a repeated-round design, I could estimate \(F\) and \(G\), provided both designs shared those component costs. A fit requiring a negative processing time would contradict the assumptions of the model rather than provide a useful calibration.
+I could also test this model against measurements. Suppose a single-invocation design takes \(T_1=F+G\), while a repeated-round design takes \(T_R=(R+1)F+G\). If the two designs share these component costs, their measured execution times let me estimate \(F\) and \(G\). A negative estimate would contradict the assumptions of the model rather than provide a useful calibration.
 
 \subsection{Predicting Latency}\label{heading:predicting-latency}
 
@@ -177,7 +177,7 @@ Critical-path analysis also supports quantitative latency predictions when opera
 \label{interlude-latency-floor}
 \end{figure}
 
-For the representative 37-image workload, local concurrency of six required \(\lceil \frac{37}{6}\rceil=7\) waves of image-description calls. Adding their estimated durations to the two preceding summary operations and a small CPU allowance yielded a predicted latency of about 33 seconds. Modeled cloud concurrency of 64 could execute that frontier in one wave; including estimated cold-start and round-trip costs gave about 11.5 seconds, a roughly 2.9× improvement. The prediction depended on those overhead estimates and required staging measurements before cutover. The local cap also reflected memory: concurrent ChunkWorkers each held format-native document state. Skeletonization reduced that per-worker residency, making wider execution feasible without multiplying the same large media working set.
+With local concurrency limited to six, the representative 37-image workload required \(\lceil \frac{37}{6}\rceil=7\) waves of image-description calls. Adding their estimated durations to the two preceding summary operations and a small CPU allowance yielded a predicted latency of about 33 seconds. With cloud concurrency of 64, those calls could execute in one wave. Even after accounting for estimated cold-start and round-trip costs, the predicted latency fell to about 11.5 seconds, a roughly 2.9× improvement. The prediction depended on those overhead estimates and required staging measurements before cutover. The local cap also reflected memory: concurrent ChunkWorkers each held format-native document state. Skeletonization reduced that per-worker residency, making wider execution feasible without multiplying the same large media working set.
 
 \subsection{Predicting the Cost of a Design Change}\label{heading:predicting-the-cost-of-a-design-change}
 
@@ -217,7 +217,7 @@ Another design projected a worker footprint of 90 to 120 MiB after rendering cha
 I also recorded how each measurement was obtained. A measured quantity might describe a particular document, workload, configuration, or revision of the software. Comparing measurements obtained under different conditions could otherwise lead me to revise a model that was correct for its original assumptions. A figure taken on a development host was marked as such and did not become the value used in the model until the deployment environment reproduced it. A process-level measurement may omit memory included in the container's total.
 
 % Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: dated-case-evidence
-Nor was the memory work finished before the execution-time work began. I was still investigating memory consumption while developing the time models. What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The retained controls preserve the resource obligation even when the model used to evaluate it changes.
+Nor was the memory work finished before the execution-time work began. I was still investigating memory consumption while developing the time models. I wanted subsequent changes to preserve acceptable memory consumption, not necessarily the first model I had constructed to explain it. Later work could challenge the model, recalibrate it, or replace it with a better one. What it could not do was disregard the memory requirement.
 
 The episode therefore left more than a revised implementation. It left several models whose relationships could support later decisions, even as their parameters and assumptions continued to change.
 

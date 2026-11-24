@@ -33505,3 +33505,88 @@ Section: `\section{Realization}`. Technical refinement: distinguish quantities, 
 ```latex
 where \(R\) counts production rounds, \(F(d)\) includes parsing, traversal, document passes, rendering, and fixed overhead per invocation, and \(G(d)\) accounts for reasoning work and its distribution. The extra invocation applies the results. This approximation assumes that invocation costs are sufficiently similar and that resolved reasoning units are reused rather than repeated. It explains why shortening a reasoning path can leave repeated capture or rendering dominant. Measure rounds and operation counts as well as elapsed time, and revise the decomposition when the observations disagree.
 ```
+
+
+## 2026-11-24 — Chapter 4 final local refinements
+
+Source review: `95d0dec2-c564-4a6d-9b29-327f52a04e66/Pasted text.txt`. Baseline: 5766a1b1ca99702df3967783f82475585282ab93. Preserve the chapter structure; clarify the kernel, resource obligations, calibration, and recovery procedures.
+
+### book/latex/sources/part4/00-part-intro.tex
+
+Superseded passage:
+
+```latex
+This chapter follows those decisions through several engineering episodes.
+```
+
+### book/latex/sources/part4/4.1-the-dynamics-of-mage.tex
+
+Superseded passage:
+
+```latex
+Newly established obligations can then join the kernel, protecting the results of one transformation during the next.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Superseded passage:
+
+```latex
+Chunking had shown that the observed documents worked. Skeletonization supports a structural claim over a declared class of inputs: peak worker memory is bounded independently of total media size, provided the modeled path never retains the complete payload.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Superseded passage:
+
+```latex
+This is an ordinary topological traversal of a directed acyclic graph.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Superseded passage:
+
+```latex
+I could also test whether this model was consistent with measurements. Given comparable execution times from a single-invocation design and a repeated-round design, I could estimate \(F\) and \(G\), provided both designs shared those component costs. A fit requiring a negative processing time would contradict the assumptions of the model rather than provide a useful calibration.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Superseded passage:
+
+```latex
+For the representative 37-image workload, local concurrency of six required \(\lceil \frac{37}{6}\rceil=7\) waves of image-description calls. Adding their estimated durations to the two preceding summary operations and a small CPU allowance yielded a predicted latency of about 33 seconds. Modeled cloud concurrency of 64 could execute that frontier in one wave; including estimated cold-start and round-trip costs gave about 11.5 seconds, a roughly 2.9× improvement.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Superseded passage:
+
+```latex
+What became durable was not a particular bound but the requirement to reason explicitly about the resource. Later work could challenge the model, recalibrate it, or replace it with a better one. It could not silently return memory behavior to an unexamined implementation detail. The retained controls preserve the resource obligation even when the model used to evaluate it changes.
+```
+
+### book/latex/sources/part4/4.3-brownfield-engineering.tex
+
+Superseded passage:
+
+```latex
+ As a system evolves, its models and controls also need maintenance~\citep{lehman1985}.
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex
+
+Superseded passage:
+
+```latex
+\section{Modeling Recovery}
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex
+
+Superseded passage:
+
+```latex
+In both cases, the event that initiated work did not necessarily define the best way to execute that work.
+```

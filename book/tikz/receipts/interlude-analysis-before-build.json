@@ -8,7 +8,7 @@
     "Diagnosis",
     "(b) Decompose",
     "an operation",
-    "Same dependencies",
+    "Preserve external dependencies",
     "(c) Remove an",
     "unnecessary dependency",
     "Change the information structure",
@@ -39,39 +39,41 @@
     "Dependency"
   ],
   "bw_encoding": "Gray identifies dominant or modified operations, white identifies other operations, and directed arrows express dependencies. All three panels preserve their technical distinctions without color.",
-  "redesign": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+  "redesign": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
   "questions": [],
   "alt": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
   "qa": {
     "date": "2026-11-24",
-    "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
-    "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+    "proof": "book/_design/drafts/ch4-terminology-20261124/figures/interlude-analysis-before-build.pdf",
+    "proof_sha256": "771f3289722dd87516efd3aa9cfa7d16935d06ae61a1ecde37fa7aab5b6e1ec9",
+    "page": 1,
     "width_bp": 449.97198486328125,
     "height_bp": 281.9739990234375,
     "reviewed_visually": true,
     "geometry_findings": 0,
     "semantic_typography_checks": 34,
     "typography_findings": 0,
-    "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+    "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
   },
   "reference_image_sha256": "3dff4a3ab374ada9ce45e4b02af4e54d23422db5192921f6b5a1338bf7d18fd9",
   "layout_review": {
     "source": "book/assets/interlude-analysis-before-build.svg",
     "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-    "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
-    "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
-    "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+    "source_sha256": "be39ecc60d04814274983807c448e5683689b9291149d990efa08e9379a45535",
+    "candidate_sha256": "adb4e6b7adc9a986d3259acc49cf18e5397a5d6fb40f9bfa6251aa8555dfcb95",
+    "reason": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
-      "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+      "proof": "book/_design/drafts/ch4-terminology-20261124/figures/interlude-analysis-before-build.pdf",
+      "proof_sha256": "771f3289722dd87516efd3aa9cfa7d16935d06ae61a1ecde37fa7aab5b6e1ec9",
+      "page": 1,
       "width_bp": 449.97198486328125,
       "height_bp": 281.9739990234375,
       "reviewed_visually": true,
       "geometry_findings": 0,
       "semantic_typography_checks": 34,
       "typography_findings": 0,
-      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+      "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
     },
     "reviewed_visually": true,
     "contracts": {
@@ -82,20 +84,21 @@
   "typography_review": {
     "source": "book/assets/interlude-analysis-before-build.svg",
     "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-    "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
-    "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
-    "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+    "source_sha256": "be39ecc60d04814274983807c448e5683689b9291149d990efa08e9379a45535",
+    "candidate_sha256": "adb4e6b7adc9a986d3259acc49cf18e5397a5d6fb40f9bfa6251aa8555dfcb95",
+    "reason": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
     "validation": {
       "date": "2026-11-24",
-      "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
-      "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+      "proof": "book/_design/drafts/ch4-terminology-20261124/figures/interlude-analysis-before-build.pdf",
+      "proof_sha256": "771f3289722dd87516efd3aa9cfa7d16935d06ae61a1ecde37fa7aab5b6e1ec9",
+      "page": 1,
       "width_bp": 449.97198486328125,
       "height_bp": 281.9739990234375,
       "reviewed_visually": true,
       "geometry_findings": 0,
       "semantic_typography_checks": 34,
       "typography_findings": 0,
-      "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+      "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
     },
     "reviewed_visually": true,
     "checks": [
@@ -125,7 +128,7 @@
         "italic": false
       },
       {
-        "text": "Same dependencies",
+        "text": "Preserve external dependencies",
         "bold": false,
         "italic": true
       },
@@ -527,8 +530,68 @@
           ]
         }
       }
+    },
+    {
+      "date": "2026-11-24",
+      "reason": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
+      "previous": {
+        "claim": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
+        "topology": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
+        "required_terms": [
+          "(a) Identify the",
+          "critical path",
+          "Diagnosis",
+          "(b) Decompose",
+          "an operation",
+          "Same dependencies",
+          "(c) Remove an",
+          "unnecessary dependency",
+          "Change the information structure",
+          "A (1 s)",
+          "B (8 s)",
+          "C (2 s)",
+          "D (2 s)",
+          "E (2 s)",
+          "F (1 s)",
+          "12 s",
+          "6 s",
+          "Critical path:",
+          "A \u2192B \u2192D \u2192F",
+          "(3 s)",
+          "New critical path: 7 s",
+          "Illustrative; ignoring overhead",
+          "Image 1",
+          "Gen",
+          "alt 1",
+          "Image 2",
+          "alt 2",
+          "Before: serial dependency",
+          "Shared rendered context",
+          "After: independent operations",
+          "consume shared context",
+          "Dominant or modified operation",
+          "Other operation",
+          "Dependency"
+        ],
+        "alt": "Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.",
+        "redesign": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+        "qa": {
+          "date": "2026-11-24",
+          "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+          "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+          "width_bp": 449.97198486328125,
+          "height_bp": 281.9739990234375,
+          "reviewed_visually": true,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 34,
+          "typography_findings": 0,
+          "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        },
+        "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+        "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c"
+      }
     }
   ],
-  "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
-  "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c"
+  "source_sha256": "be39ecc60d04814274983807c448e5683689b9291149d990efa08e9379a45535",
+  "candidate_sha256": "adb4e6b7adc9a986d3259acc49cf18e5397a5d6fb40f9bfa6251aa8555dfcb95"
 }

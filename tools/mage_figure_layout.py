@@ -36,6 +36,7 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
     data = _layout(path)
     widths = {}
     placements = {}
+    before_prose = set()
     for label, rule in data.items():
         if rule.get('inset_placement') not in (None, 'flow', 'inline'):
             raise ValueError('Invalid inset placement for ' + label)
@@ -49,6 +50,10 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
             raise ValueError('Invalid float boundary for ' + label)
         if rule.get('flush_after'):
             raise ValueError('Figure layouts cannot force a page boundary: ' + label)
+        if not isinstance(rule.get('before_following_prose', False), bool):
+            raise ValueError('Invalid prose boundary for ' + label)
+        if rule.get('before_following_prose'):
+            before_prose.add(label)
         width = rule.get('width_bp')
         if (rule.get('placement') != 'centered' or isinstance(width, bool) or
                 not isinstance(width, (int, float)) or not 180 <= width <= 450):
@@ -77,6 +82,10 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
             content = re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?',
                              lambda _: r'\begin{figure}[' + placements[label[1]] + ']',
                              content, count=1)
+        if label[1] in before_prose:
+            # Place the reviewed teaching figure before its explanation starts,
+            # so a deferred float cannot interrupt that explanation mid-sentence.
+            content += '\n' + r'\FloatBarrier' + '\n'
         return content
 
     return re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', figure, latex, flags=re.S)

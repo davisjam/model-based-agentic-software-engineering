@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="444" height="262" viewBox="0 0 444 262" role="img" aria-labelledby="title desc">
 <title id="title">Recovering models from an existing codebase</title>
-<desc id="desc">Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.</desc>
+<desc id="desc">Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup through refactoring or other local changes. Improved models and controls inform the next pass.</desc>
 <defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs>
 <rect x="143" y="2" width="156" height="20" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <text x="221.0" y="15.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">EXISTING CODEBASE</text>
 <rect x="116" y="34" width="210" height="34" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <text x="221" y="44.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Candidate locations:</text>
 <text x="221" y="55.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9" font-weight="400" font-style="normal">primitive density · repeated shapes</text>
-<text x="221" y="65.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9" font-weight="400" font-style="normal">component / boundary view</text>
+<text x="221" y="65.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9" font-weight="400" font-style="normal">component and boundary analysis</text>
 <path d="M221,22 L221,34" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)"/>
 <rect x="143" y="80" width="156" height="20" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <text x="221.0" y="93.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Classify findings</text>
@@ -33,7 +33,7 @@
 <text x="368.0" y="135.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="9.5" font-weight="700" font-style="normal">Implementation cleanup</text>
 <path d="M368,108 L368,122" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)"/>
 <rect x="305" y="154" width="126" height="22" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
-<text x="368.0" y="168.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">Codemod</text>
+<text x="368.0" y="168.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">Refactor or clean up</text>
 <path d="M368,142 L368,154" fill="none" stroke="black" stroke-width=".7" marker-end="url(#arrow)"/>
 <rect x="111" y="196" width="220" height="30" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".65"/>
 <text x="221" y="207.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Update code that uses the model</text>

@@ -100,7 +100,7 @@ def residual():
 
 def analysis_before_build():
     f=Figure(444,276,'Analyzing dependency graphs to redesign execution','Three side-by-side panels distinguish diagnosis, decomposition, and dependency redesign. The original critical path is 12 seconds, compared with 6 seconds on the other branch. Three concurrent 3-second parts reduce the critical path to 7 seconds before overhead. Two image-description operations become independent when each consumes its image and shared rendered context.')
-    for x,title,sub in [(73,'(a) Identify the\ncritical path','Diagnosis'),(219,'(b) Decompose\nan operation','Same dependencies'),(369,'(c) Remove an\nunnecessary dependency','Change the information structure')]:
+    for x,title,sub in [(73,'(a) Identify the\ncritical path','Diagnosis'),(219,'(b) Decompose\nan operation','Preserve external dependencies'),(369,'(c) Remove an\nunnecessary dependency','Change the information structure')]:
         f.text(x,13,title,size=10,bold=True);f.text(x,35,sub,size=9,italic=True)
     f.path([(146,1),(146,221)],False);f.path([(292,1),(292,274)],False)
     for x,y,label,gray in [(57,48,'A (1 s)',0),(23,84,'B (8 s)',8),(91,84,'C (2 s)',0),(23,120,'D (2 s)',0),(91,120,'E (2 s)',0),(57,156,'F (1 s)',0)]:f.box(x,y,32,18,label,size=9,gray=gray,bold=bool(gray))
@@ -131,13 +131,13 @@ def analysis_before_build():
     return f.result()
 
 def recovery():
-    f=Figure(444,262,'Recovering models from an existing codebase','Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup by codemod. Improved models and controls inform the next pass.')
+    f=Figure(444,262,'Recovering models from an existing codebase','Candidate locations lead to three classifications: appropriate implementation to accept or exempt; a missing model to construct through types and relationships, update in the code that uses it, and enforce; or implementation cleanup through refactoring or other local changes. Improved models and controls inform the next pass.')
     f.box(143,2,156,20,'EXISTING CODEBASE',size=10,bold=True)
-    f.rect(116,34,210,34);f.text(221,41,'Candidate locations:',size=10,bold=True);f.text(221,52,'primitive density · repeated shapes',size=9);f.text(221,62,'component / boundary view',size=9)
+    f.rect(116,34,210,34);f.text(221,41,'Candidate locations:',size=10,bold=True);f.text(221,52,'primitive density · repeated shapes',size=9);f.text(221,62,'component and boundary analysis',size=9)
     f.path([(221,22),(221,34)]);f.box(143,80,156,20,'Classify findings',size=10,bold=True);f.path([(221,68),(221,80)])
     f.text(57,90,'Candidates identify\npotential work.',size=9,italic=True)
     f.path([(221,100),(221,108)],False);f.path([(74,108),(368,108)],False)
-    for x,label,action in [(7,'Appropriate implementation','Accept / exempt'),(154,'Missing model','Construct the model'),(301,'Implementation cleanup','Codemod')]:
+    for x,label,action in [(7,'Appropriate implementation','Accept / exempt'),(154,'Missing model','Construct the model'),(301,'Implementation cleanup','Refactor or clean up')]:
         f.box(x,122,134,20,label,size=9.5,bold=True,gray=8 if x==154 else 0);f.path([(x+67,108),(x+67,122)])
         if x!=154:f.box(x+4,154,126,22,action,size=10,italic=True)
         else:

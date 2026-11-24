@@ -17564,22 +17564,23 @@
     {
       "source": "book/assets/interlude-analysis-before-build.svg",
       "candidate": "book/tikz/figures/interlude-analysis-before-build.tex",
-      "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
-      "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
+      "source_sha256": "be39ecc60d04814274983807c448e5683689b9291149d990efa08e9379a45535",
+      "candidate_sha256": "adb4e6b7adc9a986d3259acc49cf18e5397a5d6fb40f9bfa6251aa8555dfcb95",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+      "reason": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
-        "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+        "proof": "book/_design/drafts/ch4-terminology-20261124/figures/interlude-analysis-before-build.pdf",
+        "proof_sha256": "771f3289722dd87516efd3aa9cfa7d16935d06ae61a1ecde37fa7aab5b6e1ec9",
+        "page": 1,
         "width_bp": 449.97198486328125,
         "height_bp": 281.9739990234375,
         "reviewed_visually": true,
         "geometry_findings": 0,
         "semantic_typography_checks": 34,
         "typography_findings": 0,
-        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
       },
       "checks": [
         {
@@ -17608,7 +17609,7 @@
           "italic": false
         },
         {
-          "text": "Same dependencies",
+          "text": "Preserve external dependencies",
           "bold": false,
           "italic": true
         },
@@ -17844,6 +17845,199 @@
               "geometry_findings": 0,
               "semantic_typography_checks": 7,
               "unapproved_compile_diagnostics": 0
+            }
+          }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Clarify that decomposing the operation preserves its external dependencies while changing its internal graph. Replace Same dependencies with Preserve external dependencies at the existing 9pt italic size; no geometry changes.",
+          "previous": {
+            "source_sha256": "ac0d7e947924aa3e59345455b895defdbf81ca57ead22f047e5998903643ac7c",
+            "candidate_sha256": "d92787490445c8ffd75727bf7153a702233d5c30efff325954b19e2b2d2c730c",
+            "reason": "Remove the explanatory Two modeling responses block and arrange diagnosis and the two redesigns side by side. Preserve weighted paths, parallel suboperations, both image inputs and the shared-context dependency structure. Retain 9pt labels and 10pt panel headings; authored height falls from 344bp to 276bp.",
+            "checks": [
+              {
+                "text": "(a) Identify the",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "critical path",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Diagnosis",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "(b) Decompose",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "an operation",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Same dependencies",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "(c) Remove an",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "unnecessary dependency",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Change the information structure",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "A (1 s)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "B (8 s)",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "C (2 s)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "D (2 s)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "E (2 s)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "F (1 s)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "12 s",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "6 s",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Critical path:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "A \u2192B \u2192D \u2192F",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(3 s)",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "New critical path: 7 s",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Illustrative; ignoring overhead",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Image 1",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Gen",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "alt 1",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Image 2",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "alt 2",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Before: serial dependency",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Shared rendered context",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "After: independent operations",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "consume shared context",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Dominant or modified operation",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Other operation",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Dependency",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-refinement-20261124/figures/interlude-analysis-before-build.pdf",
+              "proof_sha256": "27caa32d1b779f483d7ee5c7d81c26065e730e7fcd7413bf7ed7ac497e4b14c6",
+              "width_bp": 449.97198486328125,
+              "height_bp": 281.9739990234375,
+              "reviewed_visually": true,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 34,
+              "typography_findings": 0,
+              "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
             }
           }
         }
@@ -18472,22 +18666,23 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
-      "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
-      "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
+      "source_sha256": "2c6bca43083c297fb8adecb2e8d3011628d2b2f3ed6f42671c15fa35e5d975f1",
+      "candidate_sha256": "f975880affbdc9072f4e2ef75e662e1519c21e3b118a291984d7fd90c6e0301c",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+      "reason": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
       "validation": {
         "date": "2026-11-24",
-        "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
-        "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+        "proof": "book/_design/drafts/ch4-terminology-20261124/figures/discovering-models-migration.pdf",
+        "proof_sha256": "403837eddca19453e7ef748583f22579ae9b6f099dbbeaf34f34d2e8c51a9a6e",
+        "page": 2,
         "width_bp": 449.97198486328125,
         "height_bp": 267.9750061035156,
         "reviewed_visually": true,
         "geometry_findings": 0,
         "semantic_typography_checks": 18,
         "typography_findings": 0,
-        "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
+        "scope": "Isolated native PDF and font-loaded Chromium SVG proofs. Labels fit without font or layout changes."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
       "checks": [
@@ -18507,7 +18702,7 @@
           "italic": false
         },
         {
-          "text": "component / boundary view",
+          "text": "component and boundary analysis",
           "bold": false,
           "italic": false
         },
@@ -18557,7 +18752,7 @@
           "italic": false
         },
         {
-          "text": "Codemod",
+          "text": "Refactor or clean up",
           "bold": false,
           "italic": true
         },
@@ -18973,6 +19168,119 @@
               "semantic_typography_checks": 24,
               "typography_findings": 0,
               "scope": "Isolated native and SVG proofs. Final chapter placement must be inspected after integration."
+            }
+          }
+        },
+        {
+          "date": "2026-11-24",
+          "reason": "Replace Codemod with Refactor or clean up and component / boundary view with component and boundary analysis. The detector consumes component registries and boundary classifications. Both longer labels fit the existing boxes at their original 9pt and 10pt sizes; no geometry changes.",
+          "previous": {
+            "source_sha256": "7ef06d61b037294505350a07cfaea1de77a70d0675dc5ebfadd306f7ec60ed30",
+            "candidate_sha256": "ed466f739c203b60a9209796cfc0ea398ebc5d88c1acfd00f5bae37c1bef7c69",
+            "reason": "Combine naming and representation into Construct the model / Types and relationships; combine code update and enforcement. Remove the redundant key while retaining all three classifications and the next-pass loop. Authored height falls from 344.08bp to 262bp with unchanged 9\u201310pt labels.",
+            "checks": [
+              {
+                "text": "EXISTING CODEBASE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Candidate locations:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "primitive density \u00b7 repeated shapes",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "component / boundary view",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Classify findings",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Candidates identify",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "potential work.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Appropriate implementation",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Accept / exempt",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Missing model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Construct the model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Types and relationships",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Implementation cleanup",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Codemod",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Update code that uses the model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Enforce selected obligations",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Improved models and controls",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "next pass",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-24",
+              "proof": "book/_design/drafts/ch4-refinement-20261124/figures/discovering-models-migration.pdf",
+              "proof_sha256": "1907d9976517429f952e2af39184752b6b2ff87bb105fe4c37558d13dd95f298",
+              "width_bp": 449.97198486328125,
+              "height_bp": 267.9750061035156,
+              "reviewed_visually": true,
+              "geometry_findings": 0,
+              "semantic_typography_checks": 18,
+              "typography_findings": 0,
+              "scope": "Native and font-loaded Chromium SVG proofs. Final chapter placement remains a parent integration check."
             }
           }
         }
