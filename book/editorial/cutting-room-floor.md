@@ -31397,3 +31397,131 @@ Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, line 50.
 ```latex
 The representation determines which judgments are feasible.
 ```
+
+## Plain-language copyedits, Chapters 5–7 — 24 November 2026
+
+Source revision: `7c513381f3579e5843842926063e254461e9f1a5`. Replaced at the author’s request to simplify exposition while retaining technical distinctions. Original passages follow; the edit map is preserved in the private evidence archive.
+
+### `book/latex/sources/part5/5.1-software-factory.tex`, source line 20
+
+```latex
+Interchangeable parts allowed components made separately to participate in the same product.
+```
+
+### `book/latex/sources/part5/5.1-software-factory.tex`, source line 20
+
+```latex
+Scaling fabrication therefore required engineering the production system around the fabricator.
+```
+
+### `book/latex/sources/part5/5.1-software-factory.tex`, source line 22
+
+```latex
+Coding agents extend automation into the production of the changes themselves.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source line 154
+
+```latex
+As DocAble acquired new capabilities, the factory used to develop it also changed.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, source line 224
+
+```latex
+Some consumers supply context to agents; others derive configuration or check whether a change preserves a declared obligation.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 70
+
+```latex
+As agents improve, they may need less help decomposing problems, choosing architectures, constructing models, or implementing solutions.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 78
+
+```latex
+Engineering authority extends beyond technical capability.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 131
+
+```latex
+Resilience gives another reason to preserve the human side of the judgment frontier.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 149
+
+```latex
+The intermediate review surfaces developed in \magevalue{sec:reorganization-of-se} change what the engineer is asked to accept. A model exposes a consequential claim; independent evidence bears on whether it holds. Neither is sufficient alone.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 284
+
+```latex
+The durable curriculum should not be organized around the current agent interface.
+```
+
+### `book/latex/sources/part7/7.4-the-engineer.tex`, source line 290
+
+```latex
+GenAI changes this apprenticeship model.
+```
+
+### Chapter 6 explanatory introductions
+
+Same source revision and date as above. Simplified the prose introducing costs, engineering capital, capacity, and routing; retained all equations, formal definitions, propositions, and hypotheses.
+
+#### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, source line 101
+
+```latex
+A representation may improve the chance of correct realization while requiring substantial construction and upkeep. A gate may prevent violations but cause repeated rejection and repair. To compare these arrangements, we must count unsuccessful attempts as well as accepted changes.
+```
+
+#### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, source line 149
+
+```latex
+Carrying cost completes the comparison. The factories in
+```
+
+#### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, source line 222
+
+```latex
+These properties are not stages of a maturity model~\citep{bollinger1991critical}. They identify different possible weaknesses.
+```
+
+#### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source line 174
+
+```latex
+A recurring failure may lead to a validator; an architectural distinction may become a model; an operational lesson may become a procedure.
+```
+
+#### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source line 197
+
+```latex
+Capital depreciates as systems, obligations, and tools change. A validator can become noise, a model can drift, and a once-useful constraint can begin blocking legitimate work.
+```
+
+#### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, source line 217
+
+```latex
+Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection.
+```
+
+#### `book/latex/sources/part6/6.4-research-agenda.tex`, source line 145
+
+```latex
+I expect the marginal value of a stronger reasoner eventually to be dominated by the value of a better engineering environment.
+```
+
+#### `book/latex/sources/part6/6.4-research-agenda.tex`, source line 155
+
+```latex
+The preceding experiments could help engineers choose how to organize work, not merely which agent to use. Consider a change involving several services. One arrangement might assign the work to a capable agent using source code and existing tests. Another might first construct a dependency model, use that model to guide a less expensive agent, and enforce selected architectural obligations at admission. The second arrangement costs more to establish, but the model and checks may also benefit subsequent changes. Which arrangement is economical depends on the work, the assurance required, and how often the resulting machinery will be reused.
+```
+
+#### `book/latex/sources/part6/6.4-research-agenda.tex`, source line 161
+
+```latex
+The cost model in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} compares engineering arrangements. Routing asks how to choose and revise them over a sequence of tasks. We seek enough acceptable delivery, satisfaction of the applicable assurance obligations, and expected use of human attention within the available budget, at the lowest expected total cost. The arrangement may change between tasks, and investments in the GEE may change which choices are economical later. Expressing this as an optimization makes the choices, constraints, and opportunities for improvement explicit; it does not supply a ready-made decision procedure.
+```

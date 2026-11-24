@@ -168,6 +168,13 @@ Use `self-communicate` as the detailed style authority, especially its
 
 Write for a technically capable engineer learning the argument. Develop the reasoning needed to
 understand and apply each idea in connected paragraphs, with mechanisms, examples, and transitions.
+**Use technical language where precision requires it, not where convention permits it.**
+Chapter 1 provides the example: “A stapler joins sheets of paper and a hole punch makes holes in them.”
+The sentence names the objects and says what they do; more specialized wording would add no precision.
+Apply the same standard to engineering prose: retain a technical term when the distinction requires it,
+and explain it in ordinary language. In Chapter 6, readers should spend their effort on the mathematics,
+not on deciphering the surrounding English. Preserve formal definitions, propositions, and hypotheses.
+
 Preserve precise terms in ordinary syntax. Start with the problem, question, example, or claim that
 best prepares the reader; definition-first is appropriate for a glossary, not a universal rule for exposition.
 
