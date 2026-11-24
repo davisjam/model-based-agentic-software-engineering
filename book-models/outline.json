@@ -2954,24 +2954,24 @@
           "section_id": "cloudflare",
           "level": 2,
           "heading_text": "Cloudflare",
-          "topic_sentence": "Cloudflare shows how an organization's policy can become a control over work performed across many teams.",
+          "topic_sentence": "Cloudflare operates a global network that provides security, performance, and connectivity services for Internet applications.",
           "id_source": "derived",
-          "block_index": 5,
+          "block_index": 6,
           "points": [
             {
               "slug": "cloudflare-turns-standards-prose-into-statements-with-stable-identity",
               "text": "Cloudflare represents institutional obligations as individually identified statements that can be tracked through revision and applied at several stages of engineering work.",
-              "block_index": 6
+              "block_index": 8
             },
             {
               "slug": "cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only",
               "text": "Standards approval and enforcement promotion are separate; enforced MUST statements can drive merge decisions, with a recorded human override, while published activity counts do not establish detection performance.",
-              "block_index": 8
+              "block_index": 10
             },
             {
               "slug": "cloudflare-converts-failures-into-structure-but-never-measures-the-loop",
               "text": "Named incidents and operating costs changed rules, shared deployment machinery, representations, and check placement; the reports do not measure the resulting reduction in failures.",
-              "block_index": 11
+              "block_index": 13
             }
           ]
         },
@@ -2979,29 +2979,29 @@
           "section_id": "spotify",
           "level": 2,
           "heading_text": "Spotify",
-          "topic_sentence": "Spotify illustrates a different starting point: introducing agents into an established process for changing software across many repositories.",
+          "topic_sentence": "Spotify operates a music and audio streaming service supported by many independently developed software components.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 15,
           "points": [
             {
               "slug": "spotify-holds-the-line-fixed-and-swaps-the-station-inside-it",
               "text": "Spotify introduced an agent into a pre-existing fleet-change process, allowing examination of reused production structures without claiming causal isolation.",
-              "block_index": 14
+              "block_index": 17
             },
             {
               "slug": "spotify-installs-and-then-retires-a-control-as-the-fabricator-improves",
               "text": "Bounded tools and mandatory checks govern proposed changes; an added judge and its reported later removal show controls changing with observed failures and false vetoes.",
-              "block_index": 16
+              "block_index": 19
             },
             {
               "slug": "spotify-splits-admission-by-fabricator-and-names-verification-as-the-constraint",
               "text": "Deterministic fleet changes and agent-authored changes follow different admission arrangements; reported operating experience exposes verification capacity as a constraint.",
-              "block_index": 19
+              "block_index": 22
             },
             {
               "slug": "spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity",
               "text": "Rework, complexity, pull-request size, and incident observations provide a mixed account of system health and verification capacity rather than an activity-only success claim.",
-              "block_index": 21
+              "block_index": 24
             }
           ]
         },
@@ -3009,29 +3009,29 @@
           "section_id": "shopify",
           "level": 2,
           "heading_text": "Shopify",
-          "topic_sentence": "Shopify's case concerns how work performed in one session becomes knowledge available to later sessions.",
+          "topic_sentence": "Shopify develops a commerce platform through which merchants operate online stores, manage transactions, and run their businesses.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 26,
           "points": [
             {
               "slug": "shopify-makes-every-session-observable-organizational-material",
               "text": "Public River sessions let colleagues inspect work and failures, creating opportunities to record knowledge for later sessions without establishing that every failure is watched.",
-              "block_index": 24
+              "block_index": 28
             },
             {
               "slug": "shopify-mines-sessions-by-hand-and-measured-the-effect",
               "text": "People record missing knowledge in shared files; the reported merge-rate improvement occurred with the foundation model held fixed but does not isolate human learning from environmental changes.",
-              "block_index": 26
+              "block_index": 30
             },
             {
               "slug": "shopifys-instruction-corpus-also-accumulates-maintenance",
               "text": "Shared instructions require upkeep when different agent tools consume different files; repairing that divergence is part of maintaining the engineering environment.",
-              "block_index": 28
+              "block_index": 32
             },
             {
               "slug": "shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim",
               "text": "A failed prompt-stated enumeration requirement motivated code enforcement in a documented security workflow; its admission arrangements and queue-use measurements do not characterize all River work.",
-              "block_index": 30
+              "block_index": 34
             }
           ]
         },
@@ -3039,29 +3039,29 @@
           "section_id": "uber",
           "level": 2,
           "heading_text": "Uber",
-          "topic_sentence": "Uber treats the factory itself as something to measure and improve.",
+          "topic_sentence": "Uber operates a platform for transportation and delivery, supported by software services that coordinate users, providers, transactions, and real-time operations.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 36,
           "points": [
             {
               "slug": "uber-treats-the-factory-itself-as-an-object-of-measurement-and-optimization",
               "text": "Uber treats foundation-model choice, context, orchestration, workflow cost, and reviewer attention as measurable engineering variables.",
-              "block_index": 33
+              "block_index": 37
             },
             {
               "slug": "uber-tunes-the-environment-against-published-numbers",
               "text": "Context delivery, orchestration, foundation-model selection, and outcome-denominated costs make the agent's surrounding production system an object of optimization.",
-              "block_index": 35
+              "block_index": 39
             },
             {
               "slug": "uber-cannot-optimize-the-evidence-or-the-reviewer",
               "text": "Uber describes producer-assembled evidence and layered review with human admission; the public account does not establish independent re-derivation of the evidence or future automatic-approval criteria.",
-              "block_index": 37
+              "block_index": 41
             },
             {
               "slug": "uber-publishes-cost-and-withholds-quality",
               "text": "Review latency and maintenance scheduling expose finite reviewer capacity; tracked quality measures and workflow costs do not by themselves establish required acceptance evidence.",
-              "block_index": 39
+              "block_index": 43
             }
           ]
         },
@@ -3069,29 +3069,29 @@
           "section_id": "amazon",
           "level": 2,
           "heading_text": "Amazon",
-          "topic_sentence": "Kiro supplies a reusable workflow for making intent explicit before implementation.",
+          "topic_sentence": "Amazon develops software for commerce and cloud computing, including Amazon Web Services (AWS), whose products depend on large, continuously evolving software systems.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 45,
           "points": [
             {
               "slug": "kiro-builds-engineering-artifacts-into-the-harness",
               "text": "Kiro supplies a reviewable specification workflow that adopting teams connect to their own repositories, tools, and engineering decisions.",
-              "block_index": 42
+              "block_index": 47
             },
             {
               "slug": "kiro-connects-requirements-to-tests-and-configurable-controls",
               "text": "Property-based tests provide evidence and configured hooks can enforce selected conditions; coverage and blocking decisions remain project responsibilities.",
-              "block_index": 44
+              "block_index": 49
             },
             {
               "slug": "amazon-internal-use-adds-team-specific-production-structure",
               "text": "Bedrock's reported use combined Kiro with scoped work, tests, operational tools, and senior review; the twentyfold figure measures normalized commit velocity rather than quality or isolated causal effect.",
-              "block_index": 46
+              "block_index": 51
             },
             {
               "slug": "amazon-governs-improvements-to-the-harness-itself",
               "text": "Kiro-trace tests proposed harness changes against an unchanged control and regression requirements, with human merge decisions and new checks derived from evaluation failures.",
-              "block_index": 48
+              "block_index": 53
             }
           ]
         },
@@ -3099,14 +3099,14 @@
           "section_id": "gitlab",
           "level": 2,
           "heading_text": "GitLab",
-          "topic_sentence": "GitLab illustrates how agentic work can inherit the permissions, review authority, and admission controls of an existing development platform.",
+          "topic_sentence": "GitLab develops a software-development platform that brings source control, code review, continuous integration, and deployment workflows into a common environment.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 55,
           "points": [
             {
               "slug": "customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability",
               "text": "GitLab integrates organizational context with CI and permission boundaries, including a security-review flow that cannot approve changes.",
-              "block_index": 51
+              "block_index": 57
             }
           ]
         },
@@ -3114,9 +3114,9 @@
           "section_id": "siemens",
           "level": 2,
           "heading_text": "Siemens",
-          "topic_sentence": "Siemens illustrates a different starting point for agentic engineering: a production environment organized around established systems-engineering models.",
+          "topic_sentence": "Siemens develops industrial technologies and engineering software used to design, simulate, manufacture, and maintain physical products.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 60,
           "points": []
         },
         {
@@ -3125,27 +3125,27 @@
           "heading_text": "What the Factories Share, and Where They Differ",
           "topic_sentence": "The four factory questions reveal different arrangements for organizing agentic production, not stages along a common path toward autonomy.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 64,
           "points": [
             {
               "slug": "the-factories-place-admission-in-four-different-locations",
               "text": "The cases make different admission arrangements visible and provide uneven evidence; reported activity should not be mistaken for independently established effectiveness.",
-              "block_index": 58
+              "block_index": 65
             },
             {
               "slug": "supervision-and-verification-do-not-scale-with-production",
               "text": "Production and supervisory capacity can grow at different rates; review delays, workload scheduling, and verification experience make this a process-design concern.",
-              "block_index": 61
+              "block_index": 68
             },
             {
               "slug": "factories-acquire-engineering-knowledge-through-different-mechanisms",
               "text": "Standards, observed agent work, supplied specification workflows, measured experiments, and construction failures provide different routes for preserving engineering knowledge beyond an individual task.",
-              "block_index": 63
+              "block_index": 70
             },
             {
               "slug": "the-inheritance-channel-carries-its-own-maintenance-cost",
               "text": "Shared knowledge and checks require maintenance; the documented revisions show how reusable engineering structure exchanges repeated judgment for upkeep.",
-              "block_index": 65
+              "block_index": 72
             }
           ]
         }
