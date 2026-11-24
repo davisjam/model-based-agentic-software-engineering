@@ -14,6 +14,8 @@
 
 In Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}}, we studied models and controls largely in isolation. But an engineer rarely has the luxury of attending to just one property of a system. A change that improves performance may threaten correctness; a model that helps us understand the architecture may reveal a better design. In this chapter, we will see how these engineering activities interact.
 
+The episodes in this chapter come from my efforts to build and operate DocAble, not from exercises designed to illustrate MAGE. In many cases, I could have developed more precise models, undertaken more extensive analyses, or established stronger guarantees. But I was building a system for people to use, and I had a limited amount of time in which to do so. I had to decide which engineering questions warranted further investigation, how much evidence was sufficient, and when to turn my attention to another problem. These decisions are as much a part of engineering as the construction of the models and mechanisms themselves.
+
 We will examine these interactions through several engineering episodes. [ref:chapter:4.1-the-dynamics-of-mage] examines how Modeling, Realization, and Evaluation interact as a system evolves. [ref:chapter:4.2-one-problem-many-models] follows one engineering problem through several related models, while [ref:chapter:4.3-brownfield-engineering] examines how to recover and govern knowledge in existing systems. Finally, [ref:chapter:4.4-engineering-the-environment] follows the modeling of engineering work, improvements to its execution, and revisions to its controls. [ref:mage-in-practice-map] provides a map of these activities.
 
 <!-- label: mage-in-practice-map -->
