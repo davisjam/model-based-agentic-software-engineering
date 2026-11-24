@@ -2,15 +2,17 @@
 
 <!-- part-foreshadows: conversions-compound -->
 
-{{chapter:software-factories}} provided two kinds of evidence. The DocAble case followed one system over time, showing how engineering problems prompted changes to its models and controls. The company accounts described related mechanisms built independently under different constraints. Neither establishes a universal law. Together, they help us identify the engineering choices and tradeoffs that MAGE must address.
+{{chapter:software-factories}} examined DocAble’s software factory and related arrangements reported by other organizations. These cases show how engineering knowledge can become part of the machinery governing subsequent work. What determines whether that machinery improves the reliability, cost, and cumulative value of engineering?
 
-This chapter develops that account. We begin with production, lifecycle cost, and the environment inherited by successive engineering episodes. Four theoretical propositions then explain how representation leverage, independent enforcement, and engineering capital can shape the use of additional agentic capacity. Scope conditions identify where those relationships should matter, and a compact research agenda asks how to test them.
+We begin with three questions: did the agent produce what the engineer intended, what did it cost, and what did the work leave behind for subsequent engineering? Four theoretical propositions then explain how representations, independent enforcement, and engineering capital can affect the use of additional agentic capacity. Scope conditions identify where these relationships should matter, and a research agenda describes how they might be tested.
 
 <!-- principlebox -->
 
 <!-- box-family: canonical -->
 
 > ### Key Ideas {#the-synthesis}
+>
+> Agentic capacity makes implementation work cheaper, but more implementation does not necessarily mean more engineering progress. MAGE addresses the relationship between the two.
 >
 > The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
 >

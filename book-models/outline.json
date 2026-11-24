@@ -3178,15 +3178,15 @@
         {
           "section_id": "encoding-and-realization",
           "level": 2,
-          "heading_text": "What Makes Production Faithful?",
-          "topic_sentence": "The preceding chapters have shown how engineers use representations to direct implementation, how independent checks govern its results, and how these arrangements become part of a software factory.",
+          "heading_text": "Did We Build What We Intended?",
+          "topic_sentence": "Begin with a single engineering task.",
           "id_source": "explicit",
-          "block_index": 6,
+          "block_index": 7,
           "points": [
             {
               "slug": "the-starting-point-is-the-master-equation",
               "text": "The encoding–realization decomposition applies the chain rule to distinguish adequate encoding from fulfillment, before extending the account to delivery cost and inherited structure.",
-              "block_index": 7
+              "block_index": 8
             },
             {
               "slug": "the-probabilities-belong-to-a-production-system",
@@ -3233,7 +3233,7 @@
         {
           "section_id": "cost-and-failure-separately",
           "level": 2,
-          "heading_text": "What Makes Production Economical?",
+          "heading_text": "What Did It Cost?",
           "topic_sentence": "Faithful production is necessary, but it does not tell us whether an engineering arrangement is economical.",
           "id_source": "explicit",
           "block_index": 31,
@@ -3288,7 +3288,7 @@
         {
           "section_id": "the-dynamic-model",
           "level": 2,
-          "heading_text": "What Makes Progress Cumulative?",
+          "heading_text": "What Does Later Work Inherit?",
           "topic_sentence": "The preceding analysis compares the cost and acceptability of production, including repeated attempts and upkeep.",
           "id_source": "explicit",
           "block_index": 56,

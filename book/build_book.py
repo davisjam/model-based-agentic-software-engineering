@@ -625,7 +625,7 @@ _PART_OPENER_QUESTIONS = {
     3: "How do I make engineering obligations enforceable in my environment?",
     4: "What happens when Modeling and Alignment are used together in actual engineering, as representations are discovered, systems change, and engineering knowledge accumulates?",
     5: "What happens to the software factory when agents substantially increase its capacity for realization?",
-    6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
+    6: "How does MAGE turn agentic capacity into durable engineering progress?",
     7: "What follows for software engineering—and what does the software case reveal about agentic engineering beyond software?",
 }
 

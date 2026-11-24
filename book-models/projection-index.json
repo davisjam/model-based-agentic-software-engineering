@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 649,
+    "total_sites": 650,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 314,
+      "book-web": 315,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -133,7 +133,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -238,12 +238,16 @@
           {
             "file": "book/web/docs/part-5-intro.md",
             "occ": 2
+          },
+          {
+            "file": "book/web/docs/part-6-intro.md",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 55
+            "occ": 56
           }
         ]
       },
@@ -1033,7 +1037,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 48
+            "occ": 43
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -1197,7 +1201,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/web/docs/part-7-intro.md",

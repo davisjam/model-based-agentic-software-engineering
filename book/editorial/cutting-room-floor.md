@@ -30573,3 +30573,85 @@ DocAble's merge-triggered validation configuration illustrates this distinction.
 % Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: dated-case-evidence
 The operating process must establish that scheduled checks actually execute and that their findings receive the intended response. In one DocAble configuration, a timer appears in the manifest but is absent from the installed schedule; another hook runs the checks, concealing the gap. A separate alert carries a resolved marker while its underlying check still fails. These failures distinguish configuration from execution, detection from acknowledgment, and acknowledgment from verified repair. Evidence should identify the revision examined and remain visible until the condition is resolved or an engineer explicitly accepts the exception.
 ```
+
+
+## Chapter 6 opening and theory roadmap — 2026-11-24
+
+Author-approved follow-up to 1c09b494f. Original opening and first analytical transition are preserved below. The mathematical analysis remains unchanged.
+
+### Chapter opening
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: conversions-compound -->
+
+\magevalue{chapter:software-factories} provided two kinds of evidence. The DocAble case followed one system over time, showing how engineering problems prompted changes to its models and controls. The company accounts described related mechanisms built independently under different constraints. Neither establishes a universal law. Together, they help us identify the engineering choices and tradeoffs that MAGE must address.
+
+This chapter develops that account. We begin with production, lifecycle cost, and the environment inherited by successive engineering episodes. Four theoretical propositions then explain how representation leverage, independent enforcement, and engineering capital can shape the use of additional agentic capacity. Scope conditions identify where those relationships should matter, and a compact research agenda asks how to test them.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:the-synthesis}
+
+The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+
+The question is how engineers make that inheritance useful: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
+\end{quote}
+
+```
+
+### Section 6.1 opening and first transition
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: From Production to Cumulative Progress -->
+
+\chapter{From Production to Cumulative Progress}
+
+% <!-- point: the-pieces-this-chapter-assembles | Chapter 5 examined the complete software factory; the theory focuses on its GEE and how reusable engineering structure supports the encoding and realization of intent. -->
+
+% <!-- print-columns-start: theory-perspectives -->
+
+Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. \magevalue{chapter:software-factories} examined the software factory as a whole. We now focus on its governed engineering environment (GEE): the reusable engineering structure through which people and agents direct, evaluate, and control implementation. Three questions organize the theory, moving from individual production to engineering over time (\autoref{theory-perspectives}).
+
+{\footnotesize
+\begin{longtable}[]{@{}p{\linewidth}@{}}
+\caption[Three perspectives on engineering progress]{Three perspectives on engineering progress.}\label{theory-perspectives}\tabularnewline
+\toprule\noalign{}
+Perspective and engineering question \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Perspective and engineering question \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Faithful production. Did the representation capture the intended obligations, and did the implementation fulfill them? \\
+Economical production. What did correct, admitted delivery cost, including failed attempts and upkeep? \\
+Cumulative progress. How does today's work change the environment inherited by later engineering? \\
+\end{longtable}
+}
+
+% <!-- print-columns-end: theory-perspectives -->
+
+\section{What Makes Production Faithful?}\label{heading:encoding-and-realization}
+
+% <!-- point: the-starting-point-is-the-master-equation | The encoding–realization decomposition applies the chain rule to distinguish adequate encoding from fulfillment, before extending the account to delivery cost and inherited structure. -->
+
+The preceding chapters have shown how engineers use representations to direct implementation, how independent checks govern its results, and how these arrangements become part of a software factory. We can now examine their effects more precisely.
+
+
+```
+
+Other replaced headings: “What Makes Production Economical?” and “What Makes Progress Cumulative?” Stable reference labels remain.
+
+Previous chapter question: “How does MAGE work, what should follow if the account is right, and where should we expect it to apply?”

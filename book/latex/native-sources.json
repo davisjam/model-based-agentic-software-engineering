@@ -246,14 +246,14 @@
     {
       "source": "book/latex/sources/part6/00-part-intro.tex",
       "projection": "book/part6/00-part-intro.md",
-      "source_hash": "028980394a9060dcf90d7097e12eddd8e19e424c0ee6e18e07b30f0d4d558e9e",
-      "projection_hash": "27acc05eedc7c2c8b8ddea42dc495861f1f208e23af4fb96d64cfe462180f8aa"
+      "source_hash": "16f0348675fe4cc9f4c3597c3e2ab685290eca59960aabf34f96d7bec8e66ae7",
+      "projection_hash": "2105780bbb6d60a231096109c947bc7ac57d9ce35aa02b401a794769346776e1"
     },
     {
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
-      "source_hash": "14d5d439a8cbdd093f1afd2f16f0fa4f1bf278405c14aa31a97da0f75058e41b",
-      "projection_hash": "366afc943c23530e9fbd0cfacc71a72b064027ea14f4e839eb099c71b93f8f55"
+      "source_hash": "8217b0462cfcc28b53f0263b18d410a51de1fe16c48d3ee82d303f23aba5ed63",
+      "projection_hash": "ad9e675835665ac1011b4d05994fb733a666bd8a778613bf73f538a2b00d56e9"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
@@ -1077,6 +1077,6 @@
       "projection_hash": "67f4b26f5c6f5c1359c7a3400a944e84f839672805945bd94379cc9b37c77445"
     }
   ],
-  "engine_hash": "56bd6ad57351a10189d4e1116e8d6fb6d1d1a1e3cdeced3c168e20864490b470",
+  "engine_hash": "ef6f66bc872fdb3a8fca3c0b66f79f724ed20ccee47418f91bda188448331316",
   "renderer_version": "pandoc 3.9.0.2"
 }
