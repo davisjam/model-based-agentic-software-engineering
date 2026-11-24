@@ -38770,3 +38770,37 @@ DocAble illustrates an intermediate arrangement. Each task delegated to a GenAI 
 These choices can change as the system evolves. An obligation that initially requires human interpretation may recur often enough to justify a more precise representation and a mechanical evaluator. Conversely, an obligation that changes frequently may be more economical to express in prose and evaluate through review.
 
 ```
+
+## 2026-11-24 — Integrated review: affirmative engineering opportunity
+
+Pre-edit passages retained for the five requested local replacements and insertions.
+
+### frontmatter/0.5-preface.tex
+
+```latex
+Commodity intelligence can change that calculation by reducing the cost of constructing the models and the machinery that uses them.
+```
+
+### part1/1.4-the-agentic-substrate.tex
+
+```latex
+MAGE concentrates on this second approach. The engineer acquires general-purpose intelligence as a service or software component, then engineers the environment in which that intelligence performs consequential work. The foundation model supplies general capabilities, the harness turns its outputs into actions and exposes points of control, and the governed engineering environment supplies the knowledge, obligations, and mechanisms governing those actions.
+```
+
+### part1/1.5-the-new-engineering-problem.tex
+
+```latex
+Both activities can increase the probability of successful engineering work. Better information helps agents make appropriate decisions, while better feedback helps them identify and correct mistakes. Alignment goes further: where an obligation can be enforced by a sufficiently complete and correct mechanism, violating it can be made impossible within the mechanism's scope. The resulting assurance need not depend on the probability that an agent will make the right decision.
+```
+
+### part3/3.2-governance-mechanisms.tex
+
+```latex
+A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
+```
+
+### part7/7.1-reorganization-of-se.tex
+
+```latex
+Real engineering environments will combine these trajectories, often differently for different properties of the same system. A system might maintain an authoritative state model where invalid transitions are consequential, derive architectural views when needed, allow agents substantial implementation freedom, and enforce security and dependency obligations at admission. The appropriate unit of analysis is therefore usually the engineering question or obligation, not the development methodology.
+```

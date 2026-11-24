@@ -369,7 +369,7 @@
         {
           "slug": "the-problem-is-larger-than-software",
           "text": "The engineering questions extend beyond software, while useful representations, credible evidence, and the appropriate balance of delegation and governance depend on the domain. The following chapters develop the mechanisms, practice, evidence, theory, and wider implications.",
-          "block_index": 16
+          "block_index": 17
         }
       ]
     },
@@ -1520,17 +1520,17 @@
           "heading_text": "Semantic Commitment and Mechanization",
           "topic_sentence": "Recall the discussion of semantic commitment in [ref:2.2-constructing-and-using-engineering-models:heading:semantic-commitment-and-analysis].",
           "id_source": "explicit",
-          "block_index": 57,
+          "block_index": 58,
           "points": [
             {
               "slug": "human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates",
               "text": "Humans or agents may review an obligation, construct a bespoke check, or build reusable machinery that evaluates obligations expressed in a model.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "agents-can-construct-checking-and-enforcement-machinery",
               "text": "Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness.",
-              "block_index": 67
+              "block_index": 68
             }
           ]
         },
@@ -1540,7 +1540,7 @@
           "heading_text": "Testing Against Models",
           "topic_sentence": "Tests can evaluate whether an implementation satisfies obligations expressed in a model.",
           "id_source": "explicit",
-          "block_index": 84,
+          "block_index": 85,
           "points": []
         },
         {
@@ -1549,7 +1549,7 @@
           "heading_text": "Testing Failure Responses",
           "topic_sentence": "Testing expected behavior is not enough when a system must also respond correctly to failures.",
           "id_source": "explicit",
-          "block_index": 94,
+          "block_index": 95,
           "points": []
         },
         {
@@ -1558,7 +1558,7 @@
           "heading_text": "Testing the Governance Machinery",
           "topic_sentence": "A passing test establishes that the implementation satisfied the checks performed.",
           "id_source": "explicit",
-          "block_index": 100,
+          "block_index": 101,
           "points": []
         },
         {
@@ -1567,12 +1567,12 @@
           "heading_text": "Choosing Mechanisms",
           "topic_sentence": "Chapter 2 selected representations according to the engineering questions they could answer.",
           "id_source": "explicit",
-          "block_index": 108,
+          "block_index": 109,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand.",
-              "block_index": 111
+              "block_index": 112
             }
           ]
         },
@@ -1582,12 +1582,12 @@
           "heading_text": "Preventing Violations or Detecting Them",
           "topic_sentence": "Where practical, we can choose an operation that excludes a forbidden state rather than detect the state after it occurs.",
           "id_source": "explicit",
-          "block_index": 113,
+          "block_index": 114,
           "points": [
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol.",
-              "block_index": 114
+              "block_index": 115
             }
           ]
         },
@@ -1597,22 +1597,22 @@
           "heading_text": "Analyzing Models or Testing Implementations",
           "topic_sentence": "*Model checking* and *model-based testing* answer different questions.",
           "id_source": "explicit",
-          "block_index": 117,
+          "block_index": 118,
           "points": [
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior.",
-              "block_index": 118
+              "block_index": 119
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it.",
-              "block_index": 120
+              "block_index": 121
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission.",
-              "block_index": 122
+              "block_index": 123
             }
           ]
         },
@@ -1622,7 +1622,7 @@
           "heading_text": "Deriving Verification Requirements",
           "topic_sentence": "In the recovery protocol, I chose different verification techniques for different obligations.",
           "id_source": "explicit",
-          "block_index": 128,
+          "block_index": 129,
           "points": []
         },
         {
@@ -1631,17 +1631,17 @@
           "heading_text": "Establishing That a Required Operation Occurred",
           "topic_sentence": "We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative.",
           "id_source": "explicit",
-          "block_index": 135,
+          "block_index": 136,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "An admission mechanism may require reliable evidence that a protected operation passed through an authorized interface.",
-              "block_index": 136
+              "block_index": 137
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 139
+              "block_index": 140
             }
           ]
         },
@@ -1651,7 +1651,7 @@
           "heading_text": "Preserving Engineering Freedom",
           "topic_sentence": "Choosing an enforcement mechanism also changes which implementation choices remain available.",
           "id_source": "explicit",
-          "block_index": 141,
+          "block_index": 142,
           "points": []
         },
         {
@@ -1660,12 +1660,12 @@
           "heading_text": "Tolerances and Margins",
           "topic_sentence": "Chapter 2 introduced tolerances as bounds on acceptable variation and degrees of freedom as choices left open to implementation.",
           "id_source": "explicit",
-          "block_index": 143,
+          "block_index": 144,
           "points": [
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible.",
-              "block_index": 145
+              "block_index": 146
             }
           ]
         },
@@ -1675,27 +1675,27 @@
           "heading_text": "Underconstraint and Overconstraint",
           "topic_sentence": "Alignment should preserve the implementation freedom that Modeling deliberately leaves open.",
           "id_source": "explicit",
-          "block_index": 152,
+          "block_index": 153,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 154
+              "block_index": 155
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 156
+              "block_index": 157
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 158
+              "block_index": 159
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 164
+              "block_index": 165
             }
           ]
         },
@@ -1705,42 +1705,42 @@
           "heading_text": "Where Enforcement Stops",
           "topic_sentence": "Greater semantic commitment gives us more opportunities for mechanization, but we need not pursue all of them.",
           "id_source": "explicit",
-          "block_index": 166,
+          "block_index": 167,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 168
+              "block_index": 169
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 171
+              "block_index": 172
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 174
+              "block_index": 175
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, but the result does not control whether work may proceed.",
-              "block_index": 176
+              "block_index": 177
             },
             {
               "slug": "a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk",
               "text": "A governed obligation is enforced in a form appropriate to the engineering decision.",
-              "block_index": 178
+              "block_index": 179
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set.",
-              "block_index": 181
+              "block_index": 182
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 183
+              "block_index": 184
             }
           ]
         }
@@ -4058,12 +4058,12 @@
             {
               "slug": "more-modeling-need-not-mean-more-permanently-maintained-models",
               "text": "More modeling need not mean more permanently maintained models: construction cost can be repaid through repeated reuse or one consequential answer; cheap machine reasoning expands the one-off questions for which a purposeful reduction pays.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "recurring-judgment-becomes-engineering-capital-under-any-trajectory",
               "text": "Recurring judgment remains an opportunity for governance conversion; conversion and ratcheteering let later work inherit it while keeping the resulting structure open to correction.",
-              "block_index": 53
+              "block_index": 54
             }
           ]
         },
@@ -4073,17 +4073,17 @@
           "heading_text": "Engineering the Production System",
           "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 56,
           "points": [
             {
               "slug": "two-places-engineering-attention-can-go",
               "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
-              "block_index": 56
+              "block_index": 57
             },
             {
               "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
               "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
-              "block_index": 63
+              "block_index": 64
             }
           ]
         }
