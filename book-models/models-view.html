@@ -484,11 +484,11 @@
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--why-one-level-deeper-matters">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Measuring and Explaining Memory Consumption</a></div>
-<p class="topic">Measuring peak memory tells us how much memory the worker consumed.</p>
+<p class="topic">I intended to use the residency model to make decisions about worker memory allocations.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--memory-did-not-stop-mattering">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Memory as an Obligation for Subsequent Changes</a></div>
-<p class="topic">I could now investigate ways to reduce latency and cost, but the new designs still had to satisfy the memory obligation.</p>
+<p class="topic">With memory consumption better understood, I could turn my attention to latency and cost.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--modeling-execution-and-latency">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Modeling Execution and Latency</a></div>
@@ -499,24 +499,24 @@
 <p class="topic">Skeletonization also gave me a reason to reconsider the execution architecture.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--analyze-before-you-build">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Redesigning the Critical Path</a></div>
-<p class="topic">Representing remediation as a dependency graph does more than provide an execution plan.</p>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Using the Graph to Find and Remove Bottlenecks</a></div>
+<p class="topic">More workers cost money.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--the-second-resource-model">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Modeling the Cost of Repeated Document Processing</a></div>
-<p class="topic">The execution model told me which computations could proceed independently.</p>
+<p class="topic">Improving the GenAI operations was an obvious way to try to reduce latency.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--predicting-latency">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting Latency</a></div>
-<p class="topic">Critical-path analysis also supports quantitative latency predictions when operation costs are available.</p>
+<p class="topic">Running more computations concurrently in the cloud would introduce additional costs for starting workers, transferring information, and coordinating their work.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--predicting-the-cost-of-a-design-change">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting the Cost of a Design Change</a></div>
-<p class="topic">Before implementing a proposed intermediate representation, I could add its production and consumption to the dependency graph.</p>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Evaluating a Design Before Implementing It</a></div>
+<p class="topic">Implementing an architectural alternative merely to discover that it would be too slow is an expensive way to evaluate a design.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--use-prediction-error-as-evidence">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Learning from Prediction Errors</a></div>
-<p class="topic">When measured latency differs substantially from a prediction, we have another engineering problem to investigate.</p>
+<p class="topic">I was using these predictions to decide which designs were worth implementing.</p>
 </div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--preserving-and-revising-models">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Preserving and Revising Models</a></div>
@@ -531,8 +531,8 @@
 <p class="topic">The memory model also made predictions that I could test independently of the implementation’s apparent success.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">The Resulting Model Family</a></div>
-<p class="topic">[ref:interlude-model-family] collects the models and the engineering questions each addresses.</p>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Combining Models to Answer Engineering Questions</a></div>
+<p class="topic">I could no longer make decisions about concurrency by considering latency alone.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--model-aware-change-impact">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Using the Models to Evaluate Subsequent Changes</a></div>

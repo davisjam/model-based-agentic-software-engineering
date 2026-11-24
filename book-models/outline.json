@@ -2103,16 +2103,16 @@
           "section_id": "why-one-level-deeper-matters",
           "level": 3,
           "heading_text": "Measuring and Explaining Memory Consumption",
-          "topic_sentence": "Measuring peak memory tells us how much memory the worker consumed.",
+          "topic_sentence": "I intended to use the residency model to make decisions about worker memory allocations.",
           "id_source": "explicit",
-          "block_index": 29,
+          "block_index": 27,
           "points": []
         },
         {
           "section_id": "memory-did-not-stop-mattering",
           "level": 3,
           "heading_text": "Memory as an Obligation for Subsequent Changes",
-          "topic_sentence": "I could now investigate ways to reduce latency and cost, but the new designs still had to satisfy the memory obligation.",
+          "topic_sentence": "With memory consumption better understood, I could turn my attention to latency and cost.",
           "id_source": "explicit",
           "block_index": 31,
           "points": []
@@ -2138,17 +2138,17 @@
         {
           "section_id": "analyze-before-you-build",
           "level": 3,
-          "heading_text": "Redesigning the Critical Path",
-          "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
+          "heading_text": "Using the Graph to Find and Remove Bottlenecks",
+          "topic_sentence": "More workers cost money.",
           "id_source": "explicit",
-          "block_index": 48,
+          "block_index": 47,
           "points": []
         },
         {
           "section_id": "the-second-resource-model",
           "level": 3,
           "heading_text": "Modeling the Cost of Repeated Document Processing",
-          "topic_sentence": "The execution model told me which computations could proceed independently.",
+          "topic_sentence": "Improving the GenAI operations was an obvious way to try to reduce latency.",
           "id_source": "explicit",
           "block_index": 54,
           "points": []
@@ -2157,7 +2157,7 @@
           "section_id": "predicting-latency",
           "level": 3,
           "heading_text": "Predicting Latency",
-          "topic_sentence": "Critical-path analysis also supports quantitative latency predictions when operation costs are available.",
+          "topic_sentence": "Running more computations concurrently in the cloud would introduce additional costs for starting workers, transferring information, and coordinating their work.",
           "id_source": "explicit",
           "block_index": 60,
           "points": []
@@ -2165,19 +2165,19 @@
         {
           "section_id": "predicting-the-cost-of-a-design-change",
           "level": 3,
-          "heading_text": "Predicting the Cost of a Design Change",
-          "topic_sentence": "Before implementing a proposed intermediate representation, I could add its production and consumption to the dependency graph.",
+          "heading_text": "Evaluating a Design Before Implementing It",
+          "topic_sentence": "Implementing an architectural alternative merely to discover that it would be too slow is an expensive way to evaluate a design.",
           "id_source": "explicit",
-          "block_index": 64,
+          "block_index": 65,
           "points": []
         },
         {
           "section_id": "use-prediction-error-as-evidence",
           "level": 3,
           "heading_text": "Learning from Prediction Errors",
-          "topic_sentence": "When measured latency differs substantially from a prediction, we have another engineering problem to investigate.",
+          "topic_sentence": "I was using these predictions to decide which designs were worth implementing.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 68,
           "points": []
         },
         {
@@ -2186,7 +2186,7 @@
           "heading_text": "Preserving and Revising Models",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 70,
+          "block_index": 72,
           "points": []
         },
         {
@@ -2195,7 +2195,7 @@
           "heading_text": "Preserving Performance Obligations",
           "topic_sentence": "As I developed these models, I had to decide which of their properties should constrain subsequent engineering.",
           "id_source": "explicit",
-          "block_index": 71,
+          "block_index": 73,
           "points": []
         },
         {
@@ -2204,16 +2204,16 @@
           "heading_text": "Revising Models without Abandoning Obligations",
           "topic_sentence": "The memory model also made predictions that I could test independently of the implementation’s apparent success.",
           "id_source": "explicit",
-          "block_index": 74,
+          "block_index": 77,
           "points": []
         },
         {
           "section_id": "the-resulting-model-family",
           "level": 3,
-          "heading_text": "The Resulting Model Family",
-          "topic_sentence": "[ref:interlude-model-family] collects the models and the engineering questions each addresses.",
+          "heading_text": "Combining Models to Answer Engineering Questions",
+          "topic_sentence": "I could no longer make decisions about concurrency by considering latency alone.",
           "id_source": "explicit",
-          "block_index": 80,
+          "block_index": 83,
           "points": []
         },
         {
@@ -2222,7 +2222,7 @@
           "heading_text": "Using the Models to Evaluate Subsequent Changes",
           "topic_sentence": "The models developed during this episode also helped me reason about changes I had not yet undertaken.",
           "id_source": "explicit",
-          "block_index": 85,
+          "block_index": 88,
           "points": []
         }
       ],

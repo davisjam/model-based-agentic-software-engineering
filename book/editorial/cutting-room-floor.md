@@ -33590,3 +33590,217 @@ Superseded passage:
 ```latex
 In both cases, the event that initiated work did not necessarily define the best way to execute that work.
 ```
+
+
+## 2026-11-24 — Chapter 4 engineering motivations
+
+Source: author copyedit packets b40a312d-dc2c-4e2b-a784-21377b8b129a and b73dfdab-5427-4cb9-876f-e500e62d19dc, with the final author wording naming the hosting service as the actor. Baseline: `e22844407034bd3b8cc52303a4f8e19aa7de86e0`. Preserve technical development; move the practical motivation before each analysis.
+
+### 4.1-the-dynamics-of-mage.tex — Packet1 C: two-paragraph SDD inset; retain citations
+
+```latex
+Other engineering problems, particularly those involving substantial risk, warranted modeling and analysis before implementation.
+
+The distinction concerns the role of models rather than their position in a development process. We use models to understand a system, direct its realization, and evaluate its properties. Any of these activities can motivate further modeling.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 B1: direct reader attention; first opening paragraph already exact
+
+```latex
+I began by modeling what DocAble retained in memory. I then developed models of execution, latency, and cost to investigate alternative designs. Measurements revealed shortcomings in some of those models, while others identified properties I wanted subsequent implementations to preserve. By the end of the episode, I had both a different architecture and a family of related models and controls.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 B2: explain tuning versus redesign
+
+```latex
+Chunking worked across a much broader workload, including hundreds of teaching documents from multiple universities. I had little reason to replace it merely because another architecture was possible. Eventually, however, a media-heavy presentation of roughly 250 MB exceeded the limits of this design.
+
+Smaller chunks could reduce memory consumption further, but they would also reduce the context available for semantic judgments and increase coordination costs. Chunking therefore presented a tradeoff between memory use and the information available to each operation.
+```
+
+### 4.2-one-problem-many-models.tex — Move economic/scaling motivation before equation; media independence remains in equation definitions
+
+```latex
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+Chunking had enabled me to process the documents encountered so far. Skeletonization supported a more general claim: within the modeled operating envelope, peak worker memory should be independent of total media size.
+
+
+```
+
+### 4.2-one-problem-many-models.tex — Latest user supersedes packets: verbatim residency motivation
+
+```latex
+% Evidence: E26/E27/E29 supplement | source: book/data/local-evidence/evidentiary-basis-11202026/integration/ch4-refinement-20261124/README.md | kind: source-reconciliation; no new experiment
+To bound the whole worker
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 B2: join after moved paragraph
+
+```latex
+That claim depends on bounded streaming buffers
+```
+
+### 4.2-one-problem-many-models.tex — Move complete measurement heading and Ousterhout discussion before experiment
+
+```latex
+% <!-- index-def: measure-one-level-deeper -->
+
+\subsection{Measuring and Explaining Memory Consumption}\label{heading:why-one-level-deeper-matters}
+
+Measuring peak memory tells us how much memory the worker consumed. It does not tell us why. The residency model explains how document structure and media contribute to memory consumption, and predicts how memory should change as we vary the input. Measurements let us test that explanation. Ousterhout describes this practice of investigating the mechanism behind a measured quantity as measuring one level deeper~\citep{ousterhout2018}.
+
+
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 measurement motivation; explanation then PDF result then alignment interpretation
+
+```latex
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The implementation has to preserve these assumptions; measurement tests whether memory behaves as the model predicts.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 obligation opening with Packet1 explicit kernel callback
+
+```latex
+I could now investigate ways to reduce latency and cost, but the new designs still had to satisfy the memory obligation. A faster implementation that exhausted worker memory would not be an improvement.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 relocate economic asymmetry; avoid repetition
+
+```latex
+ The service-sizing model later captured this asymmetry: allocating too much memory costs money; allocating too little can kill the process.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 frontier motivation
+
+```latex
+With that problem addressed differently, was partitioning work by page still the best way to organize remediation?
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 D: exact Figure4.5 caption with emphasized lead
+
+```latex
+\caption{\emph{Two execution policies over the same remediation graph.} The graph contains actions---page analysis, construction of document context, and GenAI queries---and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes --- so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.}
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 B3: decision before execution details; preserve footnote
+
+```latex
+The executor can repeatedly schedule computations whose prerequisites have been satisfied, record their outputs, and identify the next set of ready computations. The dependency ordering is an ordinary topological traversal of a directed acyclic graph; the executor must also respect the applicable resource and mutation constraints.\magefootnote{topo-dag}{Topological traversal is familiar from compilers, build systems, and dependency schedulers.}
+
+The remediation graph itself need not change. What changes is how the executor groups its computations.
+
+Skeletonization removed the memory pressure that had made page ranges the natural execution boundary, so page identity no longer needs to determine execution. It can survive as metadata on graph nodes---useful for locality, debugging, rate limiting, or failure isolation---without remaining the fundamental unit of executable remediation.
+
+I therefore separated the remediation graph from its executor. The graph described the work and its dependencies; the executor determined how to schedule that work. I could schedule by frontier and later exploit page locality if measurements justified it, without redesigning remediation.
+
+I also did not need to implement every scheduling policy I could imagine. The dependency model let me investigate alternative policies before committing to their implementation. I could retain the execution model while constructing other representations of the same computations for analysis.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 heading; stable label
+
+```latex
+\subsection{Redesigning the Critical Path}
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 supersedes critical-path motivation; retain figure introduction
+
+```latex
+Representing remediation as a dependency graph does more than provide an execution plan. The graph can be analyzed before an executor---or a proposed architectural change---is implemented. \autoref{interlude-analysis-before-build} illustrates how critical-path analysis can identify a bottleneck and suggest two kinds of redesign: decomposing expensive work or changing the dependencies among operations.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 explicit scheduling-versus-design lesson
+
+```latex
+Panel (c) shows how changing the information dependencies removed the serial chain.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 repeated-processing motivation; equations retained
+
+```latex
+The execution model told me which computations could proceed independently. To compare execution designs, I also needed to understand their costs. In particular, dividing remediation among workers could require several workers to perform the same document-processing operations.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 conclusion of illustrative worked example
+
+```latex
+In this example, we spend too much time rebuilding the document.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 cloud concurrency motivation; representative-workload setup retained
+
+```latex
+Critical-path analysis also supports quantitative latency predictions when operation costs are available. For the representative workload used during this analysis,
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 heading; preserve label
+
+```latex
+\subsection{Predicting the Cost of a Design Change}
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 prospective-design motivation
+
+```latex
+Before implementing a proposed intermediate representation,
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 prediction-error motivation; retain taxonomy and illustrative status
+
+```latex
+When measured latency differs substantially from a prediction, we have another engineering problem to investigate. The error may lie in our estimates, our understanding of the system, or the implementation itself.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 prediction-error conclusion
+
+```latex
+Two apparently independent computations may share a serialized resource, or media loading may introduce a cost the latency model omitted.
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 ratchet motivation after model/obligation distinction; consolidate variability detail
+
+```latex
+A useful prediction did not necessarily warrant a new enforcement mechanism.
+```
+
+### 4.2-one-problem-many-models.tex — Avoid repeating benchmark variability; full mechanism and quantities remain
+
+```latex
+I chose not to use observed wall-clock time as the basis for the performance ratchet. Wall time varies with hosts, services, cold starts, and other environmental effects, so a benchmark score from one machine makes a poor obligation. The performance ratchet holds structural quantities instead ---
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 kernel connection after complete actual falsification accounts
+
+```latex
+What it could not do was disregard the memory requirement.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 heading; stable label
+
+```latex
+\subsection{The Resulting Model Family}
+```
+
+### 4.2-one-problem-many-models.tex — Packet2 motivation supersedes first table introduction; retain seven models
+
+```latex
+\autoref{interlude-model-family} collects the models and the engineering questions each addresses.
+```
+
+### 4.2-one-problem-many-models.tex — Packet1 final paragraph: decisions under practical constraints
+
+```latex
+Investigating the failure led me to construct a model, change the implementation, and discover further engineering questions. Measurements revealed shortcomings in some of my models,
+```
+
+### 4.5-mage-in-motion-summary.tex — Packet1 A revised-kernel item
+
+```latex
+The kernel can grow as we establish new obligations.
+```
+
+### 4.5-mage-in-motion-summary.tex — Packet1 A reflective paragraph before unchanged Chapter5 transition
+
+```latex
+As I applied these ideas to DocAble,
+```
