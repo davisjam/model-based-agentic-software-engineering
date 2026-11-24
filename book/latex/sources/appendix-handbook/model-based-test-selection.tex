@@ -87,7 +87,7 @@ A change-impact model relates implementation elements to the subsystems and obli
 % Evidence: BP-SELECTION | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/BP-SELECTION.md | kind: implementation-and-design
 Given a set of changed files, the selector resolves each file to its component and derives the declared affected subsystems. Each validation unit declares the subsystems it evaluates. The selection rule includes a unit when its scope intersects the affected set. This is a decision about what should execute; the executor must consume it.
 
-The \textbf{dependency model} has two uses that must remain distinguishable. Maintained relationships express the impact assumptions used for selection. Separately recovered project and import relationships provide descriptive evidence that can challenge those assumptions. Both may share component identities, so agreement is useful without constituting independent proof of completeness.
+DocAble uses maintained component relationships to select checks and separately recovered project and import dependencies to challenge that selection. Both representations use component identities, but they serve different purposes: one determines the selected work, while the other searches for dependencies the maintained model may have missed. Agreement is useful evidence, not proof that either representation is complete.
 
 The \textbf{change-impact model} is a derived view for a particular change: an affected-subsystem declaration together with its derivation and any requirement for full validation. Derivation does not by itself confer authority. The engineer decides where the evidence justifies allowing that declaration to control a reduced run. The \textbf{validation execution model} then specifies required execution and the policy for interpreting findings. Execution records describe what actually executes; compare them with the selected set and the permitted broader modes.
 
@@ -176,17 +176,13 @@ A discrepancy calls for revising the impact model and repeating the comparison. 
 
 \subsection*{Introduce the Arrangement Incrementally}\label{heading:introduce-the-arrangement-incrementally}
 
-Begin with a full validation process whose results are understood. Partition the system into components and validation subsystems, then associate checks with each subsystem. Coarse partitions run more checks but require fewer assumptions about independence.
+Selective validation is safest to introduce while full validation remains available as a reference. The initial component and subsystem models can be coarse: broader selections cost more but require fewer assumptions about independence.
 
-Implement the selector as a query that explains each file's component, the relationships establishing affected subsystems, and why each check is included or omitted. These records make mistaken selections diagnosable.
+The selector should explain how changed files map to components, how dependencies produce the affected set, and why individual checks are included or omitted. Selection, execution, and gate decisions must then be tested together, including empty and full selections, missing results, and failures outside the selected set.
 
-Verify selection, execution, and gate decisions together. Exercise empty and full selections and checks invoked through different mechanisms. Inject failures inside and outside the selected set, including missing results, and confirm the intended blocking, broader-run, or review response. Compare all records against the same revision.
+Historical changes and current work provide opportunities to compare selected checks with full validation while the selector remains advisory. Discovered omissions require changes to the impact model and renewed comparison on varied workloads. Only then can engineers decide whether the evidence justifies reduced validation at a particular boundary. Full validation may remain appropriate before release or at periodic intervals.
 
-Keep selection advisory while evaluating historical changes and current work alongside full validation. Resolve omissions, then repeat the comparison on varied workloads, including shared dependencies, test infrastructure, and configuration.
-
-Then decide whether the evidence justifies reduced validation at a particular boundary. A team may use selected checks for early integration while retaining full validation before release and periodic full-suite comparisons. The decision depends on the consequences of an escaped regression and the properties the baseline checks actually evaluate.
-
-Maintainers must revise the models and repeat these comparisons as component boundaries, test responsibilities, and dependencies change.
+The models require maintenance as component boundaries, dependencies, and validation responsibilities change.
 
 \section{Adaptation and Limits}\label{heading:adaptation-and-limits}
 

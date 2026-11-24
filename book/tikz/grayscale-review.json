@@ -3531,10 +3531,10 @@
   {
     "source": "book/assets/recovering-and-extending-governance.svg",
     "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
-    "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
-    "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+    "source_sha256": "c9de97308e7408cc936a23086e0f056d2578a033974b7e387320a764283cf3bd",
+    "candidate_sha256": "1cdfd8f619cd2250b15b4b6e558ba7d8256ab87e96ddb3fc9dcd465fa3f186f7",
     "decision": "new",
-    "revision_date": "2026-11-20",
+    "revision_date": "2026-11-24",
     "reviewed_visually": true,
     "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
     "reviewed": true,

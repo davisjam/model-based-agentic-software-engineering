@@ -55,19 +55,15 @@ The engine retains freedom to choose among admissible repairs, gather additional
 
 ### Connect the Models to Their Consumers {.unnumbered}
 
-Begin with one bounded semantic task. Specify its inputs, output representation, applicable obligations, and evidence for evaluating success. Identify the errors that matter most, including errors whose consequences differ substantially.
+Construction begins with a bounded semantic task: its inputs, output representation, obligations, and evidence of success. The task definition must distinguish errors with different consequences, such as omitting useful alternative text and inventing content that was not present.
 
-Next, establish the application interface. Give reasoning implementations a closed vocabulary of supported operations, with stable target identities, explicit preconditions, and results that distinguish application, refusal, and failure. Restrict mutation authority to the application component, and test that the reasoning engine cannot alter the governed artifact through another path.
+The application interface then establishes which effects a reasoning implementation may request. Supported operations have stable targets, explicit preconditions, and results distinguishing application, refusal, and failure. Restricting mutation authority to this interface prevents an alternative reasoner from bypassing the intended controls.
 
-Construct the checks needed to evaluate the resulting artifact and connect their findings to acceptance. Observed artifact properties and operation results supply sensor evidence; evaluation interprets that evidence against the acceptance model, and a gate consumes the required verdicts. Include deterministic checks where the property is mechanically decidable, preservation checks where existing content must survive, and semantic evaluation where correctness depends on meaning. Test deliberately introduced violations and confirm that the gate produces the required refusal or review.
-
-Only then introduce an alternative reasoning engine. Run both engines against comparable inputs through the same application interface. Evaluate the artifacts rather than the engines’ accounts of their own success. Include failure cases: invalid targets, unsupported operations, incomplete repairs, interrupted execution, and plausible but semantically incorrect outputs.
+Acceptance requires separate evidence about the resulting artifact. Deterministic checks address mechanically decidable properties; preservation checks examine selected unintended changes; semantic evaluation addresses meaning. A gate must consume the required findings for them to affect acceptance. Only after these contracts are established can two reasoning engines be compared meaningfully: both must operate on comparable inputs through the same application and evaluation machinery.
 
 ### Select Models for Fixed Tasks {.unnumbered}
 
-Model selection is the smaller substitution problem. Design the interface so that a consumer requests a semantic task and supplies relevant input characteristics; the selector returns a model that meets the declared capability requirements. The caller can use that choice without implementing its own provider-selection, quality-tier, or fallback policy.
-
-The selector returns the chosen model, its provider, and the capabilities supporting the decision. It may also expose a quality-tier rank for observability, but callers should not reconstruct selection policy from that rank. The consumer requests a semantic task; the selector remains responsible for choosing an eligible model.
+Model selection is the smaller substitution problem. A consumer requests a semantic task and supplies relevant input characteristics; the selector returns an eligible model, its provider, and the capabilities supporting the choice. It may expose a quality-tier rank for observability, but callers should not reconstruct selection or fallback policy from that rank.
 
 Selection can account for task-specific capability requirements, input difficulty, provider availability, and cost. A capability requirement is a constraint: a model that cannot process the required input is not made suitable by being inexpensive or available. Among eligible models, a policy may prefer higher-quality alternatives, distribute requests among providers, or select a lower-cost model when its measured performance is adequate.
 
@@ -104,5 +100,3 @@ Specialized reasoning workflows require construction and maintenance but can div
 The same architecture applies beyond document remediation. A planning agent can propose operations against a structured workflow; a classifier can produce typed decisions consumed by a controlled application; a diagnostic agent can recommend repairs whose effects are checked independently. In each case, the engineer determines which decisions may vary with the reasoning implementation and which obligations must remain stable.
 
 The boundary need not be perfectly general. A small vocabulary supporting the operations a system actually requires is often more useful than a universal interface that restores unrestricted authority to the reasoner. New work may justify an extension, whose effects must be evaluated against the obligations already protected.
-
-The central benefit is architectural freedom. Explicit task, operation, and acceptance contracts let engineers change reasoning implementations without rebuilding the surrounding application and evaluation machinery.

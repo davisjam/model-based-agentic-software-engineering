@@ -2,28 +2,32 @@
 
 ## Problem
 
-A worker may continue executing after its lease expires. Its delayed release must not erase a replacement lease. Recovery must also protect effects, resolve stranded work, and prevent a database row from announcing an unavailable output.
+A worker can continue executing after its lease expires. Another worker may acquire the job, leaving both capable of acting on the same work. The original worker must not be able to erase the replacement lease, and neither worker should perform an effect that requires exclusive ownership without obtaining the corresponding authority.
 
-This blueprint concerns runtime document-remediation jobs. [ref:chapter:appendix-a-governed-delegation] governs coding-agent assignments, whose lifecycle and acceptance procedure differ.
+Recovery creates additional problems. A worker may crash after producing an artifact but before recording completion, or after acquiring exclusive permission for an effect but before performing it. DocAble records job state, in-flight work, and output artifacts in separate storage systems, so these changes cannot be committed as one transaction. The engineering problem is to protect the individual decisions and establish how interrupted work can be reconciled.
+
+This blueprint concerns runtime document-remediation jobs. [ref:chapter:appendix-a-governed-delegation] addresses coding-agent assignments, whose lifecycle and acceptance mechanisms differ.
 
 ## Conceptual Design
 
-The design separates accounting for in-flight work, acquiring a protected-effect claim, and announcing a durable result. The lease keeps work visible outside ordinary queues; the effect claim atomically controls a selected operation; publication orders artifact finalization before completion. Redis, database, and artifact-store operations do not form one transaction.
+[ref:handbook-recovery-architecture] separates three commitments.
 
-DocAble’s lease design keeps a merging parent visible to demand counting, preventing scale-down during active work. Inline chunkless completion releases the accounting lease after its terminal database update; a frontier-finalization adapter reuses the retired page-chunked engine’s merge claim and epoch-checked terminal hooks.
+The in-flight lease records work that remains active or requires recovery. Its purpose is accounting and coordination: demand counting uses it to avoid scale-down during active work. It does not establish that a particular worker stops executing when the lease expires.
 
-Atomic operations protect state changes; explicit-state exploration examines interleavings; temporal analysis examines eventual termination under delivery and scheduling assumptions. [ref:match-mechanism-to-property] distinguishes these obligations.
+The protected-effect claim controls an operation whose concurrent execution would be unsafe. DocAble uses a database compare-and-set for its retained merge path. The inline completion path does not acquire this claim.
 
-The accounting, claim, and publication boundaries appear separately in [ref:handbook-recovery-architecture].
+Publication makes the resulting artifact durable before the job record announces completion. If either operation fails, recovery must determine which effects are already complete before deciding what to repeat.
+
+These commitments use different stores and protect different properties. A valid lease does not authorize every effect. A successful effect claim does not establish that the operation finishes. An artifact may exist without a terminal database record. The figure shows the two completion paths and the points at which recovery must inspect durable state.
+
+The corresponding assurance mechanisms are also distinct. Atomic operations protect selected runtime decisions; explicit-state exploration examines ownership interleavings; temporal analysis examines eventual termination under stated assumptions. [ref:match-mechanism-to-property] distinguishes these obligations.
 
 <!-- label: handbook-recovery-architecture -->
 <!-- figure: assets/handbook-recovery-architecture.svg | *Three commitments in job recovery.* The Redis lease records in-flight work by job ID and issue epoch; it does not identify an owning worker. A database compare-and-set protects acquisition of the selected merge claim, while publication persists the artifact before updating durable job state. The inline path bypasses that merge claim. These operations cross separate stores; recovery and assurance address their different failure windows. [short: Three commitments in job recovery] -->
 
 ## Engineering Models
 
-### State and Identity {.unnumbered}
-
-[ref:handbook-job-recovery-models] separates persisted state from local protocol state.
+[ref:handbook-job-recovery-models] identifies the representations used by these mechanisms.
 
 <!-- label: handbook-job-recovery-models -->
 <!-- table: *Engineering models for job ownership and recovery.* Each representation answers a different recovery question. [short: Engineering models for job ownership and recovery] -->
@@ -36,15 +40,19 @@ The accounting, claim, and publication boundaries appear separately in [ref:hand
 | Recovery sequence | Local states such as fallback staged, uploaded, and database updated. | Transition guards and entry hooks ordering publication. |
 | Progress model | One abstract job, pending delivery, and bounded steps. | The temporal specification and paired analysis configurations. |
 
-{{chapter:modeling}}’s generation abstracts successive claims. The implementation discriminator is a floating-point issue timestamp, not an incrementing counter. The executable lease model uses integer ticks and distinguishes the original worker’s held epoch from the replacement lease’s epoch. These abstractions do not imply a Redis worker-ID field or authority over every operation. The lease entry alone cannot identify which worker is executing the job; that question requires a worker identity or a link to an execution record.
+The database job row records status, stage, and progress. Redis records in-flight parent jobs in a sorted set, with the job identifier as member and the lease’s issue time as score. The Redis entry contains no worker identifier. A worker performing the merge retains a local snapshot of the issue time so that its eventual release can be compared with the current entry.
 
-Local worker state and durable job status answer different questions. An inline worker can return to idle after the database records completion. The merge path additionally tracks waiting, merging, and finalizing work. A conformance mapping must identify which path it describes and which durable evidence supports recovery.
+The merge-stage claim is a conditional update of the database job row, not another Redis lease. The publication sequence has its own intermediate states, distinguishing a staged artifact, a finalized artifact, and recorded completion. The temporal recovery model abstracts these mechanisms into job state, pending delivery, and recovery actions.
+
+These representations share the job identity but do not describe identical authority. The lease records in-flight work; the database claim governs the selected merge effect; the publication state records progress toward a durable result. Their consumers must not infer one commitment from another.
 
 ## Realization
 
-### Implement Conditional Lease Operations {.unnumbered}
+### Protect the In-Flight Lease {.unnumbered}
 
-Introduction first wins a database claim changing `queued` to `remediating`; it then adds the parent ID to the Redis sorted set with the current time as score. These are separate operations. The Redis write is best-effort, so the database claim can exist without its accounting entry. Staleness is a comparison with a cutoff, not automatic removal of the sorted-set member. Reissue replaces the score; the parent lease has no per-worker heartbeat-renewal operation.
+DocAble first claims a queued job in the database, changing its status to `remediating`, then adds its identifier to the Redis in-flight set. The two writes are separate, and the Redis operation is best-effort. Consequently, a database claim may exist without a corresponding accounting entry.
+
+Lease expiry does not remove the entry automatically. A recovery scan identifies candidates whose issue times precede a cutoff, then attempts to replace their scores. The replacement operation rechecks staleness atomically so that two scans cannot both reissue the same lease. The parent lease has no per-worker heartbeat-renewal operation.
 
 The following pseudocode preserves the Lua scripts’ decisions. Each function body executes atomically in Redis; the scan that selects a reclaim candidate runs outside it.
 
@@ -68,13 +76,13 @@ reissue(job, now, stale_cutoff):
     return 1
 ```
 
-If A retains an old epoch while reclaim installs a distinguishably newer one for B, A’s guarded release returns zero; B can remove its matching entry. Rechecking staleness atomically prevents two scans from winning the same reclaim. The comparison tolerance requires replacement identities to remain distinguishable at the actual clock resolution.
+The issue time serves as a generation identifier. {{chapter:modeling}} uses an abstract generation; the implementation uses a floating-point timestamp, while the executable ownership model uses integer ticks. Successive claims remain distinguishable only when replacement epochs differ by enough for the actual clock resolution and comparison tolerance.
 
-Inline chunkless completion calls the omitted-epoch branch after its terminal database compare-and-set; dispatch-failure cleanup also uses it. The merge hook instead presents its claim-time snapshot. The API therefore supports both guarded release and unconditional cleanup.
+A worker retaining an older epoch cannot remove a distinguishably newer entry through guarded release. DocAble also permits release without an expected epoch, which unconditionally removes the accounting entry. Inline completion uses this branch after its terminal database compare-and-set, and dispatch-failure cleanup uses it as well. The merge hook instead presents its claim-time snapshot. The guarded operation protects replacement ownership; the unconditional operation relies on its caller’s separate lifecycle conditions.
 
-### Claim the Effect and Classify Recovery {.unnumbered}
+### Protect the Merge Effect {.unnumbered}
 
-The merge claim is a single database update whose returned row identifies the winner. The coordinator selects `merging` as its target stage, while `merge_claimed` is the push consumer’s target. Its essential predicate is:
+DocAble’s frontier-finalization adapter reuses the retired page-chunked engine’s merge claim and epoch-checked terminal hooks. This path requires a separate database claim before performing the merge. The claim changes the job’s stage and returns the affected row to the winning caller:
 
 ``` text
 UPDATE jobs
@@ -85,13 +93,17 @@ WHERE id = job_id AND stage <> target_stage
 RETURNING id;
 ```
 
-Only a caller receiving a row proceeds to the merge. A second caller using the same target stage loses while that stage remains claimed. The snippet’s exclusion set is specific to this primitive; a general terminal-state fence requires reconciling it with the other lifecycle consumers. The two target-stage variants also rely on route selection: their predicates alone do not establish mutual exclusion between callers using different target stages.
+A caller proceeds only if the update returns a row. A competing caller attempting the same target stage cannot acquire that claim while the stage remains set.
 
-Recovery must classify the job before deciding what to repeat. The lease scan clears entries for missing or terminal parents without requeuing them. For a nonterminal parent, only the winner of atomic lease reissue acts. The historical chunked branch republishes preempted work; the chunkless branch marks an orphan failed rather than repeat a potentially OOM-inducing computation. A separate stale-active-job sweep examines start and progress timestamps and surfaces failure without automatic requeue. Eventual termination can therefore mean an explicit failure, not eventual successful remediation.
+The guarantee is narrower than general mutual exclusion. The coordinator targets `merging`, while the push consumer targets `merge_claimed`. Their predicates do not independently prevent callers using different target stages from proceeding; route selection must preserve the intended separation. The terminal-state exclusions are also specific to this operation and must be reconciled with other lifecycle consumers.
 
-### Publish the Fallback and Examine Crash Points {.unnumbered}
+The authority of an atomic operation therefore depends on its actual predicate. The database guarantees that the update is atomic; it does not establish properties absent from the condition being evaluated.
 
-The fallback driver first archives the corrupt output and records diagnostic feedback on a best-effort basis. Its publication sequence is `FALLBACK_STAGED` \(\rightarrow\) `FALLBACK_UPLOADED` \(\rightarrow\) `DB_UPDATED`. The hooks copy the original input to the output location, finalize the artifact, then conditionally write `COMPLETED_UNMODIFIED` from `REMEDIATING`. A remote store uploads during finalization; a local store may already have the file. Analytics and chunk cleanup follow. [ref:2.4-behavioral:heading:publishing-a-recovered-result] explains the ordering obligation.
+### Publish Results and Recover Interrupted Work {.unnumbered}
+
+DocAble’s fallback path preserves the original document when remediation cannot safely produce a changed artifact. It first stages the fallback, then finalizes the artifact in storage, and only afterward records completion in the database. The ordering prevents this path from announcing a completed output before it is available. Its publication states are: `FALLBACK_STAGED` \(\rightarrow\) `FALLBACK_UPLOADED` \(\rightarrow\) `DB_UPDATED`. These are local recovery states, not one transaction spanning storage and the database. Finalization uploads the artifact when the store is remote; the subsequent database update conditionally changes `REMEDIATING` to `COMPLETED_UNMODIFIED`. A crash can interrupt the sequence between any two steps. [ref:2.4-behavioral:heading:publishing-a-recovered-result] explains the ordering obligation.
+
+[ref:handbook-job-recovery-failures] identifies the consequential interruption points. An artifact may exist while the job row remains nonterminal, so recovery cannot infer its absence from the row alone. Conversely, a merge claim may survive its worker’s crash, so another notification cannot safely repeat the effect merely because the lease expires.
 
 <!-- label: handbook-job-recovery-failures -->
 <!-- table: *Interruption points in job recovery.* Atomic claims protect individual decisions; artifact persistence and later bookkeeping retain separate failure windows. [short: Interruption points in job recovery] -->
@@ -103,20 +115,28 @@ The fallback driver first archives the corrupt output and records diagnostic fee
 | Terminal database write, lease clear missed | An accounting entry can outlive completed work. | Terminal-lease reconciliation clears it without starting remediation again; repeated removal of an absent entry is harmless. |
 | Terminal write, later bookkeeping interrupted | Artifact and completion can exist without all later analytics or cleanup. | Reconcile auxiliary work separately. Ordered hooks do not make all side effects transactional or exactly once. |
 
-### Test Safety, Progress, and Correspondence {.unnumbered}
+Recovery first distinguishes terminal or missing jobs from work that remains active. The lease scan clears accounting entries for missing or terminal parents without requeuing them. For a nonterminal parent, only the winner of atomic lease reissue acts.
 
-Test the production lease operations against stale and current claim epochs. Exercise fallback publication with injected storage failures, checking that the artifact is finalized before completion is recorded. Race competing completion attempts and verify that only the authorized claim proceeds. DocAble’s tests exercise these boundaries with substitute database and storage implementations; they do not establish the behavior of every external storage system or deployment configuration.
+The recovery policy then depends on the execution path. The historical chunked path can republish preempted work; the chunkless path marks an orphan failed rather than automatically repeating a computation that may exhaust memory again. A separate sweep detects stale active jobs through their timestamps and can surface failure without requeueing. Eventual termination therefore includes explicit failure, not necessarily successful remediation.
 
-Explicit-state exploration varies the order of lease acquisition, expiry, replacement, and release. The model must reject stale releases that invalidate newer claims. Negative configurations disable the epoch check, terminal-state protection, or lease reconciliation and require counterexamples, challenging the checker’s ability to detect those failure classes.
+The implementation also retains distinct cleanup responsibilities. A terminal database record may coexist temporarily with an in-flight accounting entry or incomplete auxiliary analytics. Recovery can reconcile these records without repeating the remediation operation.
 
-A separate merge-claim model examines duplicate notifications. A retained run finds no double merge with atomic claims and exposes duplicate merging when the claim is disabled. This supports the model’s selected safety property, not the full database predicate or production behavior.
+### Verify Safety and Progress {.unnumbered}
 
-The temporal specification addresses progress. It represents delivery, lost notifications, and recovery sweeps, with the property \(\mathrm{Submitted} \leadsto \mathrm{Terminal}\) under stated fairness assumptions. Paired configurations enable and disable recovery to test the sweep’s role. They abstract away the lease and merge claim, so this analysis cannot establish those mechanisms’ implementation correctness. The available evidence contains the specification and configurations, but no retained TLC execution establishing their results.
+The three commitments require different evidence, as does eventual progress.
 
-Correspondence checks connect these models to the protocol: compare declarations, exercise implementation operations against the model, and revisit mappings when paths change. Abstract generations, timestamp-based lease operations, and durable stage claims preserve different details; each needs evidence at the boundary it describes.
+**Lease safety.** Exercise acquisition, expiry, replacement, and release against the production operations. A stale guarded release must leave the replacement entry intact. Explicit-state exploration examines alternative orderings. Negative configurations disable epoch checks, terminal-state protection, or lease reconciliation and require counterexamples, challenging the checker’s ability to expose the intended failures.
+
+**Effect exclusivity.** Race competing merge notifications and verify that only the authorized claim proceeds. A separate finite-state model examines duplicate notifications. A retained run finds no double merge with atomic claims and exposes duplicate merging when the claim is disabled. This supports the modeled safety property, not every behavior of the production database predicate.
+
+**Publication ordering.** Inject storage failures and interruptions before and after artifact finalization. The job record must not announce completion before the artifact is available. Tests must also examine recovery when an artifact exists but the corresponding database update does not occur.
+
+**Eventual progress.** The temporal specification represents delivery, lost notifications, and recovery sweeps. Its property is \(\mathrm{Submitted} \leadsto \mathrm{Terminal}\), under stated fairness assumptions. Configurations with and without recovery examine the sweep’s contribution. The specification abstracts away lease and merge-claim details, and the available evidence does not include a retained TLC execution establishing its results.
+
+The tests and analyses establish different properties. DocAble’s implementation tests exercise selected transition boundaries with substitute database and storage implementations; they do not establish every behavior of the deployed stores. Explicit-state models explore their represented interleavings, while temporal analysis addresses progress under assumptions. Correspondence between these abstractions and the deployed protocol requires reconsideration when lifecycle paths change.
 
 ## Adaptation and Limits
 
-The ownership protocol can be adapted to other distributed jobs, provided that successive claims remain distinguishable and that stale workers cannot revoke newer authority. The implementation must also identify which effects require exclusive claims and which state transitions permit recovery. These decisions depend on the storage system’s atomic operations and the consequences of repeating work.
+The arrangement applies to distributed jobs whose workers may continue after losing ownership. Successive claims must remain distinguishable, and the implementation must identify which effects require exclusive authority. The storage system’s atomic operations determine how those claims can be protected.
 
-The principal limitation is that preventing competing claims does not guarantee progress. A worker may acquire exclusive permission for an effect and then crash, leaving the work stranded. Conversely, retrying an interrupted operation may repeat an effect that succeeds before its completion is recorded. Recovery must therefore distinguish work that can safely be repeated from work that requires reconciliation with durable state. Safety and eventual progress are separate obligations, and each requires its own evidence.
+The principal limitation is that preventing competing claims does not guarantee progress. A worker may acquire exclusive permission and then crash, leaving the work stranded. Conversely, retrying an interrupted operation may repeat an effect that succeeds before completion is recorded. Recovery must distinguish repeatable work from effects requiring reconciliation with durable state. Safety and eventual progress are separate obligations, and each requires its own evidence.

@@ -6443,12 +6443,12 @@
     {
       "source": "book/assets/recovering-and-extending-governance.svg",
       "candidate": "book/tikz/figures/recovering-and-extending-governance.tex",
-      "source_sha256": "9b7c330284795b9cbd0bc704629684d646f2501a5c3ac19370bf742be2aef4bc",
-      "candidate_sha256": "94dd1135b9855098ef42a47736865f47da69eead8f43e5d08935f769bc61a435",
+      "source_sha256": "c9de97308e7408cc936a23086e0f056d2578a033974b7e387320a764283cf3bd",
+      "candidate_sha256": "1cdfd8f619cd2250b15b4b6e558ba7d8256ab87e96ddb3fc9dcd465fa3f186f7",
       "decision": "new",
-      "revision_date": "2026-11-20",
+      "revision_date": "2026-11-24",
       "reviewed_visually": true,
-      "reason": "Author-requested compact horizontal adaptation of discovering-models-migration, active-passive-alignment and alignment-kernel; retain conceptual distinctions rather than shrink complete source figures.",
+      "reason": "Author-requested geometry compression from 444 x 224 bp to 444 x 184 bp (17.86% less height). Labels remain 10 pt; strokes and semantic relationships are unchanged. Shorter gaps and repeat loop, aligned panel tops/bottoms, and less whitespace around the nested kernel preserve legibility.",
       "receipt": "book/tikz/receipts/recovering-and-extending-governance.json",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
@@ -6457,7 +6457,7 @@
       "bold": "Panel and alignment headings plus Kernel are bold; remaining labels regular.",
       "routing": "Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.",
       "shape": "White default; light-gray fill identifies latent model concepts, explicit model obligations and the protected kernel. Rounded mechanisms, square representations/outcomes, and nested governed surfaces retain the Chapter 4 vocabulary. Solid arrows express local process or branching; nested circles express containment, not data flow. Headings are bold, explanations regular.",
-      "visual_review": "Read the source-native diagrams and inspected their rendered forms alongside the new native triptych. Independent classification outcomes, active repetition, passive checks and retained nested governance remain visible.",
+      "visual_review": "Inspected the final isolated native proof: no clipped labels or crossing text. Existing grayscale/shape semantics and all labels remain. Full-page review follows in Appendix B.",
       "book_references": []
     },
     {

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Paired monochrome SVG/TikZ blueprints, using one explicit geometry.
+"""Paired SVG/TikZ recovery triptych using one explicit geometry.
 
-Gray identifies flexible reasoning; square artifacts, rounded mechanisms,
-Panel-specific reductions preserve the distinctions in the source figures.
+Compress vertical spacing at native print size; retain all labels and edge meanings.
 """
 from pathlib import Path
 from html import escape
-ROOT=Path(__file__).resolve().parents[3]
+import argparse
+OUTPUT_DIR=None
 
 def tex(s):
  return ''.join({'&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}'}.get(c,c) for c in s)
@@ -37,49 +37,58 @@ class Drawing:
   self.t.append('\\path[fill=white,draw=black,line width=.8bp] '+' -- '.join(f'({x},{y})'for x,y in pts)+' -- cycle;\n')
   for i,s in enumerate(lines):self.text(cx,cy-(len(lines)-1)*6+3.4+i*12,s)
  def save(self):
-  (ROOT/f'book/assets/{self.key}.svg').write_text('\n'.join(self.s)+'</svg>\n')
-  (ROOT/f'book/tikz/figures/{self.key}.tex').write_text(''.join(self.t)+'\\end{tikzpicture}\n')
+  root=Path(__file__).resolve().parents[3] if OUTPUT_DIR is None else None
+  svg_path=(root/f'book/assets/{self.key}.svg') if OUTPUT_DIR is None else OUTPUT_DIR/f'{self.key}.svg'
+  tex_path=(root/f'book/tikz/figures/{self.key}.tex') if OUTPUT_DIR is None else OUTPUT_DIR/f'{self.key}.tex'
+  svg_path.write_text('\n'.join(self.s)+'</svg>\n')
+  tex_path.write_text(''.join(self.t)+'\\end{tikzpicture}\n')
 
 def build():
- d=Drawing('recovering-and-extending-governance','Recovering and extending governance in an existing system','Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.',w=444,h=224)
+ d=Drawing('recovering-and-extending-governance','Recovering and extending governance in an existing system','Three complementary practices for an existing system. Recover models by distinguishing legitimate implementation patterns, latent concepts worth representing, and mechanical cleanup. Active alignment changes implementation until obligations hold; passive alignment checks subsequent changes against the retained models. Expand the alignment kernel incrementally while protecting established obligations.',w=444,h=184)
  d.text(73,13,'(a) Recover models',bold=True)
  d.text(222,13,'(b) Establish alignment',bold=True)
  d.text(373,13,'(c) Expand governance',bold=True)
- d.line([(148,25),(148,224)],arrow=False)
- d.line([(297,25),(297,224)],arrow=False)
+ d.line([(148,25),(148,184)],arrow=False)
+ d.line([(297,25),(297,184)],arrow=False)
  # A: classify findings before selecting the appropriate remedy.
- d.line([(74,58),(74,70)])
- d.line([(24,82),(10,82),(10,205)],arrow=False)
- for y in (121,163,205):d.line([(10,y),(24,y)])
- d.box(5,28,138,30,['Implementation patterns','+ engineering knowledge'])
- d.box(24,70,112,24,['Classify findings'],activity=True)
- d.box(24,106,112,30,['Legitimate patterns','retain / exempt'])
- d.box(24,148,112,30,['Latent concepts','represent explicitly'],gray=True)
- d.box(24,190,112,30,['Mechanical cleanup','local fix / codemod'])
+ d.line([(74,49),(74,61)])
+ d.line([(24,72),(10,72),(10,167)],arrow=False)
+ for y in (101,134,167):d.line([(10,y),(24,y)])
+ d.box(5,23,138,26,['Implementation patterns','+ engineering knowledge'])
+ d.box(24,61,112,22,['Classify findings'],activity=True)
+ d.box(24,88,112,26,['Legitimate patterns','retain / exempt'])
+ d.box(24,121,112,26,['Latent concepts','represent explicitly'],gray=True)
+ d.box(24,154,112,26,['Mechanical cleanup','local fix / codemod'])
  # B: establish alignment, then retain checks for later changes.
- d.line([(222,58),(222,74)])
- d.line([(280,99),(289,99),(289,145),(270,145),(270,124)])
- d.text(263,138,'repeat',anchor='end')
- d.line([(222,124),(222,172)])
- d.text(214,153,'once aligned',anchor='end')
- d.text(214,165,'retain checks',anchor='end')
- d.box(164,28,116,30,['Models + obligations'],gray=True)
- d.rect(164,74,116,50,rx=3)
- d.text(222,89,'Active alignment',bold=True)
- d.text(222,105,'Modify and evaluate')
- d.text(222,117,'until obligations hold')
- d.rect(164,172,116,48,rx=3)
- d.text(222,185,'Passive alignment',bold=True)
- d.text(222,201,'Check later changes')
- d.text(222,213,'admit or reject')
+ d.line([(222,49),(222,61)])
+ d.line([(280,83),(289,83),(289,118),(270,118),(270,105)])
+ d.text(263,118,'repeat',anchor='end')
+ d.line([(222,105),(222,136)])
+ d.text(214,117,'once aligned',anchor='end')
+ d.text(214,129,'retain checks',anchor='end')
+ d.box(164,23,116,26,['Models + obligations'],gray=True)
+ d.rect(164,61,116,44,rx=3)
+ d.text(222,73,'Active alignment',bold=True)
+ d.text(222,87,'Modify and evaluate')
+ d.text(222,99,'until obligations hold')
+ d.rect(164,136,116,44,rx=3)
+ d.text(222,149,'Passive alignment',bold=True)
+ d.text(222,163,'Check later changes')
+ d.text(222,175,'admit or reject')
  # C: later layers retain the kernel's established obligations.
- for radius,shade in [(58,False),(38,False),(18,True)]:
-  d.s.append(f'<circle cx="372" cy="124" r="{radius}" fill="'+('#eaeaea' if shade else 'white')+'" stroke="black" stroke-width=".8"/>')
-  d.t.append(f'\\path[draw,fill='+('black!8' if shade else 'white')+f',line width=.8bp] (372,124) circle[radius={radius}bp];\n')
- d.text(372,82,'New models')
- d.text(372,104,'Prior models')
- d.text(372,128,'Kernel',bold=True)
- d.text(372,202,'Expand under')
- d.text(372,214,'existing constraints.')
+ for radius,shade in [(58,False),(40,False),(18,True)]:
+  d.s.append(f'<circle cx="372" cy="98" r="{radius}" fill="'+('#eaeaea' if shade else 'white')+'" stroke="black" stroke-width=".8"/>')
+  d.t.append(f'\\path[draw,fill='+('black!8' if shade else 'white')+f',line width=.8bp] (372,98) circle[radius={radius}bp];\n')
+ d.text(372,56,'New models')
+ d.text(372,78,'Prior models')
+ d.text(372,102,'Kernel',bold=True)
+ d.text(372,168,'Expand under')
+ d.text(372,180,'existing constraints.')
  d.save();return d
-if __name__=='__main__':build()
+if __name__=='__main__':
+ parser=argparse.ArgumentParser()
+ parser.add_argument('--output-dir',type=Path,default=OUTPUT_DIR)
+ args=parser.parse_args()
+ OUTPUT_DIR=args.output_dir
+ if OUTPUT_DIR is not None: OUTPUT_DIR.mkdir(parents=True,exist_ok=True)
+ build()

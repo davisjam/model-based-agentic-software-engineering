@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 651,
+    "total_sites": 649,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 316,
+      "book-web": 314,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -181,7 +181,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
@@ -209,7 +209,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 14
+            "occ": 12
           },
           {
             "file": "book/web/docs/bibliography.md",
@@ -648,10 +648,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           },
@@ -663,7 +659,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 6
           }
         ]
       },
@@ -1085,7 +1081,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-controlled-mutation.md",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/web/docs/appendix-a-designing-your-own-blueprint.md",
@@ -1101,7 +1097,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-job-ownership-and-recovery.md",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
@@ -1129,19 +1125,19 @@
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 16
+            "occ": 13
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 31
+            "occ": 33
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 9
+            "occ": 13
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
@@ -1383,7 +1379,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1649,7 +1645,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-engineering-moves.md",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
@@ -1657,19 +1653,19 @@
           },
           {
             "file": "book/web/docs/appendix-a-job-ownership-and-recovery.md",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/web/docs/appendix-a-maintaining-the-machinery.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/appendix-a-model-based-test-selection.md",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "book/web/docs/appendix-a-model-driven-deployment.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/appendix-a-remediation-computation-graph.md",
@@ -1681,23 +1677,23 @@
           },
           {
             "file": "book/web/docs/appendix-a-substitutable-reasoning.md",
-            "occ": 45
+            "occ": 42
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
-            "occ": 9
+            "occ": 7
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 16
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 16
+            "occ": 12
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/bibliography.md",
@@ -2131,7 +2127,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 29
+            "occ": 30
           },
           {
             "file": "catalogue-figure.html",
@@ -2458,10 +2454,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-b-getting-started.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
             "occ": 2
           },
@@ -2509,7 +2501,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 39
+            "occ": 38
           }
         ]
       },

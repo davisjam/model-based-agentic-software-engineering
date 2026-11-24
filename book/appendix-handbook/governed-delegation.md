@@ -75,7 +75,7 @@ Selected prose guides the reasoner. The applicable tests, permissions, and gates
 
 ### Dispatch, Execute, and Evaluate Completion {#handbook-model-lifecycle .unnumbered}
 
-Begin with a structured assignment and a deliberately small set of dispatch checks. Verify that the assigned scope is resolvable, that the work is attached to the intended project, and that the required instruction sources are available. State what happens when a premise cannot be established. A missing path for a declared new file has a different meaning from a missing source file the agent is expected to edit.
+Dispatch depends on a structured assignment and a small set of checks establishing that its scope, project identity, and required instruction sources can be resolved. Missing inputs have different meanings: a declared new file is expected not to exist, while a missing source file may invalidate the assignment. The dispatch policy must distinguish these cases rather than treating every unresolved path as the same failure.
 
 Require durable work early enough that interruption is recoverable. In DocAble, agent commits carry progress information, and a final validation marker distinguishes work ready for integration from an interrupted sequence. Links among the assignment, executor, worktree, and commits let an operator locate results without recovering the conversation.
 

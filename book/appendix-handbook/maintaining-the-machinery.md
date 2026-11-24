@@ -4,7 +4,7 @@ A working control becomes part of the system later changes must preserve. Its in
 
 ## Analyze Interactions Before Adding Another Control {#handbook-model-governance-graph}
 
-Start with a concrete interference question. Do two hooks write the same record? Must one inspect state before another consumes or changes it? Does a required property of a commit conflict with a different mechanism’s transformation? Record only the distinctions needed to decide that question. A list of control names cannot answer it.
+Adding a control can create interactions with existing machinery. Two hooks may write the same record; one mechanism may need to inspect state before another changes it; or a required property of a commit may conflict with another transformation. The useful model is therefore not a catalogue of controls but a representation of the relationships needed to decide whether they interfere.
 
 DocAble’s governance graph represents selected mechanisms with firing events, resource requirements, enforcement characteristics, and implementation anchors. Requirements distinguish reading, writing, requiring a property, and constraining a resource. Resources have hierarchical names: a coarse reference to `commit` can be refined to `commit.message` or `commit.body`. Apparent interference may disappear when the modeled subresources are disjoint. Genuine overlap may require an ordering or an engineering decision about incompatible requirements.
 

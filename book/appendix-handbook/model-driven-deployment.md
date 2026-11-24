@@ -58,15 +58,15 @@ For each attempted binding, retain the callee, runtime principal, logical caller
 
 ### Construct the Path and Transfer Authority {.unnumbered}
 
-**Begin with the deployed arrangement.** Identify the configuration that currently drives URL wiring, service naming, and runtime identity. Give the selected call a stable identity and write down the authentication obligation. An address, a principal, and an intended permission must not be inferred from one another merely because their names resemble each other. Keep unrelated services outside the first migration.
+Construction begins with the deployed arrangement. The existing configuration identifies which resources supply URL wiring, service names, and runtime identities. Each intended call needs a stable identity and an authentication obligation. Similar names do not establish that a service address, runtime principal, and permission describe the same relationship.
 
-**Introduce a verified mirror.** Express the selected relationships in a typed model and project them into the form the current consumer expects. Compare that projection with the existing configuration. DocAble’s parity test requires the projected dependency map to equal the maintained deployment map; an injected missing edge checks that disagreement is detected. While both declarations exist, this comparison carries the correspondence obligation. It does not decide which declaration is correct when they disagree.
+The typed model can initially serve as a verified mirror. Its projection is compared with the maintained deployment map, and discrepancies require reconciliation. DocAble’s parity check detects a missing dependency edge, but cannot decide which declaration is correct.
 
-**Derive and inspect the plan.** Join the dependency to runtime identity and the deployed callee name. Keep the derivation deterministic, retain the logical callers behind a deduplicated binding, and expose a dry-run result. Review whether the resulting principal is as narrow as the intended architectural permission. A precise logical edge cannot compensate for an unnecessarily broad shared credential.
+Once correspondence is established, the grant planner joins the dependency with runtime identity and deployed service name. The resulting plan is deterministic and can be inspected before application. Deduplicated bindings retain their logical callers, making it possible to examine whether shared credentials grant broader authority than intended.
 
-**Exercise application and repair.** Apply grants only after the named service resources exist. Define what the caller of the application component must do with a failed result. DocAble runs grant application after the fleet deployment loop. Failed grants are reported for fix-forward repair; they do not unwind the promoted fleet. Reapplying the idempotent grant on a later deployment can restore a manually revoked binding. An analogous system may instead block promotion, but that is a different policy that must be implemented and tested, not inferred from the existence of a grant plan.
+Application occurs after the named service resources exist. DocAble reports failed grants for subsequent repair rather than rolling back the promoted fleet. Reapplying an idempotent grant can restore a manually revoked binding. A different deployment process could block promotion, but would need an explicit gate and tests for that policy.
 
-**Transfer authority deliberately.** Once the model’s consumers and checks are dependable, migrate the relevant consumer to the model-derived view and retire the duplicate literal. Retain an explicit correspondence check while two declarations remain. A change of authority is complete only when the intended consumers use the new source.
+Authority transfers only when the relevant consumers use the model-derived representation. Until then, correspondence checks must connect the two declarations. Retiring the duplicate literal completes the migration and avoids leaving two competing sources of authority.
 
 ### Verify the Arrangement {.unnumbered}
 
