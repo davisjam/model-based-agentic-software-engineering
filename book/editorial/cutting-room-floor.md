@@ -26656,3 +26656,26 @@ This arrangement differs from the software-centered factories examined above. Ra
 
 
 ```
+
+
+## 2026-11-23 — Factory-case follow-up and coda compression
+
+Source revision: `6f4e10aafbd5c91d138c700b67678042ce8bb626`. Reason: author-approved removal of duplicated Spotify/Shopify setup and compression of the coda; retain the earlier prose for possible reuse.
+
+Source: `book/latex/sources/part5/5.4-other-agentic-software-factories.tex`, line 51.
+
+```latex
+In 2025, an agent replaced the transformation script at one station while the surrounding targeting, review, and merge infrastructure initially remained the same.
+```
+
+Source: `book/latex/sources/part5/5.4-other-agentic-software-factories.tex`, line 77.
+
+```latex
+The improvement occurred with the foundation model unchanged, as people deliberately preserved lessons for later work.
+```
+
+Source: `book/latex/sources/part5/5.5-engineering-the-factory.tex`, line 12.
+
+```latex
+The cases show that the software factory is itself an object of engineering. DocAble developed its production arrangements as implementation outpaced my ability to supervise individual changes. Established organizations introduced agents into processes, representations, analyses, and controls they already possessed. In both settings, increasing implementation capacity changes the demands on the surrounding production system. Its processes, models, and controls must evolve alongside the software it produces.
+```

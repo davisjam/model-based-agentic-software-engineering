@@ -731,6 +731,8 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-evaluation-questions', (.40, .60),
                                   row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'agentic-engineering-factories', (.20, .35, .45),
+                                  row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
     latex = layout_selected_table(latex, 'practicing-brownfield-exits', (.18, .40, .42),
@@ -756,7 +758,8 @@ def _prepare_record(task):
     # This inventory must precede the contract discussion that follows it;
     # a float can otherwise interrupt the new heading and its first paragraph.
     latex = keep_tables_together(latex, in_place_labels=frozenset({
-        'handbook-substitution-models', 'docable-evaluation-questions'}))
+        'handbook-substitution-models', 'docable-evaluation-questions',
+        'agentic-engineering-factories'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
