@@ -281,6 +281,12 @@ class SectionArtworkTests(unittest.TestCase):
         patched(mage_tikz_review, 'ROOT', self.root)
         patched(mage_tikz_review, 'BASE', self.base)
         patched(book_ir, 'parse_book', return_value=None)
+        self.records = [
+            dict(slug='0.1-how-to-read-this-book', part=0, chapter=1,
+                 chapter_title='How to Read This Book', is_matter=True),
+            dict(slug='1.1-example', part=1, chapter=1, chapter_title='Example'),
+        ]
+        patched(book_ir, 'book_records', return_value=self.records)
         self.sections = [('FrontMatter', ['0.1-how-to-read-this-book']),
                          ('Chapter1', ['1.1-example'])]
         patched(build_book, '_pdf_split_sections', return_value=self.sections)
@@ -292,6 +298,7 @@ class SectionArtworkTests(unittest.TestCase):
         patched(mage_latex, 'pdf_sources', side_effect=self.read_sources)
         self.compiled = patched(latex_build, 'compile_tex', side_effect=self.compile)
         patched(pdf_structure, 'check_pdf')
+        self.bookmarks = patched(pdf_structure, 'check_numbered_bookmarks')
         self.verified = patched(mage_tikz_links, 'verify_book')
         self.environment = patch.dict(os.environ, {'MAGE_PDF_SPLIT_FORCE': ''})
         self.environment.start()
@@ -348,6 +355,9 @@ class SectionArtworkTests(unittest.TestCase):
         self.candidates.assert_called_once()
         self.assertEqual(self.compiled.call_count, 2)
         self.assertEqual(self.verified.call_count, 2)
+        self.assertEqual(self.bookmarks.call_count, 2)
+        for call, (_, slugs) in zip(self.bookmarks.call_args_list, self.sections):
+            self.assertEqual(call.args[1:], (self.records, slugs))
         guide_manifest = self.verified.call_args_list[0].args[2]
         self.assertEqual(set(guide_manifest), {self.sources[0]})
         self.assertEqual([link['target'] for link in guide_manifest[self.sources[0]]['links']],
@@ -356,6 +366,7 @@ class SectionArtworkTests(unittest.TestCase):
             self.assertEqual(call.kwargs['anchor_prefix'], 'tikz-figure:')
         self.assertEqual(self.build(), 0)
         self.assertEqual(self.compiled.call_count, 2, 'identical projected inputs should reuse')
+        self.assertEqual(self.bookmarks.call_count, 4, 'reused PDFs must still pass bookmark checks')
 
         self.pool.write_bytes(b'revised native figure pool')
         self.assertEqual(self.build(), 0)
@@ -363,6 +374,12 @@ class SectionArtworkTests(unittest.TestCase):
 
     def test_failed_native_link_verification_does_not_publish_or_stamp(self):
         self.verified.side_effect = ValueError('misdirected TikZ book links')
+        self.assertEqual(self.build(), 1)
+        self.assertEqual(list(self.book.glob('mage-book-*.pdf')), [])
+        self.assertEqual(list(self.book.rglob('*.cache.json')), [])
+
+    def test_failed_bookmark_verification_does_not_publish_or_stamp(self):
+        self.bookmarks.side_effect = RuntimeError('section bookmark is missing its number')
         self.assertEqual(self.build(), 1)
         self.assertEqual(list(self.book.glob('mage-book-*.pdf')), [])
         self.assertEqual(list(self.book.rglob('*.cache.json')), [])
