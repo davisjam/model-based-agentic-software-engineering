@@ -1,10 +1,10 @@
 {
   "source": "book/assets/priority-to-accepted-work.svg",
   "candidate": "book/tikz/figures/priority-to-accepted-work.tex",
-  "source_sha256": "45103c1c59e1068da56c3affbca98e2937543a8ab24f86c630747faedf2d7681",
-  "candidate_sha256": "9be429ec78be790e0061602b8ddc5771a78cc3b6ab64b21e2133b45fa720cb57",
+  "source_sha256": "b09982a9d649845984e0badc4177ef8688b86dd58c1df328299a98fb28c4edae",
+  "candidate_sha256": "f310f67a601de9301485c9d7318834fcea3f8e8dc6c6d06824b8fc02d08ad715",
   "decision": "revised",
-  "revision_date": "2026-11-20",
+  "revision_date": "2026-11-24",
   "reviewed_visually": true,
   "claim": "Governed work progresses toward acceptance while model-derived obligations, independent evidence, recovery and human judgment retain distinct roles.",
   "topology": "Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.",
@@ -41,7 +41,7 @@
     "Human judgment"
   ],
   "bw_encoding": "Light-gray rounded model cards identify engineering models and their derived obligations, matching the model surface in three-relations and model-induction-general. Ordinary workflow stages including Design remain white; activities have modest rounded corners, durable artifacts square corners, acceptance a diamond, and independent evidence a double outline. Solid arrows carry progression, repair and recovery; dashed arrows supply model information or evidence.",
-  "redesign": "Author requested a dominant left-to-right workflow with separate model/evidence inputs and subordinate recovery. Previous source/native figure and selected active review rows archived in book/editorial/appendix-b-workflow-20261120/before.",
+  "redesign": "Author-requested vertical compression: 444 x 316 bp to 444 x 279 bp (11.71% less height). Inter-band gaps and feedback rails shorten; all box dimensions, labels, 10pt typography, arrowheads, horizontal positions, and semantic distinctions remain unchanged.",
   "questions": [],
   "alt": "Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.",
   "generator": "book/editorial/appendix-b-workflow-20261120/build.py",

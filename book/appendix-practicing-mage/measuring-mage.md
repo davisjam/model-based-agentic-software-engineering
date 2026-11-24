@@ -6,6 +6,8 @@ MAGE aims to increase the reliable engineering work accomplished with a given in
 
 [ref:practicing-primary-readings] identifies five useful metrics. They measure different properties and should not be combined into a maturity score. Higher throughput does not compensate for unacceptable defects, and additional model coverage is useful only when it supports consequential engineering questions. Model quality and return on engineering capital may require several indicators or case-based assessments; report their basis rather than implying a single numerical measure.
 
+Before changing the engineering environment, establish a baseline using comparable work units, acceptance criteria, completion evidence, human interventions, and subsequent repairs. Use consistent observation windows and distinguish landed changes, completed work orders, and released capabilities. Record changes in workload complexity and consequence rather than attributing every difference to MAGE. Before-and-after comparisons can suggest whether an investment helps, but do not by themselves establish causation.
+
 <!-- label: practicing-primary-readings -->
 <!-- table: *Metrics for evaluating MAGE.* The metrics connect engineering outcomes to the book’s account of Modeling, Alignment, and engineering capital. They measure different properties and should be interpreted together rather than combined into a single score. [short: Metrics for evaluating MAGE] -->
 | **Metric** | **Measurement** | **Engineering significance** |
@@ -15,8 +17,6 @@ MAGE aims to increase the reliable engineering work accomplished with a given in
 | Human engineering effort | Human time spent specifying, reviewing, investigating, correcting, and supervising work, relative to durable output. | Measures how much scarce human effort delegated implementation continues to require. |
 | Model quality and coverage | Coverage of selected engineering questions and obligations; correspondence failures, unresolved drift, and validation results. | Evaluates whether models provide trustworthy representations of consequential system properties. |
 | Return on engineering capital | Subsequent engineering effort or losses avoided through reusable models and controls, compared with their construction and maintenance costs. | Evaluates whether governance conversion produces lasting economic value. |
-
-Before changing the engineering environment, establish a baseline using comparable work units, acceptance criteria, completion evidence, human interventions, and subsequent repairs. Use consistent observation windows and distinguish landed changes, completed work orders, and released capabilities. Record changes in workload complexity and consequence rather than attributing every difference to MAGE. Before-and-after comparisons can suggest whether an investment helps, but do not by themselves establish causation.
 
 ### Relationship to Established Engineering Metrics {#relationship-to-established-engineering-metrics}
 

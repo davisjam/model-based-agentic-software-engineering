@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="948" viewBox="0 0 444 316" role="img" aria-labelledby="title desc"><title id="title">From priority to accepted work</title><desc id="desc">Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="444" height="316" fill="white"/>
-<path d="M42,124 L56,124" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<path d="M96,124 L110,124" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<path d="M166,124 L180,124" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<path d="M264,124 L278,124" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<path d="M364,124 L378,124" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="373" y="90" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">accept</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="837" viewBox="0 0 444 279" role="img" aria-labelledby="title desc"><title id="title">From priority to accepted work</title><desc id="desc">Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="444" height="279" fill="white"/>
+<path d="M42,111 L56,111" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M96,111 L110,111" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M166,111 L180,111" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M264,111 L278,111" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M364,111 L378,111" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="373" y="77" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">accept</text>
 <path d="M232,25 L250,25" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
-<path d="M151,50 L151,102" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
-<text x="143" y="70" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">scope +</text>
-<text x="143" y="82" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">context</text>
-<path d="M307,50 L307,101.5" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
-<path d="M407,50 L407,70 L335,70 L335,101.5" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
-<path d="M303,142.6 L303,170 L254,170 L254,146" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="280" y="163" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">repair</text>
-<path d="M321,156 L321,206 L390,206 L390,242" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="355" y="199" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">unresolved</text>
-<path d="M236,146 L236,218 L277,218 L277,242" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="270" y="211" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">if interrupted</text>
-<path d="M230,262 L214,262" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<path d="M168,242 L168,196 L210,196 L210,146" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="187" y="189" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">resume</text>
-<path d="M390,282 L390,308 L85,308 L85,146" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
-<text x="95" y="224" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">revise design</text>
+<path d="M151,50 L151,89" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<text x="143" y="63" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">scope +</text>
+<text x="143" y="75" text-anchor="end" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">context</text>
+<path d="M307,50 L307,88.5" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M407,50 L407,63 L335,63 L335,88.5" fill="none" stroke="black" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M303,129.6 L303,154 L254,154 L254,133" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="280" y="147" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">repair</text>
+<path d="M321,143 L321,175 L390,175 L390,211" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="355" y="168" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">unresolved</text>
+<path d="M236,133 L236,187 L277,187 L277,211" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="270" y="180" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">if interrupted</text>
+<path d="M230,231 L214,231" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M168,211 L168,165 L210,165 L210,133" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="187" y="158" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">resume</text>
+<path d="M390,251 L390,271 L85,271 L85,133" fill="none" stroke="black" stroke-width=".8" marker-end="url(#arrow)"/>
+<text x="95" y="193" text-anchor="start" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">revise design</text>
 <rect x="122" y="0" width="110" height="50" rx="3" fill="#ebebeb" stroke="black" stroke-width=".8"/>
 <path d="M135,19.5 L135,30.0" fill="none" stroke="black" stroke-width=".6"/>
 <path d="M129,30.0 L129,25.0 L141,25.0 L141,30.0" fill="none" stroke="black" stroke-width=".6"/>
@@ -45,27 +45,27 @@
 <text x="402.5" y="16.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Independent</text>
 <text x="402.5" y="28.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">acceptance</text>
 <text x="402.5" y="40.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">evidence</text>
-<rect x="0" y="102" width="42" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
-<text x="21.0" y="127.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Priority</text>
-<rect x="56" y="102" width="40" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
-<text x="76.0" y="127.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Design</text>
-<rect x="110" y="102" width="56" height="44" rx="0" fill="white" stroke="black" stroke-width=".8"/>
-<text x="138.0" y="121.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Work</text>
-<text x="138.0" y="133.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">order</text>
-<rect x="180" y="102" width="84" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
-<text x="222.0" y="121.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Agent</text>
-<text x="222.0" y="133.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">implementation</text>
-<polygon points="321,92.0 364.0,124 321,156.0 278.0,124" fill="white" stroke="black" stroke-width=".8"/>
-<text x="321" y="121.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Acceptance</text>
-<text x="321" y="133.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">gate</text>
-<rect x="378" y="102" width="62" height="44" rx="0" fill="white" stroke="black" stroke-width=".8"/>
-<text x="409.0" y="121.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Integrated</text>
-<text x="409.0" y="133.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">work</text>
-<rect x="230" y="242" width="94" height="40" rx="0" fill="white" stroke="black" stroke-width=".8"/>
-<text x="277.0" y="259.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Durable commits</text>
-<text x="277.0" y="271.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">+ partial artifacts</text>
-<rect x="122" y="242" width="92" height="40" rx="3" fill="white" stroke="black" stroke-width=".8"/>
-<text x="168.0" y="259.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Recovery</text>
-<text x="168.0" y="271.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">inspect artifacts</text>
-<rect x="341" y="242" width="99" height="40" rx="3" fill="white" stroke="black" stroke-width=".8"/>
-<text x="390.5" y="265.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Human judgment</text></svg>
+<rect x="0" y="89" width="42" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
+<text x="21.0" y="114.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Priority</text>
+<rect x="56" y="89" width="40" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
+<text x="76.0" y="114.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Design</text>
+<rect x="110" y="89" width="56" height="44" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="138.0" y="108.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Work</text>
+<text x="138.0" y="120.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">order</text>
+<rect x="180" y="89" width="84" height="44" rx="3" fill="white" stroke="black" stroke-width=".8"/>
+<text x="222.0" y="108.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Agent</text>
+<text x="222.0" y="120.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">implementation</text>
+<polygon points="321,79.0 364.0,111 321,143.0 278.0,111" fill="white" stroke="black" stroke-width=".8"/>
+<text x="321" y="108.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Acceptance</text>
+<text x="321" y="120.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">gate</text>
+<rect x="378" y="89" width="62" height="44" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="409.0" y="108.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Integrated</text>
+<text x="409.0" y="120.4" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">work</text>
+<rect x="230" y="211" width="94" height="40" rx="0" fill="white" stroke="black" stroke-width=".8"/>
+<text x="277.0" y="228.39999999999998" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Durable commits</text>
+<text x="277.0" y="240.39999999999998" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">+ partial artifacts</text>
+<rect x="122" y="211" width="92" height="40" rx="3" fill="white" stroke="black" stroke-width=".8"/>
+<text x="168.0" y="228.39999999999998" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Recovery</text>
+<text x="168.0" y="240.39999999999998" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">inspect artifacts</text>
+<rect x="341" y="211" width="99" height="40" rx="3" fill="white" stroke="black" stroke-width=".8"/>
+<text x="390.5" y="234.39999999999998" text-anchor="middle" font-family="Source Sans 3,Arial,sans-serif" font-size="10" font-weight="normal" fill="black">Human judgment</text></svg>

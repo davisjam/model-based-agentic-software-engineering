@@ -6,20 +6,25 @@ outputs. Source coordinates are print points; text remains at 10pt.
 """
 from pathlib import Path
 from html import escape
-ROOT=Path(__file__).resolve().parents[3]
+import argparse
+OUTPUT_DIR=None
 KEY='priority-to-accepted-work'
-W,H=444,316
+W,H=444,279
 ALT='Priority, design, work order, agent implementation, acceptance gate and integrated work form one left-to-right workflow. Light-gray engineering models supply scope and context to the work order and model-derived obligations to the gate; independent acceptance evidence enters separately. Failed acceptance returns work for repair. Unresolved human judgment revises the design without bypassing acceptance. On interruption, durable commits and partial artifacts supply recovery, which inspects existing work before implementation resumes.'
 # Compact vertical rails while preserving authored 10pt type.
 def Y(y):
- return y-24 if y>=60 else y
+ # Translate whole node bands, never scale their internal typography or boxes.
+ if y<60: return y
+ if y<=106: return y-31
+ if y<=180: return y-37
+ return y-55
 
 def tex(s):
  return ''.join({'&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}'}.get(c,c) for c in s)
 class Drawing:
  def __init__(self):
   self.labels=[]
-  self.s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="948" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc"><title id="title">From priority to accepted work</title><desc id="desc">{escape(ALT)}</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="{W}" height="{H}" fill="white"/>']
+  self.s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W*3}" height="{H*3}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc"><title id="title">From priority to accepted work</title><desc id="desc">{escape(ALT)}</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="black"/></marker></defs><rect width="{W}" height="{H}" fill="white"/>']
   self.t=[r'\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]'+'\n',f'\\path[use as bounding box] (0,0) rectangle ({W},{H});\n']
  def text(self,x,y,s,size=10,bold=False,anchor='middle'):
   y=Y(y)
@@ -58,8 +63,11 @@ class Drawing:
   self.t.append('\\path[fill=white,draw=black,line width=.8bp] '+' -- '.join(f'({x},{y})' for x,y in pts)+' -- cycle;\n')
   for i,s in enumerate(lines):self.text(cx,cy0-(len(lines)-1)*6+3.4+i*12,s)
  def save(self):
-  (ROOT/f'book/assets/{KEY}.svg').write_text('\n'.join(self.s)+'</svg>\n')
-  (ROOT/f'book/tikz/figures/{KEY}.tex').write_text(''.join(self.t)+'\\end{tikzpicture}\n')
+  root=Path(__file__).resolve().parents[3] if OUTPUT_DIR is None else None
+  svg_path=(root/f'book/assets/{KEY}.svg') if OUTPUT_DIR is None else OUTPUT_DIR/f'{KEY}.svg'
+  tex_path=(root/f'book/tikz/figures/{KEY}.tex') if OUTPUT_DIR is None else OUTPUT_DIR/f'{KEY}.tex'
+  svg_path.write_text('\n'.join(self.s)+'</svg>\n')
+  tex_path.write_text(''.join(self.t)+'\\end{tikzpicture}\n')
 
 def build():
  d=Drawing()
@@ -75,8 +83,8 @@ def build():
  # Independent evidence enters its own gate port; it is not a producer claim.
  d.line([(407,50),(407,94),(335,94),(335,125.5)],True)
  # Failed acceptance returns to implementation. Unresolved judgment is separate.
- d.line([(303,166.6),(303,194),(254,194),(254,170)])
- d.text(280,187,'repair')
+ d.line([(303,166.6),(303,209),(254,209),(254,170)])
+ d.text(280,202,'repair')
  d.line([(321,180),(321,230),(390,230),(390,266)])
  d.text(355,223,'unresolved')
  # Durable artifacts are a recovery resource, not another stage in the main row.
@@ -86,7 +94,7 @@ def build():
  d.line([(168,266),(168,220),(210,220),(210,170)])
  d.text(187,213,'resume')
  # Human judgment informs a revised design; it never bypasses acceptance.
- d.line([(390,306),(390,332),(85,332),(85,170)])
+ d.line([(390,306),(390,326),(85,326),(85,170)])
  d.text(95,248,'revise design',anchor='start')
  d.box(122,0,110,50,['Engineering','models'],model=True)
  d.box(250,0,100,50,['Model-derived','obligations'],model=True)
@@ -102,4 +110,10 @@ def build():
  d.box(341,266,99,40,['Human judgment'],activity=True)
  d.save()
  return d
-if __name__=='__main__':build()
+if __name__=='__main__':
+ parser=argparse.ArgumentParser()
+ parser.add_argument('--output-dir',type=Path,default=None)
+ args=parser.parse_args()
+ OUTPUT_DIR=args.output_dir
+ if OUTPUT_DIR is not None: OUTPUT_DIR.mkdir(parents=True,exist_ok=True)
+ build()

@@ -30544,3 +30544,32 @@ Review at a cadence suited to the work and after consequential incidents. Use di
 
 Use these measurements to identify where engineering effort is being lost and whether existing controls are effective. Repeated reconstruction may justify a shared model; recurring defects may justify stronger validation or enforcement; excessive validation cost may justify redesigning the checking machinery. These are candidates for governance conversion, as developed in \autoref{chapter:3.4-governance-conversion}, not automatic prescriptions. After making a change, measure again to determine whether the new engineering structure improved subsequent work. Retire models and controls whose costs exceed their continuing value.
 ```
+
+
+## Appendix B final polish — 2026-11-24
+
+Author-approved follow-up to revision 348d67d58. Preserve the replaced passages below; Table B.3 moves after the unchanged baseline paragraph. The table and both figures retain their contents.
+
+### getting-started.tex
+
+```latex
+A useful initial result may be modest: one dependency no longer reconstructed, one recurring review decision made explicit, or one acceptance condition no longer dependent on memory.
+
+```
+
+### brownfield-migration.tex
+
+```latex
+\textbf{Extend.} Use observed friction and recurring failures to choose the next investment. Better retrieval may be enough; a new model, stronger evaluator, generator, or gate should answer a question that current machinery cannot settle economically. Record both its consumer and its maintenance obligation. The useful endpoint is a selected surface on which work can proceed with an adequate account of intent and acceptability, while the rest remains explicitly outside that claim.
+
+```
+
+### operating-a-gee.tex
+
+```latex
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: dated-case-evidence
+DocAble's merge-triggered validation configuration illustrates this distinction. Bursts of completed work produce bursts of expensive validation, overloading the host despite asynchronous execution. The revised arrangement gives the sweep an independent schedule and a lock. The schedule separates sweep frequency from merge arrivals, while the lock permits only one sweep at a time. Cheap merge checks remain synchronous, and broader checks continue before release. This arrangement bounds overlapping validation; total work still depends on the schedule, check costs, and release workload. Periodic validation also leaves an interval during which some defects may remain undetected.
+
+% Evidence: E33 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E33.md | kind: dated-case-evidence
+The operating process must establish that scheduled checks actually execute and that their findings receive the intended response. In one DocAble configuration, a timer appears in the manifest but is absent from the installed schedule; another hook runs the checks, concealing the gap. A separate alert carries a resolved marker while its underlying check still fails. These failures distinguish configuration from execution, detection from acknowledgment, and acknowledgment from verified repair. Evidence should identify the revision examined and remain visible until the condition is resolved or an engineer explicitly accepts the exception.
+```

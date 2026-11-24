@@ -781,7 +781,9 @@ def _prepare_record(task):
         'agentic-engineering-factories', 'factory-census-specimens',
         'handbook-computation-models', 'handbook-job-recovery-models',
         'handbook-resource-models', 'handbook-computation-failures',
-        'handbook-job-recovery-failures'}))
+        'handbook-job-recovery-failures',
+        # Keep the baseline discussion complete before the metrics table.
+        'practicing-primary-readings'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
