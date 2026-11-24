@@ -1,16 +1,13 @@
 {
   "source": "book/assets/semantic-gap-levels.svg",
-  "claim": "The semantic gap. Different obligations become decidable at different boundaries. Model–implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.",
-  "topology": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+  "claim": "Two obligations use different boundaries on a sequence of three commits, build, deploy, and browser execution. Commit 3 connects through task completion to model\u2013implementation correspondence. Browser execution connects through integrated execution to rendered-page correctness. Braces below the sequence allow temporary model disagreement across commits and state that earlier checks cannot establish rendered correctness.",
+  "topology": "Two obligations use different boundaries on a sequence of three commits, build, deploy, and browser execution. Commit 3 connects through task completion to model\u2013implementation correspondence. Browser execution connects through integrated execution to rendered-page correctness. Braces below the sequence allow temporary model disagreement across commits and state that earlier checks cannot establish rendered correctness.",
   "required_terms": [
-    "Model–implementation",
+    "Model\u2013implementation",
     "correspondence",
-    "Validate at task completion",
     "Rendered-page correctness",
-    "Validate in an integrated execution",
-    "(e.g., browser)",
-    "TASK COMPLETION",
-    "INTEGRATED EXECUTION",
+    "Task completion",
+    "Integrated execution",
     "commit 1",
     "commit 2",
     "commit 3",
@@ -18,43 +15,57 @@
     "deploy",
     "run",
     "(in browser)",
-    "Intermediate disagreement",
-    "with the model may be permitted",
-    "Earlier checks (source, build, API)",
-    "do not establish this obligation"
+    "Temporary disagreement permitted",
+    "Earlier checks cannot establish",
+    "rendered correctness"
   ],
   "bw_encoding": "Light gray obligation boxes, white events, solid direct arrows and plain braces.",
-  "redesign": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+  "redesign": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
   "questions": [],
-  "alt": "Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness.",
+  "alt": "Two obligations use different boundaries on a sequence of three commits, build, deploy, and browser execution. Commit 3 connects through task completion to model\u2013implementation correspondence. Browser execution connects through integrated execution to rendered-page correctness. Braces below the sequence allow temporary model disagreement across commits and state that earlier checks cannot establish rendered correctness.",
   "historical_receipt": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/semantic-gap-levels.json",
   "qa": {
-    "date": "2026-11-13",
-    "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-    "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+    "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
     "page": 1,
-    "width_bp": 449.62,
-    "height_bp": 207.491,
-    "minimum_prose_font_pt": 9.5,
+    "width_bp": 449.6199951171875,
+    "height_bp": 162.41900634765625,
+    "minimum_prose_font_pt": 10,
     "unapproved_compile_diagnostics": 0,
-    "geometry_findings": 0,
-    "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
-    "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
-    "semantic_typography_checks": 19,
-    "monochrome_pixels": true,
+    "semantic_typography_checks": 15,
+    "typography_findings": 0,
+    "reviewed_visually": true,
     "status": "passed",
-    "scope": "Verified current native proof; author approved for publication."
+    "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+    "geometry_findings": 0,
+    "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/semantic-gap-levels-svg.png"
   },
   "reference_image_sha256": "e02d3b1bbe5f6001255f2430f12214dabf51408e47d660ebaad92e7d32d883c6",
   "layout_review": {
     "source": "book/assets/semantic-gap-levels.svg",
     "candidate": "book/tikz/figures/semantic-gap-levels.tex",
-    "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
-    "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
-    "decision": "refined",
+    "source_sha256": "1bb310210ad8faa344fd8c40f381ce8553019c794cf2c0f94421dca70447bcf9",
+    "candidate_sha256": "2d10078ead041d07587602edd6e66cca7f9bb0a1c7727e3ce0e7bd4132046c8a",
+    "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+      "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
+      "page": 1,
+      "width_bp": 449.6199951171875,
+      "height_bp": 162.41900634765625,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 15,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+      "geometry_findings": 0,
+      "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/semantic-gap-levels-svg.png"
+    },
     "reviewed_visually": true,
-    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
-    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/layout-review.json",
     "contracts": {
       "peer_groups": [
         {
@@ -88,43 +99,35 @@
           "tolerance_pt": 1
         }
       ]
-    },
-    "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-      "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
-      "page": 1,
-      "width_bp": 449.62,
-      "height_bp": 207.491,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
-      "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
-      "semantic_typography_checks": 19,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Verified current native proof; author approved for publication."
-    },
-    "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
-    "author_review": {
-      "approved_date": "2026-11-13",
-      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
-      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
     }
   },
   "typography_review": {
     "source": "book/assets/semantic-gap-levels.svg",
     "candidate": "book/tikz/figures/semantic-gap-levels.tex",
-    "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
-    "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
-    "decision": "refined",
+    "source_sha256": "1bb310210ad8faa344fd8c40f381ce8553019c794cf2c0f94421dca70447bcf9",
+    "candidate_sha256": "2d10078ead041d07587602edd6e66cca7f9bb0a1c7727e3ce0e7bd4132046c8a",
+    "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+      "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
+      "page": 1,
+      "width_bp": 449.6199951171875,
+      "height_bp": 162.41900634765625,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 15,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+      "geometry_findings": 0,
+      "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/semantic-gap-levels-svg.png"
+    },
     "reviewed_visually": true,
-    "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
-    "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/typography-review.json",
     "checks": [
       {
-        "text": "Model–implementation",
+        "text": "Model\u2013implementation",
         "bold": true,
         "italic": false
       },
@@ -134,32 +137,17 @@
         "italic": false
       },
       {
-        "text": "Validate at task completion",
-        "bold": false,
-        "italic": true
-      },
-      {
         "text": "Rendered-page correctness",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Validate in an integrated execution",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "(e.g., browser)",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "TASK COMPLETION",
+        "text": "Task completion",
         "bold": true,
         "italic": false
       },
       {
-        "text": "INTEGRATED EXECUTION",
+        "text": "Integrated execution",
         "bold": true,
         "italic": false
       },
@@ -199,145 +187,21 @@
         "italic": false
       },
       {
-        "text": "Intermediate disagreement",
+        "text": "Temporary disagreement permitted",
         "bold": false,
         "italic": true
       },
       {
-        "text": "with the model may be permitted",
+        "text": "Earlier checks cannot establish",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Earlier checks (source, build, API)",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "do not establish this obligation",
+        "text": "rendered correctness",
         "bold": false,
         "italic": true
       }
-    ],
-    "evidence": [
-      {
-        "candidate_text": "Model–implementation",
-        "candidate_style": "bold",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "correspondence",
-        "candidate_style": "bold",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "Validate at task completion",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "Rendered-page correctness",
-        "candidate_style": "bold",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "Validate in an integrated execution",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "(e.g., browser)",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "TASK COMPLETION",
-        "candidate_style": "bold",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "INTEGRATED EXECUTION",
-        "candidate_style": "bold",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "commit 1",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "commit 2",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "commit 3",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "build",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "deploy",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "run",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "(in browser)",
-        "candidate_style": "regular",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "Intermediate disagreement",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "with the model may be permitted",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "Earlier checks (source, build, API)",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      },
-      {
-        "candidate_text": "do not establish this obligation",
-        "candidate_style": "italic",
-        "semantic_role": "Named mechanism or its explanatory role"
-      }
-    ],
-    "validation": {
-      "date": "2026-11-13",
-      "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-      "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
-      "page": 1,
-      "width_bp": 449.62,
-      "height_bp": 207.491,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
-      "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
-      "semantic_typography_checks": 19,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "scope": "Verified current native proof; author approved for publication."
-    },
-    "author_review": {
-      "approved_date": "2026-11-13",
-      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
-      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
-    }
+    ]
   },
   "style_review": {
     "source": "book/assets/semantic-gap-levels.svg",
@@ -353,7 +217,7 @@
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
     "fill": "Light gray distinguishes obligations from white events.",
-    "bold": "Obligation titles bold12.5–13pt; boundary titles bold10.5–11pt; timeline11pt; annotations italic10pt.",
+    "bold": "Obligation titles bold12.5\u201313pt; boundary titles bold10.5\u201311pt; timeline11pt; annotations italic10pt.",
     "routing": "Timeline arrows run right; short vertical arrows connect events through named boundaries to obligations. The second brace excludes the browser run.",
     "shape": "Rounded rectangles for events and obligations; plain braces annotate the scope of earlier checks.",
     "validation": {
@@ -373,7 +237,7 @@
       "status": "passed",
       "scope": "Verified current native proof; author approved for publication."
     },
-    "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+    "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
     "book_references": [],
     "routing_exceptions": "None.",
     "author_review": {
@@ -392,9 +256,9 @@
     "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
     "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/fidelity-review.json",
     "checks": {
-      "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+      "relationships": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
       "annotation_placement": "Braces sit below the event ranges they describe. Short vertical arrows connect events, named boundaries, and obligations.",
-      "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author’s request; removed X/Y and excluded browser execution from the earlier-check brace."
+      "source_adaptations": "Restored the reference boundary boxes with tighter spacing and larger type at the author\u2019s request; removed X/Y and excluded browser execution from the earlier-check brace."
     },
     "validation": {
       "date": "2026-11-13",
@@ -430,7 +294,7 @@
     "width_bp": 449.62,
     "height_bp": 207.491,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+    "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
     "author_review": {
       "approved_date": "2026-11-13",
       "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
@@ -476,5 +340,352 @@
     "approved_date": "2026-11-13",
     "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
     "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
+      "previous": {
+        "claim": "The semantic gap. Different obligations become decidable at different boundaries. Model\u2013implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.",
+        "topology": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+        "required_terms": [
+          "Model\u2013implementation",
+          "correspondence",
+          "Validate at task completion",
+          "Rendered-page correctness",
+          "Validate in an integrated execution",
+          "(e.g., browser)",
+          "TASK COMPLETION",
+          "INTEGRATED EXECUTION",
+          "commit 1",
+          "commit 2",
+          "commit 3",
+          "build",
+          "deploy",
+          "run",
+          "(in browser)",
+          "Intermediate disagreement",
+          "with the model may be permitted",
+          "Earlier checks (source, build, API)",
+          "do not establish this obligation"
+        ],
+        "bw_encoding": "Light gray obligation boxes, white events, solid direct arrows and plain braces.",
+        "redesign": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+        "questions": [],
+        "alt": "Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model\u2013implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness.",
+        "qa": {
+          "date": "2026-11-13",
+          "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+          "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+          "page": 1,
+          "width_bp": 449.62,
+          "height_bp": 207.491,
+          "minimum_prose_font_pt": 9.5,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
+          "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
+          "semantic_typography_checks": 19,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "scope": "Verified current native proof; author approved for publication."
+        },
+        "layout_review": {
+          "source": "book/assets/semantic-gap-levels.svg",
+          "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+          "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
+          "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+          "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/layout-review.json",
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "obligations",
+                "labels": [
+                  "Model",
+                  "Rendered-page correctness"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_height": true,
+                "tolerance_pt": 1
+              },
+              {
+                "name": "development events",
+                "labels": [
+                  "commit 1",
+                  "commit 2",
+                  "commit 3",
+                  "build",
+                  "deploy",
+                  "run"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+            "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+            "page": 1,
+            "width_bp": 449.62,
+            "height_bp": 207.491,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
+            "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
+            "semantic_typography_checks": 19,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Verified current native proof; author approved for publication."
+          },
+          "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+          "author_review": {
+            "approved_date": "2026-11-13",
+            "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+            "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/semantic-gap-levels.svg",
+          "candidate": "book/tikz/figures/semantic-gap-levels.tex",
+          "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
+          "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
+          "decision": "refined",
+          "reviewed_visually": true,
+          "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+          "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/typography-review.json",
+          "checks": [
+            {
+              "text": "Model\u2013implementation",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "correspondence",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Validate at task completion",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Rendered-page correctness",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Validate in an integrated execution",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "(e.g., browser)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "TASK COMPLETION",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "INTEGRATED EXECUTION",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "commit 1",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "commit 2",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "commit 3",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "build",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "deploy",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "run",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(in browser)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Intermediate disagreement",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "with the model may be permitted",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Earlier checks (source, build, API)",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "do not establish this obligation",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "evidence": [
+            {
+              "candidate_text": "Model\u2013implementation",
+              "candidate_style": "bold",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "correspondence",
+              "candidate_style": "bold",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "Validate at task completion",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "Rendered-page correctness",
+              "candidate_style": "bold",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "Validate in an integrated execution",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "(e.g., browser)",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "TASK COMPLETION",
+              "candidate_style": "bold",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "INTEGRATED EXECUTION",
+              "candidate_style": "bold",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "commit 1",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "commit 2",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "commit 3",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "build",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "deploy",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "run",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "(in browser)",
+              "candidate_style": "regular",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "Intermediate disagreement",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "with the model may be permitted",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "Earlier checks (source, build, API)",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            },
+            {
+              "candidate_text": "do not establish this obligation",
+              "candidate_style": "italic",
+              "semantic_role": "Named mechanism or its explanatory role"
+            }
+          ],
+          "validation": {
+            "date": "2026-11-13",
+            "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+            "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+            "page": 1,
+            "width_bp": 449.62,
+            "height_bp": 207.491,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
+            "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
+            "semantic_typography_checks": 19,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "scope": "Verified current native proof; author approved for publication."
+          },
+          "author_review": {
+            "approved_date": "2026-11-13",
+            "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+            "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+          }
+        }
+      }
+    }
+  ],
+  "source_sha256": "1bb310210ad8faa344fd8c40f381ce8553019c794cf2c0f94421dca70447bcf9",
+  "candidate_sha256": "2d10078ead041d07587602edd6e66cca7f9bb0a1c7727e3ce0e7bd4132046c8a"
 }

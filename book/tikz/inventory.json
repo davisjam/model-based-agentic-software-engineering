@@ -459,10 +459,10 @@
     "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift\n    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability."
   },
   {
-    "chapter": "part3/00-part-intro",
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/alignment-overview.svg",
     "caption": "Alignment from models to enforcement. Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.",
-    "native_context": "book/latex/sources/part3/00-part-intro.tex",
+    "native_context": "book/latex/sources/part3/3.2-governance-mechanisms.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/alignment-overview.json",
     "generator": null,
@@ -473,7 +473,7 @@
     "native_source": "book/tikz/figures/alignment-overview.tex"
   },
   {
-    "chapter": "3.1-where-obligations-can-be-enforced",
+    "chapter": "3.3-where-obligations-can-be-enforced",
     "source": "assets/intervention-boundaries.svg",
     "caption": "*Intervention boundaries.* Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -486,7 +486,7 @@
     "svg_description": "Four columns compare intervention boundaries. Reasoning input is guidance: context supplied to the reasoner, with instructions, models and examples. The three enforcement boundaries are action, covering one proposed action with permissions, hooks and tool restrictions; work unit, covering a composed body of work with task-completion checks, merge gates and deployment gates; and artifact or runtime, covering the resulting artifact or running state with API boundaries, schemas and runtime permissions. Rows identify Boundary, Scope and Examples. A rightward arrow indicates increasing scope of work considered and more context for evaluating obligations, not increasing enforcement strength."
   },
   {
-    "chapter": "3.2-models-and-the-semantic-gap",
+    "chapter": "3.1-from-engineering-models-to-enforcement",
     "source": "assets/three-relations.svg",
     "caption": "Model agreement, obligation satisfaction, and admission. Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE’s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -499,9 +499,9 @@
     "svg_description": "The governed engineering environment contains an engineering model, its no-direct-database-access obligation, and an acceptance decision. Correspondence compares the proposed implementation with the model. Conformance compares the same implementation with the obligation. The implementation sits outside the environment and is submitted for acceptance under its controls and evidence requirements."
   },
   {
-    "chapter": "3.2-models-and-the-semantic-gap",
+    "chapter": "3.3-where-obligations-can-be-enforced",
     "source": "assets/semantic-gap-levels.svg",
-    "caption": "The semantic gap. Different obligations become decidable at different boundaries. Model–implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.",
+    "caption": "*The semantic gap.* Different obligations become decidable at different boundaries. Model–implementation correspondence may be required at task completion, while rendered-page correctness requires integrated execution. Place each check at the earliest boundary where sufficient evidence is available.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -512,9 +512,9 @@
     "svg_description": "Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness."
   },
   {
-    "chapter": "3.3-constraints-sensors-validators-gates",
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/governance-proposed-change.svg",
-    "caption": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
+    "caption": "*Governance around a proposed change.* Module boundaries restrict available operations, instrumented tests record interactions, and the merge gate evaluates the required evidence against the architectural model. Each mechanism provides assurance only within its scope.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/governance-proposed-change.json",
@@ -526,7 +526,7 @@
     "native_source": "book/tikz/figures/governance-proposed-change.tex"
   },
   {
-    "chapter": "3.3-constraints-sensors-validators-gates",
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/match-mechanism-to-property.svg",
     "caption": "\\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -539,7 +539,7 @@
     "svg_description": "DocAble job-recovery protocol with two obligations and two protections. At left, only one worker may acquire an effect claim; atomic compare-and-set restricts acquisition to the required stored state. At right, a stale release must not clear a newer claim; an explicit-state checker explores bounded interleavings. The lower boxes distinguish runtime constraint from model analysis."
   },
   {
-    "chapter": "3.3-constraints-sensors-validators-gates",
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/cost-enforcement-gradient.svg",
     "caption": "\\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -565,7 +565,7 @@
     "svg_description": "A failure or surprise flows down into one question — what was missing — with five possible answers: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that."
   },
   {
-    "chapter": "3.4-governance-conversion",
+    "chapter": "3.2-governance-mechanisms",
     "source": "assets/residual-decision-tree.svg",
     "caption": "\\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -591,7 +591,7 @@
     "svg_description": "Control machinery supplies the catalogue, interaction graph, and coverage view. Independently identified obligations also feed coverage. The squash rule and diff-size guard share the commit set. Atomic delivery traces to the squash rule, bounded change scope to the diff-size guard. A cost ceiling lacks coverage, and a legacy export check lacks a recorded justification."
   },
   {
-    "chapter": "part-3-intro",
+    "chapter": "00-part-intro",
     "source": "assets/engineer-agent-interaction.svg",
     "caption": "*Engineer–agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -1660,10 +1660,10 @@
     "conversion": "Keep photograph; grayscale raster comparison, not meaningful TikZ geometry"
   },
   {
-    "chapter": "3.1-where-obligations-can-be-enforced",
+    "chapter": "3.3-where-obligations-can-be-enforced",
     "source": "assets/deliver-context-two-layer.svg",
     "caption": "*Dynamic context injection and enforcement.* A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.",
-    "native_context": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
+    "native_context": "book/latex/sources/part3/3.3-where-obligations-can-be-enforced.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
     "generator": null,

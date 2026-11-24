@@ -2336,11 +2336,11 @@
     {
       "source": "book/assets/semantic-gap-levels.svg",
       "candidate": "book/tikz/figures/semantic-gap-levels.tex",
-      "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
-      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
+      "source_sha256": "1bb310210ad8faa344fd8c40f381ce8553019c794cf2c0f94421dca70447bcf9",
+      "candidate_sha256": "2d10078ead041d07587602edd6e66cca7f9bb0a1c7727e3ce0e7bd4132046c8a",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+      "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
       "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/style-review.json",
       "receipt": "book/tikz/receipts/semantic-gap-levels.json",
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
@@ -2351,21 +2351,21 @@
       "routing": "Timeline arrows run right; short vertical arrows connect events through named boundaries to obligations. The second brace excludes the browser run.",
       "shape": "Rounded rectangles for events and obligations; plain braces annotate the scope of earlier checks.",
       "validation": {
-        "date": "2026-11-13",
-        "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-        "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+        "date": "2026-11-24",
+        "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+        "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
         "page": 1,
-        "width_bp": 449.62,
-        "height_bp": 207.491,
-        "minimum_prose_font_pt": 9.5,
+        "width_bp": 449.6199951171875,
+        "height_bp": 162.41900634765625,
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
-        "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
-        "semantic_typography_checks": 19,
-        "monochrome_pixels": true,
+        "semantic_typography_checks": 15,
+        "typography_findings": 0,
+        "reviewed_visually": true,
         "status": "passed",
-        "scope": "Verified current native proof; author approved for publication."
+        "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+        "geometry_findings": 0,
+        "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/semantic-gap-levels-svg.png"
       },
       "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5\u201313pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
       "book_references": [],
@@ -2374,7 +2374,35 @@
         "approved_date": "2026-11-13",
         "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
         "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "reason": "Use uniform 10pt text, with bold headings and italic brace annotations. Remove redundant upper-box explanations, reduce upper boxes by one third, shorten vertical gaps, and retain the six-event execution sequence and two braces. The earlier-check brace excludes browser execution.",
+          "previous": {
+            "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
+            "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
+            "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
+            "validation": {
+              "date": "2026-11-13",
+              "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
+              "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
+              "page": 1,
+              "width_bp": 449.62,
+              "height_bp": 207.491,
+              "minimum_prose_font_pt": 9.5,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
+              "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
+              "semantic_typography_checks": 19,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "scope": "Verified current native proof; author approved for publication."
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/constraint-vs-sensor.svg",

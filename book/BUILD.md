@@ -56,7 +56,7 @@ and the design record for the annotation work.
 
 **What the build emits, all flat in `book/`:**
 
-- One `<slug>.html` per chapter (e.g. `3.2-models-and-the-semantic-gap.html`), where `<slug>` is the
+- One `<slug>.html` per chapter (e.g. `3.1-from-engineering-models-to-enforcement.html`), where `<slug>` is the
   source file's stem.
 - `index.html` — the landing / table-of-contents page.
 - `appendix-handbook.html` and `appendix-practicing-mage.html` — the two appendix openings,
@@ -84,7 +84,7 @@ book/
   frontmatter/    0.0-acknowledgments.md … 0.5-preface.md (6 chapters)                              (Part 0 — Front Matter)
   part1/          1.1-the-printer.md … 1.5-the-new-engineering-problem.md (5 sections)                          (Part 1 — The New Engineering Problem)
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.7-modeling-summary.md (8 chapter files)  (Part 2 — Modeling)
-  part3/          3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
+  part3/          3.1-from-engineering-models-to-enforcement.md … 3.6-alignment-summary.md (6 sections)              (Part 3 — Alignment)
   part4/          4.1-the-dynamics-of-mage.md … 4.5-mage-in-motion-summary.md (5 sections)     (Part 4 — MAGE in Motion: Engineering Through Models)
   part5/          5.1-software-factory.md … 5.5-engineering-the-factory.md (5 chapters)             (Part 5 — DocAble Among Other Software Factories)
   part6/          6.1-toward-a-theory-of-mage.md … 6.5-what-the-theory-claims.md (5 chapters)       (Part 6 — The Theory)
@@ -408,11 +408,11 @@ example anchors `[(page, id), …]`. It then emits a **curated concept entry** i
 
 ```
 SEMANTIC GAP
-  definition of: 3.2
+  definition of: 3.3
   examples of:   3.2  3.3  4.5
 ```
 
-where each locator is a link to the specific anchor (`3.2-…html#idx-def-semantic-gap`, etc.), using the
+where each locator is a link to the specific anchor (`3.3-…html#idx-def-semantic-gap`, etc.), using the
 same short page label (`N.M` / `Appendix A` / `Preface`) the occurrence index already uses.
 
 **Composition with the occurrence scan (curated first, occurrence as fallback):**
@@ -474,11 +474,11 @@ Register the concept once in `book/index-terms.md`:
 
 ```
 OBSERVABILITY
-  definition of: 3.3
+  definition of: 3.2
   examples of:   3.5  4.5
 ```
 
-where `3.3` under `definition of:` links to `#idx-def-observability`, and each `examples of:` locator
+where `3.2` under `definition of:` links to `#idx-def-observability`, and each `examples of:` locator
 links to its `#idx-ex-observability-<n>` anchor. The old occurrence entry for "observability" — which
 would have listed a long comma-run of undifferentiated page hits — is suppressed in favour of this
 curated one.
@@ -488,7 +488,7 @@ curated one.
 **conformance**, and the **testing-onion** material — yielding `QUALITY` / `definition of: <link>` /
 `examples of: <link> <link> <link>`.
 
-**Seed list.** These two, plus concepts like **the semantic gap** (defined in 3.2), **loop engineering**,
+**Seed list.** These two, plus concepts like **the semantic gap** (defined in 3.3), **loop engineering**,
 and **the drift gate**, are the seed set the later walk-the-book pass (§6.5) will expand into the full
 concept registry.
 

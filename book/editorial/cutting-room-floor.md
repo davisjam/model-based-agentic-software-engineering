@@ -33804,3 +33804,193 @@ The kernel can grow as we establish new obligations.
 ```latex
 As I applied these ideas to DocAble,
 ```
+
+
+## 2026-11-24 — Chapter 3 figure and table caption compression
+
+Source revision: `8b07d3eaadc2b847af085b9b88e72953851919e5`. Removal revision: the commit introducing this entry. The author requests shorter captions that explain the lesson without repeating figure labels or table entries. The surrounding prose retains the scope qualifications; all citations remain.
+
+### book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex — line 131
+
+```latex
+\emph{The semantic gap.} Different obligations become decidable at different boundaries. Model--implementation correspondence may be required at task completion even when intermediate commits legitimately disagree; rendered-page correctness requires an integrated execution that earlier source, build, and API checks cannot establish. Place each check at the earliest boundary where sufficient evidence is available.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex — line 29
+
+```latex
+\emph{Three functions of engineering governance.} Constraints restrict what can happen; sensors provide evidence about what has happened or is proposed; gates determine what may proceed. A single mechanism may perform several functions. This classification draws on established principles of protection and policy enforcement~\citep{saltzer1975protection, rfc2753, oasis2017xacml}.
+```
+
+### book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex — line 138
+
+```latex
+\emph{Governance around a proposed change.} Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks\textquotesingle{} coverage limits the assurance they provide.
+```
+
+
+## 2026-11-24 — Chapter 3 pedagogical reorganization
+
+Source revision: `8b07d3eaadc2b847af085b9b88e72953851919e5`, with the author-requested caption edits already applied. Removal revision: the commit introducing this entry. Existing technical material moves into the sequence obligations, mechanisms, placement, growth, and control-system maintenance. The passages below are replaced to remove obsolete transitions and exposed repetition; substantive relocated material remains in the chapter.
+
+### 1. 3.1-where-obligations-can-be-enforced.tex — lines 19–19
+
+Use familiar examples before teaching the mechanism taxonomy.
+
+```latex
+A permission boundary can forbid an action, while a validator and gate can refuse a result.
+```
+
+### 2. 3.1-where-obligations-can-be-enforced.tex — lines 19–19
+
+Avoid unexplained validator terminology in first foundation subsection.
+
+```latex
+Feedback can return evidence to the reasoner---a failing test, an observed call, a measured latency, or a validator's explanation---so that subsequent work can respond.
+```
+
+### 3. 3.1-where-obligations-can-be-enforced.tex — lines 19–19
+
+Carry the opener example into the conceptual distinction without anticipating placement.
+
+```latex
+The distinction matters when choosing where to intervene: the environment must be able to constrain the relevant action or determine whether the resulting work is accepted, rather than merely advising the reasoner.
+```
+
+### 4. 3.2-models-and-the-semantic-gap.tex — lines 15–15
+
+Foundation first; detailed boundary selection follows in new3.3.
+
+```latex
+Enforcement requires two things: \textbf{an obligation independent of the work being judged and a boundary where the evidence needed to evaluate that obligation is available.}
+```
+
+### 5. 3.2-models-and-the-semantic-gap.tex — lines 24–25
+
+Explain evidence and consequence before the named gate repertoire.
+
+```latex
+The engineer must choose where the relevant evidence becomes available and how the finding should affect the work.
+A check may inform a later decision, or a gate may use its result to refuse an action or candidate.
+```
+
+### 6. 3.2-models-and-the-semantic-gap.tex — lines 62–62
+
+Explain adequacy before the following traceability discussion, without assuming its vocabulary.
+
+```latex
+This goes beyond requirements traceability. Knowing which tests correspond to a requirement does not establish that those tests adequately verify it.
+```
+
+### 7. 3.2-models-and-the-semantic-gap.tex — lines 108–108
+
+Forward-reference the context-injection worked example rather than assume the former section has already taught it.
+
+```latex
+These checks complement guidance mechanisms such as dynamic context injection (\magevalue{sec:the-agent-stack}): agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes.
+```
+
+### 8. 3.3-constraints-sensors-validators-gates.tex — lines 22–22
+
+Introduce taxonomy before its overview figure.
+
+```latex
+\autoref{governance-mechanism-questions} distinguishes the three governance functions introduced in \autoref{alignment-overview} by the engineering questions they answer.
+```
+
+### 9. 3.3-constraints-sensors-validators-gates.tex — lines 66–66
+
+After the main worked example, connect known functions to familiar tools without reintroducing the taxonomy.
+
+```latex
+\textbf{Constraints} narrow what an implementation or actor can do. Type systems
+```
+
+### 10. 3.3-constraints-sensors-validators-gates.tex — lines 68–68
+
+After the main worked example, connect known functions to familiar tools without reintroducing the taxonomy.
+
+```latex
+\textbf{Sensors} make evidence available for inspection, so their usefulness depends on observability. Logging
+```
+
+### 11. 3.3-constraints-sensors-validators-gates.tex — lines 70–70
+
+After the main worked example, connect known functions to familiar tools without reintroducing the taxonomy.
+
+```latex
+\textbf{Gates} evaluate conditions and enforce decisions at boundaries. A continuous integration
+```
+
+### 12. 3.1-where-obligations-can-be-enforced.tex — lines 38–38
+
+The selection rule is developed once in following semantic-gap subsection.
+
+```latex
+ The appropriate boundary is the earliest one where the environment can evaluate and enforce the obligation.
+```
+
+### 13. 3.1-where-obligations-can-be-enforced.tex — lines 57–59
+
+Remove stale undefined J_i notation as requested.
+
+```latex
+\[
+\text{guidance: }p_i \uparrow \qquad \text{enforcement: selected }J_i\text{ need not be trusted for admission}
+\]
+```
+
+### 14. 3.2-models-and-the-semantic-gap.tex — lines 122–122
+
+Semantic gap now answers the preceding intervention-boundaries question.
+
+```latex
+A second problem is placement. We may know exactly what to check but try to check it too soon.
+```
+
+### 15. 00-part-intro.tex — lines 33–33
+
+Roadmap follows the new teaching sequence.
+
+```latex
+We begin by examining where obligations can be enforced (\cref{chapter:3.1-where-obligations-can-be-enforced}) and how to connect engineering intent to independently evaluated evidence (\cref{chapter:3.2-models-and-the-semantic-gap}). \cref{chapter:3.3-constraints-sensors-validators-gates} develops the constraints, sensors, and gates used to govern work. \cref{chapter:3.4-governance-conversion} examines how those mechanisms accumulate as engineers learn from failures, and \cref{chapter:3.5-when-guardrails-collide} considers how to maintain the resulting controls as a system in their own right.
+```
+
+### 16. 3.6-alignment-summary.tex — lines 9–24
+
+Summary follows foundations,mechanisms,placement,growth,system maintenance.
+
+```latex
+Modeling establishes what an engineered system should satisfy; Alignment determines how selected obligations will be upheld as agents work. Constraints restrict available actions or states, sensors produce evidence, and gates use evidence to decide what may proceed. Their effectiveness depends on choosing obligations independently of the work being judged, placing mechanisms where those obligations can be evaluated, and understanding the limits of the resulting assurance.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Enforcement makes an obligation more than a request.} Guidance tells an agent how it should act. Enforcement determines which actions the environment permits or which results it accepts.
+\item
+  \textbf{Enforce at the earliest decidable boundary.} A constraint can prohibit an action as soon as the relevant facts are available. An obligation about the result may have to wait until a sensor can produce the evidence a gate needs.
+\item
+  \textbf{Correspondence is not correctness.} A model and its implementation can agree and share the same error. To judge correctness, engineers need an independent obligation and evidence capable of revealing a violation.
+\item
+  \textbf{Convert recurring judgment into durable structure.} When a failure or repeated decision reveals something future work should inherit, preserve it in a model, check, or control. That structure becomes engineering capital when subsequent work benefits from it.
+\item
+  \textbf{Govern the governance machinery.} Controls can leave an obligation uncovered, interfere with one another, or become too costly to maintain. Engineers need to know which controls exist, how they interact, and which obligations they govern.
+\end{enumerate}
+```
+
+### 17. 3.1-where-obligations-can-be-enforced.tex — lines 167–167
+
+Former next-section transition no longer fits the reordered chapter; replaced by a new destination-specific closing.
+
+```latex
+Choosing an enforcement boundary is only part of the problem. The environment also needs an obligation against which the work can be judged, and evidence capable of establishing whether that obligation holds. We turn to those requirements next.
+```
+
+### 18. 3.3-constraints-sensors-validators-gates.tex — lines 376–376
+
+Former next-section transition no longer fits the reordered chapter; replaced by a new destination-specific closing.
+
+```latex
+Some mechanisms can be designed before work begins; others become necessary when experience exposes a missing control. The next section examines how the governed environment grows through both routes.
+```

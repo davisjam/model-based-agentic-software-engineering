@@ -629,6 +629,12 @@ def emit(chapters: list[dict], extras: list[dict],
     # Retain old URLs after merging their content into active reading units.
     # Static redirect leaves are absent from the reading sequence and search.
     for retired, (target, title) in {
+        "3.1-where-obligations-can-be-enforced": (
+            "3.3-where-obligations-can-be-enforced.html", "Where Obligations Can Be Enforced"),
+        "3.2-models-and-the-semantic-gap": (
+            "3.1-from-engineering-models-to-enforcement.html", "From Engineering Models to Enforcement"),
+        "3.3-constraints-sensors-validators-gates": (
+            "3.2-governance-mechanisms.html", "Governance Mechanisms"),
         "0.3-the-mage-method-at-a-glance": (
             "0.2-what-this-book-argues.html", "What This Book Argues"),
         "5.3-other-agentic-software-factories": (

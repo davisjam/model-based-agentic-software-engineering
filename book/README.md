@@ -71,7 +71,7 @@ book/
   part2/  (Part 2 — Modeling)
     2.1-context-is-the-first-modeling-problem.md … 2.7-modeling-summary.md
   part3/  (Part 3 — Alignment)
-    3.1-where-obligations-can-be-enforced.md … 3.6-alignment-summary.md
+    3.1-from-engineering-models-to-enforcement.md … 3.6-alignment-summary.md
   part4/  (Part 4 — MAGE in Motion: Engineering Through Models)
     4.1-the-dynamics-of-mage.md
     4.2-one-problem-many-models.md

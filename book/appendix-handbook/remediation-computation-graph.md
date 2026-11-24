@@ -78,7 +78,7 @@ The registry’s ordering test registers a reader before its producer and checks
 | Missing computation | Executable work is absent from the population under comparison. | Inspect registrations and direct runner invocations, including paths outside the registry. |
 | Undeclared effect | A pass reads or writes state beyond its declarations. | Inspect relevant code effects and test the execution behavior; declaration agreement is insufficient. |
 
-A DocAble coverage audit supplies a concrete missing-population case: DOCX math promotion executes through a direct runner call outside the enum-based registry, so comparing enum members with graph nodes cannot see it. Qualified PDF constructor names also escape the registration reader. The repair includes these execution paths in the checked population and makes correspondence findings block admission. Making an incomplete check blocking cannot repair its blind spot. [ref:3.2-models-and-the-semantic-gap:heading:docable-from-correspondence-to-enforcement] develops that distinction.
+A DocAble coverage audit supplies a concrete missing-population case: DOCX math promotion executes through a direct runner call outside the enum-based registry, so comparing enum members with graph nodes cannot see it. Qualified PDF constructor names also escape the registration reader. The repair includes these execution paths in the checked population and makes correspondence findings block admission. Making an incomplete check blocking cannot repair its blind spot. [ref:3.1-from-engineering-models-to-enforcement:heading:docable-from-correspondence-to-enforcement] develops that distinction.
 
 ## Adaptation and Limits
 

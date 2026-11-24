@@ -744,6 +744,8 @@ def _prepare_record(task):
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'stalled-work-diagnosis', (.18, .39, .43),
                                   row_gap_bp=3, row_stretch=1.05)
+    latex = layout_selected_table(latex, 'governance-mechanism-questions', (.16, .30, .54),
+                                  row_gap_bp=0, row_stretch=1)
     latex = layout_selected_table(latex, 'interlude-model-family', (.35, .65),
                                   row_gap_bp=3, row_stretch=1.05)
     latex = layout_selected_table(latex, 'engineering-measures', (.20, .54, .26),

@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>187</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>190</b> sections · <b>47</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -343,65 +343,82 @@
 <h2>Module 3 — Alignment</h2>
 <div class="outcomes"><div class="oc-h">After Module 3 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, separate up-front obligations from what the work teaches, write lifecycles and runbooks, and measure one level deeper. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-3-1-where-obligations-can-be-enforced"><span class="tier-kick">Lesson</span><a href="../book/3.1-where-obligations-can-be-enforced.html" class="ch-link">3.1-where-obligations-can-be-enforced</a> <span class="ch-slug">3.1-where-obligations-can-be-enforced</span></h3>
-<div class="section s2" id="sec-3-1-where-obligations-can-be-enforced--reasoning-input-action-work-unit-and-artifactruntime">
-<div class="sec-h"><a href="../book/3.1-where-obligations-can-be-enforced.html">Intervention Boundaries</a></div>
-<p class="topic">The first location is **reasoning input**: the context, representations, examples, and instructions put in front of the reasoner.</p>
+<h3 id="ch-3-1-from-engineering-models-to-enforcement"><span class="tier-kick">Lesson</span><a href="../book/3.1-from-engineering-models-to-enforcement.html" class="ch-link">3.1-from-engineering-models-to-enforcement</a> <span class="ch-slug">3.1-from-engineering-models-to-enforcement</span></h3>
+<div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--guidance-and-enforcement">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Guidance and Enforcement</a></div>
+<p class="topic">A foundation model produces probabilistic outputs; a harness turns selected outputs into actions.</p>
 </div>
-<div class="section s2" id="sec-3-1-where-obligations-can-be-enforced--placement-and-strength-are-different-decisions">
-<div class="sec-h"><a href="../book/3.1-where-obligations-can-be-enforced.html">Placement, Strength, and Feedback</a></div>
-<p class="topic">A later check is not necessarily a stronger check.</p>
+<div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--agreement-is-not-correctness">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Correspondence, Conformance, and Acceptance</a></div>
+<p class="topic">The correspondence patterns in [ref:2.6-system-knowledge:heading:maintaining-correspondence] connect models to implementation through derivation, generation, or traceability.</p>
 </div>
-<div class="section s2" id="sec-3-1-where-obligations-can-be-enforced--enforcement-boundaries-in-practice">
-<div class="sec-h"><a href="../book/3.1-where-obligations-can-be-enforced.html">Enforcement Boundaries in Practice</a></div>
-<p class="topic">The appropriate boundary depends on the obligation and the evidence needed to evaluate it.</p>
+<div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--independent-obligations-and-evidence">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">Independent Obligations and Evidence</a></div>
+<p class="topic">Chapter 2 distinguished a descriptive model from one that is authoritative for a property.</p>
 </div>
-</div>
-<div class="chapter">
-<h3 id="ch-3-2-models-and-the-semantic-gap"><span class="tier-kick">Lesson</span><a href="../book/3.2-models-and-the-semantic-gap.html" class="ch-link">3.2-models-and-the-semantic-gap</a> <span class="ch-slug">3.2-models-and-the-semantic-gap</span></h3>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--agreement-is-not-correctness">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">What Alignment Means</a></div>
-<p class="topic">Enforcement requires two things: **an obligation independent of the work being judged and a boundary where the evidence needed to evaluate that obligation is available.** The architectural model requires `Reporting` to obtain billing data through `BillingAPI`, preserving `BillingDB` behind that interface.</p>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-semantic-gap">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">The Semantic Gap and Earliest Decidable Boundary</a></div>
-<p class="topic">A second problem is placement.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--docable-from-correspondence-to-enforcement">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">DocAble: From Correspondence to Enforcement</a></div>
+<div class="section s2" id="sec-3-1-from-engineering-models-to-enforcement--docable-from-correspondence-to-enforcement">
+<div class="sec-h"><a href="../book/3.1-from-engineering-models-to-enforcement.html">DocAble: From Correspondence to Enforcement</a></div>
 <p class="topic">[ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] described how DocAble connects computation declarations, scheduling, and an analytical graph.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-3-3-constraints-sensors-validators-gates"><span class="tier-kick">Lesson</span><a href="../book/3.3-constraints-sensors-validators-gates.html" class="ch-link">3.3-constraints-sensors-validators-gates</a> <span class="ch-slug">3.3-constraints-sensors-validators-gates</span></h3>
-<div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--constructing-and-evaluating-governance-mechanisms">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Constructing and Validating Governance Mechanisms</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+<h3 id="ch-3-2-governance-mechanisms"><span class="tier-kick">Lesson</span><a href="../book/3.2-governance-mechanisms.html" class="ch-link">3.2-governance-mechanisms</a> <span class="ch-slug">3.2-governance-mechanisms</span></h3>
+<div class="section s2" id="sec-3-2-governance-mechanisms--constraints-sensors-and-gates">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Constraints, Sensors, and Gates</a></div>
+<p class="topic">Return to the billing architecture: `Reporting` may obtain data through `BillingAPI`, but must not connect directly to `BillingDB`.</p>
 </div>
-<div class="section s3" id="sec-3-3-constraints-sensors-validators-gates--prevention-and-observation">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Prevention, Observation, and Admission</a></div>
-<p class="topic">A constraint can exclude some violations before they occur.</p>
+<div class="section s2" id="sec-3-2-governance-mechanisms--constructing-and-evaluating-governance-mechanisms">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Constructing and Validating Mechanisms</a></div>
+<p class="topic">Knowing a mechanism’s function does not establish that it enforces the intended obligation.</p>
 </div>
-<div class="section s3" id="sec-3-3-constraints-sensors-validators-gates--tests-and-models-work-together">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Testing Against Models</a></div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--tests-and-models-work-together">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Testing Against Models</a></div>
 <p class="topic">Tests can evaluate whether an implementation satisfies obligations expressed in a model.</p>
 </div>
-<div class="section s3" id="sec-3-3-constraints-sensors-validators-gates--model-and-exercise-failure-responses">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Failure Models and Testing the Tests</a></div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--model-and-exercise-failure-responses">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Failure Models and Testing the Tests</a></div>
 <p class="topic">Testing expected behavior is not enough when a system must also respond correctly to failures.</p>
 </div>
-<div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--choosing-and-calibrating-governance-mechanisms">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Choosing Mechanisms and Preserving Freedom</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+<div class="section s2" id="sec-3-2-governance-mechanisms--one-obligation-several-ways-to-hold-it">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Choosing Mechanisms</a></div>
+<p class="topic">Chapter 2 selected representations according to the engineering questions they could answer.</p>
 </div>
-<div class="section s3" id="sec-3-3-constraints-sensors-validators-gates--one-obligation-several-ways-to-hold-it">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Matching Mechanisms to Obligations</a></div>
-<p class="topic">A modeled obligation does not imply one particular enforcement technology.</p>
+<div class="section s2" id="sec-3-2-governance-mechanisms--preserving-engineering-freedom">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Preserving Engineering Freedom</a></div>
+<p class="topic">Choosing an enforcement mechanism also changes which implementation choices remain available.</p>
 </div>
-<div class="section s3" id="sec-3-3-constraints-sensors-validators-gates--margin-and-engineering-freedom">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Margins and Engineering Freedom</a></div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--margin-and-engineering-freedom">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Tolerances and Margins</a></div>
 <p class="topic">Alignment can do more than determine whether an implementation satisfies an obligation.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--underconstraint-and-overconstraint">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Underconstraint and Overconstraint</a></div>
+<p class="topic">Alignment should preserve the implementation freedom that Modeling deliberately leaves open.</p>
+</div>
+<div class="section s3" id="sec-3-2-governance-mechanisms--where-enforcement-stops">
+<div class="sec-h"><a href="../book/3.2-governance-mechanisms.html">Where Enforcement Stops</a></div>
+<p class="topic">Not every engineering obligation should be enforced mechanically.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-3-3-where-obligations-can-be-enforced"><span class="tier-kick">Lesson</span><a href="../book/3.3-where-obligations-can-be-enforced.html" class="ch-link">3.3-where-obligations-can-be-enforced</a> <span class="ch-slug">3.3-where-obligations-can-be-enforced</span></h3>
+<div class="section s2" id="sec-3-3-where-obligations-can-be-enforced--reasoning-input-action-work-unit-and-artifactruntime">
+<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">Intervention Boundaries</a></div>
+<p class="topic">Where the environment intervenes determines what it can examine and control.</p>
+</div>
+<div class="section s2" id="sec-3-3-where-obligations-can-be-enforced--the-semantic-gap">
+<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">The Semantic Gap and Earliest Decidable Boundary</a></div>
+<p class="topic">Which of these boundaries provides enough evidence?</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-3-3-where-obligations-can-be-enforced--placement-and-strength-are-different-decisions">
+<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">Placement, Strength, and Feedback</a></div>
+<p class="topic">A later check is not necessarily a stronger check.</p>
+</div>
+<div class="section s2" id="sec-3-3-where-obligations-can-be-enforced--enforcement-boundaries-in-practice">
+<div class="sec-h"><a href="../book/3.3-where-obligations-can-be-enforced.html">Enforcement Boundaries in Practice</a></div>
+<p class="topic">The appropriate boundary depends on the obligation and the evidence needed to evaluate it.</p>
 </div>
 </div>
 <div class="chapter">
@@ -411,17 +428,12 @@
 <p class="topic">Start with obligations you can state before the work begins and that are consequential, recurrent, or reusable enough to make durable.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--as-you-learn-convert-what-the-work-teaches">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">As You Learn: Convert What the Work Teaches</a></div>
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">As You Learn: Governance Conversion</a></div>
 <p class="topic">The harder half begins when the system surprises you.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--engineering-capital">
 <div class="sec-h"><a href="../book/3.4-governance-conversion.html">Engineering Capital</a></div>
 <p class="topic">Governance conversion motivates a useful concept: **engineering capital**.</p>
-</div>
-<div class="section s2" id="sec-3-4-governance-conversion--where-enforcement-stops">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Where Enforcement Stops</a></div>
-<p class="topic">Not every engineering obligation should be enforced mechanically.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">

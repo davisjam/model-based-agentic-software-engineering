@@ -1,5 +1,5 @@
 {
-  "_note": "HAND-AUTHORED source for the book's CHAPTER-SHAPE model \u2014 the Phase-2a editorial assessment of every chapter's opening and closing against the discipline (directive book/_design/book-editorial-discipline-directive-260802.md Task 2 / Phase 2): an opening identifies the failure/question, the chapter's answer, and the thesis or argument step it advances; a closing is a consequence, a transition, or a synthesis \u2014 never a mere thesis re-announcement. This file IS edited by hand; chapter-shape.json is generated from it (`python3 book-models/chapter_shape_model.py regenerate`). Exemptions and per-chapter advances are JOINED from argument_spine_declared.json at derive time \u2014 never restated here. The anchors freeze the first/last prose words each assessment was made against (generated once at assessment time via `chapter_shape_model.py anchors`, then frozen): when the 2c refactor rewrites an opening or closing, the CS5 staleness check reddens that chapter until it is re-assessed here. Grades: `explicit` and `implicit` pass (implicit = carried by content, worth a one-clause sharpening in 2c); only `absent` flags. Flags are DERIVED by the generator, never authored.",
+  "_note": "HAND-AUTHORED source for the book's CHAPTER-SHAPE model — the Phase-2a editorial assessment of every chapter's opening and closing against the discipline (directive book/_design/book-editorial-discipline-directive-260802.md Task 2 / Phase 2): an opening identifies the failure/question, the chapter's answer, and the thesis or argument step it advances; a closing is a consequence, a transition, or a synthesis — never a mere thesis re-announcement. This file IS edited by hand; chapter-shape.json is generated from it (`python3 book-models/chapter_shape_model.py regenerate`). Exemptions and per-chapter advances are JOINED from argument_spine_declared.json at derive time — never restated here. The anchors freeze the first/last prose words each assessment was made against (generated once at assessment time via `chapter_shape_model.py anchors`, then frozen): when the 2c refactor rewrites an opening or closing, the CS5 staleness check reddens that chapter until it is re-assessed here. Grades: `explicit` and `implicit` pass (implicit = carried by content, worth a one-clause sharpening in 2c); only `absent` flags. Flags are DERIVED by the generator, never authored.",
   "assessments": [
     {
       "slug": "preface",
@@ -16,7 +16,7 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Exempt (preface). Opens on the core question and its reorganization answer; adds `Where the theory came from`, `What changed`, `Evidence and scope`; states the method as a FOUR-step cycle (Model \u00b7 Align \u00b7 Work \u00b7 Convert) whose principles are INDEPENDENT (Modeling first is a principled scaling choice, not a prerequisite), closing on the cyclicality/engineering-capital sentence; the Printer metaphor no longer reprises here (it lives in 1.1); closes on `Who this book is for` and the convert-recurring-judgment move. The book map lives in the How to read this book page.",
+      "note": "Exempt (preface). Opens on the core question and its reorganization answer; adds `Where the theory came from`, `What changed`, `Evidence and scope`; states the method as a FOUR-step cycle (Model · Align · Work · Convert) whose principles are INDEPENDENT (Modeling first is a principled scaling choice, not a prerequisite), closing on the cyclicality/engineering-capital sentence; the Printer metaphor no longer reprises here (it lives in 1.1); closes on `Who this book is for` and the convert-recurring-judgment move. The book map lives in the How to read this book page.",
       "opening_anchor": "**How do we safely grant autonomy to commodity intelligence?** In this book,",
       "closing_anchor": "models, constraints, evidence, validators, workflows, and the engineering judgment encoded in them."
     },
@@ -35,7 +35,7 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Exempt (apparatus). Front-of-book glossary \u2014 the book's vocabulary gathered in one place so later chapters reference rather than re-explain; no argumentative shape expected.",
+      "note": "Exempt (apparatus). Front-of-book glossary — the book's vocabulary gathered in one place so later chapters reference rather than re-explain; no argumentative shape expected.",
       "opening_anchor": "Agentic software engineering is a fast-evolving topic, and it seems that many",
       "closing_anchor": "from model provenance, which tracks what a derived model was generated from.)"
     },
@@ -73,7 +73,7 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Phase-2c added a real untitled lead: failure (implementation abundant but unreliable), question (whose fault when the build is wrong?), answer (the agent is a printer, not a coder \u2014 a bad build indicts the instructions), argument role stated (the premise everything after rests on) = fault-lies-in-instructions / abundant-implementation. The body sections develop the metaphor the lead now frames. Closing is strong: the printer builds your mistake with the same fidelity (consequence) + hand-off to 1.2.",
+      "note": "Phase-2c added a real untitled lead: failure (implementation abundant but unreliable), question (whose fault when the build is wrong?), answer (the agent is a printer, not a coder — a bad build indicts the instructions), argument role stated (the premise everything after rests on) = fault-lies-in-instructions / abundant-implementation. The body sections develop the metaphor the lead now frames. Closing is strong: the printer builds your mistake with the same fidelity (consequence) + hand-off to 1.2.",
       "opening_anchor": "Coding agents have made writing software cheap. Describe what you want and",
       "closing_anchor": "system that shipped. The next chapter gives you a first concrete look."
     },
@@ -98,9 +98,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "The introductory DocAble case establishes the accessibility obligations, development arrangement, and contextual judgments needed to understand the running example. The obligations table accompanies the accessibility requirements, and the user-facing glimpse supports the contextual examples. The last paragraph concludes what those examples require; \u00a71.4 supplies its own transition through the code-inspection experiment.",
+      "note": "The introductory DocAble case establishes the accessibility obligations, development arrangement, and contextual judgments needed to understand the running example. The obligations table accompanies the accessibility requirements, and the user-facing glimpse supports the contextual examples. The last paragraph concludes what those examples require; §1.4 supplies its own transition through the code-inspection experiment.",
       "opening_anchor": "The engineering methodology described in this book emerged from six months of",
-      "closing_anchor": "the author\u2019s content, and record what it changed and what remains uncertain."
+      "closing_anchor": "the author’s content, and record what it changed and what remains uncertain."
     },
     {
       "slug": "reasoning-horizon",
@@ -128,7 +128,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer\u2019s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The reasoning-horizon and enforcement discussions now name their corresponding problems at their conclusions; the product calculation supports Enforcement. The inexpensive-reasoning discussion places human fallibility alongside agentic capacity, and FlowCheck supplies a concrete example of an obligation lost across natural-language iterations.",
+      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The reasoning-horizon and enforcement discussions now name their corresponding problems at their conclusions; the product calculation supports Enforcement. The inexpensive-reasoning discussion places human fallibility alongside agentic capacity, and FlowCheck supplies a concrete example of an obligation lost across natural-language iterations.",
       "opening_anchor": "In developing DocAble, I deliberately inspected almost none of the code the",
       "closing_anchor": "how should engineering intent be enforced over autonomous work"
     },
@@ -153,7 +153,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "The merged chapter conclusion develops informed control through the larger engineered system, selective complementarity of Modeling and Alignment, and the DocAble extracted-content representation, validator, and completion rule. Four substantial explanatory paragraphs lead to the cross-domain scope and chapter roadmap; the compact substrate-to-method figure summarizes the primary motivations. The former separate Summary is absorbed. Canonical Representation and Enforcement Problem definitions remain at their earned locations in \u00a71.4; the product-reliability calculation continues to support Enforcement only.",
+      "note": "The merged chapter conclusion develops informed control through the larger engineered system, selective complementarity of Modeling and Alignment, and the DocAble extracted-content representation, validator, and completion rule. Four substantial explanatory paragraphs lead to the cross-domain scope and chapter roadmap; the compact substrate-to-method figure summarizes the primary motivations. The former separate Summary is absorbed. Canonical Representation and Enforcement Problem definitions remain at their earned locations in §1.4; the product-reliability calculation continues to support Enforcement only.",
       "opening_anchor": "The preceding discussion suggests a different unit of analysis for agentic software",
       "closing_anchor": "develops the theoretical argument, while Chapter 7 considers its implications beyond software."
     },
@@ -172,15 +172,15 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the intervention-boundaries figure (four semantic-grain boundaries)",
+            "name": "the intervention-boundaries figure and the semantic-gap placement example",
             "anchor": "intervention-boundaries"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Renamed 'Where Authority Can Act'. Opens on guidance-vs-enforcement (Alignment), back-linked to the 1.4 derivation; four intervention boundaries as semantic grains, placement != strength. Closing hands to 3.2 (what deserves authority) \u2014 transition.",
-      "opening_anchor": "A foundation model produces probabilistic judgments. A harness turns selected judgments into",
-      "closing_anchor": "to be true before any surface, model-based or otherwise, deserves binding authority."
+      "note": "Where Obligations Can Be Enforced follows mechanism selection with intervention boundaries, the semantic gap and earliest decidable boundary, placement versus strength and feedback, then DocAble, Docker, and Spotify examples. The closing turns from individual mechanism design to obligations learned as engineering proceeds.",
+      "opening_anchor": "The preceding section distinguished what governance mechanisms do.",
+      "closing_anchor": "New behavior, failures, and changes in requirements will expose decisions that the environment does not yet preserve."
     },
     {
       "slug": "models-and-the-semantic-gap",
@@ -197,15 +197,15 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the semantic-gap figure",
-            "anchor": "semantic-gap"
+            "name": "the correspondence, conformance, and acceptance figure",
+            "anchor": "three-relations"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "An independent obligation and a boundary where its evidence is available remain the requirements for enforcement. The shared architectural path and constructive lifecycle examples make those requirements concrete before the unchanged traceability, correspondence/conformance/acceptance, and earliest-decidable-boundary discussions.",
-      "opening_anchor": "Enforcement requires two things: **an obligation independent of the work being judged",
-      "closing_anchor": "The next question is what the mechanism at that boundary actually does."
+      "note": "From Engineering Models to Enforcement follows Chapter 2 with guidance versus enforcement, correspondence/conformance/acceptance, independent obligations and adequate evidence, then the DocAble correspondence-to-enforcement episode. The closing introduces the machinery that makes findings consequential.",
+      "opening_anchor": "Chapter 2 asked four questions about each model:",
+      "closing_anchor": "We next examine the machinery that can provide those restrictions, observations, and decisions."
     },
     {
       "slug": "constraints-sensors-validators-gates",
@@ -228,9 +228,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Three functional categories: constraints restrict possibilities, sensors observe and produce evidence, and gates evaluate whether work may proceed and enforce decisions. An optional inset connects these functions to familiar machinery, including observability and static analysis as well as CI and runtime authorization. Evaluation can be advisory or used within a gate. One proposed reporting change connects the categories through module restrictions, instrumented tests, and a merge gate. Closes on governance conversion. The opening continues Chapter 2\u2019s billing architecture, and the testing discussion develops the simple constructive lifecycle into a richer lease-ownership protocol.",
-      "opening_anchor": "Return to the billing architecture: `Reporting` may obtain data through `BillingAPI`",
-      "closing_anchor": "governed. That is the conversion problem, and it is the next chapter."
+      "note": "Governance Mechanisms introduces constraints, sensors, and gates through the billing example, then develops construction and validation, mechanism selection, and preservation of engineering freedom. Tolerances, underconstraint/overconstraint, and the limits of mechanical enforcement complete the selection discussion. The closing asks where the selected mechanisms should act.",
+      "opening_anchor": "An obligation and its evidence do not yet specify how the engineering environment should act.",
+      "closing_anchor": "A suitable check can still be ineffective if the necessary evidence is unavailable at the point where it runs."
     },
     {
       "slug": "governance-conversion",
@@ -253,9 +253,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Renamed 'Growing the Governed Environment'. Obligations known up front vs. what the work teaches; governance conversion is the hinge; the five-way conversion; engineering capital as a balance sheet; the honest gaps. Census moved out to 3.5. Closes handing the accumulated estate to 3.5 \u2014 transition.",
-      "opening_anchor": "No engineering team begins with a complete catalogue of everything its environment",
-      "closing_anchor": "of controls, and those controls can themselves become inconsistent, redundant, or orphaned."
+      "note": "Growing the Governed Environment distinguishes structure encoded from known obligations from governance conversion as work exposes new obligations. Organizational learning, the five categories of missing engineering structure, and engineering capital explain why the environment accumulates machinery. Where Enforcement Stops now belongs to mechanism selection in Section 3.2. The closing introduces interactions and maintenance of accumulated controls.",
+      "opening_anchor": "Some rules we know before we start. An API must require authentication.",
+      "closing_anchor": "The next section examines how to model and maintain the controls themselves."
     },
     {
       "slug": "when-guardrails-collide",
@@ -278,9 +278,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Renamed 'Governing the Governance'. Alignment turned on itself: catalogue, interaction graph, and coverage (obligations against mechanisms) over the control machinery; grow/reconcile/retire. End of Part III \u2014 closes on 'Part IV joins the two into practice.'",
-      "opening_anchor": "Every control in an environment can be reasonable in isolation and the",
-      "closing_anchor": "a gap neither thesis anticipated. **Part IV joins the two into practice.**"
+      "note": "When Controls Become a System models the accumulated governance machinery through its catalogue, interaction graph, and coverage view. The DocAble hook-ordering example establishes that controls have resource and interaction obligations of their own. The closing applies the Modeling Principle to the GEE and leads to Chapter 4’s joint evolution of product and environment.",
+      "opening_anchor": "As governance mechanisms accumulate, they become control machinery:",
+      "closing_anchor": "Chapter 4 examines how engineers develop and revise these models and controls together while building a changing product."
     },
     {
       "slug": "context-is-the-first-modeling-problem",
@@ -343,7 +343,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Principle link explicit \u2014 the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Principle link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
       "opening_anchor": "A structural model suppresses behavior to expose components, boundaries, and relationships.",
       "closing_anchor": "the orderings it is allowed to move through."
     },
@@ -442,7 +442,7 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim \u2014 the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits \u2014 this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored separately below. 6.3 is now marked exempt as a discussion chapter in the argument-spine, so it no longer fires DV4/thesis-mismatch.)",
+      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim — the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits — this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored separately below. 6.3 is now marked exempt as a discussion chapter in the argument-spine, so it no longer fires DV4/thesis-mismatch.)",
       "opening_anchor": "Thomas Kuhn observed that scientific disciplines periodically reorganize around new paradigms that",
       "closing_anchor": "sound. They were simply too expensive to stand on, until they weren't."
     },
@@ -486,7 +486,7 @@
         "artifact_would_help": false
       },
       "note": "The book-level Conclusion (top-level matter, parallel to the Preface; exempt: conclusion). Returns to the Preface's question, gives the compact three-move answer, asks the converse (what cannot be delegated?), and lands on responsibility as the durable boundary. Closes on the reframing that implementation became cheap so more of engineering can be practiced.",
-      "opening_anchor": "> Though much is taken, > much abides. > > \u2014 Alfred,",
+      "opening_anchor": "> Though much is taken, > much abides. > > — Alfred,",
       "closing_anchor": "implementation cheap, it may finally force us to practice more of it."
     },
     {
@@ -537,7 +537,7 @@
       },
       "note": "Reference navigation: inventories the six claims, their connecting diagram, and glossary; distinguishes first reading from lookup, explains the chapter sequence, and supplies four shorter reading routes. The compact book map is a navigational framework rather than a substantive thesis.",
       "opening_anchor": "This reference section of the book contains a summary of its six",
-      "closing_anchor": "**Adopt it in an organization:** Chapter 1 \u2192 \u00a75.3 \u2192 [appendix: appendix-practicing-mage]."
+      "closing_anchor": "**Adopt it in an organization:** Chapter 1 → §5.3 → [appendix: appendix-practicing-mage]."
     },
     {
       "slug": "inside-docables-software-factory",
@@ -566,7 +566,7 @@
         "artifact_would_help": false
       },
       "note": "Author-directed coherence pass, 2026-11-10: the case opens with the coupled product and factory, applies process design and tolerance, then follows requirements, development, measurements, mechanisms, operation, supervisory work, outputs, and liabilities. Existing evidence, chronology, the counterfactual note, and maintenance qualifications remain. The section ends after the Delegation Staircase and the residual engineering judgments. Evaluation, cost and limitations are now a separate section.",
-      "opening_anchor": "> ### This section illustrates {#illustrates} > > \u2713 The Modeling Principle",
+      "opening_anchor": "> ### This section illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "read; it did not settle those decisions or eliminate its own maintenance."
     },
     {

@@ -28,8 +28,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
       "projection": "book/frontmatter/0.4-the-books-language.md",
-      "source_hash": "699964b9eb498896c8249fd04e3b5c9222f71f4f459eb85014dfdb32560e49ea",
-      "projection_hash": "d13a1a46af04d91859ed1c551157181a5779cec7afb04b7670de37836dd5a8a1"
+      "source_hash": "c65a1d0915f558a0f119c60c04313678679c8c9975117914c4c1109dbf1278ce",
+      "projection_hash": "1d3ed3599fb341a03fa4f29fc05c2def7344e25c96d9f80ca8f756da4f6a0983"
     },
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
@@ -132,44 +132,44 @@
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "b882b9aefcf5b8d3d37abfcc8a4283b1058c396bb8f7bc0b849936f042697903",
-      "projection_hash": "47d2efd54b502a80426184faaf1024af520c10b9fc7933be01916ff0aef02920"
+      "source_hash": "a0f60398107de597a37f1c17b68a5ccfe4fe7ce11cef581be47e98e93828dc3f",
+      "projection_hash": "183f1179a39719c178d4c15c363f6e61cdf232e444b18cd4c887ba8a32d31a5c"
     },
     {
-      "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
-      "projection": "book/part3/3.1-where-obligations-can-be-enforced.md",
-      "source_hash": "116c7fb40ba734f24ad27036d54588722933a98d01d8b3a3f95891812d9b09ab",
-      "projection_hash": "600da1849f626979bd6d15a4b41dbf7983fc6e4f461ff3ead6050bc4522d7387"
+      "source": "book/latex/sources/part3/3.3-where-obligations-can-be-enforced.tex",
+      "projection": "book/part3/3.3-where-obligations-can-be-enforced.md",
+      "source_hash": "d8d7e3a23742297e888e30344a39b6a4eb450f9703068298e4f9de1a185a9756",
+      "projection_hash": "a638d18999ed9050c9ecdb069e25c21e5826b4415834bdcb76539436e61b52b4"
     },
     {
-      "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
-      "projection": "book/part3/3.2-models-and-the-semantic-gap.md",
-      "source_hash": "e92b40d911f15baad05e4f703bb0576fe675f33a93d0646883744f4a771f2caa",
-      "projection_hash": "5e7d854ad562e2dc0b83a81d4ae550d5bdee0556b5ae9109d52f28b6286ded62"
+      "source": "book/latex/sources/part3/3.1-from-engineering-models-to-enforcement.tex",
+      "projection": "book/part3/3.1-from-engineering-models-to-enforcement.md",
+      "source_hash": "e5013b2bcc510044c1be1c18aea8a5dc021f48c76449750b7dbd4e218e67e93d",
+      "projection_hash": "2b749f7ec5551060ffae078164a69af9ed6ad33333445f523075e3f4286b1b1a"
     },
     {
-      "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
-      "projection": "book/part3/3.3-constraints-sensors-validators-gates.md",
-      "source_hash": "d2f84191520e2744d591b9ab0712210b919afb6a17866fd364f63f4c220a30b8",
-      "projection_hash": "fdc082e2121cd7ea7c39b02f085e590f6af40c9f68963eb584e7812c6ff1416a"
+      "source": "book/latex/sources/part3/3.2-governance-mechanisms.tex",
+      "projection": "book/part3/3.2-governance-mechanisms.md",
+      "source_hash": "bd2151bf394e7e2e7c9f4f5fd0a6e5aeb6cc866d288a5c8b2a6fc27b4b89541d",
+      "projection_hash": "ea9a35b5d93d330703ccb2bacae24b13cec4e2950222f38f8a86e6150adb9a6e"
     },
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
       "projection": "book/part3/3.4-governance-conversion.md",
-      "source_hash": "25d5929cbf514204c56f62045aad51a451f5a1f006145d944ed7dada2aefd628",
-      "projection_hash": "c02e689779a07a60f1dd570dec9c1776f75042d98c5342d251cd7aaf5af63ed4"
+      "source_hash": "c2868917133cd3f1f6d244faf9e3e53c8a2ab09dddcf02700f72672fdd98f4cb",
+      "projection_hash": "13b1199ef1747b9502c01f8de4f457aaabbf5a8f7ac0b714682f408b880dc8cf"
     },
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
       "projection": "book/part3/3.5-when-guardrails-collide.md",
-      "source_hash": "6723273849ae4134c40d9d8e575d2daf66f11e2f849665187e48faa1301fe521",
-      "projection_hash": "96d5a6d1ca18c621746a2fdb5c373790e8891de2d20db3f041d4a982a3f5f19a"
+      "source_hash": "541abf97b9e1fbc9cbf347b0384b5012bddf205bf1430c278aaf73b11005116a",
+      "projection_hash": "c19acd1ffdeb6a3d78d04a56b25894e94bb2df5d41cc7e1ccb49972426407a27"
     },
     {
       "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
       "projection": "book/part3/3.6-alignment-summary.md",
-      "source_hash": "84d65a8026f7544a2816d44c5c21be145a761cc61dd36bf214f27406ea605649",
-      "projection_hash": "346de10a605b32931db19deb607fe6ec59a394709bfc02278b80581deecd0834"
+      "source_hash": "707477c4202d7bc83f59ef885e16d74d608e1144c6aaac67994b0b1f8b40472f",
+      "projection_hash": "4f6aa4c4908a136fce44e303e36e15a9df833612130bb0a6853130c5b2f0802a"
     },
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
@@ -186,8 +186,8 @@
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
       "projection": "book/part4/4.2-one-problem-many-models.md",
-      "source_hash": "d07c4ee33867a4cb1a2835f161c8428872e98d22b39045537e37ef1a5ce468de",
-      "projection_hash": "a1dc0a09d412e8f5fee9dab2ffd8082d679950519529d23c509d4de5b7656079"
+      "source_hash": "fc1a3dc0ae66c52e434a96cc1b6e970030c0d67660b9d8e6bf1a5030d296ec81",
+      "projection_hash": "5297e10f286b28379087d6e5584172564e50f96217e2801ec48dce63b78d073a"
     },
     {
       "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
@@ -198,8 +198,8 @@
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "48bec74148cfa3f9bd9a58d9e47135d3904e35b02ef5c6f5f5904c8aaabb2895",
-      "projection_hash": "87bca44b2782c7389d4248bc14c57256571898380a985c4a8f6917a2fa379be3"
+      "source_hash": "d4328a54c398549acc43dcad2f6bca8713a880c4421bc2a856e2ba2858197de9",
+      "projection_hash": "af314e624612d221753f546a01db41ce824369f796a58ec8677d2039ddc46438"
     },
     {
       "source": "book/latex/sources/part4/4.5-mage-in-motion-summary.tex",
@@ -222,8 +222,8 @@
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "0f37effb18c99647e32d401ccbaffae8db9f19186b1a08d8f7a27c6ebac0048e",
-      "projection_hash": "be37ceee5c38cead75f475fa9caf01a590caf06771f79c9037d98c0b387c14e7"
+      "source_hash": "b0aeff944e381fde8a59bc9c03a052183a8afd2f8f8b629d47d69f1baacd7156",
+      "projection_hash": "ab7e21277d420bbe0c9c247308b4289aeede83bf695b2367e323c04ba28ed771"
     },
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
@@ -998,14 +998,14 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/getting-started.tex",
       "projection": "book/appendix-practicing-mage/getting-started.md",
-      "source_hash": "8571f3ffc208725e250c60ff1ddaa7ed6041917646caa7247fda5dfe8dcc9c38",
-      "projection_hash": "a7896c708f4a84c459bd459593e1cea4e54d2efd1311982609d5cd0c9f2582f5"
+      "source_hash": "0c4fd636435423d1bb5119b16102e1cec2784963fb5fb8c2b4795e6d9d45f703",
+      "projection_hash": "8bd0f43efd961df565d85667030ad79247df32612ba92fd501abde186ebc2c0e"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/measuring-mage.tex",
       "projection": "book/appendix-practicing-mage/measuring-mage.md",
-      "source_hash": "27defb7d6f5be0bb72d685052c272562f349be2fb8982d96b92c9d75a35a5fea",
-      "projection_hash": "7ed39104198f0709ae3d1ec2130b7aecbd5bc33f9bf8d7e80a411651a966d1f2"
+      "source_hash": "2e076b6df090a31b9ee4ef14eaa50749edf6b48f95125468429a58f07f08735b",
+      "projection_hash": "7c08e33467b8bec2317df5763becb1bca9645b0b3c86e89b4ad527514aae4bbc"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
@@ -1059,8 +1059,8 @@
       "source": "book/latex/sources/appendix-handbook/remediation-computation-graph.tex",
       "projection": "book/appendix-handbook/remediation-computation-graph.md",
       "publication_status": "published",
-      "source_hash": "86906c0f30521b1923d6aafe62b749fcfa45347a320a28ceca7fec4023976f2a",
-      "projection_hash": "279f9f44567ede786e76d5cde8d3213b6b1734f3a4f9beda0c607c9e2fd5990b"
+      "source_hash": "f6931247d93355b7d76a9233f2248f1dbfb5d7a27e273d3a28ffeba381375e70",
+      "projection_hash": "2fc9ece13e534e4a539101470e4408e3142ca78ee6dfba2307f43a0d5266aaea"
     },
     {
       "source": "book/latex/sources/appendix-handbook/job-ownership-and-recovery.tex",

@@ -454,45 +454,6 @@
       ]
     },
     {
-      "slug": "the-agent-stack",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "alignment"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "Renamed 'Where Authority Can Act'. Opens on guidance-vs-enforcement (Alignment), back-linked to the 1.4 derivation; four intervention boundaries as semantic grains, placement != strength. Closing hands to 3.2 (what deserves authority) — transition.",
-      "opening_anchor": "A foundation model produces probabilistic judgments. A harness turns selected judgments into",
-      "closing_anchor": "to be true before any surface, model-based or otherwise, deserves binding authority.",
-      "delivers": {
-        "concepts": [
-          "agent",
-          "reasoning-input",
-          "action-boundary",
-          "work-unit-boundary",
-          "artifact-runtime-boundary",
-          "intervention-boundary",
-          "engineered-agent-loop"
-        ],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the intervention-boundaries figure (four semantic-grain boundaries)",
-            "anchor": "intervention-boundaries"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "alignment-principle",
-        "govern-the-environment"
-      ]
-    },
-    {
       "slug": "models-and-the-semantic-gap",
       "opening": {
         "failure_question": "explicit",
@@ -503,24 +464,23 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "An independent obligation and a boundary where its evidence is available remain the requirements for enforcement. The shared architectural path and constructive lifecycle examples make those requirements concrete before the unchanged traceability, correspondence/conformance/acceptance, and earliest-decidable-boundary discussions.",
-      "opening_anchor": "Enforcement requires two things: **an obligation independent of the work being judged",
-      "closing_anchor": "The next question is what the mechanism at that boundary actually does.",
+      "note": "From Engineering Models to Enforcement follows Chapter 2 with guidance versus enforcement, correspondence/conformance/acceptance, independent obligations and adequate evidence, then the DocAble correspondence-to-enforcement episode. The closing introduces the machinery that makes findings consequential.",
+      "opening_anchor": "Chapter 2 asked four questions about each model:",
+      "closing_anchor": "We next examine the machinery that can provide those restrictions, observations, and decisions.",
       "delivers": {
         "concepts": [
+          "agent",
           "agreement-vs-correctness",
           "mirror-vs-spec",
           "drift-caveat",
           "independent-obligation",
-          "oracle",
-          "semantic-gap",
-          "earliest-legible-boundary"
+          "oracle"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the semantic-gap figure",
-            "anchor": "semantic-gap"
+            "name": "the correspondence, conformance, and acceptance figure",
+            "anchor": "three-relations"
           }
         ],
         "artifact_would_help": false
@@ -543,9 +503,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Three functional categories: constraints restrict possibilities, sensors observe and produce evidence, and gates evaluate whether work may proceed and enforce decisions. An optional inset connects these functions to familiar machinery, including observability and static analysis as well as CI and runtime authorization. Evaluation can be advisory or used within a gate. One proposed reporting change connects the categories through module restrictions, instrumented tests, and a merge gate. Closes on governance conversion. The opening continues Chapter 2’s billing architecture, and the testing discussion develops the simple constructive lifecycle into a richer lease-ownership protocol.",
-      "opening_anchor": "Return to the billing architecture: `Reporting` may obtain data through `BillingAPI`",
-      "closing_anchor": "governed. That is the conversion problem, and it is the next chapter.",
+      "note": "Governance Mechanisms introduces constraints, sensors, and gates through the billing example, then develops construction and validation, mechanism selection, and preservation of engineering freedom. Tolerances, underconstraint/overconstraint, and the limits of mechanical enforcement complete the selection discussion. The closing asks where the selected mechanisms should act.",
+      "opening_anchor": "An obligation and its evidence do not yet specify how the engineering environment should act.",
+      "closing_anchor": "A suitable check can still be ineffective if the necessary evidence is unavailable at the point where it runs.",
       "delivers": {
         "concepts": [
           "governance-mechanism",
@@ -555,8 +515,9 @@
           "observability",
           "gate",
           "validator",
+          "governance-package",
           "generative-validation",
-          "governance-package"
+          "residual"
         ],
         "artifacts": [
           {
@@ -574,6 +535,46 @@
       ]
     },
     {
+      "slug": "the-agent-stack",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "alignment"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "Where Obligations Can Be Enforced follows mechanism selection with intervention boundaries, the semantic gap and earliest decidable boundary, placement versus strength and feedback, then DocAble, Docker, and Spotify examples. The closing turns from individual mechanism design to obligations learned as engineering proceeds.",
+      "opening_anchor": "The preceding section distinguished what governance mechanisms do.",
+      "closing_anchor": "New behavior, failures, and changes in requirements will expose decisions that the environment does not yet preserve.",
+      "delivers": {
+        "concepts": [
+          "reasoning-input",
+          "action-boundary",
+          "work-unit-boundary",
+          "artifact-runtime-boundary",
+          "semantic-gap",
+          "earliest-legible-boundary",
+          "intervention-boundary",
+          "engineered-agent-loop"
+        ],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the intervention-boundaries figure and the semantic-gap placement example",
+            "anchor": "intervention-boundaries"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "alignment-principle",
+        "govern-the-environment"
+      ]
+    },
+    {
       "slug": "governance-conversion",
       "opening": {
         "failure_question": "explicit",
@@ -584,16 +585,15 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Renamed 'Growing the Governed Environment'. Obligations known up front vs. what the work teaches; governance conversion is the hinge; the five-way conversion; engineering capital as a balance sheet; the honest gaps. Census moved out to 3.5. Closes handing the accumulated estate to 3.5 — transition.",
-      "opening_anchor": "No engineering team begins with a complete catalogue of everything its environment",
-      "closing_anchor": "of controls, and those controls can themselves become inconsistent, redundant, or orphaned.",
+      "note": "Growing the Governed Environment distinguishes structure encoded from known obligations from governance conversion as work exposes new obligations. Organizational learning, the five categories of missing engineering structure, and engineering capital explain why the environment accumulates machinery. Where Enforcement Stops now belongs to mechanism selection in Section 3.2. The closing introduces interactions and maintenance of accumulated controls.",
+      "opening_anchor": "Some rules we know before we start. An API must require authentication.",
+      "closing_anchor": "The next section examines how to model and maintain the controls themselves.",
       "delivers": {
         "concepts": [
           "governed-environment",
           "governance-conversion",
           "up-front-governance",
-          "engineering-capital",
-          "residual"
+          "engineering-capital"
         ],
         "artifacts": [
           {
@@ -622,9 +622,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Renamed 'Governing the Governance'. Alignment turned on itself: catalogue, interaction graph, and coverage (obligations against mechanisms) over the control machinery; grow/reconcile/retire. End of Part III — closes on 'Part IV joins the two into practice.'",
-      "opening_anchor": "Every control in an environment can be reasonable in isolation and the",
-      "closing_anchor": "a gap neither thesis anticipated. **Part IV joins the two into practice.**",
+      "note": "When Controls Become a System models the accumulated governance machinery through its catalogue, interaction graph, and coverage view. The DocAble hook-ordering example establishes that controls have resource and interaction obligations of their own. The closing applies the Modeling Principle to the GEE and leads to Chapter 4’s joint evolution of product and environment.",
+      "opening_anchor": "As governance mechanisms accumulate, they become control machinery:",
+      "closing_anchor": "Chapter 4 examines how engineers develop and revise these models and controls together while building a changing product.",
       "delivers": {
         "concepts": [],
         "artifacts": [

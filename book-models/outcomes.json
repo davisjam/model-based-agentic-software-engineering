@@ -21,16 +21,16 @@
     },
     "by_bloom": {
       "know": 4,
-      "understand": 8,
+      "understand": 7,
       "apply": 3,
       "analyze": 10,
-      "evaluate": 7,
+      "evaluate": 8,
       "create": 15
     },
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 187,
+    "sections_total": 190,
     "sections_primary_of_an_outcome": 5,
     "modules": 8,
     "lessons": 37
@@ -205,28 +205,28 @@
         ],
         "lessons": [
           {
-            "lesson": "3.1-where-obligations-can-be-enforced",
+            "lesson": "3.1-from-engineering-models-to-enforcement",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "3.2-models-and-the-semantic-gap",
+            "lesson": "3.2-governance-mechanisms",
+            "own_outcomes": [],
+            "section_outcomes": [
+              "where-enforcement-stops::identify-the-residual-goals-no-mechanism-reaches"
+            ]
+          },
+          {
+            "lesson": "3.3-where-obligations-can-be-enforced",
             "own_outcomes": [],
             "section_outcomes": [
               "the-semantic-gap::define-the-semantic-gap-between-a-model-and-the"
             ]
           },
           {
-            "lesson": "3.3-constraints-sensors-validators-gates",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
             "lesson": "3.4-governance-conversion",
             "own_outcomes": [],
-            "section_outcomes": [
-              "where-enforcement-stops::identify-the-residual-goals-no-mechanism-reaches"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "3.5-when-guardrails-collide",
@@ -762,18 +762,18 @@
       "gap_note": null
     },
     {
-      "outcome_id": "models-and-the-semantic-gap::explain-why-agreement-is-not-correctness-and-pla",
+      "outcome_id": "models-and-the-semantic-gap::explain-the-distinction-among-guidance-correspon",
       "granularity": "chapter",
       "primary_unit": "models-and-the-semantic-gap",
       "secondary_units": [
         "part-3"
       ],
       "verb": "explain",
-      "obj": "why agreement is not correctness and place a mechanism at the earliest boundary where the obligation is legible and enforceable",
-      "statement": "After this chapter, the reader can explain why agreement is not correctness — authority needs an obligation independent of the work being judged — and place a mechanism at the earliest boundary where that obligation is legible and enforceable.",
+      "obj": "the distinction among guidance, correspondence, conformance, and acceptance, and the need for independent obligations and adequate evidence",
+      "statement": "After this section, the reader can distinguish guidance from enforcement and correspondence from conformance and acceptance, explain why agreement alone does not establish correctness, and evaluate whether an independent obligation and its evidence justify acceptance.",
       "bloom": "understand",
       "provenance": "derived",
-      "anchor": "point: enforcement-needs-an-independent-obligation-and-a-legible-boundary / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
+      "anchor": "point: guidance-influences-behavior-enforcement-constrains-consequences / an-obligation-can-test-one-of-three-relations / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy",
       "gap_note": null
     },
     {
@@ -842,16 +842,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-agent-stack::distinguish-guidance-from-authority-and-place-a-mech",
+      "outcome_id": "the-agent-stack::choose-an-intervention-boundary-with-sufficient",
       "granularity": "chapter",
       "primary_unit": "the-agent-stack",
       "secondary_units": [],
-      "verb": "distinguish",
-      "obj": "guidance from authority and place a mechanism at the intervention boundary where the relevant obligation is legible",
-      "statement": "After this chapter, the reader can distinguish guidance from authority, place a mechanism at the intervention boundary where the relevant obligation is legible, and recognize that where a mechanism acts and how much authority it carries are separate decisions.",
-      "bloom": "understand",
+      "verb": "choose",
+      "obj": "an intervention boundary with sufficient evidence and control, distinguishing placement from enforcement strength and feedback timing",
+      "statement": "After this section, the reader can choose the earliest boundary where an obligation can be evaluated and enforced, distinguish placement from enforcement strength, and explain how placement affects the timeliness of feedback.",
+      "bloom": "evaluate",
       "provenance": "derived",
-      "anchor": "point: guidance-influences-behavior-enforcement-constrains-consequences / enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / the-four-boundaries-do-not-form-a-monotonic-scale",
+      "anchor": "point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable / the-four-boundaries-do-not-form-a-monotonic-scale / every-boundary-determines-where-feedback-can-return",
       "gap_note": null
     },
     {
@@ -996,7 +996,7 @@
       "statement": "After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it.",
       "bloom": "know",
       "provenance": "derived",
-      "anchor": "point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.4 Governance Conversion, 'Where Enforcement Stops').",
+      "anchor": "point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.2 Governance Mechanisms, 'Where Enforcement Stops').",
       "gap_note": null
     },
     {

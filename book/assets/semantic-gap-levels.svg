@@ -1,46 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 212" width="450" height="212" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 163" width="450" height="163" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">The semantic gap: two obligations, two enforcement boundaries</title>
-<desc id="desc">Two independent obligations use different boundaries on an illustrative sequence of three commits, build, deploy, and browser execution. An arrow from commit 3 points to model–implementation correspondence, validated at task completion. An arrow from browser execution points to rendered-page correctness, validated in an integrated execution. A bracket below the commits allows intermediate model disagreement. A separate bracket below build and deploy, excluding browser execution, states that earlier source, build, and API checks do not establish rendered-page correctness.</desc>
+<desc id="desc">Two obligations use different boundaries on a sequence of three commits, build, deploy, and browser execution. Commit 3 connects through task completion to model–implementation correspondence. Browser execution connects through integrated execution to rendered-page correctness. Braces below the sequence allow temporary model disagreement across commits and state that earlier checks cannot establish rendered correctness.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker></defs>
-<rect x="58" y="4" width="190" height="66" rx="3" fill="#f2f2f2" stroke="#1c1917" stroke-width=".65"/>
-<rect x="262" y="4" width="184" height="66" rx="3" fill="#f2f2f2" stroke="#1c1917" stroke-width=".65"/>
-<text x="153" y="23" text-anchor="middle" font-size="13" fill="#1c1917" font-weight="700">Model–implementation</text>
-<text x="153" y="38" text-anchor="middle" font-size="13" fill="#1c1917" font-weight="700">correspondence</text>
-<text x="153" y="59" text-anchor="middle" font-size="10.5" fill="#1c1917" font-style="italic">Validate at task completion</text>
-<text x="354" y="23" text-anchor="middle" font-size="12.5" fill="#1c1917" font-weight="700">Rendered-page correctness</text>
-<text x="354" y="46" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Validate in an integrated execution</text>
-<text x="354" y="59" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">(e.g., browser)</text>
-<rect x="98" y="84" width="146" height="24" rx="3" fill="#f2f2f2" stroke="#1c1917" stroke-width=".65"/>
-<text x="171" y="100" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">TASK COMPLETION</text>
-<rect x="295" y="84" width="151" height="24" rx="3" fill="#f2f2f2" stroke="#1c1917" stroke-width=".65"/>
-<text x="370.5" y="100" text-anchor="middle" font-size="10.5" fill="#1c1917" font-weight="700">INTEGRATED EXECUTION</text>
-<rect x="3.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="32" y="142" text-anchor="middle" font-size="11" fill="#1c1917">commit 1</text>
-<rect x="79.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="108" y="142" text-anchor="middle" font-size="11" fill="#1c1917">commit 2</text>
-<rect x="155.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="184" y="142" text-anchor="middle" font-size="11" fill="#1c1917">commit 3</text>
-<rect x="231.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="260" y="142" text-anchor="middle" font-size="11" fill="#1c1917">build</text>
-<rect x="307.0" y="122" width="58" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="336" y="142" text-anchor="middle" font-size="11" fill="#1c1917">deploy</text>
-<rect x="382.0" y="122" width="64" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
-<text x="414" y="135" text-anchor="middle" font-size="11" fill="#1c1917">run</text>
-<text x="414" y="148" text-anchor="middle" font-size="9.5" fill="#1c1917">(in browser)</text>
-<path d="M61.0 138 L79.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M137.0 138 L155.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M213.0 138 L231.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M289.0 138 L307.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M365.0 138 L382.0 138" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M184 122 L184 108" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M414 122 L414 108" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M171 84 L171 70" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M370.5 84 L370.5 70" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
-<path d="M3 163 Q3 171 9 171 H102.0 Q108.0 171 108.0 178 Q108.0 171 114.0 171 H207 Q213 171 213 163" fill="none" stroke="#1c1917" stroke-width=".65"/>
-<path d="M231 163 Q231 171 237 171 H292.0 Q298.0 171 298.0 178 Q298.0 171 304.0 171 H359 Q365 171 365 163" fill="none" stroke="#1c1917" stroke-width=".65"/>
-<text x="108" y="190" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Intermediate disagreement</text>
-<text x="108" y="203" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">with the model may be permitted</text>
-<text x="303" y="190" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Earlier checks (source, build, API)</text>
-<text x="303" y="203" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">do not establish this obligation</text>
+<rect x="58" y="4" width="190" height="44" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<rect x="262" y="4" width="184" height="44" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="153" y="23" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Model–implementation</text>
+<text x="153" y="36" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">correspondence</text>
+<text x="354" y="29" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Rendered-page correctness</text>
+<rect x="98" y="60" width="146" height="20" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<rect x="295" y="60" width="151" height="20" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="171" y="74" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Task completion</text>
+<text x="370.5" y="74" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Integrated execution</text>
+<rect x="3" y="92" width="58" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="32.0" y="110" text-anchor="middle" font-size="10" fill="#1c1917">commit 1</text>
+<rect x="79" y="92" width="58" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="108.0" y="110" text-anchor="middle" font-size="10" fill="#1c1917">commit 2</text>
+<rect x="155" y="92" width="58" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="184.0" y="110" text-anchor="middle" font-size="10" fill="#1c1917">commit 3</text>
+<rect x="231" y="92" width="58" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="260.0" y="110" text-anchor="middle" font-size="10" fill="#1c1917">build</text>
+<rect x="307" y="92" width="58" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="336.0" y="110" text-anchor="middle" font-size="10" fill="#1c1917">deploy</text>
+<rect x="382" y="92" width="64" height="28" rx="3" fill="white" stroke="#1c1917" stroke-width=".65"/>
+<text x="414.0" y="103" text-anchor="middle" font-size="10" fill="#1c1917">run</text>
+<text x="414.0" y="115" text-anchor="middle" font-size="10" fill="#1c1917">(in browser)</text>
+<path d="M61 106 L79 106" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M137 106 L155 106" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M213 106 L231 106" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M289 106 L307 106" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M365 106 L382 106" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M184 92 L184 80" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M414 92 L414 80" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M171 60 L171 48" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M370.5 60 L370.5 48" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M3 125 C3 130 3 131 9 131 H102.0 C108.0 131 108.0 133 108.0 136 C108.0 133 108.0 131 114.0 131 H207 C213 131 213 130 213 125" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<path d="M231 125 C231 130 231 131 237 131 H292.0 C298.0 131 298.0 133 298.0 136 C298.0 133 298.0 131 304.0 131 H359 C365 131 365 130 365 125" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<text x="108" y="150" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Temporary disagreement permitted</text>
+<text x="319" y="148" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Earlier checks cannot establish</text>
+<text x="319" y="160" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">rendered correctness</text>
 </svg>

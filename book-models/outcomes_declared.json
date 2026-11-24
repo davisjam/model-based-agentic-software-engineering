@@ -145,20 +145,20 @@
     {
       "granularity": "chapter",
       "primary_unit": "the-agent-stack",
-      "verb": "distinguish",
-      "obj": "guidance from authority and place a mechanism at the intervention boundary where the relevant obligation is legible",
-      "statement": "After this chapter, the reader can distinguish guidance from authority, place a mechanism at the intervention boundary where the relevant obligation is legible, and recognize that where a mechanism acts and how much authority it carries are separate decisions.",
+      "verb": "choose",
+      "obj": "an intervention boundary with sufficient evidence and control, distinguishing placement from enforcement strength and feedback timing",
+      "statement": "After this section, the reader can choose the earliest boundary where an obligation can be evaluated and enforced, distinguish placement from enforcement strength, and explain how placement affects the timeliness of feedback.",
       "provenance": "derived",
-      "anchor": "point: guidance-influences-behavior-enforcement-constrains-consequences / enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / the-four-boundaries-do-not-form-a-monotonic-scale"
+      "anchor": "point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable / the-four-boundaries-do-not-form-a-monotonic-scale / every-boundary-determines-where-feedback-can-return"
     },
     {
       "granularity": "chapter",
       "primary_unit": "models-and-the-semantic-gap",
       "verb": "explain",
-      "obj": "why agreement is not correctness and place a mechanism at the earliest boundary where the obligation is legible and enforceable",
-      "statement": "After this chapter, the reader can explain why agreement is not correctness — authority needs an obligation independent of the work being judged — and place a mechanism at the earliest boundary where that obligation is legible and enforceable.",
+      "obj": "the distinction among guidance, correspondence, conformance, and acceptance, and the need for independent obligations and adequate evidence",
+      "statement": "After this section, the reader can distinguish guidance from enforcement and correspondence from conformance and acceptance, explain why agreement alone does not establish correctness, and evaluate whether an independent obligation and its evidence justify acceptance.",
       "provenance": "derived",
-      "anchor": "point: enforcement-needs-an-independent-obligation-and-a-legible-boundary / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / place-enforcement-at-the-earliest-boundary-where-the-obligation-is-legible-and-decidable",
+      "anchor": "point: guidance-influences-behavior-enforcement-constrains-consequences / an-obligation-can-test-one-of-three-relations / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy",
       "secondary_units": [
         "part-3"
       ]
@@ -309,7 +309,7 @@
       "primary_unit": "inside-docables-software-factory",
       "verb": "map",
       "obj": "the project stages, their changing engineering pressures, and the scope of the longitudinal measurements",
-      "statement": "After this chapter, the reader can relate DocAble\u2019s development stages to the obligations they exposed and distinguish measurements of activity and structure from effectiveness.",
+      "statement": "After this chapter, the reader can relate DocAble’s development stages to the obligations they exposed and distinguish measurements of activity and structure from effectiveness.",
       "provenance": "declared",
       "anchor": "heading:the-build-in-stages; build-stages-timeline; heading:the-build-measured-weekly; heading:support-ratio-curve."
     },
@@ -318,7 +318,7 @@
       "primary_unit": "inside-docables-software-factory",
       "verb": "trace",
       "obj": "the changing supervisory role as representations and controls supported further delegation",
-      "statement": "After this chapter, the reader can trace the Delegation Staircase and explain how models, evaluation, and controls changed the author\u2019s supervisory work.",
+      "statement": "After this chapter, the reader can trace the Delegation Staircase and explain how models, evaluation, and controls changed the author’s supervisory work.",
       "provenance": "declared",
       "anchor": "heading:the-supervisors-job; point:the-preceding-subsections-recorded-substitutions; point:rungs-compressed; mage-staircase."
     },
@@ -428,7 +428,7 @@
       "obj": "the residual goals no mechanism reaches, why they stay human judgment, and how authoring a spec pulls one out",
       "statement": "After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it.",
       "provenance": "derived",
-      "anchor": "point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.4 Governance Conversion, 'Where Enforcement Stops').",
+      "anchor": "point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use / three-different-reasons-non-enforcement-is-sometimes-the-engineered-result (3.2 Governance Mechanisms, 'Where Enforcement Stops').",
       "secondary_units": [
         "reorganization-of-se"
       ]
@@ -446,8 +446,8 @@
       "granularity": "chapter",
       "primary_unit": "evaluating-docable",
       "verb": "assess",
-      "obj": "DocAble\u2019s product results, production costs, maintenance obligations, and the scope of the evaluation evidence",
-      "statement": "After this chapter, the reader can assess DocAble\u2019s reported quality and cost results, distinguish production effort from labor savings, and identify remaining product, maintenance, and evidentiary limitations.",
+      "obj": "DocAble’s product results, production costs, maintenance obligations, and the scope of the evaluation evidence",
+      "statement": "After this chapter, the reader can assess DocAble’s reported quality and cost results, distinguish production effort from labor savings, and identify remaining product, maintenance, and evidentiary limitations.",
       "provenance": "declared",
       "anchor": "point:evaluation-covers-product-cost-and-maintenance; docable-human-remediation-results; heading:runtime-and-cost; heading:what-the-economics-establish; heading:liability."
     }

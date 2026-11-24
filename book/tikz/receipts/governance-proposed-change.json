@@ -18,7 +18,7 @@
       "returned for repair"
     ]
   },
-  "topology": "Direct candidate spine plus parallel constraint/sensor branches; separate evidence and policy inputs converge at gate; gate branches to accepted candidate or repair.",
+  "topology": "A proposed reporting change supplies a constraint check and instrumented tests, and is evaluated at a gate. The module boundary exposes the billing API and hides the private database connector; generic networking remains possible. Instrumented tests record caller, destination, and outcome. The gate evaluates build results and recorded interactions against an architectural model requiring the billing API and no direct billing database access. Passing required checks admits the change; a required failure or missing evidence returns it for repair.",
   "forbidden_inferences": [
     "Constraint, sensor, and gate are not exclusive products or mandatory sequential stages.",
     "The sensor does not prevent the database connection.",
@@ -137,20 +137,39 @@
   "accepted_date": "2026-11-08",
   "source": "book/assets/governance-proposed-change.svg",
   "chapter": "3.3-constraints-sensors-validators-gates",
-  "claim": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
-  "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
-  "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+  "claim": "A proposed reporting change supplies a constraint check and instrumented tests, and is evaluated at a gate. The module boundary exposes the billing API and hides the private database connector; generic networking remains possible. Instrumented tests record caller, destination, and outcome. The gate evaluates build results and recorded interactions against an architectural model requiring the billing API and no direct billing database access. Passing required checks admits the change; a required failure or missing evidence returns it for repair.",
+  "source_sha256": "c09b08cd00f20e94851de68ac00a4a7ae59b48dcc66aaff319c15f3df669ed00",
+  "candidate_sha256": "06171b29e73085e587481e13eabb3ef3f0350495d138a5a296ca1c22a56686a5",
   "integration_review_date": "2026-11-08",
-  "alt": "A proposed reporting change follows a solid candidate path toward a merge gate. A constraint limits checked imports to the billing API client while generic networking remains possible. Instrumented tests supply caller, destination, and outcome records; recording does not block connections. Dashed arrows carry build-check results, recorded interactions, and the architectural rule to the gate. The gate accepts a change when required checks pass and returns it for repair on a required failure or missing evidence. Passing covers only the selected checks.",
+  "alt": "A proposed reporting change supplies a constraint check and instrumented tests, and is evaluated at a gate. The module boundary exposes the billing API and hides the private database connector; generic networking remains possible. Instrumented tests record caller, destination, and outcome. The gate evaluates build results and recorded interactions against an architectural model requiring the billing API and no direct billing database access. Passing required checks admits the change; a required failure or missing evidence returns it for repair.",
   "bw_encoding": "Pale 6-percent-gray panels identify the three governance functions; other nodes remain white. Solid arrows carry the candidate and outcomes; dashed arrows carry decision inputs. Labels repeat every distinction without relying on color.",
   "required_terms": [
-    "CONSTRAINT",
-    "SENSOR",
-    "GATE",
-    "ARCHITECTURAL MODEL",
-    "Recording does not block connections.",
-    "Refuse merge on required failure",
-    "Passing covers only the selected checks."
+    "Proposed reporting change",
+    "Candidate for merge",
+    "Constraint",
+    "What can happen?",
+    "Billing API exposed;",
+    "private DB connector hidden.",
+    "Generic networking remains possible.",
+    "Sensor",
+    "What evidence do we have?",
+    "Instrumented tests record",
+    "caller, destination, and outcome.",
+    "Architectural model",
+    "Reporting uses billing API.",
+    "No direct billing DB access.",
+    "Gate",
+    "May this proceed?",
+    "Evaluate build results and recorded",
+    "interactions against the model.",
+    "Accepted change",
+    "Returned for repair",
+    "Build-check result",
+    "Recorded",
+    "interactions",
+    "Checks pass",
+    "Required check fails",
+    "or evidence missing"
   ],
   "integration_history": [
     "Replace the old constraint-vs-sensor embed in the proposed V8 prose with this one combined figure.",
@@ -183,160 +202,42 @@
   "typography_review": {
     "source": "book/assets/governance-proposed-change.svg",
     "candidate": "book/tikz/figures/governance-proposed-change.tex",
-    "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
-    "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
-    "decision": "accepted",
-    "review_date": "2026-11-08",
+    "source_sha256": "c09b08cd00f20e94851de68ac00a4a7ae59b48dcc66aaff319c15f3df669ed00",
+    "candidate_sha256": "06171b29e73085e587481e13eabb3ef3f0350495d138a5a296ca1c22a56686a5",
+    "reason": "Use uniform 10pt text, bold functional headings, italic questions, shorter internal explanations, and wider peer function boxes. Align the model with the gate, shorten evidence and outcome connectors, and retain generic-networking limitation, evidence-only sensor role, and all gate outcomes.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+      "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
+      "page": 2,
+      "width_bp": 448.6199951171875,
+      "height_bp": 264.62200927734375,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 26,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+      "geometry_findings": 0,
+      "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/governance-proposed-change-svg.png"
+    },
     "reviewed_visually": true,
-    "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
-    "reason": "Bold capitals name the candidate, three governance functions, architectural model, and outcomes. Italics distinguish questions from explanations. Scope and enforcement caveats remain regular prose.",
-    "evidence": [
-      {
-        "source_text": "PROPOSED REPORTING CHANGE",
-        "candidate_text": "PROPOSED REPORTING CHANGE",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "CONSTRAINT",
-        "candidate_text": "CONSTRAINT",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "SENSOR",
-        "candidate_text": "SENSOR",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "ARCHITECTURAL MODEL",
-        "candidate_text": "ARCHITECTURAL MODEL",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "GATE",
-        "candidate_text": "GATE",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "ACCEPTED CHANGE",
-        "candidate_text": "ACCEPTED CHANGE",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "RETURNED FOR REPAIR",
-        "candidate_text": "RETURNED FOR REPAIR",
-        "semantic_role": "Named object or role",
-        "candidate_style": "bold",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "candidate for merge",
-        "candidate_text": "candidate for merge",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "italic",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "What can happen?",
-        "candidate_text": "What can happen?",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "italic",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "What evidence do we have?",
-        "candidate_text": "What evidence do we have?",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "italic",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "May this proceed?",
-        "candidate_text": "May this proceed?",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "italic",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "Recording does not block connections.",
-        "candidate_text": "Recording does not block connections.",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "regular",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "Refuse merge on required failure",
-        "candidate_text": "Refuse merge on required failure",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "regular",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "missing evidence.",
-        "candidate_text": "missing evidence.",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "regular",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      },
-      {
-        "source_text": "Passing covers only the selected checks.",
-        "candidate_text": "Passing covers only the selected checks.",
-        "semantic_role": "Question or explanatory scope",
-        "candidate_style": "regular",
-        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-      }
-    ],
     "checks": [
       {
-        "text": "PROPOSED REPORTING CHANGE",
+        "text": "Proposed reporting change",
         "bold": true,
         "italic": false
       },
       {
-        "text": "CONSTRAINT",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "SENSOR",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "ARCHITECTURAL MODEL",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "GATE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "ACCEPTED CHANGE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "RETURNED FOR REPAIR",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "candidate for merge",
+        "text": "Candidate for merge",
         "bold": false,
-        "italic": true
+        "italic": false
+      },
+      {
+        "text": "Constraint",
+        "bold": true,
+        "italic": false
       },
       {
         "text": "What can happen?",
@@ -344,9 +245,59 @@
         "italic": true
       },
       {
+        "text": "Billing API exposed;",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "private DB connector hidden.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Generic networking remains possible.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Sensor",
+        "bold": true,
+        "italic": false
+      },
+      {
         "text": "What evidence do we have?",
         "bold": false,
         "italic": true
+      },
+      {
+        "text": "Instrumented tests record",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "caller, destination, and outcome.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Architectural model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Reporting uses billing API.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "No direct billing DB access.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Gate",
+        "bold": true,
+        "italic": false
       },
       {
         "text": "May this proceed?",
@@ -354,59 +305,88 @@
         "italic": true
       },
       {
-        "text": "Recording does not block connections.",
+        "text": "Evaluate build results and recorded",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Refuse merge on required failure",
+        "text": "interactions against the model.",
         "bold": false,
         "italic": false
       },
       {
-        "text": "missing evidence.",
+        "text": "Accepted change",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Returned for repair",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Build-check result",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Passing covers only the selected checks.",
+        "text": "Recorded",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "interactions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Checks pass",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Required check fails",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "or evidence missing",
         "bold": false,
         "italic": false
       }
-    ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "status": "passed",
-      "date": "2026-11-08",
-      "page": 44,
-      "width_bp": 415.006,
-      "height_bp": 475.276,
-      "minimum_prose_font_bp": 9.4645,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 15,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
-      "scope": "Verified current native proof; author approved for publication."
-    },
-    "author_review": {
-      "approved_date": "2026-11-13",
-      "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
-      "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
-    "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+    "source": "book/assets/governance-proposed-change.svg",
+    "candidate": "book/tikz/figures/governance-proposed-change.tex",
+    "source_sha256": "c09b08cd00f20e94851de68ac00a4a7ae59b48dcc66aaff319c15f3df669ed00",
+    "candidate_sha256": "06171b29e73085e587481e13eabb3ef3f0350495d138a5a296ca1c22a56686a5",
+    "reason": "Use uniform 10pt text, bold functional headings, italic questions, shorter internal explanations, and wider peer function boxes. Align the model with the gate, shorten evidence and outcome connectors, and retain generic-networking limitation, evidence-only sensor role, and all gate outcomes.",
+    "validation": {
+      "date": "2026-11-24",
+      "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+      "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
+      "page": 2,
+      "width_bp": 448.6199951171875,
+      "height_bp": 264.62200927734375,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "semantic_typography_checks": 26,
+      "typography_findings": 0,
+      "reviewed_visually": true,
+      "status": "passed",
+      "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+      "geometry_findings": 0,
+      "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/governance-proposed-change-svg.png"
+    },
+    "reviewed_visually": true,
     "contracts": {
       "peer_groups": [
         {
           "name": "constraint and sensor functions",
           "labels": [
-            "CONSTRAINT",
-            "SENSOR"
+            "Constraint",
+            "Sensor"
           ],
           "align": [
             "top",
@@ -416,35 +396,6 @@
           "tolerance_pt": 1
         }
       ]
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "status": "passed",
-      "date": "2026-11-08",
-      "page": 44,
-      "width_bp": 415.006,
-      "height_bp": 475.276,
-      "minimum_prose_font_bp": 9.4645,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 15,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
-      "checked_terminal_approaches": 668,
-      "reviewed_peer_groups": 87,
-      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "scope": "Verified current native proof; author approved for publication."
-    },
-    "author_review": {
-      "approved_date": "2026-11-13",
-      "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
-      "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
     }
   },
   "revision_20261113": {
@@ -462,12 +413,319 @@
       "geometry_findings": 0,
       "semantic_typography_checks": 14,
       "status": "passed",
-      "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; text and role shading retained. Box padding and vertical gaps are compacted to about 378 by 354bp, with 9–10pt type."
+      "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; text and role shading retained. Box padding and vertical gaps are compacted to about 378 by 354bp, with 9\u201310pt type."
     }
   },
   "author_review": {
     "approved_date": "2026-11-13",
     "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
     "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-24",
+      "reason": "Use uniform 10pt text, bold functional headings, italic questions, shorter internal explanations, and wider peer function boxes. Align the model with the gate, shorten evidence and outcome connectors, and retain generic-networking limitation, evidence-only sensor role, and all gate outcomes.",
+      "previous": {
+        "claim": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
+        "topology": "Direct candidate spine plus parallel constraint/sensor branches; separate evidence and policy inputs converge at gate; gate branches to accepted candidate or repair.",
+        "required_terms": [
+          "CONSTRAINT",
+          "SENSOR",
+          "GATE",
+          "ARCHITECTURAL MODEL",
+          "Recording does not block connections.",
+          "Refuse merge on required failure",
+          "Passing covers only the selected checks."
+        ],
+        "bw_encoding": "Pale 6-percent-gray panels identify the three governance functions; other nodes remain white. Solid arrows carry the candidate and outcomes; dashed arrows carry decision inputs. Labels repeat every distinction without relying on color.",
+        "alt": "A proposed reporting change follows a solid candidate path toward a merge gate. A constraint limits checked imports to the billing API client while generic networking remains possible. Instrumented tests supply caller, destination, and outcome records; recording does not block connections. Dashed arrows carry build-check results, recorded interactions, and the architectural rule to the gate. The gate accepts a change when required checks pass and returns it for repair on a required failure or missing evidence. Passing covers only the selected checks.",
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+          "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "constraint and sensor functions",
+                "labels": [
+                  "CONSTRAINT",
+                  "SENSOR"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+            "geometry_findings": 0,
+            "unapproved_compile_diagnostics": 0,
+            "status": "passed",
+            "date": "2026-11-08",
+            "page": 44,
+            "width_bp": 415.006,
+            "height_bp": 475.276,
+            "minimum_prose_font_bp": 9.4645,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 15,
+            "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+            "checked_terminal_approaches": 668,
+            "reviewed_peer_groups": 87,
+            "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "scope": "Verified current native proof; author approved for publication."
+          },
+          "author_review": {
+            "approved_date": "2026-11-13",
+            "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
+            "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/governance-proposed-change.svg",
+          "candidate": "book/tikz/figures/governance-proposed-change.tex",
+          "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+          "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+          "decision": "accepted",
+          "review_date": "2026-11-08",
+          "reviewed_visually": true,
+          "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
+          "reason": "Bold capitals name the candidate, three governance functions, architectural model, and outcomes. Italics distinguish questions from explanations. Scope and enforcement caveats remain regular prose.",
+          "evidence": [
+            {
+              "source_text": "PROPOSED REPORTING CHANGE",
+              "candidate_text": "PROPOSED REPORTING CHANGE",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "CONSTRAINT",
+              "candidate_text": "CONSTRAINT",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "SENSOR",
+              "candidate_text": "SENSOR",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "ARCHITECTURAL MODEL",
+              "candidate_text": "ARCHITECTURAL MODEL",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "GATE",
+              "candidate_text": "GATE",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "ACCEPTED CHANGE",
+              "candidate_text": "ACCEPTED CHANGE",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "RETURNED FOR REPAIR",
+              "candidate_text": "RETURNED FOR REPAIR",
+              "semantic_role": "Named object or role",
+              "candidate_style": "bold",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "candidate for merge",
+              "candidate_text": "candidate for merge",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "italic",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "What can happen?",
+              "candidate_text": "What can happen?",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "italic",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "What evidence do we have?",
+              "candidate_text": "What evidence do we have?",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "italic",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "May this proceed?",
+              "candidate_text": "May this proceed?",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "italic",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "Recording does not block connections.",
+              "candidate_text": "Recording does not block connections.",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "regular",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "Refuse merge on required failure",
+              "candidate_text": "Refuse merge on required failure",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "regular",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "missing evidence.",
+              "candidate_text": "missing evidence.",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "regular",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            },
+            {
+              "source_text": "Passing covers only the selected checks.",
+              "candidate_text": "Passing covers only the selected checks.",
+              "semantic_role": "Question or explanatory scope",
+              "candidate_style": "regular",
+              "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+            }
+          ],
+          "checks": [
+            {
+              "text": "PROPOSED REPORTING CHANGE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CONSTRAINT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "SENSOR",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "ARCHITECTURAL MODEL",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "GATE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "ACCEPTED CHANGE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "RETURNED FOR REPAIR",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "candidate for merge",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "What can happen?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "What evidence do we have?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "May this proceed?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Recording does not block connections.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Refuse merge on required failure",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "missing evidence.",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Passing covers only the selected checks.",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+            "geometry_findings": 0,
+            "unapproved_compile_diagnostics": 0,
+            "status": "passed",
+            "date": "2026-11-08",
+            "page": 44,
+            "width_bp": 415.006,
+            "height_bp": 475.276,
+            "minimum_prose_font_bp": 9.4645,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 15,
+            "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+            "scope": "Verified current native proof; author approved for publication."
+          },
+          "author_review": {
+            "approved_date": "2026-11-13",
+            "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
+            "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
+          }
+        }
+      }
+    }
+  ],
+  "redesign": "Use uniform 10pt text, bold functional headings, italic questions, shorter internal explanations, and wider peer function boxes. Align the model with the gate, shorten evidence and outcome connectors, and retain generic-networking limitation, evidence-only sensor role, and all gate outcomes.",
+  "questions": [],
+  "qa": {
+    "date": "2026-11-24",
+    "proof": "book/_design/drafts/ch3-compact-figures-20261124/proof.pdf",
+    "proof_sha256": "4afb193bb1e04bd17c23cceb80d9b042b3cfe6ab37b10402fc1b2557d3d91568",
+    "page": 2,
+    "width_bp": 448.6199951171875,
+    "height_bp": 264.62200927734375,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "semantic_typography_checks": 26,
+    "typography_findings": 0,
+    "reviewed_visually": true,
+    "status": "passed",
+    "scope": "Native PDF and font-loaded Chromium SVG proofs visually inspected. No geometry or semantic-typography findings. Final chapter placement remains parent integration check.",
+    "geometry_findings": 0,
+    "svg_proof": "book/_design/drafts/ch3-compact-figures-20261124/governance-proposed-change-svg.png"
   }
 }

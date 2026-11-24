@@ -1,0 +1,177 @@
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: From Engineering Models to Enforcement -->
+
+\chapter{From Engineering Models to Enforcement}
+
+\magevalue{chapter:modeling} asked four questions about each model: what engineering question it serves, what representation makes that question tractable, which property it makes explicit, and which quality attribute that property concerns. We now take up the fifth: \textbf{what enforces the property?} A model can tell an agent what must hold without ensuring that the agent's work satisfies it. We begin by distinguishing a request from an enforced obligation, then examine what evidence would justify accepting the work.
+
+\section{Guidance and Enforcement}\label{heading:guidance-and-enforcement}
+
+% <!-- point: the-environment-intervenes-between-a-proposed-action-and-its-consequence | The environment intervenes between a proposed action and its consequence. | terms: governed-environment, agentic-harness -->
+
+A foundation model produces probabilistic outputs; a harness turns selected outputs into actions. Once those actions can alter a repository, invoke an API, change infrastructure, or ship an artifact, the engineering question is no longer only how to steer the reasoner. It is where the surrounding environment can intervene between a proposed action and its consequence.
+
+% <!-- point: guidance-influences-behavior-enforcement-constrains-consequences | Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them. | terms: guidance-vs-enforcement, alignment-principle -->
+
+% <!-- index-def: agent -->
+
+Guidance tells an agent what to do. Enforcement limits what it can do or what we will accept. A prompt, brief, example, or playbook can make one action more likely than another. A permission boundary can forbid an action, while a required test can prevent an unsatisfactory result from being accepted. Feedback can return evidence to the reasoner---a failing test, an observed call, a measured latency, or an explanation of why a check failed---so that subsequent work can respond. For the billing example, repeating the architectural rule may improve the agent's next attempt. Enforcement requires the environment to restrict the forbidden access or refuse work that violates the rule.
+
+A correct result does not excuse an unacceptable process. An agent might produce working software while accessing data it was not authorized to read, modifying dependencies without approval, or deploying before the required checks completed. Testing the resulting artifact cannot establish that those actions were permissible. Some engineering obligations govern the product. Others govern how the product may be produced. The environment must be able to enforce both.
+
+% <!-- point: security-practice-draws-the-same-boundary | Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact. | terms: guidance-vs-enforcement -->
+
+Recent agentic-security guidance draws a similar boundary. Once agents act before commit time, the repository is too late to be the security boundary: the tools, permissions, and execution environment that produce a change join the trusted base, so agentic security must secure the process that creates the artifact, not only the artifact~\citep{snyk2026agenticlifecycle}.
+
+\section{Correspondence, Conformance, and Acceptance}\label{heading:agreement-is-not-correctness}
+
+The correspondence patterns in \cref{2.6-system-knowledge:heading:maintaining-correspondence} connect models to implementation through derivation, generation, or traceability. They help establish agreement over selected properties. We must distinguish that agreement from satisfying an engineering obligation and from permission to proceed.
+
+The term Alignment requires some care. In artificial intelligence, alignment concerns making AI systems behave consistently with human intentions, preferences, or values~\citep{gabriel2020artificial,ji2024ai}. MAGE addresses a narrower engineering problem. Rather than establishing that an agent's objectives are aligned with those of its user, the engineer establishes an environment in which selected obligations can be evaluated and enforced despite the agent's fallibility. An agent may misunderstand an architectural rule or propose a forbidden operation; the environment can nevertheless refuse the operation or reject the resulting work.
+
+% <!-- point: drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims | Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim. | terms: agreement-vs-correctness, independent-obligation -->
+
+The terminology also connects to established software-engineering concepts. \textbf{Correspondence} asks whether an engineering model and its implementation agree over the relationships the model claims to represent~\citep{murphy1995reflexion}. A drift check evaluates that declared correspondence and surfaces disagreements. \textbf{Conformance} asks whether the implementation satisfies an independent engineering obligation, which may be represented in the same model~\citep{passos2010conformance}. \textbf{Acceptance} is a separate decision: the Governed Engineering Environment (GEE) determines whether the implementation may proceed, considering applicable controls and evidence beyond those associated with any one model. These distinctions matter because agreement is not necessarily correctness, and evidence of correctness does not by itself authorize an action.
+
+MAGE uses Alignment for the engineering activity that connects selected obligations to the mechanisms governing work. It includes establishing what must hold, obtaining evidence where that obligation can be evaluated, and making the appropriate actions or results depend on that evidence. Correspondence and conformance are relationships that Alignment may evaluate; acceptance is one decision it may govern. The engineer chooses which obligations warrant such treatment and which implementation choices should remain open.
+
+% <!-- point: an-obligation-can-test-one-of-three-relations | Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable. | terms: independent-obligation, agreement-vs-correctness -->
+
+\autoref{three-relations} shows these three judgments over one implementation. The engineering model is one part of the GEE, whose admission decision may depend on additional obligations and evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/three-relations-ac66d52458.pdf}
+\caption{\emph{Model agreement, obligation satisfaction, and admission.} Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE\textquotesingle s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.}
+\label{three-relations}
+\end{figure}
+
+\section{Independent Obligations and Evidence}\label{heading:independent-obligations-and-evidence}
+
+\magevalue{chapter:modeling} distinguished a descriptive model from one that is authoritative for a property. That distinction determines what can count as a violation: the implementation must be capable of disagreeing with the obligation, even when its descriptive models faithfully record what it does.
+
+% <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
+
+Enforcement requires \textbf{an obligation independent of the work being judged and evidence capable of establishing whether it holds.}
+The architectural model requires \texttt{Reporting} to obtain billing data through \texttt{BillingAPI}, preserving \texttt{BillingDB} behind that interface.
+The job-lifecycle model specifies how events move a job from \texttt{IDLE} through \texttt{RUNNING} to \texttt{DONE} or \texttt{FAILED}.
+These are accounts of intended construction and behavior against which an implementation can be evaluated.
+
+% <!-- point: an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy | An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation. | terms: independent-obligation, modeling-principle, alignment-principle -->
+
+The environment needs evidence that corresponds to those meanings.
+A dependency analysis can look for paths from \texttt{Reporting} to \texttt{BillingDB} that bypass \texttt{BillingAPI}; a model-based test can submit job events and compare the resulting states with the specified transitions.
+The engineer must decide whether the evidence is adequate and how the finding should affect the work.
+A check may inform a later decision, or its result may be required before an action or change can proceed.
+The obligation can also reside directly in a type, permission, schema, test, or policy.
+What matters is that it is distinguishable from the implementation being judged and that a mechanism can enforce the resulting decision. Design by Contract provides a familiar precedent for expressing obligations independently of implementation through preconditions, postconditions, and invariants~\citep{meyer1997oosc}.
+
+% <!-- section-terms: agreement-vs-correctness, independent-obligation -->
+
+% <!-- point: a-drift-check-establishes-agreement-not-that-the-correspondence-is-right | A drift check establishes agreement between two artifacts, not that the correspondence expresses the right intent. | terms: agreement-vs-correctness -->
+
+% <!-- index-def: agreement-vs-correctness -->
+
+% <!-- index-def: mirror-vs-spec -->
+
+% <!-- index-def: drift-caveat -->
+
+Suppose an endpoint is required to be authenticated. If an independently authored policy says so, a check can compare the implementation against that obligation and flag an open endpoint. If instead the representation is derived only from the implementation, it may faithfully record the endpoint as open. Model and code agree; the security obligation is still violated.
+
+% <!-- point: the-distinction-is-description-versus-independent-obligation | The distinction is not derived versus authored; it is description versus independent obligation. | terms: independent-obligation, agreement-vs-correctness -->
+
+% <!-- index-def: independent-obligation -->
+
+% <!-- point: tolerance-independence-comes-from-intent-not-realization | Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged. | terms: independent-obligation, tolerance -->
+A model can come from the code and still help us decide what the code ought to do. A model extracted from code can describe the current \emph{is}; a governing invariant must state the \emph{ought} independently. A hand-authored model may merely repeat the implementation's assumptions, so authorship alone does not establish independence. Enforcement requires an obligation against which the work can actually be wrong. The same distinction applies to quantitative properties: measurements can establish an implementation's latency, but an independent engineering obligation must determine whether that latency is acceptable.
+
+% <!-- index-def: oracle -->
+
+Software testing has long confronted the \emph{oracle problem}: how do we determine whether an observed result is correct? The means of making that judgment is an \emph{oracle}~\citep{barr2015oracle}. Consider testing a sorting function. Checking that the returned elements are in ascending order is insufficient; a function that returns an empty list would satisfy that check. We must also establish that the result contains the same elements, with the same multiplicities, as the input.
+
+The problem is particularly important when implementation and evaluation are delegated separately. An independently constructed check can still be inadequate if it expresses only part of the intended obligation. The engineer must determine which properties constitute acceptable evidence, not merely whether the checks execute successfully.
+
+% <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement. | terms: agreement-vs-correctness, independent-obligation -->
+
+Stronger verification does not remove this distinction. A proof assistant such as Lean checks proofs that formally stated propositions follow from their assumptions~\citep{lean-reference}. TLA+ lets engineers specify system behavior; the TLC model checker can explore a model to check whether it satisfies stated properties~\citep{lamport2002}. Neither approach establishes that the chosen property captures the engineering requirement. If an agent chooses a property merely because its implementation satisfies it, a valid proof or successful model check may leave the intended obligation untested. Engineers can ask agents to help formalize requirements and develop proofs or checks while retaining responsibility for whether those requirements express what the system must preserve.
+
+% <!-- point: docable-requested-temporal-checking-for-an-obligation-its-models-already-carried | Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it. | terms: independent-obligation, agreement-vs-correctness -->
+
+For example, an engineer can require a queueing service to bring every accepted job to a terminal state, then ask an agent to develop an analysis of that requirement. The agent may help formalize the obligation and construct the checker. What matters is that the obligation comes from what the service must do, rather than being chosen merely because the current implementation satisfies it.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Assurance Cases}
+\label{inset-assurance-cases}
+In safety-critical engineering, an assurance case makes explicit why a system should be trusted. It connects claims about the system to supporting evidence through an argument explaining why that evidence supports the claims~\citep{iso15026-2-2022,kelly2004gsn}. Knowing which tests correspond to a requirement does not establish that those tests adequately verify it; an assurance case must explain why the evidence is sufficient for the claim.
+
+Suppose DocAble claims to preserve document content during accessibility remediation. Comparing the text before and after processing provides some evidence, but is it sufficient? Text extraction might miss content in images, equations, or annotations. An assurance argument would identify these limitations, explain which additional checks address them, and state what remains unverified. Passing every available test does not establish a claim broader than those tests support.
+
+Assurance cases help engineers justify why a system should be trusted. MAGE helps establish and preserve selected properties on which that justification depends.
+
+If you work under a safety standard such as IEC 61508 or DO-178C, MAGE can complement your existing assurance process~\citep{iec61508-1-2010,rtca-do178c-2011}. The claims and arguments in an assurance case can guide what you model, what you check, and what evidence you retain. Agents can help produce and maintain that evidence as the system evolves. The assurance case still needs independent scrutiny. Neither an agent's report nor a passing check establishes that the overall argument is sound.
+\end{bookbox}
+
+% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis. | terms: independent-obligation, traceability -->
+
+Once an obligation is explicit, engineers need to determine whether the implementation satisfies it. You may be familiar with this work from requirements traceability, which connects a requirement to relevant design elements, implementation, tests, and other evidence~\citep{estefan2008mbse}. These connections help engineers examine the design choices made to meet the requirement and find the evidence needed to evaluate the implementation. When a requirement or design changes, the links help identify which parts of the implementation and which checks need to be reconsidered.
+
+% <!-- point: traceability-connects-intent-realization-evidence-without-enforcement | Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model. | terms: independent-obligation, traceability, alignment-principle -->
+
+Traceability links do not themselves determine acceptance. A requirement may trace cleanly to a test whose failure is merely reported. Conversely, a permission boundary may enforce firmly without a rich traceability model.
+
+Traceability can do more than help engineers locate the implementation of a modeled property. When model elements are linked to code and execution records, those relationships can be checked as the system changes. Static references can connect model elements to implementation declarations; runtime traces can identify the modeled operations being executed. Static checks can detect when a referenced implementation element is deleted or renamed. Dynamic checks can compare observed operations with the model, revealing modeled operations that were not observed or executions that cannot be associated with a modeled element. These checks complement the use of models as guidance: agents can receive relevant model information while working, and the environment can independently check correspondence as the implementation changes. \cref{3.3-where-obligations-can-be-enforced:heading:docable-dynamic-context-injection-and-discovery} develops one way to supply that guidance.
+
+The appropriate evidence depends on the model and the property being checked. Architectural models often admit static checks of dependencies, interfaces, and component boundaries. Behavioral models may require execution traces to establish which states or transitions actually occurred. These are not exclusive categories. Static analysis can check declared state-machine structure, while runtime instrumentation can expose architectural interactions that source-level checks miss. In each case, the traceability relationships make the relevant evidence available for comparison with the model.
+
+% <!-- point: those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics | Correspondence evidence is limited by what references and traces establish and by the operations they cover. | terms: agreement-vs-correctness, semantic-gap -->
+
+These checks turn traceability relationships into Alignment mechanisms. A change that breaks a model–implementation relationship can produce a finding without requiring an engineer to rediscover the relationship manually. Static references establish that implementation elements still exist, while runtime traces provide evidence about their execution. Neither establishes that the implementation still behaves as intended, nor that the traceability relationships cover every relevant operation. Where the evidence is adequate, a gate can require the checks to pass before accepting a change.
+
+\section{DocAble: From Correspondence to Enforcement}\label{heading:docable-from-correspondence-to-enforcement}
+
+% <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
+
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+\autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models} described how DocAble connects computation declarations, scheduling, and an analytical graph. Their agreement leaves two further questions: do the checks cover the live computations, and do their findings govern acceptance?
+
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+While building DocAble as a prototype, I asked several agents to develop support for different document formats concurrently. I wanted to know which parts of remediation the formats could usefully share. To judge that aright, I needed to learn how to work with each format myself. Once I had independent implementations, I asked agents to trace their computations and dependencies. Comparing the implementations revealed common patterns that we could capture in an explicit computation model.
+
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+We developed a separate Python graph to inspect those relationships. In the September 5, 2026 snapshot, it contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume. The scheduler reads the computation model to order the work; the analytical graph lets us query and check those relationships.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+An audit exposed a gap: a live Office pass ran outside the registry entries that the correspondence checks examined. The checks could therefore report agreement even though they had missed a computation. At the time, the PDF checks blocked changes that failed them, while the Office checks only reported discrepancies. Making the Office checks blocking at that point would still have let the unregistered pass through.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+We first brought the missing computations within the checks' coverage and verified that the repaired checks detected the relevant discrepancies. After clearing the findings, we made the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission. \magevalue{sec:brownfield-engineering} examines this progression from diagnosis to enforced control as a recurring engineering practice.
+
+The case illustrates the three judgments in \autoref{three-relations}:
+\begin{itemize}
+\item \textbf{Correspondence (model agreement).} The parity checks establish whether the analytical graph agrees with its sources over the relationships they examine. The audit asked a different question: which live computations had they missed?
+\item \textbf{Conformance (obligation satisfaction).} The scheduler must respect the computation model's dependency order. Agreement between the graph and its sources does not establish that execution preserves that order.
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\item \textbf{Acceptance (permission to proceed).} Once the Office checks became blocking, a discrepancy that previously produced an advisory finding could prevent admission. Promotion changed what happened to the finding; the earlier coverage repair changed what the checks could find.
+\end{itemize}
+
+DocAble also uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. These relationships let the environment check correspondence as the implementation changes, subject to the coverage limits described above.
+
+% <!-- point: the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does | Independent obligations and adequate evidence prepare the reader to choose enforcement mechanisms. | terms: independent-obligation -->
+
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\autoref{chapter:appendix-a-remediation-computation-graph} describes the declarations, coverage checks, and admission mechanisms behind this episode.
+
+The repaired correspondence checks illustrate what enforcement adds to a representation: adequate evidence has a consequence for the work. We next examine the machinery that can provide those restrictions, observations, and decisions.
