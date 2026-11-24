@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 643,
+    "total_sites": 644,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 308,
+      "book-web": 309,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -161,7 +161,7 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/appendix-a-controlled-mutation.md",
@@ -901,7 +901,7 @@
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "book/web/docs/0.3-authors-note.md",
@@ -969,7 +969,7 @@
           },
           {
             "file": "book/web/docs/3.2-governance-mechanisms.md",
-            "occ": 70
+            "occ": 67
           },
           {
             "file": "book/web/docs/3.3-where-obligations-can-be-enforced.md",
@@ -1009,11 +1009,11 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 27
+            "occ": 32
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 49
+            "occ": 51
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -1021,7 +1021,7 @@
           },
           {
             "file": "book/web/docs/5.4-other-agentic-software-factories.md",
-            "occ": 101
+            "occ": 105
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
@@ -1033,15 +1033,15 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 39
+            "occ": 46
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 15
+            "occ": 17
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 61
+            "occ": 64
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1053,11 +1053,11 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 51
+            "occ": 69
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
-            "occ": 40
+            "occ": 41
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
@@ -1069,7 +1069,7 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 28
+            "occ": 32
           },
           {
             "file": "book/web/docs/about-the-author.md",
@@ -1243,7 +1243,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 93
+            "occ": 97
           },
           {
             "file": "catalogue-figure.html",
@@ -1347,7 +1347,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1395,7 +1395,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 6
+            "occ": 7
           }
         ],
         "website-theory": [
@@ -1529,7 +1529,7 @@
           },
           {
             "file": "book/web/docs/3.2-governance-mechanisms.md",
-            "occ": 93
+            "occ": 92
           },
           {
             "file": "book/web/docs/3.3-where-obligations-can-be-enforced.md",
@@ -1564,6 +1564,10 @@
             "occ": 2
           },
           {
+            "file": "book/web/docs/5.1-software-factory.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 39
           },
@@ -1585,7 +1589,7 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -1609,7 +1613,7 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-a-controlled-mutation.md",
@@ -1723,7 +1727,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 63
+            "occ": 64
           }
         ]
       },
@@ -2103,7 +2107,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 32
+            "occ": 31
           },
           {
             "file": "catalogue-figure.html",
@@ -2407,7 +2411,7 @@
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
-            "occ": 7
+            "occ": 12
           },
           {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",

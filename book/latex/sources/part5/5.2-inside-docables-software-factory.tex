@@ -333,7 +333,7 @@ The same infrastructure supported the execution redesign in \autoref{4.2-one-pro
 
 % Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
 % Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
-Some of this machinery accommodates more obligations as DocAble's models grow, without corresponding changes to the machinery itself. Recall the architectural checker in \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization}. Adding another component boundary extends what the checker governs. Similarly, adding another invariant extends the population for which the factory derives verification requirements. These investments provide reusable capacity for changing both DocAble and its engineering environment.
+These arrangements are familiar in model-based engineering, where a modeling language and its associated machinery can serve many engineering problems. I developed similar arrangements incrementally within DocAble. Adding another component boundary extends what the architectural checker governs; adding another invariant extends the population for which the factory derives verification requirements. Once the machinery exists, I can express additional engineering decisions in the models without commissioning a new mechanism for each one.
 
 \subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
 

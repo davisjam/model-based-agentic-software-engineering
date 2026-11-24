@@ -207,7 +207,7 @@ We need not generate an entire implementation or checking mechanism. A model may
 
 % <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
 
-Who constructs that machinery is a separate decision. An engineer can write a reusable checker, an agent can help construct a generator, and an existing transformation can produce parts of either. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it~\citep{bodden2018,bodden2023sosa}.
+Who constructs that machinery is a separate decision. An engineer can write a reusable checker, an agent can help construct a generator, and an existing transformation can produce parts of either.\mageaside{For a related research direction in static analysis, see Bodden's work on using explicit representations of analyses to automate their optimization~\citep{bodden2018,bodden2023sosa}.}
 
 Recall the job lifecycle in \autoref{2.4-behavioral:heading:states-transitions-and-behavioral-analysis}. We can analyze its transitions to determine whether the modeled behavior permits a job to finish before it starts. We can use those transitions to implement the lifecycle, or to construct tests of an independently developed implementation. The same model can serve all three purposes without prescribing how jobs are stored, scheduled, or processed.
 
@@ -335,35 +335,10 @@ Why observe a behavior when we could prevent it? Because we may not yet know whe
 
 The obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior~\citep{baier-katoen2008,lamport2002}.
 
-\subsection{Deriving Verification Requirements}\label{heading:deriving-verification-requirements}
-
-As an engineering environment acquires more models and obligations, choosing how to evaluate each one can itself become a recurring engineering activity. Can we use models to help make that choice?
-
-% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
-DocAble's verification policy distinguishes obligations involving ordinary sequences of operations from those involving coordination among concurrent participants. For example, checking that a sequence of job-state transitions is permitted requires different evidence from establishing that competing workers cannot both acquire the same claim. The policy also distinguishes safety properties, which forbid undesirable behavior, from liveness properties, which require progress.
-
-% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
-The model of an invariant identifies its participants, the coordination primitives involved, and the form of its temporal obligation. From these declarations, DocAble derives a verification requirement. Under this policy, an obligation involving concurrent coordination may require explicit-state exploration for a safety property or temporal model checking for a liveness property. Other behavioral obligations can be assigned property-based tests. This is a policy for DocAble's engineering environment, rather than a general rule for choosing verification techniques.
-
-% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
-A reusable checker examines the modeled invariants and requires each to identify a verification artifact of the prescribed kind whose path resolves on disk. When I add another invariant within this policy's scope, the same machinery derives its verification requirement and checks for the required artifact. The requirement is blocking for models whose existing findings have been resolved; newly introduced model populations can begin in advisory mode while the required machinery is constructed.
-
-This arrangement does not generate the verification artifact, run it, or establish that it is adequate. An engineer or agent must still construct the test or formal specification and establish that it evaluates the intended obligation. The machinery mechanizes part of the decision about what evidence to obtain, together with a check that the corresponding artifact has been provided.
-
-% <!-- section-terms: constraint -->
-
-\subsection{Establishing That a Required Operation Occurred}\label{heading:establishing-that-a-required-operation-occurred}
-
-% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | An admission mechanism may require reliable evidence that a protected operation passed through an authorized interface. | terms: constraint -->
-
-We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative. Suppose document mutations must pass through a particular interface. We could prohibit known ways of bypassing that interface, or require evidence that each protected mutation passed through it.
-
-The latter approach does not require us to enumerate every possible bypass. It does, however, depend on the reliability of the evidence. An attribution record is useful only insofar as it establishes that the required operation actually occurred. Related arrangements appear in remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
-
 % <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
 
 % Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
-\textbf{DocAble: Protecting the Recovery Protocol.} DocAble's recovery protocol illustrates how runtime constraints and model analysis can address related but different obligations (\autoref{match-mechanism-to-property}).
+\textbf{DocAble: Protecting the Recovery Protocol.} I used both runtime constraints and model checking to protect DocAble's job-recovery protocol. \autoref{match-mechanism-to-property} illustrates two of the obligations and the mechanisms I chose to address them.
 
 \begin{figure}[htbp]
 \centering
@@ -382,7 +357,32 @@ For the ownership protocol introduced in \autoref{2.4-behavioral:heading:disting
 
 % Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
 % Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
-A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The environment checks that the stated temporal property agrees with the engineering model. Running TLC itself remains a separate activity rather than a required check on every change. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The environment checks that the stated temporal property agrees with the engineering model. Running TLC itself remains a separate activity rather than a required check on every change. I had established the required behavior before choosing how to evaluate it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+
+\subsection{Deriving Verification Requirements}\label{heading:deriving-verification-requirements}
+
+In the recovery protocol, I chose different verification techniques for different obligations. As DocAble acquired more behavioral models, I found myself making similar choices repeatedly. Could I use the models themselves to help make these decisions?
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+I established a verification policy that distinguishes obligations involving ordinary sequences of operations from those involving coordination among concurrent participants. It also distinguishes safety properties, which forbid undesirable behavior, from liveness properties, which require progress.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+The model of an invariant identifies its participants, the coordination primitives involved, and the form of its temporal obligation. From these declarations, DocAble derives a verification requirement. Under this policy, an obligation involving concurrent coordination may require explicit-state exploration for a safety property or temporal model checking for a liveness property. Other behavioral obligations can be assigned property-based tests. This is a policy for DocAble's engineering environment, rather than a general rule for choosing verification techniques.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+A reusable checker examines each modeled invariant. Does it name a test or specification of the required kind? Does that file exist? When I add another invariant within this policy's scope, the same machinery determines what kind of verification is required and checks that I have provided it. For established models, a missing file or reference blocks the change. For newly introduced models, the check can begin in advisory mode while the required machinery is constructed.
+
+This arrangement does not generate the verification artifact, run it, or establish that it is adequate. An engineer or agent must still construct the test or formal specification and establish that it evaluates the intended obligation. The machinery mechanizes part of the decision about what evidence to obtain, together with a check that the corresponding artifact has been provided.
+
+% <!-- section-terms: constraint -->
+
+\subsection{Establishing That a Required Operation Occurred}\label{heading:establishing-that-a-required-operation-occurred}
+
+% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | An admission mechanism may require reliable evidence that a protected operation passed through an authorized interface. | terms: constraint -->
+
+We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative. Suppose document mutations must pass through a particular interface. We could prohibit known ways of bypassing that interface, or require evidence that each protected mutation passed through it.
+
+The latter approach does not require us to enumerate every possible bypass. It does, however, depend on the reliability of the evidence. An attribution record is useful only insofar as it establishes that the required operation actually occurred. Related arrangements appear in remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
 
 % <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
 

@@ -36259,3 +36259,2514 @@ By establishing a common representation of permitted dependencies, I could const
 
 Once I had established a representation of permitted dependencies and constructed a checker for it, adding another dependency restriction required extending the model rather than constructing another checker.
 ```
+
+
+## 2026-11-24 — MBSE precedent and organizational scale
+
+Superseded passages are retained in these pre-edit source snapshots; the revision distinguishes established model-based machinery from the proposed change in its economics.
+
+### part5/5.1-software-factory.tex
+
+```latex
+% mage-auto-heading: what-does-a-software-factory-produce
+% mage-auto-heading: walking-through-a-software-factory
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: The Software Factory -->
+
+\chapter{The Software Factory}
+
+% <!-- section-terms: tolerance -->
+
+% <!-- point: the-printer-described-a-fabricator | The printer analogy explained fabricative technology — a machine that realizes a broad range of artifacts from a description of what should be made. | terms: printer-metaphor -->
+% <!-- point: the-printer-becomes-one-piece-of-the-factory | The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable. | terms: printer-metaphor -->
+
+Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made. But the printer is only one piece of a larger factory: a system that determines what should be made, organizes production, and evaluates whether the result is acceptable.
+
+% <!-- point: scaling-fabrication-required-engineering-the-production-system | Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator. -->
+
+Factories developed to make production repeatable at scales that craft production could not support. Interchangeable parts allowed components made separately to fit together into the same product. Mechanization increased the amount of work that machinery could perform. Machine tools increased precision and repeatability. Each advance also exposed a problem. Faster machinery could produce defects faster than people could inspect them; a design was of little use if the available machinery could not realize it accurately; interchangeable parts were not interchangeable if different shops produced incompatible dimensions. Better machines were not enough. The factory itself needed engineering.
+
+Software engineering has already made much of this move. Continuous integration and delivery organize building, testing, and deployment into repeatable processes, with automated checks governing what may proceed~\citep{humble2010continuous}. We have long automated builds and tests. Now we can automate much of the work of changing the code. The factory must now govern not only how software is built and delivered, but also how implementation decisions are delegated, what system knowledge informs them, and what evidence justifies accepting the result.
+
+% <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
+
+Two ideas from manufacturing help explain what this expanded software factory must do (\autoref{process-design-and-tolerance}). One concerns how production is organized; the other concerns which properties of the finished product must be controlled. As \magevalue{sec:constraints-sensors-validators-gates} showed, measurement can establish not only whether a result is acceptable but, for quantitative properties, how much margin remains. That evidence can inform subsequent engineering decisions without prescribing every step of production.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
+\caption[Process design and tolerance]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
+\label{process-design-and-tolerance}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Process design} determines how production proceeds. Work is decomposed and sequenced; responsibilities, machinery, and information are arranged; measurements and decision points occur at selected stages. The process carries knowledge about how production should occur rather than requiring each fabricator to reconstruct it. Scientific management made this separation explicit by moving planning, work methods, instructions, and standards into a deliberately designed production system~\citep{taylor1911}.
+\item
+  \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter~\citep{winchester2018}.
+\end{itemize}
+
+% <!-- point: a-better-production-system-made-a-different-artifact-practical | Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance. | terms: tolerance -->
+
+% Historical verification (2026-11-23): Science Museum Group, separate condenser and Wilkinson boring mill: https://collection.sciencemuseumgroup.org.uk/objects/co50928 and https://collection.sciencemuseumgroup.org.uk/objects/co46455 ; Boulton & Watt production records: https://calmview.birmingham.gov.uk/CalmView/Record.aspx?id=MS+3147/4&src=CalmView.Catalog ; Soho Foundry: https://historicengland.org.uk/listing/the-list/list-entry/1021388/
+
+Process design and tolerance must develop together. The history of the steam engine illustrates their relationship. Thomas Newcomen developed an early practical steam engine in 1712, but its inefficient operation consumed large quantities of fuel. James Watt substantially improved its efficiency by introducing a separate condenser, making steam power economical for a wider range of applications. However, Watt’s design required cylinders bored more accurately than ordinary eighteenth-century manufacturing could reliably achieve. John Wilkinson’s precision boring machinery addressed this requirement, producing cylinders sufficiently true for Watt’s engine to perform as intended. Watt’s business partner Matthew Boulton helped organize the specialized labor, machinery, and production methods needed to manufacture the engines commercially. These were complementary advances: improved manufacturing precision expanded what engineers could design, while the organization of production made those designs practical to manufacture at scale~\citep{robinson1969watt,winchester2018}.
+
+\section{What Does a Software Factory Produce?}\label{heading:what-does-a-software-factory-produce}
+
+% <!-- point: software-does-not-repeatedly-produce-instances | Software is readily copied, while a software service may be one continuously evolving system. -->
+% <!-- point: the-output-is-the-next-working-realization | The output of a software factory is the next working realization of an evolving product. -->
+% <!-- point: the-two-problems-specialize-to-changes-not-copies | A software factory preserves consequential properties while changing the system itself. | terms: tolerance -->
+
+The analogy requires one adjustment before we apply it to software. A physical factory commonly produces many instances of a product. Software, by contrast, is readily copied, while a software service may consist of one continuously evolving system serving millions of users. The output of a software factory is therefore the next working realization of the product. Software organizations repeatedly change existing systems: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Unlike a factory producing repeated copies of a fixed design, a software factory must preserve consequential properties while changing the system itself.
+
+% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | A software factory organizes controlled change while preserving control over consequential properties and consequences. -->
+
+A software factory's job is thus to realize controlled change: creating and evolving software while preserving sufficient control over the properties and consequences that matter~\citep{davis2026sehandbook}.
+
+\begin{quote}
+\textbf{Software factory.} The engineered system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved.
+\end{quote}
+
+% <!-- point: representations-of-software-carry-a-carrying-cost | Representations of changing software incur construction and maintenance costs. -->
+% <!-- point: organizations-judge-the-carrying-cost-differently | Organizations weigh reusable representations against the cost of skilled judgment during implementation. -->
+% <!-- point: the-question-was-where-judgment-is-carried-most-economically | The economic question is where consequential knowledge can be maintained and applied most economically without losing control. -->
+
+This task carries a cost that physical manufacturing can often amortize differently. A drawing for a manufactured part may remain useful across thousands of instances; a representation of a software system describes a target that is itself changing. Requirements, architectures, interfaces, models, and tests must evolve with the software if they are to remain useful. Software organizations have therefore made different choices about where to retain engineering judgment. Explicit representations preserve knowledge for reuse but require skilled labor to construct and maintain; keeping knowledgeable engineers close to implementation avoids some of that cost but requires them to resolve engineering questions as the system changes~\citep{kautz2018mbse}. The economic question is where consequential engineering knowledge can be maintained and applied most economically without losing control.
+
+% <!-- box-family: inset -->
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Engineering judgment and the Agile movement}
+\label{inset-engineering-judgment-agile}
+% <!-- point: earlier-separation-attempts-met-the-same-tradeoff | Royce and model-based approaches preserve decisions in explicit representations while recognizing feedback and the cost of maintaining those representations. -->
+Model-based software engineering has long sought to make engineering knowledge explicit before implementation. In his influential account of managing large software projects, Winston Royce described the need for requirements, design, and documentation to coordinate work across development stages, while also recognizing the risks of a strictly sequential process and advocating feedback and iteration~\citep{royce1970}. More generally, model-based approaches seek to preserve consequential engineering decisions in representations that can guide implementation and evaluation. The benefit is reduced dependence on programmers reconstructing those decisions; the cost is the skilled effort required to construct and maintain the representations.
+
+% <!-- point: agile-is-intelligible-when-the-product-is-change | Agile placed knowledgeable engineers close to implementation; greater automation may change the economics of preserving judgment in explicit representations. -->
+The Agile movement placed greater weight on keeping knowledgeable engineers close to implementation~\citep{agile-manifesto2001,scrumguide2020}. Working software became the primary measure of progress; changing requirements were expected; collaboration was preferred to elaborate handoffs; and documentation was valuable insofar as it continued to serve the work. These practices reflected an economic tradeoff: when software changes frequently, maintaining a representation may cost more than having an engineer resolve the question directly. As implementation becomes increasingly automated, however, that tradeoff changes. It may again become economical to preserve more engineering knowledge in explicit representations and controls, reducing the judgment required during subsequent implementation.
+\end{bookbox}
+
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Engineers can preserve selected consequential judgments while leaving agents substantial implementation freedom. | terms: commodity-intelligence -->
+
+In an agentic software factory, engineers can preserve selected consequential judgments in reusable representations and controls while leaving agents substantial freedom over implementation. The question is how to organize that division of work.
+
+\section{Comparing Software Factories}\label{heading:walking-through-a-software-factory}
+
+% <!-- point: four-questions-orient-a-walkthrough | Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied. | terms: tolerance -->
+
+If we are to adopt the metaphor of a software factory, we must consider how such factories might be organized. There is, as yet, no industry-standard definition of a software factory. We will therefore keep four questions in mind as we examine DocAble and other factories:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{What does the factory produce?} What changes enter it, and where do they originate?
+\item
+  \textbf{What do people do?} Which judgments and acts of realization do people retain or delegate?
+\item
+  \textbf{How is production organized?} How does work move through realization, evaluation, admission, and deployment, and how do lessons change that process?
+\item
+  \textbf{What are the tolerances?} Which properties must remain within bounds, how are those bounds represented, and what evidence establishes compliance?
+\end{enumerate}
+
+% <!-- point: the-four-questions-are-broader-than-mage | A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control. -->
+
+These questions can be answered at different levels of detail. A longitudinal account can show how a factory's arrangements developed, which problems prompted changes, and what the resulting machinery accomplished. Reports from established organizations can show how factories differ in their allocation of work, authority, and control, although they rarely expose the same development history. DocAble provides the first perspective; the industrial accounts provide the second.
+
+```
+
+### part5/5.2-inside-docables-software-factory.tex
+
+```latex
+% mage-auto-heading: the-feasibility-probe
+% mage-auto-heading: the-two-rules-of-agentic-software-engineering
+% mage-auto-heading: the-build-in-stages
+% mage-auto-heading: the-build-measured-weekly
+% mage-auto-heading: inside-the-factory
+% mage-auto-heading: what-the-factory-knows
+% mage-auto-heading: the-joins-what-the-factory-can-derive-and-enforce
+% mage-auto-heading: the-factory-in-operation
+% mage-auto-heading: what-escalated-failures-became
+% mage-auto-heading: the-supervisors-job
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: Inside DocAble's Software Factory -->
+
+\chapter{Inside DocAble\textquotesingle s Software Factory}
+
+% <!-- point: one-engineer-directed-a-fleet | Earlier chapters teach product decisions and governing mechanisms; this section examines the factory through which one engineer directed coding agents. | terms: fleet-scale -->
+% <!-- point: a-factory-contains-more-than-its-fabricators | DocAble's governed engineering environment was part of a factory that also included people, agents, processes, and arrangements governing engineering decisions. -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} examined engineering decisions that shaped DocAble and the models and controls used to govern its development. Here the focus shifts from the product to the factory that produced it. DocAble is a document-accessibility remediation service; its software factory is the engineered system through which I directed coding agents to build and change that service, evaluated their work, and decided which changes to accept. The governed engineering environment (GEE) developed in the preceding chapters formed part of this factory: its models represented the product and selected engineering obligations, while its tools and controls helped agents perform work and established which changes could be accepted. The factory also included the people and agents performing the work, the processes through which changes moved, and the arrangements governing engineering decisions.
+
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The measurements cover \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. By October 14, DocAble contained \magevalue{seip_prod_loc} lines of production code supported by \magevalue{seip_apparatus_loc} lines of tests, checks, tools, infrastructure, models, and indexed documentation. Its engineering environment contained \magevalue{seip_models} model modules. These measurements establish the scale of the product and its supporting machinery, not the value of individual lines or models.
+
+% <!-- point: the-engineers-role-was-engineering-not-implementation | Goals, users, production failures, standards and institutional use supplied engineering work; the engineer made consequential decisions while coding agents wrote every implementation line. | terms: governed-engineering-environment -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+New work came from my goals for the system, user feedback, production failures, accessibility standards, public guidance from advocacy groups~\citep{nfb-accessible-documents-2014}, and the demands of institutional use. I decided which pressures warranted engineering work and made consequential decisions about requirements, architecture, validation, and deployment. Coding agents wrote every line of the implementation. I inspected almost none of the code they produced.
+
+% <!-- point: product-decisions-became-factory-obligations | Process design organized work and tolerance preserved consequential requirements while agents retained implementation freedom; failures could require changes to both the product and its factory. -->
+
+That division of work required process design and tolerance. Work had to be selected, planned, dispatched, integrated, and evaluated without making me the bottleneck for every implementation decision. At the same time, agents needed freedom to choose implementations without being free to violate consequential requirements. The factory therefore developed models, procedures, tools, and controls that carried selected decisions into later work. Failures often required two repairs: correcting the product and changing the factory to prevent or reject the same class of failure in subsequent agentic work.
+
+% <!-- point: the-division-of-work-is-the-factory-examined | The case follows factory development from initial requirements through production operation; implementation, institutional use, and observed failures exposed engineering decisions that needed to persist. -->
+
+The case follows the factory's development from initial requirements through production operation. Its chronology matters because the machinery did not arrive fully formed. Implementation, institutional use, and observed failures exposed engineering decisions that needed to persist; the factory changed to carry them.
+
+\section{The Problem}\label{heading:nearly-free}
+
+% <!-- section-terms: doj-2024-rule, remediation-cost -->
+
+% <!-- point: the-rule-and-the-extension | The 2024 DOJ rule set WCAG 2.1 AA and a 2026 deadline; four days before the deadline, the Department extended it by a year. | terms: doj-2024-rule, ada-title-ii -->
+
+In 2024, the U.S. Department of Justice required state and local governments, including public universities and schools, to make covered web content and mobile applications conform to \magevalue{doj_technical_standard}~\citep{doj-web-accessibility-2024}. The original compliance date for larger public entities was April 24, 2026. Four days before that deadline, the Department extended it by one year~\citep{doj2026extension}.
+
+% <!-- point: requirements-ordinary-capacity-unusual | The requirements were ordinary production-software requirements; the unusual condition was one engineer’s implementation capacity. | terms: governance-target-product -->
+
+For a university, compliance creates a recurring production problem: courses distribute documents whose meaning must remain available to readers using assistive technology. Purdue trained undergraduates to remediate course materials, providing both a practical reference workflow and the corpus used in the evaluation below. A checker can identify some defects, but supplying a useful description of a diagram or restoring the structure of a document requires interpreting its content. \magevalue{chapter:problem} introduced that difficulty; here it becomes a specification for a service.
+
+The requirements were ordinary production-software requirements. What was unusual was the implementation capacity available to one engineer.
+
+% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements briefly introduced in {{sec:mage-by-example}} are stated in full here as the requirements that guided DocAble’s development. | terms: governance-target-product -->
+
+\autoref{chapter:1.3-mage-by-example} briefly introduced the obligations. \autoref{docable-requirements} states them in full: eight requirements that guided DocAble\textquotesingle s development.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6800}}@{}}
+\caption[The DocAble requirements]{What DocAble had to accomplish. The eight requirements, R1--R8 --- the specification the factory had to satisfy, which \magevalue{sec:mage-by-example} introduced by kind.}\label{docable-requirements}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+R1 · Multi-format remediation & Remediate educational documents in the formats people actually use, including Office (PowerPoint, Word, Excel) and PDF. \\
+R2 · Semantic remediation & Perform semantic repairs that require understanding document content, not only syntactic, deterministic transformations. \\
+R3 · Preserve the document & Retain content, appearance, and behavior except where remediation requires a change. \\
+R4 · Standards-grounded accessibility & Evaluate and repair documents against their governing obligations (WCAG 2.1 AA), not proxy checker scores. \\
+R5 · Evidence & Record what accessibility requirement motivated each change and what evidence supports the resulting document state. \\
+R6 · Reviewability & Make outputs auditably traceable: consequential automated changes are inspectable and, where appropriate, reversible. \\
+R7 · Production operation & Process real documents at practical sizes, costs, and latency. \\
+R8 · Institutional deployment & Operate as a deployed service that scales to thousands of faculty at one institution, and preferably nationwide. \\
+\end{longtable}
+}
+
+% <!-- point: requirements-explain-the-size | Production use required preservation, reviewable changes, standards-grounded evaluation, and dependable operation alongside semantic reasoning; these obligations shaped the product and its engineering environment. | terms: governance-target-product -->
+
+The requirements extend well beyond semantic reasoning. A foundation model could supply a capability that had previously been missing, but using it in a production service required document preservation, reviewable changes, standards-grounded evaluation, and dependable operation. These obligations shaped both the product and the engineering environment through which I built it.
+
+\section{Developing the Product and Factory}\label{heading:building-the-factory}
+
+\subsection{The Feasibility Probe}\label{heading:the-feasibility-probe}
+
+% <!-- point: the-probe-tested-the-uncertain-part-first | The probe supplied initial evidence of semantic reasoning on equations, technical slides and handwritten notes. | terms: feasibility-probe, vision-language-model -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+I tested the uncertain capability first. I gave a multimodal foundation model pictures of mathematical equations, technical slides, and handwritten notes. On those examples it produced useful transcriptions and alternative text. The results supplied initial evidence that generative AI could perform some of the semantic reasoning needed for remediation; they did not establish that it could reliably remediate arbitrary documents.
+
+% <!-- point: cost-was-only-one-reason-not-to-hand-the-document-to-the-model | The initial semantic capability supported building a remediation system around the foundation model; preservation, reviewability, conformance, dependable operation, and practical cost remained engineering obligations. -->
+
+I decided not to make the foundation model the whole remediation system. To use its semantic capability in a service, I would also have to establish document preservation, reviewable changes, conformance, dependable operation, and practical cost.
+
+\subsection{The Two Rules of Agentic Software Engineering}\label{heading:the-two-rules-of-agentic-software-engineering}
+
+% <!-- point: not-reading-the-code-was-deliberate | Not reading the code was deliberate: inspecting agent-produced implementation would have bounded implementation throughput by the engineer's own reading capacity, so the first rule made reading the last resort and an engineering environment the surface through which work was directed and judged. | terms: fleet-scale -->
+
+I began with two rules.
+
+\textbf{Reading the code is the last resort.} If building DocAble required me to inspect the implementation produced by coding agents, then implementation throughput would remain bounded by my capacity to read code. I wanted to build an engineering environment in which I could direct work, understand the system, evaluate evidence, and decide whether changes were acceptable without routinely reconstructing those answers from implementation.
+
+% <!-- point: reading-the-code-was-the-escape-hatch | The rule did not forbid reading source: needing to read it pointed to a missing supervisory surface — a model, test, lint, instrument, or architectural boundary — so reading was the escape hatch, not the operating model. | terms: fleet-scale -->
+
+This did not mean that I refused to read source code. It meant that needing to read it pointed to a missing supervisory surface: a model, test, lint, instrument, architectural boundary, or other representation of the property I actually needed to reason about. Reading the code was the escape hatch, not the operating model.
+
+% <!-- point: good-fast-and-cheap-became-a-rule-for-the-factory | The second rule required the resulting system to be good, fast, and cheap — partly a DocAble requirement, partly a test of whether agents could help build a production system good enough to trust, fast enough to matter, and cheap enough to deploy at scale. -->
+
+\textbf{The resulting system should be good, fast, and cheap.} This applied to both DocAble and its development: the service had to produce useful remediation at practical cost and latency, while the factory had to make building and changing that service economical without sacrificing engineering control.
+
+% <!-- point: failing-any-one-of-the-three-fails-the-test | A fast factory producing poor software would fail the test, and so would a high-quality system that stayed prohibitively expensive to develop or operate; agentic implementation was valuable only if the engineering system around it achieved all three. -->
+
+A fast factory producing poor software would fail the test. So would a high-quality system whose development or operation remained prohibitively expensive. Agentic implementation was valuable only if the engineering system around it could achieve all three.
+
+\subsection{Product Development}\label{heading:the-build-in-stages}
+
+% <!-- point: the-build-moved-under-concrete-pressures | Format expansion, deployment, user failures and changed deadline pressure drove successive development stages. -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+DocAble's development began with PowerPoint remediation, then expanded to Word, Excel, and PDF as colleagues brought other documents (R1). Each format exposed assumptions that the initial implementation had not tested. Deploying the service introduced authentication, resource management, and institutional workloads (R8). Users then identified outputs that passed existing checkers while failing to preserve semantic equivalence, prompting stronger accessibility validation (R4). When the Department of Justice extended the compliance deadline, I redirected effort toward production hardening (R7).
+
+\autoref{build-stages-timeline} traces these changes in the product and the engineering problems they introduced. The stages distinguish new obligations rather than merely increasing quantities of implementation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/build-stages-timeline-a24e34269b.pdf}
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+\caption[DocAble's development]{\emph{DocAble's development.} The service expanded from a feasibility probe through format support, institutional deployment, and production hardening. Each stage introduced engineering obligations that shaped both the product and the factory used to develop it.}
+\label{build-stages-timeline}
+\end{figure}
+
+\subsection{Factory Development}\label{heading:the-build-measured-weekly}
+
+% <!-- point: four-traces-read-in-sequence | The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures. -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+As I built DocAble, I also built the machinery for building it. \autoref{realization-over-time} traces implementation activity and the accumulation of engineering machinery over \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. It reports landed work commits, model and verifier inventories, recovered agent dispatches, and documented Epic completions. Together, these measurements describe the factory's activity and structure; none independently establishes productivity.
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+An \emph{Epic} represented a substantial engineering intention with a rationale, design, relevant invariants, phases, and acceptance criteria. Nontrivial designs received separate review using another foundation model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. Across the complete window, the reconstruction recovers \magevalue{seip_commits} work commits, \magevalue{seip_dispatches} dispatches, and \magevalue{seip_completions} affirmative completion claims.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-longitudinal-261109-4fdf2b18d2.pdf}
+\caption[Development activity and engineering structure]{\emph{Development activity and engineering structure over 31 weeks:} (a) reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory's growth, not the value or correctness of its output.}
+\label{realization-over-time}
+\end{figure}
+
+% <!-- point: the-control-count-is-evidence-of-investment | Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution. | terms: governance-conversion -->
+
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The final snapshot identifies \magevalue{seip_models} model modules, \magevalue{seip_consumers} consumers of at least two models, and \magevalue{seip_static} static and \magevalue{seip_dynamic} dynamic verifier files. The inventory records an increasing investment in representations and checks; the examples below examine their engineering roles and consumers.
+
+% <!-- point: week-eleven-records-a-practice-change | Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices. -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+In Week 11, I began a deliberate campaign to replace repeated agent audits with deterministic checks. Notes from May 22 and 24 document the accompanying typing, lint-authoring, and repair work. The commit subjects and emerging formal Epic records agree with that account. They support an interpretation of a hardening campaign; the first surviving Epic or dispatch record does not establish when I first used agents, planning, or checks.
+
+% <!-- point: longitudinal-methods-bound-the-inference | Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish. -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The series require some care. Work commits are reconstructed from direct and expanded squash landings, with duplicates, empty commits, and integration bookkeeping excluded. Completion records are affirmative claims rather than independent outcome audits, and dispatch retention is uneven. Earlier model existence is traced by path so a later declaration convention does not create a false growth spike. Registered verifier files establish an available checking apparatus, not that every check ran.
+
+\subsection{The Support Ratio}\label{heading:support-ratio-curve}
+
+% <!-- index-def: support-ratio -->
+
+% <!-- point: the-environment-outgrew-the-product | Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return. | terms: support-ratio, governance-target-product -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The source composition gives a different view of the investment (\autoref{support-ratio-curve}). Production includes remediation, web processing, the frontend, and shared services. The supporting apparatus includes tests, lints, tools, agent infrastructure, infrastructure-as-code, models, and indexed documentation. Historical snapshots and generated copies are excluded.
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21, and 31 it was approximately 2.6, 3.6, and \magevalue{seip_support_ratio}, respectively; it reached about 4.5 at week 17. The last snapshot contains \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. These are measurements at ten sampled revisions, with interpolation between them. A larger ratio is not a target. Tests, models, and operating tools carry different obligations, and supporting source earns its upkeep only while later work benefits from it.
+
+The size of the apparatus also says little about the scope of its application. One checker may protect a single obligation, while another may govern hundreds of obligations expressed in a common model. The coverage of the latter can grow without a corresponding increase in checking code.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-composition-261109-68ce0c8bdb.pdf}
+\caption[Product and supporting apparatus]{\emph{The product and its supporting apparatus:} composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; the apparatus's size establishes investment, not its return.}
+\label{support-ratio-curve}
+\end{figure}
+
+% <!-- point: the-exhibits-measure-what-the-requirements-cost | The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment. | terms: governance-target-product -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+Together, the measurements show sustained implementation accompanied by an expanding engineering environment. They do not isolate the cost of a requirement or the causal contribution of a control. They also leave a question for engineering judgment: would this project have been feasible under the same constraints without generative AI or the machinery built around it?
+
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Field note --- The counterfactual}\label{heading:fieldnote-counterfactual}
+
+\textbf{Within the actual constraints of this project---one primary engineer, an academic budget, and the development interval reported here---DocAble was not feasible for me without generative AI.} I would not have attempted a production system at this scope without commodity implementation capacity.
+
+Sustaining that delegation posed a second problem. Once the change volume exceeded what I could inspect conventionally, continuing required explicit representations, independent evidence, constraints, and gates. My judgment is that GenAI made the project feasible and the machinery that became MAGE made delegation at this rate feasible. This is an account of the project I could undertake, not a controlled estimate of either contribution.
+\end{quote}
+
+\section{Inside the Factory}\label{heading:inside-the-factory}
+
+% <!-- section-terms: modeling-principle, alignment-principle, governed-engineering-environment -->
+
+% <!-- point: source-code-stopped-being-an-adequate-interface | Models of workflows, ownership, and resource bounds connect to consumers that supply context, derive configuration, and check obligations. | terms: modeling-principle -->
+
+The supporting apparatus recorded in \autoref{support-ratio-curve} includes models of service workflows, state ownership, and resource bounds, together with their consumers. Agents use these models as context. Tools also use them to generate configuration or check whether a change preserves a declared obligation.
+
+\subsection{Engineering Models}\label{heading:what-the-factory-knows}
+
+% <!-- point: the-census-is-live-not-frozen | The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory. | terms: modeling-principle -->
+
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agents and their engineering environment.
+
+% <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
+
+\autoref{factory-census-specimens} shows six representative models, their consumers, and what each allows the supervisor to stop reconstructing from implementation.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2300}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3200}}@{}}
+\caption[Census specimens and their supervisory consequences]{Six representative engineering models. Each row: the engineering question, the representation that answers it, what consumes it, and what the supervisor no longer reconstructs from implementation.}\label{factory-census-specimens}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: implementation-and-analysis
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation-and-analysis
+Can a job always terminate legally? & Cross-service state model with per-invariant facts & Exhaustive-state checkers; worker transition tables & Progress and termination can be checked over explicit states and transitions \\
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: model-and-measurement
+% Evidence: E27 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E27.md | kind: model-and-measurement
+How much memory can a job need? & Peak-memory bound and derived deployment tier & Deployment configuration; regression tests on the bound & The resource bound can be inspected without reconstructing allocation behavior \\
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+Which services exist, and what may call what? & Deployment dependency map and checked typed call-edge mirror & Grant planner; correspondence checks; agents localizing changes & Ownership and boundaries can be read from the map for each change \\
+% Evidence: E11 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E11.md | kind: implementation
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+May this user submit this document? & Entitlement decision model and shared parity corpus & Python and TypeScript tests; server migration remains incomplete & Admission policy is explicit and comparable across runtimes; existing server decision paths still require reconciliation \\
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: implementation-scope
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation-scope
+What may touch a document format\textquotesingle s internals? & External-seam registry and document-mutation interfaces & Static format restrictions; runtime write-authority checks & Selected mutation paths are constrained by designated boundaries \\
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+Which step changed this document element? & Remediation-pass provenance stamps and derived changelog & The customer-facing changelog; forensic queries & Recorded mutations can be traced through evidence lookups \\
+\end{longtable}
+}
+
+\subsection{The Joins: Deriving Evidence and Enforcement}\label{heading:the-joins-what-the-factory-can-derive-and-enforce}
+
+% <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | The factory checks relations among representations and uses selected results to determine whether work may proceed. | terms: alignment-principle -->
+
+In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-model}}, DocAble used shared identities to answer engineering questions, such as how a particular deployment performed. In the factory, these \textbf{joins} also determine which properties need checking, which mechanisms check them, and what evidence a change must supply before it can proceed. The architecture resembles proof checking in one limited respect: a producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission~\citep{ringer2019qed}. Three joins show the difference in increasing order of reach.
+
+% <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
+
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: dated-case-evidence
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+\textbf{Property facts → verification tier → required artifact → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts, including its participating computation lanes, coordination primitive, and temporal obligation. From those facts, the model \emph{derives} a verification tier. For obligations involving coordination among concurrent participants, the policy requires an explicit-state checker for safety or a temporal specification for liveness; ordinary sequential obligations can require property tests. A reusable check requires a reference of the prescribed kind whose file exists. This requirement blocks admission for the models brought under enforcement; newly incorporated models can initially report advisory findings. The supervisor need not choose a verification technique afresh for every invariant, but must still establish that the declared facts and verification artifact are adequate. The gate checks that the artifact is provided; it does not establish that its analysis has run. TLC execution remains a separate activity.
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: the-iam-join-derives-grants | The IAM join: deployment dependencies × deployed service names × runtime identity derive the invoker-grant plan; application results and live authorization provide different evidence. | terms: alignment-principle -->
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} DocAble records caller--callee dependencies in its deployment map and checks that the typed inter-service model agrees with that map. The grant planner joins deployment dependencies to runtime service accounts and environment-specific service names. Application collapses grants sharing a principal and callee, retains their logical callers, and reports each grant command\textquotesingle s result; this is separate from inspecting installed permissions or testing an authorized call. The join makes the intended wiring inspectable without making a declaration or a successful command proof of runtime least privilege.
+
+% <!-- point: the-provenance-join-derives-the-changelog | The provenance join derives a changelog from recorded remediation-pass stamps; a wiring validator checks selected mutator populations for missing attribution. | terms: alignment-principle -->
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+\textbf{Mutation → stamp → derived account.} Remediation-pass provenance stamps record the verb, pass, and visibility of recorded changes; the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator examines selected production mutators for recognized stamp calls or justified exemptions, with blocking checks for its public-static population and advisory checks for public-instance methods. The derived changelog provides structured evidence of recorded mutations; the wiring check exposes gaps within its declared coverage.
+
+% <!-- point: explicit-models-changed-what-was-checkable | Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return. | terms: modeling-principle -->
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+Explicit lifecycle and ownership models also supplied objects for analysis: a finite ownership state space for exhaustive exploration, and a temporal recovery specification with stated delivery and sweep assumptions. The factory had to preserve their correspondence with the evolving product. Conformance tests exercised production operations against executable models, while model-to-implementation checks supplied separate evidence when modeled surfaces changed. \autoref{chapter:appendix-a-job-ownership-and-recovery} develops this construction; \autoref{match-mechanism-to-property} distinguishes the assurance supplied by its mechanisms.
+
+\subsection{Computation Declarations Shared by Execution and Analysis}\label{heading:the-computation-graph-a-representation-that-took-over-execution}
+
+% <!-- point: the-representation-became-authoritative-for-execution | Typed pass declarations determine dependency order and remain connected to analytical views by correspondence checks. | terms: governance-conversion -->
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: implementation
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+The computation model introduced in \autoref{2.3-structural:heading:what-computations-depend-on-one-another} became reusable infrastructure within DocAble\textquotesingle s factory. Its stable computation identities and declared relationships support scheduling, architectural analysis, measurement, and coverage investigation. Office derives execution and analytical dependencies from shared registry metadata; PDF maintains checked parallel declarations (\autoref{2.6-system-knowledge:heading:docable-connecting-engineering-models}). The correspondence controls developed in \autoref{3.1-from-engineering-models-to-enforcement:heading:docable-from-correspondence-to-enforcement} help preserve those relationships as the product changes.
+
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+The same infrastructure supported the execution redesign in \autoref{4.2-one-problem-many-models:heading:modeling-execution-and-latency} and remains available for evaluating subsequent changes without reconstructing the pipeline from source code. Analytical projections remain distinct from the machinery that schedules work. \autoref{chapter:appendix-a-remediation-computation-graph} describes the integrated construction and the checks that maintain it.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Some of this machinery accommodates more obligations as DocAble's models grow, without corresponding changes to the machinery itself. Recall the architectural checker in \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization}. Adding another component boundary extends what the checker governs. Similarly, adding another invariant extends the population for which the factory derives verification requirements. These investments provide reusable capacity for changing both DocAble and its engineering environment.
+
+\subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
+
+% <!-- point: reasoning-substitution-reuses-engineered-operations | Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The factory's accumulated models, tools, and controls helped preserve a separation within DocAble's architecture: the reasoning that proposes document repairs is distinct from the machinery that applies and evaluates them. This separation allows different reasoning strategies to reuse established document representations, controlled operations, and validation rather than rebuilding those capabilities. It also makes the cost and quality of alternative strategies an engineering question that can be evaluated without redesigning the service.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+Substitution occurs at two levels. For individual tasks, ModelSelector assigns a foundation model using task-specific configuration and capability requirements. The remediation graph stays the same while the model supplying a judgment changes. A per-task benchmark compares candidate models on quality, cost, and latency. At a coarser level, a general-purpose agent can choose and sequence repairs instead of following the production graph's orchestration.
+
+% <!-- point: model-selection-was-an-engineering-decision | Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The PDF changeset interface gives these strategies a common way to request supported mutations. A proposed operation names its target and intended change; the applier resolves it against the current document, checks its preconditions, and records the outcome. The structured pipeline and an experimental agent can therefore reuse typed document operations, independent validation, and provenance while deciding differently what to repair. Human-directed editing uses the same operation vocabulary. \autoref{docable-reasoning-substitution} shows these architectural alternatives; the experiments below concern automated strategies.
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-reasoning-substitution-e499b821f0.pdf}
+\caption[Substitutable reasoning over the PDF changeset interface]{Substitutable reasoning, controlled mutation. Different reasoning strategies inspect a common document model and propose edits through a typed changeset interface. A controlled applier executes supported operations, while provenance and independent validation provide evidence about the result. The diagram shows the intended PDF architecture; some remediation operations still bypass the common changeset interface.}
+\label{docable-reasoning-substitution}
+\end{figure}
+
+
+% Evidence: E06 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E06.md | kind: dated-case-evidence
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+% Evidence: E55 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E55.md | kind: dated-case-evidence
+This interface was still incomplete in November 2026. Dozens of PDF remediation passes retained direct-mutation paths, including repairs whose effects required additional operation types or more substantial restructuring. The common interface made some reasoning interchangeable; it did not make the entire pipeline replaceable. Extending the operation vocabulary was itself engineering work, especially where an edit changed several related structures or depended on targets created by an earlier edit.
+
+% <!-- point: engineering-set-the-price-of-the-reasoning | Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The shared engineering machinery made alternative reasoning strategies practical to investigate. In one experiment, frontier agents inferred PDF structure through repeated tool interactions, while a foundation model given a prepared document scaffold inferred structure in a single pass on a separate prose fixture. The scaffolded approach achieved high agreement with its reference structure at substantially lower inference cost. Because the fixtures and interaction patterns differed, this was not a controlled comparison at equivalent quality. It exposed an architectural choice: which useful structure should the system supply, and which judgments should the reasoner make?
+
+% <!-- point: reasoning-substitution-cost-depends-on-context-and-quality | A September 2026 single-PDF comparison measured pipeline inference at $0.0419 and estimated agent execution at $2.29; accounting and reference exposure limit the comparison. -->
+% <!-- point: a-completed-coached-loop-did-not-improve-the-measured-documents | A November 2026 two-PDF repair-loop evaluation closed no additional findings; the harder document cost $3.57 versus $1.35, so the loop was not promoted. -->
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+Other experiments tested whether additional agentic reasoning justified its cost. On a handwritten PDF in September 2026, the structured pipeline incurred \$0.0419 in metered inference expenditure, compared with an estimated \$2.29 for an agent using DocAble's document tools.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of accumulated context contributed substantially to the agent's cost. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference document structure, preventing an unbiased quality comparison. A November two-document experiment allowed an agent to inspect remaining findings and request another repair pass. Neither document gained additional checker improvements; on the harder document, cost increased from \$1.35 to \$3.57. I did not promote the loop to production. These small experiments did not establish that specialized pipelines are generally superior; they showed why additional reasoning must earn its cost through improvements in the resulting document.
+
+The engineering question is where additional reasoning earns its cost. Difficult semantic cases may justify a frontier agent, and agents can help investigate failures or identify repairs that the specialized pipeline misses. Those decisions require evidence about the quality gained as well as the inference expenditure. The factory made such comparisons possible by maintaining document representations, controlled operations, and validation machinery across changes to the remediation system. Within the supported operations, a new reasoning strategy could inherit that infrastructure rather than reconstruct it, while retaining the checks used to evaluate the resulting documents. This is engineering capital: accumulated decisions embodied in reusable machinery that remains useful as the reasoning strategies change.
+
+\section{The Factory in Operation}\label{heading:the-factory-in-operation}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-mature-production-flow | The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion. -->
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements ending October 14. I record priorities and deployment prerequisites in a strategy document. An orchestrating agent selects ready work and coordinates its planning, implementation, and evaluation.
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+A planning agent develops an \emph{epic}: a persistent work order recording the change's purpose, scope, phases, dependencies, and completion criteria. Its design document identifies consequential properties and the tests or analyses required for them. A separate agent reviews the plan; unresolved engineering decisions return to me. The work order preserves decisions across dispatches while leaving implementation choices within the stated requirements to the agents.
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred. -->
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+The phase dependencies determine which agents can work concurrently, as \autoref{docable-work-order-flow} shows. The orchestrator dispatches ready phases into isolated Git worktrees. Each agent first inspects its assigned component and records a refined plan, including target files, in its first commit. Before changing the implementation, it supplies those files to \emph{Query Repo}, which retrieves the associated models, invariants, tests, and static checks. A pre-commit check requires a record that this discovery occurred. Known obligations can therefore inform the agent's implementation choices from the outset.
+
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-work-order-flow-de15c91f19.pdf}
+\caption[From engineering intent to completed work]{\emph{From engineering intent to completed work.} The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.}
+\label{docable-work-order-flow}
+\end{figure}
+
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+Completed changes pass inexpensive checks before integration. Broader validation runs periodically against the combined code, and the deployment process reruns the full validation suite. Two changes may each work in isolation and still fail when combined, so separate worktrees do not remove the need to check the integrated result. \magevalue{sec:engineering-the-environment} explains the bottleneck that motivated this arrangement and the cost of delaying some checks.
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer. -->
+
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E39 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E39.md | kind: dated-case-evidence
+% Evidence: E60 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E60.md | kind: author-practice-and-artifacts
+Finally, an independent agent audits the epic against its completion criteria. It checks that the expected changes landed and that the required evidence supports completion. Missing work or failed checks lead to repair and another review. Problems the agents cannot resolve, including defects in the factory itself, return to me. The work order closes after the audit accepts the result.
+
+\section{Improving the Factory}\label{heading:what-escalated-failures-became}
+
+% <!-- point: governance-conversion-is-an-empirical-claim-about-durable-structure | Three selected episodes show a controlled product interface, evidence-grounding prompt checks, and integration policy becoming durable machinery. | terms: governance-conversion -->
+
+The factory's operating process also exposed failures that required changes to the factory itself. Some engineering models came from known requirements; others arose when failures revealed missing distinctions or controls. Three episodes illustrate the latter: preserving document structure during mutation, governing instructions to foundation models, and safely integrating concurrent development work.
+
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E40 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E40.md | kind: historical-report
+Preserving document structure required a controlled mutation boundary. An early PDF-slicing operation used PyMuPDF to copy pages into smaller documents. The resulting pages rendered correctly, but the operation discarded the PDF's accessibility tag tree, including \texttt{/StructTreeRoot} and the page-to-structure relationships. A library call that preserved visible content had silently destroyed information essential to accessibility.
+
+% Evidence: E04 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E04.md | kind: dated-case-evidence
+% Evidence: E40 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E40.md | kind: historical-report
+The immediate repair replaced the slicing operation with one that preserved the tags. I then established a canonical-library policy and concentrated PDF mutations in typed operations under \texttt{AdaTool.PdfModel}. For example, structure insertion passes through \texttt{PdfStructInserter} rather than allowing arbitrary calls to the canonical PDF library's tag-manipulation APIs. A blocking direct-access lint rejects those calls outside designated modules. The architectural model identifies where PDF structure may be changed; the lint checks that subsequent implementations preserve the boundary.
+
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: historical-report
+Semantic instructions required their own engineering model. Agents developing DocAble's image-description prompts introduced numerical requirements, including a demand for at least three specific facts and a minimum description length. Some source images did not contain enough legible information to satisfy those requirements. The investigation identified padded descriptions and a plot description that asserted unsupported values. The problem was not the particular threshold: an unconditional demand for information absent from the source could produce the same failure.
+
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: implementation
+I responded with a typed prompt-governance model. It classifies prompts by purpose, such as describing, transcribing, or extracting information, and classifies their instructions by the demands they impose. A decision table determines which combinations are permitted. For example, a minimum fact count is prohibited in a description prompt, while an extraction requirement may be permitted when conditioned on information actually present in the source. The model distinguishes requirements appropriate to a task from requirements that could make faithful completion impossible.
+
+% Evidence: E41 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E41.md | kind: implementation
+A deterministic lint checks registered prompt definitions against this model and blocks illegal combinations. An agent introducing another unconditional fact minimum into a description prompt encounters a failed check rather than relying on a reviewer to recognize the mistake. The lint governs the instructions, not the descriptions produced from them; it cannot establish that an individual output contains no fabricated content. It prevents a recurring class of inappropriate requirements from entering the remediation system.
+
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
+Integration automation required a model of safe conflict resolution. DocAble's agents worked concurrently in separate Git worktrees, often changing overlapping files. The integration machinery ordinarily rebased completed work onto the current repository. When a rebase encountered a conflict, an automatic retry used Git's \texttt{-X theirs} option, favoring one side of each conflicting hunk. In June 2026, concurrent modifications to the integration machinery itself produced an incompatible combination of edits. The resulting Python code failed to load, disabling scheduled integration.
+
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
+The failure exposed a decision that the automation had been making without an adequate policy: which conflicts may be resolved automatically? I distinguished three cases. A clean rebase can proceed. Certain narrowly defined additive conflicts can use an established resolution procedure. Other conflicts require escalation because the integration machinery cannot establish that combining the changes preserves their intended effects. This decision model separates the presence of a conflict from permission to resolve it automatically. A conflict is evidence that further work may be needed, not authorization to discard one side.
+
+% Evidence: E42 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E42.md | kind: dated-case-evidence
+I removed the \texttt{-X theirs} retry and changed the integration procedure to follow this policy. Clean integrations and permitted additive resolutions could proceed automatically; unresolved conflicts produced a \texttt{conflict-need-help} disposition. That disposition made the remaining work suitable for delegation. Rather than having Git select a resolution without understanding the changes, the disposition provided a defined task that I could assign to an agent: examine the conflicting contributions, reconcile their intended effects, and produce a candidate for validation. The agent could perform the repair, but the integration procedure would not accept an arbitrary conflict resolution merely because it had been generated. The model thus governed both what the automation could decide on its own and how unresolved work could be handed back to an agent.
+
+Across these episodes, I repeatedly observed that coding agents could diagnose defects and implement repairs but seldom proposed the larger changes to models, architecture, or controls that would prevent similar failures. Claude suggested replacing the offending library call, not establishing a controlled mutation boundary. Claude suggested revising the prompt, not modeling which instructions were appropriate to different semantic tasks. Claude suggested repairing the integration script, not reconsidering which conflicts the factory should resolve automatically. I generally had to identify and direct these larger changes, although agents could implement the resulting machinery. Once the decisions were represented explicitly, agents could also undertake work that the new structure made delegable, such as reconciling conflicts identified by the integration policy. Bui and Evangelopoulos distinguish this capacity to execute assigned work from the proactivity needed to recognize worthwhile work independently~\citep{bui2026agentic}. My experience illustrates that distinction, although it does not establish a general limitation of coding agents.
+
+\section{The Supervisor\textquotesingle s Job}\label{heading:the-supervisors-job}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-preceding-subsections-recorded-substitutions | Three supervisory stages summarize how accumulated GEE capability supported more abstract supervision, not a prescribed maturity model. | terms: governance-conversion -->
+
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
+As DocAble's engineering environment developed, my role changed with it. \autoref{mage-staircase} summarizes that progression in three stages: co-coder, tech lead, and architect. The staircase represents two related developments: the models and controls available to govern agent work accumulated, allowing me to supervise implementation at increasing levels of abstraction.
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+Initially, I read, judged, and merged agents' changes. As implementation outpaced my attention, I delegated evaluation to other agents, then replaced recurring decidable findings with deterministic checks. Specialized reviewers, named ownership zones, and boundary rules allowed me to direct work without inspecting every change. Eventually, architectural, behavioral, and ownership models provided system-level views for planning and evaluation. I could make decisions about the system without routinely reconstructing its implementation.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+Some decisions about the factory itself also became easier to realize. Once I had established reusable machinery for evaluating architectural dependencies, for example, I could introduce another dependency restriction by extending the model. I could change what the factory governed without designing another mechanism to govern it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-staircase-ad5d286bc2.pdf}
+\caption{\emph{DocAble's delegation staircase.} As the governed engineering environment (GEE) acquired models, checks, and controls, my work shifted from inspecting and admitting individual changes toward directing implementation and making system-level decisions. The three stages summarize DocAble's development rather than prescribe a maturity model. Failures in the environment could still require direct inspection.}
+\label{mage-staircase}
+\end{figure}
+
+For example, a cross-format migration touching \magevalue{refactor_files} files and rewriting \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. My decision was that those files should change; the agents performed the migration. I rarely needed to inspect the implementation, although model drift still required correspondence checks, and failures in the engineering environment could return me to direct inspection.
+
+% Evidence: E53 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E53.md | kind: author-account
+My attention shifted toward deciding what should change, which properties required representation or enforcement, and what anomalous evidence meant. The environment took over more of the routine work of directing and evaluating implementation, but decisions about system structure, acceptable risk, and unresolved failures remained mine.
+
+```
+
+### part5/5.4-other-agentic-software-factories.tex
+
+```latex
+% mage-auto-heading: cloudflare
+% mage-auto-heading: spotify
+% mage-auto-heading: shopify
+% mage-auto-heading: uber
+% mage-auto-heading: amazon
+% mage-auto-heading: gitlab
+% mage-auto-heading: siemens
+% mage-auto-heading: what-the-factories-share-and-where-they-differ
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: Other Agentic Engineering Factories -->
+
+\chapter{Other Agentic Engineering Factories}
+
+% <!-- point: one-system-one-engineer-one-problem-so-how-do-others-do-it | The longitudinal DocAble case is compared with organizations possessing different teams, processes, institutional knowledge and obligations; the four factory questions organize the comparison. -->
+
+DocAble provides a longitudinal account of one engineer developing and operating an agentic software factory. Other organizations begin with established engineering teams, production processes, and accumulated institutional knowledge. Their factories may therefore organize delegation, evaluation, and admission differently. The four questions from \magevalue{sec:the-software-factory} provide a common basis for comparison: what the factory produces, what people do, how production is organized, and what tolerances the resulting software must satisfy.
+
+% <!-- point: the-public-sources-are-interested-accounts-read-conservatively | The cases interpret public reports through MAGE without claiming adoption or independent validation of the method; the table previews their engineering arrangements. -->
+
+These are my interpretive reconstructions of public reports, not claims that the companies adopted MAGE.\footnote{These reconstructions reflect the public record available at the time of writing in late 2026. They draw primarily on blogs, product documentation, and recorded talks published in 2026, with earlier sources used to explain the systems and their development.} Engineering blogs, talks, and product documentation describe mechanisms and operating experience, but also serve promotional purposes. I use MAGE to interpret the arrangements they describe; the reports do not independently validate the method. \autoref{agentic-engineering-factories} previews the seven cases and the engineering arrangements they illustrate.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5000}}@{}}
+\caption[Seven arrangements for agentic engineering]{\emph{Seven arrangements for agentic engineering.} The cases differ in the products they support and the engineering mechanisms made visible by public reports.}\label{agentic-engineering-factories}\tabularnewline
+\toprule\noalign{}
+\textbf{Factory} & \textbf{Production context} & \textbf{What the case illustrates} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\textbf{Factory} & \textbf{Production context} & \textbf{What the case illustrates} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Cloudflare & Global network services & Organizational standards become enforceable controls \\
+Spotify & Cross-repository software maintenance & Agents enter an established production process \\
+Shopify & Commerce platform and shared codebase & Agent experience becomes reusable engineering knowledge \\
+Uber & Large-scale software development and operations & Production capacity must be balanced against supervision \\
+Amazon & Agentic development tools and AWS systems & Specification workflows and evaluation become reusable machinery \\
+GitLab & Integrated development platform & Agentic work inherits permissions and admission controls \\
+Siemens & Model-based systems engineering & Agents operate through existing engineering models and simulations \\
+\end{longtable}
+}
+
+\section{Cloudflare}\label{heading:cloudflare}
+
+Cloudflare operates a global network that provides security, performance, and connectivity services for Internet applications. Its engineers develop the software and configuration that operate this network, including services whose failures can affect customers worldwide. The factory spans many teams and repositories, with shared engineering standards intended to govern changes across them. As coding agents take on more work, Cloudflare has begun translating those standards into representations and checks that can govern both human- and agent-authored changes~\citep{reimann2026codex}. Its case shows how organizational engineering knowledge can become enforceable control over a distributed production process.
+
+% <!-- point: cloudflare-turns-standards-prose-into-statements-with-stable-identity | Cloudflare represents institutional obligations as individually identified statements that can be tracked through revision and applied at several stages of engineering work. -->
+
+The standards corpus had grown beyond what individual engineers could readily remember. An extraction agent turns each SHOULD or MUST into a structured statement with a stable identifier, so the obligation can be tracked when its containing document changes~\citep{reimann2026codex}. That identity supports compliance records and explicit waivers. Standards then meet work at several stages: specification review before implementation, linters during editing, semantic review in CI, and incident review after production. The representation connects a human-authored obligation to machinery that can find and apply it; merely storing the original policy documents would leave more of that connection to each reader.
+
+% <!-- point: cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only | Standards approval and enforcement promotion are separate; enforced MUST statements can drive merge decisions, with a recorded human override, while published activity counts do not establish detection performance. -->
+
+An approved statement does not automatically block work. Any employee may propose a standard, and a named domain owner approves it. A separate promotion moves it from advisory to enforced; the cited account does not identify who performs that step. For enforced standards, a coordinator agent orchestrates up to seven specialist reviewers, evaluates severity, and can approve a merge request, revoke an earlier approval, or block the merge. Only enforced MUST statements can block, and the rubric favors approval so that a lone warning does not~\citep{skidmore2026review}. This separates the decision to adopt an obligation from the decision to let an automated reviewer enforce it.
+
+Human reviewers retain an exception path: commenting ``break glass'' forces approval and records the override. Cloudflare reports 288 such overrides, 0.6 percent of merge requests, from March 10 to April 9, 2026~\citep{skidmore2026review}. The override count measures how the control was used. Review runs, findings, and blocked merges similarly describe its operation. The account makes the allocation of authority visible, while the effectiveness of the checking—including violations missed and defects prevented—remains incompletely measured.
+
+% <!-- point: cloudflare-converts-failures-into-structure-but-never-measures-the-loop | Operating experience changed the representation of extracted standards and moved suitable checks into deterministic linters; engineering knowledge becomes more usable and cheaper to enforce. -->
+
+Cloudflare's factory has changed as engineers learned which representations and controls were effective. The extracted standards statements moved from Markdown to structured JSON so agents could identify and filter obligations more reliably. Semantic-review latency encouraged moving suitable checks into deterministic linters earlier in the workflow~\citep{reimann2026codex}. These changes illustrate two ways to improve a factory: make engineering knowledge easier for agents and tools to consume, and move recurring judgments into cheaper, more predictable enforcement mechanisms. Cloudflare's experience parallels DocAble's governance conversion, although its engineering knowledge originates across many teams rather than with one engineer directing agents.
+
+\section{Spotify}\label{heading:spotify}
+
+% <!-- point: spotify-holds-the-line-fixed-and-swaps-the-station-inside-it | Spotify introduced an agent into a pre-existing fleet-change process, allowing examination of reused production structures without claiming causal isolation. -->
+
+Spotify operates a music and audio streaming service supported by many independently developed software components. Its engineers maintain services, libraries, and data infrastructure that must evolve together as shared interfaces and dependencies change. To coordinate changes across repositories, Spotify developed a Fleet Management system that selects targets, applies transformations, creates pull requests, and monitors deployments~\citep{brown2023fleet}. Coding agents were subsequently introduced into this existing production process, replacing scripted transformations for changes that were difficult to automate deterministically~\citep{charas2025honk}. In one fleet migration, an agent addressed the remaining 30 percent that scripted transformations had not covered~\citep{charas2025honk}. Fleet Management continued to monitor deployments and alert the change author when production failed~\citep{brown2023fleet}. Spotify’s case shows how an established software factory can incorporate a new fabricator without replacing the surrounding machinery.
+
+% <!-- point: spotify-installs-and-then-retires-a-control-as-the-fabricator-improves | Bounded tools and mandatory checks govern proposed changes; an added judge and its reported later removal show controls changing with observed failures and false vetoes. -->
+
+The late-2025 configuration bounded both the agent\textquotesingle s actions and its route to a pull request. It exposed selected Git commands that excluded pushing, shell commands from an allowlist, and a verification tool. Users supplied relevant context in prompts; code-search and documentation tools were withheld~\citep{charas2025honk}. The verification tool selected checks from repository contents, and failure prevented a pull request from being opened. The agent could choose how to implement a change within those bounds, but its own assessment could not waive the required checks. After unwanted changes such as disabled tests, Spotify added an LLM judge that compared the diff with the original request. In December 2025, the company reported vetoes in about a quarter of thousands of sessions, with agents correcting their work after about half of those vetoes~\citep{charas2025feedback}.
+
+Spotify subsequently separated the agent runtime from the verification runtime, creating pull requests only after CI checks~\citep{curtis2026spotifyqcon}. The LLM judge sometimes rejected valid changes and was later removed as foundation models improved and verification instructions in prompts proved sufficient for its role~\citep{curtis2026spotifyqcon}. The sequence shows why maintaining a control includes reassessing both the failures it catches and the valid work it rejects. An engineering response to one generation of agent behavior need not remain economical unchanged.
+
+% <!-- point: spotify-splits-admission-by-fabricator-and-names-verification-as-the-constraint | People set migration scope, maintain prompts, reserve judgment calls, and review agent-authored changes; delegation varies within the production process. -->
+
+People retain responsibility for defining migration scope and maintaining prompts as tested, version-controlled artifacts. They can also reserve particular decisions: in one migration, the agent was instructed to leave fields unchanged and annotate them whenever a judgment call was needed~\citep{charas2025honk, edwardsjoseph2026migrations}. Agent-authored changes still required human review in the reported configuration~\citep{curtis2026spotifyqcon}. Delegation therefore varies within the production process rather than being one decision to automate the whole line.
+
+% <!-- point: spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity | Rework, complexity, pull-request size, and incident observations provide a mixed account of system health and verification capacity rather than an activity-only success claim. -->
+
+The production process must also keep pace with the work agents generate. Spotify\textquotesingle s refined rework measure did not rise during the AI ramp-up, while code complexity and pull-request size did; the company kept its thresholds unchanged. Incident retrospectives found no material direct contribution from AI-authored code, yet change volume had grown faster than some verification controls could adapt. One automated dependency upgrade passed its checks and still failed in production~\citep{singer2026quality}. These observations concern different properties and should not be collapsed into a single quality score. Producing more changes has exposed a capacity problem as well as a check-coverage problem.
+
+\section{Shopify}\label{heading:shopify}
+
+Shopify develops a commerce platform through which merchants operate online stores, manage transactions, and run their businesses. Much of its software development occurs in a shared codebase, where changes must coexist with established conventions, services, and security requirements. Shopify has introduced coding agents into this environment, including an internal agent called River that employees invoke through shared Slack channels~\citep{moreno2026river}. The resulting work is visible to colleagues, who can inspect failures and preserve useful lessons in repository instructions and agent skills. Shopify’s case shows how a factory can accumulate engineering knowledge through the observation of agentic work.
+
+% <!-- point: shopify-makes-every-session-observable-organizational-material | Public River sessions let colleagues inspect work and failures, creating opportunities to record knowledge for later sessions without establishing that every failure is watched. -->
+
+River refuses direct messages. An employee starts work by mentioning it in a channel, leaving a public transcript that colleagues can inspect~\citep{moreno2026river}. This makes the work and its difficulties observable beyond the person who initiated it. It does not ensure that every failure attracts attention, but it provides a shared record from which people can identify missing knowledge instead of depending entirely on a later report.
+
+% <!-- point: shopify-mines-sessions-by-hand-and-measured-the-effect | People record missing knowledge in shared files; the reported merge-rate improvement occurred with the foundation model held fixed but does not isolate human learning from environmental changes. -->
+
+People use that record to change what later agents receive. They watch River work, identify what it should have known, and add a skill, revise an \texttt{AGENTS.md} file, or record another reusable instruction in the monorepo~\citep{moreno2026river}. These artifacts sit alongside code, conventions, intent documents, and runbooks. River\textquotesingle s reported merge rate rose from 36 to 77 percent over two months while its foundation model stayed the same~\citep{lutke2026shopfloor}. The report does not isolate the contribution of those changes. Unlike DocAble\textquotesingle s one-engineer account, this mechanism distributes observation and knowledge maintenance across an organization.
+
+% <!-- point: shopifys-instruction-corpus-also-accumulates-maintenance | Shared instructions require upkeep when different agent tools consume different files; repairing that divergence is part of maintaining the engineering environment. -->
+
+The shared knowledge also requires maintenance. Instruction files apply through the monorepo\textquotesingle s directory hierarchy, while different agent tools read different files. Shopify describes divergence between those conventions: a directory can contain instructions for one tool and omit the corresponding file for another, so engineers working on the same code supply different context to their agents~\citep{lutke2026splitbrain, caswell2026agentsmd}. Automation repairs that drift. Recording a lesson has therefore created another engineering artifact whose continued value depends on keeping it available and consistent. The cost follows from the mechanism that makes the knowledge reusable.
+
+% <!-- point: shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim | A failed prompt-stated enumeration requirement motivated code enforcement in a documented security workflow; its admission arrangements and queue-use measurements do not characterize all River work. -->
+
+Some obligations require enforcement rather than instructions. In Shopify's security-remediation workflow, River violated a prompt-stated enumeration requirement and acknowledged the omission in its report. Shopify\textquotesingle s response was to require rules governing vulnerability closure to be enforced in code. The same account describes draft-only agent output, merge authority held by the engineers responsible for the affected code, a merge queue requiring fresh evidence, and a post-merge check that the default branch contains the fix. Its reported increase in queue use, from about 10 to 80 percent, measures adoption of that mechanism rather than the rate at which vulnerabilities escaped~\citep{son2026security}. The controls are described for security work; the account does not establish what evidence ordinary River pull requests must carry or how often they fail in production.
+
+\section{Uber}\label{heading:uber}
+
+% <!-- point: uber-treats-the-factory-itself-as-an-object-of-measurement-and-optimization | Uber treats foundation-model choice, context, orchestration, workflow cost, and reviewer attention as measurable engineering variables. -->
+
+Uber operates a platform for transportation and delivery, supported by software services that coordinate users, providers, transactions, and real-time operations. Its engineering organization must continually maintain and change this large production system. Uber has introduced managed agents to perform development and operational tasks, including CI repair, code review, alert triage, and maintenance. These agents can receive work from people, schedules, or operational signals~\citep{medisetty2026sdlc}. Uber’s case examines the economics of this expanded production capacity: the cost of completing useful work, the evidence required to accept it, and the human and computational resources needed to keep production moving.
+
+% <!-- point: uber-cannot-optimize-the-evidence-or-the-reviewer | Uber describes producer-assembled evidence and layered review with human admission; the public account does not establish independent re-derivation of the evidence or future automatic-approval criteria. -->
+
+Evaluation begins inside the producing agent\textquotesingle s loop, with static-analysis repair, simulator screenshots compared with design specifications, and staging integration. The resulting pull request carries a table of checks and evidence assembled by that agent. The account does not say that independent machinery re-derives every entry~\citep{medisetty2026sdlc}. Additional model-based review, CI, and human approval follow. Uber describes a possible move toward partial automatic approval, but does not publish the qualifying evidence or eligibility criteria~\citep{bond2026ureview}. The reported review layers therefore tell us how evaluation is arranged without establishing the assurance of every proposed change.
+
+% <!-- point: uber-publishes-cost-and-withholds-quality | Review latency exposes finite reviewer capacity; rising fabrication capacity increases demands on supervision and the surrounding production process. -->
+
+Reviewer attention has its own capacity limit. Time to first review rose from three hours in 2024 to nine in 2026 as volume and change size grew~\citep{bond2026ureview}. Like DocAble, Uber must organize supervision around implementation capacity rather than assume that faster production yields faster delivery. DocAble responded by moving recurring checks into machinery; Uber also manages the flow of work into human review. In both cases, increasing fabrication capacity changes the demands on the surrounding production process.
+
+% <!-- point: uber-tunes-the-environment-against-published-numbers | Context delivery, orchestration, foundation-model selection, and outcome-denominated costs make the agent's surrounding production system an object of optimization. -->
+
+Uber evaluates its factory in units of completed work, such as cost per merged pull request, review, alert, or cleanup. These measures connect resource expenditure to production outcomes rather than individual agent operations. Uber adjusts context delivery, tool access, and coordination against those production costs. Real workloads become benchmarks, and foundation models are selected against cost and reliability. Moving deterministic orchestration from repeated agent turns into executable code reportedly cut token use by more than half for common workflows and by more than 90 percent for bulk cases~\citep{medisetty2026factory, medisetty2026sdlc}. Some work is cheaper when executed directly than when repeatedly reconstructed through model interactions. The organization also tracks revert rate, F1, and time to recovery alongside production cost, although the cited accounts do not publish a complete outcome series. Uber also schedules maintenance jobs on Sunday to use spare CI capacity, while separately limiting the diffs engineers must review on Monday~\citep{medisetty2026sdlc}.
+
+\section{Amazon}\label{heading:amazon}
+
+Amazon develops software for commerce and cloud computing, including Amazon Web Services (AWS), whose products depend on large, continuously evolving software systems. Its engineering organizations maintain their own development processes, while AWS also offers Kiro, an agentic development environment that packages specification, implementation, and verification workflows for reuse~\citep{kiro2026specs}. The public accounts considered here show three aspects of factory engineering: how Kiro organizes work from specifications, how an AWS team used agents to rebuild part of a production inference system, and how Kiro’s developers evaluate changes to their own agentic machinery. Together, they illustrate the difference between supplying a production process and engineering its use in a particular project.
+
+% <!-- point: kiro-builds-engineering-artifacts-into-the-harness | Kiro supplies a reviewable specification workflow that adopting teams connect to their own repositories, tools, and engineering decisions. -->
+
+Kiro supplies a reusable workflow for making intent explicit before implementation. A feature specification records user stories and acceptance criteria, develops an architectural design, and divides implementation into tasks that engineers can review~\citep{kiro2026specs}. In MAGE\textquotesingle s vocabulary, these requirements and design artifacts are engineering models. DocAble arranged related work through project-specific work orders and design documents; Kiro makes a specification workflow part of the harness. Adopting it still leaves a team responsible for the content of those artifacts and their connection to its system.
+
+% <!-- point: kiro-connects-requirements-to-tests-and-configurable-controls | Property-based tests provide evidence and configured hooks can enforce selected conditions; coverage and blocking decisions remain project responsibilities. | terms: modeling-principle, alignment-principle -->
+
+The workflow can connect specifications to evidence and enforcement. Kiro\textquotesingle s IDE can extract properties from requirements and generate property-based tests, whose execution is optional by default and whose results are explicitly distinguished from proof~\citep{kiro2026correctness}. Configured hooks can run checks after edits or block tool calls when preconditions fail~\citep{kiro2026hooks}. Engineers must decide which properties matter, whether the tests express them correctly, and where failure should prevent work from proceeding. A supplied workflow makes these connections possible; its presence does not establish that a particular project enabled them.
+
+% <!-- point: amazon-internal-use-adds-team-specific-production-structure | Bedrock's reported use combined Kiro with scoped work, tests, operational tools, and senior review; the twentyfold figure measures normalized commit velocity rather than quality or isolated causal effect. -->
+
+One AWS team makes some of that adopting-team work visible. Six senior engineers rebuilt part of the Bedrock inference engine in 76 days, using small modules, reviewable commit-sized tasks, focused operational tools, tests, end-to-end canaries, and senior inspection of generated code~\citep{kiro2026bedrock}. AWS reports a twentyfold increase in normalized commit velocity, from two to forty commits per developer per week~\citep{sivasubramanian2026frontier}. That is a production-activity measure. It does not establish defect reduction or separate Kiro\textquotesingle s contribution from team selection and workflow redesign.
+
+% <!-- point: amazon-governs-improvements-to-the-harness-itself | Kiro-trace tests proposed harness changes against an unchanged control and regression requirements, with human merge decisions and new checks derived from evaluation failures. | terms: tolerance, governance-conversion -->
+
+Kiro's developers also evaluate changes to the agentic machinery itself. Kiro-trace proposes prompt or tool changes from recorded runs. A separate deterministic gate screens targeted failures, checks regression assertions, and compares candidates with an unchanged control on the full benchmark. It requires gains on selected tasks without losses beyond a specified margin elsewhere; a person decides whether to merge. One apparent improvement was rejected after it proved to be a lucky run. Evaluation mistakes became checks, and confirmed fixes add regression assertions~\citep{kim2026kirotrace}. The same principle applies to the factory's own machinery: proposed improvements require evidence that they help without introducing unacceptable regressions.
+
+\section{GitLab}\label{heading:gitlab}
+
+GitLab develops a software-development platform that brings source control, code review, continuous integration, and deployment workflows into a common environment. Its product is itself part of the software factory used by other organizations: it provides the machinery through which changes are proposed, checked, approved, and delivered---a ``factory in a box.'' GitLab has extended this environment with agents that can perform development and review tasks while operating under existing permissions and workflow controls~\citep{gitlab2026customize,gitlab2026identity}. Its case shows how agentic work can inherit established boundaries on tool use, review authority, and acceptance rather than requiring a separate governance system.
+
+% <!-- point: customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability | GitLab integrates organizational context with CI and permission boundaries, including a security-review flow that cannot approve changes. -->
+
+Repository instructions, chat rules, review skills, CI configuration, and workflow definitions supply different kinds of context~\citep{gitlab2026customize}. For human-triggered flows running on runners, composite identity limits access to the intersection of the service account's and triggering user's privileges~\citep{gitlab2026identity}. Tool-governance rules can also constrain actions; project rules may tighten but not loosen a group rule~\citep{gitlab2026toolgovernance}. The documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. These are distinct functions: instructions inform the work, permissions restrict actions, and the approval boundary reserves a consequential decision.
+
+GitLab\textquotesingle s internal playbook also makes acceptance depend on the surrounding pipeline. Its failing-test-first practice is backed by a CI job that fails when the test count decreases unless an explicit bypass label is present, addressing agents that remove tests to obtain a passing result~\citep{gitlab2026playbook}. A test-count check cannot establish that the remaining tests express the right requirements. It does make one recurring way of evading them consequential at admission.
+
+\section{Siemens}\label{heading:siemens}
+
+Siemens develops industrial technologies and engineering software used to design, simulate, manufacture, and maintain physical products. Its engineering software connects representations of product structure, system behavior, geometry, and manufacturing information across the product lifecycle. Unlike the preceding software-centered cases, the factory examined here concerns the production and evolution of engineered systems whose realizations may include physical artifacts. Siemens is exploring agents that operate through established systems-engineering models, simulation tools, and product-lifecycle management systems~\citep{liu2024agentstudio,siemens2026a3e,haines2026bomagent}. Its case shows how agentic production can build on an existing model-based engineering environment rather than beginning with source code.
+
+Agent Studio research integrates AI agents with SysML v2 models and engineering simulation tools, including Simcenter Amesim. In a reported hybrid-vehicle design example, agents explore candidate architectures, simulate their behavior, and check them against requirements, with an engineer deciding how to proceed at critical points~\citep{liu2024agentstudio}. Related Siemens work connects geometry, physical simulation, and engineering data through a digital thread~\citep{siemens2026a3e}. In Teamcenter, an agent analyzes product structures and proposes bill-of-materials changes; a human confirms updates within existing governance and change processes~\citep{haines2026bomagent}.
+
+These models provide a common basis for design exploration, analysis, and subsequent realization. Correspondence among them need not make every disagreement a blocking event; engineers can retain decision authority while agents and specialized tools perform much of the work. Models of the engineered system, rather than source-code repositories, provide the central organizing representations.
+
+\section{What the Factories Share, and Where They Differ}\label{heading:what-the-factories-share-and-where-they-differ}
+
+% <!-- point: the-factories-place-admission-in-four-different-locations | The cases make different admission arrangements visible and provide uneven evidence; reported activity should not be mistaken for independently established effectiveness. -->
+
+The four factory questions reveal different arrangements for organizing agentic production, not stages along a common path toward autonomy. Across these arrangements, several relationships emerge: who retains authority over consequential decisions, how production capacity is balanced against evaluation and admission, and how engineering knowledge is acquired and maintained. Their primary engineering artifacts also differ: some factories center on source repositories and validation suites, while Siemens works through systems-engineering models and simulations. The organizations differ in where they place engineering judgment, what they permit agents to decide, and which decisions remain with people or independent controls. Their measurements answer different questions: override frequency, veto and correction rates, merge rate, token cost, review delay, and engineering-health indicators cannot be combined into a single ranking of factory effectiveness.
+
+One important difference is where the authority to accept work resides. Cloudflare distinguishes standards that advise reviewers from those whose violations can block a merge, while retaining a recorded human override~\citep{skidmore2026review}. Spotify inserted agents into an existing production process but kept required verification and, in the reported configuration, human review of agent-authored changes~\citep{charas2025honk,curtis2026spotifyqcon}. Shopify's security workflow reserves merge authority to the engineers responsible for the affected code~\citep{son2026security}; GitLab's documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. These arrangements reserve admission authority in different ways, but none treats the producing agent's claim of completion as sufficient authority to admit consequential changes. Process design determines who or what may make the admission decision; tolerance and its evidence determine what that decision must establish.
+
+% <!-- point: supervision-and-verification-do-not-scale-with-production | Production and supervisory capacity can grow at different rates; review delays, workload scheduling, and verification experience make this a process-design concern. -->
+
+Production capacity and supervisory capacity must be engineered together. Uber\textquotesingle s Sunday maintenance schedule would be incomplete without its separate limit on Monday\textquotesingle s review load. Spotify\textquotesingle s ability to generate more changes exposed limits in verification even when its measured rework did not rise. A factory therefore has to organize evaluation and admission alongside realization. Increasing the rate of one stage can shift delay or risk to another; the production system must be assessed through the work it can accept and sustain.
+
+% <!-- point: factories-acquire-engineering-knowledge-through-different-mechanisms | Standards, observed agent work, supplied specification workflows, measured experiments, and construction failures provide different routes for preserving engineering knowledge beyond an individual task. -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+The factories also differ in how they acquire engineering knowledge. Cloudflare turns organizational standards and incident lessons into structured obligations and checks. Shopify makes agent work visible to colleagues, who preserve useful discoveries in instructions and skills. Amazon's Kiro supplies a specification workflow that engineers populate with project-specific decisions, while its internal experiments improve the agentic machinery through measured comparisons. Siemens begins with established systems-engineering models and simulations, using them to organize agentic exploration rather than constructing its engineering representations around coding agents. DocAble developed many of its models and controls in response to failures encountered during construction. Preserving an obligation does not itself make it enforceable: Cloudflare distinguishes advisory standards from blocking controls, Shopify moves selected security requirements into code, and Kiro leaves teams to decide which generated checks should govern subsequent work. In each arrangement, useful engineering knowledge can survive the task that exposed or required it, but the means of identifying, representing, and maintaining that knowledge differ.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+The factories also differ in how they apply the knowledge they preserve. Some representations are primarily interpreted by agents, while others supply inputs to reusable analysis, generation, or enforcement machinery. Cloudflare combines semantic review with deterministic checks; Spotify selects verifiers from repository properties; Siemens uses established engineering models with simulation tools. In DocAble, extending selected models also extends what existing machinery evaluates or enforces. As \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization} established, the semantics of a representation affect which of these arrangements are possible.
+
+% <!-- point: the-inheritance-channel-carries-its-own-maintenance-cost | Shared knowledge and checks require maintenance; the documented revisions show how reusable engineering structure exchanges repeated judgment for upkeep. -->
+
+Preserving engineering knowledge also creates a maintenance obligation. Shopify repairs divergent instructions; Cloudflare revises policy representations and moves suitable checks earlier; Kiro\textquotesingle s improvement experiments acquire new regression assertions. Each preserved lesson can reduce future reconstruction or repeated judgment, but the resulting artifact must remain connected to the work it governs. This is the carrying-cost question from \magevalue{sec:the-software-factory} in operational form. Improvements in foundation models can also change that calculation, as Spotify\textquotesingle s retired judge illustrates; Shopify\textquotesingle s rising merge rate with an unchanged model shows that the surrounding factory can improve independently.
+
+```
+
+### part6/6.2-what-the-theory-predicts.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: What the Theory Predicts -->
+
+\chapter{What the Theory Predicts}
+
+% <!-- point: predictions-fall-into-three-families | Four theoretical propositions connect representation leverage, representation-enabled enforcement, accumulated engineering capital and governable acceleration. -->
+
+\magevalue{sec:toward-a-theory-of-mage} modeled whether delegated work satisfies its intended obligations, what acceptable delivery costs, and how engineering changes the environment available for later work. These models identify quantities to examine. The propositions below state how particular engineering mechanisms are expected to affect them.
+
+A theoretical proposition states a relationship that should hold under identifiable conditions and that evidence could challenge. \autoref{mage-propositions} provides a map of four such claims. We develop their mechanisms and examples before considering what would support or contradict them; \magevalue{sec:research-agenda} develops the corresponding comparisons.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.34}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.38}}@{}}
+\caption[Four propositions of MAGE theory]{\emph{Four propositions of MAGE theory.} Each identifies a predicted relationship and the evidence needed to evaluate it.}\label{mage-propositions}\tabularnewline
+\toprule\noalign{}
+Proposition & Predicted relationship & What a comparison must establish \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Proposition & Predicted relationship & What a comparison must establish \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P1. Representation leverage & Useful representations reduce reconstruction and extend reasoning capacity & Correct delivery and reasoning cost at matched quality, including representation upkeep \\
+P2. Representation-enabled enforcement & Explicit models make selected obligations independently enforceable & Defect escape, false rejection, and correct delivery for adequately covered obligations \\
+P3. Governance conversion and engineering capital & Reusable engineering knowledge improves subsequent work & Later capability and cost relative to local repair or on-demand reconstruction \\
+P4. Governable acceleration & The effects of additional agentic capacity depend on the engineering environment & Capacity-by-environment effects on durable throughput, defect escape, and human attention \\
+\end{longtable}
+}
+
+\section{Proposition 1: Representation Leverage (P1)}\label{heading:p1-representation-leverage}
+
+% <!-- point: p1-representation-leverage | Trustworthy task-relevant representations can reduce reconstruction and extend reasoning reach at matched quality and resources, when their value justifies construction and upkeep. -->
+
+\emph{Proposition 1. Trustworthy, task-relevant representations reduce the reasoning required to complete engineering work at a given quality level and extend the range of work that engineers and agents can accomplish.}
+
+The encoding–realization model in \autoref{6.1-toward-a-theory-of-mage:heading:encoding-and-realization} treats the representation as part of the conditions under which an agent performs a task. A representation can help the engineer state the intended obligations, help the agent fulfill them, or both. It also has a cost. The accounting in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} asks whether the information it preserves saves enough reasoning or enables enough additional work to justify constructing and maintaining it.
+
+\subsection{Why Representations Change Reasoning}\label{heading:why-representations-change-reasoning}
+
+% <!-- point: reconstruction-precedes-reasoning-about-the-question | DocAble’s large-document representation exposes the choice between purchasing more context and reducing what each judgment requires. -->
+
+% Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: implementation
+% <!-- point: context-postpones-but-a-model-changes-the-problem | DocAble’s HTML/CSS export was estimated at roughly 590,000 tokens against a 272,000-token context; windowing and compression reduced the information required for each judgment. -->
+
+% Evidence: E52 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E52.md | kind: historical-report
+Consider an agent asked to remediate a large document. The agent needs information about the document's content and structure, but presenting the entire document may exceed its working context. DocAble encountered this problem in September 2026, when one document's HTML/CSS export was estimated at roughly 590,000 tokens using a characters-divided-by-four heuristic, against a 272,000-token context window. A foundation model with a larger context window was one possible response. Another was to reduce the information needed for each decision. Windowing and whole-document compression reduced the information required for individual judgments. The engineering choice concerned both the available inference capacity and the reasoning burden imposed by the representation.
+
+% <!-- point: the-general-move-presents-consequential-structure | A representation can change the reasoning required, a mechanism established in external-representation research and applied here to maintained engineering models. -->
+
+This is an instance of representation leverage: the representation changes the work required of the reasoner. A dependency graph similarly makes service relationships available without requiring an engineer or agent to reconstruct them from source code. State machines expose transitions, contracts expose obligations, and assurance arguments relate claims to evidence. Research on external representations has long shown that the organization of information changes the effort required to reason with it~\citep{larkin1987diagram, zhang1994representations}.
+
+% <!-- point: a-model-shortens-the-reasoning-path | A useful model can preserve earlier reasoning so that later work begins with the consequential structure, while remaining bounded by its coverage. -->
+
+The benefit can be greater than a reduction in inference cost. A representation may bring a task within the effective reasoning horizon of a human or agent that could not otherwise complete it reliably. The representation must preserve the distinctions needed for the task, however. Compressing a document is useful only if the information discarded is unnecessary for the judgments that follow. A smaller representation that omits a consequential relationship may make reasoning cheaper while making the result worse.
+
+\subsection{Recovering and Inventing Representations}\label{heading:recovering-and-inventing-representations}
+
+% <!-- point: representations-human-designed-induced-and-innovated | Representations can be designed, recovered from existing systems, or invented to expose previously impractical relationships; each requires validation for its claimed use. -->
+
+The proposition does not require engineers to design every representation in advance. \cref{chapter:4.3-brownfield-engineering} showed how engineers and agents can recover consequential structure from existing implementations. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit, leaving engineers to determine whether the observed behavior is the behavior the system ought to have.
+
+Representation innovation goes beyond recovering latent structure. A reasoner may propose a different decomposition, relation, or state space that makes an engineering question tractable, even when that representation was neither supplied by an engineer nor plainly latent in the implementation. A new representation is valuable if it lets us answer an engineering question that was previously difficult or impossible to answer. Drawing a new diagram is not enough. We must show what it helps us understand or do.
+
+% <!-- point: discovery-does-not-confer-trust-a-representation-must-earn-it | Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims. -->
+
+A machine-proposed representation, like any model in \magevalue{chapter:modeling}, claims a relationship to the system. A recovered model can be checked against the implementation it purports to summarize; a genuinely novel abstraction poses the harder question of what evidence establishes that it preserves the distinctions required by its intended engineering use. Correspondence alone is insufficient: a synchronized model may omit the obligations that matter, while a model of intended architecture may correctly disagree with the current implementation.\magefootnote{oracle-overfit}{Automation that optimizes against a visible oracle can satisfy that oracle while violating properties it does not check~\citep{smith2015overfitting}. A recent audit of a coding benchmark likewise identified flawed tests alongside contamination~\citep{openai2026swebench}. Neither fidelity to an artifact nor success against a visible test establishes that the intended obligation was adequately represented.} The stronger the reasoning, assurance, or enforcement built on the representation, the stronger the evidence for its intended use must be.
+
+% <!-- point: p1-representation-leverage-can-fail | Representation leverage is challenged when apparent gains disappear at matched quality/resources or construction, interpretation and upkeep erase them. -->
+
+P1 would be challenged if these representations add interpretation and maintenance work without improving correct delivery, reducing reconstruction cost at matched quality, or extending the scale of work completed. The comparison must include their construction and useful life. More capable agents may reduce the need for some representations by reconstructing the relevant knowledge cheaply; they may also make other representations economical to discover and maintain. The proposition concerns the value of the representation for the work, not the quantity of models an organization accumulates.
+
+\section{Proposition 2: Representation-Enabled Enforcement (P2)}\label{heading:p2-representation-enabled-enforcement}
+
+% <!-- point: p2-representation-enabled-enforcement | Representations can make selected obligations mechanically decidable, while Alignment enforces them independently of producer compliance. -->
+
+\emph{Proposition 2. Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent's compliance.}
+
+The encoding–realization decomposition in \autoref{6.1-toward-a-theory-of-mage:heading:encoding-and-realization} concerns whether an agent fulfills the intended obligations. Alignment introduces a separate decision: whether the resulting work may be admitted. A gate that evaluates an obligation independently can reject a violating realization even if the agent misunderstands or ignores the requirement. This separates the reliability of production from the correctness of admitted work, while adding the evidence, rejection, and repair costs accounted for in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
+
+\subsection{Production and Admission}\label{heading:production-and-admission}
+
+% <!-- point: dependency-model-and-admission-make-distinct-contributions | A dependency model guides production; an independent gate governs which results are admitted, whether or not the producer consulted the model. -->
+
+Suppose an architectural rule forbids a service from depending on a database directly. Giving the agent a dependency model can help it choose a permitted design. A separate gate can compare the resulting dependency graph with the rule and reject a change that violates it. The first intervention helps the agent produce acceptable work; the second governs what is admitted when production goes wrong. The gate can still reject the forbidden dependency even if the agent never consulted the model.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
+DocAble's controlled-mutation interface illustrates the same separation (\autoref{chapter:appendix-a-controlled-mutation}). Reasoning components propose document changes through typed operations that identify their targets and intended effects. A separate applier resolves the current target and applies selected guards before mutation. Those guards act independently of whether the proposing reasoner has checked the corresponding conditions. The typed vocabulary exposes the operation and its obligations; the applier enforces the selected conditions at the point of mutation.
+
+The distinction also explains why equal protection can come at different cost. A producer without the model may repeatedly propose changes that the gate rejects. Supplying the model can reduce these collisions without changing the gate's guarantee. Conversely, a clear model without enforcement still leaves fulfillment dependent on the producer and whatever subsequent review occurs. \autoref{modeling-alignment-quadrants} separates these possibilities.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[The four Modeling × Alignment combinations]{\emph{Modeling and Alignment are separable levers.} Modeling changes the economics and tractability of reasoning; Alignment determines whether the resulting work may be accepted or acted upon. The cells describe their primary contributions, not an exhaustive account.}\label{modeling-alignment-quadrants}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeling ↓ / Alignment →
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No Alignment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeling ↓ / Alignment →
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No Alignment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+No Modeling & Repeated reasoning from a poor surface; residual failure can escape & Covered failure cannot escape, but rejection and regeneration may be expensive \\
+Modeling & Satisfactory realization becomes cheaper or more likely, but residual failure can still escape & Satisfactory realization becomes cheaper while covered failure remains independently blocked \\
+\end{longtable}
+}
+
+% <!-- point: independent-assurance-has-covered-obligations-and-errors | A sound mechanism excludes its covered failure class; practical assurance must also account for scope, false rejection, missed failures and wrong obligations. -->
+
+The strongest assurance claim is local to a covered property. If a sound admission mechanism rejects every violation of that property, admitted work cannot contain that violation, regardless of how often the producer makes the mistake. That does not establish that the property is the right one, that the representation covers every consequential concern, or that the mechanism's implementation is sound. Those remain engineering obligations.
+
+Most assurance is less decisive. Tests can miss failures, validators can reject useful work, and statistical checks can be uncertain. A lower escape rate may simply reflect rejecting more candidates. Comparisons therefore need independent assessment of correct delivery and false rejection as well as escaped failure, with the cost of sustaining delivery included. Independence here concerns the mechanism's ability to act without relying on the producer to obey; it does not mean that every source of error is statistically independent.
+
+\subsection{The Determinization Frontier}\label{heading:the-determinization-frontier}
+
+% <!-- point: representation-can-turn-reconstruction-into-a-predicate | A representation can expose the relation that a repeatable predicate needs, reducing per-instance semantic reconstruction for a covered obligation. -->
+
+Modeling can change which obligations admit such mechanisms. The dependency rule may be difficult to assess by repeatedly asking a reasoner to interpret source files, configuration, and conventions. Once an appropriate model exposes the relevant services and dependency edges, checking the forbidden relation becomes a repeatable predicate. The engineer still has to establish the graph's claimed correspondence with the system; the mechanical check is only as relevant as that correspondence makes it.
+
+% <!-- point: determinization-frontier-defined | The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably — in factory terms, an economic boundary between judgments still bought probabilistically through the production process and properties made durable as tolerances. | terms: tolerance -->
+
+The \textbf{determinization frontier} separates judgments that require fresh interpretation from those that can be evaluated by a repeatable procedure. Alignment can mechanize an obligation that is already decidable. Modeling can change the representation so that a previously difficult judgment becomes decidable, after which Alignment can enforce it (\autoref{determinization-frontier}). This distinction is also economic. On one side are judgments the factory must make repeatedly through probabilistic reasoning; on the other are properties it can evaluate through reusable machinery.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/determinization-frontier-39a0624cba.pdf}
+\caption{\emph{The Determinization Frontier.} Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.}
+\label{determinization-frontier}
+\end{figure}
+
+% <!-- point: determinization-retains-judgment-at-the-boundary | Some judgments yield checkable properties while others remain semantic; the determinization frontier moves through representation and adequate evidence, not assertion. -->
+
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+DocAble illustrates the distinction. Determining what an image means and writing an adequate description require semantic judgment. Once a description is attached to an object in the document model, checking its presence and placement can be mechanical. That check does not establish that the description is adequate. Modeling has made a narrower property decidable, and Alignment can enforce it without repeating the original semantic judgment.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+A representation can also move a family of judgments across this frontier. Recall DocAble's architectural dependency checker. A common representation of permitted dependencies allows one mechanism to evaluate many architectural obligations. Subsequent obligations expressed in the same vocabulary do not require another checker. The investment was in a class of engineering judgments rather than a single judgment.
+
+The frontier does not imply that every judgment can become mechanical. Better representations may improve human or agent evaluation even when no definitive predicate is available. Where a property does become mechanically decidable, the question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
+
+\section{Proposition 3: Governance Conversion and Engineering Capital (P3)}\label{heading:p3-governance-conversion-and-engineering-capital}
+
+% <!-- point: p3-governance-conversion-and-engineering-capital | Useful engineering judgment can become inherited productive capacity, whose return depends on reuse or consequence, propagation, maintenance and continuing fit. -->
+
+\emph{Proposition 3. Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.}
+
+The dynamic model in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} represents the environment available for task \(T_i\) as \(\mathcal{G}_i\). Work during one episode can change the representations, procedures, and controls available for the next. P3 predicts that some of those changes create productive capacity beyond the immediate implementation. Their return depends on what subsequent work can accomplish and on the construction and carrying costs in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
+
+Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of engineering capital.
+
+\subsection{How Engineering Capital Accumulates}\label{heading:how-engineering-capital-accumulates}
+
+We build engineering capital by making things that help with later work. A recurring failure may lead to a validator; an architectural distinction may become a model; an operational lesson may become a procedure. These changes preserve selected engineering judgments in forms that later engineers and agents can use without reconstructing the original reasoning. Engineering capital can also be created deliberately before a failure occurs or transferred from another system.
+
+% Evidence: E57 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E57.md | kind: dated-case-evidence
+Recall DocAble's completed-phase gate (\autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} and \autoref{chapter:appendix-a-governed-delegation}). Repeated dispatch of completed work exposed a missing lifecycle control. The gate checks the recorded completion state before allowing a later assignment to proceed. When its phase-identity extractor misidentified a phase, the gate rejected legitimate work and required correction. The episode exposes both sides of the investment: a reusable check over later work and machinery whose interpretation must itself be maintained.
+
+% <!-- point: capital-enables-work-beyond-defect-reduction | Engineering capital includes reasoning reach, earlier evidence, safer actions and cheaper recovery; fewer repeated defects are only one possible return. -->
+
+The return is broader than defect reduction. An architectural model may let an engineer assess a change that would otherwise be too expensive to understand. A typed operation can make a previously risky mutation routine. A validator can provide evidence earlier, and a recovery procedure can make a failed experiment cheap enough to attempt. In each case, earlier work has changed what later engineers and agents can accomplish, what they must reconstruct, or what risk they must bear.
+
+A record can preserve information without changing what later engineers or agents can accomplish. An engineering asset becomes capital when its reuse provides capability, reduces cost, or controls risk. A useful record can certainly do that; its format does not decide the question. When a model, validator, or procedure preserves the relevant distinction, its benefit need not depend on the continued presence of the engineer who supplied the original judgment. Later work can use the result without reconstructing all the reasoning that produced it.
+
+% <!-- point: capital-transfer-is-partial-judgment-needed-again-on-change | The transfer is partial: capital carries only what it represents, so change requires expert judgment again. -->
+
+The transfer is necessarily partial. Durable structure carries only the judgment it successfully represents or mechanizes. When requirements change, a new failure appears, or the representation itself becomes inadequate, engineering judgment is needed again. Engineering capital changes which questions require fresh expert attention; it does not eliminate expertise.
+
+% <!-- point: governance-conversion-needs-diagnosis-and-authority | Shared learning requires a path from diagnosis to changes in the environment; local fixes and interpersonal memory may leave the original failure class intact. -->
+
+That benefit also depends on how an engineering lesson reaches later work. An engineer who can repair only the current patch may leave the same boundary error for later agents to encounter. Connecting the diagnosis to a shared model and validator makes the distinction available across changes. Authority can be distributed among people, but there must be a way to revise the shared environment.
+
+\subsection*{Reuse Across Tasks and Obligations}\label{heading:reuse-across-tasks-and-obligations}
+
+Engineering capital can earn its return in two ways. A model or control can serve many subsequent implementation tasks, preserving a judgment that would otherwise need to be reconstructed or evaluated repeatedly. Machinery can also serve additional engineering obligations, reducing the work required to extend the governed engineering environment itself.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Recall the architectural checker in \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization}. With a representation of permitted dependencies and a reusable checker available, adding another dependency restriction requires extending the model rather than constructing another checker. DocAble's verification-tier machinery illustrates a related arrangement: modeled facts about another invariant determine the kind of verification artifact the environment requires, although the artifact must still be constructed.
+
+These arrangements have different economics from constructing a separate control for every obligation. The cost of the common machinery can be amortized across both the obligations it governs and the subsequent changes against which they are evaluated. As the system grows, an existing investment can therefore reduce the cost of extending its governance.
+
+This benefit depends on the scope and stability of the modeling vocabulary. An obligation that cannot be expressed adequately in the existing model may require new representations and machinery. Generalizing a mechanism prematurely can also introduce complexity whose maintenance costs exceed the benefits of reuse. The engineering question is which families of obligations justify common machinery.
+
+\subsection{The Return on Engineering Capital}\label{heading:the-return-on-engineering-capital}
+
+% <!-- point: debt-vs-capital-governance-includes-retirement | Debt makes change costly, capital makes it productive; neither is permanent, so governance includes retirement. -->
+
+The analogy to technical debt is intentional.\magefootnote{capital-and-debt}{Storey distinguishes technical, cognitive, and intent debt in AI-assisted software~\citep{storey2026}. A team can accumulate implementation faster than it maintains shared understanding or preserves why the system should behave as it does. Explicit models and evidence can preserve consequential understanding and intent as well as executable checks.} Debt makes future change more expensive; capital makes future change more productive. Neither status is permanent. Models grow stale, checks outlive their purpose, and once-useful constraints begin blocking legitimate work. These are forms of capital depreciation as systems, obligations, and tools change. Governance therefore includes maintenance, reconciliation, and retirement.
+
+% <!-- point: capital-return-includes-construction-carrying-cost-and-comparison | A claim of capital return requires comparable work and full costs; reduced construction cost can move the threshold without guaranteeing a return. -->
+
+Estimating the return on engineering capital requires comparing later work with what the same work would have cost without the asset, under comparable capability, quality, and task conditions. The comparison must include construction and maintenance, the asset's useful life and loss of fit, and the value of human attention. Changing foundation-model capabilities and prices affect both sides: cheaper agents may lower the cost of constructing and maintaining an asset, but also the cost of reconstructing the same knowledge on demand. The investment pays where the value of the work it enables or saves justifies those costs over its useful life. The proposition identifies what must be measured without claiming known coefficients.
+
+% <!-- point: p3-capital-return-can-fail | The capital proposition is challenged when later work gains no useful capacity after construction/upkeep and alternative explanations are accounted for. -->
+
+P3 would be challenged if later work gains no useful capacity over local repair or on-demand reconstruction once the asset's full costs are counted. A decline in recurrence alone is insufficient: the engineer may have become more experienced, or the work may have changed. Reuse by later engineers or agents, including work performed without the originator, provides a stronger test of what the GEE actually preserves. The research agenda returns to how these comparisons can be made.
+
+\section{Proposition 4: Governable Acceleration (P4)}\label{heading:p4-governable-acceleration}
+
+% <!-- point: p4-governable-acceleration | Additional agentic capacity can amplify the fit or inadequacy of the inherited GEE; durable gains depend on representation, assurance and adaptation. -->
+
+\emph{Proposition 4. The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.}
+
+In \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model}, the likelihood of faithful production depends on the task, foundation model, and GEE. \autoref{mage-dynamic-model} relates agentic capacity and that environment to attempted work, realized performance, and subsequent adaptation. P4 predicts an interaction between these inputs: increasing implementation capacity should have different consequences depending on the representations and controls through which it operates.
+
+\subsection{Capacity and Environment}\label{heading:capacity-and-environment}
+
+We can reach a point where agents build more than we can judge. Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection. Where the GEE fits poorly, the same capacity can instead produce more churn, intervention, or escaped failure. Raw implementation activity may rise in either case.
+
+% <!-- point: capacity-amplifies-the-environment-through-its-mechanisms | A capacity increase reaches durable output only through the specific representations and controls that support its task family. -->
+
+To examine this interaction, consider two agents making more changes against the same service boundary. An explicit dependency model may spare both agents repeated reconstruction; a gate may keep the covered architectural violation out of admitted work. Those mechanisms can support a higher rate of acceptable changes. If the model is stale or the gate enforces the wrong rule, more activity can instead multiply the resulting repair and review. The proposition concerns these mechanisms and their fit to the tasks, rather than a blanket advantage for a GEE described as stronger.
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+DocAble provides the motivating case: agentic implementation activity and its environment of models, validators, and operational controls changed together (\autoref{5.2-inside-docables-software-factory:heading:building-the-factory} and \autoref{5.2-inside-docables-software-factory:heading:inside-the-factory}). The case shows how those mechanisms were constructed and used, but does not isolate their effect on throughput or the effect of increasing agentic capacity.
+
+% <!-- point: fit-cannot-be-defined-only-by-success | GEE quality must be assessed separately from outcomes, or a claim that better GEEs perform better is circular. -->
+
+To test that claim, GEE quality has to be characterized independently of the outcomes it is supposed to explain. The four dimensions in \magevalue{sec:toward-a-theory-of-mage} provide questions about representation usefulness, obligation coverage, coherence, and economy. They do not yet supply a validated universal score. Counting checks would be easier, but an overgrown collection of conflicting checks can make the GEE less useful. A comparison must identify which relevant properties differ, then observe what additional capacity does under those conditions.
+
+% <!-- point: capacity-environment-substitution-and-complementarity-remain-open | Whether better environments substitute for raw reasoning capability or complement it is empirical and can vary across obligations and task families. -->
+
+Several outcomes are plausible. A good representation might let a weaker model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
+
+\subsection{When the Work Becomes More Demanding}\label{heading:when-the-work-becomes-more-demanding}
+
+% <!-- point: pressure-does-not-automatically-create-adaptation | Faster failure can reveal structural pressure, but adaptation requires diagnosis and authority; it may also involve retiring machinery. -->
+
+Cheaper implementation can also change how engineers learn. They can build and compare alternatives that were previously too expensive to try, then use the results to clarify what they want the system to do. These trials improve understanding only when the engineer can evaluate their consequences and revise the intended obligations.
+
+Acceleration can also change how quickly inadequacy becomes visible. Failures that would arrive months apart may occur close enough together for an engineer to recognize their common structure. That creates an opportunity for governance conversion, not an automatic learning mechanism. Without diagnostic capacity, the organization may simply produce patches faster. Without authority to change the shared GEE, a correct diagnosis may remain local. Useful adaptation can also be subtractive when the pressure comes from obsolete constraints or duplicated controls.
+
+% <!-- point: new-capacity-reopens-the-frontier | A more capable environment can enable more ambitious work, so progress need not end the demand for engineering judgment. -->
+
+An improved engineering environment may also change which tasks are practical to undertake. A team that can reliably govern ordinary changes may eventually attempt cross-service migrations, larger architectural revisions, or greater concurrency. These changes were previously possible in principle, but their supervision and integration costs may have made them uneconomical. The relevant question is how much work the team can undertake with adequate assurance and acceptable cost.
+
+More ambitious work exposes new demands on the environment. Larger tasks may introduce dependencies, failure modes, and assurance obligations that were absent from smaller work. Improving the GEE can therefore make more ambitious work possible while also creating new reasons to revise it. This is a potential consequence of engineering capital, not a guarantee of indefinite improvement.
+
+% <!-- point: p4-governable-acceleration-can-fail | The proposition requires an interaction between capacity and independently assessed environmental fit, judged by durable outcomes rather than approval speed. -->
+
+P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.
+
+```
+
+### part6/6.3-scope-conditions.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: Scope Conditions -->
+
+\chapter{Scope Conditions}
+
+% <!-- point: scope-conditions-bound-where-theory-applies | The value of explicit engineering and the feasibility of reliable mechanical evaluation determine where different forms of investment are appropriate. -->
+
+Which engineering obligations justify explicit representations and controls, and how far can their evaluation be mechanized? The two questions are related, but their answers need not coincide. An obligation may be easy to check yet too inconsequential to justify maintaining a control. Another may warrant substantial engineering effort precisely because its consequences are serious, even though no mechanical check can settle it. \autoref{return-governability} separates the value of making an obligation explicit from its mechanizability.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/return-governability-5cf809fe48.pdf}
+\caption{\emph{Choosing where to invest in explicit engineering.} The value of making an obligation explicit and its mechanizability suggest four responses, illustrated by examples. Better models and evaluation can increase mechanizability, while cheaper engineering machinery can make investment economical at lower expected benefits. Neither change implies that every obligation should be mechanized.}
+\label{return-governability}
+\end{figure}
+
+% <!-- point: return-from-recurrence-or-consequence | Return can come from repeated use or the consequence of a single failure; either must justify construction and carrying costs. -->
+
+Repeated use is one source of value. A dependency model that serves hundreds of changes may save engineers and agents from reconstructing the same relationships each time. But recurrence is not the only justification: a rare failure with catastrophic consequences may warrant extensive modeling and assurance. At the other end of the scale, a one-off internal naming decision may need no machinery beyond ordinary judgment. Even an easy check has a construction and carrying cost, so the ability to automate does not settle whether automation is worthwhile.
+
+The relevant cost is marginal to the existing engineering environment. An obligation that would not justify constructing a bespoke checker may justify enforcement when it can be added to a model whose obligations are already evaluated by reusable machinery. Conversely, an obligation that requires extending the modeling vocabulary may incur substantial costs even if its evaluation appears simple.
+
+% <!-- point: governability-is-explicit-evidenced-evaluable | Mechanizability concerns reliable mechanical evaluation; consequential obligations can instead require explicit evidence and expert judgment. -->
+
+The figure's other dimension concerns what the available machinery can establish. Schema conformance, permitted dependencies, and some bounded-state properties admit repeatable checks. Other obligations require statistical evidence or expert interpretation. High value therefore supports two different responses: invest in enforcement where reliable checks are available, or invest in explicit evidence and review where judgment remains necessary. Low mechanizability is not a reason to leave a consequential obligation vague. The following examples show why this distinction matters even when the obligation is explicit and legally binding.
+
+% <!-- point: consequence-does-not-imply-governability | Explicit and binding requirements can warrant evidence and structured judgment without admitting a complete mechanical predicate. -->
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING PRACTICE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Hard Obligations, Judgment Calls}
+\label{inset-hard-obligations-judgment-calls}
+An explicit, consequential obligation can still require judgment. Consider a historic building. The Secretary of the Interior\textquotesingle s Standards for Rehabilitation require certified projects to preserve historic character, and new work must be compatible with the historic building in its massing, size, scale, and architectural features. Replacement features may need to match the original design, color, texture, and other visual qualities~\citep{nps-rehab-standards}. These are real requirements that can determine whether a project is approved, but there is no complete test for ``compatible with the historic character.'' Engineers and architects can measure dimensions, identify materials, record features that must be preserved, compare photographs and drawings, and use precedent and design rules. These make the judgment better informed and more consistent. They do not remove the judgment.
+
+Software has the same problem. The Department of Justice\textquotesingle s 2024 accessibility rule generally requires state and local governments to make their web and mobile content conform to \magevalue{doj_technical_standard}, including conventional electronic documents where the criteria apply~\citep{doj-web-accessibility-2024}. Many resulting requirements can be checked mechanically, but the rule also permits an alternative technique when it provides ``substantially equivalent or greater accessibility and usability.'' Whether it does so can depend on the information and functionality preserved, the users and tasks involved, and the barriers the alternative introduces. DocAble sits on this boundary. It can mechanically check many properties that its document models make observable and use probabilistic models for semantic work such as interpreting figures and generating descriptions. But neither proves that every blind student will receive a substantially equivalent experience from every remediated document. Some judgment remains.
+
+Both examples involve explicit, consequential obligations that still require judgment. Engineering can improve those judgments by recording relevant properties, mechanizing the portions that admit reliable checks, and gathering evidence for the rest. Better models and measurements may gradually make more of the obligation mechanically evaluable. More capable agents may also become useful participants in the remaining judgments, provided their reliability is adequate for the consequences. Neither development removes the need to decide what evidence is sufficient.
+\end{bookbox}
+
+% <!-- point: ci-lowers-the-cost-of-explicit-structure | Lower construction and maintenance costs can make explicit engineering worthwhile at lower recurrence or consequence. -->
+
+Commodity intelligence can change this investment decision in two ways. Agents can lower the cost of constructing and maintaining models, validators, and other engineering machinery, making an investment worthwhile at lower recurrence or consequence. Better representations, instrumentation, and evaluation can also make selected parts of a judgment mechanically checkable. These are different gains: cheaper machinery can justify more investment without changing what can be established, while a better representation can expose a property that existing machinery can evaluate. The determinization frontier in \magevalue{sec:what-the-theory-predicts} describes the latter possibility.
+
+% <!-- point: movements-need-not-end-in-formalization | Explicit engineering can improve residual judgment, while changing requirements and circumstances reopen previously settled questions. -->
+
+Neither gain implies that engineering should converge on complete specification. Some questions concern a design still being discovered: which abstraction matters, which tradeoff users will accept, or which failure will dominate in operation. Implementation can supply evidence that changes the specification. A question settled today may also reopen as users, dependencies, workloads, regulations, or adversaries change; software evolution continues around individual episodes of realization~\citep{lehman2003evolution}. Prematurely fixing the obligation can make the wrong target easier to optimize. Explicit representations should help engineers distinguish what can be governed adequately now from what still needs investigation.
+
+% <!-- point: authority-connects-diagnosis-to-the-shared-environment | The organization must connect a structural diagnosis to authority over the shared environment; source ownership is neither necessary nor sufficient. -->
+
+The remaining condition is organizational. A diagnosis improves later work only if it can change the engineering environment. A contractor may identify a recurring failure without permission to revise the client's development pipeline; a packaged agent system may accept task instructions while preventing changes to its underlying controls. Full source-code access does not itself confer governance authority, and ownership of the software is not necessary to exercise it. Authority can be distributed across an organization, but there must be a path from diagnosing a structural problem to revising the relevant model, control, or procedure.
+
+% <!-- point: scope-beyond-software-is-a-conditional-generalization | Transfer requires purposeful representations, credible correspondence, adequate evidence and authority; Chapter 7 examines variation across domains. -->
+
+These conditions also frame the possible transfer beyond software. Other disciplines differ in the obligations they must satisfy, the evidence available, and the authority needed to govern work. \magevalue{chapter:profession} examines those differences. Within software engineering, the immediate question is how to test the relationships proposed here.
+
+```
+
+### part6/6.4-research-agenda.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: Testing the Theory -->
+
+\chapter{Testing the Theory}
+
+% <!-- point: comparisons-test-propositions-and-guide-investment | Shared measurements and experimental designs support tests of all four propositions and decisions about engineering investment. -->
+
+The theory developed here began with one longitudinal study, supplemented by the industrial accounts examined in \magevalue{chapter:software-factories}. The preceding sections have used that evidence to develop four propositions about representation, enforcement, engineering capital, and agentic capacity. Testing those propositions requires comparisons across tasks, systems, engineering environments, and agents, including observations that might contradict the predicted relationships.
+
+The comparisons also matter to engineering practice. The organizations examined in \magevalue{chapter:software-factories} differ in the knowledge they preserve, the controls they enforce, and the capabilities available to them. A useful representation in one environment may duplicate knowledge already available in another; a new validator may reduce costly failures or merely add friction. Measuring these effects can guide which parts of MAGE an organization adopts, where it invests next, and when an existing arrangement should be reconsidered. This section develops the measurements, experimental designs, and engineering decisions that follow from the four propositions.
+
+\section{Measuring Engineering Progress}\label{heading:research-measuring-engineering-progress}
+
+Lines of code, commits, and token expenditure cannot by themselves establish engineering progress. Agents can produce large quantities of code with little human effort, while substantial engineering work may produce no code. Tokens measure resources consumed: Agarwal and colleagues found wide variation in token expenditure across weeks with similar commit counts, and engineers reported using agents for analysis, research, and planning as well as implementation~\citep{agarwal2026tokens}.
+
+\autoref{engineering-measures} distinguishes candidate measures of implementation, engineering models, the GEE, and engineering activity. Model-based engineering offers relevant precedents in its measures of model maturity, traceability, verification, rework, and engineering effort~\citep{garcia2021modelproductivity,henderson2023digitalmetrics,campo2023mbse}. These categories describe different aspects of output, capability, and activity; they are not components of a prescribed productivity score.
+
+The number of obligations served by a reusable mechanism describes its reach; the effort required to add another obligation describes the cost of extending it. Obligations differ in complexity and consequence, so neither their count nor an obligations-per-mechanism ratio establishes productivity.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.20}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.54}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.26}}@{}}
+\caption[Candidate measures of agentic engineering]{\emph{Candidate measures of agentic engineering.} Implementation measures describe changes to the product; modeling measures describe explicit engineering knowledge; GEE measures describe the machinery supporting controlled change; activity measures describe resources consumed and work performed. Examples are illustrative rather than exhaustive.}\label{engineering-measures}\tabularnewline
+\toprule\noalign{}
+Measurement target & Candidate measures & What they characterize \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Measurement target & Candidate measures & What they characterize \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Implementation & LOC added, deleted, or retained; code churn; commits and merged changes; completed features; escaped defects; rework; accepted changes per unit time & Product change, delivery, and durability \\
+Engineering models & Model elements or size; model maturity; represented requirements and properties; model coverage; relationships across views or abstraction levels; traceability completeness; properties analyzed or validated & Explicit engineering knowledge, relationships, and evidence \\
+Governed engineering environment (GEE) & Number and coverage of constraints, sensors, and gates; obligations with independent checks; modeled obligations served by reusable mechanisms; marginal effort to establish enforcement for an additional obligation; model–implementation correspondence; violations detected or blocked; false rejections; human interventions; control maintenance cost; changes admitted without human inspection & Capacity to direct, evaluate, and govern implementation \\
+Engineering activity and resources & Agent invocations; tokens consumed; inference expenditure; agent execution time; human engineering and review time; dispatches; retries; tool calls; validation runs & Work performed and resources consumed \\
+\end{longtable}
+}
+
+The categories need not move together. A migration may change thousands of lines while preserving externally visible behavior. A model can make an architectural obligation explicit without changing the implementation; a gate can prevent violations without adding a feature. Conversely, an agent may complete substantial implementation without improving the environment. The engineering question determines which measures matter: accepted changes for implementation capacity, represented properties and analyses for Modeling, or coverage and intervention for Alignment.
+
+Durability also has more than one object. Product functionality may survive subsequent changes, while a model continues to answer consequential questions or a control remains effective as the system evolves. These are different forms of durable engineering progress. Their size alone does not establish their value; subsequent use and the costs of sustaining that use matter.
+
+\autoref{theory-experimental-comparisons} relates these measures to the four propositions. Each comparison holds the proposed intervention against an alternative that could plausibly work.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.20}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.45}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.35}}@{}}
+\caption[Comparisons that distinguish MAGE's proposed effects]{Four comparisons connecting the theoretical propositions to observable outcomes.}\label{theory-experimental-comparisons}\tabularnewline
+\toprule\noalign{}
+Proposition & Comparison & What to measure \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Proposition & Comparison & What to measure \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Representation leverage (P1) & Structured representation versus prose containing the same obligations; separate elicitation comparison & Correctness, obligation completeness, and reasoning cost \\
+Representation-enabled enforcement (P2) & Model-derived enforcement versus producer guidance alone, with existing checks held fixed & Escape, false rejection, rejection cost, and correct delivery \\
+Governance conversion and engineering capital (P3) & Local repair or on-demand reconstruction versus reusable models, procedures, or controls & Later capability, recurrence, and full cost, including construction and upkeep \\
+Governable acceleration (P4) & Agentic capacity crossed with specified representations, controls, or evidence pipelines & Durable throughput, defect escape, and human attention \\
+\end{longtable}
+}
+
+Independent assessment of accepted work and the lifecycle accounting in \magevalue{sec:toward-a-theory-of-mage} provide a common basis. Comparisons must include failed attempts, repair, human attention, and upkeep, report unresolved requests, and use declared quality requirements and evaluation horizons. This permits an early construction cost to be compared with later savings without concealing work that was never delivered.
+
+\section{Designing the Comparisons}\label{heading:research-designing-the-comparisons}
+
+\emph{Controlled comparisons} hold tasks, acceptance criteria, and relevant resources fixed while varying an intervention. Random assignment and repeated trials, where feasible, help distinguish its effect from differences among tasks and agent executions. The mechanism under test must not be the sole judge of whether its results are acceptable. All conditions need independent outcome assessment.
+
+\emph{Factorial comparisons} vary factors independently to reveal their interaction: a representation may substitute for a stronger reasoner, or become more useful when a stronger reasoner can exploit it. Crossing these factors distinguishes their individual effects from changes in the value of one when the other is present.
+
+\emph{Longitudinal comparisons} follow the introduction, reuse, maintenance, and retirement of engineering assets. Staged introductions across comparable subsystems or teams can help distinguish an intervention from changes already occurring over time. Such studies are needed when an investment changes later work rather than merely the next task. Teams, task families, or repositories within one organization can supply comparisons, provided differences in difficulty, personnel, obligations, and existing engineering knowledge are accounted for.
+
+GEE conditions should differ in specified representations, controls, or evidence pipelines, with their adequacy assessed independently of the measured outcomes. The dimensions established in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} guide that characterization. A condition cannot be called better simply because it produces better results. Each study can begin with a particular engineering problem, such as repeated reconstruction or expensive review, and use the relevant proposition to identify the relationship to test.
+
+\section{Testing Representation Leverage (P1)}\label{heading:representation-engineering}
+
+\emph{Hypothesis H1 (Representation leverage). For tasks requiring substantial reconstruction of engineering knowledge, task-relevant representations reduce the cost of obtaining results at matched, independently assessed quality relative to less informative or less usable representations.}
+
+% <!-- point: natural-language-descriptions-are-models-so-compare-against-strong-baselines | Compare structured representations with equivalent prose to isolate form; study elicitation separately to learn whether engineers encode better obligations. -->
+
+One experiment compares a structured representation with prose containing the same obligations, holding the task, foundation model, tools, and admission mechanism fixed while varying representation form. Measure correct delivery, attempts, reconstruction effort, inference cost, and human interpretation or repair. Include construction and maintenance over the declared horizon. This tests fulfillment under the same encoded obligations. If structured models consistently add cost without improving accepted delivery, H1 would be weakened for those task families.
+
+A separate elicitation experiment should test whether structured representations help engineers discover or express obligations they would otherwise omit. Engineers could receive the same problem and background evidence but use different representational forms; independent domain assessment would examine the resulting obligations before realization. This tests the encoding contribution without assuming that treatments begin with equally complete specifications. The two experiments distinguish a useful form from additional information supplied only to one condition.
+
+% <!-- point: experiment-compares-authored-induced-and-innovated-representations | Compare designed, recovered and invented representations using independent correspondence evidence and held-out engineering questions, including costs and later benefit. -->
+
+Further experiments can compare engineer-designed representations, representations recovered from implementation, and agent-proposed abstractions, using raw implementation as a common baseline. Recovery should expose consequential structure already present; innovation should make useful relationships available that existing representations do not. Held-out engineering questions and failures can test usefulness beyond the demonstration. Assess claimed correspondence independently, along with human comprehensibility, reconstruction cost, reasoning success, and maintenance. The comparison should also ask whether the structure is more economical to retain or reconstruct when needed.
+
+% <!-- point: representation-has-oversight-value-beyond-realization | Representation studies should test effects on human engineering decisions as well as production; the review experiment under P4 examines one such use. -->
+
+Representations can also change human engineering decisions. The review experiment under P4 examines whether models and evidence help engineers judge the growing volume of agent-produced work.
+
+\section{Testing Representation-Enabled Enforcement (P2)}\label{heading:research-representation-enabled-enforcement}
+
+\emph{Hypothesis H2 (Representation-enabled enforcement). For obligations that admit reliable independent checks, binding those checks to admission reduces the escape of covered violations relative to relying on the producing agent's compliance.}
+
+% <!-- point: fixed-gate-comparison-and-factorial-extension | Crossing producer access to the model with independent enforcement separates effects on fulfillment from effects on admission, including their costs and interaction. -->
+
+A four-condition experiment crosses producer access to the model with independent enforcement of its obligations. Hold the task, producer, existing checks, and independent acceptance criteria fixed. Giving the producer the model may change the likelihood of a satisfactory candidate; adding a validator and gate may change which candidates are admitted. Measure correct delivery, covered violations in proposed and admitted work, false rejection, rejected attempts, repair, and human review. This separates improved production from improved admission and exposes the cost of achieving either.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
+
+DocAble's controlled-mutation interface suggests a concrete test: vary whether a reasoner receives the typed-operation model and whether an independent applier enforces selected guards. Evaluate the resulting mutations independently. A reduction in escaped failures could otherwise conceal a mechanism that rejects most work, while apparent compliance with the guards could conceal obligations they do not cover.
+
+For a sound gate over a covered property, exclusion follows from its assumptions. Trials can expose violations of those assumptions and measure practical coverage and cost; they cannot by themselves prove universal soundness. H2 would be weakened if the added enforcement does not reduce covered escape, while false rejection or disproportionate repair could make the intervention economically unattractive even when it does. Semantic obligations outside the check's scope remain part of the independent assessment.
+
+\section{Testing Governance Conversion (P3)}\label{heading:governance-and-engineering-capital}
+
+\emph{Hypothesis H3 (Governance conversion). Preserving consequential engineering judgments in reusable models, procedures, instructions, or controls reduces repeated reconstruction, failures, or human intervention during subsequent comparable work relative to local repair or on-demand reconstruction.}
+
+% <!-- point: event-centered-design-tests-conversion-and-propagation | Following a failure class can reveal inheritance, but comparisons with local repair or later work without the originator are needed to distinguish conversion from learning or changed tasks. -->
+
+An event-centered longitudinal study follows a failure class from first occurrence through diagnosis, local repair, any durable conversion, later reuse, and maintenance or retirement. Record what the intervention enables as well as which failures recur: a model may make larger changes tractable, while a procedure may let another engineer handle an exception. Instructions qualify when their later use and effects can be observed; conversion need not produce an executable gate.
+
+A decline in recurrence alone cannot establish its cause. The engineer may have become more experienced, or the work may have changed. Compare similar work receiving local repair or on-demand reconstruction, and observe whether benefits persist without the originating engineer. Continued benefit under new personnel or agents is evidence that the environment preserves useful judgment. Repeated dependence on the originator would weaken that interpretation. Across organizations, the same design can examine how authority connects local diagnosis to changes in the shared environment.
+
+% <!-- point: capital-measurement-includes-upkeep-retirement-and-attribution | Capital comparisons require full cost and continuing fit, and must account for shared or interacting assets instead of assigning every gain to the newest control. -->
+
+Measure construction, carrying cost, and reconciliation or retirement as assets lose fit. Several assets may contribute jointly: a model, typed operation, and admission check can reinforce one another. Estimate their return as a bundle or allocate shared costs and gains explicitly. H3 concerns subsequent capability; whether that gain justifies its cost is a further comparison. An asset may reduce recurrence yet cost more than local repair, making continued investment unwarranted.
+
+A further comparison can examine reuse across obligations. Construct separate checks for an initial population of architectural obligations in one condition, and a common model and reusable checker in another. Subsequently introduce additional obligations of the same kind. Measure the effort required to represent and enforce them, the adequacy of their enforcement, and the maintenance costs of both arrangements. This comparison would test whether the initial investment in common machinery reduces the cost of extending the GEE, rather than merely reducing the cost of evaluating existing obligations.
+
+\section{Testing Governable Acceleration (P4)}\label{heading:capacity-and-environment}
+
+\emph{Hypothesis H4 (Governable acceleration). Increasing agentic capacity yields larger gains in durable throughput when the engineering environment adequately represents and governs consequential obligations than when those obligations remain implicit or unenforced.}
+
+% <!-- point: crossed-capability-and-environment-design-tests-substitution | Cross agentic capacity with independently characterized GEE conditions over matched tasks to distinguish substitution, complementarity and negligible effects. -->
+
+A factorial study crosses foundation-model capability or the number of concurrent agents with specified environmental changes. Vary these forms of capacity separately so their effects remain distinguishable. Unlike P3's study of inheritance over time, this comparison asks how the same capacity increase performs under different arrangements. Measure correct admitted work, escape, intervention, and lifecycle cost over a common horizon.
+
+% <!-- point: independently-assessed-gee-conditions-ground-comparison | A dependency model and admission check can be assessed for correspondence and coverage before both conditions receive the same independent outcome evaluation. -->
+
+One experimental arrangement would compare agents working with source files and ordinary review against agents supported by a validated dependency model and independent admission checks. This tests the combined effect of the representation and enforcement arrangement; the preceding experiments distinguish their individual contributions. The environments use the same codebase, task population, and production tools; assess the dependency model's correspondence and the check's coverage before measuring outcomes. Both conditions receive the same independent outcome assessment. Equivalent gains from added capacity, or gains favoring ordinary review, would challenge H4 under these conditions. Other task families require other specified investments. These comparisons can reveal substitution between environment and model capability, complementarity, or little environmental contribution without constructing an aggregate GEE score.
+
+% <!-- point: environment-investment-may-dominate-marginal-reasoner-gains | The author conjectures that better environments may offer greater marginal value than stronger reasoners for some task classes; this crossover is not established by controlled evidence. -->
+
+Where should we spend the next increment of effort or money? I expect improving the engineering environment eventually to offer a greater marginal return than upgrading the reasoner. Indeed, I suspect we have already reached that point for some classes of software-engineering work. The experiments would test this conjecture by comparing investment in more capable agents with investment in the conditions under which they work, including the costs of each arrangement. Repeating the comparison as tasks and GEEs evolve would show whether any advantage persists.
+
+% <!-- point: human-review-compares-fixed-attention-and-misleading-evidence | Compare review surfaces at equal time budgets with access to code, including false reassurance from incorrect obligations or stale evidence. -->
+
+Human review deserves a direct comparison within this design. Give engineers the same review-time budget, but vary whether they begin with code or with changed models and verification evidence, retaining access to code when needed. Include cases where a passing check rests on an incorrect obligation or stale evidence; a reassuring display can make the wrong decision easier. As agent output increases, measure whether engineers still distinguish acceptable changes from faulty ones and how much correct work is admitted. Faster approval alone would not support P4 if more violations enter the system.
+
+\section{Engineering Routing}\label{heading:research-optimizing-the-engineering-environment}
+
+% <!-- point: engineering-routing-chooses-the-production-arrangement | Engineering routing chooses representations, process and assurance as well as the reasoner; a policy can adapt those choices and invest in the GEE. -->
+
+Suppose we have another hour to spend on a difficult change. Should we use it to improve a model, strengthen a check, or let the agents write more code? If the change spans several services, a dependency model may help the agents understand its effects; an admission check may catch a mistake before it reaches production. Either takes effort that could have gone into implementation, but it may also help with the next change. The preceding experiments could inform this choice by showing what each investment achieves and what it costs.
+
+This broader choice is \textbf{engineering routing}. Model routing selects a reasoner for a task; engineering routing selects the representation, reasoner, tools, iteration, and admission mechanisms through which the task will be realized. It also allows investment in the engineering environment itself. These decisions are coupled: a representation may make a cheaper reasoner sufficient, or support a check that changes how the result can be admitted. A routing decision may therefore favor stronger inference, more explicit structure, or a deterministic operation when the task is sufficiently specified.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of an invariant to determine the kind of verification artifact required. The policy does not solve the general engineering routing problem developed below. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
+
+% <!-- point: engineering-investment-is-a-constrained-sequential-decision | An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes. -->
+
+The cost model in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} lets us compare what different arrangements cost. Routing asks which arrangement to choose now, knowing that the choice can change the cost of later work. Saving money by delivering too little, accepting inadequate evidence, or demanding more review than engineers can provide would not solve the problem. The optimization below makes these requirements explicit alongside the expected total cost. It describes the decision we want to make; it does not yet tell us how to make it.
+
+Let \(\pi\in\Pi\) be an engineering policy selected from the policies available to the engineer. At episode \(i\), the policy selects an arrangement and engineering actions \(a_i\) based on the available environment \(\mathcal{G}_i\) and evidence. For a declared task sequence and a horizon of \(H\) engineering episodes, one formulation is
+
+\[
+\begin{aligned}
+\min_{\pi\in\Pi}\quad& \mathbb{E}_{\pi}\left[\sum_{i=1}^{H} C_i\right]
+&&\text{total cost}\\
+\text{subject to}\quad& \mathbb{E}_{\pi}[D_H]\ge D_{\min}
+&&\text{delivery}\\
+& \mathcal{A}(\pi,H)=\text{acceptable}
+&&\text{assurance}\\
+& \mathbb{E}_{\pi}[A_H]\le A_{\max}
+&&\text{human attention}\\
+& \mathcal{G}_{i+1}=f(\mathcal{G}_i,a_i)
+&&\text{environment evolves}.
+\end{aligned}
+\]
+
+The objective minimizes expected total cost over the horizon. \(C_i\) includes production, checking, repair, valued human attention, and the construction or maintenance of reusable engineering machinery attributable to episode \(i\). Charge initial construction to the first episode and allocate shared costs once across the horizon. The expectation is over outcomes under policy \(\pi\).
+
+The constraints express what cost minimization alone would miss. \(D_H\) counts independently assessed correct admitted delivery, and \(D_{\min}>0\) is the required minimum. \(A_H\) is total human attention over the horizon, measured in a declared unit such as engineer-hours; \(A_{\max}\) bounds its expected use. Human attention is both a valued cost and a limited resource, so the constraint does not add a second charge. The assurance condition \(\mathcal{A}(\pi,H)\) is a declared predicate over the engineering arrangement and its outcomes, rather than a single numerical risk measure. It may combine invariants, probabilistic failure bounds, and required human authorization.
+
+Expected delivery alone permits substantial variation in outcomes. Where commitments require stronger guarantees, that condition can be supplemented by a minimum-delivery probability. Separate obligations for particular requests or task classes may also be needed: a policy could otherwise meet an aggregate delivery target by completing only easy work. These requirements depend on what the organization must deliver and which failures it can tolerate.
+
+The final relation describes the system's dynamics for \(i=1,\ldots,H\): engineering work changes the GEE available to later tasks. Constructing a model or validator incurs an immediate cost but may reduce future inference, repair, or review. Conversely, adding machinery that becomes obsolete or conflicts with existing controls can make later work more expensive. Engineering routing must therefore account for the environment its decisions leave behind, rather than choose the cheapest arrangement for each task in isolation.
+
+% <!-- point: optimal-investment-is-unknown-and-conditions-move | The policy, costs and GEE transitions are uncalibrated; changes in foundation models, tasks and obligations can change which engineering investments pay. -->
+
+We do not yet know enough about how representations, controls, and agent capabilities affect engineering cost and quality to solve this problem generally. The experiments proposed in this section would begin estimating those relationships. Their results could help engineers decide when to invest in reusable structure, when to rely on more capable inference, and when consequential decisions require human judgment. As foundation models, engineering environments, and obligations change, those decisions may need to be revisited.
+
+```
+
+### Before MBSE-scale revision: book/latex/sources/part7/7.2-software-rejoins-engineering.tex
+
+```latex
+% mage-auto-heading: engineering-through-representations
+% mage-auto-heading: why-software-often-modeled-differently
+% mage-auto-heading: model-first-engineering-as-one-point-in-the-methodological-spectrum
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Profession -->
+
+% <!-- chapter-title: Back to Models, but Not Back to Waterfall -->
+
+\chapter{Back to Models, but Not Back to Waterfall}
+
+MAGE asks engineers to invest deliberately in models, specifications, and controls while delegating more implementation to agents. Does that mean software engineering is returning to waterfall: specifying the system in advance, then handing the specification to a fabricator? The resemblance is understandable. Much of software engineering\textquotesingle s history has involved moving away from the expectation that a sufficiently complete design could precede implementation. Yet the iterative development examined in \magevalue{chapter:one-problem-many-models} showed the opposite of a fixed handoff: implementation exposed missing knowledge, models were revised, and recurring failures changed the engineering environment inherited by later work.
+
+The distinction is between working through models and requiring models to settle the implementation before work begins. Engineers have long used representations to make consequential decisions without expecting those representations to describe every detail of the finished artifact. Software engineering developed a different balance because code itself served as an unusually powerful representation and because maintaining additional models imposed costs. Commodity intelligence changes those costs. To understand what MAGE changes, and what it inherits, we need to examine why software engineering historically organized representation and implementation differently from other engineering disciplines.
+
+\section{Engineering Through Representations}\label{heading:engineering-through-representations}
+
+% <!-- index-def: universal-language -->
+
+The account of Modeling in \magevalue{chapter:modeling} belongs to a much older engineering practice. Civil, mechanical, electrical, aerospace, and systems engineers work through load models, schematics, state-space models, simulations, drawings, and analyses. Models are the building blocks of engineering.\mageaside{Here I mean model in the broad sense developed in \magevalue{chapter:modeling}: a purposeful reduction that preserves distinctions needed for some question. The claim is close to axiomatic under this book\textquotesingle s definition of Engineering. A consequential system sufficiently simple to understand and direct without reasoning through reduced representations does not present the complexity for which engineering, in this sense, is required.} A circuit schematic is not a circuit; a finite-element model is not a bridge; a process-flow diagram is not a refinery. Each representation preserves selected properties of the system while omitting others. In physical engineering, where fabrication can be expensive or irreversible, these representations allow engineers to evaluate designs before committing to realization. A structural model can answer a loading question before concrete is poured; circuit simulation can expose a design error before a mask set is fabricated.
+
+\textbf{The common engineering move is simple: ask the question over the cheapest representation that preserves the property you care about, then use evidence to justify realization.} Mature engineering still uses prototypes, experiments, and direct inspection. Models do not replace the artifact. They organize the reasoning around it.
+
+% <!-- point: software-makes-the-same-move-through-its-own-traditions | Requirements engineering, architecture, type systems and intermediate representations, formal methods, and model-driven approaches are software's own manifestations of one engineering move: represent the property at a level where it can be reasoned about. -->
+
+Software makes the same move through its own traditions. Requirements engineering externalizes obligations. Architecture exposes consequential structural relationships. Type systems and intermediate representations make selected program properties explicit. Formal methods construct representations over which stronger claims can be established. Model-driven and model-based approaches go further and make selected models primary engineering artifacts. These traditions differ substantially, and they share one move: represent the property at a level where it can be reasoned about.
+
+The medium varies; the purpose does not. The analysis serves a decision. Salado makes this point directly by treating engineering as disciplined decision-making under uncertainty and competing objectives, rather than technical problem solving alone~\citep{salado2026}. Engineers model, calculate, measure, and experiment because consequential choices must be made: which design to pursue, what evidence to gather, which tradeoff to accept, or whether the resulting system is fit to proceed. A model earns its place when it stands in service of such a decision.
+
+\section{Why Software Often Modeled Differently}\label{heading:why-software-often-modeled-differently}
+
+Software engineering did not reject models in favor of iteration. Its economics made implementation itself an unusually attractive surface for engineering reasoning.
+
+Software engineering already combines explicit obligations with rapid iteration. Test-driven development, for example, states an expected behavior in a test before implementing it, then revises the implementation through repeated test–code–refactor cycles~\citep{beck2003tdd}. Specifying an obligation before implementing it is not the same as specifying the entire system before development begins. Likewise, agile methods do not dispense with planning. They favor delivering useful results early, learning from them, and revising subsequent plans as evidence accumulates~\citep{agile-principles2001}.
+
+\textbf{Software realization was extraordinarily cheap; detailed design and implementation labor were not.} Once source code existed, another compilation, execution, or copy of the program could usually be produced at negligible marginal cost. Producing, understanding, debugging, and changing that source consumed skilled engineering labor. The source was already a precise, executable representation through which engineers reasoned about the system.
+
+% <!-- point: code-carried-representation-and-realization-at-once | Software design and implementation have historically been tightly coupled: the artifact handed to the compiler is itself the product of an iterative design process, so code served as realization, executable specification, and the primary surface for further reasoning. -->
+
+That blurred a distinction the older disciplines could make more cleanly. A structural engineer reasons through a design before concrete is poured; a semiconductor designer simulates a circuit before fabrication. In software, the artifact handed to the cheap realizing mechanism, the compiler, is itself the product of an iterative design process. Reeves made the strongest version of this argument by calling source code the final software design. MAGE does not require that full claim. It requires only the narrower one: \textbf{software design and implementation have historically been tightly coupled, and code has served simultaneously as realization, executable specification, and a primary surface for further reasoning.}\mageaside{Jack W. Reeves\textquotesingle s "code is design" argument~\citep{reeves1992whatissoftwaredesign} is a useful historical extreme; MAGE relies only on the narrower claim that software design and implementation have traditionally been tightly coupled.}
+
+Code\textquotesingle s malleability then works against the engineer as a system evolves. Architecture, intent, constraints, and operational knowledge can stay implicit in an artifact whose structure keeps changing, and the system stays executable long after the knowledge needed to govern it has become hard to recover. The disciplines named in the previous section exist partly to hold that knowledge where continual change cannot quietly erase it.
+
+Those secondary models faced an unusual economic test. The implementation was already precise, executable, and immediately available, while an architectural, behavioral, or process model imposed an additional correspondence burden. A model could be useful when authored and misleading after the implementation moved beyond the relation it claimed. Many projects therefore kept such representations thin unless their communication, reasoning, or assurance value repaid that standing synchronization cost.
+
+% <!-- point: commodity-intelligence-moves-the-price-ratio | Commodity intelligence lowers the labor of realizing software and parts of the labor of deriving, updating, reconciling, and checking additional representations, so implementation and live modeling become cheaper together and model-mediated software engineering reaches surfaces the synchronization tax once excluded. -->
+
+Commodity intelligence changes both sides of that ledger. It lowers the skilled labor required to realize and revise software, and parts of the labor required to derive, update, reconcile, and check additional representations. \textbf{Implementation and live modeling can become cheaper together}, making model-mediated software engineering economical over surfaces where the synchronization tax once exceeded its return. The construction and carrying costs examined in \magevalue{sec:scope-conditions} still determine where that investment pays.
+
+% <!-- point: the-separation-is-not-absolute | Deployed software determines realized behavior; models can express intent, constrain implementation, or supply executable abstractions without displacing implementation as an engineering artifact. -->
+
+Implementation remains the final authority on what the software actually does. Models may describe intended behavior, constrain implementation, or supply executable abstractions, but the deployed system determines its realized behavior. Some properties are therefore most naturally reasoned about through implementation itself. What changes is that code need no longer bear the whole burden of being the realization, the repository of system knowledge, and the surface over which engineering reasoning occurs.
+
+\section{Model-First Engineering as One Point in the Methodological Spectrum}\label{heading:model-first-engineering-as-one-point-in-the-methodological-spectrum}
+
+Engineering methodologies differ in when models are constructed and how they relate to implementation. At one end of the spectrum, \emph{model-first} engineering develops representations of the intended system before realization, using them to guide design, analysis, and implementation. At the other, \emph{model-last} engineering begins with a working implementation and develops models afterward, to understand its behavior, recover its architecture, or establish properties that have become consequential. These are two possible arrangements of the engineering work, not mutually exclusive commitments.
+
+The Siemens account in \autoref{chapter:5.4-other-agentic-software-factories} illustrates a model-first arrangement in an established systems-engineering environment. Agents work through SysML v2 models and engineering simulations to explore candidate designs and evaluate them against requirements~\citep{liu2024agentstudio}. The models are already part of the organization\textquotesingle s engineering practice; agents can use them rather than reconstructing the system from realized artifacts. Siemens thus provides a concrete example of agents entering a production process organized around engineering representations.
+
+Several other factories in \magevalue{chapter:software-factories} start from existing software. Cloudflare, Shopify, and GitLab introduce agents into established software-development environments organized around source repositories, tests, and operational controls~\citep{reimann2026codex, moreno2026river, gitlab2026customize}. The software already exists, and agents must work through or recover the engineering knowledge embedded in it. These implementation-centered starting points can support model-last work, although the accounts do not establish that models followed implementation or describe a uniform methodology for constructing and maintaining them.
+
+% Evidence: E25 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E25.md | kind: author-account
+% Evidence: E26 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E26.md | kind: dated-case-evidence
+A project need not occupy a fixed point on this spectrum. \magevalue{chapter:one-problem-many-models} traced how DocAble\textquotesingle s engineering representations developed alongside implementation. Some models were constructed before particular changes to guide realization; others emerged when implementation exposed missing abstractions, recurring failures, or obligations worth enforcing. Test-driven development provides a familiar precedent: expected behavior is specified before implementation, but tests and implementation evolve together through repeated cycles~\citep{beck2003tdd}. The important requirement is not that every model precede implementation, but that consequential properties, design decisions, and their rationales become explicit before an implementation is accepted as satisfactory.
+
+% <!-- point: mage-includes-model-first-organization-without-privileging-it | Degrees of Freedom and Tolerance help engineers decide which choices to settle through models and which to leave to realization; the balance depends on the engineering question and the costs and benefits of available representations. | terms: degrees-of-freedom, tolerance -->
+
+MAGE uses the concepts of Degrees of Freedom and Tolerance to help engineers decide which choices to settle through models and which to leave to realization. Where models determine the realization sufficiently completely, deterministic generation may be preferable. Where consequential choices remain open, engineers can preserve the obligations and tolerances that matter while leaving agents to choose among acceptable implementations. Those degrees of freedom are not defects in the model; they are choices engineers have not, or could not, settle in advance. The appropriate balance depends on the engineering question and the costs and benefits of the available representations, potentially differing even among components or properties of the same system.
+
+```
+
+### Before MBSE-scale revision: book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex
+
+```latex
+% mage-auto-heading: what-must-transfer
+% mage-auto-heading: model-based-engineering-and-digital-twins
+% mage-auto-heading: professional-knowledge-and-scientific-work
+% mage-auto-heading: where-the-generalization-fails
+% mage-auto-heading: a-research-prediction
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Profession -->
+
+% <!-- chapter-title: Agentic Engineering Beyond Software -->
+
+\chapter{Agentic Engineering Beyond Software}
+
+% <!-- point: mage-composes-two-inheritances-around-delegated-realization | MAGE combines engineering through representations, evidence, and control with AI techniques that extend reasoners through external representations, memory, and tools. -->
+MAGE combines two established lines of work around delegated realization. Engineering disciplines developed ways to represent systems, justify consequential claims, and control realization. AI developed ways to extend reasoners through external representations, memory, and tools. \autoref{established-traditions-new-composition} shows how these contributions meet in an agentic production system. Neither tradition is specific to software production.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/established-traditions-new-composition-bd6313723f.pdf}
+\caption{\emph{Established traditions, new composition.} MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous engineering work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.}
+\label{established-traditions-new-composition}
+\end{figure}
+
+% <!-- point: what-mage-claims-is-new | MAGE's contribution concerns engineering the surrounding environment when autonomous implementation becomes a primary productive substrate; the broader proposal extends that question to consequential work in other domains. -->
+Much recent agentic software engineering asks how increasingly capable agents can perform work within the software-engineering environment they inherit. MAGE asks how that environment itself should be redesigned when autonomous implementation becomes a primary productive substrate. Its contribution lies in making purposeful models, Alignment machinery, and the governed engineering environment objects of engineering, with recurring judgments preserved in structures that subsequent work inherits. The broader question is whether the same approach can govern delegated design, analysis, and decisions outside software.
+
+Software offers unusually favorable conditions for this approach. It is a symbolic artifact whose consequential properties can often be represented precisely. Its behavior remains revisable after construction, frequently at low realization cost. Version control, tests, static analysis, permissions, admission gates, deployment controls, and telemetry provide mature machinery for controlling those changes. Software engineering is the engineering discipline of \textbf{controlled change}~\citep{davis2026sehandbook}: the artifact must remain acceptable as both it and its environment evolve. Representability, revisability, and this controlled-change machinery help explain why software is a promising setting for MAGE.
+
+The evidence in this book comes primarily from software; transfer beyond it remains a hypothesis. Which of software's favorable conditions survive when the result is a physical artifact, a financial commitment, a legal argument, or a scientific claim? The comparison must concern the properties and actions that can be governed, not simply the presence of capable agents in another profession.
+
+\section{What Must Transfer}\label{heading:what-must-transfer}
+
+The first requirement is representability: a purposeful reduction must preserve the distinctions relevant to a consequential decision. Beyond software, the represented object might be a proposed design, the state of a business, the alternatives in a decision, or the evidence supporting a claim. A structural model can preserve the quantities needed to reason about a bridge; a decision model can preserve alternatives, objectives, assumptions, uncertainties, and predicted consequences needed to reason about a business choice. The form must make the domain's question easier to answer.
+
+Representation alone is insufficient. MAGE also depends on correspondence: some credible account of why the representation describes what it claims to describe. Drawings and physical models can be reconciled with measurements, inspections, and the realized artifact. In knowledge work, a representation may claim to describe the relevant state of the world, the evidence available when a decision was made, or the consequences expected to follow from it. Those claims can be checked against source data, independent evidence, and eventually observed outcomes. A model that has drifted from its object can make reasoning easier while making its conclusions worse.
+
+A third condition is governability. At least some consequential actions, outputs, or transitions must be susceptible to checks or controls outside the producing agent. Work may be constrained, routed, admitted, rejected, escalated for human judgment, or subjected to additional evidence requirements. An engineering design might require certification; a financial commitment might require human approval above a threshold. The important distinction is between asking the producing agent to remember an obligation and engineering an environment in which the obligation has an independent path to consequence.
+
+A fourth condition is economy. Models, controls, and correspondence mechanisms cost something to build and maintain. Their value lies in avoiding costs elsewhere: repeated reconstruction, repeated judgment, review, error, delay, or risk. The balance will differ by domain and by task frequency. A representation worth maintaining for work performed ten thousand times may not be worth constructing for a singular judgment.
+
+% <!-- point: unit-of-transfer-is-the-surface | Transfer depends on the properties, evidence, actions, and economics of an engineering surface rather than on a profession as a whole. -->
+The conditions need not hold equally across a domain. Strong Modeling may be useful even where few consequential judgments admit independent enforcement. MAGE therefore transfers by engineering surface rather than by profession: the relevant question is which properties can be represented, which claims can be supported by evidence, which actions can be governed, and at what cost. The forms that serve those functions are domain-specific.
+
+\section{Model-Based Engineering and Digital Twins}\label{heading:model-based-engineering-and-digital-twins}
+
+Controlled change is a useful test of what transfers to physical engineering. Software can often be revised repeatedly while tests, permissions, and deployment controls preserve selected obligations. Model-Based Systems Engineering already uses models to support requirements, design, analysis, verification, and validation across a system's lifecycle~\citep{incose2023handbook}. The opportunity for agents is therefore broader than producing an initial design: they could help engineers evaluate and govern changes to a system already in service. Whether that work can be delegated depends on how far the representations and controls reach into the actual change.
+
+Digital twins can support that work by maintaining computational representations in correspondence with physical systems. Observations of the physical system inform the representation, which supports analysis of the system across its lifecycle~\citep{grieves2017digitaltwin}. An agent could use such a twin to investigate observed behavior, evaluate a proposed operating change, or identify the measurements needed to distinguish competing explanations. The value comes from the connection between the represented state and independent observations of the system.
+
+A maintained twin does not by itself supply the rest of a governed change process. Engineers need a representation of the proposed change, analyses capable of evaluating the consequential properties it might affect, and a way to realize the approved change. They also need evidence that the resulting system corresponds to what was approved and controls over who or what may authorize the intervention. A twin may describe current behavior accurately while omitting a failure mode introduced by a proposed modification. Its predictions may be useful without being sufficient evidence for authorizing that modification. Gaps in these capabilities limit the work that agents can responsibly carry through the twin.
+
+Where those gaps can be closed, agents could help adapt physical systems through maintained representations and independent evidence. A digital twin can make a revision easier to reason about and govern; it does not make concrete, steel, machinery, or physical deployment cheap to change. Slow or irreversible realization raises the value of analysis before action and changes the economics of experimentation. Conventional engineering shows the transfer most clearly when the outcome is an artifact. The harder test is whether the same control structure survives when the outcome is a decision or action instead.
+
+\section{Professional Knowledge and Scientific Work}\label{heading:professional-knowledge-and-scientific-work}
+
+In professional knowledge work, acceptance may authorize a consequential decision rather than release an artifact to a separate user. An accounting entry changes a financial record, a legal filing advances a claim, and a scientific analysis supports a conclusion that others may rely on. The transfer criteria ask what can be represented, how it connects to evidence, and where an independent mechanism can govern the action. Accounting, law, and science expose different answers.
+
+% <!-- point: accounting-environment-already-engineered | Double-entry makes balancing checkable; reconciliation, source records, and allocated authority support correspondence and govern selected actions while classification, estimates, and materiality require further judgment. -->
+Accounting supplies relatively structured representations and controls. Double-entry bookkeeping makes one obligation explicit: the debits and credits recorded for a transaction must balance. Arithmetic can expose a violation, but balanced entries can still omit a transaction or classify it incorrectly. Ledgers, charts of accounts, reconciliations, and audit trails support correspondence with economic activity; approval limits, segregation of duties, and closing controls govern selected actions. An agent can work through these representations while checks operate independently of its reasoning. Materiality, ambiguous classification, and the reasonableness of an estimate still require evidence and professional judgment beyond whether the books balance.
+
+% <!-- point: law-representation-without-determinization | Legal representations organize facts and authorities without resolving contested interpretation; procedural controls can govern filings while substantive conclusions remain matters of justified judgment. -->
+Legal analysis has structured evidence but more contested interpretation. Parties, claims, facts, authorities, procedural requirements, and relationships among precedents can be represented explicitly. Agents can trace propositions to authority and identify missing evidence or conflicting authorities. Deadlines can be monitored, and submissions missing required components can be blocked. Two lawyers working from the same represented facts and authorities may nevertheless responsibly reach different conclusions. Modeling makes their disagreement easier to examine; procedural conformance does not settle credibility, strategy, or the weight of competing interpretations.
+
+% <!-- point: science-tests-the-theory | Scientific representations and procedural checks make inquiry examinable without establishing explanatory merit; reproducibility does not by itself establish discovery, and inquiry may revise its measurement models and assumptions. -->
+Scientific work adds the possibility that inquiry must revise the models through which its evidence is interpreted. Hypotheses, experimental designs, datasets, provenance, measurement models, and analysis plans can be represented and inherited. An environment can record preregistration, require departures from a plan to be disclosed, check data integrity, and refuse admission to a computational result until its steps reproduce. But a reproducible calculation can rest on a poor measurement model, and a surprising observation may justify changing the analysis or designing another experiment. These controls establish conditions under which a result was produced. They do not establish that an explanation is compelling or that a discovery has been made.
+
+The comparison separates procedural governability from substantive acceptance. Accounting often supplies precise invariants, but completeness and classification still depend on correspondence with economic activity. Law can preserve facts and authorities while leaving their interpretation contested. Science can govern provenance and reproduction while permitting its representations to be challenged. In each case, recurring checks may justify durable machinery; infrequent or unsettled judgments may call for representations and review whose costs are justified by the particular decision. The relevant balance is between the assurance the environment can establish and the judgment needed to accept what follows from it.
+
+\section{Where the Generalization Fails}\label{heading:where-the-generalization-fails}
+
+% <!-- point: failure-traits-named | Transfer is limited by tacit or embodied knowledge, reflexive effects, context-dependent obligations, missing intervention boundaries or evidence, and poor economics of maintaining representations. -->
+The transfer conditions also identify where MAGE may be difficult or inappropriate. Some knowledge is tacit or embodied: the surgeon's feel for tissue, the negotiator's read of a room, the mechanic's ear for a failing bearing. If a representation omits what trained perception contributes, a check over it cannot establish the whole judgment. Other obligations around the work may still be governable.
+
+Some work changes its object by representing it. A disclosed negotiating position, a published trading model, or a community under observation may alter the behavior being described. Correspondence must account for that response. A representation that assumes the object remains unchanged can mislead even if it accurately described the earlier situation.
+
+Some consequential obligations depend on context or disputed evidence. A clinical decision or a use-of-force judgment may turn on distinctions a proposed rule does not preserve. Mechanizing that rule would enforce a proxy for the obligation. Similarly, applying an agreed decision rule does not resolve disagreement about what the evidence warrants. The engineer must identify those gaps before treating compliance as sufficient.
+
+Independent Alignment also needs somewhere to act. If consequence follows immediately from the producing reasoner's action, with no constraint, approval boundary, or opportunity to obtain independent evidence, the environment has little means to intervene. Highly novel work presents an economic limit instead: existing models may be inadequate and recurrence uncertain, so constructing and maintaining durable structure may not repay its cost.
+
+These limits can leave useful room for representation even when independent enforcement remains weak. Modeling can help even where strong Alignment cannot.
+
+\section{A Research Prediction}\label{heading:a-research-prediction}
+
+The generalization makes two testable claims. The first concerns performance: holding agent capability roughly fixed, consequential work should become cheaper, more reliable, or require less human reconstruction when the environment supplies trustworthy task-relevant representations and independently governs obligations that would otherwise be repeatedly inferred. The effect should grow with task scale and recurrence, and shrink as representation, correspondence, or enforcement becomes expensive or unreliable.
+
+The second, more ambitious claim concerns convergence. Independently developed systems for governing consequential agentic work should acquire similar structures despite producing different outcomes: purposeful representations connected to their subjects, independently produced evidence, allocated authority, and mechanisms that preserve recurring judgment for later work. Comparative studies should examine whether these structures emerge, as well as whether introducing them improves performance. Similar architecture alone would not establish economic benefit, and success in one domain would not establish general transfer.
+
+The failure conditions must bound both comparisons. The broader claim should fail if software's unusually symbolic realization substrate turns out to be essential rather than merely favorable. These hypotheses have been developed here from software engineering; testing them elsewhere is future work.
+
+```
+
+### Before MBSE-scale revision: book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex
+
+```latex
+% mage-auto-heading: the-question-i-asked
+% mage-auto-heading: the-core-of-mage
+% mage-auto-heading: what-changes-next
+% mage-auto-heading: how-much-specification-and-of-what-kind
+% mage-auto-heading: the-part-that-stays-yours
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Conclusion -->
+
+% <!-- chapter-title: Conclusion -->
+
+\chapter{Conclusion}
+
+% <!-- epigraph -->
+
+\begin{quote}
+Though much is taken, much abides.
+
+--- Alfred, Lord Tennyson, \emph{Ulysses}
+\end{quote}
+
+\section{The question I asked}\label{heading:the-question-i-asked}
+
+In the Preface, I asked:
+
+% <!-- inline-quote -->
+
+\begin{quote}
+How do we safely grant autonomy to commodity intelligence?
+\end{quote}
+
+Software engineering provided a concrete setting for the question: if an agent can perform consequential work at extraordinary speed, what must the surrounding environment provide before we can safely grant that capability useful autonomy?
+
+The seven chapters developed an answer at different levels. \textbf{\magevalue{chapter:modeling|link:Modeling}} established how to represent consequential engineering knowledge; \textbf{\magevalue{chapter:alignment|link:Alignment}} showed how to enforce selected obligations independently of the producing agent. \textbf{\magevalue{chapter:one-problem-many-models|link:MAGE in Motion}} developed the method through which experience becomes durable engineering structure. \textbf{\magevalue{chapter:software-factories|link:DocAble Among Other Software Factories}} examined that method in production, while \textbf{\magevalue{chapter:theory|link:The Theory}} explained its mechanisms and economic consequences. Finally, \textbf{\magevalue{chapter:profession|link:The Profession}} considered what changes for engineers when implementation can increasingly be delegated.
+
+I developed this answer through software engineering because that is where my engineering expertise lies. The underlying question reaches beyond software and perhaps beyond the conventional engineering disciplines. Its answer in another domain will depend on the representations, evidence, and controls available there.
+
+\section{The core of MAGE}\label{heading:the-core-of-mage}
+
+MAGE makes three engineering moves.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Work at the right representation.} Choose the reduction that makes the engineering question answerable without carrying unnecessary detail. A purposeful model can expose properties that humans and agents would otherwise have to reconstruct from implementation, making them available for analysis, review, and evidence. Build the model when those benefits repay its cost, and maintain the correspondences on which its use depends.
+\item
+  \textbf{Put enforcement where the obligation can be represented and decided adequately.} Guidance influences behavior; enforcement determines which actions or results the environment will accept. Some obligations can be enforced directly through types or permissions that restrict actions or artifacts. Where tests or validators check an obligation, a gate can reject work when the check fails. Others become decidable only after a suitable representation exposes the relevant semantics. Leave consequential decisions to human judgment when the environment lacks the meaning or evidence needed to decide them adequately.
+\item
+  \textbf{Make useful judgment reusable.} When a recurring or consequential engineering decision is worth carrying forward, convert it into a model, mechanism, architecture, procedure, or body of evidence that later work can inherit. Such structures become engineering capital when they improve later engineering work. The engineering environment preserves the consequential concern while allowing the particular structure that carries it to be corrected, replaced, or retired.
+\end{enumerate}
+
+% <!-- index-def: governance-as-design-patterns -->
+
+Together, these moves produce the \textbf{governed engineering environment}. Models represent consequential knowledge, controls constrain actions or evaluate results, and evidence supports engineering judgments. People remain responsible for the resulting system. In software, the representations include requirements, architectures, behavioral models, dependencies, provenance, and measurements; the governance mechanisms are constraints, sensors, and gates. Other domains will supply different representations and different means of evidence and control.
+
+That is Model-Based Agentic Engineering.
+
+\section{What changes next}\label{heading:what-changes-next}
+
+When commodity intelligence makes realization cheaper, the cost of the surrounding engineering work becomes more important. If a software factory can produce changes faster than engineers can specify consequential intent, evaluate evidence, or maintain control over the resulting system, then improving realization further does not remove those constraints. Engineering attention moves to them.
+
+% <!-- point: the-encoding-limit-has-two-implications | The encoding limit implies two things: the engineer must find representations that carry consequential intent economically, and producing acceptable work remains a different problem from establishing its acceptability. -->
+
+The probability analysis in \magevalue{chapter:theory} distinguishes adequate encoding from reliable realization. An agent can faithfully fulfill encoded obligations even when they omit or misstate what the system needs. Better agents can help engineers improve the encoding, but reliable fulfillment alone does not establish that it is right. This leaves two engineering problems: representing consequential intent adequately without spending more on representation than it is worth, and establishing that the resulting work is acceptable through independent evidence and evaluation. Modeling and Alignment address these problems from different directions.
+
+% <!-- point: neither-problem-has-a-fixed-solution | Neither problem has a fixed solution: as agents improve they can help build the environment that governs them, so the question is how to allocate work among reasoner, environment, and human judgment as capabilities and costs change. -->
+
+Neither problem has a fixed solution. As agents improve, they can help engineers discover representations, maintain correspondences, construct controls, and evaluate evidence. The engineering environment can become more capable alongside the agents it governs. The relevant question is how to allocate work among the reasoner, the environment, and human judgment as their respective capabilities and costs change.
+
+\section{How much specification, and of what kind?}\label{heading:how-much-specification-and-of-what-kind}
+
+% <!-- point: two-open-questions-how-much-and-in-what-form | Two questions stay open — how much consequential intent must be explicit, and in what representation; the answers differ for realization and for assurance. | terms: specification-frontier -->
+
+% <!-- point: commodity-intelligence-moves-the-frontier | As agents recover more familiar intent, engineers may need less explicit instruction for realization; assurance still depends on what the engineer can establish through representations and evidence. | terms: specification-frontier -->
+
+This leaves two related questions open: how much consequential intent must engineers make explicit, and in what form? There may be different answers for realization and assurance. As agents become better at recovering familiar intent, engineers may need to say less to obtain a useful result. A prototype may be judged by the useful behavior it demonstrates; a production system must also provide evidence that its consequential obligations are satisfied. The latter requires suitable representations of consequential properties. The specification frontier therefore depends not only on what an agent can infer, but on what the engineer must be able to establish---and on which representations make that establishment economical.
+
+% <!-- point: richer-machinery-is-the-opportunity | Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone. -->
+
+Agents can also help construct and maintain those representations, analyze them, gather evidence, and build the controls that enforce selected obligations. This reduces the cost of the engineering machinery itself, potentially making richer representations and stronger assurance economical. The opportunity is not merely to realize systems more cheaply, but to improve the machinery through which engineers govern their realization.
+
+\section{The Authority and Responsibility of the Engineer}\label{heading:the-part-that-stays-yours}
+
+% <!-- point: no-stable-set-of-human-only-tasks | The engineer's role need not rest on a fixed collection of human-only tasks; what persists as capabilities change is informed control over consequential work. -->
+
+I would not define the engineer by a permanent collection of tasks that only humans can perform. The boundary will move as capabilities improve. Engineering competence will change with it, as it has changed with earlier technologies. What persists is the need for informed control over consequential work: understanding what the engineering arrangement can establish, recognizing where its evidence is insufficient, and accepting responsibility for the decisions made under its authority.
+
+% <!-- point: responsibility-extends-to-the-structures-that-decide | Responsibility need not mean making every decision personally; MAGE moves suitable decisions and decision-making processes into engineered structures, and the engineer's responsibility extends to designing, governing, and revising them. -->
+
+That responsibility need not mean personally making every decision. Indeed, MAGE is an argument for moving suitable decisions and decision-making processes into engineered structures so that they can operate more reliably, consistently, and economically. The engineer\textquotesingle s responsibility extends to the design and governance of those structures, including the judgment to revise them when their assumptions no longer hold.
+
+The question from the Preface was how to grant autonomy safely. The answer is to engineer the conditions under which autonomy can be exercised, evaluated, and governed. As commodity intelligence grows more capable, those conditions may become richer and more automated. The responsibility for establishing them remains an engineering responsibility.
+
+MAGE worked for me. I hope it proves useful in your engineering practice, too. If you try it, I would be glad to hear what works, what does not, and what you discover along the way.
+
+% <!-- point: not-to-abolish-engineering-but-to-demand-it | The book's last word: commodity intelligence has not come to abolish engineering, but to demand it. -->
+
+\magerule{}
+
+Commodity intelligence has not come to abolish engineering, but to demand it.
+
+```
+
+### Before MBSE-scale revision: book/latex/sources/frontmatter/0.5-preface.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Orientation and Reference -->
+
+% <!-- chapter-title: Preface -->
+
+% <!-- frontmatter-order: -1 -->
+
+\chapter{Preface}
+
+\section{How do we safely grant autonomy to commodity
+intelligence?}\label{heading:how-do-we-safely-grant-autonomy-to-commodity-intelligence}
+
+This is a book about engineering: what engineering becomes when
+reasoning capacity is abundant. Engineering is the discipline of
+exercising informed control over consequential systems and accepting
+responsibility for their outcomes. Engineers need not personally perform
+every act required to realize a system. They must understand and direct
+the work, evaluate evidence for the properties that matter, and
+intervene when necessary. They remain answerable for the consequential
+decisions made under their authority.
+
+Society has long entrusted consequential work to computers. Software
+tallies tax returns, flies aircraft, and operates power plants.
+Traditionally, software engineers translated human intent into programs
+and controls that computers could execute. Now, general-purpose machine
+intelligence can interpret intent, make judgments, and produce
+implementation cheaply enough and at enough scale to become an ordinary
+engineering resource. In this book, I call this increasingly available
+capability \emph{commodity intelligence}~\citep{nosta2026commodity}~\citep{ling2026barrel},
+and the tools that supply it, \emph{agents}.
+
+Agents can be used to produce and modify software at rates far exceeding what human engineers can review.
+Engineers need ways to preserve control, because engineers remain responsible for ensuring that the resulting systems satisfy their requirements.
+Important decisions must survive successive changes, and engineers need evidence
+for properties that may be difficult to see in any one change. How
+should we engineer the environment in which that autonomous work takes
+place?
+
+\section{MAGE: Model-Based Agentic
+Engineering}\label{heading:the-mage-method}
+
+\emph{Agentic engineering} is the engineering of systems and
+environments in which autonomous agents perform consequential work.
+Model-Based Agentic Engineering (MAGE) is the approach this book
+develops. It rests on two principles. \textbf{Modeling} makes
+consequential engineering knowledge and intent explicit in purposeful
+representations. \textbf{Alignment} makes selected engineering
+obligations enforceable, so those obligations can hold independently of an agent's judgment.
+
+The MAGE method combines these principles through four recurring
+engineering activities:
+
+\begin{enumerate}
+\item
+  \textbf{Model consequential knowledge.} Choose the engineering
+  question, then represent the facts, relationships, and decisions
+  needed to answer it without carrying unnecessary detail.
+\item
+  \textbf{Enforce important obligations.} Use constraints to restrict
+  actions or states, or gates to admit work only when required
+  conditions hold.
+\item
+  \textbf{Do the governed work.} Let agents operate within the resulting
+  environment, using its models and mechanisms while exercising the
+  implementation freedom engineers have left open.
+\item
+  \textbf{Convert recurring judgment.} Identify engineering decisions that require repeated human intervention, then encode them in models, procedures, or mechanisms that subsequent work can inherit.
+\end{enumerate}
+
+Together, these activities develop a \textbf{governed engineering
+environment}: representations help humans and agents reason about the
+system, while mechanisms enforce selected obligations. The activities
+need not occur in a fixed order, and the environment can change as
+experience reveals what needs better understanding or control. Useful
+structure becomes \textbf{engineering capital} when later work benefits
+from it.
+
+\section{Why MAGE? Why Models?}\label{heading:why-mage-why-models}
+
+One way to understand MAGE is as a classical software-engineering move:
+\textbf{add a level of indirection.}\magefootnote{indirection}{In software engineering, adding a level of
+  indirection is so commonly a solution that it is jokingly
+  called the \emph{Fundamental Theorem of Software Engineering}.}
+Conventional engineering has long separated the engineering of an
+artifact from its physical realization. The familiar inscription ``\textit{Designed by Apple in California, Made in China}'' is an everyday example: the people who
+establish a product's architecture, requirements, and tolerances need
+not be the people---or machines---that realize it. Drawings,
+specifications, and other representations preserve consequential
+decisions across that separation.
+
+When software engineers wrote most of the code themselves, they could
+make design decisions and implement them directly. Much of their
+knowledge remained implicit in the implementation and in their minds.
+That arrangement of work is less effective with agents. An agent needs to know
+which dependencies are permitted, who owns a resource, and what behaviors
+must survive changes. Engineering models give that knowledge an explicit
+form that engineers and agents can inspect and reason through, without
+repeatedly reconstructing it from the code.
+
+The purpose of this indirection is to preserve important engineering
+decisions while leaving other implementation choices open. Agents can
+search, implement, revise, and improve solutions within that freedom.
+Engineers can impose additional constraints, but more structure is not automatically valuable.
+The engineer must decide what matters enough to make explicit and whether the resulting understanding,
+assurance, or efficiency justifies the cost.
+
+\section{The origins of MAGE}\label{heading:where-the-theory-came-from}
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+MAGE grew out of an engineering problem I encountered while building
+DocAble, a service for making documents accessible to people with
+disabilities. I built DocAble by myself---just me and Claude, which
+produces software far faster than I can inspect. Yet DocAble
+has to satisfy legal accessibility requirements. I could
+not solve that problem by supervising the agents more closely; human
+attention was precisely the resource I did not have.
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+As I watched the collapse of my weekly Apple Watch sleep score, I realized I had
+to make the requirements and other consequential properties explicit
+enough that Claude could preserve and evaluate them
+without requiring me to inspect every step.
+% Repeated failures became reasons to improve a model or install a control that later work would inherit. Much of MAGE grew from following that constraint seriously.
+I needed to capture my engineering judgment in order to reduce how often I had to supply it.
+
+DocAble provides the book's principal worked example: a system developed over several months and used in production at Purdue. Its engineering problems motivated the methodology, and its development provides concrete examples of the models, mechanisms, and decisions the book teaches. I also reconstruct published industrial accounts to examine related practices in other organizations. DocAble provides depth about engineering decisions and their consequences; the industrial accounts provide breadth across production environments. \magevalue{chapter:software-factories} examines this evidence and its limitations, \magevalue{chapter:theory} develops the theoretical account, and \magevalue{chapter:profession} considers what may transfer beyond software. {[}appendix: appendix-handbook{]} provides eight engineering blueprints drawn from DocAble, while {[}appendix: appendix-practicing-mage{]} offers guidance for adopting, operating, and evaluating MAGE in other environments.
+
+\section{Who this book is for}\label{heading:who-this-book-is-for}
+
+This book is for software engineers who want to understand what changes
+when implementation can be delegated to capable agents. It is also for
+architects, technical leads, and engineering managers responsible for
+the environment around that work.
+% The aim is to help you recognize when engineering knowledge is repeatedly reconstructed, decide which obligations need stronger control, and choose structures suited to your own system.
+
+The book is also intended for advanced undergraduate and graduate
+students. It assumes familiarity with ordinary software-development
+practice: source control, testing, APIs, build and deployment workflows,
+and basic software architecture. No prior experience with coding agents,
+formal methods, model-based engineering, or machine learning is
+required. Concepts from those areas are introduced where the argument
+needs them.
+
+MAGE draws on established engineering disciplines without attempting to
+replace their textbooks. The machinery described here is a repertoire,
+not a required architecture. Different problems call for different
+representations and controls, and some need very little of either. Your
+task is to judge what structure is worth building, which choices can
+remain with the agents, and what evidence is sufficient to accept their
+work.
+
+```
+
+### Before MBSE-scale revision: book/latex/sources/frontmatter/0.2-what-this-book-argues.tex
+
+```latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Orientation and Reference -->
+
+% <!-- chapter-title: What This Book Argues -->
+
+\chapter{What This Book Argues}
+
+\emph{This section is a compact statement of the book\textquotesingle s argument, intended for orientation and later reference. This book makes six central claims. Together they explain how commodity intelligence changes the economics of engineering, why scale remains a problem, and how MAGE responds.}
+
+MAGE is a framework for governing agentic engineering work. This book develops that framework through software engineering, its first worked domain and the source of its evidence. The six claims below are therefore stated primarily in software-engineering terms; \magevalue{chapter:theory} abstracts their mechanisms, and \magevalue{chapter:profession} asks what transfers beyond software.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Commodity intelligence changes the economics of software engineering.} You can now purchase a kind of intelligence. The resulting implementation capacity is becoming abundant relative to engineering judgment. As implementation gets cheaper, engineering effort shifts toward what remains scarce: deciding what to build, representing the system clearly enough to reason about it, producing evidence, and making requirements enforceable by the engineering environment.
+\item
+  \textbf{Scale creates a reasoning problem.} Large software systems exceed the reasoning horizon of humans; agents have the same problem. Software engineering has always answered scale with abstraction. Commodity intelligence does not remove that need. It makes the representations that guide the work more important.
+\item
+  \textbf{Purposeful models can reduce the cost of engineering reasoning.} Engineering models capture the knowledge and intent needed for decisions. Software engineers have always used such abstractions to reason about architecture and other system properties. As commodity intelligence lowers the cost of deriving, maintaining, and using such representations, more engineering knowledge can be carried forward rather than held implicit or reconstructed from implementation.
+\item
+  \textbf{Enforcing obligations makes autonomous implementation governable.} When agents perform more of the implementation, deciding what the system must do becomes increasingly separate from writing the code that does it. Important engineering decisions therefore cannot live only in instructions to an agent or in a person\textquotesingle s head. Engineers can enforce these obligations through checks and controls that constrain work, distinguishing choices an agent is free to make from decisions engineers have already made. Engineers can then give agents substantial freedom in how they build the system while retaining control over the properties that matter.
+\item
+  \textbf{Governance conversion turns recurring judgment into durable engineering structure.} When a failure exposes missing knowledge or an unenforced obligation, encode the lesson into a model, procedure, or mechanism that future work can inherit. Durable structure becomes engineering capital when later work keeps benefiting from it.
+\item
+  \textbf{Engineering work will reorganize around what remains scarce.} As implementation becomes cheaper, engineering effort will move toward representation, evidence, governance, coordination, and judgment. Agents may perform increasing portions of that work as well. The enduring boundary will not be a particular task or level of abstraction, but responsibility for deciding what matters, what evidence is sufficient, which obligations should be enforced, and what tradeoffs remain acceptable.
+\end{enumerate}
+
+In operation, MAGE has two principles and a conversion loop. \textit{Modeling} makes consequential knowledge and intent explicit, while \textit{Alignment} makes selected obligations enforceable. As engineering work progresses, gaps are inevitable. Governance conversion turns recurring human judgment into explicit engineering structure that future work can inherit. \autoref{mage-method} connects these responses to the economic change, the reasoning problem, and the predicted reorganization of engineering work.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-method-5b47654b89.pdf}
+\caption{\emph{The six claims of MAGE.} When engineers find themselves making the same judgment repeatedly, they can build it into a model or a control. Later work inherits that judgment, which can lower the cost of meeting the same obligation again.}
+\label{mage-method}
+\end{figure}
+
+```
+
+### Before Chapter 3 microedits, 2026-11-24: 3.1-from-engineering-models-to-enforcement.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: From Engineering Models to Enforcement -->
+
+\chapter{From Engineering Models to Enforcement}
+
+\magevalue{chapter:modeling} asked four questions about each model: what engineering question it serves, what representation makes that question tractable, which property it makes explicit, and which quality attribute that property concerns. We now take up the fifth: \textbf{what enforces the property?} A model can tell an agent what must hold without ensuring that the agent's work satisfies it. We begin by distinguishing a request from an enforced obligation, then examine what evidence would justify accepting the work.
+
+\section{Guidance and Enforcement}\label{heading:guidance-and-enforcement}
+
+% <!-- point: the-environment-intervenes-between-a-proposed-action-and-its-consequence | The environment intervenes between a proposed action and its consequence. | terms: governed-environment, agentic-harness -->
+
+% <!-- point: guidance-influences-behavior-enforcement-constrains-consequences | Guidance influences behavior; enforcement determines what the environment permits or accepts, and feedback returns evidence between them. | terms: guidance-vs-enforcement, alignment-principle -->
+% <!-- index-def: agent -->
+
+Guidance tells an agent what to do. Enforcement limits what it can do or what we will accept. Recall from \cref{chapter:1.4-the-agentic-substrate} that the harness turns selected outputs of a foundation model into actions. The harness and the surrounding engineering environment give us opportunities to intervene before those actions take effect or before their results are accepted.
+
+A prompt, brief, example, or playbook can make one action more likely than another. A permission boundary can forbid an action, while a required test can prevent an unsatisfactory result from being accepted. Feedback can help an agent correct its work by showing it a failing test, an unexpected call, or a measured latency. For the billing example, repeating the architectural rule may improve the agent's next attempt. Enforcement requires the environment to restrict the forbidden access or refuse work that violates the rule.
+
+A correct result does not excuse an unacceptable process. An agent might produce working software while accessing data it was not authorized to read, modifying dependencies without approval, or deploying before the required checks completed. Testing the resulting artifact cannot establish that those actions were permissible. Some engineering obligations govern the product. Others govern how the product may be produced. The environment must be able to enforce both.
+
+% <!-- point: security-practice-draws-the-same-boundary | Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact. | terms: guidance-vs-enforcement -->
+
+This distinction is particularly important for security. By the time an agent commits its changes, it may already have accessed sensitive data, invoked external services, or modified infrastructure. Securing the repository is therefore insufficient. We must also secure the tools, permissions, and execution environment through which the agent works~\citep{snyk2026agenticlifecycle}.
+
+\section{Correspondence, Conformance, and Acceptance}\label{heading:agreement-is-not-correctness}
+
+% <!-- point: drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims | Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim. | terms: agreement-vs-correctness, independent-obligation -->
+% <!-- point: an-obligation-can-test-one-of-three-relations | Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable. | terms: independent-obligation, agreement-vs-correctness -->
+
+\cref{2.6-system-knowledge:heading:maintaining-correspondence} examined several ways to maintain correspondence between a model and its implementation. But agreement between a model and an implementation does not necessarily establish that the implementation is correct. Nor does correctness necessarily authorize its use. \autoref{three-relations} distinguishes three engineering questions.
+
+\begin{enumerate}
+\item \textbf{Correspondence.} Does the implementation agree with the model over the properties it represents~\citep{murphy1995reflexion}?
+\item \textbf{Conformance.} Does the implementation satisfy the intended engineering obligation~\citep{passos2010conformance}?
+\item \textbf{Acceptance.} May the implementation proceed, given the applicable obligations, evidence, and authorization?
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/three-relations-ac66d52458.pdf}
+\caption{\emph{Model agreement, obligation satisfaction, and admission.} Correspondence concerns agreement between an engineering model and its implementation; conformance concerns satisfaction of an independent obligation represented in the model. Acceptance is the GEE\textquotesingle s decision to permit the implementation to proceed, based on applicable controls and evidence that may extend beyond the model shown. Evidence for one relation does not establish the others.}
+\label{three-relations}
+\end{figure}
+
+MAGE uses Alignment for the engineering activity that connects selected obligations to mechanisms governing work. Correspondence and conformance are relationships that Alignment may evaluate; acceptance is one decision it may govern.
+
+This use differs from the usual meaning of alignment in artificial intelligence, which concerns making AI systems behave consistently with human intentions, preferences, or values~\citep{gabriel2020artificial,ji2024ai}. MAGE addresses a narrower engineering problem. Rather than relying on the agent to adopt the engineer's objectives, we establish an environment in which selected obligations can be evaluated and enforced despite the agent's fallibility.
+
+\section{Independent Obligations and Evidence}\label{heading:independent-obligations-and-evidence}
+
+% <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
+% <!-- point: an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy | An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation. | terms: independent-obligation, modeling-principle, alignment-principle -->
+% <!-- section-terms: agreement-vs-correctness, independent-obligation -->
+% <!-- point: a-drift-check-establishes-agreement-not-that-the-correspondence-is-right | A drift check establishes agreement between two artifacts, not that the correspondence expresses the right intent. | terms: agreement-vs-correctness -->
+% <!-- index-def: agreement-vs-correctness -->
+% <!-- index-def: mirror-vs-spec -->
+% <!-- index-def: drift-caveat -->
+% <!-- point: the-distinction-is-description-versus-independent-obligation | The distinction is not derived versus authored; it is description versus independent obligation. | terms: independent-obligation, agreement-vs-correctness -->
+% <!-- index-def: independent-obligation -->
+% <!-- point: tolerance-independence-comes-from-intent-not-realization | Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged. | terms: independent-obligation, tolerance -->
+
+\subsection{Independent Engineering Obligations}\label{heading:independent-engineering-obligations}
+
+\magevalue{chapter:modeling} distinguished descriptive models from models that are authoritative for a property. The distinction matters when we want to evaluate an implementation.
+
+Suppose an endpoint is required to authenticate its callers. A model derived from the implementation might faithfully record that the endpoint accepts unauthenticated requests. The model and implementation agree, but the security requirement is violated. To identify the violation, we need an obligation that does not change merely because the implementation changes.
+
+This does not mean that governing models must be constructed independently of the implementation. We can recover a model from existing code and subsequently decide which of its properties should govern future work. Conversely, a hand-authored model may merely reproduce an implementation's mistakes. What matters is whether the implementation can be wrong according to the obligation.
+
+Design by Contract provides a familiar precedent for expressing obligations through preconditions, postconditions, and invariants~\citep{meyer1997oosc}. The same idea applies to quantitative properties: measurements can establish an implementation's latency, but an engineering requirement must determine whether that latency is acceptable.
+
+\subsection{Adequacy of Evidence}\label{heading:adequacy-of-evidence}
+
+% <!-- index-def: oracle -->
+
+Software testing has long confronted the \emph{oracle problem}: how do we determine whether an observed result is correct? The means of making that judgment is an \emph{oracle}~\citep{barr2015oracle}. Consider testing a sorting function. Checking that the returned elements are in ascending order is insufficient; a function that returns an empty list would satisfy that check. We must also establish that the result contains the same elements, with the same multiplicities, as the input.
+
+The problem is particularly important when implementation and evaluation are delegated separately. An independently constructed check can still be inadequate if it expresses only part of the intended obligation. The engineer must determine which properties constitute acceptable evidence, not merely whether the checks execute successfully.
+
+% <!-- point: proof-strength-applies-to-the-proposition-proved-not-to-its-adequacy | Proofs and model checks evaluate stated properties under their assumptions; they do not establish that the chosen properties capture the engineering requirement. | terms: agreement-vs-correctness, independent-obligation -->
+
+% <!-- point: docable-requested-temporal-checking-for-an-obligation-its-models-already-carried | Fix the required behavior before choosing an analysis; independence concerns the source of the obligation and the implementation judged against it. | terms: independent-obligation, agreement-vs-correctness -->
+
+Formal verification does not remove this problem. A proof assistant such as Lean can check that a formally stated proposition follows from its assumptions~\citep{lean-reference}. A model checker such as TLC can examine whether a model satisfies stated properties~\citep{lamport2002}. Neither establishes that the property we chose captures the engineering requirement. An agent can help formalize an obligation and develop a proof or check, but the engineer must still decide whether the formal obligation expresses what the system must do.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Assurance Cases}
+\label{inset-assurance-cases}
+In safety-critical engineering, an assurance case makes explicit why a system should be trusted. It connects claims about the system to supporting evidence through an argument explaining why that evidence supports the claims~\citep{iso15026-2-2022,kelly2004gsn}. Knowing which tests correspond to a requirement does not establish that those tests adequately verify it; an assurance case must explain why the evidence is sufficient for the claim.
+
+Suppose DocAble claims to preserve document content during accessibility remediation. Comparing the text before and after processing provides some evidence, but is it sufficient? Text extraction might miss content in images, equations, or annotations. An assurance argument would identify these limitations, explain which additional checks address them, and state what remains unverified. Passing every available test does not establish a claim broader than those tests support.
+
+Assurance cases help engineers justify why a system should be trusted. MAGE helps establish and preserve selected properties on which that justification depends.
+
+If you work under a safety standard such as IEC 61508 or DO-178C, MAGE can complement your existing assurance process~\citep{iec61508-1-2010,rtca-do178c-2011}. The claims and arguments in an assurance case can guide what you model, what you check, and what evidence you retain. Agents can help produce and maintain that evidence as the system evolves. The assurance case still needs independent scrutiny. Neither an agent's report nor a passing check establishes that the overall argument is sound.
+\end{bookbox}
+
+\subsection{Connecting Models to Evidence}\label{heading:connecting-models-to-evidence}
+
+% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis. | terms: independent-obligation, traceability -->
+
+Having established an obligation and decided what evidence would be adequate, how do we obtain that evidence from a changing implementation? Requirements traceability connects requirements to relevant design elements, implementation, tests, and other evidence~\citep{estefan2008mbse}. These connections help engineers find the evidence needed to evaluate an implementation and identify what must be reconsidered when the system changes.
+
+% <!-- point: traceability-connects-intent-realization-evidence-without-enforcement | Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model. | terms: independent-obligation, traceability, alignment-principle -->
+
+Traceability links do not themselves determine acceptance. A requirement may trace cleanly to a test whose failure is merely reported. Conversely, a permission boundary may enforce firmly without a rich traceability model.
+
+% <!-- point: those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics | Correspondence evidence is limited by what references and traces establish and by the operations they cover. | terms: agreement-vs-correctness, semantic-gap -->
+
+We can also check some of these relationships mechanically. Static references can connect model elements to implementation declarations, allowing a check to detect when a referenced element is deleted or renamed. Runtime traces can identify modeled operations as they execute, allowing a check to compare observed behavior with the model.
+
+The appropriate evidence depends on the property. An architectural obligation may be evaluated through static dependency analysis, while a behavioral obligation may require execution traces. These are not exclusive categories: static analysis can examine state-machine structure, and runtime instrumentation can expose architectural interactions that source-level analysis misses.
+
+These mechanisms can detect changes that break known model--implementation relationships without requiring an engineer to rediscover those relationships manually. Their assurance remains limited by the relationships represented and the evidence obtained. Where that evidence is adequate, we can require the checks to pass before accepting a change.
+
+\section{DocAble: From Correspondence to Enforcement}\label{heading:docable-from-correspondence-to-enforcement}
+
+% <!-- point: execution-consumes-the-computation-model-so-it-governs-composition | DocAble's execution machinery consumes a computation model, while an analytical view supports separate analysis and checks; the representation's governing role follows from its consumers. | terms: agreement-vs-correctness, independent-obligation -->
+
+% Evidence: E16 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E16.md | kind: measurement
+% Evidence: E17 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E17.md | kind: author-account
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+
+\cref{2.6-system-knowledge:heading:docable-connecting-engineering-models} described how I developed DocAble's computation model by examining the computations and dependencies in its different document engines. We also saw how the scheduler and an analytical graph use those declarations. Having established these relationships, I needed to answer two further questions: did my checks cover the computations that actually executed, and could a failed check prevent a change from being accepted?
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+In the September 5, 2026 snapshot, the analytical graph contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+An audit exposed a gap: a live Office pass ran outside the registry entries that the correspondence checks examined. The checks could therefore report agreement even though they had missed a computation. At the time, the PDF checks blocked changes that failed them, while the Office checks only reported discrepancies. Making the Office checks blocking at that point would still have let the unregistered pass through.
+
+% Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+We first brought the missing computations within the checks' coverage and verified that the repaired checks detected the relevant discrepancies. After clearing the findings, we made the Office checks blocking. Both format families now require their declared correspondence checks to pass at admission. \magevalue{sec:brownfield-engineering} examines this progression from diagnosis to enforced control as a recurring engineering practice.
+
+The case illustrates the three judgments in \autoref{three-relations}:
+\begin{itemize}
+\item \textbf{Correspondence (model agreement).} The parity checks establish whether the analytical graph agrees with its sources over the relationships they examine. The audit asked a different question: which live computations had they missed?
+\item \textbf{Conformance (obligation satisfaction).} The scheduler must respect the computation model's dependency order. Agreement between the graph and its sources does not establish that execution preserves that order.
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\item \textbf{Acceptance (permission to proceed).} Once the Office checks became blocking, a discrepancy that previously produced an advisory finding could prevent admission. Promotion changed what happened to the finding; the earlier coverage repair changed what the checks could find.
+\end{itemize}
+
+DocAble also uses static references to connect model elements to implementation declarations and runtime traces that identify the modeled operations being executed. These relationships let the environment check correspondence as the implementation changes, subject to the coverage limits described above.
+
+% <!-- point: the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does | Independent obligations and adequate evidence prepare the reader to choose enforcement mechanisms. | terms: independent-obligation -->
+
+% Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
+\autoref{chapter:appendix-a-remediation-computation-graph} describes the declarations, coverage checks, and admission mechanisms behind this episode.
+
+Repairing the checks improved the evidence I could obtain. Making them blocking changed what happened when they found a violation. Both were necessary to govern subsequent changes. We next examine the mechanisms through which engineers establish such protections.
+
+```
+
+### Before Chapter 3 microedits, 2026-11-24: 3.2-governance-mechanisms.tex
+
+```latex
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Governance Mechanisms -->
+
+\chapter{Governance Mechanisms}
+
+An obligation and its evidence do not yet specify how the engineering environment should act. We need machinery that can restrict an operation, obtain the relevant evidence, or make a decision binding on subsequent work. This section develops that repertoire, examines how to construct and evaluate its mechanisms, and considers which choices they should leave open.
+
+\section{Constraints, Sensors, and Gates}\label{heading:constraints-sensors-and-gates}
+
+% <!-- point: four-roles-separate-prevention-observation-judgment-admission | Constraints restrict possibilities, sensors produce evidence, and gates evaluate whether actions or results may proceed and enforce decisions. Checking may be advisory or used within a gate. | terms: governance-mechanism, constraint, sensor, gate -->
+
+Return to the billing architecture: \texttt{Reporting} may obtain data through \texttt{BillingAPI}, but must not connect directly to \texttt{BillingDB}.
+Keeping that boundary lets the billing service control access to its data and change its schema without exposing it to every client.
+The architectural model states the permitted relationship.
+How can the engineered environment preserve it while agents change the reporting code?
+
+% <!-- index-def: governance-mechanism -->
+
+\begin{quote}
+\textbf{Governance mechanism.} A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed.
+\end{quote}
+
+\autoref{governance-mechanism-questions} distinguishes three governance functions by the engineering questions they answer.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.30}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.54}}@{}}
+\caption[Three functions of engineering governance]{\emph{Three functions of engineering governance.} A single mechanism may perform several functions. This classification draws on established principles of protection and policy enforcement~\citep{saltzer1975protection, rfc2753, oasis2017xacml}.}\label{governance-mechanism-questions}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Category
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Category
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effect
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Constraint & What can happen? & Restricts available actions or states. \\
+Sensor & What evidence do we have? & Produces evidence about artifacts, proposed actions, or executions. \\
+Gate & May this proceed? & Evaluates whether an action or result may proceed and enforces that decision. \\
+\end{longtable}
+}
+
+\autoref{alignment-overview} shows how these functions can work together to enforce obligations expressed in engineering models.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/alignment-overview.pdf}
+\caption{\emph{Alignment from models to enforcement.} Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.}
+\label{alignment-overview}
+\end{figure}
+
+% <!-- section-terms: constraints-and-sensors, constraint, sensor -->
+
+% <!-- point: a-mechanism-is-one-of-two-moves-prevent-or-observe | Constraints exclude particular actions or states; sensors supply evidence about behavior that remains possible. | terms: constraint, sensor, constraints-and-sensors -->
+
+% <!-- index-def: constraints-and-sensors -->
+
+% <!-- point: constraint-and-sensor-echo-control-engineering | The accompanying note connects constraints and feedback to systems-safety engineering without identifying agent engineering with a control system. | terms: constraint, sensor, constraints-and-sensors -->
+
+A constraint can exclude some violations before they occur. Sensors provide evidence about behavior that remains possible, so the environment can check it before accepting the change.\mageaside{For the role of constraints and feedback in systems-safety engineering, see Leveson~\citep{leveson2011}.}
+
+% <!-- point: a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it | An instruction is enforced only when a mechanism in the environment acts on it. | terms: constraint -->
+
+% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint excludes particular actions or representations within the scope of its language, interface, or runtime permissions; a closed type does not govern every possible behavior. | terms: constraint, typed-enum -->
+
+% <!-- index-def: constraint -->
+
+% <!-- gloss-only: Constraint | A governance mechanism that restricts available actions or representable states so that particular invalid choices are unavailable through it. A closed enum excludes undeclared state names; transition rules require their own constraint. -->
+
+\textbf{Constraining the implementation.} An instruction to use the billing API can guide an agent, but it does not exclude a direct database connection. For the reporting change, a module boundary exposes the billing API client while keeping the database connector private.\mageaside{Types provide one familiar way to exclude invalid choices. Pierce describes type systems as syntactic methods for ruling out classes of erroneous behavior~\citep{pierce2002}. A closed enum with variants such as \texttt{IDLE}, \texttt{RUNNING}, and \texttt{DONE} excludes undeclared state names in checked code; external input must be validated when converted to the type. It does not by itself forbid a transition from \texttt{IDLE} directly to \texttt{DONE}. That transition requires its own constraint.} The language\textquotesingle s visibility rules prevent checked reporting code from importing that connector. The agent remains free to assemble the report but cannot use the private connector. Generic networking remains a possible route around this restriction.
+
+% <!-- point: a-sensor-observes-and-produces-evidence-and-costs-iterations | A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect. | terms: sensor, observability -->
+
+% <!-- index-def: sensor -->
+
+% <!-- gloss-only: Sensor | A governance mechanism that observes an artifact, an attempted action, or an executing system and produces evidence. A source scan can record dependencies; runtime instrumentation can record connection attempts and outcomes. That evidence may support checking or other analysis without itself permitting or refusing work. -->
+
+% <!-- index-def: observability -->
+
+% <!-- index-example: observability -->
+
+% <!-- point: a-sensor-is-only-as-good-as-its-observability | Evidence must preserve the distinctions needed to judge the obligation, such as caller identity, destination, and architectural component. | terms: sensor, observability -->
+
+\textbf{Observing its behavior.} For the reporting change, instrumented tests record the caller, destination, and outcome of attempted connections. A test exercising a direct database path through generic networking can expose a violation that the module restriction did not exclude. Recording the connection does not prevent it; the evidence informs the acceptance decision. This requires \textbf{observability}: the relevant state or behavior must be exposed in a form the environment can inspect. The record must distinguish an API call from a direct database connection. ``Request succeeded'' is insufficient: the evidence must preserve the distinctions needed to evaluate the architectural obligation.
+
+% <!-- section-terms: gate, validator, governance-mechanism -->
+
+% <!-- point: a-gate-supplies-the-consequence-and-a-gate-is-a-commitment | A gate evaluates whether an action or result may proceed, locally or through a delegated check, and enforces the decision; a blocking check can reject both genuine violations and false positives. | terms: gate, validator -->
+
+% <!-- index-def: gate -->
+
+% <!-- point: a-ci-suite-bundles-three-roles-without-collapsing-the-distinction | Instrumented tests produce observations, a checker compares them with the architectural model, and the merge gate requires the build and interaction checks to pass. | terms: sensor, gate, validator, governance-package -->
+
+% <!-- point: a-validator-turns-evidence-into-a-judgment | The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions. | terms: validator, gate -->
+
+\textbf{Controlling acceptance.} A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker. Policy-based access-control architectures distinguish the decision about whether access is permitted from the enforcement of that decision~\citep{rfc2753,oasis2017xacml}. The same distinction applies here: finding a violation does not stop it. The merge gate requires passing build checks and test interactions consistent with the architectural model. A direct database connection fails the interaction check even when the code passes the module restriction. A failed or missing required check blocks the merge. Passing establishes only that the candidate satisfied these admission conditions; the tests cover only the executions they exercised.
+
+% <!-- index-def: validator -->
+
+% <!-- gloss-only: Validator | A conventional name for a checking component, such as a schema validator or dependency checker. Its findings may inform a person, produce an advisory report, or supply the evaluation used within a gate. A result does not by itself control whether work proceeds. -->
+
+% <!-- point: two-roles-act-on-the-work-two-act-at-the-door | Defense in depth combines protections with different coverage; tests and the gate that enforces their results constitute one protection together. | terms: constraint, sensor, gate, validator -->
+
+These categories describe functions rather than execution stages. A source scanner can act as a sensor, runtime permissions as constraints, and one tool may combine observation, evaluation, and refusal. Together, the module restriction and instrumented tests provide \emph{defense in depth}~\citep{ross2022trustworthysystems}: a connection that evades the former may be detected by the latter and rejected at merge. The gate does not independently detect violations; it enforces the test verdict. Engineers must still consider which paths escape both protections.
+
+\autoref{constraint-vs-sensor} brings these mechanisms together around a proposed reporting change. Module restrictions, test instrumentation, and a merge gate work together to preserve the billing boundary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-proposed-change-16bfb894e7.pdf}
+\caption{\emph{Governance around a proposed change.} Module boundaries restrict available operations, instrumented tests record interactions, and the merge gate evaluates the required evidence against the architectural model. Each mechanism provides assurance only within its scope.}
+\label{constraint-vs-sensor}
+\end{figure}
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: SOFTWARE ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: 20 -->
+
+\begin{bookbox}{inset}{Familiar Engineering Machinery}
+\label{inset-familiar-engineering-machinery}
+\textbf{Constraints.} Type systems restrict the values and operations available to checked code. Module boundaries hide implementation details. Database constraints restrict stored states, while permissions restrict access to resources.
+
+\textbf{Sensors.} Logging and tracing expose execution behavior. Parsers and static analyses expose properties of source code, configurations, and dependency graphs.
+
+\textbf{Gates.} Merge gates can require successful tests and analyses. Deployment gates can require security checks. Runtime authorization gates permit or refuse requests under an access policy.
+
+A single tool may perform several of these functions. A continuous integration job, for example, may obtain evidence, evaluate it, and prevent a change from being merged.
+\end{bookbox}
+
+% <!-- section-terms: governance-mechanism, constraints-and-sensors -->
+
+% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; an agent can misunderstand or forget an obligation while its enforcing mechanisms continue to operate. | terms: alignment-principle, intervention-boundary -->
+
+\textbf{The Alignment Principle:} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. An agent can misunderstand an obligation or forget it. The mechanisms enforcing it should continue to operate.
+
+\section{Constructing and Validating Mechanisms}\label{heading:constructing-and-evaluating-governance-mechanisms}
+
+Knowing a mechanism's function does not establish that it enforces the intended obligation. Engineers must construct the mechanism, connect it to the work it governs, and obtain evidence that it behaves as required. The same engineering repertoire used to develop products---interfaces, generation, testing, and failure analysis---also applies to this machinery.
+
+\subsection{Alignment by Construction}\label{heading:alignment-by-construction}
+
+% <!-- point: typed-document-edits-separate-proposal-from-controlled-application | In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document. -->
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+One way to preserve an engineering obligation is to restrict how an implementation can be constructed or changed. DocAble's PDF changeset interface illustrates this approach for document repair. A reasoning component may decide that an image needs alternative text without receiving unrestricted access to the PDF's internal representation. It proposes a typed operation naming the target and intended change. The operation vocabulary constrains which mutations can be expressed through this interface; the applier determines whether a supported operation can proceed against the current document.
+
+% Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+The applier's refusals make that boundary concrete. An operation that marks a structure as decorative must identify the source of the classification. The applier refuses it if the classification source is missing, or if the target is a heading, a formula, or content carrying authored alternative text. These are checks with enforced outcomes. Subsequent validation supplies evidence about selected properties of the resulting document, including content preservation and mechanically testable accessibility requirements. A well-formed proposal does not establish that its description is educationally appropriate, and successful application does not establish complete accessibility.
+
+% Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: dated-case-evidence
+The boundary also preserves freedom. A specialized pipeline and a general-purpose agent may use different methods to decide what to repair. Neither needs to reproduce the mechanics of applying a supported edit. Nor does either gain authority to bypass the restrictions imposed by the common interface. The architecture is therefore more than a convenient API: it separates the judgment that proposes a change from the mechanisms that determine which changes can be made and which results are acceptable.
+
+% <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
+
+We can also use engineering models to construct parts of an implementation in a way that preserves selected obligations. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward~\citep{schmidt2006model,sendall2003model,czarnecki2006feature}.
+
+A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
+
+\subsection{Semantic Commitment and Mechanization}\label{heading:semantic-commitment-and-mechanization}
+
+Recall the discussion of semantic commitment in \autoref{2.2-constructing-and-using-engineering-models:heading:semantic-commitment-and-analysis}. How precisely we define the meaning of an engineering model affects not only the analyses we can perform, but also how much of Alignment we can mechanize.
+
+% <!-- point: human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates | Humans or agents may review an obligation, construct a bespoke check, or build reusable machinery that evaluates obligations expressed in a model. | terms: sensor, gate, constraint, validator -->
+
+Consider the architectural obligation that \texttt{Reporting} must obtain billing data through \texttt{BillingAPI}. We could record this obligation in the project instructions and ask a human or an agent to review proposed changes for violations. We could also ask either to write a check for this particular obligation. Alternatively, we could represent permitted dependencies in a typed graph and construct a checker that compares those relationships with dependencies extracted from the implementation. When we add another service to the model, the same checker can evaluate the new relationships.
+
+\autoref{models-to-engineering-machinery} illustrates several ways in which we can use engineering models to mechanize engineering work:
+
+\begin{enumerate}
+\item \textbf{Analyze the model.} A model checker can explore a behavioral model for violations of an invariant. A constraint solver can find configurations that satisfy a collection of requirements. A proof assistant can check a proof of a formally expressed property.
+\item \textbf{Construct a realization.} A schema can generate interface types, a state machine can supply the transition rules for a workflow engine, and an architectural model can determine parts of a deployment configuration.
+\item \textbf{Construct evaluation machinery.} A state-transition model can supply test sequences and their expected results~\citep{utting2012taxonomy}. A temporal specification can supply a runtime monitor for properties that can be evaluated over observed executions~\citep{bartocci2018runtime}. A schema can supply validators for data exchanged between services.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/models-to-engineering-machinery.pdf}
+\caption{\emph{From engineering models to engineering machinery.} Engineers and agents can use models to analyze systems, construct implementations, and establish evaluation machinery. Models with sufficiently defined semantics can also support mechanical analysis, generation, and direct interpretation. Greater semantic commitment creates more opportunities for mechanization, but does not require us to pursue them.}
+\label{models-to-engineering-machinery}
+\end{figure}
+
+We need not generate an entire implementation or checking mechanism. A model may determine the inputs and expected results of a test while an engineer or agent writes the code that exercises the implementation. An architectural model may determine which connections are permitted while separately developed instrumentation supplies evidence about actual connections. We can also write machinery that consumes a model directly, rather than generating a separate artifact from it.
+
+% <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
+
+Who constructs that machinery is a separate decision. An engineer can write a reusable checker, an agent can help construct a generator, and an existing transformation can produce parts of either. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it~\citep{bodden2018,bodden2023sosa}.
+
+Recall the job lifecycle in \autoref{2.4-behavioral:heading:states-transitions-and-behavioral-analysis}. We can analyze its transitions to determine whether the modeled behavior permits a job to finish before it starts. We can use those transitions to implement the lifecycle, or to construct tests of an independently developed implementation. The same model can serve all three purposes without prescribing how jobs are stored, scheduled, or processed.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+\textbf{DocAble: Reusable Checking Machinery.} In DocAble's Python implementation, the component model declares which other components a component may import from. These declarations give architectural restrictions a common representation instead of leaving each one to project instructions or a separately constructed check.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+A reusable checker reads the declarations, examines imports in the implementation, and identifies forbidden dependencies. The same checker evaluates every component for which an import boundary is declared, and its blocking verdict prevents a violating change from being accepted. Components without a declared boundary are outside this check's scope; shared code and external libraries follow its common allowance rules.
+
+When I introduce another architectural obligation of this kind, I need only extend the model. I need not construct another checker. The machinery is reusable because the declarations have a precise, common meaning. I must still decide which dependencies to permit, and this mechanism examines Python imports rather than every possible interaction between components.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+\textbf{DocAble: Direct Interpretation and Generation.} DocAble's job-state machinery reads a table of permitted transitions. If a proposed transition is absent from the table, the operation is refused. Changing the table changes which transitions the machinery permits, without generating a separate implementation of the state machine.
+
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: pinned-repository-investigation
+For other purposes, generating an artifact is more convenient. DocAble's component model describes how services are packaged into container images. The Dockerfiles were previously maintained separately and repeatedly became inconsistent. DocAble now generates their contents from the component model. A separate blocking check regenerates the expected contents and refuses changes that would leave the committed files inconsistent with the model.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+We can also generate only part of an artifact. Some of DocAble's behavioral models express obligations using temporal logic. DocAble derives the corresponding property definitions in TLA+ mechanically, while the specification of the states and transitions is constructed separately. The model contains enough information to determine the property, but not enough to determine the complete specification.
+
+These arrangements eliminate different kinds of repeated engineering work. A reusable checker saves us from constructing another checker for each obligation. Direct interpretation saves us from maintaining a separate realization of the modeled rules. Generation saves us from constructing and maintaining artifacts whose contents can be determined from a model. We can combine these arrangements within the same engineering environment.
+
+Greater semantic commitment gives us more opportunities for mechanization. With less commitment, we rely more on engineers and agents to interpret the representation. A short description reviewed by a knowledgeable engineer may be entirely adequate for an obligation that changes frequently or rarely needs evaluation. For hundreds of architectural obligations evaluated against thousands of changes, a common representation and checking mechanism may be a better investment.
+
+The cost of establishing such machinery can be amortized in two ways. We can reuse it to evaluate the same obligations across many changes, and we can reuse it to evaluate additional obligations expressed in the same modeling vocabulary. The latter becomes particularly valuable as the system grows.
+
+Nor does greater semantic commitment necessarily restrict implementation freedom. We can specify the permitted transitions of a job precisely while leaving its implementation largely open. The additional precision concerns the meaning of the obligation, not necessarily the number of choices available to the implementor.
+
+Commodity intelligence changes the cost of these arrangements. Agents can help formalize obligations, construct generators, and develop reusable analysis and checking machinery. We may find it economical to mechanize engineering activities that we previously performed by hand. \magevalue{chapter:theory} examines this tradeoff in more detail.
+
+% <!-- box-family: inset -->
+% <!-- inset-domain: FORMAL METHODS -->
+% mage-box-prefix: Inset —
+\begin{bookbox}{inset}{Commodity Intelligence and Formal Methods}
+\label{inset-commodity-intelligence-and-formal-methods}
+Finding a proof and checking a proof are different tasks. The former may require considerable ingenuity; the latter can be performed mechanically in a proof assistant such as Lean~\citep{lean-reference}. An agent can attempt several proofs, introduce intermediate lemmas, or revise its approach when an attempt fails~\citep{yang2023leandojo}. The proof checker determines whether the proposed proof is valid.
+
+Similar arrangements are possible with other formal methods. An agent investigating a concurrent protocol can propose an invariant and use a model checker or solver to investigate whether it holds. A counterexample gives the agent a concrete case to examine. In deductive program verification, an agent can help construct the annotations and invariants needed to establish that an implementation satisfies a formal specification~\citep{poesia2024dafnyannotator}. These arrangements allow us to delegate some of the difficult work of verification without relying on the agent to judge the validity of its own reasoning.
+
+Formal methods have often required specialist expertise and substantial engineering effort. Commodity intelligence may reduce some of those costs. Engineers who previously found formal verification too expensive may have reason to reconsider it, just as they may reconsider the cost of constructing and maintaining other engineering models.
+
+The engineer remains responsible for the choice of properties, the assumptions under which they are established, and the relationship between the formal representation and the system being built. Analysis of a model does not by itself establish that its implementation satisfies the same properties.
+\end{bookbox}
+
+\subsection{Testing Against Models}\label{heading:tests-and-models-work-together}
+
+% <!-- index-def: generative-validation -->
+
+Tests can evaluate whether an implementation satisfies obligations expressed in a model. Different testing methods organize that evidence differently. A regression test preserves a particular case and makes a recurrence easier to diagnose. Such tests remain useful as a system acquires more explicit models~\citep{winters2020}. \emph{Property-based testing} evaluates an executable property over generated inputs. The engineer chooses the property and ensures that the generator exercises the cases that matter; QuickCheck provides a framework for this approach~\citep{claessen2000quickcheck}.
+
+\emph{Model-based testing} uses an explicit account of expected behavior to construct operations, evaluate their results, or both. A behavioral model can supply the test oracle---the rule for evaluating the result---across many sequences. It need not reproduce the entire implementation; it needs enough behavior to answer the engineering question~\citep{utting2012taxonomy}. Property-based and model-based testing can be combined. Hypothesis's stateful testing, for example, can generate sequences of actions and compare a real system with a simpler model. A useful failing sequence can then become a fixed regression test~\citep{hypothesis-stateful}.
+
+Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave the required property unasserted. Passing tests supports a claim only about the executions and properties checked~\citep{winters2020}.
+
+The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+\textbf{Example: Testing DocAble's Ownership Protocol.} Recall the ownership model in \autoref{2.4-behavioral:heading:distinguishing-a-current-owner-from-a-returning-one}. It gives us a specific obligation to test: a returning worker must not release a newer worker's claim. Consider how several testing techniques could evaluate this obligation.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+A regression test can reproduce the stale-release sequence against the implementation and assert that the newer claim remains. Property-based testing can evaluate the broader rule that a release carrying an old generation must not clear the current claim, varying worker identities, claim generations, and relevant operations. The generator must actually exercise stale releases for these checks to supply the intended evidence.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+For a model-based test, the ownership model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A driver can issue each operation to both that model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences.
+
+A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis~\citep{prenninger2005abstractions}. Testing selected implementation executions also differs from analyzing all behavior admitted by a bounded model. We return to that distinction when choosing mechanisms for the recovery protocol.
+
+\subsection{Testing Failure Responses}\label{heading:model-and-exercise-failure-responses}
+
+Testing expected behavior is not enough when a system must also respond correctly to failures. A failure model identifies conditions worth exercising and the responses they require. Failure Mode and Effects Analysis (FMEA) provides an established approach: enumerate the ways a component or operation can fail, identify their causes and effects, and assess their consequences~\citep{iec60812_2018}.
+
+Fault injection exercises the required responses by introducing selected failures during execution. At a dependency boundary, for example, a test can make a dependency time out, return a malformed response, or become unavailable. The failure model identifies which conditions to exercise and what the receiving component must do. The purpose is not simply to demonstrate that the service encounters an error, but to establish whether its response satisfies the modeled obligation. Fault injection has long been used in dependability evaluation; an explicit failure model helps select experiments and interpret their results~\citep{hsueh1997fault}.
+
+\textbf{DocAble: Testing Failure Responses.} DocAble's failure models focus on services in its web layer. In this service-oriented architecture, we represent each relevant failure with an identity, its originating operation or dependency, the condition that produces it, and the response required of the receiving service. A timeout, an invalid response, and a rejected request may all interrupt work, but they need not call for the same response.
+
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
+DocAble uses the failure model to guide fault-injection tests. The tests inject modeled failures at dependency boundaries while exercising the real service implementation, then inspect the result returned to the caller and the response of downstream consumers. They also exercise healthy operation, so a test cannot pass merely because every request fails. Where a failure affects admission, the test checks whether the required consequence follows. Reproducing existing behavior does not establish that the behavior is acceptable.
+
+% Evidence: E21 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E21.md | kind: dated-case-evidence
+The model also supports failure provenance. When a failure occurs, DocAble can record where it originated, where it was observed, and how it propagated through subsequent operations. These records let engineers trace a failed request through the affected services rather than reconstructing its history from unrelated error messages. The model need not enumerate every possible fault; DocAble concentrates on failures affecting recovery, correctness, and the trustworthiness of evidence, extending the representation when new cases emerge.
+
+\subsection{Testing the Governance Machinery}\label{heading:testing-the-governance-machinery}
+
+A passing test establishes that the implementation satisfied the checks performed. It does not establish that those checks would detect a relevant defect. Software testing has developed techniques for examining this distinction directly. Mutation testing deliberately introduces small changes into a program and asks whether its tests detect them. A test suite that continues to pass after a relevant defect is introduced may be exercising the code without adequately checking its behavior. Mutation testing has a substantial research history, including work on mutation operators and measures of test adequacy~\citep{demillo1978hints,jia2011analysis}.
+
+Models can make these experiments more systematic. Rather than introducing arbitrary changes, engineers can derive candidate faults from the properties the model represents. For the job-ownership model in \autoref{2.4-behavioral:heading:docable-job-lifecycles-and-recovery}, one mutation might remove the generation check from a release operation, allowing an expired worker to clear a newer worker's claim. A test intended to protect that obligation should reject the mutated implementation. If it does not, the failure is in the evidence used to establish Alignment, even if the original implementation happens to be correct. Model-based mutation testing develops this approach by using mutations of behavioral specifications to assess whether tests can distinguish the intended behavior from plausible alternatives~\citep{aichernig2015modelmutation}.
+
+A validator, sensor, or gate is itself software whose behavior may be incorrect. If a gate is intended to reject a forbidden dependency, we can deliberately introduce that dependency and verify that the actual gate refuses the change. If a validation result must distinguish success from incomplete execution, we can inject a checker failure and verify that the consumer does not accept it as success. These experiments test not only whether the check can produce a verdict, but whether the verdict has the required consequence.
+
+% Evidence: E22 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E22.md | kind: dated-case-evidence
+This approach exposed an incorrect interpretation of output from DocAble's accessibility checker. If the underlying validation program timed out or failed to run, the checker could report an informational issue while returning zero failed checks. A caller consulting only that count could mistake an incomplete evaluation for a clean document. The checker had reported the failure, but its consumer treated the absence of reported violations as evidence that validation had succeeded. The missing distinction was between ``no violations found'' and ``validation did not complete.'' Modeling these outcomes separately exposed the error in how the result was interpreted.
+
+% Evidence: E23 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E23.md | kind: historical-report
+The uniqueness-check incident in \autoref{4.4-engineering-the-environment:heading:engineering-capital-depreciates} illustrates how deliberately introducing a violation can help us evaluate a repaired control.
+
+Agentic implementation changes the economics of this work. Agents can help construct mutants, fault-injection harnesses, and regression tests, making systematic challenges to the checking machinery less expensive. The engineer still decides which faults matter and whether the experiments adequately represent them. A mutation score is not a reliability guarantee: it depends on the mutations selected, and some mutants preserve the program's behavior. Fault injection likewise covers only the failure conditions and responses exercised. Both techniques provide something more useful than a larger test count: evidence that selected violations can actually be detected.
+
+Constraints, tests, and failure experiments can prevent selected violations or expose them before work is accepted. Choosing among them requires judging the evidence each supplies and the implementation freedom it preserves.
+
+\section{Choosing Mechanisms}\label{heading:one-obligation-several-ways-to-hold-it}
+
+\magevalue{chapter:modeling} selected representations according to the engineering questions they could answer. The corresponding choice here is a mechanism suited to the obligation: what must be prevented or established, and what evidence would be adequate?
+
+% <!-- section-terms: constraint, validator, gate -->
+
+% <!-- point: a-modeled-obligation-does-not-imply-one-enforcement | Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand. -->
+
+As we have seen, the same model may support several forms of Alignment. We can embody an obligation in generated implementation structure, restrict actions at runtime, or evaluate an implementation through tests and analysis. These mechanisms provide different kinds of assurance. Tests exercise selected implementation behaviors; model checking examines behavior admitted by an explicit model. The choice depends on what we need to establish and what evidence would be adequate.
+
+\subsection{Preventing Violations or Detecting Them}\label{heading:preventing-violations-or-detecting-them}
+
+% <!-- point: prefer-the-constraint-when-you-can-exclude-the-state | An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol. -->
+
+Where practical, we can choose an operation that excludes a forbidden state rather than detect the state after it occurs. An atomic conditional update can acquire a job only while its database row remains unclaimed. Two competing workers cannot both win that transition. Tests can still check how the surrounding code handles success, refusal, and failure. The runtime primitive and the tests contribute different protections.
+
+Why observe a behavior when we could prevent it? Because we may not yet know whether it should be forbidden. A constraint embodies a decision about which alternatives are unacceptable. If that decision is premature, the constraint can exclude useful implementations along with bad ones. Observation lets us gather evidence before deciding what to prohibit. Once an obligation is understood, however, relying on observation alone may leave a known failure free to recur. The engineering judgment is deciding which choices are settled and which still warrant investigation.
+
+\subsection{Analyzing Models or Testing Implementations}\label{heading:analyzing-models-or-testing-implementations}
+
+% <!-- point: interleaving-properties-need-a-validator-over-the-state-space | Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior. -->
+
+\emph{Model checking} and \emph{model-based testing} answer different questions. A model checker asks whether the represented protocol permits a violation within the explored domain. Model-based tests ask whether the implementation behaves as the model requires in the executions they perform. Exploring the model does not itself execute database calls or establish that production code follows the modeled transitions. A counterexample found in the model can guide an implementation test, while a test failure can reveal a distinction missing from the model~\citep{baier-katoen2008,utting2012taxonomy}.
+
+% <!-- point: temporal-obligations-require-another-shape-of-evidence | A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it. -->
+
+The obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior~\citep{baier-katoen2008,lamport2002}.
+
+\subsection{Deriving Verification Requirements}\label{heading:deriving-verification-requirements}
+
+As an engineering environment acquires more models and obligations, choosing how to evaluate each one can itself become a recurring engineering activity. Can we use models to help make that choice?
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+DocAble's verification policy distinguishes obligations involving ordinary sequences of operations from those involving coordination among concurrent participants. For example, checking that a sequence of job-state transitions is permitted requires different evidence from establishing that competing workers cannot both acquire the same claim. The policy also distinguishes safety properties, which forbid undesirable behavior, from liveness properties, which require progress.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+The model of an invariant identifies its participants, the coordination primitives involved, and the form of its temporal obligation. From these declarations, DocAble derives a verification requirement. Under this policy, an obligation involving concurrent coordination may require explicit-state exploration for a safety property or temporal model checking for a liveness property. Other behavioral obligations can be assigned property-based tests. This is a policy for DocAble's engineering environment, rather than a general rule for choosing verification techniques.
+
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+A reusable checker examines the modeled invariants and requires each to identify a verification artifact of the prescribed kind whose path resolves on disk. When I add another invariant within this policy's scope, the same machinery derives its verification requirement and checks for the required artifact. The requirement is blocking for models whose existing findings have been resolved; newly introduced model populations can begin in advisory mode while the required machinery is constructed.
+
+This arrangement does not generate the verification artifact, run it, or establish that it is adequate. An engineer or agent must still construct the test or formal specification and establish that it evaluates the intended obligation. The machinery mechanizes part of the decision about what evidence to obtain, together with a check that the corresponding artifact has been provided.
+
+% <!-- section-terms: constraint -->
+
+\subsection{Establishing That a Required Operation Occurred}\label{heading:establishing-that-a-required-operation-occurred}
+
+% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | An admission mechanism may require reliable evidence that a protected operation passed through an authorized interface. | terms: constraint -->
+
+We can sometimes protect an obligation more effectively by requiring an authorized operation than by trying to enumerate every forbidden alternative. Suppose document mutations must pass through a particular interface. We could prohibit known ways of bypassing that interface, or require evidence that each protected mutation passed through it.
+
+The latter approach does not require us to enumerate every possible bypass. It does, however, depend on the reliability of the evidence. An attribution record is useful only insofar as it establishes that the required operation actually occurred. Related arrangements appear in remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
+
+% <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+\textbf{DocAble: Protecting the Recovery Protocol.} DocAble's recovery protocol illustrates how runtime constraints and model analysis can address related but different obligations (\autoref{match-mechanism-to-property}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/match-mechanism-to-property-2c4d8f0003.pdf}
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: implementation
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+\caption{\emph{Two protections in DocAble's job-recovery protocol.} A durable compare-and-set prevents competing workers from acquiring the same claim for a protected effect. A bounded explicit-state checker examines recovery interleavings, including whether a stale release can clear a newer worker's claim. The runtime constraint directly restricts execution; the checker evaluates the modeled protocol. Tests provide separate evidence about the implementation.}
+\label{match-mechanism-to-property}
+\end{figure}
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+The operation succeeds only while the stored state matches the required prior state, so competing workers cannot both acquire the same claim. An expired lease or repeated delivery does not bypass this restriction. The constraint governs a particular effect; it does not guarantee that every part of the job executes exactly once.
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+For the ownership protocol introduced in \autoref{2.4-behavioral:heading:distinguishing-a-current-owner-from-a-returning-one}, a finite model can explore interleavings of claim acquisition, expiry, replacement, and release. This addresses a different question from the atomic runtime operation: whether the modeled transitions permit a forbidden ownership state. DocAble uses a purpose-built explicit-state checker to explore interleavings of its ownership model within stated bounds and search for violations of this property.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The analysis establishes a property of the represented protocol, not of every possible implementation. Tests or other evidence must separately establish that the implementation follows it.
+
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: pinned-repository-investigation
+A further obligation concerns eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification with a TLC configuration was then developed for that obligation~\citep{lamport2002}. The environment checks that the stated temporal property agrees with the engineering model. Running TLC itself remains a separate activity rather than a required check on every change. The order matters: engineering identified the required behavior before constructing an analysis of it. \autoref{chapter:appendix-a-job-ownership-and-recovery} specifies the distinct runtime protections, analysis assumptions, and correspondence checks.
+
+% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
+
+A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
+
+\section{Preserving Engineering Freedom}\label{heading:preserving-engineering-freedom}
+
+Choosing an enforcement mechanism also changes which implementation choices remain available. The aim is to protect the obligations that matter while preserving the degrees of freedom established through Modeling. Quantitative margins, the distinction between acceptable and permitted implementations, and the limits of mechanical evaluation help engineers make that choice.
+
+\subsection{Tolerances and Margins}\label{heading:margin-and-engineering-freedom}
+
+% <!-- section-terms: tolerance, sensor, model -->
+
+% <!-- point: a-quantitative-tolerance-can-expose-margin | Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible. | terms: tolerance, sensor -->
+
+\magevalue{chapter:modeling} introduced tolerances as bounds on acceptable variation and degrees of freedom as choices left open to implementation. When we can measure an implementation against a quantitative bound, we can establish more than whether it conforms. We can also determine how close it is to violating the obligation.
+
+\autoref{cost-enforcement-gradient} illustrates this relationship using a response-time obligation of 200 milliseconds. Two implementations complete the same operation in 120 ms and 195 ms, respectively. Both satisfy the requirement, but the first has 80 ms of measured margin while the second has only 5 ms. The model establishes the acceptable region; Alignment supplies the measurements needed to locate each implementation within it. A binary conformance check would accept both and discard this additional information.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/cost-enforcement-gradient-4e2626b031.pdf}
+\caption{\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.}
+\label{cost-enforcement-gradient}
+\end{figure}
+
+Margin can inform subsequent implementation work. An agent considering a more expensive algorithm or additional processing may have considerable room to explore when measured latency is well below the limit. Near the boundary, the same change may require optimization elsewhere or a different design. The margin does not prescribe which implementation to choose, nor does it guarantee that a proposed change will remain acceptable. It provides evidence that can guide exploration, with the resulting implementation evaluated again against the obligation.
+
+The evidence also informs the engineer. Shrinking margin may indicate that the current design has little capacity to absorb additional work or operating variation. The engineer can investigate the cause, reconsider the architecture, allocate a more specific performance budget, or introduce an earlier warning threshold. The appropriate response is not necessarily to tighten the tolerance. The original bound may remain correct even when the implementation approaches it. In this way, Alignment returns information to Modeling: measurements obtained from one implementation can improve the representations and decisions governing the next engineering task.
+
+This reasoning applies where the model defines a meaningful quantitative boundary and the environment can measure the relevant behavior. Latency, memory consumption, cost, and capacity are familiar examples. The measured margin also depends on the workload and conditions under which it was obtained; headroom observed in one setting is not a guarantee under another. Many software obligations are discrete instead. A dependency is permitted or forbidden, and a state transition is legal or illegal. Such properties may admit measures of risk, but they do not necessarily have a useful distance to failure. For them, conformance may be the appropriate evaluation.
+
+\subsection{Underconstraint and Overconstraint}\label{heading:underconstraint-and-overconstraint}
+
+% <!-- section-terms: constraint, governance-mechanism -->
+
+% <!-- point: preserving-freedom-has-positive-value | Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring. | terms: constraint, governance-mechanism -->
+
+Alignment should preserve the implementation freedom that Modeling deliberately leaves open. A control can exclude an unacceptable realization, but it can also rule out alternatives that satisfy the stated obligations. Operational simplicity or the cost of assurance can justify some restrictions. As implementation becomes cheaper, more of the alternatives that a control excludes may be worth exploring.
+
+% <!-- point: defer-consequential-commitments-until-the-last-responsible-moment | Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer. | terms: constraint -->
+
+For consequential choices whose effects are still uncertain, engineers can defer a commitment until the \emph{last responsible moment}. Waiting can yield useful information, but it can also make a later change more expensive. Agents can produce prototypes and experiments sooner, while controls protect the obligations already understood. The tradeoff depends on which realizations satisfy the stated obligations and which the environment actually permits.
+
+% <!-- point: realization-space-underconstraint-vs-overconstraint | Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P. | terms: constraint, governance-mechanism -->
+
+An implementation can satisfy every engineering obligation and still be rejected by the environment. Conversely, the environment may permit an implementation that violates an obligation. We can describe these two problems using sets. Let \(\mathcal R\) be the possible realizations of the work. Each obligation \(O_i \subseteq \mathcal R\) is the set of realizations satisfying it, so the acceptable realizations are \(\mathcal A = O_1 \cap \ldots \cap O_n\).
+
+For a fixed control configuration and decision context, let \(C_j \subseteq \mathcal R\) be the set of realizations permitted by enforcing control \(j\), whether a direct constraint or a gate. When every applicable control must permit a realization, the environment permits \(\mathcal P = C_1 \cap \ldots \cap C_m\). A gate can exclude a realization that satisfies all direct constraints, for example because required evidence is missing. Sensors can supply evidence for that decision without themselves restricting \(\mathcal P\). The permitted region can change as the evidence or controls change. Two kinds of mismatch appear as set differences:
+
+\[
+\text{underconstraint: } \mathcal P \setminus \mathcal A \qquad \text{overconstraint: } \mathcal A \setminus \mathcal P
+\]
+
+Underconstraint leaves unacceptable realizations permitted; it threatens correctness. Overconstraint excludes acceptable realizations; it sacrifices useful engineering freedom. \autoref{acceptability-versus-permission} classifies realizations by acceptability and permission.
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{8em}>{\raggedright\arraybackslash}p{9em}>{\raggedright\arraybackslash}p{9em}@{}}
+\caption[Acceptability versus permission]{\emph{Acceptability versus permission.} Obligations determine acceptability; enforcing controls determine permission. Underconstraint permits unacceptable realizations, while overconstraint excludes acceptable alternatives.}\label{acceptability-versus-permission}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Realizations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Realizations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Acceptable & Preserved freedom & Overconstraint \\
+Unacceptable & Underconstraint & Correct exclusion \\
+\end{longtable}
+
+% <!-- point: matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified | Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence. | terms: constraint -->
+
+Making \(\mathcal P\) coincide with \(\mathcal A\) is an idealization, not always a practical or even desirable goal. An engineer may deliberately exclude acceptable alternatives --- for operational simplicity, for consistency, or for assurance. Comparing the two regions helps engineers identify that restriction and decide whether its benefit justifies the lost freedom.
+
+\subsection{Where Enforcement Stops}\label{heading:where-enforcement-stops}
+
+% <!-- section-terms: residual, constraints-and-sensors -->
+
+% <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
+
+Greater semantic commitment gives us more opportunities for mechanization, but we need not pursue all of them. An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. Human review informed by adequate evidence may be more appropriate than mechanical enforcement of a poorly specified rule. \autoref{honest-gaps} shows these four possible stopping points.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/residual-decision-tree-478c6933ab.pdf}
+\caption{\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.}
+\label{honest-gaps}
+\end{figure}
+
+% <!-- point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use | The residual is an obligation nobody made explicit enough for the environment to use. | terms: residual, judgment-is-the-scarce-resource -->
+
+% <!-- index-def: residual -->
+
+\textbf{Residual.} The obligation is not explicit in a form the environment can use. An engineer or agent must reconstruct the relevant meaning when the decision arises.
+
+% <!-- point: an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation | An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. The decision still requires human judgment.
+
+% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, but the result does not control whether work may proceed. | terms: residual, constraints-and-sensors -->
+
+\textbf{Evaluated only.} The environment can evaluate the obligation, but the result does not control whether work may proceed.
+
+% <!-- point: a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk | A governed obligation is enforced in a form appropriate to the engineering decision. | terms: residual, constraints-and-sensors -->
+
+\textbf{Governed.} The environment enforces the obligation through a constraint on available actions or states, or through a gate that makes an action or admission depend on the evaluation.
+
+Mechanical enforcement does not always require a rich model of the product. A sandbox can restrict an agent's access to resources without representing the architecture of the system the agent is building.
+
+% <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set. | terms: residual, tolerance -->
+
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not require tightening it or enforcing it mechanically. As \autoref{cost-enforcement-gradient} illustrated, measurements can reveal how much margin remains within a quantitative tolerance, even when the environment does not use those measurements to block work. A broad tolerance may be the correct engineering decision, and variation within it remains legitimate implementation freedom. Stronger Alignment means more dependable adherence to the obligations engineers actually chose, not progressively narrowing the acceptable realization space.
+
+% <!-- point: three-different-reasons-non-enforcement-is-sometimes-the-engineered-result | An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result. | terms: residual, governance-conversion -->
+
+Different concerns can warrant different stopping points. A team may record service cost while leaving the spending decision to a human, rather than imposing a hard daily ceiling. It may review a trend in incident reports without setting a required number, which would reward the count instead of the improvement. A design decision may require context that the available checks cannot evaluate adequately. In each case, engineers should make the remaining judgment or policy choice explicit instead of treating non-enforcement as an accidental omission.
+
+% Evidence: AA4 | source: book/data/local-evidence/automated-alignment-11242026/records/AA4.md | kind: pinned-repository-investigation
+DocAble illustrates an intermediate arrangement. Each task delegated to a GenAI model requires a policy concerning acceptable errors and the quality of its results. The environment constructs a contract entry for every declared task, so introducing a new task cannot silently omit its policy entry. The entries carry provisional defaults and record their policy-authored provenance; their presence does not establish measured error behavior or a suitable quality threshold. Assessing and refining that policy remains an engineering decision. We can mechanize the requirement to record a policy without mechanizing the judgment that makes it appropriate.
+
+These choices can change as the system evolves. An obligation that initially requires human interpretation may recur often enough to justify a more precise representation and a mechanical evaluator. Conversely, an obligation that changes frequently may be more economical to express in prose and evaluate through review.
+
+```

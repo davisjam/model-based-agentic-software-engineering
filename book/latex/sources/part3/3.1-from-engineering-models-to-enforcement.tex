@@ -134,7 +134,7 @@ These mechanisms can detect changes that break known model--implementation relat
 \cref{2.6-system-knowledge:heading:docable-connecting-engineering-models} described how I developed DocAble's computation model by examining the computations and dependencies in its different document engines. We also saw how the scheduler and an analytical graph use those declarations. Having established these relationships, I needed to answer two further questions: did my checks cover the computations that actually executed, and could a failed check prevent a change from being accepted?
 
 % Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
-In the September 5, 2026 snapshot, the analytical graph contained 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations came from executable declarations; two were entered by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it projects typed declarations of what computations produce and consume.
+Most of the relationships in the analytical graph are derived from executable declarations; a few are maintained by hand. For Office formats, the graph derives dependencies from the registry's read/write metadata, which the scheduler also uses. For PDF, it uses declarations of what each computation produces and consumes.
 
 % Evidence: E13 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E13.md | kind: mechanism
 % Evidence: E18 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E18.md | kind: historical-report
