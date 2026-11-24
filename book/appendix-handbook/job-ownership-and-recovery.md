@@ -1,0 +1,55 @@
+<!-- GENERATED from book/latex/sources/appendix-handbook/job-ownership-and-recovery.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
+## Problem
+
+A worker may continue executing after its lease expires. If another worker acquires the job, a delayed release from the first worker must not clear the new ownership. Recovery also has to preserve externally visible effects and the ordering of result publication. Preventing conflicting ownership is insufficient if interrupted work can remain stranded or a database record can refer to an output that was never made durable.
+
+This blueprint concerns runtime document-remediation jobs. [ref:chapter:appendix-a-governed-delegation] governs coding-agent assignments in the development environment; those assignments have a different lifecycle and acceptance procedure.
+
+## Conceptual Design
+
+Represent the job lifecycle, the current lease, and claims for protected effects separately. The lifecycle states which transitions are permitted. The lease identifies a particular attempt’s temporary ownership. A durable effect claim controls entry to a selected operation even when delivery is repeated or an earlier worker continues running. [ref:match-mechanism-to-property] distinguishes that runtime constraint from analysis of the recovery protocol.
+
+DocAble’s lease release uses the lease’s issue epoch to distinguish successive claims for the same job. When the releasing worker presents an issue epoch, the atomic operation removes the stored lease only if that epoch matches. A separate database compare-and-set controls acquisition of a merge-stage claim. These operations protect different state: the first prevents a stale release from deleting a replacement lease; the second prevents competing attempts from both acquiring the same protected-effect claim.
+
+Safety and progress require different arguments. Lease comparison and effect claims restrict particular operations. An explicit-state model explores whether sequences of acquisition, expiry, replacement, and release can violate ownership. A temporal recovery model asks whether jobs eventually reach terminal states under stated assumptions about delivery, retries, and recovery sweeps. Neither analysis substitutes for evidence that the implementation follows the represented protocol.
+
+## Engineering Models
+
+The models in [ref:handbook-job-recovery-models] share job and attempt identities without treating lifecycle state, lease possession, and effect permission as interchangeable.
+
+<!-- label: handbook-job-recovery-models -->
+<!-- table: *Engineering models for job ownership and recovery.* Ownership, effect permission, publication order, and eventual progress require distinct representations and evidence. [short: Engineering models for job ownership and recovery] -->
+| **Model** | **Meaning and authority** | **Consumers** |
+|---|---|---|
+| Job lifecycle | Legal states, transitions, and terminal conditions for the relevant runtime path. | State-changing operations, conformance tests, and recovery procedures. |
+| Lease ownership | Job identity, issue epoch, expiry, and the conditions for replacing or releasing a claim. | Atomic lease operations and finite-state interleaving analysis. |
+| Protected effect | Durable state required to acquire a claim for a selected effect. | Database compare-and-set and the worker that proceeds only after acquisition. |
+| Publication order | The required relationship between a durable output and the database reference announcing it. | Result finalization and recovery tests. |
+| Recovery progress | Failure/retry behavior and delivery or sweep assumptions sufficient for eventual termination. | Temporal specifications and their analysis configurations. |
+
+The engineer determines the permitted transitions and required properties. The runtime stores current state; the models supply the expected meanings against which behavior is examined. A simplified teaching state machine need not enumerate every production state, but a conformance test must explicitly map its states and operations to the implementation being tested.
+
+## Realization
+
+### Protect Each State Change at Its Boundary {.unnumbered}
+
+Consider a successful handoff. Worker A’s lease expires, worker B acquires a replacement, and B later releases that lease. B presents the current issue epoch, so the atomic comparison permits removal. If A instead returns with the old epoch, the comparison fails and B’s lease remains. The comparison and deletion must form one atomic operation; a separate read followed by an unconditional delete leaves an intervening acquisition unprotected.
+
+At the protected-effect boundary, acquire the durable claim before performing the effect and proceed only on success. If two workers compete for the same merge-stage claim, only the compare-and-set that encounters the required prior state succeeds. The rejected attempt must not continue as though it held the claim. This restriction does not cancel a stale worker, establish idempotence of every operation, or guarantee exactly-once execution of an entire job. Recovery must account for a crash after claim acquisition as well as one before it.
+
+Result publication has its own ordering obligation. In DocAble’s fallback recovery path, finalize the fallback output before advertising it as completed in durable job state. Finalization uploads the artifact when remote storage requires it; a local store may already hold the durable output. A failure before finalization completes must not advertise the fallback as available. [ref:2.4-behavioral:heading:publishing-a-recovered-result] develops this ordering. Define retry and cleanup behavior explicitly rather than assuming that storage and database writes form one transaction.
+
+### Test Safety, Progress, and Correspondence {.unnumbered}
+
+Use the stale-release sequence as a regression case, then vary operation order, expiry, and successive claims. Compare implementation responses with an executable ownership model. Test atomic operations with competing calls as well as sequential traces: a driver that issues one call at a time cannot expose every race inside an operation.
+
+DocAble uses a purpose-built explicit-state checker for the finite ownership model. Its explored interleavings make the state-space bounds part of the result. This is separate from testing production lease operations against the model. Varying the represented number of jobs or the permitted recovery transitions changes the analysis question; it must not silently leave the reported bounds unchanged.
+
+The temporal specification for serverless push recovery represents one job, a pending-delivery flag, and a bounded step counter. Its progress obligation is eventual arrival at a terminal state. The configurations use a four-step bound, strong fairness for delivery, and weak fairness for the recovery sweep and step-cap action; they contrast recovery enabled and disabled. This abstraction examines lost delivery and recovery, not the lease or merge-claim implementation. To evaluate it, run the configurations, retain the bounds and results, and examine counterexamples against the intended recovery behavior. A specification records the question; an execution result records what the analysis established for that configuration.
+
+Keep correspondence checks with the modeled protocol. DocAble has tests that exercise production operations against executable models and checks for drift between modeled states or transitions and implementation declarations. Require the relevant checks when changing those surfaces, and inspect cases the mapping omits. A model property, a passing conformance test, and a correct production recovery are different claims.
+
+## Adaptation and Limits
+
+Use the arrangement where retries and stale workers can affect ownership or externally visible results. Choose a claim identity that distinguishes replacement attempts and define which operations must compare it. Protect effect claims at their actual state-changing boundary, and specify recovery after partial completion. Progress remains conditional on the delivery, recovery, and failure assumptions used in the temporal model; finite exploration and conformance tests establish only the behaviors they cover.

@@ -3,8 +3,8 @@
   "_counts": {
     "chapters": 39,
     "sections": 179,
-    "explicit_ids": 91,
-    "derived_ids": 88,
+    "explicit_ids": 92,
+    "derived_ids": 87,
     "missing_topic_sentence": 9,
     "sections_drained": 114,
     "paragraph_points": 500
@@ -1470,7 +1470,7 @@
           "section_id": "docable-from-correspondence-to-enforcement",
           "level": 2,
           "heading_text": "DocAble: From Correspondence to Enforcement",
-          "topic_sentence": "DocAble repairs accessibility problems in Office and PDF documents through a sequence of computations.",
+          "topic_sentence": "[ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] described how DocAble connects computation declarations, scheduling, and an analytical graph.",
           "id_source": "explicit",
           "block_index": 69,
           "points": [
@@ -2708,9 +2708,9 @@
         {
           "section_id": "the-computation-graph-a-representation-that-took-over-execution",
           "level": 3,
-          "heading_text": "The Computation Graph: a Representation That Took Over Execution",
-          "topic_sentence": "The remediation graph makes a further connection: its representation determines execution.",
-          "id_source": "derived",
+          "heading_text": "Computation Declarations Shared by Execution and Analysis",
+          "topic_sentence": "The computation declarations described in [ref:2.6-system-knowledge:heading:docable-connecting-engineering-models] support both execution and analysis.",
+          "id_source": "explicit",
           "block_index": 86,
           "points": [
             {

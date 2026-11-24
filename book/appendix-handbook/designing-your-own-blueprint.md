@@ -1,6 +1,6 @@
 <!-- GENERATED from book/latex/sources/appendix-handbook/designing-your-own-blueprint.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
 
-The five blueprints show how engineering models and mechanisms can be arranged around a needed capability. To construct an arrangement for a different problem, work backward from the capability to its obligations, then forward through the representations and mechanisms that can support them. Consider agents modifying database schemas while preserving compatibility with deployed clients.
+The eight blueprints show how engineering models and mechanisms can be arranged around a needed capability. To construct an arrangement for a different problem, work backward from the capability to its obligations, then forward through the representations and mechanisms that can support them. Consider agents modifying database schemas while preserving compatibility with deployed clients.
 
 1.  **State the capability and its scope.** Specify which clients must continue to work as the schema changes and during which deployment stages. This is the engineering requirement. A schema registry, migration tool, or deployment platform is a possible means of satisfying it, not the starting requirement.
 

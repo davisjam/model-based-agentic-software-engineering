@@ -27121,3 +27121,120 @@ Source: `book/latex/sources/part5/5.3-evaluating-docable.tex:71`, working revisi
 ```latex
 DocAble produced outputs for \magevalue{seip_eval_completed} attempts and failed on one PDF.
 ```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part2/2.6-system-knowledge.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+In \autoref{chapter:2.3-structural}, we introduced DocAble\textquotesingle s remediation-computation graph for investigating dependencies.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+DocAble repairs accessibility problems in Office and PDF documents through a sequence of computations. A DOCX table-header repair, for example, establishes information needed by a later table-structure check. The scheduler must preserve that dependency even though the two operations have separate implementations. An explicit computation model records such relationships. The scheduler reads the model to determine what is ready to run, while each computation's implementation determines how it performs its work.\magefootnote{static-graph}{The computation model describes the pipeline rather than the history of any one remediation. Runtime telemetry can now be joined to computation identities for aggregate measurements such as latency and cost, but the per-session edit record still names realized document mutations rather than computation nodes. DocAble has not yet built a per-run execution graph joining that edit history to the computation model.}
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+\textbf{DocAble: Testing Ownership.} DocAble's ownership protocol provides a useful comparison. Workers claim queued jobs under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. The obligation is that A's stale release must not disturb B's current ownership. The behavioral model supplies expected outcomes; tests compare them with what the implementation actually does.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+A regression test can reproduce that sequence against the implementation and assert that B remains the owner.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+The recovery protocol also has obligations that depend on the sequence of operations. Suppose worker A's lease expires, worker B acquires a newer claim, and A subsequently attempts to release its old claim. The release must not clear B's ownership.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part4/4.2-one-problem-many-models.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+DocAble already represented remediation as a dependency graph.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part4/4.4-engineering-the-environment.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+Consider a proposed increase in DocAble's worker concurrency.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+Explicit models made additional engineering questions tractable. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was expressed in a bounded TLA+ model of serverless push recovery. Its TLC configurations contrast recovery enabled and disabled under stated delivery and sweep fairness assumptions. Checking the model creates a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercise production operations against the executable model, while model-to-implementation checks are selected when modeled surfaces change. These mechanisms supply separate evidence about correspondence.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+\subsection{The Computation Graph: a Representation That Took Over Execution}
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+The remediation graph makes a further connection: its representation determines execution. Each pass declares typed input and output relationships; the graph derives dependencies from those declarations, and execution machinery uses the dependencies to determine when work is ready. A blocking parity check holds the declarations and projected graph together. Composition therefore need not be reconstructed from behavior scattered across pass bodies.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+\magevalue{sec:interlude-one-problem-many-models} develops the architectural history, including the large presentation that exceeded page-chunked execution. Here the consequence is the resulting capability: the same stable computation identities support execution and analytical views of critical paths, mutation boundedness, cost, and coverage. An analytical view can answer a question execution itself does not need to answer.
+```
+
+
+### 2026-11-24 — Component recall pass: book/latex/sources/appendix-handbook/_opening.tex
+
+Base `1487cdacd`; superseded setup retained for the new-blueprint integration.
+
+```latex
+A service has the right address but lacks permission to call its dependency. A document repairer needs freedom to choose a correction without unrestricted authority to rewrite the artifact. A new reasoning engine could improve cost or quality, but replacing it should not require rebuilding the document machinery. An engineering agent reports completion, yet the engineer still needs evidence of what landed and what can safely be recovered. A validation suite is costly to repeat, but skipping checks requires a defensible account of what a change can affect. These are five reasons to construct MAGE machinery.
+```
+
+
+### 2026-11-24 — Resource coupling evidence correction
+
+The deployment-block and batched-rendering particulars lack support in the attached E26 sources. Replace with retained semaphore design and dated cache-admission record; do not generalize this into a measurement claim.
+
+```latex
+That coupling became explicit in the engineering machinery. Concurrency models delegated memory feasibility to the memory model of record rather than doing memory arithmetic of their own. Fan-out width was represented as a peak-memory multiplier, so a throughput author had to size the width against a memory budget. Some throughput changes carried fail-loud guards that refused to run a fan-out whose estimated memory exceeded its budget. A batched-rendering design was chosen over a concurrent one partly because the concurrent alternative measured past the service\textquotesingle s memory ceiling. And in one latency campaign a memory sweep blocked the production deploy altogether. The earlier resource model had become part of the environment within which the later one operated.
+```

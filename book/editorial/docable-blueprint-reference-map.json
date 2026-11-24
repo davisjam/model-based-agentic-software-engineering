@@ -1,5 +1,5 @@
 {
-  "status": "editorial recommendations; not applied to manuscript",
+  "status": "applied 2026-11-24; original locators and hashes retained as pre-edit evidence",
   "base_commit": "1f084e175689e0e2144e4c06dc78a7c3f6d71f2b",
   "sites": [
     {
@@ -12,7 +12,9 @@
       "role": "First explanation",
       "treatment": "Retain the registered-pass definition, stable identities, typed data versus control dependencies, mutation categories, worked repair trace, and static-versus-realized distinction. These teach structural modeling before an appendix can be assumed. Add only a brief pointer to the integrated blueprint after the explanation.",
       "evidence": "E05, E13, E14, E16",
-      "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8"
+      "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8",
+      "implementation_disposition": "retained teaching example; added blueprint pointer",
+      "post_edit_source_sha256": "5b2edc793a45a6e16d1631c24d22eb03caf2731141393cac2a968e4be11b089f"
     },
     {
       "component": "Remediation-computation graph",
@@ -24,7 +26,9 @@
       "role": "First visual explanation",
       "treatment": "Retain the figure and classifier \u2192 repair \u2192 applier \u2192 check trace. It is an explanatory trace, not a recorded execution. Do not make all computations patch producers: the text distinguishes direct mutation, patches, and read-only work.",
       "evidence": "E05, E14",
-      "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8"
+      "source_sha256": "5887a55969daba9afd4d2c65b8c1069fa6c9934e538d830464778ee2c49dfff8",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "5b2edc793a45a6e16d1631c24d22eb03caf2731141393cac2a968e4be11b089f"
     },
     {
       "component": "Remediation-computation graph",
@@ -36,7 +40,9 @@
       "role": "Composition of models",
       "treatment": "Retain the overview and modeling-substrate figure. Their subject is the connection among representations and consumers, not another introduction to a DAG. Avoid a new glossary of passes.",
       "evidence": "E10, E13, E14, E16",
-      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9"
+      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
     },
     {
       "component": "Remediation-computation graph",
@@ -48,7 +54,9 @@
       "role": "Authority and derivation",
       "treatment": "Keep the Office/PDF distinction and scheduler-versus-Python-graph distinction in full. A cross-reference already exists; optionally narrow it to heading:what-computations-depend-on-one-another. This is substantive new material, not redundant setup.",
       "evidence": "E13",
-      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9"
+      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
+      "implementation_disposition": "narrowed callback to first dependency explanation",
+      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
     },
     {
       "component": "Remediation-computation graph",
@@ -60,7 +68,9 @@
       "role": "Provenance and measurement joins",
       "treatment": "Retain pass stamps, typed editor operations, session edit records, and the distinction from a computation execution trace. Keep two-reductions-static-realized. Refer to A.3 for mutation contracts; the new graph blueprint should point here rather than absorb all edit-history machinery.",
       "evidence": "E14, E16",
-      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9"
+      "source_sha256": "1d299c3f5803fb5becb5c61c3e0d1ebe695a70e5d8882267d01731c76d4765f9",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "e85211b7f02de156a08112cb286f637f121b5ff97f75a7550f3dde95a6665f4c"
     },
     {
       "component": "Remediation-computation graph",
@@ -72,7 +82,9 @@
       "role": "Coverage failure and admission",
       "treatment": "Condense the opening reintroduction and static-graph footnote into a recall of \u00a72.6.3. Preserve the prototype recovery history, dated graph census, missed Office pass, advisory versus blocking checks, coverage repair, and separate correspondence/conformance/acceptance judgments. Agreement of declarations is not evidence that execution respects the dependency order.",
       "evidence": "E05, E13, E16, E17, E18",
-      "source_sha256": "e910176f5961d60c80286c3b301ce90bf4c93a8dfbd23c2f970463086379abf6"
+      "source_sha256": "e910176f5961d60c80286c3b301ce90bf4c93a8dfbd23c2f970463086379abf6",
+      "implementation_disposition": "replaced repeated setup and footnote; retained audit, census, and enforcement distinctions",
+      "post_edit_source_sha256": "1fac14d22472e7be10240f4db7d33387c4553b62de4478fb4e8071681dddf1b9"
     },
     {
       "component": "Remediation-computation graph",
@@ -84,7 +96,9 @@
       "role": "A new execution design",
       "treatment": "Recall the graph in one sentence, then retain the episode: the residency change removes a reason for page partitioning and makes a computation frontier worth considering. Keep interlude-graph-two-partitions. Distinguish execution-driving declarations from richer analytical projections.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "recalled declaration authority before execution redesign",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Remediation-computation graph",
@@ -96,7 +110,9 @@
       "role": "Analytical use",
       "treatment": "Keep the image-description dependency change and interlude-analysis-before-build. The 12-to-7-second diagram is an illustration; do not recast it as a production benchmark. Cross-reference the graph definition only if needed to explain the new analysis.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Remediation-computation graph",
@@ -108,7 +124,9 @@
       "role": "Composition and reuse",
       "treatment": "Keep the remediation-graph row of interlude-model-family and its relationship to the other models. The table explains why several representations were needed; replacing it with an appendix pointer would lose the chapter\u2019s synthesis.",
       "evidence": "E26, E27, E28, E29",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained model-family synthesis; added integrated resource blueprint pointer",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Remediation-computation graph",
@@ -120,7 +138,9 @@
       "role": "Factory consequence",
       "treatment": "Replace the repeated pass/dependency tutorial with a compact account of shared declarations, their consumers, and the checks that sustain them across changes. Explicitly distinguish Office execution from the Python analytical graph. Retain the callback to the Chapter 4 episode and the new point about reusable analytical views. Consider the more precise heading \u201cComputation Declarations Shared by Execution and Analysis.\u201d",
       "evidence": "E13, E18, E26",
-      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7"
+      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
+      "implementation_disposition": "replaced repeated tutorial with factory consequence; corrected heading while preserving stable ID",
+      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
     },
     {
       "component": "Remediation-computation graph",
@@ -132,7 +152,9 @@
       "role": "Boundary with an existing blueprint",
       "treatment": "Retain the alternative-orchestration lesson and empirical pilots. A.4 owns reasoning substitutability; A.3 owns controlled mutation. Reusing document machinery does not establish that every reasoner uses the same scheduling policy or analytical graph. Do not move the comparison into the new graph blueprint.",
       "evidence": "",
-      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7"
+      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
     },
     {
       "component": "Job ownership and recovery",
@@ -144,7 +166,9 @@
       "role": "First lifecycle example",
       "treatment": "Retain output publication before the database reference and recovery-ordering-model. The three-state teaching reduction is not the complete deployed lifecycle. Decide explicitly whether the new blueprint covers publication ordering; its title currently promises recovery more broadly than stale-owner rejection.",
       "evidence": "E07",
-      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa"
+      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
+      "implementation_disposition": "retained publication teaching example; integrated blueprint pointer follows the ownership/publication synthesis",
+      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
     },
     {
       "component": "Job ownership and recovery",
@@ -156,7 +180,9 @@
       "role": "First ownership explanation",
       "treatment": "Retain the stale-worker scenario, claim/generation/lifetime distinctions, ownership-constructs table, and in-flight-ownership-states figure. This is where readers learn why worker identity alone is insufficient. Mark the A7/B8 trace as explanatory, not a reconstructed incident.",
       "evidence": "E08",
-      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa"
+      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
+      "implementation_disposition": "retained ownership example and analysis; added blueprint pointer at shared synthesis",
+      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
     },
     {
       "component": "Job ownership and recovery",
@@ -168,7 +194,9 @@
       "role": "A distinct teaching purpose",
       "treatment": "Retain the definition-versus-implementation-property distinction and small checker illustration. The status/lease_owner pair is explanatory pseudocode, not evidence of the exact production schema. No need for another appendix pointer inside the inset.",
       "evidence": "E08",
-      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa"
+      "source_sha256": "2802b916a1590077cc9f51e6a9797d05b2df08324be4d0e973aeb0de6f0331aa",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "630206b6a2b09de0d967692d809e9ad3f62f1f595973e1f98b56f1bef5b874d1"
     },
     {
       "component": "Job ownership and recovery",
@@ -180,7 +208,9 @@
       "role": "Test construction",
       "treatment": "Replace the repeated A-expires/B-acquires setup with a one-sentence recall of \u00a72.4.2. Preserve regression tests, generated operation sequences, expected outcomes, and the limitation of sequential tests for races and atomicity. Preserve conditional wording for a proposed test driver.",
       "evidence": "E08",
-      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918"
+      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
+      "implementation_disposition": "shortened scenario setup; retained test construction and concurrency scope",
+      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
     },
     {
       "component": "Job ownership and recovery",
@@ -192,7 +222,9 @@
       "role": "Challenge the checker",
       "treatment": "Keep the generation-check mutation as a short application of the already taught protocol. It illustrates how to test detection; do not claim a witnessed mutation-testing campaign without a receipt. Other web failure models in this passage are not all ownership models.",
       "evidence": "E08",
-      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918"
+      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
     },
     {
       "component": "Job ownership and recovery",
@@ -204,7 +236,9 @@
       "role": "Mechanism selection and safety/liveness",
       "treatment": "Retain lease expiry versus continued execution versus authority over a protected effect. Keep match-mechanism-to-property and the distinction among runtime atomic constraints, finite explicit-state exploration, and temporal recovery specifications. Shorten the second retelling of the stale worker; never compress these three kinds of assurance into \u201cthe model proves recovery.\u201d",
       "evidence": "E08, E37",
-      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918"
+      "source_sha256": "410642557e3a628f23128d869bd01fad5c1e47bc670f3902f8d96fdc44a03918",
+      "implementation_disposition": "replaced repeated stale-worker scenario; retained mechanism distinctions and explicit-state terminology",
+      "post_edit_source_sha256": "36b8dfa812c4bd55409dd2b75c680b82847b715085c3570af2318d9a0ace892a"
     },
     {
       "component": "Job ownership and recovery",
@@ -216,7 +250,9 @@
       "role": "Factory inventory",
       "treatment": "Keep the lifecycle/state-model specimen, consumers, and supervisory consequence. Its concise row is useful navigation. Do not expand it into another ownership explanation or imply unbounded verified termination.",
       "evidence": "E08, E37",
-      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7"
+      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
     },
     {
       "component": "Job ownership and recovery",
@@ -228,7 +264,9 @@
       "role": "Capability and correspondence",
       "treatment": "Condense the lifecycle/ownership/TLA+ inventory while preserving the point that model analysis creates a separate correspondence obligation. This paragraph has already moved before the computation-graph heading; do not repeat that relocation. Keep explicit-state analysis distinct from TLA+ configurations and from implementation conformance tests.",
       "evidence": "E08, E37, E51",
-      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7"
+      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
+      "implementation_disposition": "compressed inventory; foregrounded correspondence maintenance",
+      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
     },
     {
       "component": "Resource models and execution design",
@@ -240,7 +278,9 @@
       "role": "Conceptual preparation, not this component",
       "treatment": "Keep the embedded-system resource example. It teaches which obligations must be protected before structural changes and does not introduce DocAble\u2019s residency machinery. Avoid an appendix pointer here.",
       "evidence": "",
-      "source_sha256": "bf9f41a9c6dbf93411f8ed8b8e18228d22ced4992f971ef8d7b040e9468efa8a"
+      "source_sha256": "bf9f41a9c6dbf93411f8ed8b8e18228d22ced4992f971ef8d7b040e9468efa8a",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "bf9f41a9c6dbf93411f8ed8b8e18228d22ced4992f971ef8d7b040e9468efa8a"
     },
     {
       "component": "Resource models and execution design",
@@ -252,7 +292,9 @@
       "role": "First full explanation",
       "treatment": "Preserve the whole-document \u2192 page-chunk \u2192 large-media failure \u2192 skeleton-and-handles progression. Keep interlude-execution-unit. This is the chapter\u2019s central dynamics lesson, not disposable implementation setup. The appendix will give the reusable arrangement without retelling the history.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -264,7 +306,9 @@
       "role": "Representation and operating envelope",
       "treatment": "Retain streaming, skeleton, handles, and working-state terms. State what payload-size independence assumes, including output streaming. Do not claim independence from skeleton size, decoded media area, single-object size, or concurrency. Distinguish the observed PDF sweep from the proposed OOXML sweep.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -276,7 +320,9 @@
       "role": "Measurement method",
       "treatment": "Retain mechanism-level measurement as the reason to question aggregate readings. Avoid retelling the same explanation later; later passages should show the particular prediction error or missing variable.",
       "evidence": "E26, E27",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -288,7 +334,9 @@
       "role": "Resources constrain the new design",
       "treatment": "Keep concurrency feasibility, fail-loud guards, and the memory gate that blocked a latency-oriented deployment. The redesign changes the resource model; it does not abolish memory constraints.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "replaced unsupported deployment-sweep particulars with bounded-concurrency design and dated cache-admission evidence",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -300,7 +348,9 @@
       "role": "Consequences for execution",
       "treatment": "Keep the bridge from residency to execution, then the frontier/critical-path discussion catalogued as G7\u2013G8. Refer back to the computation model; do not define registered passes again. \u201cWhy Are We Still Chunking?\u201d is a lower heading, not the numbered subsection title.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -312,7 +362,9 @@
       "role": "New deployment-cost question",
       "treatment": "Retain the distribution equation and its assumptions. The illustrative 70-second example and rejected negative fit are explanations of the model, not evidence of a universal speedup. Keep network/fan-out costs separate from local memory residency.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -324,7 +376,9 @@
       "role": "Prediction versus measurement",
       "treatment": "Retain interlude-latency-floor and its assumptions. Label 7.7 seconds as a derived floor from stage quantities, not measured end-to-end performance. The 33-to-11.5-second concurrency comparison is a prediction requiring validation.",
       "evidence": "E28",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -336,7 +390,9 @@
       "role": "Reuse for a different question",
       "treatment": "Retain the insertion of an IR stage into the cost model. It demonstrates why a representation can be reused before implementing an alternative; do not repeat the full latency derivation.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -348,7 +404,9 @@
       "role": "Revising a model",
       "treatment": "Retain the explanatory prediction-residual figure and transition into later corrections. Make its illustrative status visible; reserve observed outcomes for the documented falsification cases.",
       "evidence": "E27",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -360,7 +418,9 @@
       "role": "Prevent regression",
       "treatment": "Keep resource ratchets and review obligations. Four counters on two retained fixtures are mechanical checks; the GenAI-hop dimension is audit-only. A requirement to justify a raised baseline is not an automated proof that the justification is sound.",
       "evidence": "E29",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -372,7 +432,9 @@
       "role": "Counterevidence",
       "treatment": "Preserve the mistaken mmap/offloading predictions, decoded-image-area dimension, and capacity-model recalibration. These are new evidence, not another residency introduction. Keep workload, measurement boundary, and predicted-versus-observed quantities attached to each result.",
       "evidence": "E27",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -384,7 +446,9 @@
       "role": "Synthesis",
       "treatment": "Retain all seven models and their distinct questions. Cross-reference the new resource blueprint after the synthesis rather than turning every table row into an appendix pointer. Shared site with G9.",
       "evidence": "E26, E27, E28, E29",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained model family; added integrated construction pointer",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -396,7 +460,9 @@
       "role": "Why the episode belongs here",
       "treatment": "Keep the engineering chronology and model-first/model-last lesson. The blueprint should not reproduce this narrative. Chapter 4 owns how the models emerged and changed.",
       "evidence": "E26",
-      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f"
+      "source_sha256": "a62d68306f6315e7824dadd3f8c09b866bbd67453c8de22cf8dfadd915a2967f",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "37b7e8beabe0ce79413e921120a718bdffc88f9e9fbc2f567173f74fcd059fe4"
     },
     {
       "component": "Resource models and execution design",
@@ -408,7 +474,9 @@
       "role": "New consumer of the model family",
       "treatment": "Keep the worker-concurrency example and model-aware-change-impact figure. Add a precise callback to \u00a74.2\u2019s model family if helpful. The new question is which evidence a change requires; A.6 owns the selection machinery. Do not restate skeletonization. This site is missing from the supplied map.",
       "evidence": "",
-      "source_sha256": "d4fb0acce355d3995cf380ef0058b7163de9a7b3e6f394c3710d0978848def42"
+      "source_sha256": "d4fb0acce355d3995cf380ef0058b7163de9a7b3e6f394c3710d0978848def42",
+      "implementation_disposition": "added exact callback for change-impact application",
+      "post_edit_source_sha256": "9abc945eb3427a4818c407c02c192e7fdf10e61f996b94d9bdf829bceb437f7d"
     },
     {
       "component": "Resource models and execution design",
@@ -420,7 +488,10 @@
       "role": "Factory consequence",
       "treatment": "Retain the resource representation, its consumer, and the supervisory consequence. A short row does not duplicate the Chapter 4 episode. Do not turn a budget or capacity prediction into an unconditional deployment guarantee.",
       "evidence": "E26, E27",
-      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7"
+      "source_sha256": "71e0a631f9eca98760c41bdd9249a3f2bbe71ed90d294b8c5bfaf8704b7a57b7",
+      "implementation_disposition": "retained: distinct pedagogical or evidentiary contribution",
+      "post_edit_source_sha256": "be45a5d96174143219cfff5434d2afed5aad27082e4aaed88066ae7fc813a1f5"
     }
-  ]
+  ],
+  "integration_report": "book/editorial/docable-blueprint-integration-report.md"
 }

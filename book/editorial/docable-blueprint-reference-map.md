@@ -1,6 +1,6 @@
 # DocAble component reference map for the new Appendix A blueprints
 
-Status: editorial handoff, based on the current working-tree LaTeX sources. The manuscript has **not** been reorganized by this audit, and the three new blueprints have **not** yet been inserted. Section numbers below describe the present organization; source locators and labels are the durable addresses. The companion JSON records source hashes and exact starting lines so a later editor can detect intervening edits.
+Status: **applied to the manuscript on 2026-11-24**. The map below preserves the pre-edit sites and recommendations; line numbers are historical. See [the integration report](docable-blueprint-integration-report.md) for dispositions, evidence corrections, and validation.
 
 ## Editorial decision
 
@@ -70,7 +70,7 @@ Rows group a continuous passage and its local figure, caption, or inset where th
 
 ## Suggested replacement copy at the main compression sites
 
-These are recommendations for the later authoring pass, not edits already applied. Preserve adjacent evidence comments and figures. Use the repository’s existing reference commands and stable labels; do not paste literal section numbers into LaTeX.
+These recommendations were applied with source-verified refinements in the integration report. Preserve adjacent evidence comments and figures. Use the repository’s existing reference commands and stable labels; do not paste literal section numbers into LaTeX.
 
 **G4, §2.6.3: narrow the existing callback, rather than add another explanation.**
 

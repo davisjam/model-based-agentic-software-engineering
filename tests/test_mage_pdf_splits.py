@@ -572,6 +572,34 @@ class SectionReuseKeyTests(unittest.TestCase):
         self.assertIn("latex_reuse.stamp_payload(", source)
 
 
+
+class ExcerptHeadingReferences(unittest.TestCase):
+    def test_unnumbered_subheading_uses_verified_enclosing_section(self):
+        import mage_latex
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            build = root / "book/latex/build"
+            build.mkdir(parents=True)
+            (build / "mage-book.aux").write_text(
+                r"\newlabel{behavior:heading:publication}{{2.4.2}{34}{Publication}{section*.117}{}}" + "\n"
+                r"\newlabel{chapter:behavior}{{2.4}{30}{Behavior}{section.2.4}{}}" + "\n")
+            excerpt = root / "excerpt.tex"
+            excerpt.write_text(r"\label{local}\autoref{local}; \autoref{behavior:heading:publication}; \autoref{chapter:behavior}")
+            with patch.object(mage_latex, "ROOT", root):
+                mage_latex.resolve_external_references(["excerpt.tex"])
+            self.assertEqual(excerpt.read_text(),
+                r"\label{local}\autoref{local}; Section~2.4.2; Section~2.4")
+
+    def test_missing_heading_still_rejects_unverified_reference(self):
+        import mage_latex
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "excerpt.tex").write_text(r"\autoref{missing:heading}")
+            with patch.object(mage_latex, "ROOT", root):
+                with self.assertRaisesRegex(RuntimeError, "no verified external reference"):
+                    mage_latex.resolve_external_references(["excerpt.tex"])
+
+
 # Captured at import, before any test mutates a shared input, so the edit test compares against a
 # genuinely clean baseline rather than against a key taken after a sibling subTest restored a file.
 BASELINE_KEY = build_book._section_cache_key("driver text", ["chapter one"], "@book{k,title={T}}", [])

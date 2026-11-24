@@ -752,6 +752,10 @@ def _prepare_record(task):
                             'handbook-selection-models'):
         latex = layout_selected_table(latex, model_inventory, (.18, .24, .27, .31),
                                       row_gap_bp=3, row_stretch=1.05)
+    for model_inventory in ('handbook-computation-models', 'handbook-job-recovery-models',
+                            'handbook-resource-models'):
+        latex = layout_selected_table(latex, model_inventory, (.20, .40, .40),
+                                      row_gap_bp=3, row_stretch=1.05)
     # Retain native rules for tagged tables, with clearance on the text sides.
     rule_padding = r'\noalign{\vskip 3pt}'
     rules = {'toprule': r'\hline' + rule_padding,
@@ -763,7 +767,9 @@ def _prepare_record(task):
     # a float can otherwise interrupt the new heading and its first paragraph.
     latex = keep_tables_together(latex, in_place_labels=frozenset({
         'handbook-substitution-models', 'docable-evaluation-questions',
-        'agentic-engineering-factories', 'factory-census-specimens'}))
+        'agentic-engineering-factories', 'factory-census-specimens',
+        'handbook-computation-models', 'handbook-job-recovery-models',
+        'handbook-resource-models'}))
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
@@ -901,7 +907,9 @@ def resolve_external_references(chapters):
                 fields.append(field)
                 rest = rest[len(field)+2:]
             if len(fields) >= 4:
-                kind = fields[3].split('.')[0]
+                # Hyperref uses section*.N for headings below secnumdepth.
+                # Their verified aux number is the containing numbered section.
+                kind = fields[3].split('.')[0].rstrip('*')
                 title = {'figure':'Figure', 'table':'Table', 'chapter':'Chapter', 'section':'Section', 'subsection':'Section', 'subsubsection':'Section'}.get(kind)
                 if title and fields[0]: external[key] = title + '~' + fields[0]
     for chapter in chapters:
