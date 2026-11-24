@@ -30904,3 +30904,58 @@ These are three different questions. We will examine each in turn, beginning wit
 
 
 ```
+
+
+## Chapter 6 §6.1 explanatory reorganization — 2026-11-24
+
+Replaced or relocated while preserving the probability and cost equations. Later editorial instructions supersede the first draft; the expanding-work explanation moves to P4.
+
+```latex
+Begin with a single engineering task. The engineer must express the consequential obligations, and the agent must produce a realization that fulfills them. Either step can fail. The representation may omit or misstate what matters, or the agent may fail to satisfy an adequate representation. Let \(E\) mean that the encoding captures the consequential intent and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
+
+This \textbf{encoding–realization decomposition} applies the probability chain rule to separate two engineering questions: whether the representation captures the intended obligations, and whether the resulting artifact fulfills them.\magefootnote{encoding-realization-chain-rule}{In general, the probability that two events \(A\) and \(B\) both occur is the probability of \(A\) multiplied by the probability of \(B\) given \(A\): \(P(A\cap B)=P(A)P(B\mid A)\). This is the probability chain rule; it does not require the events to be independent. Here we apply the same identity conditional on the representation \(R\), with \(A=E\) (correct encoding) and \(B=F\) (fulfillment), yielding \(P(E\cap F\mid R)=P(E\mid R)P(F\mid E,R)\).} The distinction lets us examine how representations, agent capabilities, and production processes affect faithful realization.
+
+These probabilities describe outcomes under a specified engineering arrangement, rather than intrinsic properties of a representation. Holding the task population and production setup fixed, \(R\) names the representation choice; probabilities range over the encodings and realizations produced through it. The first question is whether the representation captures the consequential intent the engineer authorizes. The second is whether the resulting artifact fulfills those obligations.
+
+Realization includes interpretation, planning, implementation, and correction. An agent may initially misunderstand an obligation and then correct its work after a check or review exposes the error. Conversely, it may infer an obligation that the encoding omitted. The event \(E\cap F\) therefore describes \emph{faithful production} through the representation; observed task correctness must be assessed separately.
+
+Representation is not the only route to that term. A realization that misses the engineer\textquotesingle s meaning can provide evidence about the encoding, although the failure may instead lie in realization. The comprehension amplification of \magevalue{sec:the-dynamics-of-mage} can help the engineer diagnose the cause and revise the encoding when needed. In that way, capable agents can contribute indirectly to \(P(E \mid R)\).
+
+Faithful production is necessary, but it does not tell us whether an engineering arrangement is economical. A representation may improve the chance of satisfactory realization while costing more to construct and maintain; a gate may prevent violations while causing repeated rejection and repair. We therefore need to account for the cost of correct, admitted delivery, including attempts that fail.
+
+For \(N\) requested changes, let \(D_N\) count the changes independently verified as correct and admitted within a declared evaluation horizon. Each requested change can include several attempts. The total cost and the cost per correct admitted change are
+
+As agentic output grows, proportional human inspection becomes a bottleneck. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment. Human attention is an engineering resource.
+\end{bookbox}
+
+The return on an engineering environment depends on the value of the work it enables and its cost over time. Product work may deliver new capabilities, security work may retire risks, and reliability work may prevent failures or shorten recovery. The environment also incurs costs between production episodes as its models, controls, and other assets require maintenance. Some structures remain useful for years with little attention; others lose fit quickly.
+
+The preceding analysis compares the cost and acceptability of production, including repeated attempts and upkeep. Engineering also changes the conditions under which subsequent attempts occur. Choosing the least costly arrangement for the next change is therefore not necessarily the best decision for the next hundred changes. A model, validator, or procedure may cost more to construct than the immediate task justifies, yet repay that investment through later work. Conversely, a locally inexpensive change can introduce architectural irregularity or obscure information that subsequent engineers and agents must reconstruct.
+
+Winters et al. characterize software engineering as ``programming integrated over time'': software is developed, modified, and maintained as both the system and its environment change~\citep{winters2020}. Each realization therefore changes the architecture, conventions, representations, tests, and other structure inherited by subsequent work. The lifecycle account totals these costs, but does not yet explain how earlier work changes the conditions for later production. We need to represent that inheritance explicitly.
+
+Let \(T_i\) be the task at step \(i\), \(M\) the foundation model, and \(\mathcal{G}_i\) the governed engineering environment inherited at that step. The GEE includes the task-relevant representations, tools, procedures, and controls available to direct and evaluate the work. Let \(a_i\) denote the work performed during the episode and the changes it leaves behind:
+
+Here \(p_i\) is the probability of faithful production for task \(T_i\), extending the earlier encoding–realization account to include the inherited environment. The second relation describes how the episode can change that environment. A failed attempt may leave a useful diagnosis or a new control even when it produces no admitted change. Holding the foundation model fixed lets us examine how changes to the GEE affect subsequent work; over a longer sequence, the foundation model can change as well. These are schematic relationships describing inheritance, not calibrated laws or a claim that every episode improves the environment.
+
+This coupling creates path dependence. A locally acceptable change can increase architectural irregularity, obscure structure, or introduce inconsistent conventions, leaving later agents a worse reasoning surface. A change that improves representations, architecture, constraints, or other engineering capital can instead make later work easier to reason about and govern.
+
+Agentic capacity and the GEE jointly shape what a software factory can accomplish, but they play different roles. Work orders specify the intended changes; foundation-model capability, concurrency, and implementation speed determine the available agentic capacity. The GEE supplies the representations, procedures, evidence, and controls through which that capacity is directed and governed. \autoref{mage-dynamic-model} relates these inputs to attempted work and realized performance, then shows how experience can change the environment inherited by later work.
+
+The expanding task frontier is a related effect. As the GEE becomes better suited to existing work, engineers may attempt larger changes, increase concurrency, or undertake work previously too expensive to supervise. A GEE that supports ordinary changes may make cross-service migrations practical, exposing obligations and failure classes that simpler work never encountered. Corrective feedback can improve the environment’s fit to current work; an expanding task frontier changes the work against which that fit is judged. Neither effect guarantees improvement.
+
+The GEE need not begin empty. Existing standards, requirements, architecture descriptions, tests, and lessons from other projects can provide useful structure before local experience reveals a gap.
+
+More machinery does not mean a better GEE. Ten thousand lines of stale checks are worse than one hundred lines that govern the obligations that matter. The four properties identified in \autoref{mage-dynamic-model} provide ways to assess that fit:
+
+Coverage does not require mechanizing every obligation. Some belong in a compiler rule or gate; others require statistical evidence, semantic evaluation, or human judgment. A strong GEE makes clear where judgment belongs and where repeatedly buying the same judgment is wasteful.
+
+These properties describe different ways a GEE can support the work, rather than stages of a maturity model~\citep{bollinger1991critical}. The appropriate investment depends on what is limiting progress. Repeated reconstruction of important state suggests a representation problem; escaped failures call for examining evidence and enforcement. When existing controls impose more friction than protection, reconciliation or retirement may improve the GEE more than adding another mechanism.
+
+A theory of agentic engineering should distinguish activity from progress. \textbf{Durable throughput} is useful system progress that survives rework, integration, and operation. \textbf{Defect escape} records consequential failures that reach later lifecycle stages or production. \textbf{Human-attention burden} measures the scarce engineering judgment consumed per unit of durable progress. \autoref{mage-outcomes} gives candidate observables; \magevalue{sec:research-agenda} returns to how comparisons can distinguish the effects of representation, enforcement, and inherited capital.
+
+Several easy-to-count quantities measure activity or investment rather than outcome: commits, lines changed, control files, model-sync events, and support ratio. They can help explain what an environment is doing; they do not establish that it is producing a return.\magefootnote{activity-data}{The activity-versus-outcome gap also appears in industry data. LinearB\textquotesingle s 2026 benchmark covers 83,000 developers across 253 organizations and compares merge rates from June 2025 to May 2026~\citep{linearb2026}. Among the heaviest AI users, merge rates roughly doubled while pull-request yield---the share of opened requests merged within 30 days---fell. The association does not establish that AI caused either change, and neither measure establishes durable progress. An industry analyst reads the same period as rising AI spend without proportionate shipping velocity, the difficulty having moved from comprehension to confidence~\citep{riggins2026}.}
+
+None of these descriptions supplies a measured effect size. Together they support a more focused question: under what conditions do representations, independent enforcement, and inherited engineering judgment turn additional agentic capacity into useful progress? The next section develops four propositions that evidence could challenge.
+
+```

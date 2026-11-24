@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 650,
+    "total_sites": 649,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 315,
+      "book-web": 314,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -133,7 +133,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 12
+            "occ": 20
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -1037,11 +1037,11 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 43
+            "occ": 46
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -1169,7 +1169,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 177
+            "occ": 178
           },
           {
             "file": "book/web/docs/index.md",
@@ -1358,10 +1358,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
             "occ": 6
           },
@@ -1401,7 +1397,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 18
           }
         ]
       },
@@ -1605,7 +1601,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 14
+            "occ": 24
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -2419,7 +2415,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 6
+            "occ": 1
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",

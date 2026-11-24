@@ -3949,20 +3949,30 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "source_sha256": "fb8c16fdf402bcd1bc9ab3cc49f1ab5ac8c1f07e8765abdd925da42697554107",
-      "candidate_sha256": "7a4cb0cde777f952e1f838532fff0a190c7a720027fb2065b542495f4cce0dff",
+      "source_sha256": "e83eeb5bd3a8f3a1feb7b047d9ce08f8e436e7222b729204f5977c0e44d94e3f",
+      "candidate_sha256": "f1a2f26f45c5e2cd8320ab9b8fb3cbb84b92e07b3579c4d51e0ac259e2a9d9f4",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Organize the dynamic model around an engineering episode and the environment later work inherits.",
+      "reason": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
       "validation": {
+        "date": "2026-11-24",
+        "proof": "/tmp/dynamic-figure-20261124-final/proof.pdf",
+        "proof_sha256": "45740e4f40e61b7728f80af0ee556a53ee839890a619890047e7da91741aab16",
         "page": 1,
         "width_bp": 449.972,
         "height_bp": 303.974,
-        "proof_sha256": "f8b804a1292b2f9b307e30289dfa72485b20385bfeeaf1d9ee99f52bb170fbe2",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
         "minimum_prose_font_pt": 9,
+        "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "6f28f545368169b221624e54c271252512bd6735def13823cdfbffcc34ae6ca1",
+        "typography_audit_sha256": "23f29bb5c4d09e533006041c6171a8c290fed6bfc24ef505208f933b3d081b7e",
         "semantic_typography_checks": 27,
-        "unapproved_compile_diagnostics": 0
+        "monochrome_pixels": true,
+        "status": "passed"
       },
       "receipt": "book/tikz/receipts/mage-dynamic-model.json",
       "status": "reviewed",
@@ -3972,9 +3982,53 @@
       "bold": "Headings and arrow labels use bold type.",
       "routing": "Work orders and capacity enter attempted work from opposite sides. Prior knowledge seeds the GEE. Performance supplies evidence, and governance adaptation returns to the inherited GEE.",
       "shape": "Central production sequence with two side inputs and an adaptation group.",
-      "visual_review": "Corrective feedback returns to the GEE. The expanding task frontier labels the forward path to attempted work.",
+      "visual_review": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
       "book_references": [],
-      "routing_exceptions": "None."
+      "routing_exceptions": "None.",
+      "revision_history": [
+        {
+          "date": "2026-11-24",
+          "candidate_sha256": "7a4cb0cde777f952e1f838532fff0a190c7a720027fb2065b542495f4cce0dff",
+          "source_sha256": "fb8c16fdf402bcd1bc9ab3cc49f1ab5ac8c1f07e8765abdd925da42697554107",
+          "change": "Author-requested terminology refinement: label the environment-to-work relation Feasible work and the attempted-work subtitle scope and concurrency. The task-frontier concept is developed later under P4. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
+          "previous_validation": {
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 303.974,
+            "proof_sha256": "f8b804a1292b2f9b307e30289dfa72485b20385bfeeaf1d9ee99f52bb170fbe2",
+            "minimum_prose_font_pt": 9,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 27,
+            "unapproved_compile_diagnostics": 0
+          }
+        },
+        {
+          "date": "2026-11-24",
+          "candidate_sha256": "81990117ca1085c3813b98be28e8d536ff3b2b90509528f3041043a75a7a96c6",
+          "source_sha256": "540820931c777116dc3d5b409bafb226256522dbc04e1089c947905086d3cac9",
+          "change": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
+          "previous_validation": {
+            "date": "2026-11-24",
+            "proof": "/tmp/dynamic-figure-20261124/proof.pdf",
+            "proof_sha256": "7c0ab8a27f4e0adf0718fe6de6f2a226f1bd9c409b530af48f410174cc19c477",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 303.974,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "minimum_prose_font_pt": 9,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "geometry_audit_sha256": "6e73e233bde65b1444cbf1c2b958ca3aae12da9a9ef18356e2583c888c9bdf0a",
+            "typography_audit_sha256": "0c527ab82b6f79e1f5447bb7c24beeca5a1eb9f687c8f3804ceea2c0beadccb7",
+            "semantic_typography_checks": 27,
+            "monochrome_pixels": true,
+            "status": "passed"
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",

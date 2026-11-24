@@ -792,6 +792,8 @@ def _prepare_record(task):
         'handbook-computation-models', 'handbook-job-recovery-models',
         'handbook-resource-models', 'handbook-computation-failures',
         'handbook-job-recovery-failures',
+        # Keep the outcome synthesis inside 6.1, before the propositions.
+        'mage-outcomes',
         # Keep the baseline discussion complete before the metrics table.
         'practicing-primary-readings'}))
     # Headings repeat between chapters; make destination identities unambiguous.

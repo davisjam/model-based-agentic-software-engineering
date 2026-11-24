@@ -314,8 +314,9 @@
       "reason": "Author approved Figure 7.3 with the PL / compilers label Types \u00b7 DSLs."
     },
     "book/assets/mage-dynamic-model.svg": {
-      "approved_date": "2026-11-14",
-      "reason": "Author approved the revised MAGE dynamic model showing corrective feedback and the expanding task frontier."
+      "approved_date": "2026-11-24",
+      "reason": "Author-requested metaphor cleanup: change the corrective-feedback annotation from revises inherited structure to revises shared structure. Preserve every coordinate, box, arrow, font size, caption, and remaining label.",
+      "candidate_sha256": "f1a2f26f45c5e2cd8320ab9b8fb3cbb84b92e07b3579c4d51e0ac259e2a9d9f4"
     },
     "book/assets/handbook-derived-iam.svg": {
       "approved_date": "2026-11-20",
