@@ -744,17 +744,17 @@
             {
               "slug": "a-structural-model-names-the-sanctioned-seam-for-document-mutation",
               "text": "The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, implemented per format — and leaves queues, retries, sessions, and repair mechanics out.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "a-model-precedes-the-constraint-that-protects-it",
               "text": "The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble protects the boundary using format-specific static restrictions and runtime write-authority checks.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "a-structural-model-can-drift-from-the-system-it-describes",
               "text": "A structural model can become stale as implementation changes — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing.",
-              "block_index": 34
+              "block_index": 35
             }
           ]
         },
@@ -764,37 +764,37 @@
           "heading_text": "What computations depend on one another?",
           "topic_sentence": "The document-mutation model identifies where changes belong.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 38,
           "points": [
             {
               "slug": "a-second-structural-question-reaches-inside-the-pipeline",
               "text": "A second structural question reaches inside remediation: which computations make up the pipeline, and how do they depend on one another; the first reduction treats each registered pass as a node.",
-              "block_index": 38
+              "block_index": 39
             },
             {
               "slug": "the-computation-model-distinguishes-data-flow-from-control-composition",
               "text": "DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run).",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "the-model-also-records-how-bounded-each-effect-is",
               "text": "The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly.",
-              "block_index": 54
+              "block_index": 55
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
               "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
-              "block_index": 56
+              "block_index": 57
             },
             {
               "slug": "the-identity-spine-supports-added-views-without-enlarging-the-schema",
               "text": "Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "the-contrast-between-the-two-structural-models",
               "text": "The document-mutation model locates architectural bypasses; the computation model supports change-impact analysis through data and control dependencies.",
-              "block_index": 60
+              "block_index": 61
             }
           ]
         }
