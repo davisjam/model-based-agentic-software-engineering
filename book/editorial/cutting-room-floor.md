@@ -38928,3 +38928,619 @@ In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-mode
 % Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
 Explicit lifecycle and ownership models also supplied objects for analysis: a finite ownership state space for exhaustive exploration, and a temporal recovery specification with stated delivery and sweep assumptions. The factory had to preserve their correspondence with the evolving product. Conformance tests exercised production operations against executable models, while model-to-implementation checks supplied separate evidence when modeled surfaces changed. \autoref{chapter:appendix-a-job-ownership-and-recovery} develops this construction; \autoref{match-mechanism-to-property} distinguishes the assurance supplied by its mechanisms.
 ```
+
+
+## Chapter 2 opening compression (R2–R3) — 2026-11-24
+
+Source revision: `cdb775d6a` (working-tree text). Replaced at the author’s request to reach the distinction between context and engineering models sooner and avoid repeating the economics of modeling.
+
+### book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:17
+
+```latex
+Context engineering can involve a modest form of modeling: selecting and organizing information that an agent needs to perform its work. The knowledge of a particular system might be distributed across source code, configuration, documentation, registries, version history, and the people who maintain it. An agent can reconstruct relevant knowledge from those sources, but doing so takes work, and another agent may need to repeat that work on a related task. Project instructions and agent skills can preserve selected knowledge across tasks. Some of these artifacts also represent engineering decisions, even when their meaning remains informal.
+```
+
+### book/latex/sources/part2/00-part-intro.tex:21
+
+```latex
+\magevalue{chapter:problem} established why engineering models become more valuable when agents perform implementation: they preserve consequential knowledge across tasks and make larger engineering questions manageable. Models also take work to create and maintain. Commodity intelligence changes that tradeoff because agents can help derive, maintain, and query representations that previously might not have justified their upkeep. Which engineering models are worth constructing?
+```
+
+
+## Chapter 2 model precedent and distributed cognition — 2026-11-24
+
+Source revision: `cdb775d6a` (working-tree text after R2–R3). The author requests a shorter historical paragraph and removal of the distributed-cognition paragraph. Its Hutchins citation moves to the existing external-representations discussion in §1.4.3; Zhang is already cited there.
+
+### book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:38
+
+```latex
+Engineers have long relied on models, even when those models were only partly explicit. Requirements, specifications, interface contracts, schemas, state machines, and architectural descriptions connect engineering questions to implementation decisions~\citep{vanlamsweerde2009re,isoiec42010}. A little whiteboarding followed by implementation can be economical when the same programmers do both and carry the remaining design knowledge in their heads. Agents working independently cannot reliably inherit those unrecorded decisions across tasks. Externalizing them gives agents a common representation to consult, while their ability to help construct, maintain, and query models changes the cost of keeping that knowledge available. The engineer must still decide which aspect of the system to represent and which distinctions the representation needs to preserve.
+```
+
+### book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:40
+
+```latex
+Research on distributed cognition examines how reasoning is accomplished through interactions among people, representations, and tools. An engineer using a diagram or instrument can perform reasoning that would be difficult to carry out unaided~\citep{hutchins1995cognition}. The same observation is useful when engineering an environment for agents. We can improve their ability to reason about a system by changing the representations and tools available to them, without changing the foundation model itself~\citep{zhang1994representations}.
+```
+
+
+## R03 — Steering-agents caption qualification — 2026-11-24
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex:113`, revision `cdb775d6a` (working tree). Removed repeated qualification at the author’s request.
+
+Original sentence:
+
+Both can improve performance without changing the foundation model, but neither guarantees an acceptable result.
+
+
+## R07 — Structural-model conclusions — 2026-11-24
+
+Source: `book/latex/sources/part2/2.3-structural.tex:179`, revision `cdb775d6a` (working tree). At the author’s request, retain the preceding conclusion and Appendix A.7 reference unchanged; shorten this paragraph to its final transition sentence.
+
+Original paragraph:
+
+The two DocAble examples illustrate why structural models must preserve the relationships relevant to their questions. Architectural paths, data dependencies, and control dependencies preserve different facts even when each is drawn with boxes and arrows. The next section adds time: what states a thing occupies, and what sequences of changes the model admits.
+
+
+## R08 — Ownership-model reduction — 2026-11-24
+
+Source: `book/latex/sources/part2/2.4-behavioral.tex:219`, revision `cdb775d6a` (working tree). Removed the correspondence-check sentence at the author’s request; all other wording remains unchanged.
+
+Original paragraph:
+
+```latex
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. An implementation can change how it partitions work while preserving these ownership semantics. Its correspondence with the model must then be checked against the changed code. The inset shows how a relationship built into the model can become an invariant when an implementation stores its parts separately.
+```
+
+
+## R11 — Service-measurement join — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s requested two-paragraph sequence: shared identity and deployment correspondence, followed by the rationale for separate models. Original paragraphs preserved below.
+
+### book/latex/sources/part2/2.6-system-knowledge.tex:46
+
+```latex
+The service catalog identifies the owner, the deployment model records the resource allocation, and a measurement record supplies recent response times. Shared service identities let the engineer or agent connect these representations and obtain the relevant facts without reconstructing their relationships from source code or directory names. The records need not share a file format. The connection lets the engineer examine observed performance alongside the resources assigned to that deployment; it does not by itself establish the cause of the slowdown. The comparison is meaningful only if the measurements correspond to the deployment configuration under investigation. A service identifier alone does not establish that correspondence when deployments change over time.
+```
+
+### book/latex/sources/part2/2.6-system-knowledge.tex:50
+
+```latex
+The deployment model describes where the service runs and what resources it has been assigned; an execution history records what happened during particular requests. Joining measurements from that history to the service identity can reveal a performance problem without turning the deployment model into a log. Why not combine all these representations into one comprehensive description? Taken to its extreme, that description would read like the implementation itself, with all the detail that modeling was intended to suppress. Separate models preserve the distinctions needed for different questions; their connections let engineers reason across those distinctions without carrying every detail into every analysis.
+```
+
+
+## Chapter 3 assurance-process qualification — 2026-11-24
+
+Source: `book/latex/sources/part3/3.1-from-engineering-models-to-enforcement.tex:105`, revision `cdb775d6a` (working tree). Removed the final two sentences at the author’s request; retained the preceding discussion and citations.
+
+Original paragraph:
+
+```latex
+If you work under a safety standard such as IEC 61508 or DO-178C, MAGE can complement your existing assurance process~\citep{iec61508-1-2010,rtca-do178c-2011}. The claims and arguments in an assurance case can guide what you model, what you check, and what evidence you retain. Agents can help produce and maintain that evidence as the system evolves. The assurance case still needs independent scrutiny. Neither an agent's report nor a passing check establishes that the overall argument is sound.
+```
+
+
+## R16 — Semantic commitment and mechanization — 2026-11-24
+
+Source: `book/latex/sources/part3/3.2-governance-mechanisms.tex:222`, revision `cdb775d6a` (working tree). Removed the final sentence at the author’s request; retained the explanation of reusable checking machinery.
+
+Original paragraph:
+
+```latex
+When I introduce another architectural obligation of this kind, I need only extend the model. I need not construct another checker. The machinery is reusable because the declarations have a precise, common meaning. I must still decide which dependencies to permit, and this mechanism examines Python imports rather than every possible interaction between components.
+```
+
+
+## R19–R20 — Enforcement restraint and reasoning input — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s supplied compression: merge the sandbox and tolerance discussion; shorten the guidance/enforcement contrast. Retain the final stronger-Alignment sentence and preserve the reasoning-input definition markup.
+
+### book/latex/sources/part3/3.2-governance-mechanisms.tex:509
+
+```latex
+Mechanical enforcement does not always require a rich model of the product. A sandbox can restrict an agent's access to resources without representing the architecture of the system the agent is building.
+
+% <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set. | terms: residual, tolerance -->
+
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not require tightening it or enforcing it mechanically. As \autoref{cost-enforcement-gradient} illustrated, measurements can reveal how much margin remains within a quantitative tolerance, even when the environment does not use those measurements to block work. A broad tolerance may be the correct engineering decision, and variation within it remains legitimate implementation freedom. Stronger Alignment means more dependable adherence to the obligations engineers actually chose, not progressively narrowing the acceptable realization space.
+```
+
+### book/latex/sources/part3/3.3-where-obligations-can-be-enforced.tex:32
+
+```latex
+The first location is \textbf{reasoning input}: the context, representations, examples, and instructions put in front of the reasoner. This is where Modeling and context engineering do much of their work: a finite reasoner benefits when relevant system knowledge is externalized and selected for the task. But placement in context is ordinarily guidance, not enforcement. The agent can misread, forget, or disregard what it was shown. Guidance helps an agent avoid mistakes. Enforcement can prevent those mistakes from being accepted.
+```
+
+
+## R24 — Context consumption — 2026-11-24
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex:116`, revision `cdb775d6a` (working tree). Replaced with the author’s shorter paragraph, retaining the resource-consumption distinction and its implications for larger environments.
+
+Original paragraph:
+
+```latex
+The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Read/write conflicts are one way to discover interactions, not a complete account of them. The broader engineering question is whether one mechanism can interfere with another's ability to fulfill its obligation. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
+```
+
+
+## Figure 4.9 — Consolidate change-impact qualification — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Removed the caption’s final sentence and replaced the two-sentence prose qualification with the author’s single sentence. Citations and the appendix reference remain unchanged.
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex:317
+
+```latex
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex:321
+
+```latex
+This use of model relationships builds on change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Such an analysis is only as complete as the relationships it represents. It can identify evaluations warranted by known dependencies, but it cannot establish that we have represented every property the change might affect. \autoref{chapter:appendix-a-model-based-test-selection} develops the corresponding engineering machinery.
+```
+
+
+## Chapter 5 measurements qualification — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:27`, revision `cdb775d6a` (working tree). Removed the final sentence at the author’s request; measurement values and their source macros remain unchanged.
+
+Original paragraph:
+
+```latex
+The measurements cover \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. By October 14, DocAble contained \magevalue{seip_prod_loc} lines of production code supported by \magevalue{seip_apparatus_loc} lines of tests, checks, tools, infrastructure, models, and indexed documentation. Its engineering environment contained \magevalue{seip_models} model modules. These measurements establish the scale of the product and its supporting machinery, not the value of individual lines or models.
+```
+
+
+## Chapter 5 initial capability experiment — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:106`, revision `cdb775d6a` (working tree). Replaced with the author’s shorter first-person account.
+
+Original paragraph:
+
+I tested the uncertain capability first. I gave a multimodal foundation model pictures of mathematical equations, technical slides, and handwritten notes. On those examples it produced useful transcriptions and alternative text. The results supplied initial evidence that generative AI could perform some of the semantic reasoning needed for remediation; they did not establish that it could reliably remediate arbitrary documents.
+
+
+## Figure 5.3 introduction — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:154`, revision `cdb775d6a` (working tree). Applied the author’s screenshot replacement: remove “complete,” “recovered,” and the concluding qualification. Preserve the figure reference and measurement macro.
+
+Original paragraph:
+
+```latex
+As I built DocAble, I also built the machinery for building it. \autoref{realization-over-time} traces implementation activity and the accumulation of engineering machinery over \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. It reports landed work commits, model and verifier inventories, recovered agent dispatches, and documented Epic completions. Together, these measurements describe the factory's activity and structure; none independently establishes productivity.
+```
+
+
+## Chapter 5 hardening campaign — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:176`, revision `cdb775d6a` (working tree). Applied the author’s screenshot replacement, retaining the dated notes and private evidence reference and adding the Figure 5.3(b) cross-reference.
+
+Original paragraph:
+
+In Week 11, I began a deliberate campaign to replace repeated agent audits with deterministic checks. Notes from May 22 and 24 document the accompanying typing, lint-authoring, and repair work. The commit subjects and emerging formal Epic records agree with that account. They support an interpretation of a hardening campaign; the first surviving Epic or dispatch record does not establish when I first used agents, planning, or checks.
+
+
+## Figure 5.3 measurement methodology — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:181`, revision `cdb775d6a` (working tree). Replaced the body paragraph with the author’s shortened methodological footnote at the figure introduction. Preserved the evidence reference and moved its point annotation to that location.
+
+Original passage:
+
+```latex
+% <!-- point: longitudinal-methods-bound-the-inference | Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish. -->
+
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The series require some care. Work commits are reconstructed from direct and expanded squash landings, with duplicates, empty commits, and integration bookkeeping excluded. Completion records are affirmative claims rather than independent outcome audits, and dispatch retention is uneven. Earlier model existence is traced by path so a later declaration convention does not create a false growth spike. Registered verifier files establish an available checking apparatus, not that every check ran.
+```
+
+
+## R30.6–R30.8 — Support ratio, field note, model consumers, and reasoning interface — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s screenshot edits with the stated overrides: retain final line counts in Figure 5.4’s caption, omit interpolation language and the upkeep assertion, shorten the field-note transition and ending, remove incidental migration status, and retain the engineering lesson about extending supported operations. Supported-operation language elsewhere remains unchanged.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:190
+
+```latex
+Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21, and 31 it was approximately 2.6, 3.6, and \magevalue{seip_support_ratio}, respectively; it reached about 4.5 at week 17. The last snapshot contains \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. These are measurements at ten sampled revisions, with interpolation between them. A larger ratio is not a target. Tests, models, and operating tools carry different obligations, and supporting source earns its upkeep only while later work benefits from it.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:197
+
+```latex
+\caption[Product and supporting apparatus]{\emph{The product and its supporting apparatus:} composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; the apparatus's size establishes investment, not its return.}
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:204
+
+```latex
+Together, the measurements show sustained implementation accompanied by an expanding engineering environment. They do not isolate the cost of a requirement or the causal contribution of a control. They also leave a question for engineering judgment: would this project have been feasible under the same constraints without generative AI or the machinery built around it?
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:214
+
+```latex
+ This is an account of the project I could undertake, not a controlled estimate of either contribution.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:281
+
+```latex
+Python and TypeScript tests; server migration remains incomplete
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:281
+
+```latex
+Admission policy is explicit and comparable across runtimes; existing server decision paths still require reconciliation
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:360
+
+```latex
+This interface was still incomplete in November 2026. Dozens of PDF remediation passes retained direct-mutation paths, including repairs whose effects required additional operation types or more substantial restructuring. The common interface made some reasoning interchangeable; it did not make the entire pipeline replaceable. Extending the operation vocabulary was itself engineering work, especially where an edit changed several related structures or depended on targets created by an earlier edit.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:352
+
+```latex
+ The diagram shows the intended PDF architecture; some remediation operations still bypass the common changeset interface.
+```
+
+
+## Chapter 5 scaffold and repeated-repair experiments — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s screenshot replacements: condense the scaffold comparison while retaining the different-fixtures qualification, and remove the repeated concluding interpretation of the repair experiments. Measurements, accounting footnote, reference-exposure qualification, and decision not to promote the loop remain unchanged.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:365
+
+```latex
+The shared engineering machinery made alternative reasoning strategies practical to investigate. In one experiment, frontier agents inferred PDF structure through repeated tool interactions, while a foundation model given a prepared document scaffold inferred structure in a single pass on a separate prose fixture. The scaffolded approach achieved high agreement with its reference structure at substantially lower inference cost. Because the fixtures and interaction patterns differed, this was not a controlled comparison at equivalent quality. It exposed an architectural choice: which useful structure should the system supply, and which judgments should the reasoner make?
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:371
+
+```latex
+Other experiments tested whether additional agentic reasoning justified its cost. On a handwritten PDF in September 2026, the structured pipeline incurred \$0.0419 in metered inference expenditure, compared with an estimated \$2.29 for an agent using DocAble's document tools.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of accumulated context contributed substantially to the agent's cost. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference document structure, preventing an unbiased quality comparison. A November two-document experiment allowed an agent to inspect remaining findings and request another repair pass. Neither document gained additional checker improvements; on the harder document, cost increased from \$1.35 to \$3.57. I did not promote the loop to production. These small experiments did not establish that specialized pipelines are generally superior; they showed why additional reasoning must earn its cost through improvements in the resulting document.
+```
+
+
+## Chapter 5 reasoning conclusion and R30.10 factory opening — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s two screenshot replacements: condense the conclusion around reusable machinery and engineering capital; remove the incidental workflow-configuration date from the opening. Private evidence references remain in place.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:373
+
+```latex
+The engineering question is where additional reasoning earns its cost. Difficult semantic cases may justify a frontier agent, and agents can help investigate failures or identify repairs that the specialized pipeline misses. Those decisions require evidence about the quality gained as well as the inference expenditure. The factory made such comparisons possible by maintaining document representations, controlled operations, and validation machinery across changes to the remediation system. Within the supported operations, a new reasoning strategy could inherit that infrastructure rather than reconstruct it, while retaining the checks used to evaluate the resulting documents. This is engineering capital: accumulated decisions embodied in reusable machinery that remains useful as the reasoning strategies change.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:383
+
+```latex
+How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements ending October 14. I record priorities and deployment prerequisites in a strategy document. An orchestrating agent selects ready work and coordinates its planning, implementation, and evaluation.
+```
+
+
+## Chapter 5 prompt governance and supervisor-experience ending — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s two screenshot edits: shorten the prompt-governance paragraph and end the subsection with “My experience illustrates that distinction.” The preceding personal account and Bui–Evangelopoulos citation remain unchanged.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:434
+
+```latex
+A deterministic lint checks registered prompt definitions against this model and blocks illegal combinations. An agent introducing another unconditional fact minimum into a description prompt encounters a failed check rather than relying on a reviewer to recognize the mistake. The lint governs the instructions, not the descriptions produced from them; it cannot establish that an individual output contains no fabricated content. It prevents a recurring class of inappropriate requirements from entering the remediation system.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:445
+
+```latex
+Across these episodes, I repeatedly observed that coding agents could diagnose defects and implement repairs but seldom proposed the larger changes to models, architecture, or controls that would prevent similar failures. Claude suggested replacing the offending library call, not establishing a controlled mutation boundary. Claude suggested revising the prompt, not modeling which instructions were appropriate to different semantic tasks. Claude suggested repairing the integration script, not reconsidering which conflicts the factory should resolve automatically. I generally had to identify and direct these larger changes, although agents could implement the resulting machinery. Once the decisions were represented explicitly, agents could also undertake work that the new structure made delegable, such as reconciling conflicts identified by the integration policy. Bui and Evangelopoulos distinguish this capacity to execute assigned work from the proactivity needed to recognize worthwhile work independently~\citep{bui2026agentic}. My experience illustrates that distinction, although it does not establish a general limitation of coding agents.
+```
+
+
+## R30.12 and thermochemical-table example — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s screenshot edits to the migration example, delegation-staircase caption, and thermochemical-table example. Retained measurement macros, the caption title, and the concrete example.
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:465
+
+```latex
+\caption{\emph{DocAble's delegation staircase.} As the governed engineering environment (GEE) acquired models, checks, and controls, my work shifted from inspecting and admitting individual changes toward directing implementation and making system-level decisions. The three stages summarize DocAble's development rather than prescribe a maturity model. Failures in the environment could still require direct inspection.}
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:469
+
+```latex
+For example, a cross-format migration touching \magevalue{refactor_files} files and rewriting \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. My decision was that those files should change; the agents performed the migration. I rarely needed to inspect the implementation, although model drift still required correspondence checks, and failures in the engineering environment could return me to direct inspection.
+```
+
+### book/latex/sources/part5/5.3-evaluating-docable.tex:94
+
+```latex
+One presentation makes the distinction concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order. This author-inspected example explains a disagreement between the measures; it is not systematic expert adjudication.
+```
+
+
+## Chapter 5 production economics and avoidable cloud costs — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s screenshot replacements, including the explicit “that month” clarification. Retained the distinction between labor and unattended runtime, review and correction costs, and the account of avoidable cloud expenditure.
+
+### book/latex/sources/part5/5.3-evaluating-docable.tex:124
+
+```latex
+These quantities show that the specialized system can produce remediation outputs quickly and with little inference expenditure. The human reference averaged \magevalue{seip_uta_hours_per_pair} billed hours per document pair; DocAble's median unattended runtime was \magevalue{seip_eval_runtime_median_minutes} minutes per attempt. The labor average and elapsed-time median describe different populations and different measures of production effort. Estimating labor savings would additionally require measuring the competent review and correction needed after automated remediation and human remediation. To the best of my knowledge, the faculty whose courses were manually remediated have not been surveyed regarding quality of the result and the need for subsequent changes. Faculty using DocAble have reported follow-up work ranging from a few minutes to tens of minutes per document.
+```
+
+### book/latex/sources/part5/5.3-evaluating-docable.tex:140
+
+```latex
+  \textbf{Cost to build the product and factory.} I estimate that developing DocAble over six months cost approximately \$110,000: \$90,000 in engineering labor and \$20,000 in cloud expenditure. This investment produced both the remediation service and its supporting engineering machinery. Some expenditure was avoidable: despite my software-development experience, I had limited cloud-operations expertise. For example, I omitted cleanup requirements when directing Claude to deploy DocAble, allowing approximately 2,000 obsolete deployments to accumulate and contributing to a cloud bill of about \$1,000. These figures do not represent optimized development costs.
+```
+
+
+## Chapter 5 cost-to-change qualification — 2026-11-24
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, revision `cdb775d6a` (working tree). Shortened the cost-to-change bullet as requested. The following “Limits of the Case” already covered the lack of a controlled comparison and limits on generalization; moved the explicit individual-change-cost and productivity-multiplier qualification there.
+
+Original bullet:
+
+```latex
+  \textbf{Cost to change the product.} Once the factory was established, coding agents could implement substantial changes while I directed engineering decisions and evaluated their consequences. The development activity in \magevalue{sec:inside-docables-software-factory} illustrates this capacity, but does not isolate the cost of individual changes or establish a general productivity multiplier.
+```
+
+Original limits paragraph:
+
+The case follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, develop the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+
+
+## R36.3 and R36.5 — Engineering progress and routing — 2026-11-24
+
+Source revision: `cdb775d6a` (working tree). Applied the author’s three sentence deletions. Retained the explanations of mechanism reach, extension cost, forms of durable progress, and mechanized routing, including the existing cross-reference.
+
+### book/latex/sources/part6/6.4-research-agenda.tex:21
+
+```latex
+The number of obligations served by a reusable mechanism describes its reach; the effort required to add another obligation describes the cost of extending it. Obligations differ in complexity and consequence, so neither their count nor an obligations-per-mechanism ratio establishes productivity.
+```
+
+### book/latex/sources/part6/6.4-research-agenda.tex:48
+
+```latex
+Durability also has more than one object. Product functionality may survive subsequent changes, while a model continues to answer consequential questions or a control remains effective as the system evolves. These are different forms of durable engineering progress. Their size alone does not establish their value; subsequent use and the costs of sustaining that use matter.
+```
+
+### book/latex/sources/part6/6.4-research-agenda.tex:166
+
+```latex
+Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of an invariant to determine the kind of verification artifact required. The policy does not solve the general engineering routing problem developed below. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
+```
+
+
+## Section 5.4 — Continuous industrial analysis — 2026-11-24
+
+Source: `book/latex/sources/part5/5.4-other-agentic-software-factories.tex`, revision `cdb775d6a`, lines 1–189. The author supplies a full replacement emphasizing confident comparative analysis. Preserve all seven cases, numerical observations, citation keys, section/figure labels, and table structure. Primary-source checks temper new claims about Shopify implementation and GitLab bypass authorization; retain the separate knowledge-to-enforcement distinction.
+
+Original section:
+
+```latex
+% mage-auto-heading: cloudflare
+% mage-auto-heading: spotify
+% mage-auto-heading: shopify
+% mage-auto-heading: uber
+% mage-auto-heading: amazon
+% mage-auto-heading: gitlab
+% mage-auto-heading: siemens
+% mage-auto-heading: what-the-factories-share-and-where-they-differ
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: Other Agentic Engineering Factories -->
+
+\chapter{Other Agentic Engineering Factories}
+
+% <!-- point: one-system-one-engineer-one-problem-so-how-do-others-do-it | The longitudinal DocAble case is compared with organizations possessing different teams, processes, institutional knowledge and obligations; the four factory questions organize the comparison. -->
+
+DocAble provides a longitudinal account of one engineer developing and operating an agentic software factory. Other organizations begin with established engineering teams, production processes, and accumulated institutional knowledge. Their factories may therefore organize delegation, evaluation, and admission differently. The four questions from \magevalue{sec:the-software-factory} provide a common basis for comparison: what the factory produces, what people do, how production is organized, and what tolerances the resulting software must satisfy.
+
+% <!-- point: the-public-sources-are-interested-accounts-read-conservatively | The cases interpret public reports through MAGE without claiming adoption or independent validation of the method; the table previews their engineering arrangements. -->
+
+These are my interpretive reconstructions of public reports, not claims that the companies adopted MAGE.\footnote{These reconstructions reflect the public record available at the time of writing in late 2026. They draw primarily on blogs, product documentation, and recorded talks published in 2026, with earlier sources used to explain the systems and their development.} Engineering blogs, talks, and product documentation describe mechanisms and operating experience, but also serve promotional purposes. I use MAGE to interpret the arrangements they describe; the reports do not independently validate the method. \autoref{agentic-engineering-factories} previews the seven cases and the engineering arrangements they illustrate.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5000}}@{}}
+\caption[Seven arrangements for agentic engineering]{\emph{Seven arrangements for agentic engineering.} The cases differ in the products they support and the engineering mechanisms made visible by public reports.}\label{agentic-engineering-factories}\tabularnewline
+\toprule\noalign{}
+\textbf{Factory} & \textbf{Production context} & \textbf{What the case illustrates} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\textbf{Factory} & \textbf{Production context} & \textbf{What the case illustrates} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Cloudflare & Global network services & Organizational standards become enforceable controls \\
+Spotify & Cross-repository software maintenance & Agents enter an established production process \\
+Shopify & Commerce platform and shared codebase & Agent experience becomes reusable engineering knowledge \\
+Uber & Large-scale software development and operations & Production capacity must be balanced against supervision \\
+Amazon & Agentic development tools and AWS systems & Specification workflows and evaluation become reusable machinery \\
+GitLab & Integrated development platform & Agentic work inherits permissions and admission controls \\
+Siemens & Model-based systems engineering & Agents operate through existing engineering models and simulations \\
+\end{longtable}
+}
+
+\section{Cloudflare}\label{heading:cloudflare}
+
+Cloudflare operates a global network that provides security, performance, and connectivity services for Internet applications. Its engineers develop the software and configuration that operate this network, including services whose failures can affect customers worldwide. The factory spans many teams and repositories, with shared engineering standards intended to govern changes across them. As coding agents take on more work, Cloudflare has begun translating those standards into representations and checks that can govern both human- and agent-authored changes~\citep{reimann2026codex}. Its case shows how organizational engineering knowledge can become enforceable control over a distributed production process.
+
+% <!-- point: cloudflare-turns-standards-prose-into-statements-with-stable-identity | Cloudflare represents institutional obligations as individually identified statements that can be tracked through revision and applied at several stages of engineering work. -->
+
+The standards corpus had grown beyond what individual engineers could readily remember. An extraction agent turns each SHOULD or MUST into a structured statement with a stable identifier, so the obligation can be tracked when its containing document changes~\citep{reimann2026codex}. That identity supports compliance records and explicit waivers. Standards then meet work at several stages: specification review before implementation, linters during editing, semantic review in CI, and incident review after production. The representation connects a human-authored obligation to machinery that can find and apply it; merely storing the original policy documents would leave more of that connection to each reader.
+
+% <!-- point: cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only | Standards approval and enforcement promotion are separate; enforced MUST statements can drive merge decisions, with a recorded human override, while published activity counts do not establish detection performance. -->
+
+An approved statement does not automatically block work. Any employee may propose a standard, and a named domain owner approves it. A separate promotion moves it from advisory to enforced; the cited account does not identify who performs that step. For enforced standards, a coordinator agent orchestrates up to seven specialist reviewers, evaluates severity, and can approve a merge request, revoke an earlier approval, or block the merge. Only enforced MUST statements can block, and the rubric favors approval so that a lone warning does not~\citep{skidmore2026review}. This separates the decision to adopt an obligation from the decision to let an automated reviewer enforce it.
+
+Human reviewers retain an exception path: commenting ``break glass'' forces approval and records the override. Cloudflare reports 288 such overrides, 0.6 percent of merge requests, from March 10 to April 9, 2026~\citep{skidmore2026review}. The override count measures how the control was used. Review runs, findings, and blocked merges similarly describe its operation. The account makes the allocation of authority visible, while the effectiveness of the checking—including violations missed and defects prevented—remains incompletely measured.
+
+% <!-- point: cloudflare-converts-failures-into-structure-but-never-measures-the-loop | Operating experience changed the representation of extracted standards and moved suitable checks into deterministic linters; engineering knowledge becomes more usable and cheaper to enforce. -->
+
+Cloudflare's factory has changed as engineers learned which representations and controls were effective. The extracted standards statements moved from Markdown to structured JSON so agents could identify and filter obligations more reliably. Semantic-review latency encouraged moving suitable checks into deterministic linters earlier in the workflow~\citep{reimann2026codex}. These changes illustrate two ways to improve a factory: make engineering knowledge easier for agents and tools to consume, and move recurring judgments into cheaper, more predictable enforcement mechanisms. Cloudflare's experience parallels DocAble's governance conversion, although its engineering knowledge originates across many teams rather than with one engineer directing agents.
+
+\section{Spotify}\label{heading:spotify}
+
+% <!-- point: spotify-holds-the-line-fixed-and-swaps-the-station-inside-it | Spotify introduced an agent into a pre-existing fleet-change process, allowing examination of reused production structures without claiming causal isolation. -->
+
+Spotify operates a music and audio streaming service supported by many independently developed software components. Its engineers maintain services, libraries, and data infrastructure that must evolve together as shared interfaces and dependencies change. To coordinate changes across repositories, Spotify developed a Fleet Management system that selects targets, applies transformations, creates pull requests, and monitors deployments~\citep{brown2023fleet}. Coding agents were subsequently introduced into this existing production process, replacing scripted transformations for changes that were difficult to automate deterministically~\citep{charas2025honk}. In one fleet migration, an agent addressed the remaining 30 percent that scripted transformations had not covered~\citep{charas2025honk}. Fleet Management continued to monitor deployments and alert the change author when production failed~\citep{brown2023fleet}. Spotify’s case shows how an established software factory can incorporate a new fabricator without replacing the surrounding machinery.
+
+% <!-- point: spotify-installs-and-then-retires-a-control-as-the-fabricator-improves | Bounded tools and mandatory checks govern proposed changes; an added judge and its reported later removal show controls changing with observed failures and false vetoes. -->
+
+The late-2025 configuration bounded both the agent\textquotesingle s actions and its route to a pull request. It exposed selected Git commands that excluded pushing, shell commands from an allowlist, and a verification tool. Users supplied relevant context in prompts; code-search and documentation tools were withheld~\citep{charas2025honk}. The verification tool selected checks from repository contents, and failure prevented a pull request from being opened. The agent could choose how to implement a change within those bounds, but its own assessment could not waive the required checks. After unwanted changes such as disabled tests, Spotify added an LLM judge that compared the diff with the original request. In December 2025, the company reported vetoes in about a quarter of thousands of sessions, with agents correcting their work after about half of those vetoes~\citep{charas2025feedback}.
+
+Spotify subsequently separated the agent runtime from the verification runtime, creating pull requests only after CI checks~\citep{curtis2026spotifyqcon}. The LLM judge sometimes rejected valid changes and was later removed as foundation models improved and verification instructions in prompts proved sufficient for its role~\citep{curtis2026spotifyqcon}. The sequence shows why maintaining a control includes reassessing both the failures it catches and the valid work it rejects. An engineering response to one generation of agent behavior need not remain economical unchanged.
+
+% <!-- point: spotify-splits-admission-by-fabricator-and-names-verification-as-the-constraint | People set migration scope, maintain prompts, reserve judgment calls, and review agent-authored changes; delegation varies within the production process. -->
+
+People retain responsibility for defining migration scope and maintaining prompts as tested, version-controlled artifacts. They can also reserve particular decisions: in one migration, the agent was instructed to leave fields unchanged and annotate them whenever a judgment call was needed~\citep{charas2025honk, edwardsjoseph2026migrations}. Agent-authored changes still required human review in the reported configuration~\citep{curtis2026spotifyqcon}. Delegation therefore varies within the production process rather than being one decision to automate the whole line.
+
+% <!-- point: spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity | Rework, complexity, pull-request size, and incident observations provide a mixed account of system health and verification capacity rather than an activity-only success claim. -->
+
+The production process must also keep pace with the work agents generate. Spotify\textquotesingle s refined rework measure did not rise during the AI ramp-up, while code complexity and pull-request size did; the company kept its thresholds unchanged. Incident retrospectives found no material direct contribution from AI-authored code, yet change volume had grown faster than some verification controls could adapt. One automated dependency upgrade passed its checks and still failed in production~\citep{singer2026quality}. These observations concern different properties and should not be collapsed into a single quality score. Producing more changes has exposed a capacity problem as well as a check-coverage problem.
+
+\section{Shopify}\label{heading:shopify}
+
+Shopify develops a commerce platform through which merchants operate online stores, manage transactions, and run their businesses. Much of its software development occurs in a shared codebase, where changes must coexist with established conventions, services, and security requirements. Shopify has introduced coding agents into this environment, including an internal agent called River that employees invoke through shared Slack channels~\citep{moreno2026river}. The resulting work is visible to colleagues, who can inspect failures and preserve useful lessons in repository instructions and agent skills. Shopify’s case shows how a factory can accumulate engineering knowledge through the observation of agentic work.
+
+% <!-- point: shopify-makes-every-session-observable-organizational-material | Public River sessions let colleagues inspect work and failures, creating opportunities to record knowledge for later sessions without establishing that every failure is watched. -->
+
+River refuses direct messages. An employee starts work by mentioning it in a channel, leaving a public transcript that colleagues can inspect~\citep{moreno2026river}. This makes the work and its difficulties observable beyond the person who initiated it. It does not ensure that every failure attracts attention, but it provides a shared record from which people can identify missing knowledge instead of depending entirely on a later report.
+
+% <!-- point: shopify-mines-sessions-by-hand-and-measured-the-effect | People record missing knowledge in shared files; the reported merge-rate improvement occurred with the foundation model held fixed but does not isolate human learning from environmental changes. -->
+
+People use that record to change what later agents receive. They watch River work, identify what it should have known, and add a skill, revise an \texttt{AGENTS.md} file, or record another reusable instruction in the monorepo~\citep{moreno2026river}. These artifacts sit alongside code, conventions, intent documents, and runbooks. River\textquotesingle s reported merge rate rose from 36 to 77 percent over two months while its foundation model stayed the same~\citep{lutke2026shopfloor}. The report does not isolate the contribution of those changes. Unlike DocAble\textquotesingle s one-engineer account, this mechanism distributes observation and knowledge maintenance across an organization.
+
+% <!-- point: shopifys-instruction-corpus-also-accumulates-maintenance | Shared instructions require upkeep when different agent tools consume different files; repairing that divergence is part of maintaining the engineering environment. -->
+
+The shared knowledge also requires maintenance. Instruction files apply through the monorepo\textquotesingle s directory hierarchy, while different agent tools read different files. Shopify describes divergence between those conventions: a directory can contain instructions for one tool and omit the corresponding file for another, so engineers working on the same code supply different context to their agents~\citep{lutke2026splitbrain, caswell2026agentsmd}. Automation repairs that drift. Recording a lesson has therefore created another engineering artifact whose continued value depends on keeping it available and consistent. The cost follows from the mechanism that makes the knowledge reusable.
+
+% <!-- point: shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim | A failed prompt-stated enumeration requirement motivated code enforcement in a documented security workflow; its admission arrangements and queue-use measurements do not characterize all River work. -->
+
+Some obligations require enforcement rather than instructions. In Shopify's security-remediation workflow, River violated a prompt-stated enumeration requirement and acknowledged the omission in its report. Shopify\textquotesingle s response was to require rules governing vulnerability closure to be enforced in code. The same account describes draft-only agent output, merge authority held by the engineers responsible for the affected code, a merge queue requiring fresh evidence, and a post-merge check that the default branch contains the fix. Its reported increase in queue use, from about 10 to 80 percent, measures adoption of that mechanism rather than the rate at which vulnerabilities escaped~\citep{son2026security}. The controls are described for security work; the account does not establish what evidence ordinary River pull requests must carry or how often they fail in production.
+
+\section{Uber}\label{heading:uber}
+
+% <!-- point: uber-treats-the-factory-itself-as-an-object-of-measurement-and-optimization | Uber treats foundation-model choice, context, orchestration, workflow cost, and reviewer attention as measurable engineering variables. -->
+
+Uber operates a platform for transportation and delivery, supported by software services that coordinate users, providers, transactions, and real-time operations. Its engineering organization must continually maintain and change this large production system. Uber has introduced managed agents to perform development and operational tasks, including CI repair, code review, alert triage, and maintenance. These agents can receive work from people, schedules, or operational signals~\citep{medisetty2026sdlc}. Uber’s case examines the economics of this expanded production capacity: the cost of completing useful work, the evidence required to accept it, and the human and computational resources needed to keep production moving.
+
+% <!-- point: uber-cannot-optimize-the-evidence-or-the-reviewer | Uber describes producer-assembled evidence and layered review with human admission; the public account does not establish independent re-derivation of the evidence or future automatic-approval criteria. -->
+
+Evaluation begins inside the producing agent\textquotesingle s loop, with static-analysis repair, simulator screenshots compared with design specifications, and staging integration. The resulting pull request carries a table of checks and evidence assembled by that agent. The account does not say that independent machinery re-derives every entry~\citep{medisetty2026sdlc}. Additional model-based review, CI, and human approval follow. Uber describes a possible move toward partial automatic approval, but does not publish the qualifying evidence or eligibility criteria~\citep{bond2026ureview}. The reported review layers therefore tell us how evaluation is arranged without establishing the assurance of every proposed change.
+
+% <!-- point: uber-publishes-cost-and-withholds-quality | Review latency exposes finite reviewer capacity; rising fabrication capacity increases demands on supervision and the surrounding production process. -->
+
+Reviewer attention has its own capacity limit. Time to first review rose from three hours in 2024 to nine in 2026 as volume and change size grew~\citep{bond2026ureview}. Like DocAble, Uber must organize supervision around implementation capacity rather than assume that faster production yields faster delivery. DocAble responded by moving recurring checks into machinery; Uber also manages the flow of work into human review. In both cases, increasing fabrication capacity changes the demands on the surrounding production process.
+
+% <!-- point: uber-tunes-the-environment-against-published-numbers | Context delivery, orchestration, foundation-model selection, and outcome-denominated costs make the agent's surrounding production system an object of optimization. -->
+
+Uber evaluates its factory in units of completed work, such as cost per merged pull request, review, alert, or cleanup. These measures connect resource expenditure to production outcomes rather than individual agent operations. Uber adjusts context delivery, tool access, and coordination against those production costs. Real workloads become benchmarks, and foundation models are selected against cost and reliability. Moving deterministic orchestration from repeated agent turns into executable code reportedly cut token use by more than half for common workflows and by more than 90 percent for bulk cases~\citep{medisetty2026factory, medisetty2026sdlc}. Some work is cheaper when executed directly than when repeatedly reconstructed through model interactions. The organization also tracks revert rate, F1, and time to recovery alongside production cost, although the cited accounts do not publish a complete outcome series. Uber also schedules maintenance jobs on Sunday to use spare CI capacity, while separately limiting the diffs engineers must review on Monday~\citep{medisetty2026sdlc}.
+
+\section{Amazon}\label{heading:amazon}
+
+Amazon develops software for commerce and cloud computing, including Amazon Web Services (AWS), whose products depend on large, continuously evolving software systems. Its engineering organizations maintain their own development processes, while AWS also offers Kiro, an agentic development environment that packages specification, implementation, and verification workflows for reuse~\citep{kiro2026specs}. The public accounts considered here show three aspects of factory engineering: how Kiro organizes work from specifications, how an AWS team used agents to rebuild part of a production inference system, and how Kiro’s developers evaluate changes to their own agentic machinery. Together, they illustrate the difference between supplying a production process and engineering its use in a particular project.
+
+% <!-- point: kiro-builds-engineering-artifacts-into-the-harness | Kiro supplies a reviewable specification workflow that adopting teams connect to their own repositories, tools, and engineering decisions. -->
+
+Kiro supplies a reusable workflow for making intent explicit before implementation. A feature specification records user stories and acceptance criteria, develops an architectural design, and divides implementation into tasks that engineers can review~\citep{kiro2026specs}. In MAGE\textquotesingle s vocabulary, these requirements and design artifacts are engineering models. DocAble arranged related work through project-specific work orders and design documents; Kiro makes a specification workflow part of the harness. Adopting it still leaves a team responsible for the content of those artifacts and their connection to its system.
+
+% <!-- point: kiro-connects-requirements-to-tests-and-configurable-controls | Property-based tests provide evidence and configured hooks can enforce selected conditions; coverage and blocking decisions remain project responsibilities. | terms: modeling-principle, alignment-principle -->
+
+The workflow can connect specifications to evidence and enforcement. Kiro\textquotesingle s IDE can extract properties from requirements and generate property-based tests, whose execution is optional by default and whose results are explicitly distinguished from proof~\citep{kiro2026correctness}. Configured hooks can run checks after edits or block tool calls when preconditions fail~\citep{kiro2026hooks}. Engineers must decide which properties matter, whether the tests express them correctly, and where failure should prevent work from proceeding. A supplied workflow makes these connections possible; its presence does not establish that a particular project enabled them.
+
+% <!-- point: amazon-internal-use-adds-team-specific-production-structure | Bedrock's reported use combined Kiro with scoped work, tests, operational tools, and senior review; the twentyfold figure measures normalized commit velocity rather than quality or isolated causal effect. -->
+
+One AWS team makes some of that adopting-team work visible. Six senior engineers rebuilt part of the Bedrock inference engine in 76 days, using small modules, reviewable commit-sized tasks, focused operational tools, tests, end-to-end canaries, and senior inspection of generated code~\citep{kiro2026bedrock}. AWS reports a twentyfold increase in normalized commit velocity, from two to forty commits per developer per week~\citep{sivasubramanian2026frontier}. That is a production-activity measure. It does not establish defect reduction or separate Kiro\textquotesingle s contribution from team selection and workflow redesign.
+
+% <!-- point: amazon-governs-improvements-to-the-harness-itself | Kiro-trace tests proposed harness changes against an unchanged control and regression requirements, with human merge decisions and new checks derived from evaluation failures. | terms: tolerance, governance-conversion -->
+
+Kiro's developers also evaluate changes to the agentic machinery itself. Kiro-trace proposes prompt or tool changes from recorded runs. A separate deterministic gate screens targeted failures, checks regression assertions, and compares candidates with an unchanged control on the full benchmark. It requires gains on selected tasks without losses beyond a specified margin elsewhere; a person decides whether to merge. One apparent improvement was rejected after it proved to be a lucky run. Evaluation mistakes became checks, and confirmed fixes add regression assertions~\citep{kim2026kirotrace}. The same principle applies to the factory's own machinery: proposed improvements require evidence that they help without introducing unacceptable regressions.
+
+\section{GitLab}\label{heading:gitlab}
+
+GitLab develops a software-development platform that brings source control, code review, continuous integration, and deployment workflows into a common environment. Its product is itself part of the software factory used by other organizations: it provides the machinery through which changes are proposed, checked, approved, and delivered---a ``factory in a box.'' GitLab has extended this environment with agents that can perform development and review tasks while operating under existing permissions and workflow controls~\citep{gitlab2026customize,gitlab2026identity}. Its case shows how agentic work can inherit established boundaries on tool use, review authority, and acceptance rather than requiring a separate governance system.
+
+% <!-- point: customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability | GitLab integrates organizational context with CI and permission boundaries, including a security-review flow that cannot approve changes. -->
+
+Repository instructions, chat rules, review skills, CI configuration, and workflow definitions supply different kinds of context~\citep{gitlab2026customize}. For human-triggered flows running on runners, composite identity limits access to the intersection of the service account's and triggering user's privileges~\citep{gitlab2026identity}. Tool-governance rules can also constrain actions; project rules may tighten but not loosen a group rule~\citep{gitlab2026toolgovernance}. The documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. These are distinct functions: instructions inform the work, permissions restrict actions, and the approval boundary reserves a consequential decision.
+
+GitLab\textquotesingle s internal playbook also makes acceptance depend on the surrounding pipeline. Its failing-test-first practice is backed by a CI job that fails when the test count decreases unless an explicit bypass label is present, addressing agents that remove tests to obtain a passing result~\citep{gitlab2026playbook}. A test-count check cannot establish that the remaining tests express the right requirements. It does make one recurring way of evading them consequential at admission.
+
+\section{Siemens}\label{heading:siemens}
+
+Siemens develops industrial technologies and engineering software used to design, simulate, manufacture, and maintain physical products. Its engineering software connects representations of product structure, system behavior, geometry, and manufacturing information across the product lifecycle. Unlike the preceding software-centered cases, the factory examined here concerns the production and evolution of engineered systems whose realizations may include physical artifacts. Siemens is exploring agents that operate through established systems-engineering models, simulation tools, and product-lifecycle management systems~\citep{liu2024agentstudio,siemens2026a3e,haines2026bomagent}. Its case shows how agentic production can build on an existing model-based engineering environment rather than beginning with source code.
+
+Agent Studio research integrates AI agents with SysML v2 models and engineering simulation tools, including Simcenter Amesim. In a reported hybrid-vehicle design example, agents explore candidate architectures, simulate their behavior, and check them against requirements, with an engineer deciding how to proceed at critical points~\citep{liu2024agentstudio}. Related Siemens work connects geometry, physical simulation, and engineering data through a digital thread~\citep{siemens2026a3e}. In Teamcenter, an agent analyzes product structures and proposes bill-of-materials changes; a human confirms updates within existing governance and change processes~\citep{haines2026bomagent}.
+
+These models provide a common basis for design exploration, analysis, and subsequent realization. Correspondence among them need not make every disagreement a blocking event; engineers can retain decision authority while agents and specialized tools perform much of the work. Models of the engineered system, rather than source-code repositories, provide the central organizing representations.
+
+An organization with an established model-based engineering environment may already possess much of the machinery needed to direct and evaluate agentic work. Its models have defined semantics, and its tools can analyze, simulate, and transform them. Introducing agents may therefore require less investment in engineering representations and their consumers than it did in DocAble. The agents can also help extend that machinery where existing modeling languages and tools do not address a particular engineering problem.
+
+\section{What the Factories Share, and Where They Differ}\label{heading:what-the-factories-share-and-where-they-differ}
+
+% <!-- point: the-factories-place-admission-in-four-different-locations | The cases make different admission arrangements visible and provide uneven evidence; reported activity should not be mistaken for independently established effectiveness. -->
+
+The four factory questions reveal different arrangements for organizing agentic production, not stages along a common path toward autonomy. Across these arrangements, several relationships emerge: who retains authority over consequential decisions, how production capacity is balanced against evaluation and admission, and how engineering knowledge is acquired and maintained. Their primary engineering artifacts also differ: some factories center on source repositories and validation suites, while Siemens works through systems-engineering models and simulations. The organizations differ in where they place engineering judgment, what they permit agents to decide, and which decisions remain with people or independent controls. Their measurements answer different questions: override frequency, veto and correction rates, merge rate, token cost, review delay, and engineering-health indicators cannot be combined into a single ranking of factory effectiveness.
+
+One important difference is where the authority to accept work resides. Cloudflare distinguishes standards that advise reviewers from those whose violations can block a merge, while retaining a recorded human override~\citep{skidmore2026review}. Spotify inserted agents into an existing production process but kept required verification and, in the reported configuration, human review of agent-authored changes~\citep{charas2025honk,curtis2026spotifyqcon}. Shopify's security workflow reserves merge authority to the engineers responsible for the affected code~\citep{son2026security}; GitLab's documented security-review flow can report findings but cannot approve a change~\citep{gitlab2026securityreview}. These arrangements reserve admission authority in different ways, but none treats the producing agent's claim of completion as sufficient authority to admit consequential changes. Process design determines who or what may make the admission decision; tolerance and its evidence determine what that decision must establish.
+
+% <!-- point: supervision-and-verification-do-not-scale-with-production | Production and supervisory capacity can grow at different rates; review delays, workload scheduling, and verification experience make this a process-design concern. -->
+
+Production capacity and supervisory capacity must be engineered together. Uber\textquotesingle s Sunday maintenance schedule would be incomplete without its separate limit on Monday\textquotesingle s review load. Spotify\textquotesingle s ability to generate more changes exposed limits in verification even when its measured rework did not rise. A factory therefore has to organize evaluation and admission alongside realization. Increasing the rate of one stage can shift delay or risk to another; the production system must be assessed through the work it can accept and sustain.
+
+% <!-- point: factories-acquire-engineering-knowledge-through-different-mechanisms | Standards, observed agent work, supplied specification workflows, measured experiments, and construction failures provide different routes for preserving engineering knowledge beyond an individual task. -->
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+The factories also differ in how they acquire engineering knowledge. Cloudflare turns organizational standards and incident lessons into structured obligations and checks. Shopify makes agent work visible to colleagues, who preserve useful discoveries in instructions and skills. Amazon's Kiro supplies a specification workflow that engineers populate with project-specific decisions, while its internal experiments improve the agentic machinery through measured comparisons. Siemens begins with established systems-engineering models and simulations, using them to organize agentic exploration rather than constructing its engineering representations around coding agents. DocAble developed many of its models and controls in response to failures encountered during construction. Preserving an obligation does not itself make it enforceable: Cloudflare distinguishes advisory standards from blocking controls, Shopify moves selected security requirements into code, and Kiro leaves teams to decide which generated checks should govern subsequent work. In each arrangement, useful engineering knowledge can survive the task that exposed or required it, but the means of identifying, representing, and maintaining that knowledge differ.
+
+% Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+The organizations also differ in the engineering machinery available to them before agents arrive. Spotify introduced agents into an established production and verification process; Siemens brings existing engineering models, analyses, and simulation tools to agentic work. Other organizations may have extensive source-level checks but few explicit system models. DocAble developed much of this machinery while developing the product itself. Recall the alignment kernel from \autoref{4.1-the-dynamics-of-mage:heading:establish-a-kernel-before-expanding}: an organization introducing agents may already possess many of the models and controls needed to protect the properties that subsequent engineering must preserve. Identifying these assets and their gaps may be a useful starting point for adoption (\autoref{chapter:appendix-b-brownfield-migration}).
+
+% <!-- point: the-inheritance-channel-carries-its-own-maintenance-cost | Shared knowledge and checks require maintenance; the documented revisions show how reusable engineering structure exchanges repeated judgment for upkeep. -->
+
+Preserving engineering knowledge also creates a maintenance obligation. Shopify repairs divergent instructions; Cloudflare revises policy representations and moves suitable checks earlier; Kiro\textquotesingle s improvement experiments acquire new regression assertions. Each preserved lesson can reduce future reconstruction or repeated judgment, but the resulting artifact must remain connected to the work it governs. This is the carrying-cost question from \magevalue{sec:the-software-factory} in operational form. Improvements in foundation models can also change that calculation, as Spotify\textquotesingle s retired judge illustrates; Shopify\textquotesingle s rising merge rate with an unchanged model shows that the surrounding factory can improve independently.
+```
+
+
+## 2026-11-24 — Chapter 7: main argument and scholarly inset
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`:18–39; revision `cdb775d6a` (working tree). Move the detailed literature discussion into a three-paragraph inset, retain the conceptual argument in the main prose, and frame the concluding disagreement in the author’s voice.
+
+```latex
+A reasonable objection begins with a fact: \textbf{software engineers do not spend most of their workweek typing code.} This result predates generative AI. Meyer et al., drawing on 5,971 responses from professional developers~\citep{meyer2021goodday}, found that software work spans a much broader mixture of development and non-development activities. More recently, Kumar et al. separated the developer workweek into sixteen activities; in their Microsoft sample, coding new features occupied roughly 11 percent of the actual week, alongside debugging, architecture and design, code review, testing, refactoring, environment work, security, communication, and other activities~\citep{kumar2025timewarp}.
+
+Butler et al. turn that observation into a critique of contemporary GenAI~\citep{butler2026eightmyths}. If the technology merely makes the coding slice faster, its whole-job effect has a low ceiling. Even if coding occupies only roughly 10--15 percent of the workweek, doubling performance on it cannot double developer productivity; faster source production can simply move pressure downstream into review, testing, integration, and other work. Their criticism applies well to \textbf{GenAI used as individual code-generation assistance}. It also supports a broader point MAGE shares: lines of generated code are not an engineering outcome, and handing developers a tool does not by itself redesign the system of work around them.
+
+The disagreement begins when that fixed slice is treated as a bound on \textbf{agentic engineering}. Time categories are not independent production stages. Software engineers learn about a design by realizing it: implementation exposes missing abstractions; debugging changes what we believe about behavior; tests expose underspecified obligations; refactoring discovers structure; deployment reveals couplings that static design did not anticipate. This interleaving is not a new observation. Ralph\textquotesingle s Sensemaking--Coevolution--Implementation theory models software development as repeated movement among understanding the context, revising the problem and design together, and constructing, debugging, and deploying the artifact; a later multi-method study using more than 1,300 developers and four longitudinal cases strongly supported that process account~\citep{ralph2015sci, ralph2016processtheory}.
+
+% <!-- box-family: inset -->
+% <!-- inset-domain: SOFTWARE ENGINEERING RESEARCH -->
+% mage-box-prefix: Inset —
+% <!-- print-keep-with-next: 20 -->
+\begin{bookbox}{inset}{Measuring Software Engineering Work}
+\label{inset-measuring-software-engineering-work}
+Studies of developer time describe how work is allocated, not necessarily what constrains its productivity. Kumar et al. distinguish sixteen activities in a Microsoft sample, reporting approximately 12 percent of the workweek in communication and meetings, 11 percent in coding, 9 percent in debugging, 6 percent in architecture and design, and 5 percent in pull-request and code review~\citep{kumar2025timewarp}. These categories are useful descriptions of work, but their proportions do not establish how much of the surrounding activity could change if implementation became cheaper.
+
+The distinction matters when interpreting GenAI productivity claims. Butler et al.\textquotesingle s fixed-slice objection concerns AI used primarily to accelerate code creation while the surrounding development process remains unchanged~\citep{butler2026eightmyths}. Ralph\textquotesingle s Sensemaking--Coevolution--Implementation theory offers a different account of the process: understanding, designing, implementing, and evaluating interact rather than proceeding as independent stages~\citep{ralph2015sci}. Its empirical follow-up combined a survey of more than 1,300 developers with four longitudinal case studies~\citep{ralph2016processtheory}. Reeves made an earlier, stronger argument that implementation itself constitutes software design~\citep{reeves1992whatissoftwaredesign}.
+
+The fraction of time spent coding is therefore not a measure of how strongly implementation constrains the rest of engineering work.
+\end{bookbox}
+
+MAGE therefore uses \textbf{implementation capacity} in an economic rather than time-sheet sense. A cost is imposed by every design hypothesis that has to be realized before the team can learn from it, even if the eventual keystrokes occupy only a small fraction of the calendar. Reduce that cost sufficiently and more alternatives become affordable, feedback arrives sooner, and intelligence can participate in more of the surrounding loop. Modern coding agents already reach beyond source generation into repository inspection, debugging, test construction, refactoring, tool execution, and multi-step changes. Whether they can safely take on still more of that loop is exactly the engineering question MAGE addresses.
+
+This makes the disagreement empirically testable. \textbf{If assistance accelerates only code writing while the surrounding work stays unchanged, the fixed-slice argument largely holds. If governed agents can assume meaningful portions of debugging, testing, refactoring, integration, migration, and operation without proportionate growth in human review, a fixed coding-time slice is no longer the right model of attainable leverage.} The relevant boundary is the work delegated and the supervision it requires. MAGE asks how to cross that boundary without losing engineering control.
+```

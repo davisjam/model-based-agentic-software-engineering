@@ -18,7 +18,7 @@ Lines of code, commits, and token expenditure cannot by themselves establish eng
 
 \autoref{engineering-measures} distinguishes candidate measures of implementation, engineering models, the GEE, and engineering activity. Model-based engineering offers relevant precedents in its measures of model maturity, traceability, verification, rework, and engineering effort~\citep{garcia2021modelproductivity,henderson2023digitalmetrics,campo2023mbse}. These categories describe different aspects of output, capability, and activity; they are not components of a prescribed productivity score.
 
-The number of obligations served by a reusable mechanism describes its reach; the effort required to add another obligation describes the cost of extending it. Obligations differ in complexity and consequence, so neither their count nor an obligations-per-mechanism ratio establishes productivity.
+The number of obligations served by a reusable mechanism describes its reach; the effort required to add another obligation describes the cost of extending it.
 
 {\footnotesize
 \begin{longtable}[]{@{}
@@ -45,7 +45,7 @@ Engineering activity and resources & Agent invocations; tokens consumed; inferen
 
 The categories need not move together. A migration may change thousands of lines while preserving externally visible behavior. A model can make an architectural obligation explicit without changing the implementation; a gate can prevent violations without adding a feature. Conversely, an agent may complete substantial implementation without improving the environment. The engineering question determines which measures matter: accepted changes for implementation capacity, represented properties and analyses for Modeling, or coverage and intervention for Alignment.
 
-Durability also has more than one object. Product functionality may survive subsequent changes, while a model continues to answer consequential questions or a control remains effective as the system evolves. These are different forms of durable engineering progress. Their size alone does not establish their value; subsequent use and the costs of sustaining that use matter.
+Durability also has more than one object. Product functionality may survive subsequent changes, while a model continues to answer consequential questions or a control remains effective as the system evolves. These are different forms of durable engineering progress.
 
 \autoref{theory-experimental-comparisons} relates these measures to the four propositions. Each comparison holds the proposed intervention against an alternative that could plausibly work.
 
@@ -163,7 +163,7 @@ Suppose we have another hour to spend on a difficult change. Should we use it to
 This broader choice is \textbf{engineering routing}. Model routing selects a reasoner for a task; engineering routing selects the representation, reasoner, tools, iteration, and admission mechanisms through which the task will be realized. It also allows investment in the engineering environment itself. These decisions are coupled: a representation may make a cheaper reasoner sufficient, or support a check that changes how the result can be admitted. A routing decision may therefore favor stronger inference, more explicit structure, or a deterministic operation when the task is sufficiently specified.
 
 % Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
-Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of an invariant to determine the kind of verification artifact required. The policy does not solve the general engineering routing problem developed below. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
+Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of an invariant to determine the kind of verification artifact required. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
 
 % <!-- point: engineering-investment-is-a-constrained-sequential-decision | An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes. -->
 

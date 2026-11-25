@@ -314,11 +314,11 @@ The execution model would help me identify the work that could proceed concurren
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
-\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission. Incomplete or stale relationships may require broader validation.}
+\caption{\emph{Model-aware change impact.} Suppose an agent proposes increasing concurrency. Which obligations might the change affect? The execution model identifies the affected work, the memory model exposes possible resource violations, and the latency model identifies performance consequences. These relationships guide the selection of correctness tests, memory measurements, and performance checks for admission.}
 \label{model-aware-change-impact}
 \end{figure}
 
-This use of model relationships builds on change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. Such an analysis is only as complete as the relationships it represents. It can identify evaluations warranted by known dependencies, but it cannot establish that we have represented every property the change might affect. \autoref{chapter:appendix-a-model-based-test-selection} develops the corresponding engineering machinery.
+This use of model relationships builds on change-impact analysis, requirements traceability, model-based impact analysis, and regression test selection~\citep{bohner1996impact,gotel1994traceability,briand2006impact,rothermel1997selection}. The analysis identifies evaluations warranted by known dependencies; incomplete or stale relationships may require broader validation. \autoref{chapter:appendix-a-model-based-test-selection} develops the corresponding engineering machinery.
 
 \engineeringlesson{Models can help us determine what to evaluate as well as how to evaluate it. Explicit relationships among models, implementation components, and obligations can reduce the work of selecting evidence for a proposed change.}
 

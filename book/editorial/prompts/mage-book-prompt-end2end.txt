@@ -25,7 +25,7 @@ The book is neither an academic monograph addressed exclusively to researchers n
 
 3. Review principles
 
-Read as a first-time reader. Do not credit a passage with knowledge supplied by earlier manuscript versions, conversations with the author, or material that appears later in the book.
+Read as a first-time reader. Do not credit a passage with knowledge supplied by earlier manuscript versions, conversations with the author, or material that appears later in the book. Assume a textbook reader who may study one chapter per week, consult chapters independently, or return to sections for reference. Do not assume immediate recall of preceding chapters. Brief recapitulation and occasional references to earlier chapters are appropriate, but should not substitute for exposition needed to understand the present material.
 
 Respect the differences among chapters. The conceptual instruction of Chapters 2–3, engineering episodes of Chapter 4, industrial analysis of Chapter 5, mathematical and theoretical development of Chapter 6, and professional reflections of Chapter 7 need not have identical voices or structures.
 
@@ -37,7 +37,13 @@ Prefer plain language. Use the sentence “A stapler joins sheets of paper and a
 
 Respect the author’s voice. Preserve first-person engineering accounts, humor, intellectual curiosity, and candid discussion of mistakes. Do not turn the book into an impersonal survey or a collection of management slogans.
 
-Exercise editorial restraint. The threshold for adding material is now high. Identify changes that materially improve the book rather than changes that merely reflect another possible way of writing it.
+Exercise editorial restraint. The threshold for adding material is now high. Identify changes that materially improve the book rather than changes that merely reflect another possible way of writing it. Apply the same restraint to deletion and rewriting. Shorter prose is not necessarily better prose. Where passages overlap, preserve the stronger formulation, regardless of which occurs first. Protect concrete examples, memorable language, effective transitions, and the author's personal engineering accounts.
+
+Distinguish enduring engineering knowledge from incidental implementation status. DocAble is a case study through which the book teaches engineering, not a system whose implementation and validation status the book must exhaustively document.
+
+Question references to unfinished tests, pending validation activities, unimplemented extensions, and temporary implementation limitations. Retain them when they materially affect the interpretation of evidence, explain an engineering decision, or teach a useful lesson about the design. Otherwise, omit them.
+
+Describe the designs and report the evidence available without cataloging every activity that had not been completed at the time of writing. Do not imply that unperformed work was performed.
 
 4. Review passes
 
@@ -113,25 +119,25 @@ Identify material that is too detailed for its present purpose, material that is
 
 Recommend relocation before deletion where the material has substantive value.
 
-Pass 6 — Redundancy and economy
+Pass 6 — Redundancy, economy, and expository confidence
 
-Question: Does repetition reinforce learning or merely consume the reader’s time?
+Question: Does repetition serve the reader, and does the prose convey its lessons without unnecessary qualification?
 
-Trace recurring concepts and examples across the manuscript, not merely within chapters.
+Review the entire manuscript, including front matter, conclusion, and appendices. Trace recurring concepts across chapters, but concentrate editorial interventions on unnecessary repetition within sections and among nearby paragraphs, figures, captions, and insets.
 
-Distinguish:
-
-* Introduction of an idea.
-* Reinforcement of an idea in a new context.
-* Application or elaboration of an idea.
-* Summary for pedagogical purposes.
-* Restatement that adds no meaningful knowledge.
+Distinguish introduction, reinforcement, application, elaboration, pedagogical summary, and restatement that adds no meaningful knowledge. Reintroducing a concept in another chapter is often useful in a textbook. Preserve repetition that supports learning, independent consultation, or a different chapter's intellectual purpose. Do not replace useful explanations with cross-references merely because the subject has appeared before.
 
 Pay particular attention to Modeling, Alignment, governance conversion, engineering capital, engineering responsibility, degrees of freedom, the economics of representations, and recurring DocAble examples.
 
-Identify specific passages that could be removed, shortened, or replaced by a reference to earlier material.
+Examine excessive disclaimers and qualifications as a form of redundancy. Repeatedly reminding readers that engineers must exercise judgment, models can be wrong, checks have limits, or engineering choices depend on circumstances can interrupt an otherwise effective explanation. Avoid prose that apologizes for reasonable claims or anticipates objections the reader has little reason to raise. Prefer affirmative explanations of what a technique accomplishes, when it is useful, and how to apply it.
 
-Do not pursue a word-count reduction for its own sake.
+Distinguish generic rhetorical qualifications from substantive technical limitations. Preserve mathematical assumptions, bounds, coverage limitations, evidentiary distinctions, and conditions that materially affect correctness or interpretation. Do not strengthen a claim beyond its evidence by deleting a qualification. In Chapter 5, consider consolidating general limitations of the industrial accounts while preserving limitations relevant to particular findings. In Chapter 6, protect the assumptions and scope of the theory. In Appendix A, consider consolidating overall limitations in the existing Adaptation and Limits sections, while retaining limitations needed to understand the mechanisms themselves.
+
+Where two passages overlap, compare their instructional value, prose quality, and placement before deciding which to retain. The first occurrence is not necessarily the best. Preserve distinctive authorial voice and useful examples. Check that any proposed deletion leaves coherent topic sentences, transitions, references, and conclusions. Recommend consolidation or relocation when preferable to deletion.
+
+Do not pursue a word-count reduction for its own sake. A successful pass may leave substantial repetition intact.
+
+For every proposed local edit, cut, consolidation, or simplification, provide a side-by-side comparison of the exact original passage and the complete proposed replacement (or an explicit deletion). Identify the section and printed page number and briefly justify why the change improves the reader's experience. Include enough surrounding text to assess the resulting flow. Do not offer reconstructed quotations or merely describe a local edit that could instead be demonstrated.
 
 Pass 7 — Terminology and conceptual consistency
 
@@ -172,6 +178,8 @@ Identify unsupported generalizations, contradictions, technical errors, and impo
 
 Do not demand that a methodology book meet the evidentiary requirements of a research paper. Do require intellectual honesty and technical correctness.
 
+Apply the distinction between enduring engineering knowledge and incidental implementation status from the review principles. Intellectual honesty does not require exhaustive disclosure of everything the author has not done.
+
 Pass 9 — Prose, voice, and visual exposition
 
 Question: Does the book read like an experienced engineer teaching engineering?
@@ -179,6 +187,8 @@ Question: Does the book read like an experienced engineer teaching engineering?
 Assess the manuscript’s readability and consistency of voice.
 
 Look for weak topic sentences, mechanical transitions, unnecessary hedging, abstract language where concrete language would suffice, excessive qualification, and paragraphs that make the reader reconstruct their purpose.
+
+Pass 6 addresses unnecessary repetition and the cumulative burden of defensive qualifications. In this pass, concentrate on sentence- and paragraph-level craft, voice, readability, and visual exposition. Refer to earlier findings rather than duplicating them.
 
 Examine whether headings tell the reader what a section is about, whether captions complement rather than duplicate the prose, and whether figures and tables earn their space.
 
@@ -214,6 +224,8 @@ For each pass, provide:
 2. Manuscript-level findings. Explain patterns and relationships across chapters.
 3. Specific findings. Identify precise sections, printed page numbers, figures, or passages.
 4. Recommended interventions. Explain what should change and why. Provide exact copyedits where the remedy is local and clear.
+
+For proposed local copyedits, present the exact original and complete replacement side by side, including explicit deletions. Distinguish fully verified copyedits from broader findings that require further investigation. A recommendation to preserve a passage is also a legitimate outcome of reviewing a suspected problem.
 5. Material to preserve. Identify particularly effective passages, examples, or structural decisions that should not be lost during revision.
 6. Disposition. State whether this dimension of the manuscript is ready for submission.
 
@@ -232,6 +244,8 @@ Maintain a cumulative record of findings across the ten passes. Avoid repeatedly
 Conduct one pass at a time and discuss its findings with the author before proceeding.
 
 Distinguish observations about the current manuscript from recommendations and speculative extensions. Ground substantive findings in the actual text.
+
+Complete the specified review across the entire manuscript before declaring a pass complete. If any portion has not received the required level of scrutiny, identify the unreviewed material and outstanding work explicitly. Do not present a partial passage-level review supplemented by general observations as a completed end-to-end pass.
 
 Where a recommendation requires information unavailable in the manuscript, identify that dependency rather than inventing evidence.
 

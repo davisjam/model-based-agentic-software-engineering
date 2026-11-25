@@ -383,22 +383,22 @@
           "heading_text": "Attributes of an Engineering Model",
           "topic_sentence": "Engineering models can describe a system, its environment, or the relationship between them.",
           "id_source": "explicit",
-          "block_index": 13,
+          "block_index": 12,
           "points": [
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "The engineering question determines which relationships within the system, its environment, or between them matter.",
-              "block_index": 15
+              "block_index": 14
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "Scope identifies what the model represents; assumptions identify the conditions under which an analysis applies.",
-              "block_index": 17
+              "block_index": 16
             },
             {
               "slug": "explicit-models-record-accepted-intent",
               "text": "An authoritative model states which properties a change must preserve; a descriptive model can record a current choice without making it a requirement.",
-              "block_index": 19
+              "block_index": 18
             }
           ]
         },
@@ -408,12 +408,12 @@
           "heading_text": "Purposeful Reduction and Engineering Freedom",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "explicit",
-          "block_index": 21,
+          "block_index": 20,
           "points": [
             {
               "slug": "a-model-is-a-reduction-not-an-approximation",
               "text": "A model is a purposeful reduction; its value is what it leaves out. The engineering question decides what to keep.",
-              "block_index": 23
+              "block_index": 22
             }
           ]
         },
@@ -423,12 +423,12 @@
           "heading_text": "Choosing the Level of Detail",
           "topic_sentence": "Choosing a model also means choosing its granularity: how much detail should it contain?",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 25,
           "points": [
             {
               "slug": "a-reduction-must-preserve-the-distinctions-its-question-requires",
               "text": "Omitting a service boundary can hide a prohibited call, while including every internal dependency can obscure the boundary being examined.",
-              "block_index": 28
+              "block_index": 27
             }
           ]
         },
@@ -438,17 +438,17 @@
           "heading_text": "Obligations and Degrees of Freedom",
           "topic_sentence": "A model is not the system it represents.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 29,
           "points": [
             {
               "slug": "reduction-preserves-degrees-of-freedom",
               "text": "Obligations rarely fix one implementation; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
-              "block_index": 31
+              "block_index": 30
             },
             {
               "slug": "freedom-defers-commitment",
               "text": "Preserving a degree of freedom defers a decision to a reasoner better positioned to make it: information may arrive later, and the implementing agent can acquire evidence before deciding.",
-              "block_index": 35
+              "block_index": 34
             }
           ]
         },
@@ -458,22 +458,22 @@
           "heading_text": "Scaffolding the Implementer",
           "topic_sentence": "An engineering model may establish the obligations without providing enough guidance for a particular implementer to satisfy them.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 36,
           "points": [
             {
               "slug": "capability-moves-the-specification-boundary-not-the-obligation",
               "text": "The engineering problem sets the obligations regardless of the implementer; a more capable human or agent may need less scaffolding but still needs the relevant information in the model or from other evidence.",
-              "block_index": 38
+              "block_index": 37
             },
             {
               "slug": "tacit-obligation-vs-genuinely-free",
               "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
-              "block_index": 42
+              "block_index": 41
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "A model earns its place by the question it settles, not by how much of the system it represents.",
-              "block_index": 44
+              "block_index": 43
             }
           ]
         },
@@ -483,7 +483,7 @@
           "heading_text": "Models Are Not a Silver Bullet",
           "topic_sentence": "Modeling is not a silver bullet, to borrow Brooks’s phrase [cite: brooks1987].",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 50,
           "points": []
         }
       ],
@@ -1735,12 +1735,12 @@
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set.",
-              "block_index": 182
+              "block_index": 181
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 184
+              "block_index": 183
             }
           ]
         }
@@ -2474,27 +2474,27 @@
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "A software factory organizes controlled change while preserving control over consequential properties and consequences.",
-              "block_index": 19
+              "block_index": 18
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Representations of changing software incur construction and maintenance costs.",
-              "block_index": 22
+              "block_index": 21
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Organizations weigh reusable representations against the cost of skilled judgment during implementation.",
-              "block_index": 23
+              "block_index": 22
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question is where consequential knowledge can be maintained and applied most economically without losing control.",
-              "block_index": 24
+              "block_index": 23
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Engineers can preserve selected consequential judgments while leaving agents substantial implementation freedom.",
-              "block_index": 29
+              "block_index": 28
             }
           ]
         },
@@ -2504,17 +2504,17 @@
           "heading_text": "Comparing Software Factories",
           "topic_sentence": "If we are to adopt the metaphor of a software factory, we must consider how such factories might be organized.",
           "id_source": "derived",
-          "block_index": 31,
+          "block_index": 30,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 32
+              "block_index": 31
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 38
+              "block_index": 37
             }
           ]
         }
@@ -2669,19 +2669,19 @@
               "block_index": 45
             },
             {
+              "slug": "longitudinal-methods-bound-the-inference",
+              "text": "Work commits exclude duplicates and bookkeeping; Epic completions count recorded claims; model paths account for changes in declaration conventions.",
+              "block_index": 46
+            },
+            {
               "slug": "the-control-count-is-evidence-of-investment",
               "text": "Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution.",
-              "block_index": 49
+              "block_index": 50
             },
             {
               "slug": "week-eleven-records-a-practice-change",
               "text": "Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices.",
-              "block_index": 51
-            },
-            {
-              "slug": "longitudinal-methods-bound-the-inference",
-              "text": "Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish.",
-              "block_index": 53
+              "block_index": 52
             }
           ]
         },
@@ -2691,17 +2691,17 @@
           "heading_text": "The Support Ratio",
           "topic_sentence": "The source composition gives a different view of the investment ([ref:support-ratio-curve]).",
           "id_source": "explicit",
-          "block_index": 55,
+          "block_index": 54,
           "points": [
             {
               "slug": "the-environment-outgrew-the-product",
               "text": "Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "the-exhibits-measure-what-the-requirements-cost",
               "text": "The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment.",
-              "block_index": 62
+              "block_index": 61
             }
           ]
         },
@@ -2711,12 +2711,12 @@
           "heading_text": "Inside the Factory",
           "topic_sentence": "The supporting apparatus recorded in [ref:support-ratio-curve] includes models of service workflows, state ownership, and resource bounds, together with their consumers.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 65,
           "points": [
             {
               "slug": "source-code-stopped-being-an-adequate-interface",
               "text": "Models of workflows, ownership, and resource bounds connect to consumers that supply context, derive configuration, and check obligations.",
-              "block_index": 68
+              "block_index": 67
             }
           ]
         },
@@ -2726,17 +2726,17 @@
           "heading_text": "Engineering Models",
           "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 69,
           "points": [
             {
               "slug": "the-census-is-live-not-frozen",
               "text": "The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory.",
-              "block_index": 71
+              "block_index": 70
             },
             {
               "slug": "specimens-show-why-representations-afford-supervision",
               "text": "Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation.",
-              "block_index": 73
+              "block_index": 72
             }
           ]
         },
@@ -2746,27 +2746,27 @@
           "heading_text": "The Joins: Deriving Evidence and Enforcement",
           "topic_sentence": "In [ref:chapter:2.6-system-knowledge], we saw how connections among models help engineers answer questions about a system.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 75,
           "points": [
             {
               "slug": "a-repository-of-documentation-is-not-a-supervisory-environment",
               "text": "Connections among models determine required verification, access-grant plans, and recorded evidence, reducing repeated engineering decisions.",
-              "block_index": 77
+              "block_index": 76
             },
             {
               "slug": "the-invariant-chain-derives-checker-obligations",
               "text": "Modeled property facts determine the required verification artifact; a reusable gate checks its existence without establishing that verification has been performed.",
-              "block_index": 79
+              "block_index": 78
             },
             {
               "slug": "the-iam-join-derives-grants",
               "text": "Service relationships, deployment wiring, and runtime identities determine an access-grant plan; the resulting grants still require evaluation.",
-              "block_index": 80
+              "block_index": 79
             },
             {
               "slug": "the-provenance-join-derives-the-changelog",
               "text": "A common provenance mechanism supports derived changelogs and checks selected mutation paths for required attribution or justified exemptions.",
-              "block_index": 81
+              "block_index": 80
             }
           ]
         },
@@ -2776,12 +2776,12 @@
           "heading_text": "Computation Declarations Shared by Execution and Analysis",
           "topic_sentence": "The computation model introduced in [ref:2.3-structural:heading:what-computations-depend-on-one-another] became reusable infrastructure within DocAble's factory.",
           "id_source": "explicit",
-          "block_index": 83,
+          "block_index": 82,
           "points": [
             {
               "slug": "the-representation-became-authoritative-for-execution",
               "text": "Typed pass declarations determine dependency order and remain connected to analytical views by correspondence checks.",
-              "block_index": 84
+              "block_index": 83
             }
           ]
         },
@@ -2791,32 +2791,32 @@
           "heading_text": "Substituting the Reasoning Engine",
           "topic_sentence": "The factory’s accumulated models, tools, and controls helped preserve a separation within DocAble’s architecture: the reasoning that proposes document repairs is distinct from the machinery that applies and evaluates them.",
           "id_source": "explicit",
-          "block_index": 88,
+          "block_index": 87,
           "points": [
             {
               "slug": "reasoning-substitution-reuses-engineered-operations",
               "text": "Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass.",
-              "block_index": 89
+              "block_index": 88
             },
             {
               "slug": "model-selection-was-an-engineering-decision",
               "text": "Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost.",
-              "block_index": 92
+              "block_index": 91
             },
             {
               "slug": "engineering-set-the-price-of-the-reasoning",
               "text": "Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures.",
-              "block_index": 97
+              "block_index": 96
             },
             {
               "slug": "reasoning-substitution-cost-depends-on-context-and-quality",
               "text": "A September 2026 single-PDF comparison measured pipeline inference at $0.0419 and estimated agent execution at $2.29; accounting and reference exposure limit the comparison.",
-              "block_index": 99
+              "block_index": 98
             },
             {
               "slug": "a-completed-coached-loop-did-not-improve-the-measured-documents",
               "text": "A November 2026 two-PDF repair-loop evaluation closed no additional findings; the harder document cost $3.57 versus $1.35, so the loop was not promoted.",
-              "block_index": 100
+              "block_index": 99
             }
           ]
         },
@@ -2826,22 +2826,22 @@
           "heading_text": "The Factory in Operation",
           "topic_sentence": "How does one engineer keep several agents working without continually prompting each one?",
           "id_source": "derived",
-          "block_index": 103,
+          "block_index": 102,
           "points": [
             {
               "slug": "the-mature-production-flow",
               "text": "The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion.",
-              "block_index": 105
+              "block_index": 104
             },
             {
               "slug": "task-scoped-context-connects-models-to-dispatch",
               "text": "An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred.",
-              "block_index": 108
+              "block_index": 107
             },
             {
               "slug": "repair-is-cheap-escalation-is-the-signal",
               "text": "Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer.",
-              "block_index": 112
+              "block_index": 111
             }
           ]
         },
@@ -2851,12 +2851,12 @@
           "heading_text": "Improving the Factory",
           "topic_sentence": "The factory’s operating process also exposed failures that required changes to the factory itself.",
           "id_source": "derived",
-          "block_index": 114,
+          "block_index": 113,
           "points": [
             {
               "slug": "governance-conversion-is-an-empirical-claim-about-durable-structure",
               "text": "Three selected episodes show a controlled product interface, evidence-grounding prompt checks, and integration policy becoming durable machinery.",
-              "block_index": 115
+              "block_index": 114
             }
           ]
         },
@@ -2866,12 +2866,12 @@
           "heading_text": "The Supervisor's Job",
           "topic_sentence": "As DocAble’s engineering environment developed, my role changed with it.",
           "id_source": "derived",
-          "block_index": 126,
+          "block_index": 125,
           "points": [
             {
               "slug": "the-preceding-subsections-recorded-substitutions",
               "text": "Three supervisory stages summarize how accumulated GEE capability supported more abstract supervision, not a prescribed maturity model.",
-              "block_index": 128
+              "block_index": 127
             }
           ]
         }
@@ -3021,7 +3021,7 @@
             },
             {
               "slug": "cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only",
-              "text": "Standards approval and enforcement promotion are separate; enforced MUST statements can drive merge decisions, with a recorded human override, while published activity counts do not establish detection performance.",
+              "text": "Standards approval and enforcement promotion are separate; enforced MUST statements can drive merge decisions, with a recorded human override.",
               "block_index": 10
             },
             {
@@ -3041,7 +3041,7 @@
           "points": [
             {
               "slug": "spotify-holds-the-line-fixed-and-swaps-the-station-inside-it",
-              "text": "Spotify introduced an agent into a pre-existing fleet-change process, allowing examination of reused production structures without claiming causal isolation.",
+              "text": "Spotify introduced agents into a pre-existing fleet-change process, reusing its production and verification machinery.",
               "block_index": 16
             },
             {
@@ -3071,12 +3071,12 @@
           "points": [
             {
               "slug": "shopify-makes-every-session-observable-organizational-material",
-              "text": "Public River sessions let colleagues inspect work and failures, creating opportunities to record knowledge for later sessions without establishing that every failure is watched.",
+              "text": "Public River sessions let colleagues inspect work and failures and record useful knowledge for subsequent sessions.",
               "block_index": 27
             },
             {
               "slug": "shopify-mines-sessions-by-hand-and-measured-the-effect",
-              "text": "People record missing knowledge in shared files; the reported merge-rate improvement occurred with the foundation model held fixed but does not isolate human learning from environmental changes.",
+              "text": "People record missing knowledge in shared files; the reported merge-rate improvement occurred with the foundation model held fixed.",
               "block_index": 29
             },
             {
@@ -3086,7 +3086,7 @@
             },
             {
               "slug": "shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim",
-              "text": "A failed prompt-stated enumeration requirement motivated code enforcement in a documented security workflow; its admission arrangements and queue-use measurements do not characterize all River work.",
+              "text": "A failed enumeration requirement motivates code enforcement of closure rules; the security workflow retains human merge authority, fresh evidence, and post-merge verification.",
               "block_index": 33
             }
           ]
@@ -3097,27 +3097,27 @@
           "heading_text": "Uber",
           "topic_sentence": "Uber operates a platform for transportation and delivery, supported by software services that coordinate users, providers, transactions, and real-time operations.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 36,
           "points": [
             {
               "slug": "uber-treats-the-factory-itself-as-an-object-of-measurement-and-optimization",
               "text": "Uber treats foundation-model choice, context, orchestration, workflow cost, and reviewer attention as measurable engineering variables.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "uber-cannot-optimize-the-evidence-or-the-reviewer",
-              "text": "Uber describes producer-assembled evidence and layered review with human admission; the public account does not establish independent re-derivation of the evidence or future automatic-approval criteria.",
-              "block_index": 38
+              "text": "Uber describes producer-assembled evidence followed by additional review, CI, and human approval, while exploring partial automatic approval.",
+              "block_index": 39
             },
             {
               "slug": "uber-publishes-cost-and-withholds-quality",
               "text": "Review latency exposes finite reviewer capacity; rising fabrication capacity increases demands on supervision and the surrounding production process.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "uber-tunes-the-environment-against-published-numbers",
               "text": "Context delivery, orchestration, foundation-model selection, and outcome-denominated costs make the agent's surrounding production system an object of optimization.",
-              "block_index": 42
+              "block_index": 43
             }
           ]
         },
@@ -3127,27 +3127,27 @@
           "heading_text": "Amazon",
           "topic_sentence": "Amazon develops software for commerce and cloud computing, including Amazon Web Services (AWS), whose products depend on large, continuously evolving software systems.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 46,
           "points": [
             {
               "slug": "kiro-builds-engineering-artifacts-into-the-harness",
               "text": "Kiro supplies a reviewable specification workflow that adopting teams connect to their own repositories, tools, and engineering decisions.",
-              "block_index": 46
+              "block_index": 48
             },
             {
               "slug": "kiro-connects-requirements-to-tests-and-configurable-controls",
               "text": "Property-based tests provide evidence and configured hooks can enforce selected conditions; coverage and blocking decisions remain project responsibilities.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "amazon-internal-use-adds-team-specific-production-structure",
               "text": "Bedrock's reported use combined Kiro with scoped work, tests, operational tools, and senior review; the twentyfold figure measures normalized commit velocity rather than quality or isolated causal effect.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "amazon-governs-improvements-to-the-harness-itself",
               "text": "Kiro-trace tests proposed harness changes against an unchanged control and regression requirements, with human merge decisions and new checks derived from evaluation failures.",
-              "block_index": 52
+              "block_index": 54
             }
           ]
         },
@@ -3157,12 +3157,12 @@
           "heading_text": "GitLab",
           "topic_sentence": "GitLab develops a software-development platform that brings source control, code review, continuous integration, and deployment workflows into a common environment.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 57,
           "points": [
             {
               "slug": "customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability",
               "text": "GitLab integrates organizational context with CI and permission boundaries, including a security-review flow that cannot approve changes.",
-              "block_index": 56
+              "block_index": 59
             }
           ]
         },
@@ -3172,36 +3172,36 @@
           "heading_text": "Siemens",
           "topic_sentence": "Siemens develops industrial technologies and engineering software used to design, simulate, manufacture, and maintain physical products.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 63,
           "points": []
         },
         {
           "section_id": "what-the-factories-share-and-where-they-differ",
           "level": 2,
           "heading_text": "What the Factories Share, and Where They Differ",
-          "topic_sentence": "The four factory questions reveal different arrangements for organizing agentic production, not stages along a common path toward autonomy.",
+          "topic_sentence": "The factories differ in the products they support, the work they delegate, and the engineering machinery through which they govern production.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 68,
           "points": [
             {
               "slug": "the-factories-place-admission-in-four-different-locations",
-              "text": "The cases make different admission arrangements visible and provide uneven evidence; reported activity should not be mistaken for independently established effectiveness.",
-              "block_index": 65
+              "text": "The cases reveal distinct allocations of production and acceptance authority and distinct arrangements for supervisory capacity and engineering knowledge.",
+              "block_index": 69
             },
             {
               "slug": "supervision-and-verification-do-not-scale-with-production",
               "text": "Production and supervisory capacity can grow at different rates; review delays, workload scheduling, and verification experience make this a process-design concern.",
-              "block_index": 68
+              "block_index": 72
             },
             {
               "slug": "factories-acquire-engineering-knowledge-through-different-mechanisms",
               "text": "Standards, observed agent work, supplied specification workflows, measured experiments, and construction failures provide different routes for preserving engineering knowledge beyond an individual task.",
-              "block_index": 70
+              "block_index": 74
             },
             {
               "slug": "the-inheritance-channel-carries-its-own-maintenance-cost",
               "text": "Shared knowledge and checks require maintenance; the documented revisions show how reusable engineering structure exchanges repeated judgment for upkeep.",
-              "block_index": 73
+              "block_index": 77
             }
           ]
         }
@@ -3214,7 +3214,7 @@
         },
         {
           "slug": "the-public-sources-are-interested-accounts-read-conservatively",
-          "text": "The cases interpret public reports through MAGE without claiming adoption or independent validation of the method; the table previews their engineering arrangements.",
+          "text": "Public reports, talks, and documentation provide seven independently developed arrangements interpreted through the four factory questions.",
           "block_index": 3
         }
       ]
@@ -3937,7 +3937,7 @@
           "section_id": "was-implementation-ever-the-bottleneck",
           "level": 2,
           "heading_text": "Was Implementation Ever the Bottleneck?",
-          "topic_sentence": "A reasonable objection begins with a fact: **software engineers do not spend most of their workweek typing code.** This result predates generative AI.",
+          "topic_sentence": "A reasonable objection begins with a fact: software engineers do not spend most of their workweek typing code.",
           "id_source": "derived",
           "block_index": 2,
           "points": []
@@ -3948,32 +3948,32 @@
           "heading_text": "Agents Entered an Implementation-Centered Discipline",
           "topic_sentence": "The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 11,
           "points": [
             {
               "slug": "agents-inherited-the-implementation-centered-object",
               "text": "The first agentic-SE research inherited the engineering object in front of it — a repository and a task — and asked how to make a stronger reasoner perform it.",
-              "block_index": 13
+              "block_index": 12
             },
             {
               "slug": "repocoder-sweagent-autocoderover-share-an-orientation",
               "text": "Retrieval, purpose-built interfaces, program analysis, and specification inference differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact.",
-              "block_index": 15
+              "block_index": 14
             },
             {
               "slug": "agent-governance-research-is-another-antecedent",
               "text": "Agent-governance research translates obligations into controls across design-time, runtime, and assurance layers, evaluates actions against path-dependent policies, and integrates enforcement into an agent's operating environment; MAGE's governance-conversion process adds how implementation reveals missing obligations.",
-              "block_index": 17
+              "block_index": 16
             },
             {
               "slug": "mage-accepts-machinery-and-changes-the-object",
               "text": "MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation.",
-              "block_index": 19
+              "block_index": 18
             },
             {
               "slug": "the-difference-is-level-not-opposition",
               "text": "Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent.",
-              "block_index": 21
+              "block_index": 20
             }
           ]
         },
@@ -3983,12 +3983,12 @@
           "heading_text": "The Old Dream, with a New Substrate",
           "topic_sentence": "The ambition predates today's coding agents.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 22,
           "points": [
             {
               "slug": "the-old-dream-with-a-new-substrate",
               "text": "The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible.",
-              "block_index": 24
+              "block_index": 23
             }
           ]
         },
@@ -3998,67 +3998,67 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "As commodity intelligence assumes more implementation and routine engineering work, human effort shifts toward directing that work and governing its results.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 27,
           "points": [
             {
               "slug": "allocation-changes-even-where-the-eventual-organization-is-uncertain",
               "text": "As implementation becomes cheaper the allocation of engineering work changes, while the profession’s eventual organization remains uncertain. Human effort may move toward intent, abstraction, evidence, tradeoffs, and acceptance.",
-              "block_index": 29
+              "block_index": 28
             },
             {
               "slug": "where-displaced-effort-settles-depends-on-what-becomes-cheaper",
               "text": "Where displaced effort settles depends on which parts of the production system become cheaper and more reliable, and the theory of Chapter 6 names the quantities those improvements act on.",
-              "block_index": 33
+              "block_index": 32
             },
             {
               "slug": "four-trajectories-are-the-independent-variables-behind-the-uncertainty",
               "text": "Technological progress can move those terms independently: reasoners, representation machinery, realization machinery, and governance machinery can each improve at their own rate, and they are the independent variables that prevent a single confident forecast.",
-              "block_index": 35
+              "block_index": 34
             },
             {
               "slug": "better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them",
               "text": "Better reasoners leave more legitimate freedom unresolved; even perfect realization does not establish that the encoding captures the right obligations, so capability does not retire engineering responsibility.",
-              "block_index": 39
+              "block_index": 38
             },
             {
               "slug": "cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical",
               "text": "If explicit representations become cheap to construct, maintain, and reconcile, engineers can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system.",
-              "block_index": 40
+              "block_index": 39
             },
             {
               "slug": "representation-engineering-broader-than-context-engineering",
               "text": "Retrieval selects information for a reasoner; representation engineering chooses the form in which the engineering question is expressed. The distinction concerns access and representation, which can be combined.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "cheap-reliable-realization-moves-effort-upstream",
               "text": "If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented.",
-              "block_index": 42
+              "block_index": 41
             },
             {
               "slug": "cabot-is-one-plausible-equilibrium-not-the-prediction",
               "text": "Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority",
               "text": "If strong controls become cheap, engineers can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk.",
-              "block_index": 44
+              "block_index": 43
             },
             {
               "slug": "combinations-land-differently-for-different-properties-of-one-system",
               "text": "Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology.",
-              "block_index": 49
+              "block_index": 48
             },
             {
               "slug": "more-modeling-need-not-mean-more-permanently-maintained-models",
               "text": "More modeling need not mean more permanently maintained models: construction cost can be repaid through repeated reuse or one consequential answer; cheap machine reasoning expands the one-off questions for which a purposeful reduction pays.",
-              "block_index": 52
+              "block_index": 51
             },
             {
               "slug": "recurring-judgment-becomes-engineering-capital-under-any-trajectory",
               "text": "Recurring judgment remains an opportunity for governance conversion; conversion and ratcheteering let later work inherit it while keeping the resulting structure open to correction.",
-              "block_index": 54
+              "block_index": 53
             }
           ]
         },
@@ -4068,17 +4068,17 @@
           "heading_text": "Engineering the Production System",
           "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 55,
           "points": [
             {
               "slug": "two-places-engineering-attention-can-go",
               "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
               "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
-              "block_index": 64
+              "block_index": 63
             }
           ]
         }
