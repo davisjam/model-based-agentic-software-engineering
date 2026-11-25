@@ -38893,3 +38893,38 @@ Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 70, rev
 ```latex
 Chunking had enabled me to process the documents encountered so far. But how much memory should I allocate to each worker? In the cloud, I pay for the memory I allocate. If I allocate too much, I waste money. If I allocate too little, the hosting service kills the worker before it finishes processing the document. Processing one large presentation successfully would not tell me how much memory to allocate for the next. I needed a model that would let me predict memory consumption from the contents of a document.
 ```
+
+
+## Chapter 5 joins: capability-focused compression — 2026-11-24
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 295–322, revision `09c2be3af1c51160a198abd39abfe0a0425da0d9`. Author-approved replacement with three items; construction details remain in Chapters 2–3 and Appendix A. The concluding lifecycle/ownership paragraph is removed because its treatment remains in Chapter 3 and Appendix A.8.
+
+```latex
+% <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | The factory checks relations among representations and uses selected results to determine whether work may proceed. | terms: alignment-principle -->
+
+In \href{2.6-system-knowledge.html}{\magevalue{sec:scenarios-and-the-joined-model}}, DocAble used shared identities to answer engineering questions, such as how a particular deployment performed. In the factory, these \textbf{joins} also determine which properties need checking, which mechanisms check them, and what evidence a change must supply before it can proceed. The architecture resembles proof checking in one limited respect: a producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission~\citep{ringer2019qed}. Three joins show the difference in increasing order of reach.
+
+% <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
+
+% Evidence: E36 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E36.md | kind: dated-case-evidence
+% Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
+\textbf{Property facts → verification tier → required artifact → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts, including its participating computation lanes, coordination primitive, and temporal obligation. From those facts, the model \emph{derives} a verification tier. For obligations involving coordination among concurrent participants, the policy requires an explicit-state checker for safety or a temporal specification for liveness; ordinary sequential obligations can require property tests. A reusable check requires a reference of the prescribed kind whose file exists. This requirement blocks admission for the models brought under enforcement; newly incorporated models can initially report advisory findings. The supervisor need not choose a verification technique afresh for every invariant, but must still establish that the declared facts and verification artifact are adequate. The gate checks that the artifact is provided; it does not establish that its analysis has run. TLC execution remains a separate activity.
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+% <!-- point: the-iam-join-derives-grants | The IAM join: deployment dependencies × deployed service names × runtime identity derive the invoker-grant plan; application results and live authorization provide different evidence. | terms: alignment-principle -->
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} DocAble records caller--callee dependencies in its deployment map and checks that the typed inter-service model agrees with that map. The grant planner joins deployment dependencies to runtime service accounts and environment-specific service names. Application collapses grants sharing a principal and callee, retains their logical callers, and reports each grant command\textquotesingle s result; this is separate from inspecting installed permissions or testing an authorized call. The join makes the intended wiring inspectable without making a declaration or a successful command proof of runtime least privilege.
+
+% <!-- point: the-provenance-join-derives-the-changelog | The provenance join derives a changelog from recorded remediation-pass stamps; a wiring validator checks selected mutator populations for missing attribution. | terms: alignment-principle -->
+
+% Evidence: E14 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E14.md | kind: implementation
+\textbf{Mutation → stamp → derived account.} Remediation-pass provenance stamps record the verb, pass, and visibility of recorded changes; the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator examines selected production mutators for recognized stamp calls or justified exemptions, with blocking checks for its public-static population and advisory checks for public-instance methods. The derived changelog provides structured evidence of recorded mutations; the wiring check exposes gaps within its declared coverage.
+
+% <!-- point: explicit-models-changed-what-was-checkable | Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return. | terms: modeling-principle -->
+
+% Evidence: E08 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E08.md | kind: mechanism
+% Evidence: E37 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E37.md | kind: implementation
+% Evidence: E51 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E51.md | kind: dated-case-evidence
+Explicit lifecycle and ownership models also supplied objects for analysis: a finite ownership state space for exhaustive exploration, and a temporal recovery specification with stated delivery and sweep assumptions. The factory had to preserve their correspondence with the evolving product. Conformance tests exercised production operations against executable models, while model-to-implementation checks supplied separate evidence when modeled surfaces changed. \autoref{chapter:appendix-a-job-ownership-and-recovery} develops this construction; \autoref{match-mechanism-to-property} distinguishes the assurance supplied by its mechanisms.
+```
