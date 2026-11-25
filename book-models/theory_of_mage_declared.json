@@ -235,16 +235,16 @@
       "id": "P2-representation-enabled-enforcement",
       "short_id": "P2",
       "name": "Representation-enabled enforcement",
-      "statement": "Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent’s compliance.",
-      "mechanism": "Explicit models make selected obligations independently enforceable",
+      "statement": "Explicit representations can make engineering obligations independently evaluable that would otherwise require repeated judgment. Binding these evaluations to admission reduces the escape of covered failures relative to relying on the producing agent's compliance.",
+      "mechanism": "Explicit models enable independent evaluation and enforcement",
       "scope_conditions": [
-        "Representation can make a selected obligation mechanically decidable.",
+        "Representation can make a selected obligation mechanically evaluable.",
         "Alignment gives that obligation consequence independently of producer compliance.",
         "A sound gate excludes its covered failure class; coverage, correspondence and validator correctness remain separate.",
         "Imperfect controls may miss failures or reject good work; compare escape with correct delivery and cost, not escape alone."
       ],
       "potential_disconfirmation": "The representation does not make the relevant property reliably checkable, or assurance gains disappear once false rejection, coverage and cost are matched.",
-      "core_quantity": "Defect escape, false rejection, and correct delivery for adequately covered obligations",
+      "core_quantity": "Evaluation reliability, coverage and cost; defect escape, false rejection and correct delivery",
       "loops": [
         "L3-governance-adaptation"
       ],
@@ -266,8 +266,8 @@
       "id": "P3-governance-conversion-and-engineering-capital",
       "short_id": "P3",
       "name": "Governance conversion and engineering capital",
-      "statement": "Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.",
-      "mechanism": "Reusable engineering knowledge improves subsequent work",
+      "statement": "Preserving engineering judgments in reusable representations and controls reduces repeated reconstruction and improves subsequent engineering capability relative to resolving those judgments anew during comparable work.",
+      "mechanism": "Preserving judgments reduces reconstruction and improves subsequent work relative to resolving them anew",
       "scope_conditions": [
         "Earlier judgment becomes inherited productive capacity: reasoning reach, useful abstractions, safer action, evidence, recovery—not only fewer defects.",
         "Lessons propagate to later work and beyond their originator through trustworthy shared structure.",
@@ -303,8 +303,8 @@
       "id": "P4-governable-acceleration",
       "short_id": "P4",
       "name": "Governable acceleration",
-      "statement": "The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.",
-      "mechanism": "The effects of additional agentic capacity depend on the engineering environment",
+      "statement": "Increasing the rate or concurrency of agentic implementation yields greater gains in durable engineering throughput when the engineering environment adequately represents and governs the obligations relevant to that work.",
+      "mechanism": "Increased implementation rate or concurrency yields greater durable throughput gains under adequate governance",
       "scope_conditions": [
         "Capacity acts through the environment; it can amplify good fit or inadequacy.",
         "Adequate representations and assurance can turn capacity into durable useful work; weak fit may produce churn, escape or repeated intervention.",

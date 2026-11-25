@@ -65,10 +65,10 @@ Proposition & Comparison & What to measure \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Representation leverage (P1) & Structured representation versus prose containing the same obligations; separate elicitation comparison & Correctness, obligation completeness, and reasoning cost \\
-Representation-enabled enforcement (P2) & Model-derived enforcement versus producer guidance alone, with existing checks held fixed & Escape, false rejection, rejection cost, and correct delivery \\
+Representation leverage (P1) & Structured representation versus prose with the same relevant information and obligations; separate elicitation comparison & Correctness, obligation completeness, and reasoning cost \\
+Representation-enabled enforcement (P2) & Implementation inspection versus model-based evaluation; producer guidance crossed with enforcement & Evaluation reliability, coverage and cost; escape, false rejection and correct delivery \\
 Governance conversion and engineering capital (P3) & Local repair or on-demand reconstruction versus reusable models, procedures, or controls & Later capability, recurrence, and full cost, including construction and upkeep \\
-Governable acceleration (P4) & Agentic capacity crossed with specified representations, controls, or evidence pipelines & Durable throughput, defect escape, and human attention \\
+Governable acceleration (P4) & Implementation rate or concurrency crossed with specified representations, controls, or evidence pipelines & Durable throughput, defect escape, and human attention \\
 \end{longtable}
 }
 
@@ -76,7 +76,7 @@ Independent assessment of accepted work and the lifecycle accounting in \mageval
 
 \section{Designing the Comparisons}\label{heading:research-designing-the-comparisons}
 
-\emph{Controlled comparisons} hold tasks, acceptance criteria, and relevant resources fixed while varying an intervention. Random assignment and repeated trials, where feasible, help distinguish its effect from differences among tasks and agent executions. The mechanism under test must not be the sole judge of whether its results are acceptable. All conditions need independent outcome assessment.
+\emph{Controlled comparisons} hold tasks, acceptance criteria, and relevant resources fixed while varying an intervention. Random assignment and repeated trials, where feasible, help distinguish its effect from differences among tasks and agent executions. The mechanism under test must not be the sole judge of whether its results are acceptable. All conditions need independent outcome assessment. Where an intervention changes shared engineering machinery or knowledge, comparisons may need to assign whole repositories, subsystems, or teams to conditions rather than individual tasks. A shared control can affect nominally untreated tasks, and engineers may retain knowledge from a model when later performing baseline work.
 
 \emph{Factorial comparisons} vary factors independently to reveal their interaction: a representation may substitute for a stronger reasoner, or become more useful when a stronger reasoner can exploit it. Crossing these factors distinguishes their individual effects from changes in the value of one when the other is present.
 
@@ -90,9 +90,9 @@ GEE conditions should differ in specified representations, controls, or evidence
 
 % <!-- point: natural-language-descriptions-are-models-so-compare-against-strong-baselines | Compare structured representations with equivalent prose to isolate form; study elicitation separately to learn whether engineers encode better obligations. -->
 
-One experiment compares a structured representation with prose containing the same obligations, holding the task, foundation model, tools, and admission mechanism fixed while varying representation form. Measure correct delivery, attempts, reconstruction effort, inference cost, and human interpretation or repair. Include construction and maintenance over the declared horizon. This tests fulfillment under the same encoded obligations. If structured models consistently add cost without improving accepted delivery, H1 would be weakened for those task families.
+One experiment compares a structured representation with prose conveying the same relevant engineering information and obligations, holding the task, foundation model, tools, and admission mechanism fixed while varying representation form. Measure correct delivery, attempts, reconstruction effort, inference cost, and human interpretation or repair. Reasoning expenditure may appear in inference, retrieval, tool use, repeated attempts, or human interpretation; no single measure need capture all of it. Include construction and maintenance over the declared horizon. This tests fulfillment with the same relevant information and encoded obligations. If structured models consistently add cost without improving accepted delivery, H1 would be weakened for those task families.
 
-A separate elicitation experiment should test whether structured representations help engineers discover or express obligations they would otherwise omit. Engineers could receive the same problem and background evidence but use different representational forms; independent domain assessment would examine the resulting obligations before realization. This tests the encoding contribution without assuming that treatments begin with equally complete specifications. The two experiments distinguish a useful form from additional information supplied only to one condition.
+A separate elicitation experiment should test whether structured representations help engineers discover additional information or express obligations they would otherwise omit. Engineers could receive the same problem and background evidence but use different representational forms; independent domain assessment would examine the resulting obligations before realization. This tests the encoding contribution without assuming that treatments begin with equally complete specifications. The two experiments distinguish a useful form from additional information supplied only to one condition.
 
 % <!-- point: experiment-compares-authored-induced-and-innovated-representations | Compare designed, recovered and invented representations using independent correspondence evidence and held-out engineering questions, including costs and later benefit. -->
 
@@ -109,6 +109,8 @@ Representations can also change human engineering decisions. The review experime
 % <!-- point: fixed-gate-comparison-and-factorial-extension | Crossing producer access to the model with independent enforcement separates effects on fulfillment from effects on admission, including their costs and interaction. -->
 
 A four-condition experiment crosses producer access to the model with independent enforcement of its obligations. Hold the task, producer, existing checks, and independent acceptance criteria fixed. Giving the producer the model may change the likelihood of a satisfactory candidate; adding a validator and gate may change which candidates are admitted. Measure correct delivery, covered violations in proposed and admitted work, false rejection, rejected attempts, repair, and human review. This separates improved production from improved admission and exposes the cost of achieving either.
+
+A complementary experiment would hold the engineering obligation fixed while comparing repeated evaluation through inspection of the implementation with evaluation through an explicit engineering model. Measure the reliability and coverage of each evaluation, the cost of establishing its machinery, and the marginal cost of subsequent evaluations. This comparison examines whether Modeling makes reliable evaluation practical and economical; the four-condition experiment examines how producer guidance and independent enforcement affect delivery.
 
 % Evidence: E15 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E15.md | kind: implementation
 
@@ -136,15 +138,15 @@ Such comparisons should also account for engineering machinery available before 
 
 \section{Testing Governable Acceleration (P4)}\label{heading:capacity-and-environment}
 
-\emph{Hypothesis H4 (Governable acceleration). Increasing agentic capacity yields larger gains in durable throughput when the engineering environment adequately represents and governs consequential obligations than when those obligations remain implicit or unenforced.}
+\emph{Hypothesis H4 (Governable acceleration). Increasing the rate or concurrency of agentic implementation yields larger gains in durable throughput when the engineering environment adequately represents and governs consequential obligations than when those obligations remain implicit or unenforced.}
 
 % <!-- point: crossed-capability-and-environment-design-tests-substitution | Cross agentic capacity with independently characterized GEE conditions over matched tasks to distinguish substitution, complementarity and negligible effects. -->
 
-A factorial study crosses foundation-model capability or the number of concurrent agents with specified environmental changes. Vary these forms of capacity separately so their effects remain distinguishable. Unlike P3's study of inheritance over time, this comparison asks how the same capacity increase performs under different arrangements. Measure correct admitted work, escape, intervention, and lifecycle cost over a common horizon.
+A factorial study crosses implementation rate or the number of concurrent agents with specified environmental changes, holding reasoning capability fixed. Vary rate and concurrency separately so their effects remain distinguishable. Vary the offered workload as well as available implementation capacity so that the comparison can expose when evaluation, integration, or human supervision becomes limiting. Unlike P3's study of effects over time, this comparison asks how the same increase in implementation capacity performs under different arrangements. Measure correct admitted work, escape, intervention, and lifecycle cost over a common horizon.
 
 % <!-- point: independently-assessed-gee-conditions-ground-comparison | A dependency model and admission check can be assessed for correspondence and coverage before both conditions receive the same independent outcome evaluation. -->
 
-One experimental arrangement would compare agents working with source files and ordinary review against agents supported by a validated dependency model and independent admission checks. This tests the combined effect of the representation and enforcement arrangement; the preceding experiments distinguish their individual contributions. The environments use the same codebase, task population, and production tools; assess the dependency model's correspondence and the check's coverage before measuring outcomes. Both conditions receive the same independent outcome assessment. Equivalent gains from added capacity, or gains favoring ordinary review, would challenge H4 under these conditions. Other task families require other specified investments. These comparisons can reveal substitution between environment and foundation-model capability, complementarity, or little environmental contribution without constructing an aggregate GEE score.
+One experimental arrangement would compare agents working with source files and ordinary review against agents supported by a validated dependency model and independent admission checks. This tests the combined effect of the representation and enforcement arrangement; the preceding experiments distinguish their individual contributions. The environments use the same codebase, task population, and production tools; assess the dependency model's correspondence and the check's coverage before measuring outcomes. Both conditions receive the same independent outcome assessment. Equivalent gains from added capacity, or gains favoring ordinary review, would challenge H4 under these conditions. Other task families require other specified investments. A separate comparison can vary reasoning capability while holding implementation rate and concurrency fixed. This examines whether stronger reasoners substitute for explicit representations, exploit them more effectively, or change which tasks are feasible. Larger context windows and better tools can likewise change reconstruction costs and the feasible task population; these effects should be distinguished from simply producing more candidate changes.
 
 % <!-- point: environment-investment-may-dominate-marginal-reasoner-gains | The author conjectures that better environments may offer greater marginal value than stronger reasoners for some task classes; this crossover is not established by controlled evidence. -->
 
@@ -165,19 +167,21 @@ This broader choice is \textbf{engineering routing}. Foundation-model routing se
 % Evidence: AA2 | source: book/data/local-evidence/automated-alignment-11242026/records/AA2.md | kind: implementation
 Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of a behavioral obligation to determine the kind of verification artifact required. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
 
-% <!-- point: engineering-investment-is-a-constrained-sequential-decision | An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes. -->
+% <!-- point: engineering-investment-is-a-constrained-sequential-decision | An engineering policy minimizes cost less residual productive value over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes. -->
 
-The cost model in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} lets us compare what different arrangements cost. Routing asks which arrangement to choose now, knowing that the choice can change the cost of later work. Saving money by delivering too little, accepting inadequate evidence, or demanding more review than engineers can provide would not solve the problem. The optimization below makes these requirements explicit alongside the expected total cost. It describes the decision we want to make; it does not yet tell us how to make it.
+\paragraph{Costs and Future Value.}
 
-Let \(\pi\in\Pi\) be an engineering policy selected from the policies available to the engineer. At episode \(i\), the policy selects an arrangement and engineering actions \(a_i\) based on the available environment \(\mathcal{G}_i\) and evidence. For a declared task sequence and a horizon of \(H\) engineering episodes, one formulation is
+The cost model in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately} lets us compare what different arrangements cost. Routing asks which arrangement to choose now, knowing that the choice can change the cost of later work. Saving money by delivering too little, accepting inadequate evidence, or demanding more review than engineers can provide would not solve the problem. The optimization below makes these requirements explicit alongside the expected cost and the value of the engineering environment left for later work. It describes the decision we want to make; it does not yet tell us how to make it.
+
+Let \(\pi\in\Pi\) be an engineering policy selected from the policies available to the engineer. At episode \(i\), the policy selects an arrangement and engineering actions \(a_i\) based on the available environment \(\mathcal{G}_i\) and evidence. For a declared task sequence, let \(H\) be the planning horizon: the number of engineering episodes whose costs and deliveries we examine directly. The environment \(\mathcal{G}_{H+1}\) remains available after the last of those episodes. Its \emph{terminal value}, \(V_H(\mathcal{G}_{H+1})\), estimates the residual productive value available beyond the horizon, expressed in the same units as cost. One formulation is
 
 \[
 \begin{aligned}
-\min_{\pi\in\Pi}\quad& \mathbb{E}_{\pi}\left[\sum_{i=1}^{H} C_i\right]
-&&\text{total cost}\\
+\min_{\pi\in\Pi}\quad& \mathbb{E}_{\pi}\left[\sum_{i=1}^{H} C_i-V_H(\mathcal{G}_{H+1})\right]
+&&\text{cost less residual value}\\
 \text{subject to}\quad& \mathbb{E}_{\pi}[D_H]\ge D_{\min}
 &&\text{delivery}\\
-& \mathcal{A}(\pi,H)=\text{acceptable}
+& \mathcal{A}(\pi,H)=\mathrm{true}
 &&\text{assurance}\\
 & \mathbb{E}_{\pi}[A_H]\le A_{\max}
 &&\text{human attention}\\
@@ -186,7 +190,9 @@ Let \(\pi\in\Pi\) be an engineering policy selected from the policies available 
 \end{aligned}
 \]
 
-The objective minimizes expected total cost over the horizon. \(C_i\) includes production, checking, repair, valued human attention, and the construction or maintenance of reusable engineering machinery attributable to episode \(i\). Charge initial construction to the first episode and allocate shared costs once across the horizon. The expectation is over outcomes under policy \(\pi\).
+The objective minimizes expected cost over the horizon less the estimated value remaining afterward. \(C_i\) includes production, checking, repair, valued human attention, and the construction or maintenance of reusable engineering machinery attributable to episode \(i\). Charge initial construction to the first episode and allocate shared costs once across the horizon. The expectation is over outcomes under policy \(\pi\).
+
+Why subtract terminal value? Suppose reconstructing knowledge as needed costs \$100 during the horizon, while constructing a reusable representation costs \$120. If both arrangements meet the delivery and assurance requirements, counting only those costs favors reconstruction. But if the representation is expected to save more than \$20 of later work, net of its future upkeep, the additional investment may be worthwhile. Terminal value allows the comparison to recognize that benefit even when it falls beyond the chosen horizon. It concerns expected future use, not the amount of machinery left behind, and excludes benefits already reflected in the costs within the horizon. Estimating it requires assumptions about future tasks, reuse, maintenance, and loss of usefulness; those assumptions should be stated and examined. Setting \(V_H=0\) recovers the strictly finite-horizon comparison.
 
 The constraints express what cost minimization alone would miss. \(D_H\) counts independently assessed correct admitted delivery, and \(D_{\min}>0\) is the required minimum. \(A_H\) is total human attention over the horizon, measured in a declared unit such as engineer-hours; \(A_{\max}\) bounds its expected use. Human attention is both a valued cost and a limited resource, so the constraint does not add a second charge. The assurance condition \(\mathcal{A}(\pi,H)\) is a declared predicate over the engineering arrangement and its outcomes, rather than a single numerical risk measure. It may combine invariants, probabilistic failure bounds, and required human authorization.
 

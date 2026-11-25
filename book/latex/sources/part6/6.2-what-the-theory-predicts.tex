@@ -29,9 +29,9 @@ Proposition & Predicted relationship & What a comparison must establish \\
 \bottomrule\noalign{}
 \endlastfoot
 P1. Representation leverage & Useful representations reduce reconstruction and extend reasoning capacity & Correct delivery and reasoning cost at matched quality, including representation upkeep \\
-P2. Representation-enabled enforcement & Explicit models make selected obligations independently enforceable & Defect escape, false rejection, and correct delivery for adequately covered obligations \\
-P3. Governance conversion and engineering capital & Reusable engineering knowledge improves subsequent work & Later capability and cost relative to local repair or on-demand reconstruction \\
-P4. Governable acceleration & The effects of additional agentic capacity depend on the engineering environment & Capacity-by-environment effects on durable throughput, defect escape, and human attention \\
+P2. Representation-enabled enforcement & Explicit models enable independent evaluation and enforcement & Evaluation reliability, coverage and cost; defect escape, false rejection and correct delivery \\
+P3. Governance conversion and engineering capital & Preserving judgments reduces reconstruction and improves subsequent work relative to resolving them anew & Later capability and cost relative to local repair or on-demand reconstruction \\
+P4. Governable acceleration & Increased implementation rate or concurrency yields greater durable throughput gains under adequate governance & Capacity-by-environment effects on durable throughput, defect escape, and human attention \\
 \end{longtable}
 }
 
@@ -79,9 +79,9 @@ P1 would be challenged if these representations add interpretation and maintenan
 
 \section{Proposition 2: Representation-Enabled Enforcement (P2)}\label{heading:p2-representation-enabled-enforcement}
 
-% <!-- point: p2-representation-enabled-enforcement | Representations can make selected obligations mechanically decidable, while Alignment enforces them independently of producer compliance. -->
+% <!-- point: p2-representation-enabled-enforcement | Representations can make selected obligations independently evaluable, while Alignment binds those evaluations to admission. -->
 
-\emph{Proposition 2. Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent's compliance.}
+\emph{Proposition 2. Explicit representations can make engineering obligations independently evaluable that would otherwise require repeated judgment. Binding these evaluations to admission reduces the escape of covered failures relative to relying on the producing agent's compliance.}
 
 The encoding–realization decomposition in \autoref{6.1-toward-a-theory-of-mage:heading:encoding-and-realization} concerns whether an agent fulfills the intended obligations. Alignment introduces a separate decision: whether the resulting work may be admitted. A gate that evaluates an obligation independently can reject a violating realization even if the agent misunderstands or ignores the requirement. This separates the reliability of production from the correctness of admitted work, while adding the evidence, rejection, and repair costs accounted for in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
 
@@ -143,34 +143,32 @@ Modeling can change which obligations admit such mechanisms. The dependency rule
 
 % <!-- point: determinization-frontier-defined | The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably — in factory terms, an economic boundary between judgments still bought probabilistically through the production process and properties made durable as tolerances. | terms: tolerance -->
 
-The \textbf{determinization frontier} separates judgments that require fresh interpretation from those that can be evaluated by a repeatable procedure. Alignment can mechanize an obligation that is already decidable. Modeling can change the representation so that a previously difficult judgment becomes decidable, after which Alignment can enforce it (\autoref{determinization-frontier}). This distinction is also economic. On one side are judgments the factory must make repeatedly through probabilistic reasoning; on the other are properties it can evaluate through reusable machinery.
+The \textbf{determinization frontier} separates judgments that require fresh interpretation from those that can be evaluated mechanically. Some properties already admit a practical mechanical check. Others require a different representation, additional instrumentation, or a more precise account of the obligation before such a check becomes possible. Modeling can establish these conditions; Alignment can make the resulting evaluation consequential (\autoref{determinization-frontier}). The engineering opportunity is to replace repeated probabilistic reasoning with reusable machinery wherever the obligation and available evidence permit it.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/determinization-frontier-39a0624cba.pdf}
-\caption{\emph{The Determinization Frontier.} Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.}
+\caption{\emph{The Determinization Frontier.} Alignment can enforce an evaluation that is already available. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes mechanically evaluable. Both routes move repeated judgment into machinery.}
 \label{determinization-frontier}
 \end{figure}
 
 % <!-- point: determinization-retains-judgment-at-the-boundary | Some judgments yield checkable properties while others remain semantic; the determinization frontier moves through representation and adequate evidence, not assertion. -->
 
 % Evidence: E09 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E09.md | kind: dated-case-evidence
-DocAble illustrates the distinction. Determining what an image means and writing an adequate description require semantic judgment. Once a description is attached to an object in the document model, checking its presence and placement can be mechanical. That check does not establish that the description is adequate. Modeling has made a narrower property decidable, and Alignment can enforce it without repeating the original semantic judgment.
+DocAble illustrates the distinction. Determining what an image means and writing an adequate description require semantic judgment. Once a description is attached to an object in the document model, checking its presence and placement can be mechanical. That check does not establish that the description is adequate. Modeling has made a narrower property mechanically evaluable, and Alignment can enforce it without repeating the original semantic judgment.
 
 % Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
 A representation can also move a family of judgments across this frontier. Recall DocAble's architectural dependency checker. A common representation of permitted dependencies allows one mechanism to evaluate many architectural obligations. Subsequent obligations expressed in the same vocabulary do not require another checker. The investment was in a class of engineering judgments rather than a single judgment.
 
-The frontier does not imply that every judgment can become mechanical. Better representations may improve human or agent evaluation even when no definitive predicate is available. Where a property does become mechanically decidable, the question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
+The frontier does not imply that every judgment can become mechanical. Better representations may improve human or agent evaluation even when no definitive predicate is available. Where a property does become mechanically evaluable, the question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
 
 \section{Proposition 3: Governance Conversion and Engineering Capital (P3)}\label{heading:p3-governance-conversion-and-engineering-capital}
 
 % <!-- point: p3-governance-conversion-and-engineering-capital | Useful engineering judgment can become inherited productive capacity, whose return depends on reuse or consequence, propagation, maintenance and continuing fit. -->
 
-\emph{Proposition 3. Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.}
+\emph{Proposition 3. Preserving engineering judgments in reusable representations and controls reduces repeated reconstruction and improves subsequent engineering capability relative to resolving those judgments anew during comparable work.}
 
 The dynamic model in \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model} represents the environment available for task \(T_i\) as \(\mathcal{G}_i\). Work during one episode can change the representations, procedures, and controls available for the next. P3 predicts that some of those changes create productive capacity beyond the immediate implementation. Their return depends on what subsequent work can accomplish and on the construction and carrying costs in \autoref{6.1-toward-a-theory-of-mage:heading:cost-and-failure-separately}.
-
-Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of engineering capital.
 
 \subsection{How Engineering Capital Accumulates}\label{heading:how-engineering-capital-accumulates}
 
@@ -183,7 +181,7 @@ Recall DocAble's completed-phase gate (\autoref{6.1-toward-a-theory-of-mage:head
 
 The return is broader than defect reduction. An architectural model may let an engineer assess a change that would otherwise be too expensive to understand. A typed operation can make a previously risky mutation routine. A validator can provide evidence earlier, and a recovery procedure can make a failed experiment cheap enough to attempt. In each case, earlier work has changed what later engineers and agents can accomplish, what they must reconstruct, or what risk they must bear.
 
-A record can preserve information without changing what later engineers or agents can accomplish. An engineering asset becomes capital when its reuse provides capability, reduces cost, or controls risk. A useful record can certainly do that; its format does not decide the question. When a model, validator, or procedure preserves the relevant distinction, its benefit need not depend on the continued presence of the engineer who supplied the original judgment. Later work can use the result without reconstructing all the reasoning that produced it.
+A record can preserve information without changing what later engineers or agents can accomplish. An engineering asset becomes capital when its reuse provides capability, reduces cost, or controls risk. Governance conversion is the intervention; reusable engineering structure is what it produces. Whether that structure provides productive value is a question for subsequent work. An unsuccessful conversion remains a governance conversion, and its failure to produce useful engineering capital is evidence relevant to P3. A useful record can certainly do that; its format does not decide the question. When a model, validator, or procedure preserves the relevant distinction, its benefit need not depend on the continued presence of the engineer who supplied the original judgment. Later work can use the result without reconstructing all the reasoning that produced it.
 
 % <!-- point: capital-transfer-is-partial-judgment-needed-again-on-change | The transfer is partial: capital carries only what it represents, so change requires expert judgment again. -->
 
@@ -225,9 +223,9 @@ P3 would be challenged if later work gains no useful capacity over local repair 
 
 % <!-- point: p4-governable-acceleration | Additional agentic capacity can amplify the fit or inadequacy of the inherited GEE; durable gains depend on representation, assurance and adaptation. -->
 
-\emph{Proposition 4. The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.}
+\emph{Proposition 4. Increasing the rate or concurrency of agentic implementation yields greater gains in durable engineering throughput when the engineering environment adequately represents and governs the obligations relevant to that work.}
 
-In \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model}, the likelihood of faithful production depends on the task, foundation model, and GEE. \autoref{mage-dynamic-model} relates agentic capacity and that environment to attempted work, realized performance, and subsequent adaptation. P4 predicts an interaction between these inputs: increasing implementation capacity should have different consequences depending on the representations and controls through which it operates.
+In \autoref{6.1-toward-a-theory-of-mage:heading:the-dynamic-model}, the likelihood of faithful production depends on the task, foundation model, and GEE. \autoref{mage-dynamic-model} relates agentic capacity and that environment to attempted work, realized performance, and subsequent adaptation. P4 predicts the direction of an interaction between these inputs: increasing implementation rate or concurrency should yield greater durable throughput gains when relevant obligations are adequately represented and governed. Faster implementation increases the arrival rate of candidate changes; more concurrent agents also increase the demand for evaluation, integration, and supervision.
 
 \subsection{Capacity and Environment}\label{heading:capacity-and-environment}
 
@@ -246,7 +244,7 @@ To test that claim, GEE quality has to be characterized independently of the out
 
 % <!-- point: capacity-environment-substitution-and-complementarity-remain-open | Whether better environments substitute for raw reasoning capability or complement it is empirical and can vary across obligations and task families. -->
 
-Several outcomes are plausible. A good representation might let a weaker foundation model perform work that previously required a stronger one. A stronger foundation model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
+Improvements in reasoning capability introduce a further relationship. A stronger reasoner may substitute for some engineering representations or make better use of them. The economic value of these arrangements depends on the work and the assurance required. A good representation might let a weaker foundation model perform work that previously required a stronger one. A stronger foundation model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
 
 \subsection{When the Work Becomes More Demanding}\label{heading:when-the-work-becomes-more-demanding}
 
@@ -264,4 +262,4 @@ More ambitious work exposes new demands on the environment. Larger tasks may int
 
 % <!-- point: p4-governable-acceleration-can-fail | The proposition requires an interaction between capacity and independently assessed environmental fit, judged by durable outcomes rather than approval speed. -->
 
-P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.
+P4 would be challenged if increasing implementation rate or concurrency yields no greater durable throughput gains under independently assessed adequate governance, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.

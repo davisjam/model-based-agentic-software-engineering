@@ -2196,8 +2196,8 @@
     {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
-      "source_sha256": "678d5a8fcb55d95e090e216bbf63ed2cc1f9af522e5bbe016cc5d2f8a9332855",
-      "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7",
+      "source_sha256": "67d1d8f25b9cdf413bc6206fedca75106564bc4e0da696c1d5f96385a022a050",
+      "candidate_sha256": "6230d9e777caaf854b21bea374bc17394bd343c154af3f08c99095dd316b931e",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Author-requested three-column redraw distinguishes authority, correspondence direction, and the limited implementation surface governed by generation or maintained correspondence. The derivation implementation is not artificially divided. Separate curved trace and check arrows distinguish binding related elements from evaluating decidable correspondence. Repeated panel footer prose and internal figure title are omitted.",
@@ -2234,7 +2234,20 @@
       "shape": "Rounded containers represent models and implementation. Small circles and table cells depict example model forms; code sheets and gear symbols distinguish implementation and other decisions.",
       "visual_review": "Inspected native print and SVG rendered proofs at 2× and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions.",
       "book_references": [],
-      "routing_exceptions": "Two opposing curved arrows are deliberate: they distinguish tracing related elements from checking correspondence."
+      "routing_exceptions": "Two opposing curved arrows are deliberate: they distinguish tracing related elements from checking correspondence.",
+      "revision_review": {
+        "date": "2026-11-24",
+        "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+        "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+        "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+        "page": 1,
+        "source_sha256": "67d1d8f25b9cdf413bc6206fedca75106564bc4e0da696c1d5f96385a022a050",
+        "candidate_sha256": "6230d9e777caaf854b21bea374bc17394bd343c154af3f08c99095dd316b931e",
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
+      }
     },
     {
       "source": "book/assets/coherence-triangle.svg",
@@ -4407,8 +4420,8 @@
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
-      "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
-      "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
+      "source_sha256": "959310c455cc94c3916093ac09cfc5376a2dc89d7e09c0893bfccfc8a2a7881d",
+      "candidate_sha256": "1aaba5506ea03d5cacf7734a9cbd6c235320ff0b5b28ef62f7f154044d28802c",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
@@ -4446,7 +4459,20 @@
       "shape": "Modestly rounded rectangles denote named activities, check/gate stages, and their property/result artifacts. A simple split-and-join path expresses the two premises, with no unrelated enclosing region.",
       "visual_review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Sensors and Validators and Gate. No clipped or overlapping text.",
       "book_references": [],
-      "routing_exceptions": "None; all relations are horizontal or vertical."
+      "routing_exceptions": "None; all relations are horizontal or vertical.",
+      "revision_review": {
+        "date": "2026-11-24",
+        "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+        "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+        "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+        "page": 2,
+        "source_sha256": "959310c455cc94c3916093ac09cfc5376a2dc89d7e09c0893bfccfc8a2a7881d",
+        "candidate_sha256": "1aaba5506ea03d5cacf7734a9cbd6c235320ff0b5b28ef62f7f154044d28802c",
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
+      }
     },
     {
       "source": "book/assets/return-governability.svg",

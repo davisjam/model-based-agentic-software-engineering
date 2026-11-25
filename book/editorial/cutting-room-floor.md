@@ -39996,3 +39996,269 @@ The case follows one primary engineer directing multiple coding agents within on
 DocAble illustrates one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. How have other organizations organized their factories as agents take on more implementation work?
 
 ```
+
+
+## Chapter 6 cost accounting: distinguish further investment (2026-11-24)
+
+Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1.2, revision `a71db8c1b`, lines 106–110. Replaced at the author’s request to account explicitly for new engineering machinery constructed during production, separately from upkeep.
+
+```latex
+C_N=C_{\text{build}}+\sum_{i=1}^{N}\bigl(C_{\text{run},i}+C_{\text{carry},i}\bigr),
+\qquad c_N=\frac{C_N}{D_N},\quad D_N>0.
+
+Construction covers the initial investment in the engineering environment. Running costs include production, checking, human review, and repair across all attempts; carrying costs cover the upkeep needed to keep the environment useful.
+```
+
+
+## Chapter 6 theoretical and experimental refinements (2026-11-24)
+
+Replaced at the author’s request: distinguish empirical predictions from deductive guarantees; separate rate/concurrency from reasoning capability; account for continued investment and terminal value; clarify measurement and practical mechanization. Original wording preserved below.
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 84
+
+```latex
+Proposition 2. Explicit representations make selected engineering obligations independently enforceable; binding those obligations to adequate enforcement reduces the escape of covered failures without relying on the producing agent's compliance.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 82
+
+```latex
+Representations can make selected obligations mechanically decidable, while Alignment enforces them independently of producer compliance.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 146
+
+```latex
+The \textbf{determinization frontier} separates judgments that require fresh interpretation from those that can be evaluated by a repeatable procedure. Alignment can mechanize an obligation that is already decidable. Modeling can change the representation so that a previously difficult judgment becomes decidable, after which Alignment can enforce it (\autoref{determinization-frontier}). This distinction is also economic. On one side are judgments the factory must make repeatedly through probabilistic reasoning; on the other are properties it can evaluate through reusable machinery.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 151
+
+```latex
+Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 158
+
+```latex
+Modeling has made a narrower property decidable,
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 163
+
+```latex
+Where a property does become mechanically decidable,
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 32
+
+```latex
+P2. Representation-enabled enforcement & Explicit models make selected obligations independently enforceable & Defect escape, false rejection, and correct delivery for adequately covered obligations
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 169
+
+```latex
+Proposition 3. Engineering knowledge preserved in trustworthy, reusable models and controls improves subsequent engineering capability and reduces repeated work.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 173
+
+```latex
+Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of engineering capital.
+
+
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 184
+
+```latex
+An engineering asset becomes capital when its reuse provides capability, reduces cost, or controls risk.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 33
+
+```latex
+P3. Governance conversion and engineering capital & Reusable engineering knowledge improves subsequent work
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 226
+
+```latex
+Proposition 4. The effect of additional agentic capacity on durable engineering progress depends on the quality and fit of the governed engineering environment.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 228
+
+```latex
+P4 predicts an interaction between these inputs: increasing implementation capacity should have different consequences depending on the representations and controls through which it operates.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 247
+
+```latex
+Several outcomes are plausible. A good representation might let a weaker foundation model perform work that previously required a stronger one.
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 34
+
+```latex
+P4. Governable acceleration & The effects of additional agentic capacity depend on the engineering environment
+```
+
+### `book/latex/sources/part6/6.2-what-the-theory-predicts.tex` — revision `a71db8c1b`, original passage near line 265
+
+```latex
+P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions,
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 79
+
+```latex
+All conditions need independent outcome assessment.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 93
+
+```latex
+a structured representation with prose containing the same obligations,
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 93
+
+```latex
+Measure correct delivery, attempts, reconstruction effort, inference cost, and human interpretation or repair.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 93
+
+```latex
+This tests fulfillment under the same encoded obligations.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 95
+
+```latex
+whether structured representations help engineers discover or express obligations they would otherwise omit.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 111
+
+```latex
+This separates improved production from improved admission and exposes the cost of achieving either.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 69
+
+```latex
+Representation-enabled enforcement (P2) & Model-derived enforcement versus producer guidance alone, with existing checks held fixed & Escape, false rejection, rejection cost, and correct delivery
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 141
+
+```latex
+Hypothesis H4 (Governable acceleration). Increasing agentic capacity yields larger gains
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 145
+
+```latex
+A factorial study crosses foundation-model capability or the number of concurrent agents with specified environmental changes. Vary these forms of capacity separately so their effects remain distinguishable. Unlike P3's study of inheritance over time, this comparison asks how the same capacity increase performs under different arrangements. Measure correct admitted work, escape, intervention, and lifecycle cost over a common horizon.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 149
+
+```latex
+These comparisons can reveal substitution between environment and foundation-model capability, complementarity, or little environmental contribution without constructing an aggregate GEE score.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 71
+
+```latex
+Governable acceleration (P4) & Agentic capacity crossed with specified representations, controls, or evidence pipelines
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 172
+
+```latex
+The optimization below makes these requirements explicit alongside the expected total cost.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 174
+
+```latex
+For a declared task sequence and a horizon of \(H\) engineering episodes, one formulation is
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 178
+
+```latex
+\mathbb{E}_{\pi}\left[\sum_{i=1}^{H} C_i\right]
+&&\text{total cost}
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 182
+
+```latex
+\mathcal{A}(\pi,H)=\text{acceptable}
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 191
+
+```latex
+The objective minimizes expected total cost over the horizon.
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 191
+
+```latex
+The expectation is over outcomes under policy \(\pi\).
+```
+
+### `book/latex/sources/part6/6.4-research-agenda.tex` — revision `a71db8c1b`, original passage near line 170
+
+```latex
+An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes.
+```
+
+### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex` — revision `a71db8c1b`, original passage near line 238
+
+```latex
+\textbf{Durable throughput} concerns useful changes that survive integration, rework, and operation.
+```
+
+### `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex` — revision `a71db8c1b`, original passage near line 270
+
+```latex
+Durable throughput & Raw implementation converted into lasting system progress & landed changes net of rework; churn share; the slope of sustained throughput
+```
+
+### `book/latex/sources/part6/6.5-what-the-theory-claims.tex` — revision `a71db8c1b`, original passage near line 22
+
+```latex
+Alignment can bind obligations that are already decidable.
+```
+
+### `book/latex/sources/frontmatter/0.4-the-books-language.tex` — revision `a71db8c1b`, original passage near line 97
+
+```latex
+make the obligation decidable.
+```
+
+### `book/latex/sources/part5/5.2-inside-docables-software-factory.tex` — revision `a71db8c1b`, original passage near line 457
+
+```latex
+replaced recurring decidable findings with deterministic checks.
+```
+
+### `book/latex/sources/appendix-handbook/substitutable-reasoning.tex` — revision `a71db8c1b`, original passage near line 112
+
+```latex
+mechanically decidable properties
+```
+
+### `book/latex/sources/part3/3.5-when-guardrails-collide.tex` — revision `a71db8c1b`, original passage near line 60
+
+```latex
+Some candidate conflicts are mechanically decidable;
+```

@@ -12429,8 +12429,8 @@
     {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
-      "source_sha256": "678d5a8fcb55d95e090e216bbf63ed2cc1f9af522e5bbe016cc5d2f8a9332855",
-      "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7",
+      "source_sha256": "67d1d8f25b9cdf413bc6206fedca75106564bc4e0da696c1d5f96385a022a050",
+      "candidate_sha256": "6230d9e777caaf854b21bea374bc17394bd343c154af3f08c99095dd316b931e",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Uppercase mode titles are bold 11 pt. Model and implementation titles are bold 10 pt, state/response headers bold 9 pt. Authority subtitles and explanatory arrow labels are italic; trace and check are bold italic. Body prose stays at 9 pt. All three model icons/tables have identical style.",
@@ -12524,7 +12524,7 @@
           "italic": true
         },
         {
-          "text": "(evaluate where decidable)",
+          "text": "(evaluate where possible)",
           "bold": false,
           "italic": true
         }
@@ -12600,7 +12600,20 @@
           "candidate_style": "italic",
           "semantic_role": "mode, authority, or correspondence relation"
         }
-      ]
+      ],
+      "revision_review": {
+        "date": "2026-11-24",
+        "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+        "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+        "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+        "page": 1,
+        "source_sha256": "67d1d8f25b9cdf413bc6206fedca75106564bc4e0da696c1d5f96385a022a050",
+        "candidate_sha256": "6230d9e777caaf854b21bea374bc17394bd343c154af3f08c99095dd316b931e",
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
+      }
     },
     {
       "source": "book/assets/coherence-triangle.svg",
@@ -23895,8 +23908,8 @@
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
-      "source_sha256": "9e2a464f001390ccb1786335134f9f8c28511bd13ea168743746aa7e3da68bae",
-      "candidate_sha256": "02ddaef43b84067662f86e6a0dcfb8e97442ea5ecfd44e79517938d6237901e2",
+      "source_sha256": "959310c455cc94c3916093ac09cfc5376a2dc89d7e09c0893bfccfc8a2a7881d",
+      "candidate_sha256": "1aaba5506ea03d5cacf7734a9cbd6c235320ff0b5b28ef62f7f154044d28802c",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
@@ -23936,7 +23949,7 @@
           "italic": true
         },
         {
-          "text": "property already decidable",
+          "text": "Mechanical evaluation available",
           "bold": false,
           "italic": true
         },
@@ -23951,7 +23964,7 @@
           "italic": true
         },
         {
-          "text": "Decidable property (predicate over model)",
+          "text": "Mechanically evaluable property",
           "bold": false,
           "italic": true
         },
@@ -23961,7 +23974,7 @@
           "italic": false
         },
         {
-          "text": "Encode and evaluate the predicate",
+          "text": "Establish and enforce the evaluation",
           "bold": false,
           "italic": true
         },
@@ -23981,7 +23994,7 @@
           "italic": false
         },
         {
-          "text": "The determinization frontier: change what is decidable (Modeling), then bind the decision (Alignment).",
+          "text": "The determinization frontier: change what can be evaluated mechanically (Modeling), then bind the decision (Alignment).",
           "bold": false,
           "italic": true
         }
@@ -24047,7 +24060,27 @@
           "candidate_style": "italic",
           "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
         }
-      ]
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-24",
+          "status": "requires-rendered-review",
+          "scope": "Practical mechanical evaluation terminology; previous proof remains historical."
+        }
+      ],
+      "revision_review": {
+        "date": "2026-11-24",
+        "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+        "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+        "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+        "page": 2,
+        "source_sha256": "959310c455cc94c3916093ac09cfc5376a2dc89d7e09c0893bfccfc8a2a7881d",
+        "candidate_sha256": "1aaba5506ea03d5cacf7734a9cbd6c235320ff0b5b28ef62f7f154044d28802c",
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true,
+        "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
+      }
     },
     {
       "source": "book/assets/return-governability.svg",

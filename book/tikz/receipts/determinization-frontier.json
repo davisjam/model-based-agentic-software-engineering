@@ -1,25 +1,25 @@
 {
   "source": "book/assets/determinization-frontier.svg",
-  "claim": "*The Determinization Frontier.* Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.",
-  "topology": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
+  "claim": "The Determinization Frontier separates fresh interpretation from mechanical evaluation. Modeling can establish a representation that supports evaluation; Alignment binds that evaluation to consequential decisions.",
+  "topology": "Repeated judgment branches into property requires reconstruction and Mechanical evaluation available. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Establish and enforce the evaluation), then proceed through Sensors and Validators, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
   "required_terms": [
     "REPEATED JUDGMENT",
     "property requires reconstruction",
-    "property already decidable",
+    "Mechanical evaluation available",
     "MODELING",
     "Change representation",
-    "Decidable property (predicate over model)",
+    "Mechanically evaluable property",
     "ALIGNMENT",
-    "Encode and evaluate the predicate",
+    "Establish and enforce the evaluation",
     "Sensors and Validators",
     "Gate",
     "REPEATABLE DECISION",
-    "The determinization frontier: change what is decidable (Modeling), then bind the decision (Alignment)."
+    "The determinization frontier: change what can be evaluated mechanically (Modeling), then bind the decision (Alignment)."
   ],
   "bw_encoding": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the Sensors and Validators and gate remain white. No ornamental enclosing region or additional gray role is used.",
   "redesign": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Sensors and Validators, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
   "questions": [],
-  "alt": "Repeated judgment follows either an already-decidable route or a route through Modeling to change the representation and expose a decidable property. Both join before Alignment, where sensors provide evidence and validators evaluate it before a gate applies the result.",
+  "alt": "Repeated judgment follows either a route with mechanical evaluation already available or a route through Modeling to change the representation and expose a mechanically evaluable property. Both join before Alignment establishes and enforces evaluation through sensors, validators, and a gate.",
   "qa": {
     "date": "2026-11-14",
     "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
@@ -411,5 +411,18 @@
     "receipt": "book/tikz/receipts/determinization-frontier.json",
     "reviewed": true,
     "rationale": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the Sensors and Validators and gate remain white. No ornamental enclosing region or additional gray role is used. Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Sensors and Validators/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling."
+  },
+  "revision_review": {
+    "date": "2026-11-24",
+    "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+    "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+    "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+    "page": 2,
+    "source_sha256": "959310c455cc94c3916093ac09cfc5376a2dc89d7e09c0893bfccfc8a2a7881d",
+    "candidate_sha256": "1aaba5506ea03d5cacf7734a9cbd6c235320ff0b5b28ef62f7f154044d28802c",
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true,
+    "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
   }
 }

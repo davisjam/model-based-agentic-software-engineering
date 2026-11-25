@@ -16,7 +16,7 @@
     "trace",
     "(bind related elements)",
     "check",
-    "(evaluate where decidable)"
+    "(evaluate where possible)"
   ],
   "bw_encoding": "Only the generated/corresponding implementation portion and small table headers use light gray; all model and implementation containers remain white. Other implementation decisions remain visually separate and are not labeled degrees of freedom.",
   "redesign": "Author-requested three-column redraw distinguishes authority, correspondence direction, and the limited implementation surface governed by generation or maintained correspondence. The derivation implementation is not artificially divided. Separate curved trace and check arrows distinguish binding related elements from evaluating decidable correspondence. Repeated panel footer prose and internal figure title are omitted.",
@@ -410,5 +410,18 @@
     "receipt": "book/tikz/receipts/derive-generate-trace.json",
     "reviewed": true,
     "rationale": "Only the generated/corresponding implementation portion and small table headers use light gray; all model and implementation containers remain white. Other implementation decisions remain visually separate and are not labeled degrees of freedom. Uppercase mode titles are bold 11 pt. Model and implementation titles are bold 10 pt, state/response headers bold 9 pt. Authority subtitles and explanatory arrow labels are italic; trace and check are bold italic. Body prose stays at 9 pt. All three model icons/tables have identical style."
+  },
+  "revision_review": {
+    "date": "2026-11-24",
+    "reason": "Distinguish practical mechanical evaluation from computability-theoretic decidability. Preserve geometry and typography.",
+    "proof": "latex/build/tikz/theory-refinements-20261124/candidates.pdf",
+    "proof_sha256": "f589554872b2074a0d35bf6c5c41cf1a2aafeec583d44616307943e3215c1ab3",
+    "page": 1,
+    "source_sha256": "67d1d8f25b9cdf413bc6206fedca75106564bc4e0da696c1d5f96385a022a050",
+    "candidate_sha256": "6230d9e777caaf854b21bea374bc17394bd343c154af3f08c99095dd316b931e",
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true,
+    "visual_review": "Inspected native and SVG proofs; updated labels fit without clipping or overlap at unchanged font sizes."
   }
 }

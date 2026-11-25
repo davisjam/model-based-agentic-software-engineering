@@ -28,8 +28,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
       "projection": "book/frontmatter/0.4-the-books-language.md",
-      "source_hash": "e6730835b69edd5e4dd42faff7c031f9f2b0f51a95d4494391aaa5d5352de2e4",
-      "projection_hash": "d0cd094dc1a7724f48b08e54a2b09b71a58062a986e65cf6999e6dde726bfec8"
+      "source_hash": "72ae3b6d2ca03380c06b21e5724891e03d45722efb99979688bf7408819e302f",
+      "projection_hash": "8782dda9ce01f7cfd16e378ed32af5a76840c755c71f330708b6e0392527b2f4"
     },
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
@@ -162,8 +162,8 @@
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
       "projection": "book/part3/3.5-when-guardrails-collide.md",
-      "source_hash": "17440f27d8821841e95af57cb3adcf78a515b9c1d650c4dfe45e951e6fab5918",
-      "projection_hash": "039e20a15591ac32a38e81e93db2832e00182c67e50be0a0df0910460eb2ba81"
+      "source_hash": "0143f0d9316b194f38d4af297584b6b082be9ef88fbcba1ea9581b9c8ee32c27",
+      "projection_hash": "8165b2b9fef98f4121b2b907836d2bfb46e0ba04594a4e0f8f0900f3909876cf"
     },
     {
       "source": "book/latex/sources/part3/3.6-alignment-summary.tex",
@@ -222,8 +222,8 @@
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "61231c71a3e91b6ca80d9c3e2850010effee0b5419e42cbbb4171753766d99f7",
-      "projection_hash": "f1cb56c3a219dc893bae2d1e28dfe658baa04221f9ec89fab06cd8efd7b3d5bd"
+      "source_hash": "a65e0ecd684ce09148ddd0bc6c6f83fdcc292489b36afdf46ca27f5fbab45721",
+      "projection_hash": "bedaee221078db3f06ff05557e15574bbeddf89b622d3a2e7fc8ad0e206a862a"
     },
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
@@ -252,14 +252,14 @@
     {
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
-      "source_hash": "0ba1f1496c609beed9948782773b21d3d328f19263e391bf05a3016986c8d3eb",
-      "projection_hash": "28523b68e23b9c37023f538e4882a8ffd571f44c576bd027a5b41a1e93b350ff"
+      "source_hash": "edaa0fd6f8aa2ffefa1b1368c6b5bf97ffe93e956e51f6dd2f76abd8e8131ff1",
+      "projection_hash": "56f0f538092f25be302937ab602f8480235abe7528693ae4321ca2f3721aa72a"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
       "projection": "book/part6/6.2-what-the-theory-predicts.md",
-      "source_hash": "e4296440bde062763955361dfac416977601993f66a1bd7f330e9e6effec596f",
-      "projection_hash": "b279cf144548e3ebacad758ebff4b24bf4d7d4ea99c2384d4d4b4a844acf6659"
+      "source_hash": "14908aef8082e8a288f2d9e3cd100b5eaca57f0afd9666fb2a9dc34a7dfdeff8",
+      "projection_hash": "f3a8b61559e2349a2bc3d646e79991dd11645e84eecfcbb5a182f7ce159c8f3b"
     },
     {
       "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
@@ -270,14 +270,14 @@
     {
       "source": "book/latex/sources/part6/6.4-research-agenda.tex",
       "projection": "book/part6/6.4-research-agenda.md",
-      "source_hash": "7c3785b392ee2c7c524461b62c15aa1e1ac1e047282bf841bd3c65e74d398f87",
-      "projection_hash": "e08a0e7166cc1bd67719f35f240d9984a03255c7f9548eb48798658180d49e17"
+      "source_hash": "a60f4957b029ae17cf3eaa2e135fc4df510bf9a638b962f06e55c1a77d1bd435",
+      "projection_hash": "a7081ace9744accbda795241948fa5146138147fec48fb37939f0a933dfa2e24"
     },
     {
       "source": "book/latex/sources/part6/6.5-what-the-theory-claims.tex",
       "projection": "book/part6/6.5-what-the-theory-claims.md",
-      "source_hash": "6486a76a8bf42bf142643715631bd3d176755f04a895d9e013b5e16f76d72383",
-      "projection_hash": "ff16efbf7887745e8e5a3a9d979a80ac34a753c09e3f4df218f65a1ca0ce08ef"
+      "source_hash": "bef7c2918c4e59a01363b0eb77bceb548850a643d2efe3f155152408bcf33c79",
+      "projection_hash": "3656b0f799bc173dfb62f7647b4931ff7a63f711b609dad06ece76d61ff7a27b"
     },
     {
       "source": "book/latex/sources/part7/00-part-intro.tex",
@@ -1038,8 +1038,8 @@
       "source": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
       "projection": "book/appendix-handbook/substitutable-reasoning.md",
       "publication_status": "published",
-      "source_hash": "12e84d3a767fd5471b800cd364a1aaf1b0475fbef1e6c53a47b2cfb2d84131dd",
-      "projection_hash": "60fb825ad404acd3ce0a71ab23a0fefd465b497cd2f5d467ae55a2975c4bb73d"
+      "source_hash": "fac53bde7a51e84acf038392d310724aefceb6cfc9de2248e73b477b21756cf8",
+      "projection_hash": "d1de284cacc8b1f52df4afa7617228b014711d5d1343b263d267f87a4d6609c1"
     },
     {
       "source": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",
