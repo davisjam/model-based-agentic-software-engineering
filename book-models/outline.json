@@ -90,7 +90,7 @@
           "heading_text": "MAGE",
           "topic_sentence": "**Agentic engineering.** The engineering of systems and environments in which autonomous agents perform consequential work.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 25,
           "points": []
         }
       ],
@@ -2150,7 +2150,7 @@
           "heading_text": "Establishing an Alignment Kernel",
           "topic_sentence": "Chapter 2 organized models by the properties they represent.",
           "id_source": "explicit",
-          "block_index": 12,
+          "block_index": 14,
           "points": []
         },
         {
@@ -2159,7 +2159,7 @@
           "heading_text": "Modeling Before, During, and After Implementation",
           "topic_sentence": "In an existing system, we can recover models from the implementation.",
           "id_source": "explicit",
-          "block_index": 18,
+          "block_index": 22,
           "points": []
         }
       ],
@@ -2479,22 +2479,22 @@
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Representations of changing software incur construction and maintenance costs.",
-              "block_index": 21
+              "block_index": 22
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Organizations weigh reusable representations against the cost of skilled judgment during implementation.",
-              "block_index": 22
+              "block_index": 23
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question is where consequential knowledge can be maintained and applied most economically without losing control.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Engineers can preserve selected consequential judgments while leaving agents substantial implementation freedom.",
-              "block_index": 28
+              "block_index": 29
             }
           ]
         },
@@ -2504,17 +2504,17 @@
           "heading_text": "Comparing Software Factories",
           "topic_sentence": "If we are to adopt the metaphor of a software factory, we must consider how such factories might be organized.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 31,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 31
+              "block_index": 32
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 37
+              "block_index": 38
             }
           ]
         }
@@ -2724,7 +2724,7 @@
           "section_id": "engineering-models",
           "level": 3,
           "heading_text": "Engineering Models",
-          "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.",
+          "topic_sentence": "By the end of the measurement period, DocAble had 143 model modules.",
           "id_source": "derived",
           "block_index": 69,
           "points": [
@@ -2912,7 +2912,7 @@
           "section_id": "human-remediation-as-a-reference",
           "level": 2,
           "heading_text": "Baselines and Evaluation",
-          "topic_sentence": "**Human reference.** Across approximately six months, 42 trained undergraduates remediated documents.",
+          "topic_sentence": "**Human reference.** Across approximately six months, 42 trained undergraduates remediated course materials at Purdue.",
           "id_source": "explicit",
           "block_index": 6,
           "points": [
@@ -2924,27 +2924,27 @@
             {
               "slug": "agent-comparison-tests-economics-without-a-capability-boundary",
               "text": "The agent baseline uses separate configurations and a ten-document cohort; results compare automatic findings, runtime, and inference expenditure.",
-              "block_index": 10
+              "block_index": 9
             },
             {
               "slug": "human-comparison-separates-syntax-and-semantics",
               "text": "The human-reference evaluation separately measures checker findings and transcript-based semantic improvements relative to the original.",
-              "block_index": 12
+              "block_index": 11
             },
             {
               "slug": "human-comparison-results-vary-by-property",
               "text": "DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output.",
-              "block_index": 17
+              "block_index": 14
             },
             {
               "slug": "semantic-example-exposes-the-checker-limit",
               "text": "A title-only description passed a checker but omitted table contents; a transcription improved access to those contents, while other examples favored human repair.",
-              "block_index": 20
+              "block_index": 17
             },
             {
               "slug": "human-comparison-limits-define-the-result",
-              "text": "Fallible transcript assessment, inconclusive criteria, changed checkers and unmeasured visual and screen-reader properties limit the results.",
-              "block_index": 22
+              "text": "The semantic evaluation reports transcript-based improvements, inconclusive criteria, and repeatability; broader accessibility assessment requires additional evidence.",
+              "block_index": 19
             }
           ]
         },
@@ -2952,44 +2952,44 @@
           "section_id": "production-economics",
           "level": 2,
           "heading_text": "Production Economics",
-          "topic_sentence": "**Runtime and inference cost.** Median elapsed time across all 63 attempts, including the failed attempt, was 1.36 minutes.",
+          "topic_sentence": "**Runtime and inference cost.** Median elapsed time across all 63 remediation attempts was 1.36 minutes.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 23,
           "points": [
             {
               "slug": "runtime-and-inference-are-measured-separately",
               "text": "The 63 attempts had median runtime 1.36 minutes; 62 completed outputs had median inference cost $0.066, excluding unmeasured review and full cloud costs.",
-              "block_index": 28
+              "block_index": 24
             },
             {
               "slug": "the-accounting-prices-the-case",
               "text": "Operating the product, building the product and factory, and changing the product incur distinct costs.",
-              "block_index": 32
+              "block_index": 27
             },
             {
               "slug": "measured-production-cost-leaves-review-and-carrying-cost-open",
               "text": "Measured inference expenditure, estimated development investment, and observed change capacity establish different things; per-change cost remains unmeasured.",
-              "block_index": 33
+              "block_index": 28
             }
           ]
         },
         {
           "section_id": "liability",
           "level": 2,
-          "heading_text": "Limits of the Case",
-          "topic_sentence": "The case follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process.",
+          "heading_text": "What Can We Learn from DocAble?",
+          "topic_sentence": "DocAble illustrates what one engineer can accomplish by developing a software factory alongside the product it produces.",
           "id_source": "explicit",
-          "block_index": 36,
+          "block_index": 31,
           "points": [
             {
               "slug": "the-claim-is-bounded-one-engineer-one-ecosystem",
-              "text": "The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence.",
-              "block_index": 37
+              "text": "The longitudinal case teaches through the sequence of engineering problems, responses, and changes in delegated work; its measurements concern one project without a controlled comparison.",
+              "block_index": 32
             },
             {
               "slug": "turn-outward-to-other-factories",
               "text": "DocAble illustrates one response to increased implementation capacity; other organizations begin with different resources and constraints.",
-              "block_index": 39
+              "block_index": 33
             }
           ]
         }
@@ -2997,7 +2997,7 @@
       "preamble_points": [
         {
           "slug": "evaluation-covers-product-cost-and-maintenance",
-          "text": "The evaluation distinguishes remediation comparisons, production economics, and the limits of a longitudinal case.",
+          "text": "The evaluation distinguishes remediation comparisons, product operation, and the costs of building and changing the product.",
           "block_index": 2
         }
       ]

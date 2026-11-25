@@ -51,7 +51,9 @@ This glossary groups the book’s vocabulary under Engineering, Software Agents,
 
 \textbf{Foundation model.} The trained model at the bottom of the agent stack. Its capabilities and context capacity shape the harness and engineered environment around it.
 
-\textbf{Reasoning horizon.} Reasoning is the use of available information to draw inferences, evaluate alternatives, and work toward a solution. A reasoning horizon is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness and engineered environment.
+\textbf{Reasoning.} The use of available information to draw inferences, evaluate alternatives, and work toward a solution. A reasoning horizon is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness and engineered environment.
+
+\textbf{Scaffolding.} Additional guidance or structure that helps a particular implementer satisfy an engineering obligation without changing the obligation itself. More capable implementers may require less scaffolding to satisfy the same obligation.
 
 \textbf{Skills and tools.} Capabilities exposed through an agentic harness that extend what an agent can do. A skill provides reusable guidance for a recurring class of work; a tool provides a capability the agent can invoke rather than approximate through reasoning.
 
@@ -59,7 +61,9 @@ This glossary groups the book’s vocabulary under Engineering, Software Agents,
 
 \textbf{Agentic engineering.} The engineering of systems and environments in which autonomous agents perform consequential work. MAGE develops one approach, using software engineering as its principal example.
 
-\textbf{Alignment (MAGE).} The engineering activity of making selected obligations enforceable through constraints, evidence, and admission mechanisms in a governed engineering environment. Unlike model--implementation correspondence, Alignment is not limited to establishing agreement between representations. It does not require changing the foundation model's objectives or behavior. \autoref{3.1-from-engineering-models-to-enforcement:heading:agreement-is-not-correctness} develops these distinctions.
+\textbf{Alignment (MAGE).} The engineering activity of making selected obligations enforceable through constraints, evidence, and admission mechanisms in a governed engineering environment. Unlike model--implementation correspondence, Alignment is not limited to establishing agreement between representations. It does not require changing the foundation model's objectives or behavior.
+
+Active alignment changes a system to satisfy modeled obligations. Passive alignment protects those obligations during subsequent engineering. The alignment kernel comprises the models and controls that protect properties an upcoming engineering transformation must preserve. Engineers can extend or revise the kernel as the system and its obligations change. Chapters \magevalue{chapter:alignment|num} and \magevalue{chapter:one-problem-many-models|num} develop these ideas.
 
 % <!-- index-def: compounding -->
 
@@ -91,3 +95,5 @@ This glossary groups the book’s vocabulary under Engineering, Software Agents,
 \textbf{Ratcheteering.} The practice of introducing an authoritative engineering model that deliberately disagrees with an existing system, then directing agents to change the implementation until it conforms to the model. Rather than adapting the model to describe the existing implementation, the engineer uses the model to establish how the system should be structured or behave. See also: \textit{Model drift}.
 
 \textbf{Semantic gap.} The distance between where an engineering obligation arises and where the environment has enough meaning and evidence to decide whether the obligation is satisfied. The gap explains why some checks must wait until a later boundary, when enough of the system has been assembled to make the obligation decidable.
+
+\textbf{Software factory.} The engineered system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved. Whereas the Governed Engineering Environment emphasizes how autonomous work is governed, the software factory emphasizes the organization of production. \magevalue{chapter:software-factories} develops this perspective.

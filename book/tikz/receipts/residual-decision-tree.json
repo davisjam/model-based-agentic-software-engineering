@@ -9,10 +9,10 @@
     "JUDGMENT REQUIRED\\ adequate evaluator",
     "Does the environment enforce the result?",
     "EVALUATED ONLY\\, yet ungated",
-    "GOVERNED\\ enforced"
+    "GOVERNED\\ passage depends on evaluation"
   ],
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Author approved existing B&W layout with two small edits: remove the footer and change the EVALUATED ONLY subtitle to evaluated, not enforced.",
+  "redesign": "Preserve the approved staircase layout. The GOVERNED subtitle reads passage depends on evaluation, allowing human or mechanical evaluation. Wrap it across two lines at unchanged font size; expand the web box vertically for the additional line.",
   "questions": [],
   "alt": "Three questions classify an obligation as unrepresented, requiring judgment, evaluated without enforcement, or governed. These describe current dispositions rather than equally desirable design choices.",
   "qa": {
@@ -167,15 +167,15 @@
         }
       },
       {
-        "source_text": "mechanically enforced",
+        "source_text": "passage depends on evaluation",
         "source_style": "weight normal; italic; source size 20",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "mechanically enforced",
+        "candidate_text": "passage depends on evaluation",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/residual-decision-tree.svg",
           "element_text_path": "/svg/text[19]/text()",
-          "text_element_context": "mechanically enforced",
+          "text_element_context": "passage depends on evaluation",
           "matching_fragment_count": 1
         }
       }
@@ -218,7 +218,7 @@
         "italic": true
       },
       {
-        "text": "mechanically enforced",
+        "text": "passage depends on evaluation",
         "bold": false,
         "italic": true
       },
@@ -390,5 +390,15 @@
       "status": "passed",
       "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
     }
+  },
+  "revision_review": {
+    "date": "2026-11-24",
+    "scope": "Author-requested label revision; retain type sizes and verify label clearance in the rendered native figure.",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "03e02cf705c880f929fc9d0ee7d4570d2a2fbd7e29d77718ebe0e10e225077f0",
+    "page": 41,
+    "source_sha256": "f6a702080b4ced815508c4ec2fd850c9e69467f7648670d6306becc67b9d4ec3",
+    "candidate_sha256": "86c68598da9a254faa4709013c262697b6501e1360451071b037f152a339851a",
+    "visual_review": "Passed: labels remain inside their boxes or text areas; arrows and surrounding labels remain clear."
   }
 }

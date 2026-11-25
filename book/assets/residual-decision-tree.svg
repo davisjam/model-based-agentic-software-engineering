@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 504" width="1000" height="504"
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="hgTitle">Where enforcement stops: three questions place any obligation in one of four states —
@@ -9,7 +9,7 @@
     environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
     does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
-    not enforced. Yes leads to GOVERNED. These classify current dispositions, not equally desirable outcomes.</desc>
+    not enforced. Yes leads to GOVERNED — passage depends on evaluation. These classify current dispositions, not equally desirable outcomes.</desc>
 
   <defs>
     <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -69,8 +69,9 @@
   <!-- edge: q3 -> governed -->
   <path d="M670,332 L670,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="676" y="364" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5137">yes</text>
-  <rect id="governed" x="539.95" y="396" width="270.09" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
+  <rect id="governed" x="539.95" y="396" width="270.09" height="88" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
   <text x="675" y="425" text-anchor="middle" font-size="20" font-weight="800" fill="#2f5137">GOVERNED</text>
-  <text x="675" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">mechanically enforced</text>
+  <text x="675" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">passage depends</text>
+  <text x="675" y="469" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">on evaluation</text>
 
 </svg>

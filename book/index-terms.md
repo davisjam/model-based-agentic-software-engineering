@@ -541,3 +541,9 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - context-b (timeline) concepts + any proper nouns from the ADA/timeline chapters get appended once that Fable lands.
 - Aliases (e.g. "constraint" ↔ "the wall", "sensor" ↔ "the smoke detector") should map to ONE index entry with a cross-ref;
   the generator can read alias groups from this file if we add a small `alias:` syntax later.
+
+- concept: active-alignment | Active alignment
+
+- concept: passive-alignment | Passive alignment
+
+- concept: alignment-kernel | Alignment kernel

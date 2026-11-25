@@ -28,8 +28,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
       "projection": "book/frontmatter/0.4-the-books-language.md",
-      "source_hash": "c65a1d0915f558a0f119c60c04313678679c8c9975117914c4c1109dbf1278ce",
-      "projection_hash": "1d3ed3599fb341a03fa4f29fc05c2def7344e25c96d9f80ca8f756da4f6a0983"
+      "source_hash": "e6730835b69edd5e4dd42faff7c031f9f2b0f51a95d4494391aaa5d5352de2e4",
+      "projection_hash": "d0cd094dc1a7724f48b08e54a2b09b71a58062a986e65cf6999e6dde726bfec8"
     },
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
@@ -64,8 +64,8 @@
     {
       "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
       "projection": "book/part1/1.4-the-agentic-substrate.md",
-      "source_hash": "5139aacea0201c8efc025f427a4f528849abe5a8d01a29741681826c7cde421d",
-      "projection_hash": "c596fc80fd2049e064be01fad2f67004ebd7525a9b6d5334a4b4a9b0319f3f44"
+      "source_hash": "7dc64ea58c2edb509054d9d4374b3d5053ff4a3ff3ba170c82f1cdf0d4229680",
+      "projection_hash": "91eb2b93d759157284a6262d072286afe414e36a4ad248bd95582c5bd7ca11c4"
     },
     {
       "source": "book/latex/sources/part1/1.5-the-new-engineering-problem.tex",
@@ -150,8 +150,8 @@
     {
       "source": "book/latex/sources/part3/3.2-governance-mechanisms.tex",
       "projection": "book/part3/3.2-governance-mechanisms.md",
-      "source_hash": "5919a609df24d235541e9d9fd1d0d65f1d26c88ea67906f44fb4ab49f86a2400",
-      "projection_hash": "ebd95276827f85f31741eb904cb4f1d79587ef26bdb9c311c350b3645889ccde"
+      "source_hash": "0427f0df01b03cefd7efe30c25e0434efab321227a99b3bed842315b41fcf0cf",
+      "projection_hash": "2aede5653edb463ac570b08556e206241fd6edd54401ae7b3912fd10c8a0e378"
     },
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
@@ -180,14 +180,14 @@
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "842c18447055da6a6e257fe16f152aac8cde2033e57b36923b105501f1671588",
-      "projection_hash": "e39bcfab7ad81323d2b93d736c423a0cb169fbd264948b900257204227651b1f"
+      "source_hash": "d891e643b93d15d860f5c3d71b884de306d8ee7566aac6222d975e6cd65a5341",
+      "projection_hash": "a5e6ecf904d414e6865ee5852087b2e1984df8a07c9c5bb30abce5f952608807"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
       "projection": "book/part4/4.2-one-problem-many-models.md",
-      "source_hash": "189cd1a0f42ac3738a879dc94e917273d5b5dc2937b850bcaa67ac170f687aea",
-      "projection_hash": "6b2b8dcdb1843f8a72309be07e6a74d5e81ae1e07a8b40d0b0ffc7d41a2ccd09"
+      "source_hash": "76283b4f835f4f728da702f230943ba761415d0610cdb1c9837e05fd2b5af5c2",
+      "projection_hash": "e583baa7250e0e1317cf2937a14d3c70093cf314e75f109d09852fc76f6ceb8e"
     },
     {
       "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
@@ -216,20 +216,20 @@
     {
       "source": "book/latex/sources/part5/5.1-software-factory.tex",
       "projection": "book/part5/5.1-software-factory.md",
-      "source_hash": "21590d9a4b3fe5cbcbce84c9fa6e6a3c5d96396c4a0117d7bc655f65f7ac33a2",
-      "projection_hash": "9afb880c045b018e263f65159af5b70e1b27de688ce82fd57027ef4fc7ec723c"
+      "source_hash": "6e60ddb5a6e26f1bee78521fa44dcb359d2b0a78fe26856bc674968ee023311d",
+      "projection_hash": "20f5b4ee89b13dc8d0fb6143a715a1e998db30322354f5153d428f269a53ec1d"
     },
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "e957a04d36b6c3b68e79e6e182d4ff6698bfc17bc833ed5972cb5a3454d77abd",
-      "projection_hash": "8dc6d088add9daa3d39ff968d588968e15bedf78c4e0ac3228901c5b8d4311b9"
+      "source_hash": "61231c71a3e91b6ca80d9c3e2850010effee0b5419e42cbbb4171753766d99f7",
+      "projection_hash": "f1cb56c3a219dc893bae2d1e28dfe658baa04221f9ec89fab06cd8efd7b3d5bd"
     },
     {
       "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
       "projection": "book/part5/5.3-evaluating-docable.md",
-      "source_hash": "869abf69289b3f841f62889e586842123f55453e6250d3a6f5b285e915474fa6",
-      "projection_hash": "9b5fd2342242c49c65c08cb96b8841e06426dd2006fb3f0f0e9e9ea6a49e0fcb"
+      "source_hash": "32bed5d9a53f235891d2e5235e9fcb3c0e44ecb5de63a1a1d26bcf2f1b01c688",
+      "projection_hash": "24bf87f3d42db752c4eece12eec4f99756cf813f139685fb63fe9254f697aa64"
     },
     {
       "source": "book/latex/sources/part5/5.4-other-agentic-software-factories.tex",
@@ -258,20 +258,20 @@
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
       "projection": "book/part6/6.2-what-the-theory-predicts.md",
-      "source_hash": "bd2457465758365f0c437a17ded1a7fb75093b53d3971f5673b0b6ec104c55da",
-      "projection_hash": "0ada5be5d73b2216c1d70ab790208601a729e69316730a41c0d4920619c3d042"
+      "source_hash": "e4296440bde062763955361dfac416977601993f66a1bd7f330e9e6effec596f",
+      "projection_hash": "b279cf144548e3ebacad758ebff4b24bf4d7d4ea99c2384d4d4b4a844acf6659"
     },
     {
       "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
       "projection": "book/part6/6.3-scope-conditions.md",
-      "source_hash": "c1de5b459bf64c542f4e615f9cefc6d90d23416973148ebe1ef3e1efae6c3f29",
-      "projection_hash": "8a383ab8412ecd3e5d70b3acee204e9baf54b13178ad00eaf39ade4e6cde71a3"
+      "source_hash": "185e48019fb4a3e279a1b3f42c2a1c89f12aa422b3d4c1a9cf1860af146d07b3",
+      "projection_hash": "89b2998275f6642c572d4e8af00417223c6b2fc1b87317db2351808d1c5298d8"
     },
     {
       "source": "book/latex/sources/part6/6.4-research-agenda.tex",
       "projection": "book/part6/6.4-research-agenda.md",
-      "source_hash": "645eaadabd67dd45cc67e18238091ac7067209b488691aacb549b85b31c9dd6c",
-      "projection_hash": "c943676506b9602dd9fe95ec0f94d44b21ccf37666c8c82bca97e3c19adbe7a9"
+      "source_hash": "7c3785b392ee2c7c524461b62c15aa1e1ac1e047282bf841bd3c65e74d398f87",
+      "projection_hash": "e08a0e7166cc1bd67719f35f240d9984a03255c7f9548eb48798658180d49e17"
     },
     {
       "source": "book/latex/sources/part6/6.5-what-the-theory-claims.tex",
@@ -300,8 +300,8 @@
     {
       "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",
       "projection": "book/part7/7.3-agentic-engineering-beyond-software.md",
-      "source_hash": "4e6ba269a3ec4c73733badf2cc1ae9160e61be54adeec17823d04332b8d0aee5",
-      "projection_hash": "a170763af969bf544eaf740d30a3a42a72784328c78803a16999e38c31021521"
+      "source_hash": "549e5122be99a0a4a1668ff7b482bf4a78c3e89fe8b5450a065e75ce855690cb",
+      "projection_hash": "6fa7e4467e0ce42982f074eeb9e6dff89d1bb6a1dd2862acced64010f1245f13"
     },
     {
       "source": "book/latex/sources/part7/7.4-the-engineer.tex",
@@ -1004,8 +1004,8 @@
     {
       "source": "book/latex/sources/appendix-practicing-mage/measuring-mage.tex",
       "projection": "book/appendix-practicing-mage/measuring-mage.md",
-      "source_hash": "36ec68ebcdb7b5de05c572d1353683655502108d395c9d52dac198bd077168e2",
-      "projection_hash": "9c3968032bcf636a208766838729f53784bbb613994b955c1509d60a654a327a"
+      "source_hash": "62f88d612e42289fba5cd1132e58371dcc88a9fb7bc66c9d2ae9cdade271dd92",
+      "projection_hash": "d7051a576ffc0605d1d84e924486f398059a971f529666d0bfc883ff7319a6d9"
     },
     {
       "source": "book/latex/sources/appendix-practicing-mage/operating-a-gee.tex",
@@ -1031,15 +1031,15 @@
       "source": "book/latex/sources/appendix-handbook/maintaining-the-machinery.tex",
       "projection": "book/appendix-handbook/maintaining-the-machinery.md",
       "publication_status": "published",
-      "source_hash": "9f3e3f53c76643aa3e09e4f1524e206a403bad604979f1ab8f801598a29011a8",
-      "projection_hash": "d4410962364f47144cc4c8ffcb6416b688ddaccef33e48e572e09e6f4ba19b4c"
+      "source_hash": "f521f898a9671ee6cf34f5b768cb0c0ff164a00253e87d66102705033f32c954",
+      "projection_hash": "a94927237ce8bb68cd6e4abc2f041b6d59852da8af210c1afb5ccc1f7a3337c2"
     },
     {
       "source": "book/latex/sources/appendix-handbook/substitutable-reasoning.tex",
       "projection": "book/appendix-handbook/substitutable-reasoning.md",
       "publication_status": "published",
-      "source_hash": "cb14ed702b26a3304b34f6bdb9681a123490b2445ba12484ff1b7f51f77dc816",
-      "projection_hash": "6769addf9625dc3f9eb8ad293b8ba74240932b49b0f62b3885882fa78dcaa22c"
+      "source_hash": "12e84d3a767fd5471b800cd364a1aaf1b0475fbef1e6c53a47b2cfb2d84131dd",
+      "projection_hash": "60fb825ad404acd3ce0a71ab23a0fefd465b497cd2f5d467ae55a2975c4bb73d"
     },
     {
       "source": "book/latex/sources/appendix-handbook/model-based-test-selection.tex",

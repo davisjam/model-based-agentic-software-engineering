@@ -15107,15 +15107,15 @@
           }
         },
         {
-          "source_text": "mechanically enforced",
+          "source_text": "passage depends on evaluation",
           "source_style": "weight normal; italic; source size 20",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "mechanically enforced",
+          "candidate_text": "passage depends on evaluation",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/residual-decision-tree.svg",
             "element_text_path": "/svg/text[19]/text()",
-            "text_element_context": "mechanically enforced",
+            "text_element_context": "passage depends on evaluation",
             "matching_fragment_count": 1
           }
         }
@@ -15158,7 +15158,7 @@
           "italic": true
         },
         {
-          "text": "mechanically enforced",
+          "text": "passage depends on evaluation",
           "bold": false,
           "italic": true
         },
@@ -16265,7 +16265,7 @@
       "candidate_sha256": "ae502e0285bbaef15527519c8f183cd196529da4e788e9f259f5ce7b3979f3b9",
       "evidence": [
         {
-          "candidate_text": "Identify the kernel",
+          "candidate_text": "Establish the kernel",
           "candidate_style": "bold",
           "semantic_role": "Current heading, label, or annotation; checked against current proof only when validation passes."
         },
@@ -16348,7 +16348,7 @@
       "reason": "Change step 4 to Reassess and repeat: Extend or revise the kernel as engineering obligations change. Preserve the concentric illustration, layout, and type.",
       "checks": [
         {
-          "text": "Identify the kernel",
+          "text": "Establish the kernel",
           "bold": true,
           "italic": false
         },
@@ -16493,7 +16493,7 @@
             "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
             "checks": [
               {
-                "text": "Identify the kernel",
+                "text": "Establish the kernel",
                 "bold": true,
                 "italic": false
               },
@@ -16603,15 +16603,15 @@
             "candidate_sha256": "a83b907f20c9926bcb46a57ba4cfcbf89e17e0b9436b9e08b618783b51d08547",
             "evidence": [
               {
-                "source_text": "Identify the kernel",
+                "source_text": "Establish the kernel",
                 "source_style": "weight 700; normal; source size 20",
                 "semantic_role": "named category versus explanatory text",
-                "candidate_text": "Identify the kernel",
+                "candidate_text": "Establish the kernel",
                 "candidate_style": "bold",
                 "source_locator": {
                   "svg": "book/assets/alignment-kernel.svg",
                   "element_text_path": "/svg/g[1]/text[2]/text()",
-                  "text_element_context": "Identify the kernel",
+                  "text_element_context": "Establish the kernel",
                   "matching_fragment_count": 1
                 }
               },
@@ -16684,7 +16684,7 @@
             "reason": "Replace the final annotation with Each new obligation constrains subsequent changes. Preserve all other content and type sizes; allow one additional line in the native annotation.",
             "checks": [
               {
-                "text": "Identify the kernel",
+                "text": "Establish the kernel",
                 "bold": true,
                 "italic": false
               },

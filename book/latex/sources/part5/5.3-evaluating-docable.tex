@@ -9,9 +9,9 @@
 
 % <!-- section-terms: remediation-cost, governance-conversion, field-report -->
 
-% <!-- point: evaluation-covers-product-cost-and-maintenance | The evaluation distinguishes remediation comparisons, production economics, and the limits of a longitudinal case. -->
+% <!-- point: evaluation-covers-product-cost-and-maintenance | The evaluation distinguishes remediation comparisons, product operation, and the costs of building and changing the product. -->
 
-The engineering machinery described in the preceding section made substantial delegation possible. Its value, however, depends on the software it produces and the cost of producing and maintaining it. \autoref{docable-evaluation-questions} organizes the evaluation around four questions, distinguishing what the available evidence establishes from what remains uncertain.
+The engineering machinery described in the preceding section made substantial delegation possible. Its value, however, depends on the software it produces and the cost of producing and maintaining it. \autoref{docable-evaluation-questions} summarizes the questions we will examine.
 
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
@@ -22,21 +22,20 @@ The engineering machinery described in the preceding section made substantial de
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6000}}@{}}
-\caption[Evaluating DocAble's product and factory]{\emph{Evaluating DocAble's product and factory.} Four questions distinguish comparative performance, production economics, and the limits of the case.}\label{docable-evaluation-questions}\tabularnewline
+\caption[Evaluating DocAble's product and factory]{\emph{Evaluating DocAble's product and factory.}}\label{docable-evaluation-questions}\tabularnewline
 \toprule\noalign{}
-\textbf{Question} & \textbf{What the evidence tells us} \\
+\textbf{Question} & \textbf{Principal findings} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
-\textbf{Question} & \textbf{What the evidence tells us} \\
+\textbf{Question} & \textbf{Principal findings} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{How does DocAble compare with alternative remediation approaches?} & Human remediation and general-purpose agents provide different baselines for evaluating quality, runtime, and cost. \\
-\textbf{How economical is document production?} & Remediation takes minutes and incurs little inference expenditure; human review and correction remain additional costs. \\
-\textbf{What does building the product and factory cost?} & Development requires substantial upfront investment in both the service and its engineering machinery, distinct from marginal production costs. \\
-\textbf{What can this case establish?} & A longitudinal case establishes mechanisms and their sequence, rather than general estimates of productivity or effectiveness. \\
+\textbf{How does DocAble compare with alternative remediation approaches?} & Comparative accessibility results vary by document format and evaluation measure. \\
+\textbf{How economical is document production?} & Remediation takes minutes and incurs little inference expenditure. \\
+\textbf{What does building and changing the product cost?} & Development requires investment in both the service and its supporting engineering machinery. \\
 \end{longtable}
 }
 
@@ -47,10 +46,7 @@ The engineering machinery described in the preceding section made substantial de
 % <!-- point: manual-remediation-provides-a-reference-not-an-oracle | The trained undergraduate corpus provides artifacts and billed labor for a reference workflow, not expert ground truth or matched labor savings. -->
 
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
-\textbf{Human reference.} Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates remediated documents. The recovered corpus contains \magevalue{seip_uta_pairs} identifiable before/after pairs from \magevalue{seip_uta_courses} courses.
-
-% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
-The student outputs document an institutional workflow rather than expert-verified accessibility. I developed DocAble against standards using independently obtained documents and did not examine the students' remediated files until near the end of development. Eligibility screening yielded \magevalue{seip_eval_eligible} pairs, randomly split by document and stratified by format into \magevalue{seip_eval_development} development documents and \magevalue{seip_eval_attempts} validation documents. One validation spreadsheet had prior development exposure.
+\textbf{Human reference.} Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates remediated course materials at Purdue. The recovered corpus contains \magevalue{seip_uta_pairs} identifiable before/after pairs from \magevalue{seip_uta_courses} courses. Their work provides a reference for the institutional remediation process DocAble was intended to support. I developed DocAble against accessibility standards using independently obtained documents and did not examine the students' remediated files until near the end of development. Eligibility screening yielded \magevalue{seip_eval_eligible} pairs, which I divided randomly by document and stratified by format into \magevalue{seip_eval_development} development documents and \magevalue{seip_eval_attempts} validation documents.\magefootnote{human-reference-development-exposure}{One validation spreadsheet had prior development exposure.}
 
 % <!-- point: agent-comparison-tests-economics-without-a-capability-boundary | The agent baseline uses separate configurations and a ten-document cohort; results compare automatic findings, runtime, and inference expenditure. -->
 
@@ -62,13 +58,15 @@ The student outputs document an institutional workflow rather than expert-verifi
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
 % Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-\textbf{Evaluation measures.} The human-reference evaluation compared the original, human-remediated, and DocAble-remediated versions of each document along two dimensions. \textbf{Syntactic accessibility} concerns selected mechanically testable properties, measured with veraPDF's PDF/UA-1 checks and Microsoft Office's October 2026 Accessibility Checker. For each document, the study calculated the signed reduction in findings relative to the original, then summarized those reductions by format. A reduction does not establish that every accessibility obligation holds.
+\textbf{Evaluation measures.} The human-reference evaluation compared the original, human-remediated, and DocAble-remediated versions of each document along two dimensions. \textbf{Syntactic accessibility} concerns mechanically testable properties. I used veraPDF's PDF/UA-1 checks and Microsoft Office's October 2026 Accessibility Checker to measure changes in accessibility findings relative to the original document.
 
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-\textbf{Semantic accessibility} asks what information the document conveys. A GPT-5.2 rubric assessment examined text transcripts, with the original identified and the two outputs presented under randomized labels concealing their provenance. The model judged individual criteria and supplied transcript evidence. A deterministic scorer credited improvements and penalized regressions relative to the original; an output-score difference within one point defined the parity band. The rubric was refined on the development partition before the validation run.
+\textbf{Semantic accessibility} concerns the information the document conveys. I used GPT-5.2 to evaluate text transcripts against a rubric refined on the development partition. The original document was identified, while the two remediated outputs appeared under randomized labels concealing their provenance. The foundation model evaluated individual criteria and supplied transcript evidence. A deterministic scorer credited improvements and penalized regressions relative to the original. Outputs whose scores differed by at most one point were considered within the parity band. Together, the syntactic and semantic measures examine selected accessibility properties; full WCAG conformance requires a broader evaluation.
 
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
-\textbf{Results against the human reference.} DocAble completed \magevalue{seip_eval_completed} of \magevalue{seip_eval_attempts} remediation attempts; one PDF failed. \autoref{docable-human-remediation-results} summarizes the comparative accessibility findings.
+% <!-- point: human-comparison-results-vary-by-property | DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output. -->
+% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
+\textbf{Results against the human reference.} DocAble completed \magevalue{seip_eval_completed} of \magevalue{seip_eval_attempts} remediation attempts; one PDF failed. \autoref{docable-human-remediation-results} summarizes the comparative accessibility findings. DocAble achieved larger median checker reductions for PDF and DOCX, while the human workflow achieved larger reductions for PPTX. Both workflows had the same frequency of increased finding counts.
 
 \begin{figure}[htbp]
 \centering
@@ -76,52 +74,38 @@ The student outputs document an institutional workflow rather than expert-verifi
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
 % Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-\caption[Human-reference remediation results]{\emph{Remediation compared with the human reference:} (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility.}
+\caption[Human-reference remediation results]{\emph{Remediation compared with the human reference:} (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Panels (c) and (d) report document scores and document--criterion changes, respectively.}
 \label{docable-human-remediation-results}
 \end{figure}
 
-% <!-- point: human-comparison-results-vary-by-property | DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output. -->
-
-% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
-DocAble achieved larger median checker reductions for PDF and DOCX; the human workflow achieved larger reductions for PPTX. Both workflows had the same frequency of increased finding counts. The spreadsheet had no original findings, so its percentage reduction was undefined. The failed PDF's partial artifact was excluded from completed-output comparisons.
-
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-Across the \magevalue{seip_eval_completed} scored outputs, the semantic rubric rated DocAble better on \magevalue{seip_eval_semantic_better}, within the parity band on \magevalue{seip_eval_semantic_parity}, and worse on \magevalue{seip_eval_semantic_worse}. Gains in complex-image descriptions accounted for much of its advantage. These are weighted document scores; the gain/regression panel separately counts document--criterion judgments, not unique defects.
-
 % <!-- point: semantic-example-exposes-the-checker-limit | A title-only description passed a checker but omitted table contents; a transcription improved access to those contents, while other examples favored human repair. -->
-
 % Evidence: E46 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E46.md | kind: reported-artifact-inspection
-One presentation makes the distinction concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order.
+Across the \magevalue{seip_eval_completed} completed outputs, the semantic rubric rated DocAble better on \magevalue{seip_eval_semantic_better}, within the parity band on \magevalue{seip_eval_semantic_parity}, and worse on \magevalue{seip_eval_semantic_worse}. Gains in complex-image descriptions accounted for much of its advantage. One presentation makes the distinction between syntactic and semantic accessibility concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order.
 
-% <!-- point: human-comparison-limits-define-the-result | Fallible transcript assessment, inconclusive criteria, changed checkers and unmeasured visual and screen-reader properties limit the results. -->
+% <!-- point: human-comparison-limits-define-the-result | The semantic evaluation reports transcript-based improvements, inconclusive criteria, and repeatability; broader accessibility assessment requires additional evidence. -->
 
 % Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-The semantic assessment covered only part of the intended rubric. Of \magevalue{seip_eval_rubric_rows} criterion-level rows, \magevalue{seip_eval_inconclusive} were inconclusive for DocAble, including \magevalue{seip_eval_adapters_pending} whose automatic adapters were pending. Inconclusive judgments contributed no points; they were not evidence of satisfactory accessibility. Two scoring passes agreed on \magevalue{seip_eval_repeat_agreement} of \magevalue{seip_eval_completed} document classifications, but repeatability does not establish agreement with accessibility experts.
-
-% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
-% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
-The evaluation did not include vision-tier or screen-reader assessments, nor systematically measure complete content preservation or visual fidelity. The Office checker had also changed since the students' summer work, although all versions were evaluated with the same current tools. The findings show improvements on measured properties and identify remaining weaknesses. They do not establish full WCAG conformance or equivalent accessibility for outputs within the parity band.
+The semantic evaluation assessed improvements detectable through text transcripts. Of \magevalue{seip_eval_rubric_rows} criterion-level judgments, \magevalue{seip_eval_inconclusive} were inconclusive for DocAble and contributed no points to its scores. Two scoring passes agreed on \magevalue{seip_eval_repeat_agreement} of \magevalue{seip_eval_completed} document classifications.\magefootnote{semantic-evaluation-repeatability}{Agreement between scoring passes measures repeatability rather than agreement with accessibility experts.} A broader assessment of remediation quality would also examine visual fidelity, content preservation, and the experience of readers using assistive technology.
 
 % Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
-\textbf{Results against general-purpose agents.} Opus and DocAble completed all ten; Fable timed out on one PDF. Quality varied by format. On the four PDFs completed by every configuration, DocAble had the largest median reduction in checker findings. Both agents exceeded DocAble's reductions on the two Word documents, while human remediation led on the two presentations. Median runtime was 8.22 minutes for Opus, 7.77 for Fable, and 1.31 for DocAble; median agent inference costs were \$2.466 and \$3.977, compared with less than \$0.50 for DocAble. These costs concern this ten-document cohort, not the larger human-reference cohort.
+\textbf{Results against general-purpose agents.} Opus and DocAble completed all ten documents; Fable timed out on one PDF. Checker reductions varied by format. On the four PDFs completed by every configuration, DocAble had the largest median reduction in checker findings. Both agents exceeded DocAble's reductions on the two Word documents, while human remediation led on the two presentations. Median runtime was 8.22 minutes for Opus, 7.77 for Fable, and 1.31 for DocAble. Median inference costs were \$2.466 and \$3.977 for the agents, compared with less than \$0.50 for DocAble.\magefootnote{general-agent-comparison-scope}{This comparison measured automatic checker findings, runtime, and inference expenditure on the ten-document cohort.}
 
 % Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
-The result concerns particular configurations, community tools, and automatic findings. It does not establish comparable semantic quality or a lasting capability boundary between a specialized service and a general-purpose agent. The engineering problem includes acquiring a useful rubric, providing suitable tools, and delivering a workflow users can operate. A specialized service packages that accumulated work and can reduce the cost of applying it repeatedly; its advantage depends on the quality of that work, operating economics, and usability.
+A general-purpose agent equipped with suitable tools can thus perform document remediation. But consider what the engineer has to supply: a rubric for evaluating accessibility, tools for examining and changing documents, and a workflow through which users can obtain useful results. A specialized service packages this engineering work so that it can be applied repeatedly. DocAble's processing times and inference costs illustrate the economic value of that investment.
 
 \section{Production Economics}\label{heading:runtime-and-cost}
 
 % <!-- point: runtime-and-inference-are-measured-separately | The 63 attempts had median runtime 1.36 minutes; 62 completed outputs had median inference cost $0.066, excluding unmeasured review and full cloud costs. -->
 
 % Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
-\textbf{Runtime and inference cost.} Median elapsed time across all \magevalue{seip_eval_attempts} attempts, including the failed attempt, was \magevalue{seip_eval_runtime_median_minutes} minutes. Inference expenditure per completed output had a median of \$\magevalue{seip_eval_inference_median_usd} across the \magevalue{seip_eval_completed} outputs, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud execution costs were not measured for this cohort.
-
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
-The undergraduates billed \magevalue{seip_uta_hours} hours, or \magevalue{seip_uta_hours_per_pair} billed hours per pair. At an assumed typical wage of \$\magevalue{seip_uta_hourly_wage}, estimated direct labor is \$\magevalue{seip_uta_cost_per_pair} per pair. These are corpus-level quantities; individual document timings and subsequent review effort were not measured.
+\textbf{Runtime and inference cost.} Median elapsed time across all \magevalue{seip_eval_attempts} remediation attempts was \magevalue{seip_eval_runtime_median_minutes} minutes. Median inference expenditure per completed output was \$\magevalue{seip_eval_inference_median_usd}, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. For comparison, the undergraduates billed \magevalue{seip_uta_hours} hours, averaging \magevalue{seip_uta_hours_per_pair} hours per document pair. At an assumed wage of \$\magevalue{seip_uta_hourly_wage} per hour, this represents approximately \$\magevalue{seip_uta_cost_per_pair} in direct labor per pair.\magefootnote{remediation-cost-accounting}{The runtime includes the failed attempt; inference expenditure covers the \magevalue{seip_eval_completed} completed outputs and excludes other cloud execution costs. Student labor figures are corpus-level averages. Individual document timings and subsequent review effort were not measured.}
 
 % Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
 % Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
 % Evidence: E48 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E48.md | kind: author-account
-DocAble can produce remediation outputs quickly and with little inference expenditure. The human labor figures and DocAble's unattended runtime measure different kinds of effort. A comparison of total labor costs would also need to account for review and correction. Faculty using DocAble have reported follow-up work ranging from a few minutes to tens of minutes per document.
+DocAble makes an initial remediation available quickly and at little inference expense. Faculty using the service have reported follow-up work ranging from a few minutes to tens of minutes per document. The economics of automated remediation therefore depend in part on how much human review and correction the resulting documents require.
 
 % <!-- point: the-accounting-prices-the-case | Operating the product, building the product and factory, and changing the product incur distinct costs. -->
 % <!-- point: measured-production-cost-leaves-review-and-carrying-cost-open | Measured inference expenditure, estimated development investment, and observed change capacity establish different things; per-change cost remains unmeasured. -->
@@ -133,7 +117,7 @@ DocAble can produce remediation outputs quickly and with little inference expend
 \item
   % Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
   % Evidence: E48 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E48.md | kind: author-account
-  \textbf{Cost to operate the product.} The preceding measurements establish low inference expenditure and short processing times. Full cloud execution costs and the human effort needed to review or correct outputs remain additional costs.
+  \textbf{Cost to operate the product.} DocAble's operating costs include inference, cloud execution, and the infrastructure required to provide the service. For the institution using DocAble, human review and correction also contribute to the cost of producing accessible documents.
 \item
   % Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
   % Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
@@ -141,15 +125,12 @@ DocAble can produce remediation outputs quickly and with little inference expend
 \item
   % Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
   % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
-  \textbf{Cost to change the product.} Once the factory was established, coding agents could implement substantial changes while I directed engineering decisions and evaluated their consequences. The development activity in \magevalue{sec:inside-docables-software-factory} illustrates this capacity.
+  \textbf{Cost to change the product.} Once the factory was established, coding agents could implement substantial changes while I directed engineering decisions and evaluated their consequences. The investment in the factory described in \magevalue{sec:inside-docables-software-factory} made this division of work possible.
 \end{itemize}
 
-\section{Limits of the Case}\label{heading:liability}
+\section{What Can We Learn from DocAble?}\label{heading:liability}
 
-% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
-
-The case follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. The measurements do not isolate the cost of individual changes or establish a general productivity multiplier. It cannot establish that another organization will encounter the same failures, develop the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The longitudinal case teaches through the sequence of engineering problems, responses, and changes in delegated work; its measurements concern one project without a controlled comparison. | terms: field-report -->
 
 % <!-- point: turn-outward-to-other-factories | DocAble illustrates one response to increased implementation capacity; other organizations begin with different resources and constraints. -->
-
-DocAble illustrates one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. How have other organizations organized their factories as agents take on more implementation work?
+DocAble illustrates what one engineer can accomplish by developing a software factory alongside the product it produces. As implementation capacity increased, I encountered problems in directing work, preserving engineering decisions, evaluating results, and integrating changes. The value of this case lies in the history of the engineering: which problems arose, how I addressed them, and how the resulting machinery changed the work I could delegate.\magefootnote{docable-development-case-scope}{The development measurements describe a single project without a controlled comparison against another engineering process.} How have other organizations organized their factories as agents take on more implementation work?

@@ -39544,3 +39544,455 @@ MAGE therefore uses \textbf{implementation capacity} in an economic rather than 
 
 This makes the disagreement empirically testable. \textbf{If assistance accelerates only code writing while the surrounding work stays unchanged, the fixed-slice argument largely holds. If governed agents can assume meaningful portions of debugging, testing, refactoring, integration, migration, and operation without proportionate growth in human review, a fixed coding-time slice is no longer the right model of attainable leverage.} The relevant boundary is the work delegated and the supervision it requires. MAGE asks how to cross that boundary without losing engineering control.
 ```
+
+
+## 2026-11-24 — Clarify what constitutes the alignment kernel
+
+Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`:38–51; revision `b9568c9c1`. Distinguish the models and controls comprising the kernel from the properties they protect.
+
+```latex
+\magevalue{chapter:modeling} organized models by the properties they represent. Here we must make a different choice: which properties should we protect first? Before undertaking a transformation, we should identify the properties it must preserve and establish the models and controls needed to protect them. Together, these form the alignment kernel (\autoref{alignment-kernel}).
+
+\caption{\emph{Incrementally extending the alignment kernel.} The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in \magevalue{chapter:modeling} becoming governing constraints over time. Engineers may also revise or retire obligations when the requirements change.}
+
+The alignment kernel need not be comprehensive. Where failure is cheap and reversible, an exploratory implementation may teach us more than modeling in advance. But before undertaking a transformation that could damage properties on which the system already depends, we should establish adequate protection for those properties. Newly established obligations can then join the kernel, protecting the results of one transformation during the next. As the system's requirements change, we may also revise the kernel itself.
+```
+
+
+### Memory-model application of the alignment kernel
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`:105; revision `b9568c9c1`. Make the same models-and-controls distinction at the worked example.
+
+```latex
+I had changed the architecture to satisfy a memory obligation. This was active alignment. I could now use the residency model to guide further designs and establish checks for passive alignment, protecting the memory bound during subsequent changes. The obligation became part of the alignment kernel introduced in \cref{4.1-the-dynamics-of-mage:heading:establish-a-kernel-before-expanding} for the execution changes that followed.
+```
+
+
+## 2026-11-24 — Chapter 7 caption: structure and capital
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`; revision `b9568c9c1`. Preserve the established distinction between reusable structure and its economic value.
+
+```latex
+Governance conversion carries recurring judgment into durable engineering capital within that environment.
+```
+
+
+## 2026-11-24 — Behavioral obligations in verification selection
+
+Source: `book/latex/sources/part3/3.2-governance-mechanisms.tex`; revision `b9568c9c1`. Reserve invariant for the narrower mathematical property; the verification-selection policy also covers liveness obligations.
+
+```latex
+The model of an invariant identifies its participants, the coordination primitives involved, and the form of its temporal obligation. From these declarations, DocAble derives a verification requirement. Under this policy, an obligation involving concurrent coordination may require explicit-state exploration for a safety property or temporal model checking for a liveness property. Other behavioral obligations can be assigned property-based tests. This is a policy for DocAble's engineering environment, rather than a general rule for choosing verification techniques.
+
+A reusable checker examines each modeled invariant. Does it name a test or specification of the required kind? Does that file exist? When I add another invariant within this policy's scope, the same machinery determines what kind of verification is required and checks that I have provided it. For established models, a missing file or reference blocks the change. For newly introduced models, the check can begin in advisory mode while the required machinery is constructed.
+```
+
+
+## 2026-11-24 — Behavioral obligations in verification selection
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`; revision `b9568c9c1`. Reserve invariant for the narrower mathematical property; the verification-selection policy also covers liveness obligations.
+
+```latex
+Can a job always terminate legally? & Cross-service state model with per-invariant facts & Exhaustive-state checkers; worker transition tables & Progress and termination can be checked over explicit states and transitions \\
+
+\item \textbf{Property facts → verification tier → required artifact → admission} (\cref{3.2-governance-mechanisms:heading:deriving-verification-requirements}). The factory uses modeled properties of each invariant to determine what kind of verification artifact it requires: a property test, an explicit-state checker, or a temporal specification. A reusable gate checks that the required artifact exists, although it does not establish that the verification has been performed. I need not choose a verification technique anew for every invariant expressed in this modeling vocabulary.
+
+These arrangements are familiar in model-based engineering, where a modeling language and its associated machinery can serve many engineering problems. I developed similar arrangements incrementally within DocAble. Adding another component boundary extends what the architectural checker governs; adding another invariant extends the population for which the factory derives verification requirements. Once the machinery exists, I can express additional engineering decisions in the models without commissioning a new mechanism for each one.
+```
+
+
+## 2026-11-24 — Behavioral obligations in verification selection
+
+Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`; revision `b9568c9c1`. Reserve invariant for the narrower mathematical property; the verification-selection policy also covers liveness obligations.
+
+```latex
+I developed similar arrangements incrementally in DocAble. Recall the architectural checker in \autoref{3.2-governance-mechanisms:heading:semantic-commitment-and-mechanization}. With a representation of permitted dependencies and a reusable checker available, adding another dependency restriction requires extending the model rather than constructing another checker. The verification-tier machinery similarly determines the kind of verification artifact required for additional invariants expressed in its modeling vocabulary; the artifact must still be constructed and evaluated.
+```
+
+
+## 2026-11-24 — Behavioral obligations in verification selection
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex`; revision `b9568c9c1`. Reserve invariant for the narrower mathematical property; the verification-selection policy also covers liveness obligations.
+
+```latex
+Some routing decisions can themselves be mechanized. DocAble's verification-tier policy, described in \autoref{3.2-governance-mechanisms:heading:deriving-verification-requirements}, uses modeled properties of an invariant to determine the kind of verification artifact required. It illustrates how engineers can settle a recurring class of routing decisions and preserve those decisions in reusable machinery.
+```
+
+
+## 2026-11-24 — Behavioral obligations in verification selection
+
+Source: `book/latex/sources/appendix-handbook/maintaining-the-machinery.tex`; revision `b9568c9c1`. Reserve invariant for the narrower mathematical property; the verification-selection policy also covers liveness obligations.
+
+```latex
+Models can also determine what verification machinery must exist. DocAble derives a verification tier from an invariant's participating lanes, coordination primitive, and temporal operator. Its policy assigns concurrent safety obligations to explicit-state exploration, concurrent liveness obligations to a temporal specification, and ordinary sequential obligations to property tests. A reusable lint maps each tier to a required artifact kind and checks that a reference of that kind resolves to a file. The mapping must cover every tier; a new tier without a mapping is itself a finding. The machinery applies across models, with blocking enforcement for selected models and advisory findings while others are brought into conformance.
+
+A collection of tests has no explicit account of what it must cover. & Derive the obligation set. Enumerate required evidence from represented properties. & Cross-service invariant declarations identify verification obligations and references to their checkers. \\
+```
+
+
+## 2026-11-24 — Appendix B: authoritative models
+
+Source: `book/latex/sources/appendix-practicing-mage/measuring-mage.tex`; revision `b9568c9c1`. Use the term established in Chapter 2.
+
+```latex
+\textbf{Model quality and coverage} depend on the claims each model makes. A descriptive model must correspond to its subject; a normative model states intent the system must satisfy; a derived view depends on its source and transformation. Historical work records describe the intent and evidence associated with a past change; current architectural models must remain consistent with the system they describe. Examine drift findings, failed queries, missing consequential coverage, and reconciliation evidence. Freshness means correspondence after relevant change, not a recent edit date or valid link. \autoref{2.6-system-knowledge:heading:maintaining-correspondence} develops these maintenance obligations.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+The decisions that depend on agentic inference form the system's \textbf{probabilistic surface}. Other parts may be deterministic, such as a tool that applies a fixed transformation or a test suite that evaluates explicit conditions. Better models and iterative loops can improve the reliability of inferred judgments. Engineers can also establish mechanisms that enforce selected requirements even when an agent makes a mistake. The engineering objective is not to eliminate probabilistic reasoning, but to decide where its uncertainty is acceptable and where stronger controls are needed.
+
+
+The independence assumption is deliberately simple; real implementation failures may be correlated, and a product's features are not necessarily equally difficult. The calculation is not a prediction of agent performance. It illustrates why the reliability of the whole system cannot be inferred from success on individual tasks. Human review, automated checks, iterative repair, and more capable models can improve the final result, but their costs and limitations belong in the evaluation of the complete engineering process.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+Several outcomes are plausible. A good representation might let a weaker model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
+
+Several outcomes are plausible. A good representation might let a weaker foundation model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/part6/6.4-research-agenda.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+One experimental arrangement would compare agents working with source files and ordinary review against agents supported by a validated dependency model and independent admission checks. This tests the combined effect of the representation and enforcement arrangement; the preceding experiments distinguish their individual contributions. The environments use the same codebase, task population, and production tools; assess the dependency model's correspondence and the check's coverage before measuring outcomes. Both conditions receive the same independent outcome assessment. Equivalent gains from added capacity, or gains favoring ordinary review, would challenge H4 under these conditions. Other task families require other specified investments. These comparisons can reveal substitution between environment and model capability, complementarity, or little environmental contribution without constructing an aggregate GEE score.
+
+This broader choice is \textbf{engineering routing}. Model routing selects a reasoner for a task; engineering routing selects the representation, reasoner, tools, iteration, and admission mechanisms through which the task will be realized. It also allows investment in the engineering environment itself. These decisions are coupled: a representation may make a cheaper reasoner sufficient, or support a check that changes how the result can be admitted. A routing decision may therefore favor stronger inference, more explicit structure, or a deterministic operation when the task is sufficiently specified.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/part6/6.3-scope-conditions.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+Software has the same problem. The Department of Justice\textquotesingle s 2024 accessibility rule generally requires state and local governments to make their web and mobile content conform to \magevalue{doj_technical_standard}, including conventional electronic documents where the criteria apply~\citep{doj-web-accessibility-2024}. Many resulting requirements can be checked mechanically, but the rule also permits an alternative technique when it provides ``substantially equivalent or greater accessibility and usability.'' Whether it does so can depend on the information and functionality preserved, the users and tasks involved, and the barriers the alternative introduces. DocAble sits on this boundary. It can mechanically check many properties that its document models make observable and use probabilistic models for semantic work such as interpreting figures and generating descriptions. But neither proves that every blind student will receive a substantially equivalent experience from every remediated document. Some judgment remains.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+The case follows one primary engineer directing multiple coding agents within one contemporary model ecosystem, without a controlled comparison against another engineering process. The measurements do not isolate the cost of individual changes or establish a general productivity multiplier. It cannot establish that another organization will encounter the same failures, develop the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/appendix-handbook/substitutable-reasoning.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Engineering models for substitutable reasoning]{\emph{Engineering models for substitutable reasoning.} Task, operation, and acceptance models state the domain obligations while the reasoning workflow and selected foundation models may vary. Shared task and target identities connect these representations to their consumers.}\label{handbook-substitution-models}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Task model & What judgment is required, and what makes its result acceptable? & Task identifiers, input/output shapes, semantic obligations, error consequences. & Joins the reasoning workflow to capability selection and task-specific evaluation. \\
+Capability and selection model & Which reasoning resources are eligible for a task? & Model capabilities, task requirements, input traits, measured performance, selection policy. & Task identity joins requirements to candidate models; the selector derives a model choice. \\
+Operation model & Which effects may the engine propose? & Typed operations, target references, arguments, preconditions, result meanings. & Targets refer to the domain artifact; the applier resolves and executes supported proposals. \\
+Reasoning workflow model & How is work decomposed, ordered, and assigned? & A pass graph with dependency edges and task assignments, or an agent\textquotesingle s revisable plan. & Execution machinery consumes the workflow; its steps request tasks and propose operations. \\
+Acceptance model & What evidence is required to accept the artifact? & Obligations, evaluation criteria, required evidence, blocking and review conditions. & Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. \\
+\end{longtable}
+}
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Engineering models for substitutable reasoning]{\emph{Engineering models for substitutable reasoning.} Task, operation, and acceptance models state the domain obligations while the reasoning workflow and selected foundation models may vary. Shared task and target identities connect these representations to their consumers.}\label{handbook-substitution-models}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relationships / consumers
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Task model & What judgment is required, and what makes its result acceptable? & Task identifiers, input/output shapes, semantic obligations, error consequences. & Joins the reasoning workflow to capability selection and task-specific evaluation. \\
+Capability and selection model & Which reasoning resources are eligible for a task? & Foundation-model capabilities, task requirements, input traits, measured performance, selection policy. & Task identity joins requirements to candidate models; the selector derives a model choice. \\
+Operation model & Which effects may the engine propose? & Typed operations, target references, arguments, preconditions, result meanings. & Targets refer to the domain artifact; the applier resolves and executes supported proposals. \\
+Reasoning workflow model & How is work decomposed, ordered, and assigned? & A pass graph with dependency edges and task assignments, or an agent\textquotesingle s revisable plan. & Execution machinery consumes the workflow; its steps request tasks and propose operations. \\
+Acceptance model & What evidence is required to accept the artifact? & Obligations, evaluation criteria, required evidence, blocking and review conditions. & Evaluators inspect the artifact; a gate or responsible reviewer consumes their findings. \\
+\end{longtable}
+}
+
+Assign ownership to the obligations and to the observations used to evaluate them. The responsible engineer authorizes task meanings, permitted operations, and acceptance conditions; measured capability results describe behavior on an identified workload. A selection policy consumes those observations but does not turn them into universal quality guarantees. A selected model choice or a generated repair plan is derived from other representations. That describes its origin, not its authority.
+
+\subsection*{Select Models for Fixed Tasks}\label{heading:select-models-for-fixed-tasks}
+
+Separate evaluation makes reasoning strategies easier to compare, but does not guarantee independent errors. Structural and content-preservation checks supply evidence about the properties they inspect. Semantic judgments require evidence about meaning, which may come from another model or a human reviewer. An evaluator that shares the producer's model family or assumptions may confirm the same mistake.
+
+Separate evaluation makes reasoning strategies easier to compare, but does not guarantee independent errors. Structural and content-preservation checks supply evidence about the properties they inspect. Semantic judgments require evidence about meaning, which may come from another foundation model or a human reviewer. An evaluator that shares the producer's model family or assumptions may confirm the same mistake.
+
+Specialized reasoning workflows require construction and maintenance but can divide work into tasks that less expensive models perform adequately. General-purpose agents may require less specialized orchestration while consuming more inference resources. The economic choice depends on the quality required, the frequency of the task, and the costs of maintaining the surrounding machinery. As model capabilities change, an engineer may find it worthwhile to replace a specialized workflow or retain it for predictable, high-volume work.
+
+Specialized reasoning workflows require construction and maintenance but can divide work into tasks that less expensive foundation models perform adequately. General-purpose agents may require less specialized orchestration while consuming more inference resources. The economic choice depends on the quality required, the frequency of the task, and the costs of maintaining the surrounding machinery. As model capabilities change, an engineer may find it worthwhile to replace a specialized workflow or retain it for predictable, high-volume work.
+```
+
+
+## 2026-11-24 — Terminology and glossary consolidation
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`; revision `b9568c9c1`. Clarify foundation-model terminology or apply the supplied glossary copy; preserve engineering-model meanings.
+
+```latex
+\textbf{Alignment (MAGE).} The engineering activity of making selected obligations enforceable through constraints, evidence, and admission mechanisms in a governed engineering environment. Unlike model--implementation correspondence, Alignment is not limited to establishing agreement between representations. It does not require changing the foundation model's objectives or behavior. \autoref{3.1-from-engineering-models-to-enforcement:heading:agreement-is-not-correctness} develops these distinctions.
+
+\textbf{Reasoning horizon.} Reasoning is the use of available information to draw inferences, evaluate alternatives, and work toward a solution. A reasoning horizon is the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness and engineered environment.
+```
+
+
+## 2026-11-24 — Chapter 5 final caveating pass: factory account
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`; revision `b9568c9c1` plus the current terminology edits. Apply C01–C04; retain experimental scope and accounting details.
+
+```latex
+% Evidence: E20 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E20.md | kind: mechanism-and-practice
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+An \emph{Epic} represented a substantial engineering intention with a rationale, design, relevant invariants, phases, and acceptance criteria. Nontrivial designs received separate review using another foundation model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. Across the complete window, the reconstruction recovers \magevalue{seip_commits} work commits, \magevalue{seip_dispatches} dispatches, and \magevalue{seip_completions} affirmative completion claims.
+
+% Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+% Evidence: E34 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E34.md | kind: dated-case-evidence
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agents and their engineering environment.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-longitudinal-261109-4fdf2b18d2.pdf}
+\caption[Development activity and engineering structure]{\emph{Development activity and engineering structure over 31 weeks:} (a) reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory's growth, not the value or correctness of its output.}
+\label{realization-over-time}
+\end{figure}
+
+% Evidence: E10 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E10.md | kind: implementation
+\item \textbf{Service relationships × deployment wiring × runtime identity → access-grant plan} (\cref{2.6-system-knowledge:heading:docable-connecting-engineering-models} and \cref{chapter:appendix-a-model-driven-deployment}). The factory combines these three representations to determine which service accounts require permission to invoke which services. I need not reconstruct those permissions by hand for each deployment, although the resulting grants must still be evaluated for correctness.
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+The shared engineering machinery made alternative reasoning strategies practical to investigate. In one experiment, frontier agents inferred PDF structure through repeated tool interactions, while a foundation model given a prepared document scaffold inferred structure in a single pass on a separate prose fixture. The scaffolded approach achieved high agreement with its reference structure at substantially lower inference cost, although the two approaches were evaluated on different fixtures. These experiments exposed an architectural choice: which useful structure should the system supply, and which judgments should the reasoner make?
+
+% Evidence: E38 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E38.md | kind: dated-case-evidence
+Other experiments tested whether additional agentic reasoning justified its cost. On a handwritten PDF in September 2026, the structured pipeline incurred \$0.0419 in metered inference expenditure, compared with an estimated \$2.29 for an agent using DocAble's document tools.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of accumulated context contributed substantially to the agent's cost. Both outputs passed the evaluated veraPDF checks, but the agent had seen the reference document structure, preventing an unbiased quality comparison. A November two-document experiment allowed an agent to inspect remaining findings and request another repair pass. Neither document gained additional checker improvements; on the harder document, cost increased from \$1.35 to \$3.57. I did not promote the loop to production.
+```
+
+
+## 2026-11-24 — Chapter 5 evaluation: coherent paragraphs and engineering interpretation
+
+Source: `book/latex/sources/part5/5.3-evaluating-docable.tex`, lines 1–155; revision `b9568c9c1` plus the current terminology edits. C06–C12, with the later packet governing paragraph structure. Measurements and their material scopes remain in prose, captions, and footnotes.
+
+```latex
+% mage-auto-heading: runtime-and-cost
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: Evaluating the Product and Factory -->
+
+\chapter{Evaluating the Product and Factory}\label{heading:economics}
+
+% <!-- section-terms: remediation-cost, governance-conversion, field-report -->
+
+% <!-- point: evaluation-covers-product-cost-and-maintenance | The evaluation distinguishes remediation comparisons, production economics, and the limits of a longitudinal case. -->
+
+The engineering machinery described in the preceding section made substantial delegation possible. Its value, however, depends on the software it produces and the cost of producing and maintaining it. \autoref{docable-evaluation-questions} organizes the evaluation around four questions, distinguishing what the available evidence establishes from what remains uncertain.
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+% Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
+% Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
+% Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6000}}@{}}
+\caption[Evaluating DocAble's product and factory]{\emph{Evaluating DocAble's product and factory.} Four questions distinguish comparative performance, production economics, and the limits of the case.}\label{docable-evaluation-questions}\tabularnewline
+\toprule\noalign{}
+\textbf{Question} & \textbf{What the evidence tells us} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\textbf{Question} & \textbf{What the evidence tells us} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{How does DocAble compare with alternative remediation approaches?} & Human remediation and general-purpose agents provide different baselines for evaluating quality, runtime, and cost. \\
+\textbf{How economical is document production?} & Remediation takes minutes and incurs little inference expenditure; human review and correction remain additional costs. \\
+\textbf{What does building the product and factory cost?} & Development requires substantial upfront investment in both the service and its engineering machinery, distinct from marginal production costs. \\
+\textbf{What can this case establish?} & A longitudinal case establishes mechanisms and their sequence, rather than general estimates of productivity or effectiveness. \\
+\end{longtable}
+}
+
+% <!-- section-terms: remediation-cost -->
+
+\section{Baselines and Evaluation}\label{heading:human-remediation-as-a-reference}
+
+% <!-- point: manual-remediation-provides-a-reference-not-an-oracle | The trained undergraduate corpus provides artifacts and billed labor for a reference workflow, not expert ground truth or matched labor savings. -->
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+\textbf{Human reference.} Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates remediated documents. The recovered corpus contains \magevalue{seip_uta_pairs} identifiable before/after pairs from \magevalue{seip_uta_courses} courses.
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+The student outputs document an institutional workflow rather than expert-verified accessibility. I developed DocAble against standards using independently obtained documents and did not examine the students' remediated files until near the end of development. Eligibility screening yielded \magevalue{seip_eval_eligible} pairs, randomly split by document and stratified by format into \magevalue{seip_eval_development} development documents and \magevalue{seip_eval_attempts} validation documents. One validation spreadsheet had prior development exposure.
+
+% <!-- point: agent-comparison-tests-economics-without-a-capability-boundary | The agent baseline uses separate configurations and a ten-document cohort; results compare automatic findings, runtime, and inference expenditure. -->
+
+% Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
+\textbf{General-purpose agents.} Could a general-purpose agent perform the remediation directly? A separate comparison used community document tools, unlike the engineered DocAble operations reused in \hyperref[5.2-inside-docables-software-factory:heading:exploring-alternative-reasoning-engines]{Substituting the Reasoning Engine}. Opus and Fable each used one configuration on ten validation documents: five PDFs, two Word documents, two presentations, and one spreadsheet.
+
+% <!-- point: human-comparison-separates-syntax-and-semantics | The human-reference evaluation separately measures checker findings and transcript-based semantic improvements relative to the original. -->
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+\textbf{Evaluation measures.} The human-reference evaluation compared the original, human-remediated, and DocAble-remediated versions of each document along two dimensions. \textbf{Syntactic accessibility} concerns selected mechanically testable properties, measured with veraPDF's PDF/UA-1 checks and Microsoft Office's October 2026 Accessibility Checker. For each document, the study calculated the signed reduction in findings relative to the original, then summarized those reductions by format. A reduction does not establish that every accessibility obligation holds.
+
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+\textbf{Semantic accessibility} asks what information the document conveys. A GPT-5.2 rubric assessment examined text transcripts, with the original identified and the two outputs presented under randomized labels concealing their provenance. The model judged individual criteria and supplied transcript evidence. A deterministic scorer credited improvements and penalized regressions relative to the original; an output-score difference within one point defined the parity band. The rubric was refined on the development partition before the validation run.
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+\textbf{Results against the human reference.} DocAble completed \magevalue{seip_eval_completed} of \magevalue{seip_eval_attempts} remediation attempts; one PDF failed. \autoref{docable-human-remediation-results} summarizes the comparative accessibility findings.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-human-evaluation-261109-342c45a2c1.pdf}
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+\caption[Human-reference remediation results]{\emph{Remediation compared with the human reference:} (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility.}
+\label{docable-human-remediation-results}
+\end{figure}
+
+% <!-- point: human-comparison-results-vary-by-property | DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output. -->
+
+% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
+DocAble achieved larger median checker reductions for PDF and DOCX; the human workflow achieved larger reductions for PPTX. Both workflows had the same frequency of increased finding counts. The spreadsheet had no original findings, so its percentage reduction was undefined. The failed PDF's partial artifact was excluded from completed-output comparisons.
+
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+Across the \magevalue{seip_eval_completed} scored outputs, the semantic rubric rated DocAble better on \magevalue{seip_eval_semantic_better}, within the parity band on \magevalue{seip_eval_semantic_parity}, and worse on \magevalue{seip_eval_semantic_worse}. Gains in complex-image descriptions accounted for much of its advantage. These are weighted document scores; the gain/regression panel separately counts document--criterion judgments, not unique defects.
+
+% <!-- point: semantic-example-exposes-the-checker-limit | A title-only description passed a checker but omitted table contents; a transcription improved access to those contents, while other examples favored human repair. -->
+
+% Evidence: E46 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E46.md | kind: reported-artifact-inspection
+One presentation makes the distinction concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order.
+
+% <!-- point: human-comparison-limits-define-the-result | Fallible transcript assessment, inconclusive criteria, changed checkers and unmeasured visual and screen-reader properties limit the results. -->
+
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+The semantic assessment covered only part of the intended rubric. Of \magevalue{seip_eval_rubric_rows} criterion-level rows, \magevalue{seip_eval_inconclusive} were inconclusive for DocAble, including \magevalue{seip_eval_adapters_pending} whose automatic adapters were pending. Inconclusive judgments contributed no points; they were not evidence of satisfactory accessibility. Two scoring passes agreed on \magevalue{seip_eval_repeat_agreement} of \magevalue{seip_eval_completed} document classifications, but repeatability does not establish agreement with accessibility experts.
+
+% Evidence: E44 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E44.md | kind: dated-case-evidence
+% Evidence: E45 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E45.md | kind: dated-case-evidence
+The evaluation did not include vision-tier or screen-reader assessments, nor systematically measure complete content preservation or visual fidelity. The Office checker had also changed since the students' summer work, although all versions were evaluated with the same current tools. The findings show improvements on measured properties and identify remaining weaknesses. They do not establish full WCAG conformance or equivalent accessibility for outputs within the parity band.
+
+% Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
+\textbf{Results against general-purpose agents.} Opus and DocAble completed all ten; Fable timed out on one PDF. Quality varied by format. On the four PDFs completed by every configuration, DocAble had the largest median reduction in checker findings. Both agents exceeded DocAble's reductions on the two Word documents, while human remediation led on the two presentations. Median runtime was 8.22 minutes for Opus, 7.77 for Fable, and 1.31 for DocAble; median agent inference costs were \$2.466 and \$3.977, compared with less than \$0.50 for DocAble. These costs concern this ten-document cohort, not the larger human-reference cohort.
+
+% Evidence: E49 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E49.md | kind: dated-case-evidence
+The result concerns particular configurations, community tools, and automatic findings. It does not establish comparable semantic quality or a lasting capability boundary between a specialized service and a general-purpose agent. The engineering problem includes acquiring a useful rubric, providing suitable tools, and delivering a workflow users can operate. A specialized service packages that accumulated work and can reduce the cost of applying it repeatedly; its advantage depends on the quality of that work, operating economics, and usability.
+
+\section{Production Economics}\label{heading:runtime-and-cost}
+
+% <!-- point: runtime-and-inference-are-measured-separately | The 63 attempts had median runtime 1.36 minutes; 62 completed outputs had median inference cost $0.066, excluding unmeasured review and full cloud costs. -->
+
+% Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
+\textbf{Runtime and inference cost.} Median elapsed time across all \magevalue{seip_eval_attempts} attempts, including the failed attempt, was \magevalue{seip_eval_runtime_median_minutes} minutes. Inference expenditure per completed output had a median of \$\magevalue{seip_eval_inference_median_usd} across the \magevalue{seip_eval_completed} outputs, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud execution costs were not measured for this cohort.
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+The undergraduates billed \magevalue{seip_uta_hours} hours, or \magevalue{seip_uta_hours_per_pair} billed hours per pair. At an assumed typical wage of \$\magevalue{seip_uta_hourly_wage}, estimated direct labor is \$\magevalue{seip_uta_cost_per_pair} per pair. These are corpus-level quantities; individual document timings and subsequent review effort were not measured.
+
+% Evidence: E43 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E43.md | kind: dated-case-evidence
+% Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
+% Evidence: E48 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E48.md | kind: author-account
+DocAble can produce remediation outputs quickly and with little inference expenditure. The human labor figures and DocAble's unattended runtime measure different kinds of effort. A comparison of total labor costs would also need to account for review and correction. Faculty using DocAble have reported follow-up work ranging from a few minutes to tens of minutes per document.
+
+% <!-- point: the-accounting-prices-the-case | Operating the product, building the product and factory, and changing the product incur distinct costs. -->
+% <!-- point: measured-production-cost-leaves-review-and-carrying-cost-open | Measured inference expenditure, estimated development investment, and observed change capacity establish different things; per-change cost remains unmeasured. -->
+
+\textbf{Product and factory costs.} A software factory incurs costs in building the machinery for production, using that machinery to change the software, and maintaining it as the software evolves. The resulting product also has operating costs. DocAble illustrates these distinctions:
+
+\begin{itemize}
+\tightlist
+\item
+  % Evidence: E47 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E47.md | kind: dated-case-evidence
+  % Evidence: E48 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E48.md | kind: author-account
+  \textbf{Cost to operate the product.} The preceding measurements establish low inference expenditure and short processing times. Full cloud execution costs and the human effort needed to review or correct outputs remain additional costs.
+\item
+  % Evidence: E50 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E50.md | kind: estimate
+  % Evidence: E35 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E35.md | kind: author-account
+  \textbf{Cost to build the product and factory.} I estimate that developing DocAble over six months cost approximately \$110,000: \$90,000 in engineering labor and \$20,000 in cloud expenditure. This investment produced both the remediation service and its supporting engineering machinery. Some expenditure was avoidable: despite my software-development experience, I had limited cloud-operations expertise. For example, I omitted cleanup requirements when directing Claude to deploy DocAble, allowing approximately 2,000 obsolete deployments to accumulate and contributing to a cloud bill of about \$1,000 that month.
+\item
+  % Evidence: E01 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E01.md | kind: author-account
+  % Evidence: E12 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E12.md | kind: measurement
+  \textbf{Cost to change the product.} Once the factory was established, coding agents could implement substantial changes while I directed engineering decisions and evaluated their consequences. The development activity in \magevalue{sec:inside-docables-software-factory} illustrates this capacity.
+\end{itemize}
+
+\section{Limits of the Case}\label{heading:liability}
+
+% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
+
+The case follows one primary engineer directing multiple coding agents within one contemporary foundation-model ecosystem, without a controlled comparison against another engineering process. The measurements do not isolate the cost of individual changes or establish a general productivity multiplier. It cannot establish that another organization will encounter the same failures, develop the same mechanisms, or achieve the same economics. What it does establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted under continuing change.
+
+% <!-- point: turn-outward-to-other-factories | DocAble illustrates one response to increased implementation capacity; other organizations begin with different resources and constraints. -->
+
+DocAble illustrates one response to increasing implementation capacity: an engineer constructed models, controls, and production processes while directing agents to build the product. How have other organizations organized their factories as agents take on more implementation work?
+
+```

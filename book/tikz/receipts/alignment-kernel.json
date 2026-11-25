@@ -3,7 +3,7 @@
   "claim": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 reassess and repeat — extend or revise the kernel as engineering obligations change. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
   "topology": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 reassess and repeat — extend or revise the kernel as engineering obligations change. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
   "required_terms": [
-    "Identify the kernel",
+    "Establish the kernel",
     "Actively align",
     "Extend",
     "Reassess and repeat",
@@ -123,7 +123,7 @@
     "reviewed_visually": true,
     "checks": [
       {
-        "text": "Identify the kernel",
+        "text": "Establish the kernel",
         "bold": true,
         "italic": false
       },
@@ -255,7 +255,7 @@
         "claim": "*Incrementally extending the alignment kernel.* The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in Chapter 2 becoming governing constraints over time.",
         "topology": "Four nested governing layers remain concentric, with initial kernel M_A at the center and M_B, M_C, M_D progressing outward. The numbered four-step sequence remains a separate action progression, now to the left of the circles: identify kernel, actively align, extend, repeat. The layers are not model classes and are not equated with the numbered steps.",
         "required_terms": [
-          "Identify the kernel",
+          "Establish the kernel",
           "Model properties that",
           "must stay protected.",
           "Actively align",
@@ -402,15 +402,15 @@
           "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
           "evidence": [
             {
-              "source_text": "Identify the kernel",
+              "source_text": "Establish the kernel",
               "source_style": "weight 700; normal; source size 20",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "Identify the kernel",
+              "candidate_text": "Establish the kernel",
               "candidate_style": "bold",
               "source_locator": {
                 "svg": "book/assets/alignment-kernel.svg",
                 "element_text_path": "/svg/g[1]/text[2]/text()",
-                "text_element_context": "Identify the kernel",
+                "text_element_context": "Establish the kernel",
                 "matching_fragment_count": 1
               }
             },
@@ -483,7 +483,7 @@
           "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
           "checks": [
             {
-              "text": "Identify the kernel",
+              "text": "Establish the kernel",
               "bold": true,
               "italic": false
             },
@@ -626,7 +626,7 @@
         "claim": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new obligation constrains subsequent changes. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
         "topology": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new obligation constrains subsequent changes. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region.",
         "required_terms": [
-          "Identify the kernel",
+          "Establish the kernel",
           "Actively align",
           "Extend",
           "Repeat",
@@ -768,7 +768,7 @@
           "reviewed_visually": true,
           "checks": [
             {
-              "text": "Identify the kernel",
+              "text": "Establish the kernel",
               "bold": true,
               "italic": false
             },
@@ -905,5 +905,15 @@
       "status": "requires-rendered-review",
       "scope": "Source text revision prepared; previous proof remains historical. New native and SVG proof review not asserted."
     }
-  ]
+  ],
+  "revision_review": {
+    "date": "2026-11-24",
+    "scope": "Author-requested label revision; retain type sizes and verify label clearance in the rendered native figure.",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "03e02cf705c880f929fc9d0ee7d4570d2a2fbd7e29d77718ebe0e10e225077f0",
+    "page": 45,
+    "source_sha256": "695c569e87f780df309933c9be5ac59962ecec738291f36ffc225886ffe0c0ba",
+    "candidate_sha256": "efcf7feecd8a19438ccb04c840f80d032b8365d7db0f51f20f145c76e864d547",
+    "visual_review": "Passed: labels remain inside their boxes or text areas; arrows and surrounding labels remain clear."
+  }
 }
