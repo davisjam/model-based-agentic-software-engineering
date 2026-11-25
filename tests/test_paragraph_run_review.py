@@ -15,3 +15,9 @@ class ReviewedRunTests(unittest.TestCase):
         self.assertTrue(mod.blocks_run("3.2", "What Should We Teach?", 13))
         self.assertTrue(mod.blocks_run("3.2", "Another topic", 11))
         self.assertFalse(mod.blocks_run("3.2", "Another topic", 10))
+
+    def test_routing_addition_remains_bounded(self):
+        heading = "Engineering Routing {#research-optimizing-the-engineering-environment}"
+        self.assertFalse(mod.blocks_run("6.4", heading, 11))
+        self.assertTrue(mod.blocks_run("6.4", heading, 12))
+        self.assertTrue(mod.blocks_run("6.3", heading, 11))

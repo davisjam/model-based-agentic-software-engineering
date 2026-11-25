@@ -32,7 +32,13 @@ BLOCK_RUN = 11        # > 10 paragraphs unbroken -> block (not readable)
 # §7.4.4, retain every paragraph, and let "I would concede some of this ground"
 # carry the turn from objection to rebuttal. Keep this visible as an audit
 # finding; further expansion beyond the reviewed 13-paragraph run still blocks.
-REVIEWED_RUN_LIMITS = {("7.4", "What Should We Teach?"): 13}
+REVIEWED_RUN_LIMITS = {
+    ("7.4", "What Should We Teach?"): 13,
+    # Author instruction, 2026-11-24: add the practical-decision paragraph just
+    # before the final paragraph of the existing engineering-routing exposition.
+    # Retain the equation and its explanations; later expansion still blocks.
+    ("6.4", "Engineering Routing {#research-optimizing-the-engineering-environment}"): 11,
+}
 
 
 def blocks_run(xy: str, heading: str, run: int, *, conclusion: bool = False) -> bool:

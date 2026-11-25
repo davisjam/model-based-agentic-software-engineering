@@ -2301,7 +2301,7 @@
           "heading_text": "Preserving and Revising Models",
           "topic_sentence": null,
           "id_source": "explicit",
-          "block_index": 81,
+          "block_index": 82,
           "points": []
         },
         {
@@ -2310,7 +2310,7 @@
           "heading_text": "Revising Models without Abandoning Obligations",
           "topic_sentence": "The memory model also made predictions that I could test independently of the implementation’s apparent success.",
           "id_source": "explicit",
-          "block_index": 82,
+          "block_index": 83,
           "points": []
         },
         {
@@ -2319,7 +2319,7 @@
           "heading_text": "Preserving Performance Obligations",
           "topic_sentence": "As I developed these models, I had to decide which of their properties should constrain subsequent engineering.",
           "id_source": "explicit",
-          "block_index": 88,
+          "block_index": 89,
           "points": []
         },
         {
@@ -2328,7 +2328,7 @@
           "heading_text": "Combining Models to Answer Engineering Questions",
           "topic_sentence": "I could no longer make decisions about concurrency by considering latency alone.",
           "id_source": "explicit",
-          "block_index": 93,
+          "block_index": 94,
           "points": []
         },
         {
@@ -2337,7 +2337,7 @@
           "heading_text": "Using the Models to Evaluate Subsequent Changes",
           "topic_sentence": "The models developed during this episode also helped me reason about changes I had not yet undertaken.",
           "id_source": "explicit",
-          "block_index": 99,
+          "block_index": 100,
           "points": []
         }
       ],

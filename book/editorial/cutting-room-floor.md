@@ -38884,3 +38884,12 @@ I began by modeling what DocAble retained in memory. I then developed models of 
 % Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
 The organizations also differ in the engineering machinery available to them before agents arrive. An established model-based engineering environment may already provide representations, analyses, transformations, and verification machinery that agents can use. Other organizations may have extensive source-level checks but few explicit system models. DocAble developed much of this machinery while developing the product itself. These different starting points affect which investments are necessary to make further delegation practical.
 ```
+
+
+## Memory provisioning motivation — 2026-11-24
+
+Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`, line 70, revision `48bc6f5d53f275d5ddbf07635e0495c929d1e179`. Replaced with the author’s concrete Cloud Run cost motivation; mathematical development retained.
+
+```latex
+Chunking had enabled me to process the documents encountered so far. But how much memory should I allocate to each worker? In the cloud, I pay for the memory I allocate. If I allocate too much, I waste money. If I allocate too little, the hosting service kills the worker before it finishes processing the document. Processing one large presentation successfully would not tell me how much memory to allocate for the next. I needed a model that would let me predict memory consumption from the contents of a document.
+```
