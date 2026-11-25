@@ -45,6 +45,8 @@ Models also change as engineers learn more about a system. Measurements may reve
 
 The engineer's role is to identify the engineering question and select a model that makes it easier to answer. Engineers do not need to invent a modeling technique from first principles for each question, and generally should not. Decades of work in software engineering, systems engineering, mathematics, and operations research have produced models of structure, behavior, decisions, quantities, and evidence. MAGE leaves the choice of notation to the engineer. \autoref{modeling-repertoire} illustrates the available repertoire with nine examples, showing the properties each model can express and the analyses it supports.
 
+We will organize our study of these models around three kinds of engineering question: how a system is organized, how it behaves, and how we should choose among alternatives. These are not mutually exclusive classes of representation. A quantitative model, for example, might describe a system’s resource requirements, predict its behavior, or help us choose a design. We will use such models alongside the structural, behavioral, and decision models developed in the following sections.
+
 % <!-- point: read-the-repertoire-as-available-moves-not-a-taxonomy | What matters is not a representation's graphical shape but the engineering question its entities and relations preserve. | terms: model-classes, projection -->
 % <!-- point: shape-does-not-distinguish-a-model-semantics-do | Shape does not distinguish representations, semantics do; semantic commitment decides how much of that meaning is declared rather than understood. | terms: system-knowledge-graph, semantic-commitment -->
 
@@ -56,6 +58,8 @@ The engineer's role is to identify the engineering question and select a model t
 \end{figure}
 
 How do you choose among these representations? Start with what you need to establish about the system. A requirement that only one worker may own a job raises a question about concurrent claims. To answer it, explore whether any permitted sequence of claims and releases leaves two workers holding the same job. The model must therefore represent ownership and the transitions that change it. Failures and proposed changes can raise questions too. \autoref{engineering-questions-and-candidate-models} pairs each analysis with models that supply the facts it needs.
+
+For a simple implementation, we may be able to answer the question by inspecting the code. A separate model becomes attractive when the relevant facts are scattered across the implementation, when the possible interactions are difficult to examine directly, or when we expect to ask related questions repeatedly.
 
 {\footnotesize
 \begin{longtable}[]{@{}

@@ -38804,3 +38804,83 @@ A generator can produce selected parts of an implementation, leaving other decis
 ```latex
 Real engineering environments will combine these trajectories, often differently for different properties of the same system. A system might maintain an authoritative state model where invalid transitions are consequential, derive architectural views when needed, allow agents substantial implementation freedom, and enforce security and dependency obligations at admission. The appropriate unit of analysis is therefore usually the engineering question or obligation, not the development methodology.
 ```
+
+
+## Reader progression and alignment-kernel connections — 2026-11-24
+
+Source revision: `fd3936ead2858e2e57452ccd4a3651a39c24e6fa`. Replaced at the author’s request to improve pedagogical sequence and connect the alignment kernel to adoption.
+
+### book/latex/sources/appendix-practicing-mage/brownfield-migration.tex:3
+
+```latex
+An existing system already contains engineering knowledge and controls in its tests, configuration, documentation, permissions, and operating procedures. Brownfield adoption begins by identifying which of these a selected kind of work depends upon, then determining what must be recovered, reconciled, or enforced. The objective is not comprehensive modeling or universal enforcement, but dependable support for the work being delegated. Prioritize knowledge that engineers repeatedly reconstruct, properties that are difficult to evaluate, and relationships split across representations that cannot yet answer the required question together.
+```
+
+### book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex:12
+
+```latex
+\textbf{First time here?} Begin with the Author’s Note and the Preface, then continue into \magevalue{chapter:problem}.
+```
+
+### book/latex/sources/part1/1.5-the-new-engineering-problem.tex:34
+
+```latex
+% <!-- point: modeling-and-alignment-complement-one-another | Modeling makes consequential properties explicit and can reduce reconstruction or support assurance; Alignment connects selected obligations to constraints, evidence-producing sensors, and admission-controlling gates. Modeling can improve the information supplied to an agent, while Alignment can improve feedback and prevent acceptance of violations within the enforcing mechanism’s scope. | terms: representation-problem, enforcement-problem, modeling-principle, alignment-principle -->
+```
+
+### book/latex/sources/part1/1.5-the-new-engineering-problem.tex:36
+
+```latex
+MAGE addresses these problems through two complementary activities: Modeling makes consequential knowledge explicit, while Alignment makes selected obligations enforceable. Modeling preserves relationships that people and agents would otherwise have to reconstruct during each task. Providing a model, however, does not ensure that its obligations will be respected. An agent may overlook a constraint, interpret it incorrectly, or violate it while satisfying another requirement. Alignment connects selected obligations to mechanisms outside that producing judgment: constraints restrict actions or states, sensors produce evidence, and gates evaluate evidence and control whether work may proceed. \autoref{substrate-to-method} summarizes the primary relationships. The activities are complementary rather than inseparable: a model can make system knowledge available without enforcing it, while a gate can enforce a permission without requiring an elaborate system model.
+```
+
+### book/latex/sources/part1/1.5-the-new-engineering-problem.tex:41
+
+```latex
+\caption{\emph{From agentic machinery to MAGE.} Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.}
+```
+
+### book/latex/sources/part2/2.3-structural.tex:143
+
+```latex
+DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} illustrates both kinds of \emph{typed composition}. Recording the edge type preserves that distinction. These distinctions make impact questions straightforward to investigate: in the November 2026 graph, the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
+```
+
+### book/latex/sources/part3/3.2-governance-mechanisms.tex:389
+
+```latex
+% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
+
+A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
+```
+
+### book/latex/sources/part3/3.4-governance-conversion.tex:9
+
+```latex
+% <!-- point: a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches | A governed environment grows from obligations already known and from what the work teaches; governance conversion is the second route. | terms: up-front-governance, governance-conversion -->
+```
+
+### book/latex/sources/part3/3.4-governance-conversion.tex:14
+
+```latex
+Some rules we know before we start. An API must require authentication. A job must not finish before it starts. But no engineered environment can begin with every future obligation already represented and mechanized. On new engineering tasks, we tend to discover further obligations as we go, often when something goes wrong.
+```
+
+### book/latex/sources/part3/3.4-governance-conversion.tex:16
+
+```latex
+We can therefore establish models and controls in two ways. We can construct them for obligations we already understand, or we can construct them as experience reveals new obligations. I call the latter activity \textbf{governance conversion}.
+```
+
+### book/latex/sources/part4/4.2-one-problem-many-models.tex:12
+
+```latex
+I began by modeling what DocAble retained in memory. I then developed models of execution, latency, and cost to investigate alternative designs. Notice how the questions change as the episode proceeds. Each model helped answer a question, but the answer could give me reason to ask another. I also had to decide which of the properties I discovered should constrain subsequent changes to the system.
+```
+
+### book/latex/sources/part5/5.4-other-agentic-software-factories.tex:184
+
+```latex
+% Evidence: AA1 | source: book/data/local-evidence/automated-alignment-11242026/records/AA1.md | kind: implementation
+The organizations also differ in the engineering machinery available to them before agents arrive. An established model-based engineering environment may already provide representations, analyses, transformations, and verification machinery that agents can use. Other organizations may have extensive source-level checks but few explicit system models. DocAble developed much of this machinery while developing the product itself. These different starting points affect which investments are necessary to make further delegation practical.
+```

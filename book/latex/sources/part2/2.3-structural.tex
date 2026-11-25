@@ -140,7 +140,7 @@ Some computations modify a document directly; others produce \textbf{typed patch
 % <!-- point: the-computation-model-distinguishes-data-flow-from-control-composition | DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run). -->
 
 % Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
-DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} illustrates both kinds of \emph{typed composition}. Recording the edge type preserves that distinction. These distinctions make impact questions straightforward to investigate: in the November 2026 graph, the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
+DocAble\textquotesingle s remediation-computation model distinguishes two relationships between registered computations. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. \autoref{from-nodes-to-composition} illustrates both kinds of \emph{typed composition}. Recording the edge type preserves that distinction.
 
 \begin{figure}[htbp]
 \centering
@@ -152,6 +152,9 @@ DocAble\textquotesingle s remediation-computation model distinguishes two relati
 % Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: illustration
 % This walkthrough explains the figure; it is not a recorded remediation execution.
 Follow one remediation operation through the illustrative graph. A classifier determines that structural repair is needed. The corresponding repair pass produces a typed patch, which the applier consumes to modify the document. A subsequent check inspects the result without modifying it. The classifier-to-repair relationship controls whether work executes; the repair-to-applier relationship carries the proposed mutation. These are different dependencies, even though both appear as arrows in the computation graph.
+
+% Evidence: E05 | source: book/data/local-evidence/evidentiary-basis-11202026/integration/records/E05.md | kind: historical-report
+These distinctions make impact questions straightforward to investigate: in the November 2026 graph, the document-signals classifier has fifteen immediate control-gate dependents whose execution decisions may change with its output, while the intra-page vision-fusion pass has two immediate data-flow consumers. An engineer or agent can inspect these edges directly or traverse them to investigate indirect dependencies. Neither requires a dedicated analysis subsystem.
 
 % <!-- point: the-model-also-records-how-bounded-each-effect-is | The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly. -->
 

@@ -386,9 +386,9 @@ We can sometimes protect an obligation more effectively by requiring an authoriz
 
 The latter approach does not require us to enumerate every possible bypass. It does, however, depend on the reliability of the evidence. An attribution record is useful only insofar as it establishes that the required operation actually occurred. Related arrangements appear in remote attestation, where a receiving mechanism evaluates evidence supporting a claim~\citep{birkholz2023rats}.
 
-% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
+% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A gate can require evidence that a prescribed discovery procedure occurred; that evidence has limits distinct from whether the procedure was performed. -->
 
-A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
+The same approach can govern engineering procedures. Rather than attempt to detect every instance in which an agent neglected to investigate a requirement, we can require evidence that it performed a prescribed discovery procedure. \autoref{3.3-where-obligations-can-be-enforced:heading:enforcement-boundaries-in-practice} examines such a mechanism in DocAble and the limits of what its evidence establishes.
 
 \section{Preserving Engineering Freedom}\label{heading:preserving-engineering-freedom}
 

@@ -363,7 +363,7 @@
         },
         {
           "slug": "modeling-and-alignment-complement-one-another",
-          "text": "Modeling makes consequential properties explicit and can reduce reconstruction or support assurance; Alignment connects selected obligations to constraints, evidence-producing sensors, and admission-controlling gates. Modeling can improve the information supplied to an agent, while Alignment can improve feedback and prevent acceptance of violations within the enforcing mechanism’s scope.",
+          "text": "Modeling makes consequential properties explicit and can reduce reconstruction or support assurance; Alignment connects selected obligations to mechanisms that restrict agents’ actions and determine whether work may be accepted. Modeling can improve the information supplied to an agent, while Alignment can improve feedback and prevent acceptance of violations within the enforcing mechanism’s scope.",
           "block_index": 10
         },
         {
@@ -535,12 +535,12 @@
             {
               "slug": "read-the-repertoire-as-available-moves-not-a-taxonomy",
               "text": "What matters is not a representation's graphical shape but the engineering question its entities and relations preserve.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "Shape does not distinguish representations, semantics do; semantic commitment decides how much of that meaning is declared rather than understood.",
-              "block_index": 19
+              "block_index": 20
             }
           ]
         },
@@ -550,7 +550,7 @@
           "heading_text": "Semantic Commitment and Analysis",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 30,
           "points": []
         },
         {
@@ -559,52 +559,52 @@
           "heading_text": "Semantic Commitment",
           "topic_sentence": "Engineering models range from whiteboard sketches to specifications written in a programming language.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 32,
           "points": [
             {
               "slug": "a-model-can-preserve-distinctions-without-defining-them",
               "text": "A representation can preserve the right distinctions while its interpreters supply most of its meaning.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "agents-make-the-semantics-tradeoff-newly-consequential",
               "text": "Explicit semantics preserve meanings that later agents would otherwise have to infer without the shared context of the original team.",
-              "block_index": 32
+              "block_index": 34
             },
             {
               "slug": "semantic-commitment-names-the-second-axis",
               "text": "Semantic commitment: how much meaning the representation itself carries explicitly.",
-              "block_index": 34
+              "block_index": 36
             },
             {
               "slug": "semantic-commitment-is-distinct-from-purposeful-reduction",
               "text": "Purposeful reduction determines which distinctions to preserve; semantic commitment determines how precisely the representation defines them.",
-              "block_index": 35
+              "block_index": 37
             },
             {
               "slug": "semantic-precision-is-not-generative-completeness",
               "text": "Semantic precision and generative completeness are different properties.",
-              "block_index": 39
+              "block_index": 41
             },
             {
               "slug": "stronger-semantics-buy-capabilities-and-create-obligations",
               "text": "Stronger semantics buy capabilities and create obligations; they are not inherently better.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "the-spectrum-in-concrete-artifacts",
               "text": "Concrete artifacts illustrate the range; the rows are examples, not maturity levels.",
-              "block_index": 41
+              "block_index": 43
             },
             {
               "slug": "the-columns-are-not-one-progression",
               "text": "Stronger commitment aids mechanical interpretation; it moves interpretation burden rather than removing it.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "state-machine-semantics-make-path-properties-checkable",
               "text": "An explicit transition relation allows a path property to be checked; composing machines also requires a choice of communication semantics.",
-              "block_index": 45
+              "block_index": 47
             }
           ]
         },
@@ -614,22 +614,22 @@
           "heading_text": "Representing and Interacting with Models",
           "topic_sentence": "Models can be maintained in ordinary project files, databases, or specialized modeling environments.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 51,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "capability-comes-in-rungs",
               "text": "Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model.",
-              "block_index": 55
+              "block_index": 57
             }
           ]
         },
@@ -639,17 +639,17 @@
           "heading_text": "From Analysis to Engineering Decisions",
           "topic_sentence": "[ref:question-to-consequence-progression] follows an engineering question from model selection through analysis to a decision.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 60,
           "points": [
             {
               "slug": "validate-the-model-for-its-question",
               "text": "Validation examines whether the model represents the distinctions, assumptions, and behaviors needed for the question.",
-              "block_index": 59
+              "block_index": 61
             },
             {
               "slug": "analysis-produces-evidence-for-an-engineering-decision",
               "text": "A model's semantics determine which analyses can produce evidence for a design decision. Implementation conformance requires separate evidence.",
-              "block_index": 60
+              "block_index": 62
             }
           ]
         }
@@ -779,22 +779,22 @@
             {
               "slug": "the-model-also-records-how-bounded-each-effect-is",
               "text": "The same model records each computation's mutation behavior — read-only, a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "the-static-graph-is-not-one-execution-of-it",
               "text": "The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "the-identity-spine-supports-added-views-without-enlarging-the-schema",
               "text": "Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "the-contrast-between-the-two-structural-models",
               "text": "The document-mutation model locates architectural bypasses; the computation model supports change-impact analysis through data and control dependencies.",
-              "block_index": 59
+              "block_index": 60
             }
           ]
         }
@@ -1150,12 +1150,12 @@
           "heading_text": "DocAble: Connecting Engineering Models",
           "topic_sentence": "DocAble uses connections among engineering models to answer questions about its remediation pipeline and deployed services.",
           "id_source": "explicit",
-          "block_index": 45,
+          "block_index": 46,
           "points": [
             {
               "slug": "a-heterogeneous-substrate-of-structured-records",
               "text": "DocAble's models differ in shape on purpose: roughly 130 structured model records plus data dialects share identities, derivations, query surfaces, and traceability where useful, are represented as data so map and territory stay separable, and nothing forces them into a single representation.",
-              "block_index": 47
+              "block_index": 48
             }
           ]
         },
@@ -1165,17 +1165,17 @@
           "heading_text": "One Dependency for Execution and Analysis",
           "topic_sentence": "Suppose we change a remediation pass.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 53,
           "points": [
             {
               "slug": "a-separate-python-view-projects-the-model-for-analysis",
               "text": "The Office analytical graph projects resource edges from the same registry read/write metadata used by scheduling; the PDF projection uses parallel typed declarations held in correspondence by blocking checks.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "one-source-of-truth-supports-both-directions",
               "text": "One set of Office read/write declarations supplies both scheduling and analysis; PDF analytical relations instead depend on checked correspondence with parallel declarations.",
-              "block_index": 58
+              "block_index": 59
             }
           ]
         },
@@ -1185,32 +1185,32 @@
           "heading_text": "What One Document Run Changed",
           "topic_sentence": "A static computation graph does not record the mutations performed during a particular run.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 61,
           "points": [
             {
               "slug": "event-grain-is-part-of-the-provenance-model",
               "text": "Remediation-pass stamps and typed editor-session operations are distinct records whose selected grain supports audit, debugging, and derived history.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "a-typed-edit-record-replays-deterministically",
               "text": "The applied-operation history and the lower-level PDF edit log are distinct; the replay engine applies supported pending edits, while both records omit the reasoning that produced them.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "proposed-edits-and-applied-history-are-different-representations",
               "text": "A typed changeset represents intended PDF mutations before application; per-operation results and attribution distinguish proposed changes from what was actually applied, independently of the producer's reasoning strategy.",
-              "block_index": 65
+              "block_index": 66
             },
             {
               "slug": "record-and-replay-separate-three-questions",
               "text": "Declared computations, recorded mutations, and replay answer what may compose, what happened in a run, and whether its recorded mutations can be reproduced.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps",
               "text": "Structural checks examine selected mutator populations for attribution wiring; they do not establish universal coverage or the semantic correctness of records.",
-              "block_index": 70
+              "block_index": 71
             }
           ]
         },
@@ -1220,12 +1220,12 @@
           "heading_text": "Joining a Call to Its Deployment Permission",
           "topic_sentence": "A permitted interservice call requires several models to agree.",
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 73,
           "points": [
             {
               "slug": "the-interservice-edge-is-a-worked-join",
               "text": "The deployment dependency map joins to runtime identity and deployed service names to derive invocation grants; typed call declarations are checked against that map, and shared principals can collapse several logical callers into one binding.",
-              "block_index": 73
+              "block_index": 74
             }
           ]
         }
@@ -1640,7 +1640,7 @@
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
-              "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
+              "text": "A gate can require evidence that a prescribed discovery procedure occurred; that evidence has limits distinct from whether the procedure was performed.",
               "block_index": 140
             }
           ]
@@ -1966,7 +1966,7 @@
       "preamble_points": [
         {
           "slug": "a-governed-environment-grows-from-known-obligations-and-from-what-the-work-teaches",
-          "text": "A governed environment grows from obligations already known and from what the work teaches; governance conversion is the second route.",
+          "text": "A governed environment grows from known obligations and engineering experience; governance conversion preserves lessons from failures in reusable models, procedures, and controls.",
           "block_index": 1
         }
       ]

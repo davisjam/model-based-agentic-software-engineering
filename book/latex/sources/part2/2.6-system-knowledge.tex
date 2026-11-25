@@ -119,6 +119,8 @@ An authoritative model can also be interpreted directly during execution. Consid
 
 The third arrangement is particularly useful when agents implement systems whose models specify only selected properties. The models preserve engineering decisions while leaving other implementation choices open. The three arrangements can coexist within one system, and their coverage can change as engineers learn which properties need explicit representation. These correspondence patterns apply between models at different abstraction levels as well as between models and implementation; a refinement relationship identifies which higher-level properties a more detailed representation must preserve.
 
+These arrangements also affect how much engineering work we can mechanize. A model may determine part of an implementation, supply the rules for checking it, or require an engineer or agent to interpret its meaning. \magevalue{chapter:alignment} examines how these choices affect the construction of governance mechanisms.
+
 The following DocAble examples show how shared identities, derived dependencies, and checked correspondence connect models used for different engineering purposes.
 
 \section{DocAble: Connecting Engineering Models}\label{heading:docable-connecting-engineering-models}

@@ -1,15 +1,15 @@
 {
   "source": "book/assets/substrate-to-method.svg",
   "chapter": "1.5-the-new-engineering-problem",
-  "claim": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.",
-  "caption": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.",
+  "claim": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. These properties of contemporary agents motivate the two principles, whose engineering value extends beyond compensating for limitations of the agents themselves.",
+  "caption": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. These properties of contemporary agents motivate the two principles, whose engineering value extends beyond compensating for limitations of the agents themselves.",
   "topology": {
     "description": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
     "native_draw_commands": [
-      "\\draw[edge] (91.6,38.9) -- (114,38.9);",
-      "\\draw[edge] (217.6,38.9) -- (239.6,38.9);",
-      "\\draw[edge] (91.6,83.9) -- (114,83.9);",
-      "\\draw[edge] (217.6,83.9) -- (239.6,83.9);"
+      "\\draw[edge] (91.6,44.9) -- (114,44.9);",
+      "\\draw[edge] (217.6,44.9) -- (239.6,44.9);",
+      "\\draw[edge] (91.6,89.9) -- (114,89.9);",
+      "\\draw[edge] (217.6,89.9) -- (239.6,89.9);"
     ]
   },
   "required_terms": [
@@ -19,7 +19,7 @@
     "Probabilistic agentic work",
     "Enforcement Problem",
     "Alignment",
-    "SUBSTRATE",
+    "MOTIVATING PROPERTY",
     "PROBLEM",
     "RESPONSE"
   ],
@@ -28,7 +28,7 @@
   "typography": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. The three column headings are bold. All six box labels use regular type. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
   "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
   "questions": [],
-  "alt": "Two rows connect substrate properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.",
+  "alt": "Two rows connect motivating properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.",
   "review": {
     "reference": "Author-requested simplified comparison, current local prose and two paired editable realizations.",
     "checks": [
@@ -202,7 +202,7 @@
         "bold": false
       },
       {
-        "text": "SUBSTRATE",
+        "text": "MOTIVATING PROPERTY",
         "bold": true
       },
       {
@@ -247,7 +247,7 @@
         "semantic_role": "Named category or process/comparison explanation."
       },
       {
-        "candidate_text": "SUBSTRATE",
+        "candidate_text": "MOTIVATING PROPERTY",
         "candidate_style": "bold",
         "semantic_role": "Named category or process/comparison explanation."
       },
